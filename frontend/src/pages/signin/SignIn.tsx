@@ -20,7 +20,7 @@ import {SignInPayload, User} from '../../model/user';
 import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
 import theme from "../../theme";
-import {ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
+import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
 
 const SignIn = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -168,7 +168,7 @@ const SignIn = () => {
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#" variant="body2">
+                                    <Link href={ROUTE_FORGOT_PASSWORD} variant="body2">
                                         Esqueceu a senha?
                                     </Link>
                                 </Grid>

@@ -1,15 +1,12 @@
 import * as React from 'react';
 import {Container, Paper, Toolbar, AppBar, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box, Link} from '@mui/material';
-import SignUp from "../signup/Signup";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {format} from "date-fns";
-import {register} from "../../api/login_requests/register";
-import {ROUTE_HOME, ROUTE_SIGN_IN} from "../../App";
-import SignUpStep1 from "../../containers/form/SignUpStep1";
-import SignUpStep2 from "../../containers/form/SignUpStep2";
-import SignUpStep3 from "../../containers/form/SignUpStep3";
-import SignUpStep4 from "../../containers/form/SignUpStep4";
+import ForgotPasswordStepl1 from "../../containers/forgot_password_form/ForgotPasswordStep1";
+import ForgotPasswordStepl2 from "../../containers/forgot_password_form/ForgotPasswordStep2";
+import ForgotPasswordStepl3 from "../../containers/forgot_password_form/ForgotPasswordStep3";
+import { Link as RouterLink } from 'react-router-dom';
+import {ROUTE_SIGN_IN} from "../../App";
 
 function Copyright() {
     return (
@@ -58,11 +55,11 @@ const ForgotPassword: React.FC = () => {
     const getStepContent = (step: number) => {
         switch (step) {
             case 0:
-                return <AddressForm />;
+                return <ForgotPasswordStepl1 />;
             case 1:
-                return <PaymentForm />;
+                return <ForgotPasswordStepl2 />;
             case 2:
-                return <Review />;
+                return <ForgotPasswordStepl3 />;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -71,21 +68,6 @@ const ForgotPassword: React.FC = () => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar
-                position="absolute"
-                color="default"
-                elevation={0}
-                sx={{
-                    position: 'relative',
-                    borderBottom: (t) => `1px solid ${t.palette.divider}`,
-                }}
-            >
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Company name
-                    </Typography>
-                </Toolbar>
-            </AppBar>
             <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
                 <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
                     <Typography component="h1" variant="h4" align="center">
@@ -101,21 +83,21 @@ const ForgotPassword: React.FC = () => {
                     {activeStep === steps.length ? (
                         <React.Fragment>
                             <Typography variant="h5" gutterBottom>
-                                Thank you for your order.
-                            </Typography>
-                            <Typography variant="subtitle1">
-                                Your order number is #2001539. We have emailed your order
-                                confirmation, and will send you an update when your order has
-                                shipped.
+                                Enviamos o código por email.
                             </Typography>
                         </React.Fragment>
                     ) : (
                         <React.Fragment>
                             {getStepContent(activeStep)}
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                {activeStep === 0 && (
+                                    <Button component={RouterLink} to={ROUTE_SIGN_IN} sx={{ mt: 3, ml: 1 }}>
+                                        Voltar
+                                    </Button>
+                                )}
                                 {activeStep !== 0 && (
                                     <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                                        Back
+                                        Voltar
                                     </Button>
                                 )}
 
@@ -124,7 +106,7 @@ const ForgotPassword: React.FC = () => {
                                     onClick={handleNext}
                                     sx={{ mt: 3, ml: 1 }}
                                 >
-                                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                                    {activeStep === steps.length - 1 ? 'Redefinir' : 'Próximo'}
                                 </Button>
                             </Box>
                         </React.Fragment>

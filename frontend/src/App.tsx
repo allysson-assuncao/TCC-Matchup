@@ -12,6 +12,7 @@ import SignUp from "./pages/signup/Signup";
 import Home from "./pages/home/home";
 import Profile from "./pages/profile/profile";
 import {User} from "./model/user";
+import ForgotPassword from "./pages/forgot_password/ForgotPassword";
 
 export const ROUTE_INDEX= '/';
 export const ROUTE_HOME = '/home';
@@ -34,7 +35,7 @@ const router = createBrowserRouter(
                 <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTE_HOME} element={<Home />} />
                 {/*<Route path={ROUTE_PROFILE} element={<Profile />} />*/}
-                {/*<Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />*/}
+                <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />
             </Route>
 
     )

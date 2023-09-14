@@ -10,7 +10,7 @@ import SignUpStep3 from "../../containers/form/SignUpStep3";
 import {Interest} from "../../model/interest";
 import {register} from "../../api/login_requests/register";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
+import {ROUTE_HOME, ROUTE_SIGN_IN} from "../../App";
 import {User} from "../../model/user";
 import {string} from "yup";
 import {format} from 'date-fns';
