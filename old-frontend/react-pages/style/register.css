@@ -1,0 +1,58 @@
+body{
+    background-color: #1E1E1E;
+}
+#card{
+    background-color: rgb(50, 50, 50);
+}
+#main-title{
+    color: #9747FF;
+}
+.label{
+    color: #9747FF;
+    font-size: large;
+    font-weight: 400;
+}
+.input-container{
+    position: relative;
+}
+.input-container input {
+    padding-right: 20px;
+}
+.input-container span {
+    font-weight: bolder;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: rgb(50, 50, 50);
+    cursor: pointer;
+}
+.profile-pic-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+.profile-pic-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-pic-container input[type="file"] {
+    display: none;
+}
+.profile-pic-container label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+.profile-pic-container label:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}

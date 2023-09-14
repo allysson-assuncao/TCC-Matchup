@@ -1,0 +1,42 @@
+body{
+    background-color: #1E1E1E;
+}
+#card{
+    background-color: rgb(50, 50, 50);
+    max-width: 700px;
+    margin: auto;
+}
+#main-title{
+    color: #9747FF;
+}
+.label{
+    color: #9747FF;
+    font-size: large;
+    font-weight: 400;
+}
+.input-container{
+    position: relative;
+}
+.input-container input {
+    padding-right: 20px;
+}
+.input-container span {
+    font-weight: bolder;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: rgb(50, 50, 50);
+    cursor: pointer;
+}
+.btn-user{
+    width: 100%;
+}
+input {
+    background-color: #E4CCFF;
+    margin: 8px 0;
+    border: none;
+    border-radius: 8px;
+}
+input:hover {
+    opacity: 0.8;
+}

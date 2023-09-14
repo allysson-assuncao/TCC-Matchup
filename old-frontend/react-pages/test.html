@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exemplo de Input com React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+      function Input(props) {
+        return (
+          <div className="form-group">
+            <input
+              type={props.type}
+              id={props.id}
+              className={props.className}
+              name={props.name}
+              placeholder={props.placeholder}
+              focused={props.focused}
+            />
+            <br />
+            <br />
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <div>
+            <Input
+              type="text"
+              id="txt-name"
+              className="form-control form-control-user bg-dark-subtle"
+              name="name"
+              placeholder="Nome completo..."
+              focused
+            />
+            <Input
+              type="text"
+              id="txt-email"
+              className="form-control form-control-user bg-dark-subtle"
+              name="email"
+              placeholder="Email... exemplo@gmail.com"
+              focused
+            />
+          </div>
+        );
+      }
+
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>

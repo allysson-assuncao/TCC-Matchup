@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style/basics.css">
+    <link rel="stylesheet" href="style/confirm-email.css">
+    <link rel="stylesheet" href="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Email</title>
+</head>
+
+<body class="confirm-email">
+    <div class="container">
+        <div id="card" class="card o-hidden border-0 shadow-lg my-5">
+            <div class="p-5">
+                <div class="text-center">
+                    <h2 id="main-title" class="h4 mb-4">Confirme o email!</h2>
+                </div>
+                <form id="confirm-email">
+                    <div class="form-group text-center">
+                        <label for="text-code" class="label">Informe o código enviado pelo email:</label><br><br>
+                    </div>
+                    <div class="form-group"></div>
+                        <div class="code-input">
+                            <input type="text" id="code1" name="code1" maxlength="1">
+                            <input type="text" id="code2" name="code2" maxlength="1">
+                            <input type="text" id="code3" name="code3" maxlength="1">
+                            <input type="text" id="code4" name="code4" maxlength="1">
+                            <input type="text" id="code5" name="code5" maxlength="1">
+                            <input type="text" id="code6" name="code6" maxlength="1">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" id="submit" class="btn btn-user btn-primary btn-block w-75"
+                            value="Confirmar"><br><br><br>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        for (var i = 1; i <= 6; i++) {
+
+            document.getElementById("code" + i).addEventListener("keyup", function (event) {
+                if (event.key === "Backspace") {
+                    var previousInput = event.target.previousElementSibling;
+
+                    if (previousInput) {
+                        previousInput.focus();
+                    }
+                } else if (event.target.value.length === event.target.maxLength) {
+                    var nextInput = event.target.nextElementSibling;
+
+                    if (nextInput) {
+                        nextInput.focus();
+                    }
+                }
+                
+            });
+
+        }
+
+        document.getElementById("code1").focus();
+
+    </script>
+</body>
+
+</html>
+<script src="script/confirm-email.js"></script>

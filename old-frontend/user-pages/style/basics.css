@@ -1,0 +1,72 @@
+body {
+    background-color: #1E1E1E;
+}
+
+#card {
+    background-color: rgb(50, 50, 50);
+    max-width: 600px;
+    margin: auto;
+}
+
+#main-title {
+    color: #9747FF;
+}
+
+.error-message {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.20);
+    color: lightgray;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 15px;
+    display: none;
+}
+
+
+.error-message button {  
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(255, 0, 0, 0);
+    color: lightgray;
+    padding: 3px 2px 0px 0px;
+    border: none;
+}
+
+.password-container {
+    position: relative;
+}
+
+.password-container #btn-toggle-password, #btn-toggle-confirmed-password{
+    position: absolute;
+    top: 9%;
+    right: 23px;
+    background-color: transparent;
+    border: none;
+}
+
+.password-container #toggle-password i {
+    color: inherit;
+}
+
+.label {
+    color: #9747FF;
+    font-size: large;
+    font-weight: 400;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-container input {
+    padding-right: 20px;
+}
+
+.input-container span {
+    font-weight: bolder;
+    position: absolute;
+    left: 430px;
+    top: 8px;
+    color: #9747FF;
+    cursor: pointer;
+}

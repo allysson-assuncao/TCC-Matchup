@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../bootstrap-5.3.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style/register.css">
+    <link rel="stylesheet" href="style/basics.css">
+    <link rel="stylesheet" href="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+
+<style>
+    .password-container #toggle-password {
+        top: 7%;
+    }
+</style>
+
+<body class="register-user">
+    <div class=" container">
+        <div id="card" class="card o-hidden border-0 shadow-lg my-5">
+            <div class="p-5">
+                <div class="text-center">
+                    <h2 id="main-title" class="h4 mb-4">Bem-vindo ao MatchUp!</h2>
+                </div>
+                <form id="register" class="user">
+                    <div class="form-group">
+                        <input type="text" id="txt-name" class="form-control form-control-user bg-dark-subtle"
+                            name="name" placeholder="Nome completo..." required focused>
+                        <div id="name-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <div class="form-group input-container">
+                        <input type="text" id="txt-username" class="form-control form-control-user bg-dark-subtle"
+                            name="username" placeholder="Nome de usuário..." required>
+                        <span
+                            title="O nome de usuário deve ter pelo menos 5 caracteres, no máximo 16, podendo incluir letras maiúsculas, minúsculas, números, hífem, ponto e underline."><i
+                                class="bi bi-question-lg"></i></span>
+                        <div id="username-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="txt-email" class="form-control form-control-user bg-dark-subtle"
+                            name="email" placeholder="Email... exemplo@gmail.com" required>
+                        <div id="email-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <!------------------------------------------------------------------->
+                    <div class="form-group input-container password-container">
+                        <input type="password" id="txt-password" class="form-control form-control-user bg-dark-subtle"
+                            name="password" placeholder="Senha..." required>
+                        <span
+                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i
+                                class="bi bi-question-lg"></i></span>
+                        <button id="btn-toggle-password" type="button"><i class="bi bi-eye-slash-fill btn-toggle-password"></i></button>
+                        <div id="password-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <div class="form-group input-container password-container">
+                        <input type="password" id="txt-confirmed-password"
+                            class="form-control form-control-user bg-dark-subtle" name="confirmed-password"
+                            placeholder="Confirmar senha..." required>
+                        <span
+                            title="A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos."><i
+                                class="bi bi-question-lg"></i></span>
+                        <button id="btn-toggle-confirmed-password" type="button"><i class="bi bi-eye-slash-fill btn-toggle-confirmed-password"></i></button>
+                        <div id="confirmed-password-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <!------------------------------------------------------------------->
+                    <div class="form-group">
+                        <input type="text" id="txt-phonenumber" class="form-control form-control-user bg-dark-subtle"
+                            name="phonenumber" placeholder="Nº de telefone... (XX) 9XXXX-XXXX" maxlength="15">
+                        <div id="phonenumber-error" class="invalid-feedback"></div><br>
+                    </div>
+                    <div class="form-group">
+                        <label for="date-bithDate" class="label">Data de nascimento</label>
+                        <input type="date" id="date-birth-date" class="form-control form-control-user bg-dark-subtle"
+                            name="birth-date" required>
+                        <div id="birth-date-error" class="invalid-feedback"></div><br>
+                    </div>
+                    <!-- <div class="form-group profile-pic-container">
+                        <img src="https://via.placeholder.com/150" alt="Foto de perfil">
+                        <input type="file" id="file-profile-picture" class="form-control form-control-user bg-dark-subtle" name="cellphone-number" placeholder="" required><br><br>
+                        <label for="txt-profile-picture">Alterar foto</label>
+                    </div> -->
+                    <div class="form-group">
+                        <label for="txt-address" id="label-address" class="label">Endereço</label>
+                        <input type="txt" id="txt-zipcode" class="form-control form-control-user bg-dark-subtle"
+                            name="zipcode" placeholder="CEP..." maxlength="9" required>
+                        <div id="zipcode-error" class="invalid-feedback"></div><br><br>
+                        <input type="txt" id="txt-state" class="form-control form-control-user bg-dark-subtle"
+                            name="state" placeholder="Estado..." required>
+                        <div id="state-error" class="invalid-feedback"></div><br><br>
+                        <input type="txt" id="txt-city" class="form-control form-control-user bg-dark-subtle"
+                            name="city" placeholder="Cidade..." required>
+                        <div id="city-error" class="invalid-feedback"></div><br><br>
+                        <input type="txt" id="txt-neighborhood" class="form-control form-control-user bg-dark-subtle"
+                            name="neighborhood" placeholder="Bairro..." required>
+                        <div id="neighborhood-error" class="invalid-feedback"></div><br><br>
+                        <input type="txt" id="txt-street" class="form-control form-control-user bg-dark-subtle"
+                            name="street" placeholder="Rua/Avenida..." required>
+                        <div id="street-error" class="invalid-feedback"></div><br><br>
+                        <input type="number" id="number-number" class="form-control form-control-user bg-dark-subtle"
+                            name="number" placeholder="Número..." required>
+                        <div id="number-error" class="invalid-feedback"></div><br><br>
+                    </div>
+                    <div class="form-group input-container">
+                        <label for="txt-interest" id="label-interest" class="label">Interesses</label>
+                        <select id="dd-interest" class="form-select" name="interest" multiple>
+                        </select><br><br>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" id="btn-submit" class="btn btn-user btn-primary btn-block"
+                            value="Registrar"><br><br>
+                    </div>
+                </form>
+                <div class="text-center">
+                    <a class="small" href="login.html">Já se cadastrou?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+<script src="./plugins/Dual-List-Box-Plugin-jQuery-Multi/dist/multi.min.js"></script>
+<script src="https://unpkg.com/validator@latest/validator.min.js"></script>
+<script src="script/toggle-password.js"></script>
+<script src="script/register.js"></script>

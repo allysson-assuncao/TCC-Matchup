@@ -1,6 +1,15 @@
 import * as React from 'react';
 import {Container, Paper, Toolbar, AppBar, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box, Link} from '@mui/material';
 import SignUp from "../signup/Signup";
+import {useNavigate} from "react-router-dom";
+import {useState} from "react";
+import {format} from "date-fns";
+import {register} from "../../api/login_requests/register";
+import {ROUTE_HOME, ROUTE_SIGN_IN} from "../../App";
+import SignUpStep1 from "../../containers/form/SignUpStep1";
+import SignUpStep2 from "../../containers/form/SignUpStep2";
+import SignUpStep3 from "../../containers/form/SignUpStep3";
+import SignUpStep4 from "../../containers/form/SignUpStep4";
 
 function Copyright() {
     return (
@@ -17,21 +26,15 @@ function Copyright() {
 
 const steps = ['Validação do email', 'Código de verificação', 'Redefinição de senha'];
 
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return <AddressForm />;
-        case 1:
-            return <PaymentForm />;
-        case 2:
-            return <Review />;
-        default:
-            throw new Error('Unknown step');
-    }
-}
-
 const ForgotPassword: React.FC = () => {
+    const history = useNavigate();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [formValues, setFormValues] = useState({
+        email: '',
+        code: '',
+        rawPassword: '',
+        confirmPassword: '',
+    });
 
     const handleNext = () => {
         setActiveStep(activeStep + 1);
@@ -39,6 +42,30 @@ const ForgotPassword: React.FC = () => {
 
     const handleBack = () => {
         setActiveStep(activeStep - 1);
+    };
+
+    const handleSubmit = (values: any, actions: any) => {
+        setFormValues({...formValues, ...values});
+
+        if (activeStep < steps.length - 1) {
+            handleNext();
+        } else {
+            //verify stuff
+            history(ROUTE_SIGN_IN);
+        }
+    };
+
+    const getStepContent = (step: number) => {
+        switch (step) {
+            case 0:
+                return <AddressForm />;
+            case 1:
+                return <PaymentForm />;
+            case 2:
+                return <Review />;
+            default:
+                return 'Erro: Etapa desconhecida';
+        }
     };
 
     return (

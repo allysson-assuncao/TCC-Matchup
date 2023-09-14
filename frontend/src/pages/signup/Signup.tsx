@@ -41,7 +41,6 @@ const SignUp: React.FC = () => {
         addressNumber: 0,
         cellphoneNumber: '',
         bio: '',
-
     });
 
     const handleNext = () => {
