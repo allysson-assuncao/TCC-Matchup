@@ -69,6 +69,7 @@ const SignIn = () => {
 
         formikProps.setSubmitting(false);
         setIsLoggedIn(true);
+        localStorage.clear();
         localStorage.setItem('user', JSON.stringify(userData));
         history(ROUTE_HOME);
 

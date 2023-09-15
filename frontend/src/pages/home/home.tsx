@@ -13,16 +13,41 @@ import {
 import theme from "../../theme";
 import {Field, FieldProps, Form, Formik} from "formik";
 import {validationLogin} from "../../utils/validation/UserValidation";
-import {ROUTE_SIGN_UP} from "../../App";
-import React from "react";
+import {ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
+import React, {useEffect} from "react";
+import {User} from "../../model/user";
+import {NavigateFunction, useNavigate} from "react-router-dom";
+import AppBarHome from "../../containers/AppBarHome";
 
+var loggedUser: User;
+
+var history: NavigateFunction;
+
+function setUser() {
+    loggedUser = JSON.parse('' + localStorage.getItem('user'));
+}
+
+function logout() {
+    localStorage.clear();
+    history(ROUTE_SIGN_IN);
+
+}
 
 const Home = () => {
-    return(
+    history = useNavigate();
+    setUser();
+
+    console.log('HOME');
+    console.log(loggedUser);
+    return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
             <Box
                 sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                }}
+                /*sx={{
                     position: 'absolute',
                     top: '40%',
                     left: '50%',
@@ -37,13 +62,13 @@ const Home = () => {
                     padding: '40px',
                     borderRadius: '16px',
                     backgroundColor: '9c27b0',
-                }}
+                }}*/
             >
                 {/*//<Avatar  src='/src/assets/brand/logo-matchup.jpeg'/>*/}
-
-                <Typography component="h1" variant="h5">
-                    Fazer Login
-                </Typography>
+                <AppBarHome></AppBarHome>
+                {/*<Typography component="h1" variant="h5">
+                    Eae {loggedUser.name}
+                </Typography>*/}
 
             </Box>
         </Container>

@@ -65,7 +65,7 @@ export const validateSignUpStep1 = Yup.object().shape({
 });
 
 export const validateSignUpStep2 = Yup.object().shape({
-    name: Yup.string()
+    /*name: Yup.string()
         .required('Campo obrigatório'),
     username:
         Yup.string()
@@ -75,7 +75,7 @@ export const validateSignUpStep2 = Yup.object().shape({
     password: Yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('Campo obrigatório'),
     confirmPassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'As senhas devem coincidir')
-        .required('Campo obrigatório'),
+        .required('Campo obrigatório'),*/
 });
 
 export const validateSignUpStep3 = Yup.object().shape({});

@@ -57,13 +57,16 @@ const SignUp: React.FC = () => {
         if (activeStep < steps.length - 1) {
             handleNext();
         } else {
-            const formattedBirthDate = format(Date.parse(formValues.birthDate), 'yyyy-MM-dd');
-            formValues.birthDate = formattedBirthDate;
+            formValues.birthDate = format(Date.parse(formValues.birthDate), 'yyyy-MM-dd');
             console.log(formValues);
 
             let user = register({user: formValues});
+
+            console.log(user);
             actions.setSubmitting(false);
+            localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
+            console.log(localStorage.getItem('user'));
             history(ROUTE_HOME);
         }
     };

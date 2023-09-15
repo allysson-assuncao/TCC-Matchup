@@ -45,7 +45,7 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
             <Box
 
             >
-                <Toolbar sx={{flexWrap: 'wrap'}}>
+                <Toolbar >
                     <Grid container spacing={3} alignContent='center'>
                         <Grid item xs textAlign="left" alignItems='left' marginTop="8px">
                             <img src={logo+''}/>
