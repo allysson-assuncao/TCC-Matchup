@@ -46,7 +46,7 @@ const ForWho = () => {
                 <Grid container spacing={5}>
                     <Grow in={scrolled}
                           style={{transformOrigin: '0 0 0'}}
-                          {...(scrolled ? {timeout: 1000} : {})}
+                          {...(scrolled ? {timeout: 2000} : {})}
                     >
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
