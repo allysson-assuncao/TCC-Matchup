@@ -9,8 +9,8 @@ import './App.css';
 import AppIndex from './pages/AppIndex/AppIndex';
 import SignIn from "./pages/signin/SignIn";
 import SignUp from "./pages/signup/Signup";
-import Home from "./pages/home/home";
-import Profile from "./pages/profile/profile";
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
 import {User} from "./model/user";
 import ForgotPassword from "./pages/forgot_password/ForgotPassword";
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter(
                 <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
                 <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTE_HOME} element={<Home />} />
-                {/*<Route path={ROUTE_PROFILE} element={<Profile />} />*/}
+                <Route path={ROUTE_PROFILE} element={<Profile />} />
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />
             </Route>
 

@@ -17,7 +17,6 @@ import {Field, FieldProps} from 'formik';
 import DatePickerField from "../../components/form/DatePickerField";
 import logo from '../../img/logo-matchup3.png';
 
-
 const SignUpStep1: React.FC = () => {
     return (
         <Container component="main" maxWidth="xs">

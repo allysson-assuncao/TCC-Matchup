@@ -21,6 +21,7 @@ import {isEmail, validateEmail, validationLogin} from '../../utils/validation/Us
 import {useNavigate} from "react-router-dom";
 import theme from "../../theme";
 import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
+import logo from '../../img/logo-matchup3.png';
 
 const SignIn = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -97,7 +98,8 @@ const SignIn = () => {
                     backgroundColor: '9c27b0',
                 }}
             >
-                <Avatar alt='Matchup' src='https://www.flaticon.com/br/icone-gratis/controlador-de-videogame_75524?term=videogame&page=1&position=4&origin=search&related_id=75524' />
+                {/*<Avatar alt='Matchup' src={logo} />*/}
+                <img src={logo+''} alt=""/>
 
                 <Typography component="h1" variant="h5">
                     Fazer Login
