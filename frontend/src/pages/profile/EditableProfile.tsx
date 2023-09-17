@@ -61,42 +61,64 @@ const EditableProfile = () => {
     };
 
     return (
-        <Box display="flex" flexDirection="column" alignItems="center" bgcolor={theme.palette.background.default}>
-            {isEditingUsername  ? (
-                <TextField color='text' value={username} onChange={(e) => setUsername(e.target.value)} />
-            ) : (
-                <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
-            )}
-            <IconButton color='primary' onClick={() => setIsEditingUsername(!isEditingUsername)}>
-                {isEditingUsername ? <EditIcon /> : <EditOffIcon />}
-            </IconButton>
-            <input
-                accept="image/*"
-                style={{ display: 'none' }}
-                id="raised-button-file"
-                type="file"
-                onChange={handleImageUpload}
-            />
-            <label htmlFor="raised-button-file">
-                <Avatar alt={name} src={image} style={{ width: '100px', height: '100px', cursor: 'pointer' }} />
-            </label>
-            {isEditingName ? (
-                <TextField value={name} onChange={(e) => setName(e.target.value)} />
-            ) : (
-                <Typography color={theme.palette.primary.main} variant="h5">{name}</Typography>
-            )}
-            <IconButton color='primary' onClick={() => setIsEditingName(!isEditingName)}>
-                {isEditingName ? <EditIcon /> : <EditOffIcon />}
-            </IconButton>
-            {isEditingBio ? (
-                <TextField value={bio} onChange={(e) => setBio(e.target.value)} multiline />
-            ) : (
-                <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
-            )}
-            <IconButton color='primary' onClick={() => setIsEditingName(!isEditingBio)}>
-                {isEditingName ? <EditIcon /> : <EditOffIcon />}
-            </IconButton>
-        </Box>
+        <React.Fragment>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline/>
+                <Box
+                    sx={{
+                        position: 'absolute',
+                        top: '40%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        maxWidth: 550,
+                        minWidth: 450,
+                        width: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        border: `1px solid${theme.palette.primary.main}`,
+                        padding: '40px',
+                        borderRadius: '16px',
+                        backgroundColor: '9c27b0',
+                    }}
+                >
+                    {isEditingUsername ? (
+                        <TextField color='primary' value={username} onChange={(e) => setUsername(e.target.value)}/>
+                    ) : (
+                        <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
+                    )}
+                    <IconButton color='primary' onClick={() => setIsEditingUsername(!isEditingUsername)}>
+                        {isEditingUsername ? <EditIcon/> : <EditOffIcon/>}
+                    </IconButton>
+                    <input
+                        accept="image/*"
+                        style={{display: 'none'}}
+                        id="raised-button-file"
+                        type="file"
+                        onChange={handleImageUpload}
+                    />
+                    <label htmlFor="raised-button-file">
+                        <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
+                    </label>
+                    {isEditingName ? (
+                        <TextField value={name} onChange={(e) => setName(e.target.value)}/>
+                    ) : (
+                        <Typography color={theme.palette.primary.main} variant="h5">{name}</Typography>
+                    )}
+                    <IconButton color='primary' onClick={() => setIsEditingName(!isEditingName)}>
+                        {isEditingName ? <EditIcon/> : <EditOffIcon/>}
+                    </IconButton>
+                    {isEditingBio ? (
+                        <TextField value={bio} onChange={(e) => setBio(e.target.value)} multiline/>
+                    ) : (
+                        <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
+                    )}
+                    <IconButton color='primary' onClick={() => setIsEditingName(!isEditingBio)}>
+                        {isEditingName ? <EditIcon/> : <EditOffIcon/>}
+                    </IconButton>
+                </Box>
+            </Container>
+        </React.Fragment>
     );
 }
 
