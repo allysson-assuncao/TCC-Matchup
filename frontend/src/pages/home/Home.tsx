@@ -27,10 +27,14 @@ function setUser() {
     loggedUser = JSON.parse('' + localStorage.getItem('user'));
 }
 
+export const getUser = () => {
+    setUser();
+    return loggedUser;
+}
+
 function logout() {
     localStorage.clear();
     history(ROUTE_SIGN_IN);
-
 }
 
 const Home = () => {
