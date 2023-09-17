@@ -17,20 +17,19 @@ public class FilterSpecificationService<T> {
             List<Predicate> predicates = new ArrayList<>();
 
             for(SearchRequestDto requestDto: searchRequestDtos){
-                Predicate predicate = null;
-
-                switch (requestDto.getOperation()){
-                    case EQUAL -> predicate  = criteriaBuilder.equal(root.get(requestDto.getColumn()), requestDto.getValue());
-                    case LIKE -> predicate  = criteriaBuilder.like(root.get(requestDto.getColumn()), "%"+requestDto.getValue()+"%");
-                    //case IN -> predicate  = criteriaBuilder.in(root.get(requestDto.getColumn()), requestDto.getValue());
-                    case LOWER_THAN -> predicate  = criteriaBuilder.lessThanOrEqualTo(root.get(requestDto.getColumn()), requestDto.getValue());
-                    case GREATER_THAN -> predicate  = criteriaBuilder.greaterThanOrEqualTo(root.get(requestDto.getColumn()), requestDto.getValue());
-                    case JOIN -> predicate  = criteriaBuilder.equal(root.join(requestDto.getJoinTable()).get(requestDto.getColumn()), requestDto.getValue());
-                    default -> throw new IllegalStateException("Invalid Operation");
+                for(String value: requestDto.getValues()){
+                    Predicate predicate = null;
+                    switch (requestDto.getOperation()){
+                        case EQUAL -> predicate  = criteriaBuilder.equal(root.get(requestDto.getColumn()), value);
+                        case LIKE -> predicate  = criteriaBuilder.like(root.get(requestDto.getColumn()), "%"+value+"%");
+                        //case IN -> predicate  = criteriaBuilder.in(root.get(requestDto.getColumn()), requestDto.getValue());
+                        case LOWER_THAN -> predicate  = criteriaBuilder.lessThanOrEqualTo(root.get(requestDto.getColumn()), value);
+                        case GREATER_THAN -> predicate  = criteriaBuilder.greaterThanOrEqualTo(root.get(requestDto.getColumn()), value);
+                        case JOIN -> predicate  = criteriaBuilder.equal(root.join(requestDto.getJoinTable()).get(requestDto.getColumn()), value);
+                        default -> throw new IllegalStateException("Invalid Operation");
+                    }
+                    predicates.add(predicate);
                 }
-
-
-                predicates.add(predicate);
             }
 
 

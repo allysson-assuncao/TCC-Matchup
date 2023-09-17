@@ -1,8 +1,10 @@
 package com.matchup.dto;
 
+import java.util.List;
+
 public class SearchRequestDto {
     private String column;
-    private String value;
+    private List<String> values;
 
     private Operation operation;
     private String joinTable;
@@ -20,12 +22,12 @@ public class SearchRequestDto {
         this.column = column;
     }
 
-    public String getValue() {
-        return value;
+    public List<String> getValues() {
+        return values;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValues(List<String> values) {
+        this.values = values;
     }
 
     public Operation getOperation() {
