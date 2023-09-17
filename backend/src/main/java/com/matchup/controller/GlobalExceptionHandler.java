@@ -49,5 +49,4 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Código inválido!", HttpStatus.BAD_REQUEST);
     }
 
-
 }
