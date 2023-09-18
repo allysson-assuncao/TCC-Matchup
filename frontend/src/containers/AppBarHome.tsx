@@ -75,7 +75,7 @@ const AppBarHome = () => {
     return (
         <React.Fragment>
             <Box sx={{
-                bgcolor: 'black',
+                bgcolor: theme.palette.background.default,
                 height: '100vh',
                 display: 'flex',
                 alignItems: 'center',
@@ -84,15 +84,15 @@ const AppBarHome = () => {
                 <Box sx={{ display: 'flex', justifyContent: 'center'}}>
                     <AppBar position="fixed"
                             sx={{
+                                border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                                borderRadius: '40px',
                                 display: 'flex',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 minWidth: 'fit-content',
                             }}
                     >
-                        <Toolbar sx={{display: 'flex', justifyContent: 'center', border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                            bgcolor: 'background.paper',
-                            borderRadius: '40px'}}>
+                        <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
                             <Box>
                                 <Tabs
                                     value={value}
@@ -114,7 +114,6 @@ const AppBarHome = () => {
                     <CustomTabPanel value={value} index={2}>
                         Item Three
                     </CustomTabPanel>
-                    <Typography>Olá Mundo</Typography>
                 </Box>
             </Box>
         </React.Fragment>
