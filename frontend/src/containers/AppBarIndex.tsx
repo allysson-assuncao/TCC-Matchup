@@ -1,11 +1,18 @@
 import logo from '../img/logo-matchup2.png'
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Button from "@mui/material/Button";
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import {Avatar, Box, Grid, MenuItem, Stack, useScrollTrigger} from "@mui/material";
+import {
+    AppBar,
+    Box,
+    Button,
+    Checkbox, Container,
+    CssBaseline,
+    FormControlLabel,
+    Grid,
+    Link,
+    Toolbar,
+    Typography,
+    useScrollTrigger,
+} from "@mui/material";
 import theme from "../theme";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";

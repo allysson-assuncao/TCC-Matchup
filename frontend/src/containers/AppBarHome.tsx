@@ -1,8 +1,8 @@
 import logo from '../img/logo-matchup2.png'
-import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
 import {
+    AppBar,
+    Toolbar,
     Avatar,
     Box,
     Container,
@@ -13,16 +13,19 @@ import {
     Tab,
     Tabs,
     Typography,
+    Menu,
+    Button,
+    Tooltip,
     useScrollTrigger
 } from "@mui/material";
-import theme from "../theme";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
+/*import Profile from "../pages/profile";*/
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AdbIcon from '@mui/icons-material/Adb';
 import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import {Login} from "@mui/icons-material";
-import Profile from "../pages/profile/Profile";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -57,7 +60,7 @@ function a11yProps(index: number) {
     };
 }
 
-const AppBarHome = () => {
+/*const AppBarHome = () => {
     const history = useNavigate();
     const [value, setValue] = React.useState(0);
 

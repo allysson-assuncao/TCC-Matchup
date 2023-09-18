@@ -18,6 +18,7 @@ import React, {useEffect} from "react";
 import {User} from "../../model/user";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import AppBarHome from "../../containers/AppBarHome";
+import logo from '../img/logo-matchup2.png'
 
 var loggedUser: User;
 
