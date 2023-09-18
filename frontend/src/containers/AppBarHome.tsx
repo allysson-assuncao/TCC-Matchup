@@ -20,77 +20,71 @@ const AppBarHome = () => {
     }
 
     return (
-        <AppBar
-            position="relative"
-            color="default"
-            elevation={0}
-            sx={{
-                border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                bgcolor: 'background.default',
-                borderRadius: '40px',
-                width: 'max-content',
-
-            }}
-        >
+        <React.Fragment>
             <Box
-
+                maxWidth="xs"
+                bgcolor={theme.palette.background.default}
+                sx={{
+                    position: 'absolute',
+                    width: 'auto',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    border: `1px solid${theme.palette.primary.main}`,
+                    padding: '40px',
+                    borderRadius: '16px',
+                }}
             >
-                <Toolbar sx={{flexWrap: 'wrap'}}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        aria-label="icon position tabs example"
-
-                    >
-                        <Tab icon={<PersonAddIcon />} iconPosition="start" label="Encontro" />
-                        <Tab icon={<HomeIcon />} iconPosition="start" label="Menu" />
-                        <Tab icon={<GroupIcon />} iconPosition="start" label="Contatos" />
-                    </Tabs>
-
-                    {/*<Grid container spacing={3} alignContent='center'>
-                        <Grid item xs textAlign="left" alignItems='left' marginTop="8px">
-                            <img src={logo+''}/>
-                        </Grid>
-                        <Grid item xs={6} textAlign="center" margin="auto"  sx={{fontSize: '20px'}}>
-                            <nav>
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
-                                    sx={{my: 1, mx: 1.5}}
-                                >
-                                    Funcionalidades
-                                </Link>
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
-                                    sx={{my: 1, mx: 1.5}}
-                                >
-                                    Empresa
-                                </Link>
-
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
-                                    sx={{my: 1, mx: 1.5}}
-                                >
-                                    Suporte
-                                </Link>
-                            </nav>
-                        </Grid>
-                        <Grid item xs textAlign="right">
-                            <Box display="flex" justifyContent="flex-end">
-                                profile picture
-                            </Box>
-                        </Grid>
-                    </Grid>*/}
-                </Toolbar>
+                <Typography color={theme.palette.primary.main}>Ola</Typography>
             </Box>
-        </AppBar>
-    )
+        </React.Fragment>
+        /*<Container>
+            <Box>
+               {/!* <AppBar
+                    position="relative"
+                    color="default"
+                    elevation={0}
+                    sx={{
+                        border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                        bgcolor: 'background.default',
+                        borderRadius: '40px',
+                        width: 'max-content',
 
+                    }}
+                >
+                    <Toolbar sx={{flexWrap: 'wrap'}}>
+                        <Box sx={{width: '100%'}}>
+                            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                    aria-label="icon position tabs example"
+                                >
+                                    <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
+                                    <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
+                                    <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
+                                </Tabs>
+                            </Box>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+
+
+                <Box>
+                    <CustomTabPanel value={value} index={0}>
+                        Item One
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        Item Two
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={2}>
+                        Item Three
+                    </CustomTabPanel>
+                </Box>*!/}
+
+            </Box>
+        </Container>*/
+    );
 }
 
 export default AppBarHome;
