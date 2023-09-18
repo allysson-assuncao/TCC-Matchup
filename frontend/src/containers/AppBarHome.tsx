@@ -83,16 +83,16 @@ const AppBarHome = () => {
             }}>
                 <Box sx={{ display: 'flex', justifyContent: 'center'}}>
                     <AppBar position="fixed"
-                        sx={{
-                            border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                            bgcolor: 'background.default',
-                            borderRadius: '40px',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                minWidth: 'fit-content',
+                            }}
                     >
-                        <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
+                        <Toolbar sx={{display: 'flex', justifyContent: 'center', border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                            bgcolor: 'background.paper',
+                            borderRadius: '40px'}}>
                             <Box>
                                 <Tabs
                                     value={value}
@@ -118,52 +118,6 @@ const AppBarHome = () => {
                 </Box>
             </Box>
         </React.Fragment>
-        /*<Container>
-            <Box>
-               {/!* <AppBar
-                    position="relative"
-                    color="default"
-                    elevation={0}
-                    sx={{
-                        border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                        bgcolor: 'background.default',
-                        borderRadius: '40px',
-                        width: 'max-content',
-
-                    }}
-                >
-                    <Toolbar sx={{flexWrap: 'wrap'}}>
-                        <Box sx={{width: '100%'}}>
-                            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                                <Tabs
-                                    value={value}
-                                    onChange={handleChange}
-                                    aria-label="icon position tabs example"
-                                >
-                                    <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
-                                    <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
-                                    <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
-                                </Tabs>
-                            </Box>
-                        </Box>
-                    </Toolbar>
-                </AppBar>
-
-
-                <Box>
-                    <CustomTabPanel value={value} index={0}>
-                        Item One
-                    </CustomTabPanel>
-                    <CustomTabPanel value={value} index={1}>
-                        Item Two
-                    </CustomTabPanel>
-                    <CustomTabPanel value={value} index={2}>
-                        Item Three
-                    </CustomTabPanel>
-                </Box>*!/}
-
-            </Box>
-        </Container>*/
     );
 }
 
