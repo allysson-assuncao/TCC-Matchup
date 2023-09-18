@@ -44,14 +44,11 @@ const Home = () => {
     console.log('HOME');
     console.log(loggedUser);
     return (
-        <Container component="main" maxWidth="xs">
+        <AppBarHome></AppBarHome>
+        /*<Container component="main" maxWidth="xs">
             <CssBaseline/>
             <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}
-                /*sx={{
+                /!*sx={{
                     position: 'absolute',
                     top: '40%',
                     left: '50%',
@@ -65,17 +62,16 @@ const Home = () => {
                     border: `1px solid${theme.palette.primary.main}`,
                     padding: '40px',
                     borderRadius: '16px',
-                    backgroundColor: '9c27b0',
-                }}*/
+                }}*!/
             >
-                {/*//<Avatar  src='/src/assets/brand/logo-matchup.jpeg'/>*/}
-                <AppBarHome></AppBarHome>
-                {/*<Typography component="h1" variant="h5">
+                {/!*!//<Avatar  src='/src/assets/brand/logo-matchup.jpeg'/>*!/}
+
+                {/!*<Typography component="h1" variant="h5">
                     Eae {loggedUser.name}
-                </Typography>*/}
+                </Typography>*!/}
 
             </Box>
-        </Container>
+        </Container>*/
     )
 
 }

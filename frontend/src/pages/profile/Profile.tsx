@@ -50,10 +50,10 @@ const Profile = () => {
                         backgroundColor: '9c27b0',
                     }}
                 >
-                    <Typography color='background.paper' variant="h4">{username}</Typography>
+                    <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
                     <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-                    <Typography color='background.paper' variant="h5">{name}</Typography>
-                    <Typography color='background.paper' variant="body1" align="left">{bio}</Typography>
+                    <Typography color={theme.palette.primary.main} variant="h5">{name}</Typography>
+                    <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
             </Container>
         </React.Fragment>
