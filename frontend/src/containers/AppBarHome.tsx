@@ -74,21 +74,48 @@ const AppBarHome = () => {
 
     return (
         <React.Fragment>
-            <Box
-                maxWidth="xs"
-                bgcolor={theme.palette.background.default}
-                sx={{
-                    position: 'absolute',
-                    width: 'auto',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    border: `1px solid${theme.palette.primary.main}`,
-                    padding: '40px',
-                    borderRadius: '16px',
-                }}
-            >
-                <Typography color={theme.palette.primary.main}>Ola</Typography>
+            <Box sx={{
+                bgcolor: 'black',
+                height: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+                    <AppBar position="fixed"
+                        sx={{
+                            border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                            bgcolor: 'background.default',
+                            borderRadius: '40px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
+                            <Box>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                >
+                                    <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
+                                    <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
+                                    <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
+                                </Tabs>
+                            </Box>
+                        </Toolbar>
+                    </AppBar>
+                    <CustomTabPanel value={value} index={0}>
+                        Item One
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        Item Two
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={2}>
+                        Item Three
+                    </CustomTabPanel>
+                    <Typography>Olá Mundo</Typography>
+                </Box>
             </Box>
         </React.Fragment>
         /*<Container>
