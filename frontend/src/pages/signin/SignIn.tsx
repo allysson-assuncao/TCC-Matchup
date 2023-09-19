@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Formik, Form, Field, FieldProps, FormikProps} from 'formik';
+import {Formik, Form, Field, FieldProps, FormikProps, FormikHelpers} from 'formik';
 import * as Yup from 'yup';
 import {
     Container,
@@ -35,14 +35,14 @@ const SignIn = () => {
     };
 
     let userData: User;
-    const handleSubmit = async (values: SignInPayload, formikProps: FormikProps<SignInPayload>) => {
+    const handleSubmit = async (values: SignInPayload, formikProps: FormikHelpers<SignInPayload>) => {
 
         if(!valid){
             return;
         }
-        if(formikProps.isValid){
+        /*if(formikProps.isValid){
 
-        }
+        }*/
         try {
             let validationResponse: ValidationResponse;
 
@@ -59,13 +59,11 @@ const SignIn = () => {
                 return;
             } else {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
-                // Handle the logged-in user here, e.g., update authentication state.
                 console.log(userData);
             }
         } catch (error) {
             setValid(false);
             return;
-            // Handle login errors here, e.g., set error messages.
         }
 
         formikProps.setSubmitting(false);

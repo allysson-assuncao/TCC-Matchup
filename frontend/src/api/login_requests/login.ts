@@ -11,7 +11,7 @@ interface LoginResponse {
     };*/
 }
 
-export const login = async (isEmail: boolean, emailOrUsername: undefined, rawPassword: undefined, remember: undefined): Promise<User> => {
+export const login = async (isEmail: boolean, emailOrUsername: string, rawPassword: string, remember: boolean): Promise<User> => {
     console.log(rawPassword);
     console.log(remember);
     try {

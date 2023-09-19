@@ -27,9 +27,9 @@ export interface User {
 }
 
 export type SignInPayload = {
-    password?: undefined;
-    emailOrUsername?: undefined;
-    remember?: undefined;
+    emailOrUsername: string;
+    password: string;
+    remember: boolean;
 };
 
 export type SignUpStep1Payload = {
