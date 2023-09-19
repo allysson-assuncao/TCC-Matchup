@@ -14,7 +14,6 @@ const ToggleColorModeButton = () => {
     var darkMode = (localStorage.getItem('mode') == 'dark');
 
     const onClick = () => {
-        /*theme.palette.primary.main = hexToRgb('#ffffff');*/
         let mode = darkMode? 'light': 'dark';
         localStorage.setItem('mode', mode);
         updateMode();

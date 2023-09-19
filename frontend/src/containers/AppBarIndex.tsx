@@ -4,13 +4,9 @@ import {
     AppBar,
     Box,
     Button,
-    Checkbox, Container,
-    CssBaseline,
-    FormControlLabel,
     Grid,
     Link,
     Toolbar,
-    Typography,
     useScrollTrigger,
 } from "@mui/material";
 import theme from "../theme";
@@ -18,19 +14,16 @@ import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 
-
-
 const AppBarIndex = () => {
     const history = useNavigate();
 
     function isScrolled() {
-        return window.scrollY > 2; // Defina o limite desejado
+        return window.scrollY > 2;
     }
 
-    // Use o hook useScrollTrigger para detectar a rolagem
     const scrolled = useScrollTrigger({
-        disableHysteresis: true, // O gatilho é ativado imediatamente quando você rola para cima
-        threshold: 0, // Defina o limite de deslocamento
+        disableHysteresis: true,
+        threshold: 0,
     });
 
     return (
@@ -40,9 +33,9 @@ const AppBarIndex = () => {
             elevation={0}
             sx={{
                 border: (theme) => `1px solid ${theme.palette.divider}`,
-                borderRadius: scrolled || isScrolled() ? '0px' : '50px', // Verifica se o usuário rolou a página
-                marginTop: scrolled || isScrolled() ? '0px' : '15px', // Verifica se o usuário rolou a página
-                transition: 'border-radius 0.3s ease, margin-top 0.3s ease', // Adiciona transições suaves
+                borderRadius: scrolled || isScrolled() ? '0px' : '50px',
+                marginTop: scrolled || isScrolled() ? '0px' : '15px',
+                transition: 'border-radius 0.3s ease, margin-top 0.3s ease',
                 bgcolor: 'background.default',
             }}
         >
