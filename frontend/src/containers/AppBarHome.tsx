@@ -225,8 +225,8 @@ const AppBarHome = () => {
                                         display: {xs: 'block', md: 'none'},
                                     }}
                                 >
-                                    {pages.map((page) => (
-                                        <MenuItem key={page} onClick={handleCloseNavMenu}>
+
+                                        <MenuItem onClick={handleCloseNavMenu}>
                                             <Box>
                                                 <Tabs
                                                     value={value}
@@ -238,7 +238,7 @@ const AppBarHome = () => {
                                                 </Tabs>
                                             </Box>
                                         </MenuItem>
-                                    ))}
+
                                 </Menu>
 
 
@@ -263,7 +263,7 @@ const AppBarHome = () => {
                             </Typography>
                             <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                                 <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
-                                    <Box>
+                                    <Box sx={{justifyContent: 'center', margin: 'auto'}}>
                                         <Tabs
                                             value={value}
                                             onChange={handleChange}

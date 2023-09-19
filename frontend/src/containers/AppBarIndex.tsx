@@ -18,10 +18,7 @@ import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 
-interface ToggleColorModeButtonProps {
-    darkMode: boolean;
-    onToggleColorModeClick: () => void;
-}
+
 
 const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleColorModeClick }) => {
     const history = useNavigate();
@@ -88,9 +85,7 @@ const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleC
                         </Grid>
                         <Grid item xs textAlign="right">
                             <Box display="flex" justifyContent="flex-end">
-                                <ToggleColorModeButton
-                                    darkMode={darkMode}
-                                    onClick={onToggleColorModeClick}></ToggleColorModeButton>
+                                <ToggleColorModeButton></ToggleColorModeButton>
                                 <Button
                                     onClick={() => history(ROUTE_SIGN_UP)}
                                     variant="outlined"
