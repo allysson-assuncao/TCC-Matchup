@@ -59,6 +59,71 @@ function a11yProps(index: number) {
     };
 }
 
+/*const AppBarHome = () => {
+    const history = useNavigate();
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+    };
+
+    interface TabPanelProps {
+        children?: React.ReactNode;
+        dir?: string;
+        index: number;
+        value: number;
+    }
+
+    return (
+        <React.Fragment>
+            <Box sx={{
+                bgcolor: theme.palette.background.default,
+                height: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+                    <AppBar position="fixed"
+                            sx={{
+                                border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                                borderRadius: '40px',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                minWidth: 'fit-content',
+                            }}
+                    >
+                        <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
+                            <Box>
+                                <Tabs
+                                    value={value}
+                                    onChange={handleChange}
+                                >
+                                    <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
+                                    <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
+                                    <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
+                                </Tabs>
+                            </Box>
+                        </Toolbar>
+                    </AppBar>
+                    <CustomTabPanel value={value} index={0}>
+                        Item One
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        Item Two
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={2}>
+                        Item Three
+                    </CustomTabPanel>
+                </Box>
+
+
+            </Box>
+        </React.Fragment>
+    );
+}*/
+
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Perfil', 'Configurações', 'Contato', 'Sair'];
 
@@ -98,15 +163,7 @@ const AppBarHome = () => {
         <Box bgcolor={theme.palette.background.default}>
             <Container component="main">
                 <CssBaseline/>
-                <AppBar
-                    position="static"
-                    color="default"
-                    elevation={0}
-                    sx={{
-                        border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                        borderRadius: '40px',
-                    }}
-                >
+                <AppBar position="static">
                     <Container maxWidth="xl">
                         <Toolbar disableGutters>
                             <Typography
@@ -168,8 +225,8 @@ const AppBarHome = () => {
                                         display: {xs: 'block', md: 'none'},
                                     }}
                                 >
-
-                                        <MenuItem onClick={handleCloseNavMenu}>
+                                    {pages.map((page) => (
+                                        <MenuItem key={page} onClick={handleCloseNavMenu}>
                                             <Box>
                                                 <Tabs
                                                     value={value}
@@ -181,7 +238,7 @@ const AppBarHome = () => {
                                                 </Tabs>
                                             </Box>
                                         </MenuItem>
-
+                                    ))}
                                 </Menu>
 
 
@@ -206,7 +263,7 @@ const AppBarHome = () => {
                             </Typography>
                             <Box sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}>
                                 <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
-                                    <Box sx={{justifyContent: 'center', margin: 'auto'}}>
+                                    <Box>
                                         <Tabs
                                             value={value}
                                             onChange={handleChange}

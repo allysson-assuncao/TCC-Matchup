@@ -20,17 +20,11 @@ if (localStorage.getItem('mode') != 'dark' && localStorage.getItem('mode') != 'l
     }
 }
 
-
 export function setMode(mode2: PaletteMode) {
     mode = mode2;
 }
 
 var lastMode: string | null;
-
-
-
-
-
 
 export const updateMode = () => {
     let mode = localStorage.getItem('mode');
@@ -72,7 +66,6 @@ export const updateMode = () => {
     }
     lastMode = mode;
 }
-
 
 const theme =
     createTheme({

@@ -18,6 +18,7 @@ const ToggleColorModeButton = () => {
         let mode = darkMode? 'light': 'dark';
         localStorage.setItem('mode', mode);
         updateMode();
+        window.location.reload();
     }
 
     return (
