@@ -115,7 +115,7 @@ import {
     CssBaseline,
     Box, TextField, Typography
 } from '@mui/material';
-import {Field, ErrorMessage} from 'formik';
+import {Field, ErrorMessage, FieldProps, FormikProps} from 'formik';
 import * as Yup from 'yup';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {Interest} from "../../model/interest";
@@ -123,8 +123,8 @@ import {getAllInterests} from "../../api/login_requests/register";
 import logo from '../../img/logo-matchup3.png';
 
 const SignUpStep3: React.FC = () => {
-    const [notSelectedInterests, setNotSelectedInterests] = useState([]);
-    const [interests, setSelectedInterests] = useState([]);
+    const [notSelectedInterests, setNotSelectedInterests] = useState<Interest[]>([]);
+    const [interests, setSelectedInterests] = useState<Interest[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -158,16 +158,15 @@ const SignUpStep3: React.FC = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Field name="interests">
-                            {({field, form}) => (
+                            {({field, form}:  { field: FieldProps, form: FormikProps<Interest> }) => (
                                 <Autocomplete
                                     {...field}
                                     multiple
                                     fullWidth
                                     id="tags-outlined"
-                                    name="interests"
                                     options={notSelectedInterests}
                                     getOptionLabel={(interest: Interest) => interest.name}
-                                    onChange={(_, newValue) => form.setFieldValue('interests', newValue.map((interest) => interest.id))}
+                                    onChange={(_, newValue:Interest[]) => form.setFieldValue('interests', newValue.map((interest: Interest) => interest.id))}
                                     filterSelectedOptions
                                     renderInput={(params) => (
                                         <TextField

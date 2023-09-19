@@ -58,10 +58,10 @@ export const validateSignUpStep1 = Yup.object().shape({
         .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, 'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
         .required('Campo obrigatório!'),
     confirmPassword: Yup.string()
-        .oneOf([Yup.ref('rawPassword'), null], 'As senhas devem coincidir!')
+        .oneOf([Yup.ref('rawPassword'), undefined], 'As senhas devem coincidir!')
         .required('Campo obrigatório!')
     ,
-    birthDate: Yup.date().required('Campo obrigatório!'),
+    //birthDate: Yup.date().required('Campo obrigatório!'),
 });
 
 export const validateSignUpStep2 = Yup.object().shape({

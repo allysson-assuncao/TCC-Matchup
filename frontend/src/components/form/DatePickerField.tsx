@@ -10,11 +10,14 @@ const DatePickerField: React.FC<FieldProps> = ({ field, form, ...props }) => {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
-
+                sx={sx}
+                id={id}
+                label={label}
+                error={(meta.touched && !!meta.error)}
+                helperText={(meta.touched && meta.error)}
                 maxDate={dayjs().subtract(13, 'year')}
                 minDate={dayjs().subtract(150, 'year')}
                 {...field}
-                {...props}
                 onChange={(date) => form.setFieldValue(field.name, date)}
                 value={field.value || null} // Certifique-se de que seja nulo se nenhum valor estiver selecionado
             />

@@ -25,6 +25,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import theme from '../theme'
+import {getUser} from "../pages/home/Home";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -163,7 +164,14 @@ const AppBarHome = () => {
         <Box bgcolor={theme.palette.background.default}>
             <Container component="main">
                 <CssBaseline/>
-                <AppBar position="static">
+                <AppBar position="static"
+                        color="default"
+                        elevation={0}
+                        sx={{
+                            border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                            borderRadius: '40px',
+                        }}>
+
                     <Container maxWidth="xl">
                         <Toolbar disableGutters>
                             <Typography
@@ -288,7 +296,9 @@ const AppBarHome = () => {
                             <Box sx={{flexGrow: 0}}>
                                 <Tooltip title="Abrir opções">
                                     <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <Avatar alt="Menu" src="/static/images/avatar/2.jpg"/>
+                                        <Avatar alt={getUser().name} src="/static/images/avatar/2.jpg">
+
+                                        </Avatar>
                                     </IconButton>
                                 </Tooltip>
                                 <Menu

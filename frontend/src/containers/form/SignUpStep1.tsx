@@ -131,8 +131,9 @@ const SignUpStep1: React.FC = () => {
                                     sx={{width: '100%'}}
                                     id="birthDate"
                                     label="Data de Nascimento"
-                                    error={(meta.touched && !!meta.error)}
-                                    helperText={(meta.touched && meta.error)}
+                                   /* error={(meta.touched && !!meta.error)}
+                                    helperText={(meta.touched && meta.error)}*/
+                                    meta={meta}
                                 />
                             )}
                         </Field>
