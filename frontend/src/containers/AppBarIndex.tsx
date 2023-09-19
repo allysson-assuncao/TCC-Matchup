@@ -20,7 +20,7 @@ import ToggleColorModeButton from "../components/ToggleColorModeButton";
 
 
 
-const AppBarIndex: React.FC<ToggleColorModeButtonProps> = ({ darkMode, onToggleColorModeClick }) => {
+const AppBarIndex = () => {
     const history = useNavigate();
 
     function isScrolled() {
