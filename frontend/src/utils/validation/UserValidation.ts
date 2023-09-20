@@ -65,17 +65,12 @@ export const validateSignUpStep1 = Yup.object().shape({
 });
 
 export const validateSignUpStep2 = Yup.object().shape({
-    /*name: Yup.string()
-        .required('Campo obrigatório'),
-    username:
-        Yup.string()
-            .required('Campo obrigatório')
-            .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário inválido!'),
-    email: Yup.string().email('Email inválido').required('Campo obrigatório'),
-    password: Yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres').required('Campo obrigatório'),
-    confirmPassword: Yup.string()
-        .oneOf([Yup.ref('password'), null], 'As senhas devem coincidir')
-        .required('Campo obrigatório'),*/
+    addressZipcode: Yup.string().required('Campo obrigatório!').matches(/^\d{5}-\d{3}$/, 'CEP inválido. Formato esperado: 00000-000'),
+    addressState: Yup.string().required('Campo obrigatório!') ,
+    addressCity: Yup.string().required('Campo obrigatório!'),
+    addressNeighborhood: Yup.string().required('Campo obrigatório!'),
+    addressStreet: Yup.string().required('Campo obrigatório!'),
+    addressNumber: Yup.number().required('Campo obrigatório!').min(0, 'O Número não pode ser negativo!'),
 });
 
 export const validateSignUpStep3 = Yup.object().shape({});

@@ -39,9 +39,7 @@ const AppBarIndex = () => {
                 bgcolor: 'background.default',
             }}
         >
-            <Box
-
-            >
+            <Box>
                 <Toolbar >
                     <Grid container spacing={3} alignContent='center'>
                         <Grid item xs textAlign="left" alignItems='left' marginTop="8px">
@@ -101,8 +99,7 @@ const AppBarIndex = () => {
                 </Toolbar>
             </Box>
         </AppBar>
-    )
-
+    );
 }
 
 export default AppBarIndex;

@@ -31,6 +31,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ToggleColorModeButton from "../components/ToggleColorModeButton";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -65,13 +66,13 @@ function a11yProps(index: number) {
     };
 }
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Perfil', 'Configurações', 'Contato', 'Sair'];
+const settings = ['Perfil', 'Configurações', 'Contato', '', 'Sair'];
 const menuIcons: { [key: string]: React.ReactElement } = {
     'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'} />,
     'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'} />,
     'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'} />,
-    'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'} />
+    'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'} />,
+    '': <ToggleColorModeButton buttonText='Mudar Tema'/>,
 };
 
 const AppBarHome = () => {
@@ -79,6 +80,14 @@ const AppBarHome = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const history = useNavigate();
     const [value, setValue] = React.useState(0);
+
+   /* myRef = React.createRef();
+
+    componentDidMount() {
+        if (this.myRef.current) {
+            this.myRef.current.click();
+        }
+    }*/
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -287,10 +296,10 @@ const AppBarHome = () => {
                                             }}
                                         >
                                             {menuIcons[setting]}
+
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     ))}
-
                                 </Menu>
                             </Box>
                         </Toolbar>

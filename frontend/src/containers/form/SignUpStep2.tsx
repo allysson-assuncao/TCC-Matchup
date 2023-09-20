@@ -1,172 +1,3 @@
-/*
-import React from "react";
-import {
-    Container,
-    CssBaseline,
-    Box,
-    Avatar,
-    Typography,
-    TextField,
-    FormControlLabel,
-    Checkbox,
-    Button,
-    Grid,
-    Link,
-    Alert, CardHeader,
-} from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import {ROUTE_SIGN_IN} from "../../App";
-import {DatePicker, DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from "dayjs";
-import {useFormik} from "formik";
-import {User} from "../../model/user";
-
-interface SignUpProps {
-    user: User;
-}
-const SignUpStep2: React.FC<SignUpProps> = ({user}) => {
-    var userToRegister = {user}.user;
-    /!*const formik = useFormik({
-        initialValues: {
-            zipcode: '',
-            state: '',
-            city: '',
-            neighborhood: '',
-            street: '',
-            number: '',
-        },
-
-    };*!/
-
-
-
-const minDate = dayjs().subtract(120, 'year').toDate();
-const maxDate = dayjs().subtract(13, 'year').toDate();
-
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-};
-
-return (
-    <Container component="main" maxWidth="xs">
-        <CssBaseline/>
-        <Box
-            sx={{
-                marginTop: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-            }}
-        >
-            <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
-                <LockOutlinedIcon/>
-                <h1>{user.name}</h1>
-            </Avatar>
-            <Typography component="h1" variant="h5">
-                Faça Cadastro
-            </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 3}}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <TextField
-                            autoComplete="given-zipcode"
-                            name="zipcode"
-                            required
-                            fullWidth
-                            id="zipcode"
-                            label="CEP"
-                            autoFocus
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            autoComplete="given-state"
-                            name="state"
-                            required
-                            fullWidth
-                            id="state"
-                            label="Estado"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
-                            fullWidth
-                            id="city"
-                            label="Cidade"
-                            name="city"
-                            autoComplete="city"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
-                            fullWidth
-                            name="neighborhood"
-                            label="Bairro"
-                            type="neighborhood"
-                            id="neighborhood"
-                            autoComplete="neighborhood"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
-                            fullWidth
-                            name="street"
-                            label="Rua/Avenida"
-                            type="street"
-                            id="street"
-                            autoComplete="street"
-                        />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            required
-                            fullWidth
-                            name="number"
-                            label="Número"
-                            type="text"
-                            id="number"
-                            autoComplete="number"
-                        />
-                    </Grid>
-
-                </Grid>
-                <CardHeader
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                />
-                <CardHeader
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                />
-                <Grid item xs={12}>
-
-                    <Grid container justifyContent="space-between">
-                        <Grid item>
-                            <Button onClick={handleBack} disabled={etapaAtual === 0}>Anterior</Button>
-                        </Grid>
-                        <Grid item>
-                            <Button onClick={etapaAtual === 3 ? handleFinish : handleNext}
-                                    variant="contained">
-                                {etapaAtual === 3 ? 'Concluir' : 'Próximo'}</Button>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Box>
-        </Box>
-    </Container>
-);
-
-};
-
-export default SignUpStep2;
-*/
-
 import React from 'react';
 import {
     Avatar,
@@ -185,6 +16,21 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import logo from '../../img/logo-matchup3.png';
+
+function formatZipcode(value: any) {
+    if (!value) {
+        return value;
+    }
+
+    const onlyNums = value.replace(/[^\d]/g, '');
+    if (onlyNums.length <= 4) {
+        return onlyNums;
+    }
+    if (onlyNums.length <= 8) {
+        return `${onlyNums.slice(0, 5)}-${onlyNums.slice(5)}`;
+    }
+    return `${onlyNums.slice(0, 5)}-${onlyNums.slice(5, 8)}`;
+}
 
 const SignUpStep2: React.FC = () => {
     return (
@@ -213,9 +59,13 @@ const SignUpStep2: React.FC = () => {
                 */}
 
                 <Field name="addressZipcode">
-                    {({field, meta}: FieldProps) => (
+                    {({ field, meta, form }: FieldProps) => (
                         <TextField
                             {...field}
+                            onChange={e => {
+                                const formatted = formatZipcode(e.target.value);
+                                form.setFieldValue(field.name, formatted);
+                            }}
                             margin="normal"
                             required
                             fullWidth
@@ -223,8 +73,8 @@ const SignUpStep2: React.FC = () => {
                             label="CEP"
                             autoFocus
                             variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
+                            error={meta.touched && !!meta.error}
+                            helperText={meta.touched && meta.error}
                         />
                     )}
                 </Field>
