@@ -22,11 +22,10 @@ var loggedUser: User = getUser();
 
 const Profile = () => {
 
-    /*const [image, setImage] = useState(loggedUser.profilePicture);*/
-    const [image, setImage] = useState('');
-    const [username, setUsername] = useState('username');
-    const [name, setName] = useState('name');
-    const [bio, setBio] = useState('bio');
+    const [image, setImage] = useState(loggedUser.profilePicture);
+    const [username, setUsername] = useState(loggedUser.username);
+    const [name, setName] = useState(loggedUser.name);
+    const [bio, setBio] = useState(loggedUser.bio);
 
     return (
         <React.Fragment>

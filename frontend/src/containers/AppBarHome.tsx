@@ -26,6 +26,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import theme from '../theme'
 import {getUser} from "../pages/home/Home";
+import {ROUTE_ABOUT_US, ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SETTINGS} from "../App";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -62,6 +67,12 @@ function a11yProps(index: number) {
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Perfil', 'Configurações', 'Contato', 'Sair'];
+const menuIcons: { [key: string]: React.ReactElement } = {
+    'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'} />,
+    'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'} />,
+    'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'} />,
+    'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'} />
+};
 
 const AppBarHome = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -258,10 +269,26 @@ const AppBarHome = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <MenuItem
+                                            key={setting}
+                                            onClick={() => {
+                                                handleCloseUserMenu();
+                                                if (setting === 'Perfil') {
+                                                    history(ROUTE_EDITABLE_PROFILE);
+                                                } else if (setting === 'Configurações') {
+                                                    history(ROUTE_SETTINGS);
+                                                } else if (setting === 'Contato') {
+                                                    history(ROUTE_ABOUT_US);
+                                                } else if (setting === 'Sair') {
+                                                    //Logout
+                                                }
+                                            }}
+                                        >
+                                            {menuIcons[setting]}
                                             <Typography textAlign="center">{setting}</Typography>
                                         </MenuItem>
                                     ))}
+
                                 </Menu>
                             </Box>
                         </Toolbar>

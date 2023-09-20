@@ -26,10 +26,10 @@ var loggedUser: User = getUser();
 const EditableProfile = () => {
 
     /*const [image, setImage] = useState(loggedUser.profilePicture);*/
-    const [image, setImage] = useState('');
-    const [username, setUsername] = useState('username');
-    const [name, setName] = useState('name');
-    const [bio, setBio] = useState('bio');
+    const [image, setImage] = useState(loggedUser.profilePicture + '');
+    const [username, setUsername] = useState(loggedUser.username);
+    const [name, setName] = useState(loggedUser.name);
+    const [bio, setBio] = useState(loggedUser.bio + 'bio');
     const [isEditingUsername, setIsEditingUsername] = useState(false);
     const [isEditingName, setIsEditingName] = useState(false);
     const [isEditingBio, setIsEditingBio] = useState(false);
