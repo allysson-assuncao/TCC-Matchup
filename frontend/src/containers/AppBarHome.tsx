@@ -25,7 +25,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import theme from '../theme'
-import {getUser} from "../pages/home/Home";
+import {getUser, logout} from "../pages/home/Home";
 import {ROUTE_ABOUT_US, ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SETTINGS} from "../App";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -180,8 +180,8 @@ const AppBarHome = () => {
                                         display: {xs: 'block', md: 'none'},
                                     }}
                                 >
-                                    {pages.map((page) => (
-                                        <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                   {/* //{pages.map((page) => (*/}
+                                        <MenuItem onClick={handleCloseNavMenu}>
                                             <Box>
                                                 <Tabs
                                                     value={value}
@@ -193,7 +193,7 @@ const AppBarHome = () => {
                                                 </Tabs>
                                             </Box>
                                         </MenuItem>
-                                    ))}
+                                    {/*//)}*/}
                                 </Menu>
 
 
@@ -279,8 +279,10 @@ const AppBarHome = () => {
                                                     history(ROUTE_SETTINGS);
                                                 } else if (setting === 'Contato') {
                                                     history(ROUTE_ABOUT_US);
+                                                } else if (setting === 'Mudar Tema') {
+
                                                 } else if (setting === 'Sair') {
-                                                    //Logout
+                                                    logout();
                                                 }
                                             }}
                                         >

@@ -269,6 +269,7 @@ const SignUpStep2: React.FC = () => {
                             label="Bairro"
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
+
                         />
                     )}
                 </Field>
@@ -283,6 +284,7 @@ const SignUpStep2: React.FC = () => {
                             label="Rua / Avenida"
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
                         />
                     )}
                 </Field>
@@ -297,6 +299,7 @@ const SignUpStep2: React.FC = () => {
                             label="Número"
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
+                            helperText={(meta.touched && meta.error)}
                         />
                     )}
                 </Field>

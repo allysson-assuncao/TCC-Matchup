@@ -22,6 +22,16 @@ var loggedUser: User;
 
 var history: NavigateFunction;
 
+function isLogged() {
+    const userJSON = localStorage.getItem('user');
+    if (!userJSON) {
+        history('/login');
+    } else {
+        loggedUser = JSON.parse(userJSON);
+    }
+}
+
+
 function setUser() {
     loggedUser = JSON.parse('' + localStorage.getItem('user'));
 }
@@ -31,19 +41,28 @@ export const getUser = () => {
     return loggedUser;
 }
 
-function logout() {
+export const logout = () => {
     localStorage.clear();
     history(ROUTE_SIGN_IN);
 }
 
 const Home = () => {
     history = useNavigate();
+
+    useEffect(() => {
+        isLogged();
+    }, []);
+
     setUser();
 
     console.log('HOME');
     console.log(loggedUser);
+    if (!loggedUser) return null;
+
     return (
-        <AppBarHome></AppBarHome>
+           <AppBarHome></AppBarHome>
+
+
         /*<Container component="main" maxWidth="xs">
             <CssBaseline/>
             <Box

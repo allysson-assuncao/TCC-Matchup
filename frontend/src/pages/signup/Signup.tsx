@@ -22,7 +22,7 @@ import {
 } from "../../utils/validation/UserValidation";
 import GoogleIcon from '@mui/icons-material/Google';
 
-const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
+const steps = ['Pessoais', 'Endereço'/*, 'Interesses'*/, 'Conclusão'];
 
 const SignUp: React.FC = () => {
     const history = useNavigate();
@@ -77,9 +77,9 @@ const SignUp: React.FC = () => {
                 return <SignUpStep1/>;
             case 1:
                 return <SignUpStep2/>;
+            /*case 2:
+                return <SignUpStep3/>;*/
             case 2:
-                return <SignUpStep3/>;
-            case 3:
                 return <SignUpStep4/>;
             default:
                 return 'Erro: Etapa desconhecida';
@@ -121,23 +121,23 @@ const SignUp: React.FC = () => {
                         ))}
                     </Stepper>
                     <Formik
-                        /*initialValues={{
-                            name: '',
+                        initialValues={{
+                            name: 'Jorge',
                             username: 'Jorge1959',
-                            email: '',
-                            rawPassword: 'jorge123',
-                            confirmPassword: 'jorge123',
-                            birthDate: '',
-                            addressZipcode: 36444555,
+                            email: 'jorge@gmail.com',
+                            rawPassword: 'Jorge123#',
+                            confirmPassword: 'Jorge123#',
+                            //birthDate: '',
+                            addressZipcode: '36492-323',
                             addressState: 'qweqweweq',
                             addressCity: 'qweqweqwe',
                             addressNeighborhood: 'qweeqwqwe',
                             addressStreet: 'weqweqwe',
                             addressNumber: 50,
-                            cellphoneNumber: '381763734',
-                            bio: 'aaaaaaaaaaaaaaa',
-                        }}*/
-                        initialValues={{
+                            cellphoneNumber: '',
+                            bio: '',
+                        }}
+                        /*initialValues={{
                             name: '',
                             username: '',
                             email: '',
@@ -152,7 +152,7 @@ const SignUp: React.FC = () => {
                             addressNumber: null,
                             cellphoneNumber: '',
                             bio: '',
-                        }}
+                        }}*/
                         validationSchema={getValidationSchema(activeStep)}
                         validateOnBlur={true}
 

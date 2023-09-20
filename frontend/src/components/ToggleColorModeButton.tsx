@@ -8,9 +8,13 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import {grey} from "@mui/material/colors";
 import {User} from "../model/user";
 import theme, {updateMode} from "../theme";
-import {hexToRgb} from "@mui/material";
+import {hexToRgb, Typography} from "@mui/material";
 
-const ToggleColorModeButton = () => {
+interface ToggleColorModeButtonProps {
+    buttonText?: string;
+}
+
+const ToggleColorModeButton: React.FC<ToggleColorModeButtonProps> = ({ buttonText }) => {
     var darkMode = (localStorage.getItem('mode') == 'dark');
 
     const onClick = () => {
@@ -28,11 +32,16 @@ const ToggleColorModeButton = () => {
                 justifyContent: 'center',
                 color: 'text.primary',
                 borderRadius: 25,
+                //backgroundColor: 'black'
             }}
         >
-            <IconButton sx={{ ml: 1 }} onClick={()=> onClick()} color="inherit">
+            <IconButton sx={{ ml: 1 , padding: '0px', margin: '0px'}} onClick={()=> onClick()} color="inherit">
                 {darkMode ? <DarkModeIcon color="primary"/> : <LightModeIcon color="primary"/>}
+                <Typography variant="body2" sx={{ marginLeft: '11px', fontSize: '16px' }}>
+                    {buttonText}
+                </Typography>
             </IconButton>
+
         </Box>
     );
 };

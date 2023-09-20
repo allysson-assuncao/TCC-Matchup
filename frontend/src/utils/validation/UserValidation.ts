@@ -61,7 +61,7 @@ export const validateSignUpStep1 = Yup.object().shape({
         .oneOf([Yup.ref('rawPassword'), undefined], 'As senhas devem coincidir!')
         .required('Campo obrigatório!')
     ,
-    //birthDate: Yup.date().required('Campo obrigatório!'),
+    birthDate: Yup.date().required('Campo obrigatório!'),
 });
 
 export const validateSignUpStep2 = Yup.object().shape({
