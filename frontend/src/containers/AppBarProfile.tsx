@@ -1,0 +1,77 @@
+import logo from '../img/logo-matchup2.png'
+import * as React from "react";
+import {
+    AppBar,
+    Box,
+    Button, Container, CssBaseline,
+    Grid,
+    Link,
+    Toolbar, Typography,
+    useScrollTrigger,
+} from "@mui/material";
+import theme from "../theme";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
+import ToggleColorModeButton from "../components/ToggleColorModeButton";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import IconButton from "@mui/material/IconButton";
+import {User} from "../model/user";
+import {getUser} from "../pages/home/Home";
+import {useState} from "react";
+
+var loggedUser: User = getUser();
+
+const AppBarProfile = () => {
+    const history = useNavigate();
+
+    const [username, setUsername] = useState('Username');
+
+    return (
+        <Box bgcolor={theme.palette.background.default}>
+            <Container component="main">
+                <CssBaseline/>
+                <AppBar
+                    position="fixed"
+                    color="default"
+                    elevation={0}
+                    sx={{
+                        border: (theme) => `1px solid ${theme.palette.divider}`,
+                        borderRadius: '50px',
+                        marginTop: '15px',
+                        bgcolor: 'background.default',
+                    }}
+                >
+                    <Box>
+                        <Toolbar>
+                            <Grid container spacing={3} alignContent='center'>
+                                <Grid item xs alignItems='left' mt={'5px'}>
+                                    <IconButton color="primary" onClick={() => history(ROUTE_HOME)}>
+                                        <ArrowBackIcon/>
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={6} textAlign="center" margin="auto" sx={{fontSize: '20px'}}>
+                                    <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
+                                </Grid>
+                                <Grid item xs textAlign="right">
+                                    <Box display="flex" justifyContent="flex-end">
+                                        <ToggleColorModeButton></ToggleColorModeButton>
+                                        <Button
+                                            onClick={() => history(ROUTE_SIGN_IN)}
+                                            variant="contained"
+                                            sx={{my: 1, mx: 1.5}}
+                                            color="primary"
+                                        >
+                                            Editar Perfil
+                                        </Button>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Toolbar>
+                    </Box>
+                </AppBar>
+            </Container>
+        </Box>
+    );
+}
+
+export default AppBarProfile;

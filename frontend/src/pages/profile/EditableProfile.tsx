@@ -26,7 +26,7 @@ var loggedUser: User = getUser();
 const EditableProfile = () => {
 
     /*const [image, setImage] = useState(loggedUser.profilePicture);*/
-    const [image, setImage] = useState(loggedUser.profilePicture + '');
+    const [image, setImage] = useState('');
     const [username, setUsername] = useState(loggedUser.username);
     const [name, setName] = useState(loggedUser.name);
     const [bio, setBio] = useState(loggedUser.bio + 'bio');
@@ -82,14 +82,21 @@ const EditableProfile = () => {
                         backgroundColor: '9c27b0',
                     }}
                 >
-                    {isEditingUsername ? (
-                        <TextField color='primary' value={username} onChange={(e) => setUsername(e.target.value)}/>
-                    ) : (
-                        <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
-                    )}
-                    <IconButton color='primary' onClick={() => setIsEditingUsername(!isEditingUsername)}>
-                        {isEditingUsername ? <EditIcon/> : <EditOffIcon/>}
-                    </IconButton>
+                    <Grid>
+                        <Grid justifyContent={'center'}>
+                            {isEditingUsername ? (
+                                <TextField color='primary' value={username}
+                                           onChange={(e) => setUsername(e.target.value)}/>
+                            ) : (
+                                <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
+                            )}
+                        </Grid>
+                        <Grid justifyContent={'left'}>
+                            <IconButton color='primary' onClick={() => setIsEditingUsername(!isEditingUsername)}>
+                                {isEditingUsername ? <EditIcon/> : <EditOffIcon/>}
+                            </IconButton>
+                        </Grid>
+                    </Grid>
                     <input
                         accept="image/*"
                         style={{display: 'none'}}
