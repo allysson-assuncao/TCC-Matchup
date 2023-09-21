@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
-    RouterProvider
+    RouterProvider, useNavigate
 } from 'react-router-dom'
 import './App.css';
 import AppIndex from './pages/AppIndex/AppIndex';
@@ -35,15 +35,15 @@ export const LOGGED_USER = (userData: User) => {
 }
 
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-
+const App: React.FC = () => {
+    const router = useMemo(() => createBrowserRouter(
+        createRoutesFromElements(
             <Route>
                 <Route path={ROUTE_INDEX} index element={<AppIndex />} />
                 <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
                 <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTE_HOME} element={<Home />} />
-                <Route path={ROUTE_PROFILE} element={<Profile />} />
+                <Route path="/perfil/:username" element={<Profile />} />
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile />} />
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />
                 <Route path={ROUTE_SETTINGS} element={<Settings />} />
@@ -51,15 +51,12 @@ const router = createBrowserRouter(
 
                 <Route path={ROUTE_PROFILE_TEST} element={<ProfileTest />} />
             </Route>
+        )
+    ), []);
 
-    )
-)
-
-const App: React.FC = () => {
     return (
         <RouterProvider router={router} />
     );
 }
-
 
 export default App;

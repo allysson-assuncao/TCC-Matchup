@@ -11,8 +11,8 @@ import {
     Typography
 } from "@mui/material";
 import theme from "../../theme";
-import {ROUTE_SIGN_IN} from "../../App";
-import React, {useEffect} from "react";
+import {ROUTE_PROFILE, ROUTE_SIGN_IN} from "../../App";
+import React, {useEffect, useState} from "react";
 import {User} from "../../model/user";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import AppBarHome from "../../containers/AppBarHome";
@@ -31,7 +31,6 @@ function isLogged() {
     }
 }
 
-
 function setUser() {
     loggedUser = JSON.parse('' + localStorage.getItem('user'));
 }
@@ -48,9 +47,18 @@ export const logout = () => {
 
 const Home = () => {
     history = useNavigate();
+    const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [profileRoute, setProfileRoute] = useState(ROUTE_PROFILE);
 
     useEffect(() => {
-        isLogged();
+        const userJSON = localStorage.getItem('user');
+        if (!userJSON) {
+            history(ROUTE_SIGN_IN);
+        } else {
+            const user = JSON.parse(userJSON);
+            setLoggedUser(user);
+            setProfileRoute(`/perfil/${user.username}`);
+        }
     }, []);
 
     setUser();
