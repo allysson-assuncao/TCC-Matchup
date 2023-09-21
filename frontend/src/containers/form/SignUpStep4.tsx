@@ -18,6 +18,24 @@ import InputMask from 'react-input-mask';
 import {Field, FieldProps} from "formik";
 import logo from '../../img/logo-matchup3.png';
 
+function formatPhoneNumber(value: any) {
+    if (!value) {
+        return value;
+    }
+
+    const onlyNums = value.replace(/[^\d]/g, '');
+    if (onlyNums.length <= 2) {
+        return `(${onlyNums}`;
+    }
+    if (onlyNums.length <= 6) {
+        return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`;
+    }
+    if (onlyNums.length <= 10) {
+        return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`;
+    }
+    return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`;
+}
+
 const SignUpStep4:  React.FC = () => {
     //const [value, setValue] = useState();
     /*const formik = useFormik({
@@ -59,9 +77,13 @@ const SignUpStep4:  React.FC = () => {
                     Faça Cadastro
                 </Typography>
                 <Field name="cellphoneNumber">
-                    {({field, meta}: FieldProps) => (
+                    {({ field, meta, form }: FieldProps) => (
                         <TextField
                             {...field}
+                            onChange={e => {
+                                const formatted = formatPhoneNumber(e.target.value);
+                                form.setFieldValue(field.name, formatted);
+                            }}
                             margin="normal"
                             fullWidth
                             id="cellphoneNumber"
@@ -69,8 +91,8 @@ const SignUpStep4:  React.FC = () => {
                             label="Número de Celular (Opcional)"
                             autoFocus
                             variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
+                            error={meta.touched && !!meta.error}
+                            helperText={meta.touched && meta.error}
                         />
                     )}
                 </Field>
