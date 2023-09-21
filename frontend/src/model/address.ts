@@ -12,10 +12,10 @@ export interface Address {
 }
 
 export type SignUpStep2Payload = {
-    number?: undefined;
-    street?: undefined;
-    city?: undefined;
-    neighborhood?: undefined;
-    state?: undefined;
-    zipcode?: undefined;
+    number?: undefined | string;
+    street?: undefined | string;
+    city?: undefined | string;
+    neighborhood?: undefined | string;
+    state?: undefined | string;
+    zipcode?: undefined | string;
 };

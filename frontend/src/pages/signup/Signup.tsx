@@ -22,7 +22,7 @@ import {
 } from "../../utils/validation/UserValidation";
 import GoogleIcon from '@mui/icons-material/Google';
 
-const steps = ['Pessoais', 'Endereço'/*, 'Interesses'*/, 'Conclusão'];
+const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
 const SignUp: React.FC = () => {
     const history = useNavigate();
@@ -57,10 +57,9 @@ const SignUp: React.FC = () => {
         if (activeStep < steps.length - 1) {
             handleNext();
         } else {
-            formValues.birthDate = format(Date.parse(formValues.birthDate), 'yyyy-MM-dd');
-            console.log(formValues);
-
-            let user = register({user: formValues});
+            handleBack();
+            values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
+            let user = register({user: values});
 
             console.log(user);
             actions.setSubmitting(false);
@@ -77,9 +76,9 @@ const SignUp: React.FC = () => {
                 return <SignUpStep1/>;
             case 1:
                 return <SignUpStep2/>;
-            /*case 2:
-                return <SignUpStep3/>;*/
             case 2:
+                return <SignUpStep3/>;
+            case 3:
                 return <SignUpStep4/>;
             default:
                 return 'Erro: Etapa desconhecida';
@@ -164,11 +163,12 @@ const SignUp: React.FC = () => {
                                 <Grid item>{getStepContent(activeStep)}</Grid>
                                 <Grid container justifyContent="space-between" sx={{marginTop: '20px'}}>
                                     <Grid item>
-                                        {activeStep !== 0 && (
-                                            <Button variant="text" color="primary" onClick={handleBack}>
-                                                Voltar
-                                            </Button>
-                                        )}
+
+                                        <Button disabled={activeStep == 0} variant="text" color="primary"
+                                                onClick={handleBack}>
+                                            Voltar
+                                        </Button>
+
                                     </Grid>
                                     <Grid item>
                                         <Button

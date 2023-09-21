@@ -76,8 +76,8 @@ export const validateSignUpStep2 = Yup.object().shape({
 export const validateSignUpStep3 = Yup.object().shape({});
 
 export const validateSignUpStep4 = Yup.object().shape({
-    cellphoneNumber: Yup.string()
-        .matches(/^(?:\\d{2}\\s?)?(?:9\\d{4}-\\d{4})$/, "Número de Celular Inválido!"),
+    cellphoneNumber: Yup.string(),
+        /*.matches(/!*!/^(?:\\d{2}\\s?)?(?:9\\d{4}-\\d{4})$/!*!/, "Número de Celular Inválido!"),*/
     bio: Yup.string(),
 
 });

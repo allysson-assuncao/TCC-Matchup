@@ -84,3 +84,27 @@ export const emailExists = async (email: string | undefined): Promise<Boolean> =
     let response: ValidationResponse = await userAvailability(`/email/check-availability/${email}`);
     return (response.status == 200);
 };
+
+export interface AddressFromApi {
+    cep: string,
+    logradouro: string,
+    complemento: string,
+    bairro: string,
+    localidade: string,
+    uf: string,
+    ibge: string,
+    gia : string,
+    ddd: string,
+    siafi: string
+}
+
+const VIA_CEP_URL = 'https://viacep.com.br/ws/';
+export const completeAddressByCep = async (cep: string) => {
+    try {
+        let response: AxiosResponse<AddressFromApi, any>;
+        response = await axios.get<AddressFromApi>(`${VIA_CEP_URL}/${cep}/json`);
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+}

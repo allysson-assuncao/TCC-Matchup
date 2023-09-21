@@ -1,21 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
-    Avatar,
     Box,
-    Checkbox,
     Container,
     CssBaseline,
-    FormControlLabel,
-    Grid,
     TextField,
     Typography
 } from '@mui/material';
-import {Field, ErrorMessage, FieldProps} from 'formik';
-import * as Yup from 'yup';
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {Field, FieldProps, FormikProps} from 'formik';
+
 import logo from '../../img/logo-matchup3.png';
+import {completeAddressByCep} from "../../api/login_requests/register";
+import {Address, SignUpStep2Payload} from "../../model/address";
 
 function formatZipcode(value: any) {
     if (!value) {
@@ -33,6 +28,36 @@ function formatZipcode(value: any) {
 }
 
 const SignUpStep2: React.FC = () => {
+    const[wasAddressRequested, setAddressRequested] = useState(false)
+
+    const completeAddress = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, form: FormikProps<any>) => {
+        const zipCode = e.target.value;
+        if (zipCode.length === 9) {
+            try {
+                const addressFromApi = await completeAddressByCep(zipCode);
+                let address: SignUpStep2Payload = {
+                    zipcode: addressFromApi.cep,
+                    state: addressFromApi.uf,
+                    city: addressFromApi.localidade,
+                    neighborhood: addressFromApi.bairro,
+                    street: addressFromApi.logradouro,
+                }
+
+                // Update form fields with address data
+                form.setFieldValue('addressState', address.state || '');
+                form.setFieldValue('addressCity', address.city || '');
+                form.setFieldValue('addressNeighborhood', address.neighborhood || '');
+                form.setFieldValue('addressStreet', address.street || '');
+                setAddressRequested(true);
+            } catch (error) {
+                console.error(error);
+            }
+        }else{
+            setAddressRequested(false);
+        }
+    };
+
+
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>
@@ -49,14 +74,6 @@ const SignUpStep2: React.FC = () => {
                     Faça Cadastro
                 </Typography>
 
-                {/*
-                private int addressNumber;
-                private String addressStreet;
-                private String addressNeighborhood;
-                private String addressCity;
-                private String addressState;
-                private String addressZipcode;
-                */}
 
                 <Field name="addressZipcode">
                     {({ field, meta, form }: FieldProps) => (
@@ -66,6 +83,7 @@ const SignUpStep2: React.FC = () => {
                                 const formatted = formatZipcode(e.target.value);
                                 form.setFieldValue(field.name, formatted);
                             }}
+                            onBlur={(e) => completeAddress(e, form)}
                             margin="normal"
                             required
                             fullWidth
@@ -79,6 +97,7 @@ const SignUpStep2: React.FC = () => {
                     )}
                 </Field>
                 <Field name="addressState">
+
                     {({field, meta}: FieldProps) => (
                         <TextField
                             {...field}
@@ -90,6 +109,7 @@ const SignUpStep2: React.FC = () => {
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
                             helperText={(meta.touched && meta.error)}
+                            disabled={wasAddressRequested}
                         />
                     )}
                 </Field>
@@ -105,6 +125,7 @@ const SignUpStep2: React.FC = () => {
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
                             helperText={(meta.touched && meta.error)}
+                            disabled={wasAddressRequested}
                         />
                     )}
                 </Field>
@@ -119,7 +140,7 @@ const SignUpStep2: React.FC = () => {
                             label="Bairro"
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
-
+                            disabled={wasAddressRequested}
                         />
                     )}
                 </Field>
@@ -135,6 +156,7 @@ const SignUpStep2: React.FC = () => {
                             variant="outlined"
                             error={(meta.touched && !!meta.error)}
                             helperText={(meta.touched && meta.error)}
+                            disabled={wasAddressRequested}
                         />
                     )}
                 </Field>
