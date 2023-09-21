@@ -9,8 +9,8 @@ import SignUpStep4 from "../../containers/form/SignUpStep4";
 import SignUpStep3 from "../../containers/form/SignUpStep3";
 import {Interest} from "../../model/interest";
 import {register} from "../../api/login_requests/register";
-import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_SIGN_IN} from "../../App";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
+import {ROUTE_HOME, ROUTE_INDEX, ROUTE_SIGN_IN} from "../../App";
 import {User} from "../../model/user";
 import {string} from "yup";
 import {format} from 'date-fns';
@@ -164,10 +164,16 @@ const SignUp: React.FC = () => {
                                 <Grid container justifyContent="space-between" sx={{marginTop: '20px'}}>
                                     <Grid item>
 
-                                        <Button disabled={activeStep == 0} variant="text" color="primary"
-                                                onClick={handleBack}>
-                                            Voltar
-                                        </Button>
+                                        {activeStep === 0 && (
+                                            <Button component={RouterLink} to={ROUTE_INDEX}>
+                                                Voltar
+                                            </Button>
+                                        )}
+                                        {activeStep !== 0 && (
+                                            <Button onClick={handleBack}>
+                                                Voltar
+                                            </Button>
+                                        )}
 
                                     </Grid>
                                     <Grid item>
