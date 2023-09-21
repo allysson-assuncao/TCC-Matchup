@@ -124,7 +124,9 @@ const AppBarHome = () => {
                         elevation={0}
                         sx={{
                             border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                            marginTop: '15px',
                             borderRadius: '40px',
+                            bgcolor: 'background.default',
                         }}>
 
                     <Container maxWidth="xl">
@@ -147,20 +149,8 @@ const AppBarHome = () => {
                             >
                                 <img src={logo + ''}/>
                             </Typography>
-                            {/*<Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
-                            <Box>
-                                <Tabs
-                                    value={value}
-                                    onChange={handleChange}
-                                >
-                                    <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
-                                    <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
-                                    <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
-                                </Tabs>
-                            </Box>
-                        </Toolbar>*/}
 
-                            <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                            <Box bgcolor={theme.palette.background.default} sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
                                 <IconButton
                                     size="large"
                                     aria-label="account of current user"
@@ -191,7 +181,9 @@ const AppBarHome = () => {
                                 >
                                    {/* //{pages.map((page) => (*/}
                                         <MenuItem onClick={handleCloseNavMenu}>
-                                            <Box>
+                                            <Box justifyContent={'center'} sx={{
+                                                display: {md: 'flex'},
+                                            }}>
                                                 <Tabs
                                                     value={value}
                                                     onChange={handleChange}
@@ -202,10 +194,7 @@ const AppBarHome = () => {
                                                 </Tabs>
                                             </Box>
                                         </MenuItem>
-                                    {/*//)}*/}
                                 </Menu>
-
-
                             </Box>
                             <Typography
                                 variant="h5"
@@ -225,7 +214,7 @@ const AppBarHome = () => {
                             >
                                 <img src={logo + ''}/>
                             </Typography>
-                            <Box sx={{
+                            <Box justifyContent={'center'} sx={{
                                 flexGrow: 1,
                                 display: {xs: 'none', md: 'flex'},
                                 bgcolor: `theme.palette.background.default`
