@@ -50,4 +50,11 @@ export type SignUpStep4Payload = {
     bio?: undefined;
 };
 
+export type UpdateUserPayload = {
+    id: bigint;
+    username?: undefined | string;
+    cellphoneNumber?: undefined | string;
+    bio?: undefined | string;
+};
+
 export type SignUpPayload = Pick<User, "username" | "hashedPassword" | "name">;
