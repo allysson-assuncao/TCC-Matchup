@@ -18,23 +18,37 @@ import {User} from "../../model/user";
 import {getUser} from "../home/Home";
 import theme from "../../theme";
 import {ROUTE_SIGN_IN} from "../../App";
-import {NavigateFunction, useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
+import AppBarProfile from "../../containers/AppBarProfile";
 
 const Profile = () => {
-
+    const {usernamePathVariable} = useParams();
+    console.log(usernamePathVariable);
     const history: NavigateFunction = useNavigate();
+
+    const [editable, setEditability] = useState(false);
 
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
 
     useEffect(() => {
-        const userJSON = localStorage.getItem('user');
-        if (!userJSON) {
-            history(ROUTE_SIGN_IN);
-        } else {
-            const user = JSON.parse(userJSON);
-            setLoggedUser(user);
-        }
-    }, []);
+            const userJSON = localStorage.getItem('user');
+            if (!userJSON) {
+                history(ROUTE_SIGN_IN);
+            } else {
+                let user;
+                user = JSON.parse(userJSON);
+                if (usernamePathVariable == JSON.parse(userJSON).username) {
+                    setEditability(true);
+                }else{
+                    setEditability(false);
+                }
+                setLoggedUser(user);
+                setImage(user.profilePicture);
+                setName(user.name);
+                setBio(user.bio);
+            }
+        }, []
+    );
 
     if (!loggedUser) return null;
 

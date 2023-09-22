@@ -45,7 +45,7 @@ const AppBarProfile = () => {
             <Container component="main">
                 <CssBaseline/>
                 <AppBar
-                    position="fixed"
+                    position="static"
                     color="default"
                     elevation={0}
                     sx={{
@@ -53,6 +53,7 @@ const AppBarProfile = () => {
                         borderRadius: '50px',
                         marginTop: '15px',
                         bgcolor: 'background.default',
+
                     }}
                 >
                     <Box>

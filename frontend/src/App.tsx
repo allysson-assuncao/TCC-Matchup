@@ -43,7 +43,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SIGN_IN} element={<SignIn />} />
                 <Route path={ROUTE_SIGN_UP} element={<SignUp />} />
                 <Route path={ROUTE_HOME} element={<Home />} />
-                <Route path="/perfil/:username" element={<Profile />} />
+                <Route path="/perfil/:usernamePathVariable" element={<Profile />} />
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile />} />
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />
                 <Route path={ROUTE_SETTINGS} element={<Settings />} />
