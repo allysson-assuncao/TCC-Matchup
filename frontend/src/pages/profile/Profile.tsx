@@ -12,15 +12,31 @@ import {
     Typography
 } from "@mui/material";
 import AppBarHome from "../../containers/AppBarHome";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import logo from "../../img/logo-matchup3.png";
 import {User} from "../../model/user";
 import {getUser} from "../home/Home";
 import theme from "../../theme";
-
-var loggedUser: User = getUser();
+import {ROUTE_SIGN_IN} from "../../App";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 const Profile = () => {
+
+    const history: NavigateFunction = useNavigate();
+
+    const [loggedUser, setLoggedUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const userJSON = localStorage.getItem('user');
+        if (!userJSON) {
+            history(ROUTE_SIGN_IN);
+        } else {
+            const user = JSON.parse(userJSON);
+            setLoggedUser(user);
+        }
+    }, []);
+
+    if (!loggedUser) return null;
 
     const [image, setImage] = useState(loggedUser.profilePicture);
     const [username, setUsername] = useState(loggedUser.username);

@@ -10,21 +10,35 @@ import {
     useScrollTrigger,
 } from "@mui/material";
 import theme from "../theme";
-import {useNavigate} from "react-router-dom";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../model/user";
 import {getUser} from "../pages/home/Home";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 var loggedUser: User = getUser();
 
 const AppBarProfile = () => {
-    const history = useNavigate();
+    const history: NavigateFunction = useNavigate();
 
-    const [username, setUsername] = useState('Username');
+    const [loggedUser, setLoggedUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const userJSON = localStorage.getItem('user');
+        if (!userJSON) {
+            history(ROUTE_SIGN_IN);
+        } else {
+            const user = JSON.parse(userJSON);
+            setLoggedUser(user);
+        }
+    }, []);
+
+    if (!loggedUser) return null;
+
+    const [username, setUsername] = useState(loggedUser.username);
 
     return (
         <Box bgcolor={theme.palette.background.default}>
