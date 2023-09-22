@@ -6,6 +6,7 @@ import AppBarProfile from "../../containers/AppBarProfile";
 import {Avatar, Box, Container, CssBaseline, Typography} from "@mui/material";
 import theme from "../../theme";
 import AppBarGeneral from "../../containers/AppBarGeneral";
+import GeneralInfo from "./GeneralInfo";
 
 
 const Profile = () => {
@@ -65,9 +66,10 @@ const Profile = () => {
                         backgroundColor: '9c27b0',
                     }}
                 >
-                    <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
+                    {/*<Typography color={theme.palette.primary.main} variant="h4">{}</Typography>
                     <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-                    <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
+                    <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>*/}
+                    <GeneralInfo></GeneralInfo>
                 </Box>
             </Container>
         </React.Fragment>
