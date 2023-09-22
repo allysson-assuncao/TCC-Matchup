@@ -18,13 +18,20 @@ import IconButton from "@mui/material/IconButton";
 import {User} from "../model/user";
 import {getUser} from "../pages/home/Home";
 import {useEffect, useState} from "react";
+import {SxProps} from "@mui/system";
+import {Theme} from "@mui/material/styles";
+
+interface PropsAppBarProfile {
+    editable: boolean;
+}
 
 var loggedUser: User = getUser();
 
-const AppBarProfile = () => {
+const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable }) => {
     const history: NavigateFunction = useNavigate();
 
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [username, setUsername] = useState(null);
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user');
@@ -33,12 +40,11 @@ const AppBarProfile = () => {
         } else {
             const user = JSON.parse(userJSON);
             setLoggedUser(user);
+            setUsername(user.username);
         }
     }, []);
 
     if (!loggedUser) return null;
-
-    const [username, setUsername] = useState(loggedUser.username);
 
     return (
         <Box bgcolor={theme.palette.background.default}>
@@ -59,7 +65,7 @@ const AppBarProfile = () => {
                     <Box>
                         <Toolbar>
                             <Grid container spacing={3} alignContent='center'>
-                                <Grid item xs alignItems='left' mt={'5px'}>
+                                <Grid item xs alignItems='left' margin={'auto'}>
                                     <IconButton color="primary" onClick={() => history(ROUTE_HOME)}>
                                         <ArrowBackIcon/>
                                     </IconButton>
@@ -67,17 +73,19 @@ const AppBarProfile = () => {
                                 <Grid item xs={6} textAlign="center" margin="auto" sx={{fontSize: '20px'}}>
                                     <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
                                 </Grid>
-                                <Grid item xs textAlign="right">
-                                    <Box display="flex" justifyContent="flex-end">
+                                <Grid item xs alignItems='left' margin='auto'>
+                                    <Box margin={'auto'} display="flex" justifyContent="flex-end">
                                         <ToggleColorModeButton></ToggleColorModeButton>
-                                        <Button
-                                            onClick={() => history(ROUTE_SIGN_IN)}
-                                            variant="contained"
-                                            sx={{my: 1, mx: 1.5}}
-                                            color="primary"
-                                        >
-                                            Editar Perfil
-                                        </Button>
+                                        {editable  && (
+                                            <Button
+                                                onClick={() => history(ROUTE_SIGN_IN)}
+                                                variant="contained"
+                                                sx={{my: 1, mx: 1.5}}
+                                                color="primary"
+                                            >
+                                                Editar Perfil
+                                            </Button>
+                                        )}
                                     </Box>
                                 </Grid>
                             </Grid>

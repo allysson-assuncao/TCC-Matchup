@@ -16,7 +16,6 @@ import ForgotPassword from "./pages/forgot_password/ForgotPassword";
 import EditableProfile from "./pages/profile/EditableProfile";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Settings from "./pages/settings/Settings";
-import ProfileTest from "./pages/profile/ProfileTest";
 
 export const ROUTE_INDEX= '/';
 export const ROUTE_HOME = '/home';
@@ -27,8 +26,6 @@ export const ROUTE_EDITABLE_PROFILE = '/editar_perfil';
 export const ROUTE_FORGOT_PASSWORD = '/esquececu_a_senha';
 export const ROUTE_SETTINGS = '/configuracoes';
 export const ROUTE_ABOUT_US = '/sobre_nos';
-
-export const ROUTE_PROFILE_TEST = '/teste_perfil';
 
 export const LOGGED_USER = (userData: User) => {
 
@@ -48,8 +45,6 @@ const App: React.FC = () => {
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword />} />
                 <Route path={ROUTE_SETTINGS} element={<Settings />} />
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs />} />
-
-                <Route path={ROUTE_PROFILE_TEST} element={<ProfileTest />} />
             </Route>
         )
     ), []);

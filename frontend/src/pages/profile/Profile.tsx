@@ -29,6 +29,9 @@ const Profile = () => {
     const [editable, setEditability] = useState(false);
 
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [image, setImage] = useState(undefined);
+    const [name, setName] = useState(undefined);
+    const [bio, setBio] = useState(undefined);
 
     useEffect(() => {
             const userJSON = localStorage.getItem('user');
@@ -52,13 +55,9 @@ const Profile = () => {
 
     if (!loggedUser) return null;
 
-    const [image, setImage] = useState(loggedUser.profilePicture);
-    const [username, setUsername] = useState(loggedUser.username);
-    const [name, setName] = useState(loggedUser.name);
-    const [bio, setBio] = useState(loggedUser.bio);
-
     return (
         <React.Fragment>
+            <AppBarProfile editable={editable}></AppBarProfile>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -79,9 +78,8 @@ const Profile = () => {
                         backgroundColor: '9c27b0',
                     }}
                 >
-                    <Typography color={theme.palette.primary.main} variant="h4">{username}</Typography>
+                    <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
                     <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-                    <Typography color={theme.palette.primary.main} variant="h5">{name}</Typography>
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
             </Container>
