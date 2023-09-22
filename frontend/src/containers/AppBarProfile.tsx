@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import theme from "../theme";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
+import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_PROFILE_SETTINGS, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
@@ -78,7 +78,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable }) => {
                                         <ToggleColorModeButton></ToggleColorModeButton>
                                         {editable  && (
                                             <Button
-                                                onClick={() => history(ROUTE_SIGN_IN)}
+                                                onClick={() => history(ROUTE_PROFILE_SETTINGS)}
                                                 variant="contained"
                                                 sx={{my: 1, mx: 1.5}}
                                                 color="primary"

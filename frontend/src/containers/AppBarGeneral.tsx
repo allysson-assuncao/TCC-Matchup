@@ -54,7 +54,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ title }) => {
                                         <ArrowBackIcon/>
                                     </IconButton>
                                 </Grid>
-                                <Grid item xs={6} textAlign="center" margin="auto" sx={{fontSize: '20px'}}>
+                                <Grid item xs={10} textAlign="center" alignContent='center'  sx={{fontSize: '20px'}}>
                                     <Typography color={theme.palette.primary.main} variant="h4">{title}</Typography>
                                 </Grid>
                             </Grid>

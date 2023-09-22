@@ -7,7 +7,8 @@ import {Avatar, Box, Container, CssBaseline, Typography} from "@mui/material";
 import theme from "../../theme";
 import AppBarGeneral from "../../containers/AppBarGeneral";
 
-const EditProfile = () => {
+
+const Profile = () => {
     const {usernamePathVariable} = useParams();
     console.log(usernamePathVariable);
     const history: NavigateFunction = useNavigate();
@@ -43,7 +44,7 @@ const EditProfile = () => {
 
     return (
         <React.Fragment>
-            <AppBarGeneral title={"Settings"}></AppBarGeneral>
+            <AppBarGeneral title={"Configurações"}></AppBarGeneral>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -73,4 +74,4 @@ const EditProfile = () => {
     );
 }
 
-export default EditProfile;
+export default Profile;
