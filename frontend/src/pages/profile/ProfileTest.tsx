@@ -28,6 +28,9 @@ const ProfileTest = () => {
     const history: NavigateFunction = useNavigate();
 
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [image, setImage] = useState(null);
+    const [name, setName] = useState(null);
+    const [bio, setBio] = useState(null);
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user');
@@ -36,14 +39,13 @@ const ProfileTest = () => {
         } else {
             const user = JSON.parse(userJSON);
             setLoggedUser(user);
+            setImage(user.profilePicture);
+            setName(user.name);
+            setBio(user.bio);
         }
     }, []);
 
     if (!loggedUser) return null;
-
-    const [image, setImage] = useState(loggedUser.profilePicture);
-    const [name, setName] = useState(loggedUser.name);
-    const [bio, setBio] = useState(loggedUser.bio);
 
     return (
         <AppBarProfile></AppBarProfile>
