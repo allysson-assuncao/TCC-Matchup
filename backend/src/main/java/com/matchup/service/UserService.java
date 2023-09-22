@@ -193,4 +193,12 @@ public class UserService {
         return userRepository.updatePassword(id, rawPassword);
     }
 
+
+    public User updateUser(UserDto userDto){
+        Optional<User> userToUpdate = userRepository.findById(userDto.getId());
+        if(userToUpdate.isEmpty()) return null;
+        userToUpdate.get().updateData(userDto);
+        return userRepository.save(userToUpdate.get());
+    }
+
 }

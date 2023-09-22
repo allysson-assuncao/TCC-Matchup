@@ -1,6 +1,14 @@
 import React, { useState } from "react";
-import { Grid, Card, TextField, Button, InputAdornment, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import {
+    Grid,
+    TextField,
+    Button,
+    Snackbar
+} from '@mui/material';
+import {getUser, updateUser} from "../../pages/home/Home";
+import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 
+import {updateUserData} from "../../api/login_requests/updateUserData";
 
 const GeneralInfo = () => {
     const [birthday, setBirthday] = useState("");
@@ -31,12 +39,15 @@ const GeneralInfo = () => {
                             <MenuItem value={2}>Male</MenuItem>
                         </Select>
                     </FormControl>
+                </Grid>*/}
+                <Grid item>
+                    <TextField required label="Bio" type="text" fullWidth defaultValue={bio}
+                               onChange={e => setBio(e.target.value+'')}
+                    />
                 </Grid>
-                <Grid item md={6}>
-                    <TextField required label="Email" type="email" placeholder="name@company.com" fullWidth />
-                </Grid>
-                <Grid item md={6}>
-                    <TextField required label="Phone" type="tel" placeholder="+12-345 678 910" fullWidth />
+                <Grid item>
+                    <TextField required label="Número de Celular" type="tel" fullWidth defaultValue={cellphoneNumber}
+                               onChange={e => setCellphonenumber(e.target.value+'')}/>
                 </Grid>
             </Grid>
             <Button variant="contained" color="primary" type="submit" sx={{ mt: 3 }}>Save All</Button>

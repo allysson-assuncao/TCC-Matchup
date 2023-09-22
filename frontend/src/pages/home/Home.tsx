@@ -31,7 +31,7 @@ function isLogged() {
     }
 }
 
-function setUser() {
+export const setUser = () => {
     loggedUser = JSON.parse('' + localStorage.getItem('user'));
 }
 
@@ -40,8 +40,19 @@ export const getUser = () => {
     return loggedUser;
 }
 
+export const updateUser = (user: User) => {
+    removeUser()
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser();
+    return loggedUser;
+}
+
+const removeUser = () => {
+    localStorage.removeItem('user');
+}
+
 export const logout = () => {
-    localStorage.clear();
+    removeUser();
     history(ROUTE_SIGN_IN);
 }
 

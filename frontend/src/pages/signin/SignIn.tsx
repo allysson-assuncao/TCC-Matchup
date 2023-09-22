@@ -70,6 +70,7 @@ const SignIn = () => {
         setIsLoggedIn(true);
         localStorage.clear();
         localStorage.setItem('user', JSON.stringify(userData));
+        console.log(userData);
         history(ROUTE_HOME);
 
     }
