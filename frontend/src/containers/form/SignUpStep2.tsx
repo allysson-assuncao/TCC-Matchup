@@ -9,7 +9,7 @@ import {
 import {Field, FieldProps, FormikProps} from 'formik';
 
 import logo from '../../img/logo-matchup3.png';
-import {completeAddressByCep} from "../../api/login_requests/register";
+import {completeAddressByCep} from "../../api/user_requests/register";
 import {Address, SignUpStep2Payload} from "../../model/address";
 
 function formatZipcode(value: any) {

@@ -22,16 +22,17 @@ import {SxProps} from "@mui/system";
 import {Theme} from "@mui/material/styles";
 
 interface PropsAppBarProfile {
-    editable: boolean;
+    editable: boolean,
+    username: string | undefined
 }
 
 var loggedUser: User = getUser();
 
-const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable }) => {
+const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable, username }) => {
     const history: NavigateFunction = useNavigate();
 
-    const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const [username, setUsername] = useState(null);
+    /*const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [username, setUsername] = useState(null);*/
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user');
@@ -39,8 +40,8 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable }) => {
             history(ROUTE_SIGN_IN);
         } else {
             const user = JSON.parse(userJSON);
-            setLoggedUser(user);
-            setUsername(user.username);
+            /*setLoggedUser(user);
+            setUsername(user.username);*/
         }
     }, []);
 

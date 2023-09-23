@@ -20,6 +20,7 @@ import theme from "../../theme";
 import {ROUTE_SIGN_IN} from "../../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../../containers/AppBarProfile";
+import {getUserByUsername} from "../../api/user_requests/getUserBy";
 
 const Profile = () => {
     const {usernamePathVariable} = useParams();
@@ -33,31 +34,59 @@ const Profile = () => {
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
 
-    useEffect(() => {
+    /*useEffect( () => {
             const userJSON = localStorage.getItem('user');
             if (!userJSON) {
                 history(ROUTE_SIGN_IN);
             } else {
                 let user;
-                user = JSON.parse(userJSON);
+
                 if (usernamePathVariable == JSON.parse(userJSON).username) {
                     setEditability(true);
+                    user = JSON.parse(userJSON);
                 }else{
+                    user = getUserByUsername(usernamePathVariable);
                     setEditability(false);
                 }
-                setLoggedUser(user);
                 setImage(user.profilePicture);
                 setName(user.name);
                 setBio(user.bio);
             }
         }, []
-    );
+    );*/
 
-    if (!loggedUser) return null;
+    useEffect(() => {
+        const fetchData = async () => {
+            const userJSON = localStorage.getItem('user');
+            if (!userJSON) {
+                history(ROUTE_SIGN_IN);
+            } else {
+                let user;
+
+                if (usernamePathVariable == JSON.parse(userJSON).username) {
+                    setEditability(true);
+                    user = JSON.parse(userJSON);
+                } else {
+                    console.log(usernamePathVariable);
+                    user = await getUserByUsername(usernamePathVariable);
+                    setEditability(false);
+                }
+                //setImage(user.profilePicture);
+                setName(user.name);
+                setBio(user.bio);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+
+
+    if (!getUser()) return null;
 
     return (
         <React.Fragment>
-            <AppBarProfile editable={editable}></AppBarProfile>
+            <AppBarProfile username={usernamePathVariable} editable={editable}></AppBarProfile>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box

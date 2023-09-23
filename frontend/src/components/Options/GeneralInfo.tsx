@@ -8,7 +8,7 @@ import {
 import {getUser, updateUser} from "../../pages/home/Home";
 import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 
-import {updateUserData} from "../../api/login_requests/updateUserData";
+import {updateUserData} from "../../api/user_requests/updateUserData";
 
 const GeneralInfo = () => {
 

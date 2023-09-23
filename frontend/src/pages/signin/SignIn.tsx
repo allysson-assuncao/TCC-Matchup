@@ -15,7 +15,7 @@ import {
     Link,
     Alert,
 } from '@mui/material';
-import {emailExists, login, usernameExists, ValidationResponse} from '../../api/login_requests/login';
+import {emailExists, login, usernameExists, ValidationResponse} from '../../api/user_requests/login';
 import {SignInPayload, User} from '../../model/user';
 import {isEmail, validateEmail, validationLogin} from '../../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
