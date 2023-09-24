@@ -14,7 +14,7 @@ root.render(
     <React.StrictMode>
         <CustomThemeProvider>
             <App />
-        </CustomThemeProvider>,
+        </CustomThemeProvider>
     </React.StrictMode>
 );
 
