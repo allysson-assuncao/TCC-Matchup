@@ -1,21 +1,23 @@
 package com.matchup.service;
 
 import com.matchup.dto.InterestDto;
+import com.matchup.dto.RequestDto;
 import com.matchup.model.Interest;
 import com.matchup.model.insterests_dependencies.*;
 import com.matchup.model.insterests_dependencies.Company;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.interest_dependencies.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class InterestService {
+
+    private final FilterSpecificationService<Interest> filterSpecificationService;
 
     private final InterestRepository interestRepository;
     private final AgeRatingRepository ageRatingRepository;
@@ -26,7 +28,8 @@ public class InterestService {
     private final CompanyRepository companyRepository;
 
     @Autowired
-    public InterestService(InterestRepository interestRepository, AgeRatingRepository ageRatingRepository, GenreRepository genreRepository, SubGenreRepository subGenreRepository, LanguageRepository languageRepository, PlatformRepository platformRepository, CompanyRepository companyRepository) {
+    public InterestService(FilterSpecificationService<Interest> filterSpecificationService, InterestRepository interestRepository, AgeRatingRepository ageRatingRepository, GenreRepository genreRepository, SubGenreRepository subGenreRepository, LanguageRepository languageRepository, PlatformRepository platformRepository, CompanyRepository companyRepository) {
+        this.filterSpecificationService = filterSpecificationService;
         this.interestRepository = interestRepository;
         this.ageRatingRepository = ageRatingRepository;
         this.genreRepository = genreRepository;
@@ -64,6 +67,12 @@ public class InterestService {
                 platformRepository.findAllById(interestDto.getPlatformsIdList()));
 
         return interestRepository.save(interestToSave);
+    }
+
+    public List<Interest> getInterestsBySpecification(RequestDto requestDto){
+        Specification<Interest> searchSpecification =
+                filterSpecificationService.getSearchSpecification(requestDto.getSearchRequestDto(), requestDto.getGlobalOperator());
+        return interestRepository.findAll(searchSpecification);
     }
 
     public Company saveCompany(Company company){
