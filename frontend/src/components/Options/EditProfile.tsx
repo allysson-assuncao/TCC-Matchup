@@ -7,9 +7,13 @@ import {Avatar, Box, Container, CssBaseline, Typography} from "@mui/material";
 import theme from "../../theme";
 import AppBarGeneral from "../../containers/AppBarGeneral";
 import GeneralInfo from "./GeneralInfo";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 
 const Profile = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const {usernamePathVariable} = useParams();
     console.log(usernamePathVariable);
     const history: NavigateFunction = useNavigate();

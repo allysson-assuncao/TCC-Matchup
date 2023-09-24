@@ -32,6 +32,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
+import getTheme from "../theme";
+import {useCustomTheme} from "../CustomThemeContext";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -76,6 +78,8 @@ const menuIcons: { [key: string]: React.ReactElement } = {
 };
 
 const AppBarHome = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const history = useNavigate();

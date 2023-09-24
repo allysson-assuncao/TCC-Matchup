@@ -13,8 +13,12 @@ import theme from "../theme";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
+import getTheme from "../theme";
+import {useCustomTheme} from "../CustomThemeContext";
 
 const AppBarIndex = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const history = useNavigate();
 
     function isScrolled() {
