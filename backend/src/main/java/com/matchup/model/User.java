@@ -41,12 +41,12 @@ public class User {
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
 
-    @Column(name = "cellphone_number", nullable = false, length = 455)
+    @Column(name = "cellphone_number", nullable = false,length = 455)
     private String cellphoneNumber;
 
     @Lob
     @Column(name = "profile_picture", length = 455, updatable = true)
-    private byte[] profilePicture;
+    private Byte[] profilePicture;
 
     @Column(name = "bio", length = 2000, updatable = true)
     private String bio;
@@ -266,6 +266,7 @@ public class User {
         this.receivedMessages.add(message);
     }
 
+<<<<<<< HEAD
     public void updateData(UserDto userDto) {
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
@@ -279,6 +280,15 @@ public class User {
 
 
     }
+=======
+    public void updateData(UserDto userDto){
+        this.bio = userDto.getBio();
+        this.cellphoneNumber = userDto.getCellphoneNumber();
+        this.profilePicture = userDto.getProfilePicture();
+        this.username = userDto.getUsername();
+    }
+
+>>>>>>> parent of 9fadacb (successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend)
 
 
     @Override
