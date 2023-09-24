@@ -21,10 +21,15 @@ import {
     validateSignUpStep4
 } from "../../utils/validation/UserValidation";
 import GoogleIcon from '@mui/icons-material/Google';
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
+import {getUser} from "../home/Home";
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
 const SignUp: React.FC = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const history = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
     const [formValues, setFormValues] = useState({
@@ -51,21 +56,21 @@ const SignUp: React.FC = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSubmit = async (values: any, actions: any) => {
+    const handleSubmit = (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
         if (activeStep < steps.length - 1) {
             handleNext();
         } else {
+            handleBack();
             values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
-            console.log(values.bio);
-            console.log(values);
-            let user = await register(values);
+            let user = register({user: values});
 
             console.log(user);
             actions.setSubmitting(false);
             localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
+            console.log(localStorage.getItem('user'));
             history(ROUTE_HOME);
         }
     };

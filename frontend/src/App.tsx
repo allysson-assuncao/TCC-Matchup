@@ -70,9 +70,7 @@ const App: React.FC = () => {
 
     return (
         <ThemeProvider theme={getTheme(theme)}>
-            <ErrorBoundary>
-                <RouterProvider router={router}/>
-            </ErrorBoundary>
+            <RouterProvider router={router}/>
         </ThemeProvider>
     );
 }
