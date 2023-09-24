@@ -20,10 +20,14 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 var loggedUser: User = getUser();
 
 const EditableProfile = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
 
     /*const [image, setImage] = useState(loggedUser.profilePicture);*/
     const [image, setImage] = useState('');
