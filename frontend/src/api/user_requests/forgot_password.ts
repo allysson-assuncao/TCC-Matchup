@@ -15,3 +15,30 @@ export const updatePassword = async ({user}: { user: any }): Promise<User> => {
     }
 
 };
+
+export const confirmEmail = async ({email}: { email: string }): Promise<Boolean> => {
+    try {
+        let response: AxiosResponse<Boolean, any>;
+        response = await axios.post<Boolean>(`${API_BASE_URL}confirm_email`, {
+            email
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+
+};
+
+export const verifyCode = async ({code, user}: { code: string , user: any}): Promise<String> => {
+    try {
+        let response: AxiosResponse<String, any>;
+        response = await axios.post<String>(`${API_BASE_URL}verify_code`, {
+            code,
+            ...user
+        });
+        return response.data;
+    } catch (error) {
+        throw error;
+    }
+
+};

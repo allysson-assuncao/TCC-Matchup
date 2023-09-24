@@ -64,6 +64,7 @@ const SignUp: React.FC = () => {
         } else {
             handleBack();
             values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
+            // @ts-ignore
             let user = register({user: values});
 
             console.log(user);

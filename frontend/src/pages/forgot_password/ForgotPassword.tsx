@@ -12,7 +12,7 @@ import {
     Button,
     Grid,
     Box,
-    Link
+    Link, Snackbar
 } from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
@@ -20,7 +20,7 @@ import {Link as RouterLink} from 'react-router-dom';
 import {ROUTE_SIGN_IN} from "../../App";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import {updatePassword} from "../../api/user_requests/forgot_password";
+import {confirmEmail, updatePassword, verifyCode} from "../../api/user_requests/forgot_password";
 import {getUser} from "../home/Home";
 import {
     validateForgotPasswordStep1, validateForgotPasswordStep2, validateForgotPasswordStep3,
@@ -50,6 +50,8 @@ const ForgotPassword: React.FC = () => {
     const theme = getTheme(mode);
     const history = useNavigate();
     const [activeStep, setActiveStep] = React.useState(0);
+    const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState('');
     const [formValues, setFormValues] = useState({
         email: '',
         code: '',
@@ -65,10 +67,24 @@ const ForgotPassword: React.FC = () => {
         setActiveStep(activeStep - 1);
     };
 
-    const handleSubmit = (values: any, actions: any) => {
+    const handleSubmit = async (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
         if (activeStep < steps.length - 1) {
+            if (activeStep === 0) {
+                let valid = await confirmEmail({email: values});
+                if (valid) {
+                    setOpen(true);
+                    setMessage('Email inválido!');
+                }
+            } else if (activeStep === 1) {
+                let user = getUser();
+                let msg = await verifyCode({code: values, user: user});
+                if (!msg) {
+                    setOpen(true);
+                    setMessage(msg);
+                }
+            }
             handleNext();
         } else {
             handleBack();
@@ -164,6 +180,10 @@ const ForgotPassword: React.FC = () => {
                     </Formik>
                 </Paper>
                 <Copyright/>
+                <Snackbar
+                    open={open}
+                    message={message}
+                />
             </Container>
         </React.Fragment>
     );
