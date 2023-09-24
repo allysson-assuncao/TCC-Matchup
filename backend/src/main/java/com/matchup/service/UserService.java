@@ -44,18 +44,8 @@ public class UserService {
         return userRepository.save(userToSave);
     }
 
-    /*public User findById(Long id){
-        //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
-        //address)
-        return userRepository.findById(id).get();
-    }*/
-
     public Optional<User> findById(Long id){
         return userRepository.findById(id);
-    }
-
-    public Optional<User> findByUsername(String username){
-        return userRepository.findByUsername(username);
     }
 
 
@@ -129,7 +119,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public String sendCode(String email){
+    public Boolean sendCode(String email){
         System.out.println("Send code: " + email);
         System.out.println("Valid email? " + userRepository.existsByEmail(email));
         System.out.println("Usuário do email: " + userRepository.findByEmail(email));
@@ -142,7 +132,7 @@ public class UserService {
                 id = userID.get().getId();
             }else {
                 System.out.println("Email não cadastrado!");
-                return "Email não cadastrado!";
+                return false;
             }
             Random generator = new Random();
             int codes;
@@ -163,11 +153,12 @@ public class UserService {
                 }
             });
             invalidateCodeThread.start();
+
             //send the code by email
             System.out.println("Código: " + code);
-            return code;
+            return true;
         }else{
-            return "Email não cadastrado!";
+            return false;
         }
     }
 
@@ -195,14 +186,6 @@ public class UserService {
     public boolean resetPassword(String rawPassword) {
         //must encode password first
         return userRepository.updatePassword(id, rawPassword);
-    }
-
-
-    public User updateUser(UserDto userDto){
-        Optional<User> userToUpdate = userRepository.findById(userDto.getId());
-        if(userToUpdate.isEmpty()) return null;
-        userToUpdate.get().updateData(userDto);
-        return userRepository.save(userToUpdate.get());
     }
 
 }

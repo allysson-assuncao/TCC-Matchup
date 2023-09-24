@@ -29,6 +29,7 @@ import ForgotPasswordStep2 from "../../containers/forgot_password_form/ForgotPas
 import ForgotPasswordStep3 from "../../containers/forgot_password_form/ForgotPasswordStep3";
 import ForgotPasswordStep1 from "../../containers/forgot_password_form/ForgotPasswordStep1";
 import {Form, Formik} from "formik";
+import {number} from "yup";
 
 function Copyright() {
     return (
@@ -78,8 +79,8 @@ const ForgotPassword: React.FC = () => {
                     setMessage('Email inválido!');
                 }
             } else if (activeStep === 1) {
-                let user = getUser();
-                let msg = await verifyCode({code: values, user: user});
+                let id = getUser().id;
+                let msg = await verifyCode({code: values, id: number});
                 if (!msg) {
                     setOpen(true);
                     setMessage(msg);

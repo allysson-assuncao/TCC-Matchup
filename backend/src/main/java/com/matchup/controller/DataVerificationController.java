@@ -2,7 +2,9 @@ package com.matchup.controller;
 
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
+import com.matchup.model.User;
 import com.matchup.service.UserService;
+import com.matchup.service.VerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +19,14 @@ import java.time.LocalDateTime;
 public class DataVerificationController {
     private final UserService userService;
 
+    private final VerificationCodeService verificationCodeService;
+
     @Autowired
-    public DataVerificationController(UserService userService) {
+    public DataVerificationController(UserService userService, VerificationCodeService verificationCodeService) {
         this.userService = userService;
+        this.verificationCodeService = verificationCodeService;
     }
+
     @GetMapping("/email/check-availability/{email}")
     public ResponseEntity<String> verifyEmail(@PathVariable String email) {
         if (userService.existsByEmail(email)) {
@@ -71,11 +77,12 @@ public class DataVerificationController {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/code")
+    @PostMapping("/verify-code/{userId}/{code}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> confirmEmailByCode(@RequestBody String inputCode) throws InvalidCodeException {
-        System.out.println("confirmCode");
-        return new ResponseEntity<>(userService.verifyCode(inputCode), HttpStatus.ACCEPTED);
+    public ResponseEntity<String> verifyCode(@PathVariable Long userId, @PathVariable String code) {
+        System.out.println("verifyCode");
+        User user = userService.findById(userId).get();
+        return new ResponseEntity<String>(verificationCodeService.verifyCode(user, code), HttpStatus.ACCEPTED);
     }
 
 }

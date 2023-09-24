@@ -96,5 +96,4 @@ public class AdminController {
         return new ResponseEntity<>(interestService.getAllPlatforms(), HttpStatus.ACCEPTED);
     }
 
-
 }

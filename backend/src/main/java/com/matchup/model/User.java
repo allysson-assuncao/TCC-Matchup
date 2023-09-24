@@ -1,7 +1,6 @@
 package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.matchup.dto.UserDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
@@ -64,6 +63,9 @@ public class User {
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
+
+    @OneToMany(mappedBy = "user")
+    private List<VerificationCode> codes;
 
 
     // <editor-fold desc="Constructors">
@@ -257,13 +259,6 @@ public class User {
             this.receivedMessages = new ArrayList<>();
         }
         this.receivedMessages.add(message);
-    }
-
-    public void updateData(UserDto userDto){
-        this.bio = userDto.getBio();
-        this.cellphoneNumber = userDto.getCellphoneNumber();
-        this.profilePicture = userDto.getProfilePicture();
-        this.username = userDto.getUsername();
     }
 
 
