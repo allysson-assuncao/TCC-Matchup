@@ -39,7 +39,7 @@ public class RegisterController {
 
     @PostMapping("/user")
     @PostAuthorize("true")
-    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
+    public ResponseEntity<User> register(@ModelAttribute UserDto userDto) {
         System.out.println("register-user");
         System.out.println(userDto.getBirthDate());
 

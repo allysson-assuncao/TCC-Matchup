@@ -2,6 +2,7 @@ package com.matchup.dto;
 
 import com.matchup.model.*;
 import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public class UserDto {
     private LocalDate birthDate;
     private String rawPassword;
     private String cellphoneNumber;
-    private Byte[] profilePicture;
+    private MultipartFile profilePicture;
     private String bio;
     private List<Long> friends;
     private List<Long> interests;
@@ -65,9 +66,13 @@ public class UserDto {
 
     public void setCellphoneNumber(String cellphoneNumber) {this.cellphoneNumber = cellphoneNumber;}
 
-    public Byte[] getProfilePicture() {return profilePicture;}
+    public MultipartFile getProfilePicture() {
+        return profilePicture;
+    }
 
-    public void setProfilePicture(Byte[] profilePicture) {this.profilePicture = profilePicture;}
+    public void setProfilePicture(MultipartFile profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public String getBio() {
         return bio;

@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,12 +41,12 @@ public class User {
     @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
     private String hashedPassword;
 
-    @Column(name = "cellphone_number", nullable = false,length = 455)
+    @Column(name = "cellphone_number", nullable = false, length = 455)
     private String cellphoneNumber;
 
     @Lob
     @Column(name = "profile_picture", length = 455, updatable = true)
-    private Byte[] profilePicture;
+    private byte[] profilePicture;
 
     @Column(name = "bio", length = 2000, updatable = true)
     private String bio;
@@ -71,7 +73,7 @@ public class User {
 
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, byte[] profilePicture, String bio) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -82,7 +84,7 @@ public class User {
         this.bio = bio;
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, byte[] profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -113,9 +115,14 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {return username;}
+    public String getUsername() {
+        return username;
+    }
 
-    public void setUsername(String username) {this.username = username;}
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -148,11 +155,11 @@ public class User {
         this.cellphoneNumber = cellphoneNumber;
     }
 
-    public Byte[] getProfilePicture() {
+    public byte[] getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(Byte[] profilePicture) {
+    public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
     }
 
@@ -205,67 +212,73 @@ public class User {
     }
     // </editor-fold>
 
-    public Friendship getFriendshipWithThisUser(User user){
-        for(Friendship f: this.friends){
-            if(user.getId() == f.getFriend().getId()){
+    public Friendship getFriendshipWithThisUser(User user) {
+        for (Friendship f : this.friends) {
+            if (user.getId() == f.getFriend().getId()) {
                 return f;
             }
         }
         return null;
     }
 
-    public void addFriendship(Friendship friendship){
-        if(this.friends == null){
+    public void addFriendship(Friendship friendship) {
+        if (this.friends == null) {
             this.friends = new ArrayList<>();
         }
         this.friends.add(friendship);
     }
 
-    public void solicitate(User friendToBeAdded){
+    public void solicitate(User friendToBeAdded) {
         Friendship friendship = new Friendship("PENDING", LocalDateTime.now(), this, friendToBeAdded);//String status, LocalDate date, User user, User friend) {
         addFriendship(friendship);
     }
 
-    public void acceptSolicitation(Friendship friendship){
+    public void acceptSolicitation(Friendship friendship) {
         friendship.accept();
     }
 
-    public void refuseSolicitation(Friendship friendship){
+    public void refuseSolicitation(Friendship friendship) {
         friendship.refuse();
     }
 
-    public void blockSolicitation(Friendship friendship){
+    public void blockSolicitation(Friendship friendship) {
         friendship.block();
     }
 
-    public void addInterest(Interest interest){
-        if(this.interests == null){
+    public void addInterest(Interest interest) {
+        if (this.interests == null) {
             this.interests = new ArrayList<>();
         }
         this.interests.add(interest);
     }
 
-    public void addSentMessage(Message message){
-        if(this.sentMessages == null){
+    public void addSentMessage(Message message) {
+        if (this.sentMessages == null) {
             this.sentMessages = new ArrayList<>();
         }
         this.sentMessages.add(message);
     }
 
-    public void addReceivedMessage(Message message){
-        if(this.receivedMessages == null){
+    public void addReceivedMessage(Message message) {
+        if (this.receivedMessages == null) {
             this.receivedMessages = new ArrayList<>();
         }
         this.receivedMessages.add(message);
     }
 
-    public void updateData(UserDto userDto){
+    public void updateData(UserDto userDto) {
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
-        this.profilePicture = userDto.getProfilePicture();
         this.username = userDto.getUsername();
-    }
 
+        try {
+            this.profilePicture = userDto.getProfilePicture().getBytes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
 
     @Override
