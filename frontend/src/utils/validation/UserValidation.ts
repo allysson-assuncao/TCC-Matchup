@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import {emailExists} from "../../api/user_requests/login";
-import {usernameExists} from "../../api/user_requests/register";
+import {isEmailAvailable, isUsernameAvailable} from "../../api/user_requests/register";
+
 
 export var isEmail: boolean;
 export const validationLogin = Yup.object().shape({
@@ -39,20 +40,23 @@ export const validateUsername = (username: string | undefined) => {
 export const validateSignUpStep1 = Yup.object().shape({
     name: Yup.string()
         .required('Campo obrigatório!'),
+    email:
+        Yup.string()
+            .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "Email inválido!")
+            .required('Campo obrigatório!')
+            .test('email', 'Esse Email já está em Uso!',  async (value)  => {
+                return await isEmailAvailable(value);
+            }),
+
     username:
         Yup.string()
             .required('Campo obrigatório!')
             .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
             .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
             .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
-            /*.test('username', 'Nome de Usuário não está disponível!',  (value) => {
-                return usernameExists(value);
-            }),*/,
-
-    email:
-        Yup.string()
-            .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, "Email inválido!")
-            .required('Campo obrigatório!'),
+            .test('username', 'Nome de Usuário já está em Uso!',  async (value)  => {
+                return await isUsernameAvailable(value);
+            }),
     rawPassword: Yup.string()
         .min(8, 'A senha deve ter no mínimo 8 caracteres!')
         .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, 'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
@@ -63,6 +67,8 @@ export const validateSignUpStep1 = Yup.object().shape({
     ,
     birthDate: Yup.date().required('Campo obrigatório!'),
 });
+
+
 
 export const validateSignUpStep2 = Yup.object().shape({
     addressZipcode: Yup.string().required('Campo obrigatório!').matches(/^\d{5}-\d{3}$/, 'CEP inválido. Formato esperado: 00000-000'),

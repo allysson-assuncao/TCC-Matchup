@@ -25,12 +25,10 @@ export const getAllInterests = async (): Promise<Array<Interest>> => {
 };
 
 
-export const register = async ({user}: { user: any }): Promise<User> => {
+export const register = async (user: User): Promise<User> => {
     try {
         let response: AxiosResponse<User, any>;
-        response = await axios.post<User>(`${API_BASE_URL}register/user`, {
-            ...user
-        });
+        response = await axios.post<User>(`${API_BASE_URL}register/user`, user);
         return response.data;
     } catch (error) {
         throw error;
@@ -75,12 +73,12 @@ export interface ValidationResponse {
     body: unknown;
 }
 
-export const usernameExists = async (username: string | undefined): Promise<Boolean> => {
+export const isUsernameAvailable = async (username: string | undefined): Promise<boolean> => {
     let response: ValidationResponse = await userAvailability(`/username/check-availability/${username}`);
     return (response.status == 200);
 };
 
-export const emailExists = async (email: string | undefined): Promise<Boolean> => {
+export const isEmailAvailable = async (email: string | undefined): Promise<boolean> => {
     let response: ValidationResponse = await userAvailability(`/email/check-availability/${email}`);
     return (response.status == 200);
 };

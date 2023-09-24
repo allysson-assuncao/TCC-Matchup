@@ -102,8 +102,6 @@ const SignUpStep4:  React.FC = () => {
                             {...field}
                             margin="normal"
                             fullWidth
-                            id="bio"
-                            name="bio"
                             label="Bio (Opcional)"
                             variant="outlined"
                             multiline

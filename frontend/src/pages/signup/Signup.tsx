@@ -51,21 +51,21 @@ const SignUp: React.FC = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSubmit = (values: any, actions: any) => {
+    const handleSubmit = async (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
         if (activeStep < steps.length - 1) {
             handleNext();
         } else {
-            handleBack();
             values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
-            let user = register({user: values});
+            console.log(values.bio);
+            console.log(values);
+            let user = await register(values);
 
             console.log(user);
             actions.setSubmitting(false);
             localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(localStorage.getItem('user'));
             history(ROUTE_HOME);
         }
     };
@@ -124,14 +124,14 @@ const SignUp: React.FC = () => {
                             name: 'Jorge',
                             username: 'Jorge1959',
                             email: 'jorge@gmail.com',
-                            rawPassword: 'Jorge123#',
-                            confirmPassword: 'Jorge123#',
+                            rawPassword: 'Senha123#',
+                            confirmPassword: 'Senha123#',
                             //birthDate: '',
-                            addressZipcode: '36492-323',
-                            addressState: 'qweqweweq',
-                            addressCity: 'qweqweqwe',
-                            addressNeighborhood: 'qweeqwqwe',
-                            addressStreet: 'weqweqwe',
+                            addressZipcode: '',
+                            addressState: '',
+                            addressCity: '',
+                            addressNeighborhood: '',
+                            addressStreet: '',
                             addressNumber: 50,
                             cellphoneNumber: '',
                             bio: '',
