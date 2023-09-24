@@ -1,5 +1,5 @@
 import React, {ErrorInfo, ReactNode} from 'react';
-import { Alert, AlertTitle } from '@mui/material';
+import {Alert, AlertTitle, Button, Card, CardContent, Typography} from '@mui/material';
 
 interface Props {
     children: ReactNode;
@@ -26,15 +26,25 @@ class ErrorBoundary extends React.Component<Props, State> {
         // Você também pode registrar o erro em um serviço de relatórios de erros
     }
 
+    handleTryAgain = () => {
+        this.setState({ hasError: false });
+        // Aqui você pode adicionar lógica adicional para lidar com a recuperação do erro
+    }
+
     render() {
         if (this.state.hasError) {
             return (
-                <Alert severity="error">
-                    <AlertTitle>Algo deu errado</AlertTitle>
-                    {this.state.error && this.state.error.toString()}
-                    <br />
-                    {this.state.errorInfo && this.state.errorInfo.componentStack}
-                </Alert>
+                <Card>
+                    <CardContent>
+                        <Typography variant="h5" component="div">
+                            Algo deu errado
+                        </Typography>
+                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                            Desculpe pelo inconveniente. Por favor, tente novamente.
+                        </Typography>
+                        <Button variant="contained" onClick={this.handleTryAgain}>Tentar Novamente</Button>
+                    </CardContent>
+                </Card>
             );
         }
 

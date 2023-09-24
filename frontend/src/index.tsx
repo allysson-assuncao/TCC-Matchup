@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ThemeProvider } from '@mui/material/styles';
+import {ThemeProvider} from '@mui/material/styles';
 import theme from './theme';
 import {CustomThemeProvider} from "./CustomThemeContext";
+import ErrorBoundary from "./utils/ErrorBoundary";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <CustomThemeProvider>
-            <App />
-        </CustomThemeProvider>
+        <ErrorBoundary>
+            <CustomThemeProvider>
+                <App/>
+            </CustomThemeProvider>
+        </ErrorBoundary>
     </React.StrictMode>
 );
 

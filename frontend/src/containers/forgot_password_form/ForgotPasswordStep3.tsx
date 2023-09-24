@@ -1,25 +1,63 @@
 import * as React from 'react';
-import {Container, Button, Grid, Link, Typography, TextField} from '@mui/material';
+import {Container, Button, Grid, Link, Typography, TextField, Box, CssBaseline} from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
+import {Field, FieldProps} from "formik";
 
 const ForgotPasswordStep3: React.FC = () => {
     return (
-        <React.Fragment>
-            <Container>
-                <Grid justifyContent={"center"}>
-                    <Grid>
-                        {/*<LockOpenIcon sx={{width:"16px", height:"16px"}} color={theme.palette.primary.main}></LockOpenIcon>*/}
-                        <TextField color='primary' sx={{marginBottom: '16px'}} required autoFocus type="password" placeholder="Nova senha" fullWidth/>
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
+            <Box
+                sx={{
+                    marginTop: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+                <Typography component="h1" variant="h5">
+                    Redefinição de Senha
+                </Typography>
+                <Field name="password">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            autoFocus
+                            fullWidth
+                            id="password"
+                            label="Senha"
+                            type="password"
+                            variant="outlined"
+                            error={meta.touched && !!meta.error}
+                            helperText={meta.touched && meta.error}
+                        />
+                    )}
+                </Field>
 
-                        {/*<LockOpenIcon sx={{width:"16px", height:"16px"}} color={theme.palette.primary.main}></LockOpenIcon>*/}
-                        <TextField color='primary' sx={{marginBottom: '16px'}} required type="password" placeholder="Confirme a Senha" fullWidth/>
-
-                    </Grid>
-                </Grid>
-            </Container>
-        </React.Fragment>
+                <Field name="confirmPassword">
+                    {({field, meta}: FieldProps) => (
+                        <TextField
+                            {...field}
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="confirmPassword"
+                            label="Confirme a Senha"
+                            type="password"
+                            variant="outlined"
+                            error={meta.touched && !!meta.error}
+                            helperText={meta.touched && meta.error}
+                        />
+                    )}
+                </Field>
+            </Box>
+        </Container>
     );
-}
+};
 
 export default ForgotPasswordStep3;
