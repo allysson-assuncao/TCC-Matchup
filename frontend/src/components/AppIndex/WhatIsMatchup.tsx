@@ -8,6 +8,8 @@ import {Button, Grow, Typography, useScrollTrigger} from "@mui/material";
 import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const item: SxProps<Theme> = {
     display: 'flex',
@@ -29,6 +31,8 @@ const image = {
 };
 
 const WhatIsMatchup = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
 
     const [scrolled, setScrolled] = React.useState(false);
 

@@ -21,8 +21,12 @@ import {ROUTE_SIGN_IN} from "../../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../../containers/AppBarProfile";
 import {getUserByUsername} from "../../api/user_requests/getUserBy";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const Profile = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const {usernamePathVariable} = useParams();
     console.log(usernamePathVariable);
     const history: NavigateFunction = useNavigate();

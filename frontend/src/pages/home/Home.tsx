@@ -17,6 +17,8 @@ import {User} from "../../model/user";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import AppBarHome from "../../containers/AppBarHome";
 import logo from '../img/logo-matchup2.png'
+import getTheme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
 
 var loggedUser: User;
 
@@ -57,6 +59,8 @@ export const logout = () => {
 }
 
 const Home = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     history = useNavigate();
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
     const [profileRoute, setProfileRoute] = useState(ROUTE_PROFILE);

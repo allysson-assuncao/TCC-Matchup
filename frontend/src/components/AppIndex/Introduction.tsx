@@ -20,9 +20,13 @@ import img15 from '../../img/img15.jpg'
 import img16 from '../../img/img16.jpg'
 import img17 from '../../img/img17.jpg'
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 
 const Introduction = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const [backgroundImages, setBackgroundImages] = useState([
         img1+'', img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
         img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',
@@ -31,14 +35,13 @@ const Introduction = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            // Troque para a próxima imagem
             setCurrentImageIndex((prevIndex) =>
                 prevIndex === backgroundImages.length - 1 ? 0 : prevIndex + 1
             );
-        }, 5000); // Altere a cada 5 segundos (5000ms)
+        }, 5000);
 
         return () => {
-            clearInterval(interval); // Limpe o intervalo ao desmontar o componente
+            clearInterval(interval);
         };
     }, [backgroundImages]);
 

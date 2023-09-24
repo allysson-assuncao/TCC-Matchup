@@ -1,8 +1,12 @@
 import * as React from 'react';
 import {Container, Grid, Typography, TextField} from '@mui/material';
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const ForgotPasswordStep1: React.FC = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     return (
         <React.Fragment>
             <Container>

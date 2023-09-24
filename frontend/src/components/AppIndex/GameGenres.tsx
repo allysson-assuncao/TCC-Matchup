@@ -5,6 +5,8 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import {Typography} from "@mui/material";
 import theme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const ImageBackdrop = styled('div')(({theme}) => ({
     position: 'absolute',
@@ -103,6 +105,8 @@ const images = [
 ];
 
 const GameGenres= () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     return (
         <Container component="section"  color={theme.palette.background.default} sx={{mt: 8, mb: 4, textAlign:"center"}}>
             <Typography  color={theme.palette.background.paper} variant="h4">

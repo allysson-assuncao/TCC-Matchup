@@ -17,6 +17,9 @@ import EditableProfile from "./pages/profile/EditableProfile";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Settings from "./pages/settings/Settings";
 import EditProfile from "./components/Options/EditProfile";
+import {useCustomTheme} from "./CustomThemeContext";
+import {ThemeProvider} from "@mui/material/styles";
+import getTheme from "./theme";
 
 export const ROUTE_INDEX= '/';
 export const ROUTE_HOME = '/home';
@@ -52,8 +55,12 @@ const App: React.FC = () => {
         )
     ), []);
 
+    const { theme } = useCustomTheme();
+
     return (
-        <RouterProvider router={router} />
+        <ThemeProvider theme={getTheme(theme)}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
     );
 }
 

@@ -9,8 +9,12 @@ import {getUser, updateUser} from "../../pages/home/Home";
 import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const GeneralInfo = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
 
     const [birthday, setBirthday] = useState("");
     /*const [image, setImage] = useState('');*/

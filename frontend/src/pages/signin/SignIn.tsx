@@ -22,8 +22,12 @@ import {useNavigate} from "react-router-dom";
 import theme from "../../theme";
 import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
 import logo from '../../img/logo-matchup3.png';
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 const SignIn = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const history = useNavigate();
     const [valid, setValid] = useState(true);

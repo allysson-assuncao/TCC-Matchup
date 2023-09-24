@@ -9,10 +9,13 @@ import {ROUTE_SIGN_IN} from "../../App";
 import React, {useEffect} from "react";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import AppBarHome from "../../containers/AppBarHome";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 
 const AboutUs = () => {
-
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const history = useNavigate();
 
     return (

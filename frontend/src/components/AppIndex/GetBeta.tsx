@@ -4,8 +4,12 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import {Button, Snackbar, TextField, Typography} from "@mui/material";
 import theme from "../../theme";
+import getTheme from "../../theme";
+import {useCustomTheme} from "../../CustomThemeContext";
 
 const GetBeta = () => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const [open, setOpen] = React.useState(false);
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
