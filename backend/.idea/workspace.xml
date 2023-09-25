@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="nothing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,25 +63,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/assun/OneDrive - Instituto Federal de Minas Gerais/Documentos/TCC-Matchup/backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/assun/OneDrive - Instituto Federal de Minas Gerais/Documentos/TCC-Matchup/backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "spring.configuration.checksum": "5682d7df48f8a92df6c1c707a89aa0b0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="RunSpring" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="matchup_v1" />
@@ -92,10 +101,7 @@
       <updated>1695593893412</updated>
       <workItem from="1695593894417" duration="61000" />
       <workItem from="1695595520331" duration="3520000" />
-      <workItem from="1695634809160" duration="4684000" />
-      <workItem from="1695641195733" duration="797000" />
-      <workItem from="1695642511216" duration="207000" />
-      <workItem from="1695642737563" duration="43000" />
+      <workItem from="1695634809160" duration="4081000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -169,55 +175,7 @@
       <option name="project" value="LOCAL" />
       <updated>1695600423017</updated>
     </task>
-    <task id="LOCAL-00010" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695640694622</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1695640694622</updated>
-    </task>
-    <task id="LOCAL-00011" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695640871505</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1695640871505</updated>
-    </task>
-    <task id="LOCAL-00012" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695641033972</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1695641033972</updated>
-    </task>
-    <task id="LOCAL-00013" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695641594277</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1695641594277</updated>
-    </task>
-    <task id="LOCAL-00014" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695641896924</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1695641896924</updated>
-    </task>
-    <task id="LOCAL-00015" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695641957220</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1695641957220</updated>
-    </task>
-    <option name="localTasksCounter" value="16" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -82,7 +82,7 @@ public class DataVerificationController {
     public ResponseEntity<String> verifyCode(@PathVariable Long userId, @PathVariable String code) {
         System.out.println("verifyCode");
         User user = userService.findById(userId).get();
-        return new ResponseEntity<String>(verificationCodeService.verifyCode(user, code), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(verificationCodeService.verifyCode(user, code), HttpStatus.ACCEPTED);
     }
 
 }
