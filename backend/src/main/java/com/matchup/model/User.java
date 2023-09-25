@@ -65,6 +65,9 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<VerificationCode> codes;
 
     // <editor-fold desc="Constructors">
     public User() {
@@ -262,7 +265,7 @@ public class User {
     public void updateData(UserDto userDto){
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
-        this.profilePicture = userDto.getProfilePicture();
+        /*this.profilePicture = userDto.getProfilePicture();*/
         this.username = userDto.getUsername();
     }
 
