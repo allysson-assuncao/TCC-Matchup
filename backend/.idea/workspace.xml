@@ -4,63 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/RunSpring.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AdminController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/RegisterController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/RequestDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/exceptions/InvalidCodeException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/exceptions/InvalidPasswordException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Address.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Message.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/AgeRating.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Genre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Language.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Platform.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/SubGenre.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/AddressRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/AgeRatingRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/CompanyRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/GenreRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/LanguageRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/PlatformRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/SubGenreRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/AddressService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/sql/language.postgresql.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/matchup/matchup_v1/MatchupV1ApplicationTests.java" beforeDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="nothing">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +93,9 @@
       <workItem from="1695593894417" duration="61000" />
       <workItem from="1695595520331" duration="3520000" />
       <workItem from="1695634809160" duration="4684000" />
-      <workItem from="1695641195733" duration="663000" />
+      <workItem from="1695641195733" duration="797000" />
+      <workItem from="1695642511216" duration="207000" />
+      <workItem from="1695642737563" duration="43000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -254,7 +201,23 @@
       <option name="project" value="LOCAL" />
       <updated>1695641594277</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695641896924</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1695641896924</updated>
+    </task>
+    <task id="LOCAL-00015" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695641957220</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1695641957220</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
