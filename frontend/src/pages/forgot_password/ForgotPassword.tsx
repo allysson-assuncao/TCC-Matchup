@@ -29,6 +29,7 @@ import ForgotPasswordStep2 from "../../containers/forgot_password_form/ForgotPas
 import ForgotPasswordStep3 from "../../containers/forgot_password_form/ForgotPasswordStep3";
 import ForgotPasswordStep1 from "../../containers/forgot_password_form/ForgotPasswordStep1";
 import {Form, Formik} from "formik";
+import {string} from "yup";
 
 function Copyright() {
     return (
@@ -88,7 +89,7 @@ const ForgotPassword: React.FC = () => {
             handleNext();
         } else {
             handleBack();
-            let user = updatePassword({user: values});
+            let user = updatePassword({id: values, rawPassword: string});
             actions.setSubmitting(false);
             let userMemory = getUser();
             /*userMemory = user;*/

@@ -3,11 +3,12 @@ import {User} from "../../model/user";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
-export const updatePassword = async ({user}: { user: any }): Promise<User> => {
+export const updatePassword = async ({id, rawPassword}: { id: any , rawPassword: string}): Promise<User> => {
     try {
         let response: AxiosResponse<User, any>;
         response = await axios.post<User>(`${API_BASE_URL}reset_password`, {
-            ...user
+            id,
+            rawPassword
         });
         return response.data;
     } catch (error) {
