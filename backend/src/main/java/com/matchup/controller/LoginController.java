@@ -75,9 +75,13 @@ public class LoginController {
 
     @PostMapping("/reset-password/{password}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> resetPassword(@RequestBody String password) {
-        //send confirmation to the user's email
-        return new ResponseEntity<>(userService.resetPassword(password), HttpStatus.ACCEPTED);
+    public ResponseEntity<String> resetPassword(@RequestBody String password) {
+        if (!userService.resetPassword(password)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Senha inválida!");
+        }else {
+            //send confirmation to the user's email
+            return ResponseEntity.ok("Senha alterada com sucesso");
+        }
     }
 
     @PostMapping("/login-route")

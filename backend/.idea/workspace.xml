@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="redoing stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +105,10 @@
       <workItem from="1695593894417" duration="61000" />
       <workItem from="1695595520331" duration="3520000" />
       <workItem from="1695634809160" duration="4081000" />
-      <workItem from="1695642957260" duration="930000" />
+      <workItem from="1695642957260" duration="1367000" />
+      <workItem from="1695656163142" duration="237000" />
+      <workItem from="1695665190294" duration="525000" />
+      <workItem from="1695666215703" duration="820000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
