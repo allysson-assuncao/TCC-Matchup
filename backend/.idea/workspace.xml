@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/RunSpring.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/RegisterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/RequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/exceptions/InvalidCodeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/exceptions/InvalidPasswordException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Address.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/AgeRating.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Company.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Genre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Language.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Platform.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/SubGenre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/AddressRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/AgeRatingRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/CompanyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/GenreRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/LanguageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/PlatformRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/SubGenreRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/AddressService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/sql/language.postgresql.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/matchup/matchup_v1/MatchupV1ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Allysson723&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="de2080fa-60d4-4f1f-8d13-048116dce2f3" />
+        <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2VrUrkeoksZarGLggSoXcuE7Gh4" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/assun/OneDrive - Instituto Federal de Minas Gerais/Documentos/TCC-Matchup/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="RunSpring" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="matchup_v1" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.matchup.RunSpring" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="" />
+      <created>1695593893412</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1695593893412</updated>
+      <workItem from="1695593894417" duration="61000" />
+      <workItem from="1695595520331" duration="3520000" />
+      <workItem from="1695634809160" duration="4684000" />
+      <workItem from="1695641195733" duration="663000" />
+    </task>
+    <task id="LOCAL-00001" summary="test">
+      <option name="closed" value="true" />
+      <created>1695593946931</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1695593946931</updated>
+    </task>
+    <task id="LOCAL-00002" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695595722108</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1695595722108</updated>
+    </task>
+    <task id="LOCAL-00003" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695596102775</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695596102775</updated>
+    </task>
+    <task id="LOCAL-00004" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695597889644</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1695597889644</updated>
+    </task>
+    <task id="LOCAL-00005" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695599826942</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1695599826943</updated>
+    </task>
+    <task id="LOCAL-00006" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695600007160</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1695600007160</updated>
+    </task>
+    <task id="LOCAL-00007" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695600153425</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695600153425</updated>
+    </task>
+    <task id="LOCAL-00008" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695600329234</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695600329234</updated>
+    </task>
+    <task id="LOCAL-00009" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695600423017</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1695600423017</updated>
+    </task>
+    <task id="LOCAL-00010" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695640694622</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1695640694622</updated>
+    </task>
+    <task id="LOCAL-00011" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695640871505</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1695640871505</updated>
+    </task>
+    <task id="LOCAL-00012" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695641033972</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1695641033972</updated>
+    </task>
+    <task id="LOCAL-00013" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
+      <option name="closed" value="true" />
+      <created>1695641594277</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1695641594277</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend" />
+  </component>
+</project>
