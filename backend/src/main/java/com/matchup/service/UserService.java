@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.config.JavaMailSender;
 import com.matchup.dto.UserDto;
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.model.Address;
@@ -9,6 +10,8 @@ import com.matchup.repository.UserRepository;
 import com.sun.jdi.InvalidCodeIndexException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -163,8 +166,8 @@ public class UserService {
                 }
             });
             invalidateCodeThread.start();
+            //send email
 
-            //send the code by email
             System.out.println("Código: " + code);
             return true;
         }else{

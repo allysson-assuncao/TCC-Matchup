@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.config.JavaMailSender;
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
 import com.matchup.model.User;
@@ -8,10 +9,10 @@ import com.matchup.service.VerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/data-verification")
@@ -83,6 +84,19 @@ public class DataVerificationController {
         System.out.println("verifyCode");
         User user = userService.findById(userId).get();
         return new ResponseEntity<>(verificationCodeService.verifyCode(user, code), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("email-test")
+    public ResponseEntity<String> emailTest() {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("matchuptcc@gmail.com");
+        message.setTo("henrique.lp2006@gmail.com");
+        message.setSubject("Código de verificação");
+        message.setText("Deu certo krai!!!");
+
+        JavaMailSender mailSender = new JavaMailSender();
+        mailSender.getJavaMailSender().send(message);
+        return ResponseEntity.ok("Email enviado!");
     }
 
 }
