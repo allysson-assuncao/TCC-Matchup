@@ -65,9 +65,12 @@ public class User {
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
 
+<<<<<<< HEAD
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<VerificationCode> codes;
+=======
+>>>>>>> parent of 9fadacb (successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend)
 
     // <editor-fold desc="Constructors">
     public User() {
@@ -265,7 +268,11 @@ public class User {
     public void updateData(UserDto userDto){
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
+<<<<<<< HEAD
         /*this.profilePicture = userDto.getProfilePicture();*/
+=======
+        this.profilePicture = userDto.getProfilePicture();
+>>>>>>> parent of 9fadacb (successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend)
         this.username = userDto.getUsername();
     }
 
