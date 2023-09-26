@@ -28,21 +28,16 @@ export const getUserByUsername = async (username: string | undefined): Promise<U
 export const getProfilePictureByUserId = async (userId: BigInt | undefined): Promise<string> => {
     try {
         const response: AxiosResponse<ArrayBuffer> = await axios.get(`${API_BASE_URL}profile-picture/by/id/${userId}`);
-        let img = '';
-        /*const reader = new FileReader();
-        reader.onloadend = () => {
-            if (typeof reader.result === 'string') {
-                img = reader.result;
-            }
-        };*/
-        const avatarData = new Uint8Array(response.data);
-        const binaryString = avatarData.reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-        );
-
-        console.log(response);
-        return btoa(binaryString);
+        //const decoder = new TextDecoder('utf-8');
+        const byte = (new Uint8Array(response.data));
+        var byte64 = "";
+        for(var i = 0; i < byte.length; i++){
+            byte64 += String.fromCharCode(byte[i]);
+        }
+        /*const base64String = btoa(decodedString);*/
+        console.log("Base64string");
+        console.log(byte64);
+        return (`data:image/png;base64,${byte64}`);
 
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -14,7 +14,7 @@ import theme from "../../theme";
 import {ROUTE_SIGN_IN} from "../../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../../containers/AppBarProfile";
-import {getUserByUsername} from "../../api/user_requests/getUserBy";
+import {getProfilePictureByUserId, getUserByUsername} from "../../api/user_requests/getUserBy";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 
@@ -28,7 +28,7 @@ const Profile = () => {
     const [editable, setEditability] = useState(false);
 
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const [image, setImage] = useState(undefined);
+    const [profilePicture, setProfilePicture] = useState('');
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
 
@@ -69,13 +69,21 @@ const Profile = () => {
                     user = await getUserByUsername(usernamePathVariable);
                     setEditability(false);
                 }
-                //setImage(user.profilePicture);
+                /*setImage(user.profilePicture);*/
                 setName(user.name);
                 setBio(user.bio);
             }
         };
 
         fetchData();
+    }, []);
+    useEffect(() => {
+        async function fetchProfilePicture() {
+            const url = await getProfilePictureByUserId(getUser().id);
+            setProfilePicture(url);
+        }
+
+        fetchProfilePicture();
     }, []);
 
 
@@ -106,7 +114,7 @@ const Profile = () => {
                     }}
                 >
                     <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
-                    <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
+                    <Avatar alt={name} src={profilePicture} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
             </Container>

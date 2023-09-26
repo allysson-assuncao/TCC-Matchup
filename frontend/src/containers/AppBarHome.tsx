@@ -99,6 +99,7 @@ const AppBarHome = () => {
     useEffect(() => {
         async function fetchProfilePicture() {
             const url = await getProfilePictureByUserId(getUser().id);
+            console.log(url)
             setProfilePicture(url);
         }
 
