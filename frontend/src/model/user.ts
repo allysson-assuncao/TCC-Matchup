@@ -55,6 +55,7 @@ export type UpdateUserPayload = {
     username?: undefined | string;
     cellphoneNumber?: undefined | string;
     bio?: undefined | string;
+    profilePicture?: undefined | File;
 };
 
 export type SignUpPayload = Pick<User, "username" | "hashedPassword" | "name">;

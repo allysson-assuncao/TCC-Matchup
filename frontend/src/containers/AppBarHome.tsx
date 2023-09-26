@@ -34,6 +34,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
+import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
+import {useEffect, useState} from "react";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -83,6 +85,7 @@ const AppBarHome = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const history = useNavigate();
+    const [profilePicture, setProfilePicture] = useState('');
     const [value, setValue] = React.useState(0);
 
    /* myRef = React.createRef();
@@ -92,6 +95,15 @@ const AppBarHome = () => {
             this.myRef.current.click();
         }
     }*/
+
+    useEffect(() => {
+        async function fetchProfilePicture() {
+            const url = await getProfilePictureByUserId(getUser().id);
+            setProfilePicture(url);
+        }
+
+        fetchProfilePicture();
+    }, []);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -249,7 +261,8 @@ const AppBarHome = () => {
                             <Box sx={{flexGrow: 0}}>
                                 <Tooltip title="Abrir opções">
                                     <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <Avatar alt={getUser().name} src="/static/images/avatar/2.jpg">
+                                        <Avatar alt={getUser().name} src={profilePicture}>
+
 
                                         </Avatar>
                                     </IconButton>
