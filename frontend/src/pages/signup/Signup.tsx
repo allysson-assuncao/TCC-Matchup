@@ -129,18 +129,18 @@ const SignUp: React.FC = () => {
                     </Stepper>
                     <Formik
                         initialValues={{
-                            name: 'Jorge',
-                            username: 'Jorge1959',
-                            email: 'jorge@gmail.com',
-                            rawPassword: 'Senha123#',
-                            confirmPassword: 'Senha123#',
+                            name: '',
+                            username: '',
+                            email: '',
+                            rawPassword: '',
+                            confirmPassword: '',
                             //birthDate: '',
-                            addressZipcode: '36492-323',
+                            addressZipcode: '',
                             addressState: '',
                             addressCity: '',
                             addressNeighborhood: '',
                             addressStreet: '',
-                            addressNumber: 50,
+                            addressNumber: 0,
                         }}
                         /*initialValues={{
                             name: '',

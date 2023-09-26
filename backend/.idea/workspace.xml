@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="redoing stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ProfilePictureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ProfilePictureRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/getUserBy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/getUserBy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />

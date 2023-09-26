@@ -205,7 +205,7 @@ public class UserService {
             profilePictureRepository.save(profilePicture);
         }
         if(userToUpdate.getProfilePicture() != null){
-            userRepository.deleteById(userToUpdate.getProfilePicture().getId());
+            profilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
         }
         userToUpdate.updateData(userDto, profilePicture);
         profilePicture.setUser(userToUpdate);

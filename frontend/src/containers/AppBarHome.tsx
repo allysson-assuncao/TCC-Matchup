@@ -36,6 +36,7 @@ import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 import {useEffect, useState} from "react";
+import ProfilePicture from "../components/ProfilePicture";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -85,7 +86,6 @@ const AppBarHome = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const history = useNavigate();
-    const [profilePicture, setProfilePicture] = useState('');
     const [value, setValue] = React.useState(0);
 
    /* myRef = React.createRef();
@@ -96,15 +96,6 @@ const AppBarHome = () => {
         }
     }*/
 
-    useEffect(() => {
-        async function fetchProfilePicture() {
-            const url = await getProfilePictureByUserId(getUser().id);
-            console.log(url)
-            setProfilePicture(url);
-        }
-
-        fetchProfilePicture();
-    }, []);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -262,10 +253,7 @@ const AppBarHome = () => {
                             <Box sx={{flexGrow: 0}}>
                                 <Tooltip title="Abrir opções">
                                     <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <Avatar alt={getUser().name} src={profilePicture}>
-
-
-                                        </Avatar>
+                                        <ProfilePicture id={getUser().id} small={true}></ProfilePicture>
                                     </IconButton>
                                 </Tooltip>
                                 <Menu

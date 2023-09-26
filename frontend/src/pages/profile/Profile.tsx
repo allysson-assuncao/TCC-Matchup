@@ -26,7 +26,7 @@ const Profile = () => {
     const history: NavigateFunction = useNavigate();
 
     const [editable, setEditability] = useState(false);
-
+    const [idProfile, setIdProfile] = useState(BigInt(0));
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
     const [profilePicture, setProfilePicture] = useState('');
     const [name, setName] = useState(undefined);
@@ -64,12 +64,15 @@ const Profile = () => {
                 if (usernamePathVariable == JSON.parse(userJSON).username) {
                     setEditability(true);
                     user = JSON.parse(userJSON);
+
                 } else {
                     console.log(usernamePathVariable);
                     user = await getUserByUsername(usernamePathVariable);
+                    console.log(user.id);
                     setEditability(false);
                 }
                 /*setImage(user.profilePicture);*/
+                setIdProfile(user.id);
                 setName(user.name);
                 setBio(user.bio);
             }
@@ -114,7 +117,8 @@ const Profile = () => {
                     }}
                 >
                     <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
-                    <Avatar alt={name} src={profilePicture} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
+                    {/*<Avatar alt={name} src={profilePicture} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>*/}
+                    <ProfilePicture id={idProfile} small={false}></ProfilePicture>
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
             </Container>
