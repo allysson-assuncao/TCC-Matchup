@@ -17,6 +17,8 @@ import AppBarProfile from "../../containers/AppBarProfile";
 import {getProfilePictureByUserId, getUserByUsername} from "../../api/user_requests/getUserBy";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
+import ProfilePicture from "../../components/ProfilePicture";
+import {id} from "date-fns/locale";
 
 const Profile = () => {
     const { theme: mode } = useCustomTheme();

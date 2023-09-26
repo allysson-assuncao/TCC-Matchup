@@ -157,8 +157,7 @@ const ForgotPassword: React.FC = () => {
                                 {getStepContent(activeStep)}
                                 <Grid sx={{display: 'flex'}} justifyContent={"space-between"}>
                                     {activeStep === 0 && (
-                                        <Button color={"primary"} component={RouterLink} to={ROUTE_SIGN_IN}
-                                                sx={{mt: 3, ml: 1}}>
+                                        <Button color={"primary"} onClick={() => history(-1)} sx={{mt: 3, ml: 1}}>
                                             Voltar
                                         </Button>
                                     )}

@@ -27,18 +27,19 @@ export const getUserByUsername = async (username: string | undefined): Promise<U
 
 export const getProfilePictureByUserId = async (userId: BigInt | undefined): Promise<string> => {
     try {
-        const response: AxiosResponse<ArrayBuffer> = await axios.get(`${API_BASE_URL}profile-picture/by/id/${userId}`);
-        //const decoder = new TextDecoder('utf-8');
-        const byte = (new Uint8Array(response.data));
-        var byte64 = "";
-        for(var i = 0; i < byte.length; i++){
-            byte64 += String.fromCharCode(byte[i]);
-        }
-        /*const base64String = btoa(decodedString);*/
-        console.log("Base64string");
-        console.log(byte64);
-        return (`data:image/png;base64,${byte64}`);
-
+        const response: AxiosResponse<Blob> = await axios.get(`${API_BASE_URL}profile-picture/by/id/${userId}`, { responseType: 'blob' });
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                if (typeof reader.result === 'string') {
+                    resolve(`data:image/png;base64,${reader.result.split(',')[1]}`);
+                } else {
+                    reject('Erro ao converter a imagem para Base64');
+                }
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(response.data);
+        });
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const axiosError = error as AxiosError;
@@ -52,3 +53,4 @@ export const getProfilePictureByUserId = async (userId: BigInt | undefined): Pro
         }
     }
 };
+

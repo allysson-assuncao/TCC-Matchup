@@ -33,7 +33,6 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ title }) => {
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
 
-
     return (
         <Box bgcolor={theme.palette.background.default}>
             <Container component="main">
@@ -54,7 +53,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ title }) => {
                         <Toolbar>
                             <Grid container spacing={3} alignContent='center'>
                                 <Grid item xs alignItems='left' margin={'auto'}>
-                                    <IconButton color="primary" onClick={() => history(ROUTE_HOME)}>
+                                    <IconButton color="primary" onClick={() => history(-1)}>
                                         <ArrowBackIcon/>
                                     </IconButton>
                                 </Grid>
