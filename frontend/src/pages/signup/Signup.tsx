@@ -23,12 +23,13 @@ import {
 import GoogleIcon from '@mui/icons-material/Google';
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import {getUser} from "../home/Home";
+import {getUser, setUser} from "../home/Home";
+import GeneralInfo from "../../components/Options/GeneralInfo";
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
 const SignUp: React.FC = () => {
-    const { theme: mode } = useCustomTheme();
+    const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
@@ -44,8 +45,6 @@ const SignUp: React.FC = () => {
         addressNeighborhood: '',
         addressStreet: '',
         addressNumber: 0,
-        cellphoneNumber: '',
-        bio: '',
     });
 
     const handleNext = () => {
@@ -56,24 +55,29 @@ const SignUp: React.FC = () => {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    const handleSubmit = (values: any, actions: any) => {
+    const handleSubmit = async (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
-        if (activeStep < steps.length - 1) {
+        if (activeStep < steps.length - 2) {
             handleNext();
-        } else {
-            handleBack();
+        } else if (activeStep == steps.length - 2) {
             values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
-            // @ts-ignore
-            let user = register({user: values});
+            console.log(values.rawPassword);
+            let user = await register(values);
 
             console.log(user);
             actions.setSubmitting(false);
             localStorage.clear();
             localStorage.setItem('user', JSON.stringify(user));
+            setUser();
             console.log(localStorage.getItem('user'));
+
+            handleNext();
+        } else if (activeStep == steps.length - 1) {
             history(ROUTE_HOME);
+
         }
+
     };
 
     const getStepContent = (step: number) => {
@@ -85,7 +89,7 @@ const SignUp: React.FC = () => {
             case 2:
                 return <SignUpStep3/>;
             case 3:
-                return <SignUpStep4/>;
+                return <GeneralInfo fromRegister={true}/>;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -99,8 +103,6 @@ const SignUp: React.FC = () => {
                 return validateSignUpStep2;
             case 2:
                 return validateSignUpStep3;
-            case 3:
-                return validateSignUpStep4;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -133,14 +135,12 @@ const SignUp: React.FC = () => {
                             rawPassword: 'Senha123#',
                             confirmPassword: 'Senha123#',
                             //birthDate: '',
-                            addressZipcode: '',
+                            addressZipcode: '36492-323',
                             addressState: '',
                             addressCity: '',
                             addressNeighborhood: '',
                             addressStreet: '',
                             addressNumber: 50,
-                            cellphoneNumber: '',
-                            bio: '',
                         }}
                         /*initialValues={{
                             name: '',
@@ -175,41 +175,46 @@ const SignUp: React.FC = () => {
                                                 Voltar
                                             </Button>
                                         )}
-                                        {activeStep !== 0 && (
+                                        {activeStep !== 0 && activeStep !== 4 && (
                                             <Button onClick={handleBack}>
                                                 Voltar
                                             </Button>
                                         )}
 
+
                                     </Grid>
-                                    <Grid item>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            type="submit"
-                                            disabled={!formikProps.isValid}
-                                            //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
-                                        >
-                                            {activeStep === steps.length - 1 ? 'Cadastrar' : 'Próximo'}
-                                        </Button>
-                                    </Grid>
+                                    {activeStep !== 4 && (
+                                        <Grid item>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                type="submit"
+                                                disabled={!formikProps.isValid}
+                                                //onClick={activeStep === steps.length - 1 ? undefined : handleNext}
+                                            >
+                                                {activeStep === steps.length - 2 ? 'Cadastrar' : 'Próximo'}
+                                            </Button>
+                                        </Grid>
+                                    )}
                                 </Grid>
                             </Form>
                         )}
                     </Formik>
-                    <Grid container justifyContent={'center'}>
-                        {/*<Grid item>
+                    {activeStep !== 4 && (
+                        <Grid container justifyContent={'center'}>
+                            {/*<Grid item>
                             <Box display="flex" alignItems="center">
                                 <GoogleIcon />
                                 <Typography>oogle</Typography>
                             </Box>
                         </Grid>*/}
-                        <Grid item>
-                            <Link href={ROUTE_SIGN_IN} variant="body2">
-                                Já tem uma conta? Faça login
-                            </Link>
+                            <Grid item>
+                                <Link href={ROUTE_SIGN_IN} variant="body2">
+                                    Já tem uma conta? Faça login
+                                </Link>
+                            </Grid>
                         </Grid>
-                    </Grid>
+                    )}
                 </Grid>
             </Box>
         </Grid>

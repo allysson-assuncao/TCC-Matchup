@@ -3,10 +3,14 @@ import {User} from "../../model/user";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
-export const updatePassword = async ({id, rawPassword}: { id: any , rawPassword: string}): Promise<User> => {
+interface updatePasswordProps {
+    id: BigInt
+    rawPassword: string
+}
+export const updatePassword = async (id: BigInt, rawPassword: string)  => {
     try {
-        let response: AxiosResponse<User, any>;
-        response = await axios.post<User>(`${API_BASE_URL}reset_password`, {
+        let response: AxiosResponse<Boolean, any>;
+        response = await axios.post<Boolean>(`${API_BASE_URL}reset_password`, {
             id,
             rawPassword
         });
@@ -17,12 +21,10 @@ export const updatePassword = async ({id, rawPassword}: { id: any , rawPassword:
 
 };
 
-export const confirmEmail = async ({email}: { email: string }): Promise<Boolean> => {
+export const confirmEmail = async (email: string) => {
     try {
-        let response: AxiosResponse<Boolean, any>;
-        response = await axios.post<Boolean>(`${API_BASE_URL}confirm_email`, {
-            email
-        });
+        let response: AxiosResponse<BigInt, any>;
+        response = await axios.post<BigInt>(`${API_BASE_URL}forgot-password`, email);
         return response.data;
     } catch (error) {
         throw error;
@@ -30,12 +32,12 @@ export const confirmEmail = async ({email}: { email: string }): Promise<Boolean>
 
 };
 
-export const verifyCode = async ({code, user}: { code: string , user: any}): Promise<String> => {
+export const verifyCode = async (code: string, id: BigInt): Promise<Boolean> => {
     try {
-        let response: AxiosResponse<String, any>;
-        response = await axios.post<String>(`${API_BASE_URL}verify_code`, {
+        let response: AxiosResponse<Boolean, any>;
+        response = await axios.post<Boolean>(`${API_BASE_URL}verify_code`, {
             code,
-            ...user
+            id
         });
         return response.data;
     } catch (error) {

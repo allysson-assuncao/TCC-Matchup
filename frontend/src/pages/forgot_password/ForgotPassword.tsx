@@ -71,31 +71,32 @@ const ForgotPassword: React.FC = () => {
     const handleSubmit = async (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
+        let id: BigInt;
+
         if (activeStep < steps.length - 1) {
             if (activeStep === 0) {
-                let valid = await confirmEmail({email: values});
-                if (valid) {
+                id = await confirmEmail(values.email);
+                if (!id) {
                     setOpen(true);
                     setMessage('Email inválido!');
                 }
             } else if (activeStep === 1) {
-                let user = getUser();
-                let msg = await verifyCode({code: values, user: user});
-                if (!msg) {
+                // @ts-ignore
+                let valid = await verifyCode(values.code, id);
+                if (!valid) {
                     setOpen(true);
-                    setMessage(msg);
+                    setMessage('Código inválido!');
                 }
             }
             handleNext();
         } else {
             handleBack();
-            let user = updatePassword({id: values, rawPassword: string});
+            let valid = updatePassword(values.id, values.rawPassword);
+            if (!valid){
+                setOpen(true);
+                setMessage('Senha inválida!');
+            }
             actions.setSubmitting(false);
-            let userMemory = getUser();
-            /*userMemory = user;*/
-            localStorage.clear();
-            localStorage.setItem('user', JSON.stringify(user));
-            console.log(localStorage.getItem('user'));
             history(ROUTE_SIGN_IN);
         }
     };

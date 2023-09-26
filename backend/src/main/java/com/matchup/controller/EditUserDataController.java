@@ -25,10 +25,12 @@ public class EditUserDataController {
 
     @PutMapping("/user")
     @PostAuthorize("true")
-    public ResponseEntity<User> update(@RequestBody UserDto userDto) {
+    public ResponseEntity<User> update(@ModelAttribute UserDto userDto) {
         System.out.println("editing user");
         return new ResponseEntity<>(userService.updateUser(userDto), HttpStatus.OK);
     }
+
+
 
 //    @PostMapping("/user")
 //    @PostAuthorize("true")

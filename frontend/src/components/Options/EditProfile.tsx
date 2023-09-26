@@ -73,7 +73,7 @@ const Profile = () => {
                     {/*<Typography color={theme.palette.primary.main} variant="h4">{}</Typography>
                     <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>*/}
-                    <GeneralInfo></GeneralInfo>
+                    <GeneralInfo fromRegister={false}></GeneralInfo>
                 </Box>
             </Container>
         </React.Fragment>

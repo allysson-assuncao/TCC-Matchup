@@ -36,15 +36,15 @@ public class User {
     private LocalDate birthDate;
 
     @JsonIgnore
-    @Column(name = "hashed_password", length = 455, nullable = false, updatable = true)
+    @Column(name = "hashed_password", length = 455, nullable = true, updatable = true)
     private String hashedPassword;
 
-    @Column(name = "cellphone_number", nullable = false,length = 455)
+    @Column(name = "cellphone_number", nullable = true ,length = 455)
     private String cellphoneNumber;
 
-    @Lob
-    @Column(name = "profile_picture", length = 455, updatable = true)
-    private Byte[] profilePicture;
+    @JsonIgnore
+    @OneToOne(mappedBy = "user")
+    private ProfilePicture profilePicture;
 
     @Column(name = "bio", length = 2000, updatable = true)
     private String bio;
@@ -74,7 +74,7 @@ public class User {
 
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -85,7 +85,7 @@ public class User {
         this.bio = bio;
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -151,11 +151,11 @@ public class User {
         this.cellphoneNumber = cellphoneNumber;
     }
 
-    public Byte[] getProfilePicture() {
+    public ProfilePicture getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(Byte[] profilePicture) {
+    public void setProfilePicture(ProfilePicture profilePicture) {
         this.profilePicture = profilePicture;
     }
 
@@ -265,8 +265,14 @@ public class User {
     public void updateData(UserDto userDto){
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
-        /*this.profilePicture = userDto.getProfilePicture();*/
         this.username = userDto.getUsername();
+    }
+
+    public void updateData(UserDto userDto, ProfilePicture profilePicture){
+        this.bio = userDto.getBio();
+        this.cellphoneNumber = userDto.getCellphoneNumber();
+        this.username = userDto.getUsername();
+        this.profilePicture = profilePicture;
     }
 
 
@@ -280,7 +286,7 @@ public class User {
                 ", age=" + birthDate +
                 ", hashedPassword='" + hashedPassword + '\'' +
                 ", cellphoneNumber='" + cellphoneNumber + '\'' +
-                ", profilePicture=" + Arrays.toString(profilePicture) +
+                ", profilePicture=" + profilePicture.getName() +
                 ", address=" + address +
                 ", friends=" + friends +
                 ", interests=" + interests +

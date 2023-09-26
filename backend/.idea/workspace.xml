@@ -5,13 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="redoing stuff">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/ProfilePicture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ProfilePictureRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/tools/BlobMultipartFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/RegisterController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/EditProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/EditProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/forgot_password/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/forgot_password/ForgotPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +63,60 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java">
+      <ranges>
+        <range start1="26" end1="27" start2="26" end2="26" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="38" end1="39" start2="37" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="41" end1="42" start2="40" end2="41" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="44" end1="47" start2="43" end2="46" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="76" end1="77" start2="75" end2="76" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="87" end1="88" start2="86" end2="87" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="153" end1="154" start2="152" end2="153" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="157" end1="158" start2="156" end2="157" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="267" end1="268" start2="266" end2="266" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="270" end1="270" start2="268" end2="275" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="282" end1="283" start2="287" end2="288" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="13" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="17" end1="18" start2="18" end2="19" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="27" end1="28" start2="28" end2="29" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="31" end1="31" start2="32" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="33" end1="45" start2="40" end2="52" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="6" end1="6" start2="6" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="7" end1="7" start2="8" end2="9" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="8" end1="8" start2="10" end2="11" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="9" end1="9" start2="12" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="12" end1="12" start2="17" end2="18" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="16" end1="16" start2="22" end2="23" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="17" end1="17" start2="24" end2="25" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="30" end1="30" start2="38" end2="40" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="33" end1="36" start2="43" end2="44" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="38" end1="39" start2="46" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="42" end1="42" start2="50" end2="52" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="114" end1="115" start2="124" end2="125" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="134" end1="139" start2="144" end2="147" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="140" end1="170" start2="148" end2="155" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="171" end1="172" start2="156" end2="167" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="173" end1="174" start2="168" end2="169" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="176" end1="189" start2="171" end2="171" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="198" end1="199" start2="180" end2="181" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="205" end1="209" start2="187" end2="207" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="210" end1="210" start2="208" end2="217" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="Use Maven wrapper" />
-        <option name="useMavenConfig" value="true" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -60,26 +128,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/assun/OneDrive - Instituto Federal de Minas Gerais/Documentos/TCC-Matchup/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "5682d7df48f8a92df6c1c707a89aa0b0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/assun/OneDrive - Instituto Federal de Minas Gerais/Documentos/TCC-Matchup/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.matchup.repository" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="RunSpring" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <envs>

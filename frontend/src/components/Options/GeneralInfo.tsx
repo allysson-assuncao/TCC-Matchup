@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
     Grid,
     TextField,
     Button,
-    Snackbar
+    Snackbar, FormControl, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
 import {getUser, updateUser} from "../../pages/home/Home";
 import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
@@ -11,20 +11,27 @@ import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 import {updateUserData} from "../../api/user_requests/updateUserData";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
+import {Field, FieldProps} from "formik";
 
-const GeneralInfo = () => {
-    const { theme: mode } = useCustomTheme();
+interface GeneralInfoProps {
+    fromRegister: boolean
+}
+
+const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
+    const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
-
     const [birthday, setBirthday] = useState("");
-    /*const [image, setImage] = useState('');*/
+    const [image, setImage] = useState("");
+    const [profilePicture, setProfilePicture] = useState(undefined);
     const [username, setUsername] = useState(getUser().username);
     const [bio, setBio] = useState(getUser().bio);
     const [cellphoneNumber, setCellphonenumber] = useState(getUser().cellphoneNumber);
     const [open, setOpen] = React.useState(false);
 
-   /* const handleImageUpload = (event: any) => {
+
+    const handleImageUpload = (event: any) => {
         const file = event.target.files[0];
+        setProfilePicture(file);
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -34,7 +41,25 @@ const GeneralInfo = () => {
         };
 
         reader.readAsDataURL(file);
-    };*/
+    };
+
+    function formatPhoneNumber(value: any) {
+        if (!value) {
+            return value;
+        }
+
+        const onlyNums = value.replace(/[^\d]/g, '');
+        if (onlyNums.length <= 2) {
+            setCellphonenumber(`(${onlyNums}`);
+        }
+        if (onlyNums.length <= 6) {
+            setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`);
+        }
+        if (onlyNums.length <= 10) {
+            setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`);
+        }
+        setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`);
+    }
 
 
     const handleSubmit = async () => {
@@ -43,11 +68,12 @@ const GeneralInfo = () => {
             username: username,
             bio: bio,
             cellphoneNumber: cellphoneNumber,
+            profilePicture: profilePicture
         }
 
         let updatedUser: User = await updateUserData(user);
 
-        if(!updatedUser) return;
+        if (!updatedUser) return;
         updateUser(updatedUser);
         setOpen(true);
     }
@@ -57,8 +83,18 @@ const GeneralInfo = () => {
     };
 
     return (
-        <Grid container position="fixed">
-            {/*<input
+        <Container component="main" maxWidth="xs">
+            <CssBaseline/>
+            <Box
+                sx={{
+                    marginTop: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                }}
+            >
+
+                {/*<input
                 accept="image/*"
                 style={{display: 'none'}}
                 id="raised-button-file"
@@ -68,12 +104,44 @@ const GeneralInfo = () => {
             <label htmlFor="raised-button-file">
                 <Avatar src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
             </label>*/}
-            <Grid container spacing={2} >
-                <Grid item>
-                    <TextField required label="Nome de Usuário" defaultValue={username} fullWidth
-                               onChange={e => setUsername(e.target.value+'')}/>
-                </Grid>
-                {/*<Grid item md={6}>
+                <Grid container alignContent={"center"} justifyContent="center" justifyItems={"center"}>
+                    <input
+                        accept="image/*"
+                        style={{display: 'none'}}
+                        id="raised-button-file"
+                        type="file"
+                        onChange={handleImageUpload}
+                    />
+                    <label htmlFor="raised-button-file">
+                        <Avatar
+                            alt={"Foto de Perfil"}
+                            src={image}
+                            style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
+                    </label>
+                    {!fromRegister &&
+                        (<TextField
+                            label="Nome de Usuário"
+                            defaultValue={username}
+                            fullWidth
+                            onChange={e => setUsername(e.target.value + '')}/>)}
+
+
+                    <TextField
+                        onChange={e => {
+                            const formatted = formatPhoneNumber(e.target.value);
+                        }}
+                        value={cellphoneNumber}
+                        margin="normal"
+                        fullWidth
+                        id="cellphoneNumber"
+                        name="cellphoneNumber"
+                        label={fromRegister ? "Número de Celular (Opcional)" : "Número de Celular"}
+                        autoFocus
+                        variant="outlined"
+                    />
+
+
+                    {/*<Grid item md={6}>
                     <FormControl fullWidth>
                         <InputLabel id="gender-label">Gender</InputLabel>
                         <Select
@@ -87,26 +155,38 @@ const GeneralInfo = () => {
                         </Select>
                     </FormControl>
                 </Grid>*/}
+
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        label="Bio (Opcional)"
+                        variant="outlined"
+                        defaultValue={bio}
+                        type="text"
+                        multiline
+                        rows={10}
+                        onChange={e => setBio(e.target.value + '')}
+                    />
+
+
+                </Grid>
+                <Button fullWidth
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleSubmit()} sx={{mt: 3}}>
+                    {fromRegister ? "CONCLUIR" : "SALVAR ALTERAÇÕES"}
+                </Button>
+
                 <Grid item>
-                    <TextField required label="Bio" type="text" fullWidth defaultValue={bio}
-                               onChange={e => setBio(e.target.value+'')}
+                    <Snackbar
+                        open={open}
+                        onClose={handleClose}
+                        message="Informações alteradas com sucesso!"
                     />
                 </Grid>
-                <Grid item>
-                    <TextField required label="Número de Celular" type="tel" fullWidth defaultValue={cellphoneNumber}
-                               onChange={e => setCellphonenumber(e.target.value+'')}/>
-                </Grid>
-            </Grid>
-            <Button variant="contained" color="primary" onClick={() => handleSubmit()} sx={{ mt: 3 }}>Save All</Button>
 
-            <Grid item>
-                <Snackbar
-                    open={open}
-                    onClose={handleClose}
-                    message="Informações alteradas com sucesso!"
-                />
-            </Grid>
-        </Grid>
+            </Box>
+        </Container>
 
     );
 };

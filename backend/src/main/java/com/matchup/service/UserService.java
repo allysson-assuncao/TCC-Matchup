@@ -4,9 +4,14 @@ import com.matchup.config.JavaMailSender;
 import com.matchup.dto.UserDto;
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.model.Address;
+import com.matchup.model.ProfilePicture;
 import com.matchup.model.User;
+import com.matchup.model.VerificationCode;
 import com.matchup.repository.InterestRepository;
+import com.matchup.repository.ProfilePictureRepository;
 import com.matchup.repository.UserRepository;
+import com.matchup.repository.VerificationCodeRepository;
+import com.matchup.tools.BlobMultipartFile;
 import com.sun.jdi.InvalidCodeIndexException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +19,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -28,6 +35,8 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final InterestRepository interestRepository;
+    private final ProfilePictureRepository profilePictureRepository;
+    private final VerificationCodeRepository verificationCodeRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -36,10 +45,12 @@ public class UserService {
     private Long id;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, InterestRepository interestRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, VerificationCodeRepository verificationCodeRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.interestRepository = interestRepository;
+        this.profilePictureRepository = profilePictureRepository;
+        this.verificationCodeRepository = verificationCodeRepository;
     }
 
     public User saveUser(User userToSave){
@@ -57,6 +68,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    @Transactional
     public Optional<User> findByUsername(String username){
         return userRepository.findByUsername(username);
     }
@@ -66,6 +78,7 @@ public class UserService {
         return userRepository.findByNameContainingIgnoreCase(partOfTheName);
     }
 
+    @Transactional
     public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
 
@@ -112,7 +125,7 @@ public class UserService {
         userToRegister.setBirthDate(userDto.getBirthDate());
         userToRegister.setHashedPassword(
                 passwordEncoder.encode(userDto.getRawPassword()));
-        userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
+        //userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
         //userToRegister.setProfilePicture(userDto.getProfilePicture());
         userDto.getInterests().forEach(System.out::println);
         userToRegister.setInterests(
@@ -203,10 +216,35 @@ public class UserService {
 
 
     public User updateUser(UserDto userDto){
-        Optional<User> userToUpdate = userRepository.findById(userDto.getId());
-        if(userToUpdate.isEmpty()) return null;
-        userToUpdate.get().updateData(userDto);
-        return userRepository.save(userToUpdate.get());
+        Optional<User> userToUpdateOp = userRepository.findById(userDto.getId());
+        if(userToUpdateOp.isEmpty()) return null;
+        User userToUpdate = userToUpdateOp.get();
+        ProfilePicture profilePicture = null;
+        if(userDto.getProfilePicture() != null){
+            profilePicture = new ProfilePicture();
+            try {
+                profilePicture.setContent(userDto.getProfilePicture().getBytes());
+            } catch (IOException e) {
+                System.out.println("updateUser() -> IOException");
+                throw new RuntimeException(e);
+            }
+            profilePicture.setName(userDto.getProfilePicture().getName());
+            profilePicture.setContentType(userDto.getProfilePicture().getContentType());
+            profilePicture.setOriginalName(userDto.getProfilePicture().getOriginalFilename());
+            profilePictureRepository.save(profilePicture);
+        }
+        userToUpdate.updateData(userDto, profilePicture);
+        profilePicture.setUser(userToUpdate);
+        return userRepository.save(userToUpdate);
+    }
+
+    @Transactional
+    public byte[] getProfilePictureById(long userId){
+        Optional<ProfilePicture> profilePictureOp = profilePictureRepository.findByUserId(userId);
+        if(profilePictureOp.isEmpty()) return null;
+        ProfilePicture img = profilePictureOp.get();
+        MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
+        return img.getContent();
     }
 
 }

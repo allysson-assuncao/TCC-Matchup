@@ -10,12 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/get/user/by/")
+@RequestMapping("/api/get/user/")
 public class ProfileController {
 
     private final UserService userService;
@@ -25,9 +26,15 @@ public class ProfileController {
         this.userService = userService;
     }
 
-    @GetMapping("/username/{username}")
+    @GetMapping("by/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
         return new ResponseEntity<>(userService.findByUsername(username).get(), HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("profile-picture/by/id/{id}")
+    @PostAuthorize("true")
+    public ResponseEntity<byte[]> getProfilePictureById(@PathVariable("id") long userId) {
+        return new ResponseEntity<>(userService.getProfilePictureById(userId), HttpStatus.OK);
     }
 
 
