@@ -15,6 +15,7 @@ import com.matchup.tools.BlobMultipartFile;
 import com.sun.jdi.InvalidCodeIndexException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,9 +41,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private boolean isValid = true;
-    private String code = "";
-    private Long id;
+
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, VerificationCodeRepository verificationCodeRepository) {
@@ -145,60 +144,32 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public Boolean sendCode(String email){
-        System.out.println("Send code: " + email);
-        System.out.println("Valid email? " + userRepository.existsByEmail(email));
-        System.out.println("Usuário do email: " + userRepository.findByEmail(email));
-        code = "";
+    public Long sendCode(String email){
+        User user;
+        Long id;
         if (userRepository.existsByEmail(email)){
-            System.out.println("existsByEmail(email) = " + existsByEmail(email));
-            if (findByEmail(email).isPresent()){
-                System.out.println("Email cadastrado!");
-                Optional<User> userID = findByEmail(email);
-                id = userID.get().getId();
-            }else {
-                System.out.println("Email não cadastrado!");
-                return false;
-            }
-            Random generator = new Random();
-            int codes;
-            for(int i = 0; i < 6; i++){
-                codes = generator.nextInt(10);
-                code += codes + "";
-            }
-            Thread invalidateCodeThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(120000); // Waits 2 minutes (120000 miliseconds)
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    isValid = false;
-                    System.out.println("O código de verificação expirou!");
-                }
-            });
-            invalidateCodeThread.start();
-            //send email
-
+            user = findByEmail(email).get();
+            id = user.getId();
+            Random random = new Random();
+            String code = String.format("%06d", random.nextInt(1000000));
+            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(2);
+            VerificationCode newCode = new VerificationCode(code, expirationDate, user);
+            verificationCodeRepository.save(newCode);
             System.out.println("Código: " + code);
-            return true;
-        }else{
-            return false;
-        }
-    }
+            //sending email
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("matchuptcc@gmail.com");
+            message.setTo("henrique.lp2006@gmail.com");
+            message.setSubject("Código de verificação");
+            message.setText("Deu certo krai!!!");
 
-    public boolean verifyCode(String inputCode) throws InvalidCodeException {
-        System.out.println("Código a ser verificado: " + code);
-        if (inputCode.length() != 6) {
-            throw new InvalidCodeException();
+            JavaMailSender mailSender = new JavaMailSender();
+            mailSender.getJavaMailSender().send(message);
+
+            return id;
+        }else{
+            return null;
         }
-        for (int i = 0; i < inputCode.length(); i++) {
-            if (!Character.isDigit(inputCode.charAt(i))) {
-                throw new InvalidCodeException();
-            }
-        }
-        return inputCode.equals(code) && isValid;
     }
 
     public boolean verifyPassword(String password) {
@@ -209,7 +180,7 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public boolean resetPassword(String rawPassword) {
+    public boolean resetPassword(Long id, String rawPassword) {
         //must encode password first
         return userRepository.updatePassword(id, rawPassword);
     }

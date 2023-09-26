@@ -78,12 +78,12 @@ public class DataVerificationController {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/verify-code/{userId}/{code}")
+    @PostMapping("/verify-code/{code}/{userId}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> verifyCode(@PathVariable Long userId, @PathVariable String code) {
+    public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable Long userId) {
         System.out.println("verifyCode");
         User user = userService.findById(userId).get();
-        return new ResponseEntity<>(verificationCodeService.verifyCode(user, code), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(verificationCodeService.verifyCode(code, user), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("email-test")

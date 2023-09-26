@@ -38,18 +38,18 @@ public class ProfileController {
     }
 
 
-//    @PostMapping("/user")
-//    @PostAuthorize("true")
-//    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
-//        System.out.println("register-user");
-//        System.out.println(userDto.getBirthDate());
-//
-//        /*if (!userService.verifyDate(userDto.getBirthDate())){
-//            throw new DateTimeException(userDto.getBirthDate().toString());
-//        }*/
-//
-//        return new ResponseEntity<>(userService.registerUser(userDto), HttpStatus.OK);
-//    }
+/*    @PostMapping("/user")
+    @PostAuthorize("true")
+    public ResponseEntity<User> register(@RequestBody UserDto userDto) {
+        System.out.println("register-user");
+        System.out.println(userDto.getBirthDate());
+
+        *//*if (!userService.verifyDate(userDto.getBirthDate())){
+            throw new DateTimeException(userDto.getBirthDate().toString());
+        }*//*
+
+        return new ResponseEntity<>(userService.registerUser(userDto), HttpStatus.OK);
+    }*/
 
 }
 

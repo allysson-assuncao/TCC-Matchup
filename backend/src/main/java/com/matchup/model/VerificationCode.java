@@ -1,8 +1,7 @@
 package com.matchup.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class VerificationCode {
@@ -16,7 +15,7 @@ public class VerificationCode {
     private String code;
 
     @Column(name = "expiration_date", nullable = false, updatable = false)
-    private LocalDate expirationDate;
+    private LocalDateTime expirationDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
@@ -26,7 +25,7 @@ public class VerificationCode {
 
     public VerificationCode() {}
 
-    public VerificationCode(String code, LocalDate expirationDate, User user) {
+    public VerificationCode(String code, LocalDateTime expirationDate, User user) {
         this.code = code;
         this.expirationDate = expirationDate;
         this.user = user;
@@ -56,11 +55,11 @@ public class VerificationCode {
         this.code = verificationCode;
     }
 
-    public LocalDate getExpirationDate() {
+    public LocalDateTime getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(LocalDate expirationDate) {
+    public void setExpirationDate(LocalDateTime expirationDate) {
         this.expirationDate = expirationDate;
     }
 

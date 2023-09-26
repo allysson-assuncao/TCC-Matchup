@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.support.NullValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
@@ -55,7 +56,7 @@ public class LoginController {
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<Boolean> forgotPassword(@RequestBody String email) {
+    public ResponseEntity<Long> forgotPassword(@RequestBody String email) {
         System.out.println("forgot-password");
         return new ResponseEntity<>(userService.sendCode(email), HttpStatus.ACCEPTED);
     }
@@ -73,14 +74,19 @@ public class LoginController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/reset-password/{password}")
+    @PostMapping("/reset-password/{id}/{rawPassword}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<String> resetPassword(@RequestBody String password) {
-        if (!userService.resetPassword(password)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Senha inválida!");
+    public ResponseEntity<Boolean> resetPassword(@RequestBody Long id, @RequestBody String rawPassword) {
+        if (!userService.resetPassword(id, rawPassword)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(false);
         }else {
             //send confirmation to the user's email
-            return ResponseEntity.ok("Senha alterada com sucesso");
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("matchuptcc@gmail.com");
+            message.setTo("henrique.lp2006@gmail.com");
+            message.setSubject("Redefinição de senha");
+            message.setText("Senha redefinida com sucesso!");
+            return ResponseEntity.ok(true);
         }
     }
 

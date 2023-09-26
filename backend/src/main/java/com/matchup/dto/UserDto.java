@@ -2,6 +2,7 @@ package com.matchup.dto;
 
 import com.matchup.model.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class UserDto {
     private String name;
     private String email;
     private LocalDate birthDate;
+    @Pattern(regexp = "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$")
     private String rawPassword;
     private String cellphoneNumber;
     private MultipartFile profilePicture;
