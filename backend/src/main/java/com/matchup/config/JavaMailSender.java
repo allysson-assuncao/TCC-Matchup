@@ -1,3 +1,4 @@
+/*
 package com.matchup.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,3 +40,4 @@ public class JavaMailSender {
         return mailSender;
     }
 }
+*/

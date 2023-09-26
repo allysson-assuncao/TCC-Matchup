@@ -1,6 +1,6 @@
 package com.matchup.service;
 
-import com.matchup.config.JavaMailSender;
+/*import com.matchup.config.JavaMailSender;*/
 import com.matchup.dto.UserDto;
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.model.Address;
@@ -163,8 +163,8 @@ public class UserService {
             message.setSubject("Código de verificação");
             message.setText("Deu certo krai!!!");
 
-            JavaMailSender mailSender = new JavaMailSender();
-            mailSender.getJavaMailSender().send(message);
+            /*JavaMailSender mailSender = new JavaMailSender();
+            mailSender.getJavaMailSender().send(message);*/
 
             return id;
         }else{
@@ -204,6 +204,9 @@ public class UserService {
             profilePicture.setOriginalName(userDto.getProfilePicture().getOriginalFilename());
             profilePictureRepository.save(profilePicture);
         }
+        if(userToUpdate.getProfilePicture() != null){
+            userRepository.deleteById(userToUpdate.getProfilePicture().getId());
+        }
         userToUpdate.updateData(userDto, profilePicture);
         profilePicture.setUser(userToUpdate);
         return userRepository.save(userToUpdate);
@@ -216,6 +219,10 @@ public class UserService {
         ProfilePicture img = profilePictureOp.get();
         MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
         return img.getContent();
+    }
+
+    public void deleteProfilePicture(long id){
+        profilePictureRepository.deleteById(id);
     }
 
 }

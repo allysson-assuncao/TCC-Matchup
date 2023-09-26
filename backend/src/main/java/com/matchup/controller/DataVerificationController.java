@@ -1,6 +1,6 @@
 package com.matchup.controller;
 
-import com.matchup.config.JavaMailSender;
+/*import com.matchup.config.JavaMailSender;*/
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
 import com.matchup.model.User;
@@ -94,8 +94,8 @@ public class DataVerificationController {
         message.setSubject("Código de verificação");
         message.setText("Deu certo krai!!!");
 
-        JavaMailSender mailSender = new JavaMailSender();
-        mailSender.getJavaMailSender().send(message);
+        /*JavaMailSender mailSender = new JavaMailSender();
+        mailSender.getJavaMailSender().send(message);*/
         return ResponseEntity.ok("Email enviado!");
     }
 
