@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="redoing stuff">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/EmailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/getUserBy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/getUserBy.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,6 +126,8 @@
       <workItem from="1695656163142" duration="237000" />
       <workItem from="1695665190294" duration="525000" />
       <workItem from="1695666215703" duration="820000" />
+      <workItem from="1695750829548" duration="414000" />
+      <workItem from="1695830585580" duration="5155000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -212,6 +220,7 @@
     <MESSAGE value="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend" />
     <MESSAGE value="redoing stuff" />
     <MESSAGE value="workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace.xml" />
+    <MESSAGE value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
   </component>
 </project>

@@ -1,4 +1,3 @@
-/*
 package com.matchup.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +21,6 @@ public class JavaMailSender {
 
     @Bean
     public JavaMailSenderImpl getJavaMailSender() {
-        System.out.println(username);
-        System.out.println(appPassword);
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
@@ -40,4 +37,3 @@ public class JavaMailSender {
         return mailSender;
     }
 }
-*/

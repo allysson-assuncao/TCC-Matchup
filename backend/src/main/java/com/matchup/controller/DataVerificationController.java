@@ -4,6 +4,7 @@ package com.matchup.controller;
 import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
 import com.matchup.model.User;
+import com.matchup.service.EmailService;
 import com.matchup.service.UserService;
 import com.matchup.service.VerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +19,21 @@ import java.time.LocalDate;
 @RequestMapping("/api/data-verification")
 @CrossOrigin(origins = "*")
 public class DataVerificationController {
+
+    @Autowired
     private final UserService userService;
 
+    @Autowired
     private final VerificationCodeService verificationCodeService;
 
     @Autowired
-    public DataVerificationController(UserService userService, VerificationCodeService verificationCodeService) {
+    private EmailService emailService;
+
+    @Autowired
+    public DataVerificationController(UserService userService, VerificationCodeService verificationCodeService, EmailService emailService) {
         this.userService = userService;
         this.verificationCodeService = verificationCodeService;
+        this.emailService = emailService;
     }
 
     @GetMapping("/email/check-availability/{email}")
@@ -78,24 +86,12 @@ public class DataVerificationController {
         return new ResponseEntity<>(userService.verifyDate(date), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/verify-code/{code}/{userId}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable Long userId) {
-        System.out.println("verifyCode");
-        User user = userService.findById(userId).get();
-        return new ResponseEntity<>(verificationCodeService.verifyCode(code, user), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("email-test")
+    @GetMapping("/email-test")
     public ResponseEntity<String> emailTest() {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("matchuptcc@gmail.com");
-        message.setTo("henrique.lp2006@gmail.com");
-        message.setSubject("Código de verificação");
-        message.setText("Deu certo krai!!!");
-
-        /*JavaMailSender mailSender = new JavaMailSender();
-        mailSender.getJavaMailSender().send(message);*/
+        String to = "assuncaoallyssonbruno@gmail.com";
+        String subject = "Deu Certo!!!";
+        String text = "Enviando emails de forma automática pelo java!";
+        emailService.sendEmail(to, subject, text);
         return ResponseEntity.ok("Email enviado!");
     }
 

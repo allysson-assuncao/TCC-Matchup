@@ -16,7 +16,7 @@ const ForgotPasswordStep1: React.FC = () => {
                 }}
             >
                 <Typography component="h1" variant="h5">
-                    Redefinição de Senha
+                    Informe o email
                 </Typography>
                 <Field name="email">
                     {({field, meta}: FieldProps) => (

@@ -79,6 +79,8 @@ const ForgotPassword: React.FC = () => {
                 if (!id) {
                     setOpen(true);
                     setMessage('Email inválido!');
+                }else{
+                    handleNext();
                 }
             } else if (activeStep === 1) {
                 // @ts-ignore
@@ -86,9 +88,10 @@ const ForgotPassword: React.FC = () => {
                 if (!valid) {
                     setOpen(true);
                     setMessage('Código inválido!');
+                }else{
+                    handleNext();
                 }
             }
-            handleNext();
         } else {
             handleBack();
             let valid = updatePassword(values.id, values.rawPassword);
