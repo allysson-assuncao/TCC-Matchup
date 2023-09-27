@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/EmailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JavaMailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +119,8 @@
       <workItem from="1695665190294" duration="525000" />
       <workItem from="1695666215703" duration="820000" />
       <workItem from="1695750829548" duration="414000" />
-      <workItem from="1695830585580" duration="5155000" />
+      <workItem from="1695830585580" duration="5216000" />
+      <workItem from="1695856963673" duration="1068000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -209,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695643092332</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
+      <option name="closed" value="true" />
+      <created>1695842363739</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1695842363739</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

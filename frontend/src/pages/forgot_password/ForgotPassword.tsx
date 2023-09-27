@@ -30,7 +30,8 @@ import ForgotPasswordStep3 from "../../containers/forgot_password_form/ForgotPas
 import ForgotPasswordStep1 from "../../containers/forgot_password_form/ForgotPasswordStep1";
 import {Form, Formik} from "formik";
 import {string} from "yup";
-
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from '@mui/icons-material/Close';
 function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center">
@@ -59,6 +60,10 @@ const ForgotPassword: React.FC = () => {
         rawPassword: '',
         confirmPassword: '',
     });
+
+    const closeSnackbar = () => {
+        setOpen(false);
+    };
 
     const handleNext = () => {
         setActiveStep(activeStep + 1);
@@ -187,6 +192,13 @@ const ForgotPassword: React.FC = () => {
                 <Snackbar
                     open={open}
                     message={message}
+                    action={
+                        <React.Fragment>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={closeSnackbar}>
+                                <CloseIcon fontSize="small" />
+                            </IconButton>
+                        </React.Fragment>
+                    }
                 />
             </Container>
         </React.Fragment>
