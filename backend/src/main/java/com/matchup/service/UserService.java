@@ -34,14 +34,19 @@ import java.util.regex.Pattern;
 @Service
 public class UserService {
 
+    @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
     private final InterestRepository interestRepository;
+
+    @Autowired
     private final ProfilePictureRepository profilePictureRepository;
+
+    @Autowired
     private final VerificationCodeRepository verificationCodeRepository;
 
     private final PasswordEncoder passwordEncoder;
-
-
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, VerificationCodeRepository verificationCodeRepository) {
@@ -142,34 +147,6 @@ public class UserService {
 
     public List<User> getAllUsers(){
         return userRepository.findAll();
-    }
-
-    public Long sendCode(String email){
-        User user;
-        Long id;
-        if (userRepository.existsByEmail(email)){
-            user = findByEmail(email).get();
-            id = user.getId();
-            Random random = new Random();
-            String code = String.format("%06d", random.nextInt(1000000));
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(2);
-            VerificationCode newCode = new VerificationCode(code, expirationDate, user);
-            verificationCodeRepository.save(newCode);
-            System.out.println("Código: " + code);
-            //sending email
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("matchuptcc@gmail.com");
-            message.setTo("henrique.lp2006@gmail.com");
-            message.setSubject("Código de verificação");
-            message.setText("Deu certo krai!!!");
-
-            /*JavaMailSender mailSender = new JavaMailSender();
-            mailSender.getJavaMailSender().send(message);*/
-
-            return id;
-        }else{
-            return null;
-        }
     }
 
     public boolean verifyPassword(String password) {

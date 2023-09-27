@@ -55,12 +55,6 @@ public class LoginController {
         return new ResponseEntity<>(user.get(), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/forgot-password")
-    public ResponseEntity<Long> forgotPassword(@RequestBody String email) {
-        System.out.println("forgot-password");
-        return new ResponseEntity<>(userService.sendCode(email), HttpStatus.ACCEPTED);
-    }
-
     //copied to RegisterController
     /*@PostMapping("/teste4")
     @PostAuthorize("true")
@@ -72,22 +66,6 @@ public class LoginController {
     @GetMapping("/teste5")
     public ResponseEntity<List<User>> teste5() {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
-    }
-
-    @PostMapping("/reset-password/{id}/{rawPassword}")
-    @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> resetPassword(@RequestBody Long id, @RequestBody String rawPassword) {
-        if (!userService.resetPassword(id, rawPassword)) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(false);
-        }else {
-            //send confirmation to the user's email
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("matchuptcc@gmail.com");
-            message.setTo("henrique.lp2006@gmail.com");
-            message.setSubject("Redefinição de senha");
-            message.setText("Senha redefinida com sucesso!");
-            return ResponseEntity.ok(true);
-        }
     }
 
     @PostMapping("/login-route")
