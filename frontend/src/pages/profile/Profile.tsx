@@ -82,6 +82,7 @@ const Profile = () => {
 
         fetchData();
     }, []);
+
     useEffect(() => {
         async function fetchProfilePicture() {
             const url = await getProfilePictureByUserId(getUser().id);
@@ -120,7 +121,7 @@ const Profile = () => {
                 >
                     <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
                     {/*<Avatar alt={name} src={profilePicture} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>*/}
-                    <ProfilePicture id={idProfile} small={false}></ProfilePicture>
+                    {idProfile ? <ProfilePicture id={idProfile} small={false}></ProfilePicture> : null}
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
             </Container>

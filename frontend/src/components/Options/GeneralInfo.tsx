@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Grid,
     TextField,
@@ -12,6 +12,7 @@ import {updateUserData} from "../../api/user_requests/updateUserData";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {Field, FieldProps} from "formik";
+import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 
 interface GeneralInfoProps {
     fromRegister: boolean
@@ -27,6 +28,16 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
     const [bio, setBio] = useState(getUser().bio);
     const [cellphoneNumber, setCellphonenumber] = useState(getUser().cellphoneNumber);
     const [open, setOpen] = React.useState(false);
+    const [imageWasChanged, setImageWasChanged] = React.useState(false);
+
+    useEffect(() => {
+        async function fetchProfilePicture() {
+            const url = await getProfilePictureByUserId(getUser().id);
+            setImage(url);
+        }
+
+        fetchProfilePicture();
+    }, []);
 
 
     const handleImageUpload = (event: any) => {
@@ -37,6 +48,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
         reader.onloadend = () => {
             if (typeof reader.result === 'string') {
                 setImage(reader.result);
+                setImageWasChanged(true);
             }
         };
 
@@ -63,12 +75,15 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
 
 
     const handleSubmit = async () => {
-        const user: UpdateUserPayload = {
+        let user: UpdateUserPayload = {
             id: getUser().id,
             username: username,
             bio: bio,
             cellphoneNumber: cellphoneNumber,
-            profilePicture: profilePicture
+        }
+
+        if(imageWasChanged){
+            user.profilePicture = profilePicture;
         }
 
         let updatedUser: User = await updateUserData(user);
