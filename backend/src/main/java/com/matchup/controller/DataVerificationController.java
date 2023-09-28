@@ -1,16 +1,11 @@
 package com.matchup.controller;
 
-/*import com.matchup.config.JavaMailSender;*/
-import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.exceptions.InvalidPasswordException;
-import com.matchup.model.User;
 import com.matchup.service.EmailService;
 import com.matchup.service.UserService;
-import com.matchup.service.VerificationCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -24,15 +19,11 @@ public class DataVerificationController {
     private final UserService userService;
 
     @Autowired
-    private final VerificationCodeService verificationCodeService;
-
-    @Autowired
     private EmailService emailService;
 
     @Autowired
-    public DataVerificationController(UserService userService, VerificationCodeService verificationCodeService, EmailService emailService) {
+    public DataVerificationController(UserService userService, EmailService emailService) {
         this.userService = userService;
-        this.verificationCodeService = verificationCodeService;
         this.emailService = emailService;
     }
 

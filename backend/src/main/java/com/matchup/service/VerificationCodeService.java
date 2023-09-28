@@ -51,7 +51,7 @@ public class VerificationCodeService {
             Random random = new Random();
             String code = String.format("%06d", random.nextInt(1000000));
 
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(2);
+            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
             VerificationCode newCode = new VerificationCode(code, expirationDate, user);
             verificationCodeRepository.save(newCode);
             System.out.println("Código: " + code);
@@ -85,9 +85,9 @@ public class VerificationCodeService {
         }
     }
 
-    public Boolean verifyCode(String code, User user) {
+    public Boolean verifyCode(String code, Long userId) {
         deleteExpiredVerificationCodes();
-        VerificationCode verificationCode = verificationCodeRepository.findByUserAndCode(user, code);
+        VerificationCode verificationCode = verificationCodeRepository.findByUserId_IdAndCode(userId, code);
         return verificationCode == null;
     }
 

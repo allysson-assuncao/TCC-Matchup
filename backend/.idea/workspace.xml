@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +126,7 @@
       <workItem from="1695750829548" duration="414000" />
       <workItem from="1695830585580" duration="5216000" />
       <workItem from="1695856963673" duration="1068000" />
+      <workItem from="1695934327275" duration="6852000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

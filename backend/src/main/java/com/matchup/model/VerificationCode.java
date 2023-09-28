@@ -19,16 +19,16 @@ public class VerificationCode {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false, updatable = false)
-    private User user;
+    private User userId;
 
     // <editor-fold desc="Constructors">
 
     public VerificationCode() {}
 
-    public VerificationCode(String code, LocalDateTime expirationDate, User user) {
+    public VerificationCode(String code, LocalDateTime expirationDate, User userId) {
         this.code = code;
         this.expirationDate = expirationDate;
-        this.user = user;
+        this.userId = userId;
     }
 
     // </editor-fold>
@@ -39,12 +39,12 @@ public class VerificationCode {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(User user) {
+        this.userId = user;
     }
 
     public String getCode() {
