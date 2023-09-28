@@ -10,33 +10,28 @@ interface updatePasswordProps {
 
 export const confirmEmail = async (email: string) => {
     try {
-        let response: AxiosResponse<BigInt, any>;
-        response = await axios.post<BigInt>(`${API_BASE_URL}confirm-email`, email);
-        return response.data;
+        let response: AxiosResponse<number, any>;
+        response = await axios.post<number>(`${API_BASE_URL}confirm-email?email=${email}`);
+        return BigInt(response.data);
     } catch (error) {
         throw error;
     }
-
 };
 
 export const verifyCode = async (code: string, id: BigInt): Promise<Boolean> => {
     try {
         let response: AxiosResponse<Boolean, any>;
-        response = await axios.post<Boolean>(`${API_BASE_URL}verify_code`, {
-            code,
-            id
-        });
+        response = await axios.post<Boolean>(`${API_BASE_URL}verify-code/${code}/${id}`);
         return response.data;
     } catch (error) {
         throw error;
     }
-
 };
 
 export const updatePassword = async (id: BigInt, rawPassword: string)  => {
     try {
         let response: AxiosResponse<Boolean, any>;
-        response = await axios.post<Boolean>(`${API_BASE_URL}reset_password`, {
+        response = await axios.put<Boolean>(`${API_BASE_URL}reset_password`, {
             id,
             rawPassword
         });
@@ -44,5 +39,5 @@ export const updatePassword = async (id: BigInt, rawPassword: string)  => {
     } catch (error) {
         throw error;
     }
-
 };
+

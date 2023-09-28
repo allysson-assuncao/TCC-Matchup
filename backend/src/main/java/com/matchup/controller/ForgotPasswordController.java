@@ -28,20 +28,22 @@ public class ForgotPasswordController {
     }
 
     @PostMapping("/confirm-email")
-    public ResponseEntity<Long> forgotPassword(@RequestBody String email) {
-        System.out.println("forgot-password");
+    public ResponseEntity<Long> forgotPassword(@RequestParam String email) {
         return new ResponseEntity<>(verificationCodeService.sendCode(email), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/verify-code/{code}/{userId}")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable Long userId) {
-        System.out.println("verifyCode");
-        User user = userService.findById(userId).get();
-        return new ResponseEntity<>(verificationCodeService.verifyCode(code, user), HttpStatus.ACCEPTED);
+        System.out.println("verifyCode" + code + " userId: " + userId);
+        /*User user = userService.findById(userId).get();*/
+        if(verificationCodeService.verifyCode(code, userId)){
+            System.out.println("FOOOOOOOOOOOOOOOI!!!");
+        }
+        return new ResponseEntity<>(verificationCodeService.verifyCode(code, userId), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/reset-password/{id}/{rawPassword}")
+    @PutMapping("/reset-password")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@RequestBody Long id, @RequestBody String rawPassword) {
         //send email to confirm
@@ -51,7 +53,9 @@ public class ForgotPasswordController {
             String text = "Faça login na sua conta para testar sua nova senha!!";
             emailService.sendEmail(to, subject, text);
         }*/
+        System.out.println("reset-password: " + id + " userId: " + rawPassword);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(userService.resetPassword(id, rawPassword));
     }
+
 
 }

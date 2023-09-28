@@ -54,6 +54,7 @@ const ForgotPassword: React.FC = () => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [open, setOpen] = React.useState(false);
     const [message, setMessage] = React.useState('');
+    const [id, setId] = useState(BigInt(0));
     const [formValues, setFormValues] = useState({
         email: '',
         code: '',
@@ -76,18 +77,18 @@ const ForgotPassword: React.FC = () => {
     const handleSubmit = async (values: any, actions: any) => {
         setFormValues({...formValues, ...values});
 
-        let id: BigInt;
-
         if (activeStep < steps.length - 1) {
             if (activeStep === 0) {
-                id = await confirmEmail(values.email);
-                if (!id) {
+                let tempId = BigInt(await confirmEmail(values.email));
+                if (!tempId) {
                     setOpen(true);
                     setMessage('Email inválido!');
                 }else{
+                    setId(tempId);
                     handleNext();
                 }
             } else if (activeStep === 1) {
+                console.log("code: " + values.code);
                 // @ts-ignore
                 let valid = await verifyCode(values.code, id);
                 if (!valid) {
@@ -152,15 +153,15 @@ const ForgotPassword: React.FC = () => {
                     </Stepper>
                     <Formik
                         initialValues={{
-                            email: '',
+                            email: 'assuncaoallyssonbruno@gmail.com',
                             code: '',
-                            password: '',
-                            confirmPassword: '',
+                            rawPassword: 'Senha123#',
+                            confirmPassword: 'Senha123#',
                         }}
                         validationSchema={getValidationSchema(activeStep)}
-                        onSubmit={handleSubmit}
+                        onSubmit={(values, actions) => handleSubmit(values, actions)}
                     >
-                        {({errors, touched}) => (
+                        {(formikProps) => (
                             <Form>
                                 {getStepContent(activeStep)}
                                 <Grid sx={{display: 'flex'}} justifyContent={"space-between"}>
@@ -178,8 +179,8 @@ const ForgotPassword: React.FC = () => {
                                     <Button
                                         color={"primary"}
                                         variant="contained"
-                                        onClick={handleNext}
                                         sx={{mt: 3, ml: 1}}
+                                        type="submit"
                                     >
                                         {activeStep === steps.length - 1 ? 'Redefinir' : 'Próximo'}
                                     </Button>
