@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="2 things missing, password encoding in update and review of the findByUserId method, types incompatibility">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/DataVerificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" afterDir="false" />
@@ -126,7 +124,8 @@
       <workItem from="1695750829548" duration="414000" />
       <workItem from="1695830585580" duration="5216000" />
       <workItem from="1695856963673" duration="1068000" />
-      <workItem from="1695934327275" duration="6852000" />
+      <workItem from="1695934327275" duration="7205000" />
+      <workItem from="1695986439680" duration="982000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -216,11 +215,38 @@
       <option name="project" value="LOCAL" />
       <updated>1695842363739</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="almost done with the forgot password function">
+      <option name="closed" value="true" />
+      <created>1695945613108</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1695945613108</updated>
+    </task>
+    <task id="LOCAL-00013" summary="2 things missing, password encoding in update and review of the findByUserId method, types incompatibility">
+      <option name="closed" value="true" />
+      <created>1695945869722</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1695945869722</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
@@ -228,6 +254,8 @@
     <MESSAGE value="redoing stuff" />
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
-    <option name="LAST_COMMIT_MESSAGE" value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
+    <MESSAGE value="almost done with the forgot password function" />
+    <MESSAGE value="2 things missing, password encoding in update and review of the findByUserId method, types incompatibility" />
+    <option name="LAST_COMMIT_MESSAGE" value="2 things missing, password encoding in update and review of the findByUserId method, types incompatibility" />
   </component>
 </project>

@@ -63,7 +63,7 @@ public class User {
     private List<Message> receivedMessages;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "user")
     private List<VerificationCode> codes;
 
     // <editor-fold desc="Constructors">

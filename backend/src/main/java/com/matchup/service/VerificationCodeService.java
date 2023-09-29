@@ -52,7 +52,7 @@ public class VerificationCodeService {
             String code = String.format("%06d", random.nextInt(1000000));
 
             LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
-            VerificationCode newCode = new VerificationCode(code, expirationDate, user);
+            VerificationCode newCode = new VerificationCode(code, expirationDate, user, user.getId());
             verificationCodeRepository.save(newCode);
             System.out.println("Código: " + code);
 
@@ -76,7 +76,7 @@ public class VerificationCodeService {
                     "\n" +
                     "Obrigado,\n" +
                     "Equipe Matchup\n";
-            emailService.sendEmail(email, subject, text);
+            /*emailService.sendEmail(email, subject, text);*/
             System.out.println("Email enviado!");
 
             return id;
@@ -87,8 +87,7 @@ public class VerificationCodeService {
 
     public Boolean verifyCode(String code, Long userId) {
         deleteExpiredVerificationCodes();
-        VerificationCode verificationCode = verificationCodeRepository.findByUserId_IdAndCode(userId, code);
-        return verificationCode == null;
+        return verificationCodeRepository.findByUserIdAndCode(userId, code) == null;
     }
 
 }
