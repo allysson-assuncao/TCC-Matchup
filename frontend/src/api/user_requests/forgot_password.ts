@@ -30,7 +30,7 @@ export const verifyCode = async (code: string, id: bigint): Promise<Boolean> => 
 
 export const updatePassword = async (idBigInt: bigint, rawPassword: string)  => {
     try {
-        let id = Number(id);
+        let id = Number(idBigInt);
         let response: AxiosResponse<boolean, any>;
         response = await axios.put<boolean>(`${API_BASE_URL}reset-password`, {
             id,

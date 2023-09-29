@@ -85,7 +85,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
         if(imageWasChanged){
             user.profilePicture = profilePicture;
         }
-
+        console.log(user);
         let updatedUser: User = await updateUserData(user);
 
         if (!updatedUser) return;
