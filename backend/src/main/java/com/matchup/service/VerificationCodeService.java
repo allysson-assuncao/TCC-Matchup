@@ -54,8 +54,10 @@ public class VerificationCodeService {
             LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
             VerificationCode newCode = new VerificationCode(code, expirationDate);
             newCode = verificationCodeRepository.save(newCode);
-            newCode.setUser(user);
+            User userCode = userRepository.findById(id).get();
+            newCode.setUser(userCode);
             verificationCodeRepository.save(newCode);
+
             System.out.println("Código: " + code);
 
             String subject = "Solicitação de Redefinição de Senha";
@@ -89,7 +91,8 @@ public class VerificationCodeService {
 
     public Boolean verifyCode(String code, Long userId) {
         deleteExpiredVerificationCodes();
-        return verificationCodeRepository.findByUserIdAndCode(userId, code) == null;
+        VerificationCode verificationCode = verificationCodeRepository.findByUserIdAndCode(userId, code);
+        return verificationCode == null;
     }
 
 }

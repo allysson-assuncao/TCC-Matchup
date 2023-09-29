@@ -36,7 +36,7 @@ public class ForgotPasswordController {
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable Long userId) {
         System.out.println("verifyCode" + code + " userId: " + userId);
-        /*User user = userService.findById(userId).get();*/
+        User user = userService.findById(userId).get();
         if(verificationCodeService.verifyCode(code, userId)){
             System.out.println("FOOOOOOOOOOOOOOOI!!!");
         }
