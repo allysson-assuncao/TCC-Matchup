@@ -11,14 +11,14 @@ public class VerificationCode {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code", nullable = false, updatable = false)
+    @Column(name = "code", updatable = false)
     private String code;
 
     @Column(name = "expiration_date", nullable = false, updatable = false)
     private LocalDateTime expirationDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, updatable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     // <editor-fold desc="Constructors">

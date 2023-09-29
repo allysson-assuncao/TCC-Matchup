@@ -4,6 +4,7 @@ import com.matchup.model.User;
 import com.matchup.model.VerificationCode;
 import com.matchup.repository.UserRepository;
 import com.matchup.repository.VerificationCodeRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -41,6 +42,7 @@ public class VerificationCodeService {
         }
     }
 
+    @Transactional
     public Long sendCode(String email){
         User user;
         Long id;
@@ -55,7 +57,10 @@ public class VerificationCodeService {
             VerificationCode newCode = new VerificationCode(code, expirationDate);
             newCode = verificationCodeRepository.save(newCode);
             User userCode = userRepository.findById(id).get();
+            System.out.println("Nome de usuario sendCOde: " + userCode.getName());
             newCode.setUser(userCode);
+            userCode.getCodes().add(newCode);
+            userRepository.save(userCode);
             verificationCodeRepository.save(newCode);
 
             System.out.println("Código: " + code);
@@ -80,7 +85,7 @@ public class VerificationCodeService {
                     "\n" +
                     "Obrigado,\n" +
                     "Equipe Matchup\n";
-            /*emailService.sendEmail(email, subject, text);*/
+            emailService.sendEmail(email, subject, text);
             System.out.println("Email enviado!");
 
             return id;
@@ -91,8 +96,8 @@ public class VerificationCodeService {
 
     public Boolean verifyCode(String code, Long userId) {
         deleteExpiredVerificationCodes();
-        VerificationCode verificationCode = verificationCodeRepository.findByUserIdAndCode(userId, code);
-        return verificationCode == null;
+        return verificationCodeRepository.existsByUserIdAndCode(userId, code);
+       // return verificationCode != null;
     }
 
 }

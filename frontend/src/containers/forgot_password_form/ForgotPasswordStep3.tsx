@@ -21,7 +21,7 @@ const ForgotPasswordStep3: React.FC = () => {
                 <Typography component="h1" variant="h5">
                     Redefinição de Senha
                 </Typography>
-                <Field name="password">
+                <Field name="rawPassword">
                     {({field, meta}: FieldProps) => (
                         <TextField
                             {...field}

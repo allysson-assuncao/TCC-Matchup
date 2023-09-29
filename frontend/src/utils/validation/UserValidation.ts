@@ -98,7 +98,7 @@ export const validateForgotPasswordStep2 = Yup.object().shape({
 });
 
 export const validateForgotPasswordStep3 = Yup.object().shape({
-    password: Yup.string()
+    rawPassword: Yup.string()
         .min(8, 'A senha deve ter no mínimo 8 caracteres!')
         .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, 'A senha deve conter letras maiúsculas, minúsculas e símbolos!')
         .required('Campo obrigatório!'),

@@ -4,7 +4,7 @@ import {User} from "../../model/user";
 const API_BASE_URL = 'http://localhost:8080/api/forgot-password/';
 
 interface updatePasswordProps {
-    id: BigInt
+    id: bigint
     rawPassword: string
 }
 
@@ -18,7 +18,7 @@ export const confirmEmail = async (email: string) => {
     }
 };
 
-export const verifyCode = async (code: string, id: BigInt): Promise<Boolean> => {
+export const verifyCode = async (code: string, id: bigint): Promise<Boolean> => {
     try {
         let response: AxiosResponse<Boolean, any>;
         response = await axios.post<Boolean>(`${API_BASE_URL}verify-code/${code}/${id}`);
@@ -28,10 +28,11 @@ export const verifyCode = async (code: string, id: BigInt): Promise<Boolean> => 
     }
 };
 
-export const updatePassword = async (id: BigInt, rawPassword: string)  => {
+export const updatePassword = async (idBigInt: bigint, rawPassword: string)  => {
     try {
-        let response: AxiosResponse<Boolean, any>;
-        response = await axios.put<Boolean>(`${API_BASE_URL}reset_password`, {
+        let id = Number(id);
+        let response: AxiosResponse<boolean, any>;
+        response = await axios.put<boolean>(`${API_BASE_URL}reset-password`, {
             id,
             rawPassword
         });

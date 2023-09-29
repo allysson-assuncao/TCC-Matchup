@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VerificationCodeRepository extends JpaRepository<VerificationCode, Long> {
-    VerificationCode findByUserIdAndCode(Long userId, String code);
+    boolean existsByUserIdAndCode(Long userId, String code);
 
 }

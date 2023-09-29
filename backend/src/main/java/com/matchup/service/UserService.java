@@ -157,11 +157,11 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public boolean resetPassword(Long id, String rawPassword) {
+    /*public boolean resetPassword(Long id, String rawPassword) {
         //must encode password first
-        return userRepository.updatePassword(id, rawPassword);
+        return userRepository.updatePassword(id, passwordEncoder.encode(rawPassword));
     }
-
+*/
 
     public User updateUser(UserDto userDto){
         Optional<User> userToUpdateOp = userRepository.findById(userDto.getId());
@@ -186,6 +186,14 @@ public class UserService {
         }
         userToUpdate.updateData(userDto, profilePicture);
         profilePicture.setUser(userToUpdate);
+        return userRepository.save(userToUpdate);
+    }
+
+    public User updateUserPassword(Long id, String rawPassword){
+        Optional<User> userToUpdateOp = userRepository.findById(id);
+        if(userToUpdateOp.isEmpty()) return null;
+        User userToUpdate = userToUpdateOp.get();
+        userToUpdate.setHashedPassword(passwordEncoder.encode(rawPassword));
         return userRepository.save(userToUpdate);
     }
 

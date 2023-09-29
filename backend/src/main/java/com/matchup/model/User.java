@@ -203,6 +203,15 @@ public class User {
     public void setReceivedMessages(List<Message> receivedMessages) {
         this.receivedMessages = receivedMessages;
     }
+
+    public List<VerificationCode> getCodes() {
+        return codes;
+    }
+
+    public void setCodes(List<VerificationCode> codes) {
+        this.codes = codes;
+    }
+
     // </editor-fold>
 
     public Friendship getFriendshipWithThisUser(User user){

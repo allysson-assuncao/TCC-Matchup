@@ -99,11 +99,11 @@ const ForgotPassword: React.FC = () => {
                 }
             }
         } else {
-            handleBack();
-            let valid = updatePassword(values.id, values.rawPassword);
+            console.log("updatePassword");
+            let valid = await updatePassword(id, values.rawPassword);
             if (!valid){
                 setOpen(true);
-                setMessage('Senha inválida!');
+                setMessage('Deu erro vei!');
             }
             actions.setSubmitting(false);
             history(ROUTE_SIGN_IN);
@@ -153,7 +153,7 @@ const ForgotPassword: React.FC = () => {
                     </Stepper>
                     <Formik
                         initialValues={{
-                            email: 'assuncaoallyssonbruno@gmail.com',
+                            email: 'henrique.lp2006@gmail.com',
                             code: '',
                             rawPassword: 'Senha123#',
                             confirmPassword: 'Senha123#',

@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.ResetPasswordDto;
 import com.matchup.model.User;
 import com.matchup.service.EmailService;
 import com.matchup.service.UserService;
@@ -34,7 +35,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/verify-code/{code}/{userId}")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable Long userId) {
+    public ResponseEntity<Boolean> verifyCode(@PathVariable String code, @PathVariable long userId) {
         System.out.println("verifyCode" + code + " userId: " + userId);
         User user = userService.findById(userId).get();
         if(verificationCodeService.verifyCode(code, userId)){
@@ -45,7 +46,7 @@ public class ForgotPasswordController {
 
     @PutMapping("/reset-password")
     @CrossOrigin(origins = "*")
-    public ResponseEntity<Boolean> resetPassword(@RequestBody Long id, @RequestBody String rawPassword) {
+    public ResponseEntity<Boolean> resetPassword(@RequestBody ResetPasswordDto resetPasswordDto) {
         //send email to confirm
         /*if (userService.resetPassword(id, rawPassword)) {
             String to = email;
@@ -53,8 +54,15 @@ public class ForgotPasswordController {
             String text = "Faça login na sua conta para testar sua nova senha!!";
             emailService.sendEmail(to, subject, text);
         }*/
-        System.out.println("reset-password: " + id + " userId: " + rawPassword);
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(userService.resetPassword(id, rawPassword));
+        System.out.println("reset-password: " + resetPasswordDto.getId() + " userId: " + resetPasswordDto.getRawPassword());
+        if(userService.updateUserPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()) != null){
+            return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+        }else{
+            return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+        }
+
+        //return new ResponseEntity<>(userService.updateUserPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()), HttpStatus.ACCEPTED);
+        //return ResponseEntity.status(HttpStatus.CONFLICT).body(userService.resetPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()));
     }
 
 
