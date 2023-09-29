@@ -18,21 +18,23 @@ public class VerificationCode {
     private LocalDateTime expirationDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", updatable = false)
     private User user;
 
-    @Column(name = "user_id")
-    private Long userId;
 
     // <editor-fold desc="Constructors">
 
     public VerificationCode() {}
 
+    public VerificationCode(String code, LocalDateTime expirationDate) {
+        this.code = code;
+        this.expirationDate = expirationDate;
+    }
+
     public VerificationCode(String code, LocalDateTime expirationDate, User user, Long userId) {
         this.code = code;
         this.expirationDate = expirationDate;
         this.user = user;
-        this.userId = userId;
     }
 
     // </editor-fold>
@@ -67,13 +69,6 @@ public class VerificationCode {
         this.expirationDate = expirationDate;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     // </editor-fold>
 

@@ -52,7 +52,9 @@ public class VerificationCodeService {
             String code = String.format("%06d", random.nextInt(1000000));
 
             LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
-            VerificationCode newCode = new VerificationCode(code, expirationDate, user, user.getId());
+            VerificationCode newCode = new VerificationCode(code, expirationDate);
+            newCode = verificationCodeRepository.save(newCode);
+            newCode.setUser(user);
             verificationCodeRepository.save(newCode);
             System.out.println("Código: " + code);
 
