@@ -5,22 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="removing the img.zip">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ResetPasswordDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ForgotPasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/forgot_password.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/forgot_password/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/forgot_password/ForgotPassword.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/utils/validation/UserValidation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/utils/validation/UserValidation.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
-    <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
-    </list>
+    <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,24 +40,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/VerificationCode.java">
-      <ranges>
-        <range start1="13" end1="14" start2="13" end2="14" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
-        <range start1="20" end1="21" start2="20" end2="21" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java">
-      <ranges>
-        <range start1="6" end1="6" start2="6" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="43" end1="43" start2="44" end2="45" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="57" end1="57" start2="59" end2="60" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="58" end1="58" start2="61" end2="63" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="82" end1="83" start2="87" end2="88" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
-        <range start1="93" end1="95" start2="98" end2="100" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -153,6 +124,10 @@
       <workItem from="1695830585580" duration="5216000" />
       <workItem from="1695856963673" duration="1068000" />
       <workItem from="1695934327275" duration="6852000" />
+      <workItem from="1696006591724" duration="61000" />
+      <workItem from="1696026745355" duration="3251000" />
+      <workItem from="1696183870945" duration="3257000" />
+      <workItem from="1696191806451" duration="697000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -250,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1696006090083</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="removing the img.zip">
+      <option name="closed" value="true" />
+      <created>1696006498793</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696006498793</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

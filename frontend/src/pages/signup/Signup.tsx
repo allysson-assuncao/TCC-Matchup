@@ -129,19 +129,35 @@ const SignUp: React.FC = () => {
                     </Stepper>
                     <Formik
                         initialValues={{
-                            name: 'Arístocles',
-                            username: 'socrates',
-                            email: 'socrates@gmail.com',
+                            name: '',
+                            username: '',
+                            email: '@gmail.com',
                             rawPassword: 'Senha123#',
                             confirmPassword: 'Senha123#',
                             //birthDate: '',
-                            addressZipcode: '36493223',
+                            addressZipcode: '36492332',
                             addressState: '',
                             addressCity: '',
                             addressNeighborhood: '',
                             addressStreet: '',
-                            addressNumber: 0,
+                            addressNumber: 999,
                         }}
+                        /*initialValues={{
+                            name: '',
+                            username: '',
+                            email: '',
+                            rawPassword: '',
+                            confirmPassword: '',
+                            birthDate: '',
+                            addressZipcode: '',
+                            addressState: '',
+                            addressCity: '',
+                            addressNeighborhood: '',
+                            addressStreet: '',
+                            addressNumber: null,
+                            cellphoneNumber: '',
+                            bio: '',
+                        }}*/
                         validationSchema={getValidationSchema(activeStep)}
                         validateOnBlur={true}
 
