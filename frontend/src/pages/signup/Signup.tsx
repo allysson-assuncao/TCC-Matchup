@@ -142,22 +142,6 @@ const SignUp: React.FC = () => {
                             addressStreet: '',
                             addressNumber: 0,
                         }}
-                        /*initialValues={{
-                            name: '',
-                            username: '',
-                            email: '',
-                            rawPassword: '',
-                            confirmPassword: '',
-                            birthDate: '',
-                            addressZipcode: '',
-                            addressState: '',
-                            addressCity: '',
-                            addressNeighborhood: '',
-                            addressStreet: '',
-                            addressNumber: null,
-                            cellphoneNumber: '',
-                            bio: '',
-                        }}*/
                         validationSchema={getValidationSchema(activeStep)}
                         validateOnBlur={true}
 

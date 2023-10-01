@@ -1,6 +1,7 @@
 import * as Yup from "yup";
 import {emailExists} from "../../api/user_requests/login";
 import {isEmailAvailable, isUsernameAvailable} from "../../api/user_requests/register";
+import {getUser} from "../../pages/home/Home";
 
 export var isEmail: boolean;
 export const validationLogin = Yup.object().shape({
@@ -10,9 +11,7 @@ export const validationLogin = Yup.object().shape({
             return validateEmail(value) || validateUsername(value);
         }),
     password: Yup.string()
-        .min(8, /*'A senha deve ter no mínimo 8 caracteres!'*/)
-        .matches(/^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\d]{8,255}$/, /*'A senha deve conter letras maiúsculas, minúsculas e símbolos!'*/)
-        .required(''/*'É necessário preencher o campo de senha!'*/),
+        .required('É necessário preencher o campo de senha!'),
 });
 
 
@@ -34,6 +33,14 @@ export const validateUsername = (username: string | undefined) => {
         .isValidSync(username);
     return !isEmail;
 }
+
+
+
+
+
+
+
+
 
 
 export const validateSignUpStep1 = Yup.object().shape({
@@ -85,6 +92,18 @@ export const validateSignUpStep4 = Yup.object().shape({
     /*.matches(/!*!/^(?:\\d{2}\\s?)?(?:9\\d{4}-\\d{4})$/!*!/, "Número de Celular Inválido!"),*/
     bio: Yup.string(),
 
+});
+
+export const validateUpdateUserData = Yup.object().shape({
+    username:
+        Yup.string()
+            .required('Campo obrigatório!')
+            .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
+            .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
+            .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
+            .test('username', 'Nome de Usuário já está em Uso!',  async (value)  => {
+                return (await isUsernameAvailable(value)) || getUser().username == value;
+            }),
 });
 
 export const validateForgotPasswordStep1 = Yup.object().shape({

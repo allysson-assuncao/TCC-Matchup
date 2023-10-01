@@ -42,6 +42,7 @@ export const getUser = () => {
     return loggedUser;
 }
 
+
 export const updateUser = (user: User) => {
     removeUser()
     localStorage.setItem('user', JSON.stringify(user));
