@@ -167,6 +167,7 @@ public class UserService {
         Optional<User> userToUpdateOp = userRepository.findById(userDto.getId());
         if(userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
+
         ProfilePicture profilePicture = null;
         if(userDto.getProfilePicture() != null){
             profilePicture = new ProfilePicture();
@@ -179,13 +180,25 @@ public class UserService {
             profilePicture.setName(userDto.getProfilePicture().getName());
             profilePicture.setContentType(userDto.getProfilePicture().getContentType());
             profilePicture.setOriginalName(userDto.getProfilePicture().getOriginalFilename());
+            profilePicture = profilePictureRepository.save(profilePicture);
+            if(userToUpdate.getProfilePicture() != null){
+                profilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
+            }
+            profilePicture.setUser(userToUpdate);
             profilePictureRepository.save(profilePicture);
         }
-        if(userToUpdate.getProfilePicture() != null){
-            profilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
+
+        if(userDto.getUsername() != null){
+            userToUpdate.setUsername(userDto.getUsername());
         }
-        userToUpdate.updateData(userDto, profilePicture);
-        profilePicture.setUser(userToUpdate);
+        if(userDto.getBio() != null){
+            userToUpdate.setBio(userDto.getBio());
+        }
+        System.out.println(userDto.getCellphoneNumber());
+        if(userDto.getCellphoneNumber() != null){
+            userToUpdate.setCellphoneNumber(userDto.getCellphoneNumber());
+        }
+
         return userRepository.save(userToUpdate);
     }
 
