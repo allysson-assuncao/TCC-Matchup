@@ -15,8 +15,10 @@ export const login = async (isEmail: boolean, emailOrUsername: string, rawPasswo
     console.log(rawPassword);
     console.log(remember);
     try {
+        console.log(isEmail)
         let response: AxiosResponse<User, any>;
         const data = isEmail ? { email: emailOrUsername } : { username: emailOrUsername };
+        console.log(data)
         response = await axios.post<User>(`${API_BASE_URL}`, {
             ...data,
             rawPassword,

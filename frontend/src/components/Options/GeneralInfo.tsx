@@ -11,8 +11,11 @@ import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 import {updateUserData} from "../../api/user_requests/updateUserData";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import {Field, FieldProps} from "formik";
+import {Field, FieldProps, Form, Formik} from "formik";
 import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
+import {ROUTE_HOME, ROUTE_INDEX, ROUTE_PROFILE} from "../../App";
+import {validateUpdateUserData} from "../../utils/validation/UserValidation";
 
 interface GeneralInfoProps {
     fromRegister: boolean
@@ -20,13 +23,12 @@ interface GeneralInfoProps {
 
 const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
     const {theme: mode} = useCustomTheme();
+    const history = useNavigate();
     const theme = getTheme(mode);
     const [birthday, setBirthday] = useState("");
     const [image, setImage] = useState("");
     const [profilePicture, setProfilePicture] = useState(undefined);
-    const [username, setUsername] = useState(getUser().username);
-    const [bio, setBio] = useState(getUser().bio);
-    const [cellphoneNumber, setCellphonenumber] = useState(getUser().cellphoneNumber);
+    const [cellphoneNumber, setCellphoneNumber] = useState();
     const [open, setOpen] = React.useState(false);
     const [imageWasChanged, setImageWasChanged] = React.useState(false);
 
@@ -55,42 +57,63 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
         reader.readAsDataURL(file);
     };
 
-    function formatPhoneNumber(value: any) {
+   /* function formatPhoneNumber(value: any) {
         if (!value) {
             return value;
         }
 
         const onlyNums = value.replace(/[^\d]/g, '');
         if (onlyNums.length <= 2) {
-            setCellphonenumber(`(${onlyNums}`);
+            setCellphoneNumber(`(${onlyNums}`);
         }
         if (onlyNums.length <= 6) {
-            setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`);
+            setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`);
         }
         if (onlyNums.length <= 10) {
-            setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`);
+            setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`);
         }
-        setCellphonenumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`);
+        setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`);
+    }*/
+
+    const initialValues = {
+        username: getUser().username,
+        bio: getUser().bio,
+        cellphoneNumber: getUser().cellphoneNumber
     }
 
-
-    const handleSubmit = async () => {
+    const handleSubmit = async (values: any, actions: any) => {
         let user: UpdateUserPayload = {
             id: getUser().id,
-            username: username,
-            bio: bio,
-            cellphoneNumber: cellphoneNumber,
         }
 
         if(imageWasChanged){
             user.profilePicture = profilePicture;
         }
+
+        if(values.username != initialValues.username){
+            user.username = values.username;
+        }
+
+        if(values.bio != initialValues.bio){
+            user.bio = values.bio;
+        }
+
+        if(values.cellphoneNumber != initialValues.cellphoneNumber){
+            user.cellphoneNumber = values.cellphoneNumber;
+        }
+        console.log(values.cellphoneNumber);
         console.log(user);
         let updatedUser: User = await updateUserData(user);
 
         if (!updatedUser) return;
         updateUser(updatedUser);
         setOpen(true);
+        if(fromRegister){
+            history(ROUTE_HOME);
+        }else {
+            history(`${ROUTE_PROFILE}/${getUser().username}`);
+        }
+        
     }
 
     const handleClose = () => {
@@ -108,89 +131,94 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
                     alignItems: 'center',
                 }}
             >
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validateUpdateUserData}
+                    validateOnBlur={true}
 
-                {/*<input
-                accept="image/*"
-                style={{display: 'none'}}
-                id="raised-button-file"
-                type="file"
-                onChange={handleImageUpload}
-            />
-            <label htmlFor="raised-button-file">
-                <Avatar src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-            </label>*/}
-                <Grid container alignContent={"center"} justifyContent="center" justifyItems={"center"}>
-                    <input
-                        accept="image/*"
-                        style={{display: 'none'}}
-                        id="raised-button-file"
-                        type="file"
-                        onChange={handleImageUpload}
-                    />
-                    <label htmlFor="raised-button-file">
-                        <Avatar
-                            alt={"Foto de Perfil"}
-                            src={image}
-                            style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-                    </label>
-                    {!fromRegister &&
-                        (<TextField
-                            label="Nome de Usuário"
-                            defaultValue={username}
-                            fullWidth
-                            onChange={e => setUsername(e.target.value + '')}/>)}
-
-
-                    <TextField
-                        onChange={e => {
-                            const formatted = formatPhoneNumber(e.target.value);
-                        }}
-                        value={cellphoneNumber}
-                        margin="normal"
-                        fullWidth
-                        id="cellphoneNumber"
-                        name="cellphoneNumber"
-                        label={fromRegister ? "Número de Celular (Opcional)" : "Número de Celular"}
-                        autoFocus
-                        variant="outlined"
-                    />
+                    onSubmit={(values, actions) => handleSubmit(values, actions)}
+                >
+                    {(formikProps) => (
+                        <Form>
+                            <Grid container alignContent={"center"} justifyContent="center" justifyItems={"center"}>
+                                <input
+                                    accept="image/*"
+                                    style={{display: 'none'}}
+                                    id="raised-button-file"
+                                    type="file"
+                                    onChange={handleImageUpload}
+                                />
+                                <label htmlFor="raised-button-file">
+                                    <Avatar
+                                        alt={"Foto de Perfil"}
+                                        src={image}
+                                        style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
+                                </label>
+                                {!fromRegister &&
+                                    <Field name="username">
+                                        {({field, meta}: FieldProps) => (
+                                            <TextField
+                                                {...field}
+                                                margin="normal"
+                                                fullWidth
+                                                autoFocus
+                                                variant="outlined"
+                                                label="Nome de Usuário"
+                                                error={(meta.touched && !!meta.error)}
+                                                helperText={(meta.touched && meta.error)}
+                                            />
+                                        )}
+                                    </Field>}
 
 
-                    {/*<Grid item md={6}>
-                    <FormControl fullWidth>
-                        <InputLabel id="gender-label">Gender</InputLabel>
-                        <Select
-                            labelId="gender-label"
-                            id="gender"
-                            defaultValue=""
-                        >
-                            <MenuItem value=""><em>None</em></MenuItem>
-                            <MenuItem value={1}>Female</MenuItem>
-                            <MenuItem value={2}>Male</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>*/}
+                                <Field name="cellphoneNumber">
+                                    {({field, meta}: FieldProps) => (
+                                        <TextField
+                                            {...field}
+                                            /*onChange={e => {
+                                                const formatted = formatPhoneNumber(e.target.value);
+                                            }}*/
+                                            margin="normal"
+                                            fullWidth
+                                            autoFocus
+                                            variant="outlined"
+                                            label={fromRegister ? "Número de Celular (Opcional)" : "Número de Celular"}
+                                            //value={cellphoneNumber}
+                                            error={(meta.touched && !!meta.error)}
+                                            helperText={(meta.touched && meta.error)}
+                                        />
+                                    )}
+                                </Field>
 
-                    <TextField
-                        margin="normal"
-                        fullWidth
-                        label="Bio (Opcional)"
-                        variant="outlined"
-                        defaultValue={bio}
-                        type="text"
-                        multiline
-                        rows={10}
-                        onChange={e => setBio(e.target.value + '')}
-                    />
+                                <Field name="bio">
+                                    {({field, meta}: FieldProps) => (
+                                        <TextField
+                                            {...field}
+                                            margin="normal"
+                                            fullWidth
+                                            label="Bio (Opcional)"
+                                            variant="outlined"
+                                            type="text"
+                                            autoFocus
+                                            rows={fromRegister? 15: 10}
+                                            multiline={true}
+                                            error={(meta.touched && !!meta.error)}
+                                            helperText={(meta.touched && meta.error)}
+                                        />
+                                    )}
+                                </Field>
+                            </Grid>
+                            <Button fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                    sx={{mt: 3}}>
+                                {fromRegister ? "CONCLUIR" : "SALVAR ALTERAÇÕES"}
+                            </Button>
 
-
-                </Grid>
-                <Button fullWidth
-                        variant="contained"
-                        color="primary"
-                        onClick={() => handleSubmit()} sx={{mt: 3}}>
-                    {fromRegister ? "CONCLUIR" : "SALVAR ALTERAÇÕES"}
-                </Button>
+                        </Form>
+                    )}
+                </Formik>
 
                 <Grid item>
                     <Snackbar

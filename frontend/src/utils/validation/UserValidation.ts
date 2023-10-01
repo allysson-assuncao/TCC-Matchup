@@ -18,13 +18,10 @@ export const validationLogin = Yup.object().shape({
 export const validateEmail = (email: string | undefined) => {
     isEmail = Yup.string()
         .matches(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-        .test('emailOrUsername'/*, 'Email ou nome de usuário está inválido!'*/, (value) => {
-            return validateEmail(value) || validateUsername(value);
-        })
         .isValidSync(email);
     //isEmail = Yup.string().email().isValidSync(email)
 
-    return true;
+    return isEmail;
 };
 
 export const validateUsername = (username: string | undefined) => {
