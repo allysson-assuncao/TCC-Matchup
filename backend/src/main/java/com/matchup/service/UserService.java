@@ -12,16 +12,18 @@ import com.matchup.repository.ProfilePictureRepository;
 import com.matchup.repository.UserRepository;
 import com.matchup.repository.VerificationCodeRepository;
 import com.matchup.tools.BlobMultipartFile;
+import com.matchup.tools.ImageResizer;
 import com.sun.jdi.InvalidCodeIndexException;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -211,12 +213,19 @@ public class UserService {
         return userRepository.save(userToUpdate);
     }
 
-    @Transactional
-    public byte[] getProfilePictureById(long userId){
+    @Transactional(readOnly = true)
+    public byte[] getProfilePictureById(long userId, int width, int height){
         Optional<ProfilePicture> profilePictureOp = profilePictureRepository.findByUserId(userId);
         if(profilePictureOp.isEmpty()) return null;
         ProfilePicture img = profilePictureOp.get();
         MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
+
+        try {
+            img.setContent(ImageResizer.resizeImage(multipartFile, width, height));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return img.getContent();
     }
 

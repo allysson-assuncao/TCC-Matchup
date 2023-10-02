@@ -29,7 +29,8 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
         async function fetchProfilePicture() {
             let url = "";
             if (getUser() == null || id != getUser().id) {
-                url = await getProfilePictureByUserId(id);
+                console.log("id:" + id);
+                url = await getProfilePictureByUserId(id, 128, 128);
             }else{
                 url = localStorage.getItem('profilePicture') + "";
             }

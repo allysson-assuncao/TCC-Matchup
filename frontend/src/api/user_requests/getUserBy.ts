@@ -25,9 +25,10 @@ export const getUserByUsername = async (username: string | undefined): Promise<U
 };
 
 
-export const getProfilePictureByUserId = async (userId: BigInt | undefined): Promise<string> => {
+export const getProfilePictureByUserId = async (userId: BigInt | undefined, width: number, height: number): Promise<string> => {
     try {
-        const response: AxiosResponse<Blob> = await axios.get(`${API_BASE_URL}profile-picture/by/id/${userId}`, { responseType: 'blob' });
+        const response: AxiosResponse<Blob> =
+            await axios.get(`${API_BASE_URL}profile-picture/by/id/${userId}?width=${width}&height=${height}`, { responseType: 'blob' });
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onloadend = () => {

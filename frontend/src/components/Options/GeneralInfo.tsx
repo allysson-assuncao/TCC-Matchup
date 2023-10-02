@@ -26,20 +26,11 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
     const history = useNavigate();
     const theme = getTheme(mode);
     const [birthday, setBirthday] = useState("");
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(localStorage.getItem('profilePicture')+"");
     const [profilePicture, setProfilePicture] = useState(undefined);
     const [cellphoneNumber, setCellphoneNumber] = useState();
     const [open, setOpen] = React.useState(false);
     const [imageWasChanged, setImageWasChanged] = React.useState(false);
-
-    useEffect(() => {
-        async function fetchProfilePicture() {
-            const url = await getProfilePictureByUserId(getUser().id);
-            setImage(url);
-        }
-
-        fetchProfilePicture();
-    }, []);
 
 
     const handleImageUpload = (event: any) => {

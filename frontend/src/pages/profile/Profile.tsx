@@ -113,8 +113,6 @@ const Profile = () => {
     }, []);*/
 
 
-    if (!getUser()) return null;
-
     return (
         <React.Fragment>
             <AppBarProfile username={usernamePathVariable} editable={editable}></AppBarProfile>
