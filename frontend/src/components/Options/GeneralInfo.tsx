@@ -199,7 +199,6 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
                                             label="Bio (Opcional)"
                                             variant="outlined"
                                             type="text"
-                                            autoFocus
                                             rows={fromRegister? 15: 10}
                                             multiline={true}
                                             error={(meta.touched && !!meta.error)}

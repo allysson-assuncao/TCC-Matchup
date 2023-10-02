@@ -25,6 +25,7 @@ import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {getUser, setUser} from "../home/Home";
 import GeneralInfo from "../../components/Options/GeneralInfo";
+import GeneralInfoRegister from "../../components/Options/GeneralInfoRegister";
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
@@ -89,7 +90,7 @@ const SignUp: React.FC = () => {
             case 2:
                 return <SignUpStep3/>;
             case 3:
-                return <GeneralInfo fromRegister={true}/>;
+                return <GeneralInfoRegister/>;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -168,15 +169,11 @@ const SignUp: React.FC = () => {
 
                                 <Grid item>{getStepContent(activeStep)}</Grid>
                                 <Grid container justifyContent="space-between" sx={{marginTop: '20px'}}>
-                                    <Grid item>
-
-                                        {activeStep === 0 && (
-                                            <Button component={RouterLink} to={ROUTE_INDEX}>
-                                                Voltar
-                                            </Button>
-                                        )}
-                                        {activeStep !== 0 && activeStep !== 4 && (
-                                            <Button onClick={handleBack}>
+                                    {(activeStep !== 3) && (
+                                        <Grid item>
+                                            <Button
+                                                onClick={activeStep !== 0 ? handleBack : () => history(-1)}
+                                            >
                                                 Voltar
                                             </Button>
                                         )}
@@ -200,7 +197,7 @@ const SignUp: React.FC = () => {
                             </Form>
                         )}
                     </Formik>
-                    {activeStep !== 4 && (
+                    {activeStep !== 3 && (
                         <Grid container justifyContent={'center'}>
                             {/*<Grid item>
                             <Box display="flex" alignItems="center">

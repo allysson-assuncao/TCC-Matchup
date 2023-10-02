@@ -25,7 +25,12 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
 
     useEffect(() => {
         async function fetchProfilePicture() {
-            const url = await getProfilePictureByUserId(id);
+            let url = "";
+            if (id == getUser().id) {
+                url = await getProfilePictureByUserId(id);
+            }else{
+                url = localStorage.getItem('profilePicture')
+            }
             console.log(url)
             setProfilePicture(url);
         }
