@@ -24,6 +24,8 @@ import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../../App";
 import logo from '../../img/logo-matchup3.png';
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
+import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
+import {getUser, logout, removeProfilePicture} from "../home/Home";
 
 const SignIn = () => {
     const { theme: mode } = useCustomTheme();
@@ -64,7 +66,6 @@ const SignIn = () => {
             } else {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
                 console.log(userData);
-
             }
         } catch (error) {
             setValid(false);
@@ -73,9 +74,11 @@ const SignIn = () => {
 
         formikProps.setSubmitting(false);
         setIsLoggedIn(true);
-        localStorage.clear();
+        localStorage.removeItem('user');
+        localStorage.removeItem('profilePicture');
         localStorage.setItem('user', JSON.stringify(userData));
         console.log(userData);
+        localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id));
         history(ROUTE_HOME);
 
     }

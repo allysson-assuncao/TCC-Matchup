@@ -31,11 +31,10 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
             if (id == getUser().id) {
                 url = await getProfilePictureByUserId(id);
             }else{
-                url = localStorage.getItem('profilePicture')
+                url = localStorage.getItem('profilePicture') + "";
             }
             console.log(url)
             setProfilePicture(url);
-            localStorage.setItem('profilePicture', JSON.stringify(url));
         }
 
         fetchProfilePicture();
@@ -44,12 +43,12 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
     return (
         <Grid>
             {small && (
-                <Avatar alt={getUser().name} src={profilePicture}>
+                <Avatar src={profilePicture}>
 
                 </Avatar>
             )}
             {!small && (
-                <Avatar sx={{width: '128px', height: '128px'}} alt={getUser().name} src={profilePicture}>
+                <Avatar sx={{width: '128px', height: '128px'}} src={profilePicture}>
 
                 </Avatar>
             )}

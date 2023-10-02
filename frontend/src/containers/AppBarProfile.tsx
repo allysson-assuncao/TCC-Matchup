@@ -30,8 +30,8 @@ interface PropsAppBarProfile {
 
 var loggedUser: User = getUser();
 
-const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable, username }) => {
-    const { theme: mode } = useCustomTheme();
+const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
+    const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
 
@@ -39,17 +39,13 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable, username }) => 
     const [username, setUsername] = useState(null);*/
 
     useEffect(() => {
-        const userJSON = localStorage.getItem('user');
-        if (!userJSON) {
-            history(ROUTE_SIGN_IN);
-        } else {
-            const user = JSON.parse(userJSON);
-            /*setLoggedUser(user);
-            setUsername(user.username);*/
-        }
+        const userJSON = localStorage.getItem('user')+"";
+        if(!userJSON) return;
+        const user = JSON.parse(userJSON);
+        /*setLoggedUser(user);
+        setUsername(user.username);*/
     }, []);
 
-    if (!loggedUser) return null;
 
     return (
         <Box bgcolor={theme.palette.background.default}>
@@ -81,7 +77,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({ editable, username }) => 
                                 <Grid item xs alignItems='left' margin='auto'>
                                     <Box margin={'auto'} display="flex" justifyContent="flex-end">
                                         <ToggleColorModeButton></ToggleColorModeButton>
-                                        {editable  && (
+                                        {editable && (
                                             <Button
                                                 onClick={() => history(ROUTE_PROFILE_SETTINGS)}
                                                 variant="contained"

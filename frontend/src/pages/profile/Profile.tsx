@@ -21,7 +21,7 @@ import ProfilePicture from "../../components/ProfilePicture";
 import {id} from "date-fns/locale";
 
 const Profile = () => {
-    const { theme: mode } = useCustomTheme();
+    const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const {usernamePathVariable} = useParams();
     console.log(usernamePathVariable);
@@ -57,41 +57,60 @@ const Profile = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const userJSON = localStorage.getItem('user');
-            if (!userJSON) {
-                history(ROUTE_SIGN_IN);
-            } else {
-                let user;
+            let userJSON = localStorage.getItem('user');
 
-                if (usernamePathVariable == JSON.parse(userJSON).username) {
+            let user;
+
+            /*if (userJSON)/!*usuario esta logado?*!/ {
+                if (usernamePathVariable == JSON.parse(userJSON).username) /!*o perfil acessado é o do usuário logado?*!/ {
                     setEditability(true);
                     user = JSON.parse(userJSON);
-
-                } else {
+                }else {
                     console.log(usernamePathVariable);
                     user = await getUserByUsername(usernamePathVariable);
                     console.log(user.id);
                     setEditability(false);
                 }
-                /*setImage(user.profilePicture);*/
-                setIdProfile(user.id);
-                setName(user.name);
-                setBio(user.bio);
+            } else {
+                console.log(usernamePathVariable);
+                user = await getUserByUsername(usernamePathVariable);
+                console.log(user.id);
+                setEditability(false);
             }
+            /!*setImage(user.profilePicture);*!/
+            setIdProfile(user.id);
+            setName(user.name);
+            setBio(user.bio);*/
+
+            if (userJSON) {
+                if (usernamePathVariable == JSON.parse(userJSON).username) {
+                    user = JSON.parse(userJSON);
+                } else {
+                    user = await getUserByUsername(usernamePathVariable);
+                }
+                setEditability(usernamePathVariable == JSON.parse(userJSON).username);
+            } else {
+                user = await getUserByUsername(usernamePathVariable);
+                setEditability(false);
+            }
+
+            setIdProfile(user.id);
+            setName(user.name);
+            setBio(user.bio);
+
         };
 
         fetchData();
     }, []);
 
-    useEffect(() => {
+    /*useEffect(() => {
         async function fetchProfilePicture() {
             const url = await getProfilePictureByUserId(getUser().id);
             setProfilePicture(url);
         }
 
         fetchProfilePicture();
-    }, []);
-
+    }, []);*/
 
 
     if (!getUser()) return null;

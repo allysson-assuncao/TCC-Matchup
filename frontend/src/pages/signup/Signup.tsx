@@ -23,9 +23,10 @@ import {
 import GoogleIcon from '@mui/icons-material/Google';
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import {getUser, setUser} from "../home/Home";
+import {getUser, logout, removeProfilePicture, setUser} from "../home/Home";
 import GeneralInfo from "../../components/Options/GeneralInfo";
 import GeneralInfoRegister from "../../components/Options/GeneralInfoRegister";
+import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
 
@@ -68,13 +69,15 @@ const SignUp: React.FC = () => {
 
             console.log(user);
             actions.setSubmitting(false);
-            localStorage.clear();
+            logout();
+            removeProfilePicture();
             localStorage.setItem('user', JSON.stringify(user));
             setUser();
             console.log(localStorage.getItem('user'));
 
             handleNext();
         } else if (activeStep == steps.length - 1) {
+            localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id));
             history(ROUTE_HOME);
 
         }
