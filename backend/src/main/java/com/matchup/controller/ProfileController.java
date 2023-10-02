@@ -33,8 +33,8 @@ public class ProfileController {
 
     @GetMapping("profile-picture/by/id/{id}")
     @PostAuthorize("true")
-    public ResponseEntity<byte[]> getProfilePictureById(@PathVariable("id") long userId) {
-        return new ResponseEntity<>(userService.getProfilePictureById(userId), HttpStatus.OK);
+    public ResponseEntity<byte[]> getProfilePictureById(@PathVariable("id") long userId, @RequestParam("width") int width, @RequestParam("height") int height) {
+        return new ResponseEntity<>(userService.getProfilePictureById(userId, width, height), HttpStatus.OK);
     }
 
 
