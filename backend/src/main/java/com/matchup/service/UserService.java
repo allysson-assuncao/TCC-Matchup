@@ -174,7 +174,8 @@ public class UserService {
             try {
                 profilePicture.setContent(userDto.getProfilePicture().getBytes());
             } catch (IOException e) {
-                System.out.println("updateUser() -> IOException");
+                System.out
+                        .println("updateUser() -> IOException");
                 throw new RuntimeException(e);
             }
             profilePicture.setName(userDto.getProfilePicture().getName());

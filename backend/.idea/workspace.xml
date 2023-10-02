@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="removing the img.zip">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfoRegister.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/home/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" afterDir="false" />
     </list>
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,6 +130,7 @@
       <workItem from="1696183870945" duration="3257000" />
       <workItem from="1696191806451" duration="697000" />
       <workItem from="1696242495768" duration="2231000" />
+      <workItem from="1696263398835" duration="2464000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
