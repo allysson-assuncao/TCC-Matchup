@@ -77,7 +77,7 @@ const SignUp: React.FC = () => {
 
             handleNext();
         } else if (activeStep == steps.length - 1) {
-            localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id));
+            localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
             history(ROUTE_HOME);
 
         }

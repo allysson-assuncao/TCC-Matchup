@@ -78,7 +78,7 @@ const SignIn = () => {
         localStorage.removeItem('profilePicture');
         localStorage.setItem('user', JSON.stringify(userData));
         console.log(userData);
-        localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id));
+        localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
         history(ROUTE_HOME);
 
     }

@@ -98,7 +98,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
 
         if (!updatedUser) return;
         updateUser(updatedUser);
-        if(imageWasChanged) localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id));
+        if(imageWasChanged) localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
         setOpen(true);
         if(fromRegister){
             history(ROUTE_HOME);
