@@ -24,6 +24,8 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
      }*/
 
     useEffect(() => {
+
+
         async function fetchProfilePicture() {
             let url = "";
             if (id == getUser().id) {
@@ -33,6 +35,7 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
             }
             console.log(url)
             setProfilePicture(url);
+            localStorage.setItem('profilePicture', JSON.stringify(url));
         }
 
         fetchProfilePicture();

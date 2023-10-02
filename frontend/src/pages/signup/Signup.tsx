@@ -136,7 +136,7 @@ const SignUp: React.FC = () => {
                             rawPassword: 'Senha123#',
                             confirmPassword: 'Senha123#',
                             //birthDate: '',
-                            addressZipcode: '36492332',
+                            addressZipcode: '36492-332',
                             addressState: '',
                             addressCity: '',
                             addressNeighborhood: '',
@@ -176,11 +176,9 @@ const SignUp: React.FC = () => {
                                             >
                                                 Voltar
                                             </Button>
-                                        )}
-
-
-                                    </Grid>
-                                    {activeStep !== 4 && (
+                                        </Grid>
+                                    )}
+                                    {activeStep !== 3 && (
                                         <Grid item>
                                             <Button
                                                 variant="contained"

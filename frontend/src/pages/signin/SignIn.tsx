@@ -64,6 +64,7 @@ const SignIn = () => {
             } else {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
                 console.log(userData);
+
             }
         } catch (error) {
             setValid(false);
