@@ -10,7 +10,6 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import theme from "../../theme";
 import {ROUTE_PROFILE, ROUTE_SIGN_IN} from "../../App";
 import React, {useEffect, useState} from "react";
 import {User} from "../../model/user";
@@ -27,7 +26,7 @@ var history: NavigateFunction;
 function isLogged() {
     const userJSON = localStorage.getItem('user');
     if (!userJSON) {
-        history('/login');
+        history(ROUTE_SIGN_IN);
     } else {
         loggedUser = JSON.parse(userJSON);
     }
@@ -52,6 +51,10 @@ export const updateUser = (user: User) => {
 
 const removeUser = () => {
     localStorage.removeItem('user');
+}
+
+export const removeProfilePicture = () => {
+    localStorage.removeItem('profilePicture');
 }
 
 export const logout = () => {
