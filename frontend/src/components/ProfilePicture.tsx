@@ -30,7 +30,7 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
             let url = "";
             if (getUser() == null || id != getUser().id) {
                 console.log("id:" + id);
-                url = await getProfilePictureByUserId(id, 128, 128);
+                url = small? await getProfilePictureByUserId(id, 96,96) : await getProfilePictureByUserId(id, 192, 192);
             }else{
                 url = localStorage.getItem('profilePicture') + "";
             }

@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="removing the img.zip">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/tools/ImageResizer.java" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="adding parameters to resize">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" afterDir="false" />
     </list>
-    <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-    </list>
+    <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
     <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +39,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
-      <ranges>
-        <range start1="14" end1="14" start2="14" end2="15" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="15" end1="16" start2="16" end2="16" changelist="bf0428cd-38ac-41de-a66a-9357dd87260d" />
-        <range start1="22" end1="22" start2="22" end2="23" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="24" end1="24" start2="25" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="213" end1="215" start2="215" end2="217" changelist="bf0428cd-38ac-41de-a66a-9357dd87260d" />
-        <range start1="219" end1="219" start2="221" end2="228" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -147,7 +129,8 @@
       <workItem from="1696191806451" duration="697000" />
       <workItem from="1696242495768" duration="2231000" />
       <workItem from="1696263398835" duration="2826000" />
-      <workItem from="1696271240804" duration="3864000" />
+      <workItem from="1696271240804" duration="4257000" />
+      <workItem from="1696335854671" duration="898000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -253,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696006498793</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="adding parameters to resize">
+      <created>1696275969373</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1696275969373</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -266,6 +256,7 @@
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
     <MESSAGE value="removing the img.zip" />
-    <option name="LAST_COMMIT_MESSAGE" value="removing the img.zip" />
+    <MESSAGE value="adding parameters to resize" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding parameters to resize" />
   </component>
 </project>
