@@ -39,10 +39,6 @@ public class InterestService {
         this.companyRepository = companyRepository;
     }
 
-    public List<Interest> findByPartOfTheName(String partOfTheName){
-        return interestRepository.findByPartOfTheName(partOfTheName);
-    }
-
 
     // SAVE
     public Interest saveInterest(InterestDto interestDto){

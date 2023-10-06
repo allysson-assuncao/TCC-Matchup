@@ -29,21 +29,6 @@ public class LoginController {
         this.userService = userService;
     }
 
-    /*@GetMapping("/teste")
-    public ResponseEntity<User> teste() {
-        return new ResponseEntity<>(userService.saveUser(), HttpStatus.ACCEPTED);
-    }*/
-
-    @GetMapping("/teste2/{userId}")
-    public ResponseEntity<Optional<User>> teste2(@PathVariable("userId") Long userId) {
-        return new ResponseEntity<>(userService.findById(Long.valueOf(userId)), HttpStatus.ACCEPTED);
-    }
-
-    @GetMapping("/teste3/{partOfTheName}")
-    public ResponseEntity<List<User>> teste3(@PathVariable("partOfTheName") String partOfTheName) {
-        return new ResponseEntity<>(userService.findByPartOfTheName(partOfTheName), HttpStatus.ACCEPTED);
-    }
-
     @PostMapping("/")
     public ResponseEntity<User> login(@RequestBody UserDto userDto) {
         System.out.println(userDto.getEmail());
@@ -53,19 +38,6 @@ public class LoginController {
             throw new NullPointerException();
         }
         return new ResponseEntity<>(user.get(), HttpStatus.ACCEPTED);
-    }
-
-    //copied to RegisterController
-    /*@PostMapping("/teste4")
-    @PostAuthorize("true")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        System.out.println(user.getName());
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
-    }*/
-
-    @GetMapping("/teste5")
-    public ResponseEntity<List<User>> teste5() {
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.ACCEPTED);
     }
 
     @PostMapping("/login-route")

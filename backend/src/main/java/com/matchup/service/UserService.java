@@ -79,11 +79,6 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-
-    public List<User> findByPartOfTheName(String partOfTheName){
-        return userRepository.findByNameContainingIgnoreCase(partOfTheName);
-    }
-
     @Transactional
     public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
