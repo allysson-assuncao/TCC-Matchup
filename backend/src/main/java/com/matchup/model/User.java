@@ -67,6 +67,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "blocker")
+    private BlockList blockList;
+
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<VerificationCode> codes;
@@ -207,6 +210,22 @@ public class User {
 
     public void setReceivedMessages(List<Message> receivedMessages) {
         this.receivedMessages = receivedMessages;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
+    }
+
+    public BlockList getBlockList() {
+        return blockList;
+    }
+
+    public void setBlockList(BlockList blockList) {
+        this.blockList = blockList;
     }
 
     public List<VerificationCode> getCodes() {

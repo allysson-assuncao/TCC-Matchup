@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Friendship being created successfully">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/notification/FriendshipSolicitationNotificationRepository.java" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Methods to accept, deny and end Friendships">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/BlockList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/notification/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
-    </list>
+    <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="Methods to accept, deny and end Friendships" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,31 +41,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="4" end1="4" start2="5" end2="7" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="6" end1="6" start2="9" end2="10" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="12" end1="12" start2="16" end2="17" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="13" end1="13" start2="18" end2="24" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="15" end1="16" start2="26" end2="31" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="17" end1="18" start2="32" end2="33" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="21" end1="24" start2="36" end2="54" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="26" end1="29" start2="56" end2="56" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="31" end1="31" start2="58" end2="70" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
-      <ranges>
-        <range start1="7" end1="7" start2="7" end2="8" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="15" end1="17" start2="16" end2="16" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="39" end1="40" start2="38" end2="39" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="42" end1="43" start2="41" end2="42" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-        <range start1="76" end1="76" start2="75" end2="76" changelist="5f00aec2-1780-498c-af19-b73bb6f7acdf" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -303,7 +270,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696778310332</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Methods to accept, deny and end Friendships">
+      <option name="closed" value="true" />
+      <created>1696794720239</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1696794720239</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Methods to accept, deny and end Friendships">
+      <option name="closed" value="true" />
+      <created>1696794732290</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1696794732290</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +301,7 @@
     <MESSAGE value="removing the img.zip" />
     <MESSAGE value="adding parameters to resize" />
     <MESSAGE value="Friendship being created successfully" />
-    <option name="LAST_COMMIT_MESSAGE" value="Friendship being created successfully" />
+    <MESSAGE value="Methods to accept, deny and end Friendships" />
+    <option name="LAST_COMMIT_MESSAGE" value="Methods to accept, deny and end Friendships" />
   </component>
 </project>
