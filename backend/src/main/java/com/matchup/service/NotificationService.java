@@ -15,8 +15,6 @@ import java.time.LocalDateTime;
 @Service
 public class NotificationService {
 
-    public final String PENDING = "pending";
-
     @Autowired
     private final UserRepository userRepository;
 
@@ -38,10 +36,10 @@ public class NotificationService {
         this.friendshipService = friendshipService;
     }
 
-    public User saveUser(User userToSave) {
+    /*public User saveUser(User userToSave) {
         //requires password verification
         return userRepository.save(userToSave);
-    }
+    }*/
 
     public boolean sendFriendshipSolicitationNotification(long senderId, long receiverId){
         User receiver = userRepository.findById(receiverId).get();
@@ -75,4 +73,5 @@ public class NotificationService {
 
         return true;
     }
+
 }

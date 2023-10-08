@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "friendships", schema = "matchup")
 public class Friendship {
-    public static final String PENDING = "pending";
 
     @Id
     @Column(nullable = false, updatable = false)

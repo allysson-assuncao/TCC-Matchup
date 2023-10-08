@@ -3,6 +3,8 @@ package com.matchup.service;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.repository.FriendshipRepository;
+import com.matchup.repository.notification.FriendshipSolicitationNotificationRepository;
+import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,10 +14,21 @@ import java.util.Optional;
 @Service
 public class FriendshipService {
 
+    @Autowired
     private final FriendshipRepository friendshipRepository;
 
     @Autowired
-    public FriendshipService(FriendshipRepository friendshipRepository) {this.friendshipRepository = friendshipRepository;}
+    private final NotificationRepository notificationRepository;
+
+    @Autowired
+    private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
+
+    @Autowired
+    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository) {
+        this.friendshipRepository = friendshipRepository;
+        this.notificationRepository = notificationRepository;
+        this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
+    }
 
     public Friendship saveFriendship(Friendship friendshipToSave){
         return friendshipRepository.save(friendshipToSave);
@@ -41,10 +54,19 @@ public class FriendshipService {
     }
 
     public boolean existsFriendshipByUserAndFriend(Long user1Id, Long user2Id) {
-        /*Optional<Friendship> friendship1 = friendshipRepository.findByUserAndFriend(user1Id, user2Id);
-        Optional<Friendship> friendship2 = friendshipRepository.findByUserAndFriend(user2Id, user1Id);*/
-
         return friendshipRepository.existsByUsers(user1Id, user2Id);
+    }
+
+    @Transactional
+    public boolean endFriendship(long user1Id, long user2Id){
+        Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(user1Id, user2Id);
+        System.out.println();
+        if(friendshipOp.isEmpty()) return false;
+        Friendship friendship = friendshipOp.get();
+
+        friendshipRepository.delete(friendship);
+        return true;
+
     }
 
 }
