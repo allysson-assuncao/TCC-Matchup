@@ -2,6 +2,7 @@ package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.dto.UserDto;
+import com.matchup.model.notification.Notification;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
@@ -61,6 +62,10 @@ public class User {
 
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Notification> notifications;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
