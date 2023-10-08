@@ -1,4 +1,4 @@
-package com.matchup.repository;
+package com.matchup.repository.notification;
 
 import com.matchup.model.User;
 import com.matchup.model.notification.Notification;
@@ -15,8 +15,6 @@ import java.util.Optional;
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 
-
     Optional<User> findById(long id);
-
 
 }

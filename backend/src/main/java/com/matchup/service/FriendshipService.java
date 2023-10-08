@@ -1,9 +1,11 @@
 package com.matchup.service;
 
+import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.repository.FriendshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -15,13 +17,28 @@ public class FriendshipService {
     @Autowired
     public FriendshipService(FriendshipRepository friendshipRepository) {this.friendshipRepository = friendshipRepository;}
 
-    public Friendship saveAddress(Friendship friendshipToSave){
+    public Friendship saveFriendship(Friendship friendshipToSave){
         return friendshipRepository.save(friendshipToSave);
     }
 
-    /*public Page<Friendship> findById(Long id){
-        return friendshipRepository.findById(id);
-    }*/
+    @Transactional
+    public boolean sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted){
+        Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
+        if(friendshipOp.isEmpty()) return false;
+        Friendship friendship = friendshipOp.get();
+
+        System.out.println(accepted);
+        if (accepted){
+            friendship.setStatus(FriendshipStatus.APPROVED);
+            friendshipRepository.save(friendship);
+        } else {
+            friendshipRepository.delete(friendship);
+        }
+
+        friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
+        return true;
+
+    }
 
     public boolean existsFriendshipByUserAndFriend(Long user1Id, Long user2Id) {
         /*Optional<Friendship> friendship1 = friendshipRepository.findByUserAndFriend(user1Id, user2Id);

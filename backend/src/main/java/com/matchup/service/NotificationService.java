@@ -5,6 +5,7 @@ import com.matchup.model.Friendship;
 import com.matchup.model.User;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.repository.*;
+import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
