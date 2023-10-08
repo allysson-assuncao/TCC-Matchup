@@ -5,6 +5,8 @@ import com.matchup.repository.FriendshipRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class FriendshipService {
 
@@ -20,5 +22,12 @@ public class FriendshipService {
     /*public Page<Friendship> findById(Long id){
         return friendshipRepository.findById(id);
     }*/
+
+    public boolean existsFriendshipByUserAndFriend(Long user1Id, Long user2Id) {
+        /*Optional<Friendship> friendship1 = friendshipRepository.findByUserAndFriend(user1Id, user2Id);
+        Optional<Friendship> friendship2 = friendshipRepository.findByUserAndFriend(user2Id, user1Id);*/
+
+        return friendshipRepository.existsByUsers(user1Id, user2Id);
+    }
 
 }

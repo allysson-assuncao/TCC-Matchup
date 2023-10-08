@@ -11,6 +11,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -26,18 +27,11 @@ public class NotificationController {
     }
 
 
-    @PostMapping("/specification")
+    @PostMapping("/send-solicitation")
     @PostAuthorize("true")
     public ResponseEntity<List<Interest>> searchInterest(@RequestBody RequestDto requestDto) {
         return new ResponseEntity<>(interestService.getInterestsBySpecification(requestDto), HttpStatus.ACCEPTED);
     }
-
-       /* @GetMapping("/get/platform/all")
-        public ResponseEntity<List<Platform>> getAllPlatforms() {
-            return new ResponseEntity<>(interestService.getAllPlatforms(), HttpStatus.ACCEPTED);
-        }*/
-
-
 
 }
 

@@ -6,9 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="adding parameters to resize">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Notification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="" />
+    <list id="dee7a6a4-e5d2-4d81-a561-939209d53af8" name="Changes by Allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/NotificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/VerificationCodeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,6 +57,69 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/repository/FriendshipRepository.java">
+      <ranges>
+        <range start1="3" end1="4" start2="3" end2="3" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="5" end1="5" start2="4" end2="6" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="10" end1="10" start2="11" end2="13" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="11" end1="12" start2="14" end2="14" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java">
+      <ranges>
+        <range start1="236" end1="253" start2="236" end2="236" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="274" end1="274" start2="257" end2="264" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="287" end1="289" start2="277" end2="277" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java">
+      <ranges>
+        <range start1="13" end1="13" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="26" end1="27" start2="27" end2="27" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="28" end1="29" start2="28" end2="29" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="30" end1="32" start2="30" end2="32" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="33" end1="40" start2="33" end2="33" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="9" end1="9" start2="10" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="15" end1="16" start2="18" end2="20" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="17" end1="18" start2="21" end2="22" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="25" end1="26" start2="29" end2="30" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="33" end1="34" start2="37" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="46" end1="47" start2="50" end2="51" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="50" end1="51" start2="54" end2="55" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="79" end1="80" start2="83" end2="84" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="89" end1="90" start2="93" end2="94" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/Notification.java">
+      <ranges>
+        <range start1="19" end1="21" start2="19" end2="21" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="31" end1="32" start2="31" end2="32" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="33" end1="34" start2="33" end2="34" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="56" end1="58" start2="56" end2="58" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="60" end1="62" start2="60" end2="62" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="72" end1="73" start2="72" end2="73" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="4" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="3" end1="3" start2="5" end2="6" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="5" end1="6" start2="8" end2="8" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="7" end1="7" start2="9" end2="11" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="11" end1="11" start2="15" end2="17" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="14" end1="14" start2="20" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="20" end1="21" start2="32" end2="33" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="23" end1="23" start2="35" end2="37" changelist="dee7a6a4-e5d2-4d81-a561-939209d53af8" />
+        <range start1="29" end1="29" start2="43" end2="76" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">

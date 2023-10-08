@@ -273,6 +273,13 @@ public class User {
         this.receivedMessages.add(message);
     }
 
+    public void addNotification(Notification notification){
+        if(this.receivedMessages == null){
+            this.receivedMessages = new ArrayList<>();
+        }
+        this.notifications.add(notification);
+    }
+
     public void updateData(UserDto userDto){
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();

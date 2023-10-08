@@ -1,5 +1,6 @@
 package com.matchup.model;
 
+import com.matchup.enums.FriendshipStatus;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -7,15 +8,18 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "friendships", schema = "matchup")
 public class Friendship {
+    public static final String PENDING = "pending";
+
     @Id
     @Column(nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "status", nullable = false, updatable = true)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private FriendshipStatus status;
 
-    @Column(name = "date", nullable = false, updatable = false)
+    @Column(name = "date", nullable = true, updatable = false)
     private LocalDateTime date;
 
     @ManyToOne
@@ -31,7 +35,7 @@ public class Friendship {
 
     }
 
-    public Friendship(String status, LocalDateTime date, User user, User friend) {
+    public Friendship(FriendshipStatus status, LocalDateTime date, User user, User friend) {
         this.status = status;
         this.date = date;
         this.user = user;
@@ -44,7 +48,7 @@ public class Friendship {
         return id;
     }
 
-    public String getStatus() {
+    public FriendshipStatus getStatus() {
         return status;
     }
 
@@ -77,7 +81,7 @@ public class Friendship {
     }
     // </editor-fold>
 
-    public void accept(){
+    /*public void accept(){
         this.status = "ACCEPTED";
     }
 
@@ -87,7 +91,7 @@ public class Friendship {
 
     public void block(){
         this.status = "BLOCKED";
-    }
+    }*/
 
     @Override
     public String toString() {

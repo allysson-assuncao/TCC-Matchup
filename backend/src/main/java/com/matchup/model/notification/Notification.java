@@ -29,9 +29,9 @@ public abstract class Notification {
     public Notification() {
     }
 
-    public Notification(LocalDateTime date, boolean status, User user) {
+    public Notification(LocalDateTime date, boolean viewed, User user) {
         this.date = date;
-        this.status = status;
+        this.viewed = viewed;
         this.user = user;
     }
 
@@ -54,12 +54,12 @@ public abstract class Notification {
         this.date = date;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isViewed() {
+        return viewed;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setViewed(boolean status) {
+        this.viewed = status;
     }
 
     public User getUser() {
