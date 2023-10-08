@@ -26,11 +26,10 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
-
     @PostMapping("/send-solicitation")
     @PostAuthorize("true")
-    public ResponseEntity<List<Interest>> searchInterest(@RequestBody RequestDto requestDto) {
-        return new ResponseEntity<>(interestService.getInterestsBySpecification(requestDto), HttpStatus.ACCEPTED);
+    public ResponseEntity<Boolean> sendFriendshipSolicitationNotification(@RequestBody Map<String, Long> requestBody) {
+        return new ResponseEntity<>(notificationService.sendFriendshipSolicitationNotification(requestBody.get("senderId"), requestBody.get("receiverId")), HttpStatus.OK);
     }
 
 }

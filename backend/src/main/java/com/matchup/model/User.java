@@ -235,23 +235,6 @@ public class User {
         this.friends.add(friendship);
     }
 
-    public void solicitate(User friendToBeAdded){
-        Friendship friendship = new Friendship("PENDING", LocalDateTime.now(), this, friendToBeAdded);//String status, LocalDate date, User user, User friend) {
-        addFriendship(friendship);
-    }
-
-    public void acceptSolicitation(Friendship friendship){
-        friendship.accept();
-    }
-
-    public void refuseSolicitation(Friendship friendship){
-        friendship.refuse();
-    }
-
-    public void blockSolicitation(Friendship friendship){
-        friendship.block();
-    }
-
     public void addInterest(Interest interest){
         if(this.interests == null){
             this.interests = new ArrayList<>();
@@ -292,8 +275,6 @@ public class User {
         this.username = userDto.getUsername();
         this.profilePicture = profilePicture;
     }
-
-
 
     @Override
     public String toString() {

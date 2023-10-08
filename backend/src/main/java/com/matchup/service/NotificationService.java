@@ -1,6 +1,9 @@
 package com.matchup.service;
 
+import com.matchup.enums.FriendshipStatus;
+import com.matchup.model.Friendship;
 import com.matchup.model.User;
+import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +13,8 @@ import java.time.LocalDateTime;
 
 @Service
 public class NotificationService {
+
+    public final String PENDING = "pending";
 
     @Autowired
     private final UserRepository userRepository;
@@ -25,9 +30,11 @@ public class NotificationService {
 
 
     @Autowired
-    public NotificationService(UserRepository userRepository, NotificationRepository notificationRepository) {
+    public NotificationService(UserRepository userRepository, FriendshipRepository friendshipRepository, FriendshipService friendshipService, NotificationRepository notificationRepository) {
         this.userRepository = userRepository;
         this.notificationRepository = notificationRepository;
+        this.friendshipRepository = friendshipRepository;
+        this.friendshipService = friendshipService;
     }
 
     public User saveUser(User userToSave) {

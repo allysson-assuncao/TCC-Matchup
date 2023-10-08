@@ -17,8 +17,8 @@ public abstract class Notification {
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
 
-    @Column(name = "status", nullable = false)
-    private boolean status;
+    @Column(name = "viewed", nullable = false)
+    private boolean viewed;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -70,6 +70,6 @@ public abstract class Notification {
         this.user = user;
     }
 
-    // </editor-fold>
+// </editor-fold>
 
 }

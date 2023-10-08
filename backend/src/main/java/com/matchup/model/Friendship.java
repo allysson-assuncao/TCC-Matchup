@@ -27,7 +27,7 @@ public class Friendship {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "friend_id", nullable = false, updatable = false)
+    @JoinColumn(name = "friend_id", updatable = false)
     private User friend;
 
     // <editor-fold desc="Constructors">
@@ -52,7 +52,7 @@ public class Friendship {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(FriendshipStatus status) {
         this.status = status;
     }
 
