@@ -9,7 +9,9 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "matchup")
@@ -67,12 +69,17 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "blocker")
-    private BlockList blockList;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<VerificationCode> codes;
+
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "block_list",
+            joinColumns = @JoinColumn(name = "blocker_id"),
+            inverseJoinColumns = @JoinColumn(name = "blocked_id"))
+    private Set<User> blockList = new HashSet<>();
 
     // <editor-fold desc="Constructors">
     public User() {
@@ -276,10 +283,17 @@ public class User {
     }
 
     public void addNotification(Notification notification){
-        if(this.receivedMessages == null){
-            this.receivedMessages = new ArrayList<>();
+        if(this.notifications == null){
+            this.notifications = new ArrayList<>();
         }
         this.notifications.add(notification);
+    }
+
+    public void blockUser(User userToBlock){
+        if(this.blockList == null){
+            this.blockList = new HashSet<>();
+        }
+        this.blockList.add(userToBlock);
     }
 
     public void updateData(UserDto userDto){

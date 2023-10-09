@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Methods to accept, deny and end Friendships">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/BlockList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/BlockList.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
+    <list id="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" name="Changes by allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+    </list>
     <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="Methods to accept, deny and end Friendships" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +47,22 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java">
+      <ranges>
+        <range start1="11" end1="11" start2="11" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="12" end1="12" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="69" end1="71" start2="71" end2="71" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="75" end1="75" start2="75" end2="82" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="92" end1="93" start2="99" end2="100" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
+        <range start1="106" end1="106" start2="113" end2="114" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
+        <range start1="222" end1="223" start2="230" end2="231" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
+        <range start1="226" end1="227" start2="234" end2="235" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
+        <range start1="278" end1="280" start2="286" end2="288" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="283" end1="283" start2="291" end2="298" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
