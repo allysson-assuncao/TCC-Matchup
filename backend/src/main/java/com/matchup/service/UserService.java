@@ -64,12 +64,6 @@ public class UserService {
         return userRepository.save(userToSave);
     }
 
-    /*public User findById(Long id){
-        //public User(String name, String email, LocalDateTime age, String hashedPassword, String cellphoneNumber, Byte[] profilePicture, Address
-        //address)
-        return userRepository.findById(id).get();
-    }*/
-
     public Optional<User> findById(Long id){
         return userRepository.findById(id);
     }
@@ -104,10 +98,6 @@ public class UserService {
     public boolean existsByUsername(String username){
         return userRepository.existsByUsername(username);
     }
-
-//    public boolean existsByEmailOrUsername(String email, String username){
-//        return userRepository.existsByEmailOrUsername(email, username);
-//    }
 
     public boolean verifyDate(LocalDate date){
         LocalDate now = LocalDate.now();
@@ -153,12 +143,6 @@ public class UserService {
         String pattern = "^(?=.*[A-Z])(?=.*[!@#$%^&*_])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_\\d]{8,255}$";
         return Pattern.matches(pattern, password);
     }
-
-    /*public boolean resetPassword(Long id, String rawPassword) {
-        //must encode password first
-        return userRepository.updatePassword(id, passwordEncoder.encode(rawPassword));
-    }
-*/
 
     public User updateUser(UserDto userDto){
         Optional<User> userToUpdateOp = userRepository.findById(userDto.getId());
@@ -224,8 +208,16 @@ public class UserService {
         return img.getContent();
     }
 
-    public void deleteProfilePicture(long id){
-        profilePictureRepository.deleteById(id);
+    public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
+        Optional<User> userBlockerOp = userRepository.findById(blockerId);
+        Optional<User> userBlockedOp = userRepository.findById(blockerId);
+        if(userBlockerOp.isEmpty()) return false;
+        User userBlocker = userBlockerOp.get();
+        if(userBlockedOp.isEmpty()) return false;
+        User userBlocked = userBlockedOp.get();
+        userBlocker.blockUser(userBlocked);
+        userRepository.save(userBlocker);
+        return true;
     }
 
 }

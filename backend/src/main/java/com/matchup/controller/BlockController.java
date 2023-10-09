@@ -30,10 +30,10 @@ public class BlockController {
         return new ResponseEntity<>(userService.updateUser(userDto), HttpStatus.OK);
     }
 
-    /*@PostMapping("/block")
+    @PostMapping("/block")
     @PostAuthorize("true")
-    public ResponseEntity<Boolean> solicitationResponse(@RequestBody Map<String, Long> requestBody ) {
-        return new ResponseEntity<Boolean>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId")) requestBody.get("blockerId")) Boolean.parseBoolean(accepted)), HttpStatus.OK);
-    }*/
+    public ResponseEntity<Boolean> block(@RequestBody Map<String, Long> requestBody ) {
+        return new ResponseEntity<Boolean>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockerId")), HttpStatus.OK);
+    }
 
 }
