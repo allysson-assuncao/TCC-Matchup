@@ -31,7 +31,6 @@ public class EditUserDataController {
     }
 
 
-
 //    @PostMapping("/user")
 //    @PostAuthorize("true")
 //    public ResponseEntity<User> register(@RequestBody UserDto userDto) {

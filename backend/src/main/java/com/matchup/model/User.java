@@ -97,7 +97,7 @@ public class User {
         this.bio = bio;
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages, Set<User> blockList) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -111,6 +111,7 @@ public class User {
         this.interests = interests;
         this.sentMessages = sentMessages;
         this.receivedMessages = receivedMessages;
+        this.blockList = blockList;
     }
 
     // </editor-fold>
@@ -227,11 +228,11 @@ public class User {
         this.notifications = notifications;
     }
 
-    public BlockList getBlockList() {
+    public Set<User> getBlockList() {
         return blockList;
     }
 
-    public void setBlockList(BlockList blockList) {
+    public void setBlockList(Set<User> blockList) {
         this.blockList = blockList;
     }
 
