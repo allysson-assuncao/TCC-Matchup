@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -43,7 +44,10 @@ public class FriendshipService {
         System.out.println(accepted);
         if (accepted){
             friendship.setStatus(FriendshipStatus.APPROVED);
-            friendshipRepository.save(friendship);
+            System.out.println(LocalDateTime.now());
+            friendship.setDate(LocalDateTime.now());
+            System.out.println(friendship.getDate());
+            saveFriendship(friendship);
         } else {
             friendshipRepository.delete(friendship);
         }

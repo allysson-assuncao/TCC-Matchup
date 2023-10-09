@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -22,6 +23,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
     Optional<User> findByUsername(String username);
+
+    /*Set<User> findBlockListById(long id);*/
+
+    @Query("SELECT u.blockList FROM User u WHERE u.id = :userId")
+    Set<User> findBlockedUsersById(@Param("userId") Long userId);
 
     @Transactional
     boolean existsByEmail(String email);

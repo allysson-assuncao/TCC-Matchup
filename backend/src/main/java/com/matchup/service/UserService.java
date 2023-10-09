@@ -47,17 +47,17 @@ public class UserService {
     private final ProfilePictureRepository profilePictureRepository;
 
     @Autowired
-    private final VerificationCodeRepository verificationCodeRepository;
+    private final FriendshipService friendshipService;
 
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, VerificationCodeRepository verificationCodeRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, FriendshipService friendshipService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.interestRepository = interestRepository;
         this.profilePictureRepository = profilePictureRepository;
-        this.verificationCodeRepository = verificationCodeRepository;
+        this.friendshipService = friendshipService;
     }
 
     public User saveUser(User userToSave){
@@ -218,6 +218,7 @@ public class UserService {
         User userBlocked = userBlockedOp.get();
 
         userBlocker.blockUser(userBlocked);
+        if(friendshipService.existsFriendshipByUserAndFriend(blockerId, blockedId))friendshipService.endFriendship(blockerId, blockedId);
         userRepository.save(userBlocker);
         return true;
     }

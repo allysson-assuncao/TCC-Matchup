@@ -14,12 +14,9 @@ import java.util.Map;
 @RequestMapping("/api/friendship")
 public class FriendshipController {
 
-    /*@Autowired
-    private final NotificationService notificationService;*/
-
-    @Autowired
     private final FriendshipService friendshipService;
 
+    @Autowired
     public FriendshipController(FriendshipService friendshipService) {
         this.friendshipService = friendshipService;
     }

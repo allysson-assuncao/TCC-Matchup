@@ -10,6 +10,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -28,6 +29,19 @@ public class BlockController {
     @PostAuthorize("true")
     public ResponseEntity<Boolean> block(@RequestBody Map<String, Long> requestBody) {
         return new ResponseEntity<>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockedId")), HttpStatus.OK);
+    }
+
+    @PostMapping("/unblock")
+    @PostAuthorize("true")
+    public ResponseEntity<Boolean> unblock(@RequestBody Map<String, Long> requestBody ) {
+        return new ResponseEntity<>(userService.unblockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockedId")), HttpStatus.OK);
+    }
+
+    //get list of ids of the users that blocked this user ()
+    @PostMapping("/get-blocks")
+    @PostAuthorize("true")
+    public ResponseEntity<Set<User>> getBlocks(@RequestBody Map<String, Long> requestBody) {
+        return new ResponseEntity<>(userService.getBlocks(requestBody.get("userId")), HttpStatus.OK);
     }
 
 }
