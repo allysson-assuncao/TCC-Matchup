@@ -18,7 +18,7 @@ public class Friendship {
     @Enumerated(EnumType.STRING)
     private FriendshipStatus status;
 
-    @Column(name = "date", nullable = true, updatable = false)
+    @Column(name = "date", nullable = true)
     private LocalDateTime date;
 
     @ManyToOne

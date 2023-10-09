@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Methods to accept, deny and end Friendships">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Deciding how to the block feature will work">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/BlockList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" name="Changes by allysson" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/EditUserDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="Methods to accept, deny and end Friendships" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,18 +52,24 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java">
       <ranges>
-        <range start1="11" end1="11" start2="11" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="12" end1="12" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="69" end1="71" start2="71" end2="71" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="75" end1="75" start2="75" end2="82" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="92" end1="93" start2="99" end2="100" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
-        <range start1="106" end1="106" start2="113" end2="114" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
-        <range start1="222" end1="223" start2="230" end2="231" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
-        <range start1="226" end1="227" start2="234" end2="235" changelist="eb41289f-bdc8-4a16-be31-35c92e6dcd7e" />
-        <range start1="278" end1="280" start2="286" end2="288" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="283" end1="283" start2="291" end2="298" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="12" end1="12" start2="12" end2="13" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="25" end1="31" start2="26" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="34" end1="36" start2="29" end2="31" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="37" end1="37" start2="32" end2="45" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="33" end1="33" start2="33" end2="34" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="48" end1="49" start2="49" end2="50" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="53" end1="54" start2="54" end2="55" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="58" end1="59" start2="59" end2="60" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="212" end1="213" start2="213" end2="214" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="217" end1="217" start2="218" end2="219" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="218" end1="218" start2="220" end2="221" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="221" end1="221" start2="224" end2="241" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
       </ranges>
     </file>
   </component>
@@ -156,6 +165,7 @@
       <workItem from="1696263398835" duration="2826000" />
       <workItem from="1696271240804" duration="4257000" />
       <workItem from="1696335854671" duration="898000" />
+      <workItem from="1696869396285" duration="4237000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -308,7 +318,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696794732290</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Deciding how to the block feature will work">
+      <created>1696851184935</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1696851184935</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Deciding how to the block feature will work">
+      <created>1696851208125</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1696851208125</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,6 +348,7 @@
     <MESSAGE value="adding parameters to resize" />
     <MESSAGE value="Friendship being created successfully" />
     <MESSAGE value="Methods to accept, deny and end Friendships" />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods to accept, deny and end Friendships" />
+    <MESSAGE value="Deciding how to the block feature will work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deciding how to the block feature will work" />
   </component>
 </project>

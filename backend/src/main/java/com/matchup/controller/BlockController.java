@@ -23,17 +23,11 @@ public class BlockController {
         this.userService = userService;
     }
 
-    @PutMapping("/user")
-    @PostAuthorize("true")
-    public ResponseEntity<User> update(@ModelAttribute UserDto userDto) {
-        System.out.println("editing user");
-        return new ResponseEntity<>(userService.updateUser(userDto), HttpStatus.OK);
-    }
 
     @PostMapping("/block")
     @PostAuthorize("true")
-    public ResponseEntity<Boolean> block(@RequestBody Map<String, Long> requestBody ) {
-        return new ResponseEntity<Boolean>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockerId")), HttpStatus.OK);
+    public ResponseEntity<Boolean> block(@RequestBody Map<String, Long> requestBody) {
+        return new ResponseEntity<>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockedId")), HttpStatus.OK);
     }
 
 }

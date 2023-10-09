@@ -31,6 +31,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 @Service
@@ -210,14 +211,32 @@ public class UserService {
 
     public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
         Optional<User> userBlockerOp = userRepository.findById(blockerId);
-        Optional<User> userBlockedOp = userRepository.findById(blockerId);
+        Optional<User> userBlockedOp = userRepository.findById(blockedId);
         if(userBlockerOp.isEmpty()) return false;
         User userBlocker = userBlockerOp.get();
         if(userBlockedOp.isEmpty()) return false;
         User userBlocked = userBlockedOp.get();
+
         userBlocker.blockUser(userBlocked);
         userRepository.save(userBlocker);
         return true;
+    }
+
+    public boolean unblockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
+        Optional<User> userBlockerOp = userRepository.findById(blockerId);
+        Optional<User> userBlockedOp = userRepository.findById(blockedId);
+        if(userBlockerOp.isEmpty()) return false;
+        User userBlocker = userBlockerOp.get();
+        if(userBlockedOp.isEmpty()) return false;
+        User userBlocked = userBlockedOp.get();
+
+        userBlocker.unblockUser(userBlocked);
+        userRepository.save(userBlocker);
+        return true;
+    }
+
+    public Set<User> getBlocks(Long userId){
+        return userRepository.findBlockedUsersById(userId);
     }
 
 }

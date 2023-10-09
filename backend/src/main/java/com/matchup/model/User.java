@@ -297,6 +297,10 @@ public class User {
         this.blockList.add(userToBlock);
     }
 
+    public void unblockUser(User userToUnblock){
+        this.blockList.remove(userToUnblock);
+    }
+
     public void updateData(UserDto userDto){
         this.bio = userDto.getBio();
         this.cellphoneNumber = userDto.getCellphoneNumber();
