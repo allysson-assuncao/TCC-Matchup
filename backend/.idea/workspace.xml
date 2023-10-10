@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Deciding how to the block feature will work">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working on user block features">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="">
+    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="Methods to accept, deny and end Friendships" />
@@ -52,24 +48,21 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java">
-      <ranges>
-        <range start1="12" end1="12" start2="12" end2="13" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="25" end1="31" start2="26" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="34" end1="36" start2="29" end2="31" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="37" end1="37" start2="32" end2="45" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
       <ranges>
-        <range start1="33" end1="33" start2="33" end2="34" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="48" end1="49" start2="49" end2="50" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="53" end1="54" start2="54" end2="55" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="58" end1="59" start2="59" end2="60" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="212" end1="213" start2="213" end2="214" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="217" end1="217" start2="218" end2="219" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="218" end1="218" start2="220" end2="221" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="221" end1="221" start2="224" end2="241" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="5" end1="13" start2="5" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="33" end1="34" start2="27" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="39" end1="40" start2="33" end2="33" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="42" end1="43" start2="35" end2="35" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="45" end1="46" start2="37" end2="37" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="48" end1="49" start2="39" end2="39" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="51" end1="51" start2="41" end2="43" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="54" end1="55" start2="46" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="60" end1="60" start2="52" end2="53" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="218" end1="218" start2="211" end2="216" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="219" end1="222" start2="217" end2="221" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="226" end1="235" start2="225" end2="226" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
+        <range start1="238" end1="240" start2="229" end2="235" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
       </ranges>
     </file>
   </component>
@@ -165,7 +158,8 @@
       <workItem from="1696263398835" duration="2826000" />
       <workItem from="1696271240804" duration="4257000" />
       <workItem from="1696335854671" duration="898000" />
-      <workItem from="1696869396285" duration="4237000" />
+      <workItem from="1696869396285" duration="4513000" />
+      <workItem from="1696940731393" duration="3698000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -332,7 +326,21 @@
       <option name="project" value="LOCAL" />
       <updated>1696851208125</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Working on user block features">
+      <created>1696874087923</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1696874087923</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Working on user block features">
+      <created>1696874112362</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1696874112362</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,6 +357,7 @@
     <MESSAGE value="Friendship being created successfully" />
     <MESSAGE value="Methods to accept, deny and end Friendships" />
     <MESSAGE value="Deciding how to the block feature will work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deciding how to the block feature will work" />
+    <MESSAGE value="Working on user block features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working on user block features" />
   </component>
 </project>

@@ -9,9 +9,8 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "matchup")
@@ -75,11 +74,8 @@ public class User {
     private List<VerificationCode> codes;
 
     @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "block_list",
-            joinColumns = @JoinColumn(name = "blocker_id"),
-            inverseJoinColumns = @JoinColumn(name = "blocked_id"))
-    private Set<User> blockList = new HashSet<>();
+    @OneToMany(mappedBy = "blocker")
+    private List<Block> blockList;
 
     // <editor-fold desc="Constructors">
     public User() {
@@ -97,7 +93,7 @@ public class User {
         this.bio = bio;
     }
 
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages, Set<User> blockList) {
+    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages, List<Block> blockList) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -228,11 +224,11 @@ public class User {
         this.notifications = notifications;
     }
 
-    public Set<User> getBlockList() {
+    public List<Block> getBlockList() {
         return blockList;
     }
 
-    public void setBlockList(Set<User> blockList) {
+    public void setBlockList(List<Block> blockList) {
         this.blockList = blockList;
     }
 
@@ -288,17 +284,6 @@ public class User {
             this.notifications = new ArrayList<>();
         }
         this.notifications.add(notification);
-    }
-
-    public void blockUser(User userToBlock){
-        if(this.blockList == null){
-            this.blockList = new HashSet<>();
-        }
-        this.blockList.add(userToBlock);
-    }
-
-    public void unblockUser(User userToUnblock){
-        this.blockList.remove(userToUnblock);
     }
 
     public void updateData(UserDto userDto){

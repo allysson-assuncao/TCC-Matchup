@@ -3,14 +3,8 @@ package com.matchup.service;
 /*import com.matchup.config.JavaMailSender;*/
 import com.matchup.dto.UserDto;
 import com.matchup.exceptions.InvalidCodeException;
-import com.matchup.model.Address;
-import com.matchup.model.ProfilePicture;
-import com.matchup.model.User;
-import com.matchup.model.VerificationCode;
-import com.matchup.repository.InterestRepository;
-import com.matchup.repository.ProfilePictureRepository;
-import com.matchup.repository.UserRepository;
-import com.matchup.repository.VerificationCodeRepository;
+import com.matchup.model.*;
+import com.matchup.repository.*;
 import com.matchup.tools.BlobMultipartFile;
 import com.matchup.tools.ImageResizer;
 import com.sun.jdi.InvalidCodeIndexException;
@@ -31,33 +25,32 @@ import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
+import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
 public class UserService {
 
-    @Autowired
     private final UserRepository userRepository;
 
-    @Autowired
     private final InterestRepository interestRepository;
 
-    @Autowired
     private final ProfilePictureRepository profilePictureRepository;
 
-    @Autowired
     private final FriendshipService friendshipService;
+
+    private final BlockRepository blockRepository;
 
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, FriendshipService friendshipService) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, FriendshipService friendshipService, BlockRepository blockRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.interestRepository = interestRepository;
         this.profilePictureRepository = profilePictureRepository;
         this.friendshipService = friendshipService;
+        this.blockRepository = blockRepository;
     }
 
     public User saveUser(User userToSave){
@@ -216,28 +209,30 @@ public class UserService {
         User userBlocker = userBlockerOp.get();
         if(userBlockedOp.isEmpty()) return false;
         User userBlocked = userBlockedOp.get();
+        if(friendshipService.existsFriendshipByUserAndFriend(blockerId, blockedId)) {
+            friendshipService.endFriendship(blockerId, blockedId);
+        }
+        Block block = new Block(userBlocker, userBlocked);
+        blockRepository.save(block);
 
-        userBlocker.blockUser(userBlocked);
-        if(friendshipService.existsFriendshipByUserAndFriend(blockerId, blockedId))friendshipService.endFriendship(blockerId, blockedId);
-        userRepository.save(userBlocker);
+        for(Block block1: userRepository.findById(blockerId).get().getBlockList()){
+            System.out.println(block1.getBlocker().getId());
+        }
+
         return true;
     }
 
     public boolean unblockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
-        Optional<User> userBlockerOp = userRepository.findById(blockerId);
-        Optional<User> userBlockedOp = userRepository.findById(blockedId);
-        if(userBlockerOp.isEmpty()) return false;
-        User userBlocker = userBlockerOp.get();
-        if(userBlockedOp.isEmpty()) return false;
-        User userBlocked = userBlockedOp.get();
-
-        userBlocker.unblockUser(userBlocked);
-        userRepository.save(userBlocker);
+        blockRepository.deleteByBlockerIdAndBlockedId(blockerId, blockedId);
         return true;
     }
 
-    public Set<User> getBlocks(Long userId){
-        return userRepository.findBlockedUsersById(userId);
+    public List<Long> getBlockerIdListByBlockedId(Long userId){
+        return blockRepository.findBlockerIdListByBlockedId(userId);
+    }
+
+    public List<Long> getBlockedIdListByBlockerId(Long userId){
+        return blockRepository.findBlockedIdListByBlockerId(userId);
     }
 
 }

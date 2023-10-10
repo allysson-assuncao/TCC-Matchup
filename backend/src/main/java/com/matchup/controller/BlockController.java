@@ -10,7 +10,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,10 +38,16 @@ public class BlockController {
     }
 
     //get list of ids of the users that blocked this user ()
-    @PostMapping("/get-blocks")
+    @PostMapping("/get-blocker-id-list-by-blocked-id")
     @PostAuthorize("true")
-    public ResponseEntity<Set<User>> getBlocks(@RequestBody Map<String, Long> requestBody) {
-        return new ResponseEntity<>(userService.getBlocks(requestBody.get("userId")), HttpStatus.OK);
+    public ResponseEntity<List<Long>> getBlockerIdListByBlockedId(@RequestBody Map<String, Long> requestBody) {
+        return new ResponseEntity<>(userService.getBlockerIdListByBlockedId(requestBody.get("userId")), HttpStatus.OK);
+    }
+
+    @PostMapping("/get-blocked-id-list-by-blocker-id")
+    @PostAuthorize("true")
+    public ResponseEntity<List<Long>> getBlockedIdListByBlockekId(@RequestBody Map<String, Long> requestBody) {
+        return new ResponseEntity<>(userService.getBlockerIdListByBlockedId(requestBody.get("userId")), HttpStatus.OK);
     }
 
 }
