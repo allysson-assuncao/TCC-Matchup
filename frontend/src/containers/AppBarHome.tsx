@@ -37,6 +37,7 @@ import {useCustomTheme} from "../CustomThemeContext";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 import {useEffect, useState} from "react";
 import ProfilePicture from "../components/ProfilePicture";
+import Notification, {NOTIFICATION_TYPES} from "../components/Contact/Notification";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -303,7 +304,7 @@ const AppBarHome = () => {
                 </AppBar>
 
                 <CustomTabPanel value={value} index={0}>
-                    Item One
+                    <Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     Item Two

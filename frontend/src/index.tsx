@@ -7,6 +7,8 @@ import {ThemeProvider} from '@mui/material/styles';
 import theme from './theme';
 import {CustomThemeProvider} from "./CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
+import Notification from "./components/Contact/Notification";
+import {getUser} from "./pages/home/Home";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
