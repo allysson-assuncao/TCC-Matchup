@@ -1,6 +1,6 @@
 import React from "react";
-import { User } from "../../model/user";
-import {Button, Grid, Typography} from "@mui/material";
+import {User} from "../../model/user";
+import {IconButton, Button, Grid, Typography} from "@mui/material";
 import ProfilePicture from "../ProfilePicture";
 import {getUser} from "../../pages/home/Home";
 import {useCustomTheme} from "../../CustomThemeContext";
@@ -24,9 +24,19 @@ interface NotificationProps {
     date: Date;
 }
 
-const Notification: React.FC<NotificationProps> = ({ text, type, sender, date }) => {
+const Notification: React.FC<NotificationProps> = ({text, type, sender, date}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
+    const history = useNavigate();
+    /*switch (type){
+        case NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION:
+            text = SOLICITATION_TEXT.PENDING;
+        case 3:
+            text = SOLICITATION_TEXT.ACCEPTED;
+        case 4:
+            text = SOLICITATION_TEXT.REFUSED;
+    }*/
+
     return (
         <Grid bgcolor={theme.palette.secondary.main} container>
             <Grid item>

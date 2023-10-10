@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working on user block features">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/Notification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/Notification.tsx" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-    </list>
     <list id="5f00aec2-1780-498c-af19-b73bb6f7acdf" name="Changes by Allysson" comment="Methods to accept, deny and end Friendships" />
+    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,25 +41,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
-      <ranges>
-        <range start1="5" end1="13" start2="5" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="33" end1="34" start2="27" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="39" end1="40" start2="33" end2="33" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="42" end1="43" start2="35" end2="35" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="45" end1="46" start2="37" end2="37" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="48" end1="49" start2="39" end2="39" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="51" end1="51" start2="41" end2="43" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="54" end1="55" start2="46" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="60" end1="60" start2="52" end2="53" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="218" end1="218" start2="211" end2="216" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="219" end1="222" start2="217" end2="221" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="226" end1="235" start2="225" end2="226" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="238" end1="240" start2="229" end2="235" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -99,6 +75,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\0063400\\AppData\\Local\\JetBrains\\IntelliJ IDEA 2023.1.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -159,7 +136,8 @@
       <workItem from="1696271240804" duration="4257000" />
       <workItem from="1696335854671" duration="898000" />
       <workItem from="1696869396285" duration="4513000" />
-      <workItem from="1696940731393" duration="3698000" />
+      <workItem from="1696940731393" duration="3715000" />
+      <workItem from="1696962671664" duration="1198000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
