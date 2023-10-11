@@ -4,12 +4,15 @@ import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.model.User;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
+import com.matchup.model.notification.Notification;
 import com.matchup.repository.*;
 import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -74,4 +77,9 @@ public class NotificationService {
         return true;
     }
 
+    public List<Notification> getNotificationsByUserId(long userId) {
+        Optional<List<Notification>> notificationsOp = notificationRepository.findByUserId(userId);
+        return notificationsOp.orElse(null);
+
+    }
 }

@@ -52,6 +52,7 @@ public class User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Friendship> friends;
 

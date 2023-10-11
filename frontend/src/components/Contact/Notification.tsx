@@ -93,6 +93,11 @@ const Notification: React.FC<NotificationProps> = ({text, type, sender, date}) =
                     </IconButton>
                 }
             </Grid>
+            <div>
+                {/*{itens.map((item, index) => (
+                    <ItemComponent key={index} item={item} />
+                ))}*/}
+            </div>
         </Grid>
     );
 }
