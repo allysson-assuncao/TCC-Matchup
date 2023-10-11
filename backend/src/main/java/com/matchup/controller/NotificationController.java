@@ -18,10 +18,8 @@ import java.util.Map;
 @RequestMapping("/api/notification")
 public class NotificationController {
 
-    @Autowired
     private final NotificationService notificationService;
 
-    @Autowired
     private final FriendshipService friendshipService;
 
     @Autowired

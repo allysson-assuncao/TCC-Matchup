@@ -69,7 +69,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Notification> notifications;
 
-
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<VerificationCode> codes;
