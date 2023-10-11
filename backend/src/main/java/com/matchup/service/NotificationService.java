@@ -1,6 +1,8 @@
 package com.matchup.service;
 
+import com.matchup.dto.NotificationDto;
 import com.matchup.enums.FriendshipStatus;
+import com.matchup.enums.NotificationType;
 import com.matchup.model.Friendship;
 import com.matchup.model.User;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -79,7 +82,12 @@ public class NotificationService {
 
     public List<Notification> getNotificationsByUserId(long userId) {
         Optional<List<Notification>> notificationsOp = notificationRepository.findByUserId(userId);
-        return notificationsOp.orElse(null);
-
+        if(notificationsOp.isEmpty()) return null;
+        List<Notification> notifications = notificationsOp.get();
+        List<NotificationDto> notificationsDto = new ArrayList<>();
+        for(Notification n: notifications){
+            NotificationDto notificationDto = new NotificationDto();
+            notificationDto.setType(NotificationType.DEFAULT);
+        }
     }
 }

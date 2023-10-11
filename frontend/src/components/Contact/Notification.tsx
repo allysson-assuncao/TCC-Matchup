@@ -10,8 +10,8 @@ import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
 
 export const NOTIFICATION_TYPES = {
-    DEFAULT: 1,
-    FRIENDSHIP_SOLICITATION: 2,
+    DEFAULT: 'default_notification',
+    FRIENDSHIP_SOLICITATION: 'friendship',
     SOLICITATION_ACCEPTED: 3,
     SOLICITATION_DENIED: 4
 }
@@ -24,7 +24,7 @@ export const SOLICITATION_TEXT = {
 
 interface NotificationProps {
     text?: string;
-    type: number;
+    type: string;
     sender?: User;
     date: Date;
 }

@@ -7,7 +7,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-@DiscriminatorValue("default_notificaion")
+@DiscriminatorValue("default_notification")
 public class DefaultNotification extends Notification {
     private String content;
 
