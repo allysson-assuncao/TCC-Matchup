@@ -1,5 +1,5 @@
 package com.matchup.enums;
 
 public enum FriendshipStatus{
-    PENDING, APPROVED, REJECTED, BLOCKED;
+    PENDING, ACCEPTED, REJECTED, BLOCKED;
 }

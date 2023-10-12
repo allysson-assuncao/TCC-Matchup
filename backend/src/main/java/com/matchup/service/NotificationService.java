@@ -28,9 +28,8 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
-
     @Autowired
-    public NotificationService(UserRepository userRepository, FriendshipRepository friendshipRepository, FriendshipService friendshipService, NotificationRepository notificationRepository) {
+    public NotificationService(UserRepository userRepository, FriendshipRepository friendshipRepository, NotificationRepository notificationRepository) {
         this.userRepository = userRepository;
         this.notificationRepository = notificationRepository;
         this.friendshipRepository = friendshipRepository;
@@ -84,8 +83,65 @@ public class NotificationService {
         List<NotificationDto> notificationsDto = new ArrayList<>();
 
         for(Notification n: notifications){
-            NotificationDto notificationDto = new NotificationDto();
-            notificationDto.setType(NotificationType.DEFAULT);
+            NotificationDto nDto = new NotificationDto();
+            nDto.setId(n.getId());
+            nDto.setDate(n.getDate());
+            nDto.setViewed(n.isViewed());
+            if(n instanceof FriendshipSolicitationNotification){
+                FriendshipSolicitationNotification nSN = (FriendshipSolicitationNotification) n;
+                nDto.setFriendshipId(nSN.getFriendship().getId());
+                nDto.setReceiverId(n.getUser().getId());
+                switch (nSN.getFriendship().getStatus()){
+                    case PENDING:
+                        nDto.setType(NotificationType.PENDING);
+                        nDto.setSenderId(nSN.getFriendship().getUser().getId());
+                        nDto.setSenderUsername(nSN.getFriendship().getUser().getUsername());
+                        break;
+                    case ACCEPTED:
+                        nDto.setType(NotificationType.ACCEPTED);
+                        nDto.setSenderId(nSN.getFriendship().getFriend().getId());
+                        nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
+                        break;
+                    case REJECTED:
+                        nDto.setType(NotificationType.REJECTED);
+                        nDto.setSenderId(nSN.getFriendship().getFriend().getId());
+                        nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
+                        break;
+                }
+            } else if (n instanceof DefaultNotification) {
+                DefaultNotification nDN = (DefaultNotification) n;
+                nDto.setContent(nDN.getContent());
+
+            }
+            notificationsDto.add(nDto);
         }
+        return notificationsDto;
     }
+
+    public void sendFriendshipSolicitationResponseNotification(Friendship friendship){
+        FriendshipSolicitationNotification friendshipSolicitationNotification = new FriendshipSolicitationNotification();
+        friendshipSolicitationNotification.setUser(friendship.getUser());
+        friendshipSolicitationNotification.setFriendship(friendship);
+        friendshipSolicitationNotification.setViewed(false);
+        friendshipSolicitationNotification.setDate(friendship.getDate());
+        notificationRepository.save(friendshipSolicitationNotification);
+    }
+
+    @Transactional
+    public boolean deleteNotificationById(long notificationId){
+        Optional<Notification> notificationOp = notificationRepository.findById(notificationId);
+        if(notificationOp.isEmpty()) return false;
+        Notification notification = notificationOp.get();
+
+        if(notification instanceof FriendshipSolicitationNotification){
+            Friendship f = ((FriendshipSolicitationNotification)notification).getFriendship();
+            if(f.getStatus() == FriendshipStatus.REJECTED) {
+                friendshipRepository.delete(f);
+            }
+        }
+        notificationRepository.deleteById(notificationId);
+        return true;
+    }
+
+
 }

@@ -15,15 +15,12 @@ import java.util.Optional;
 @Service
 public class FriendshipService {
 
-    @Autowired
     private final FriendshipRepository friendshipRepository;
 
-    @Autowired
     private final NotificationRepository notificationRepository;
 
     private final NotificationService notificationService;
 
-    @Autowired
     private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
 
     @Autowired
@@ -48,7 +45,7 @@ public class FriendshipService {
         if (accepted){
             friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
-            friendshipRepository.delete(friendship);
+            friendship.setStatus(FriendshipStatus.REJECTED);
         }
         friendship.setDate(LocalDateTime.now());
         saveFriendship(friendship);

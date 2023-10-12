@@ -2,7 +2,7 @@ package com.matchup.enums;
 
 public enum NotificationType{
     DEFAULT(1),
-    SOLICITATION(2),
+    PENDING(2),
     ACCEPTED(3),
     REJECTED(4);
 

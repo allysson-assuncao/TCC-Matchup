@@ -80,18 +80,6 @@ public class Friendship {
     }
     // </editor-fold>
 
-    /*public void accept(){
-        this.status = "ACCEPTED";
-    }
-
-    public void refuse(){
-        this.status = "REFUSED";
-    }
-
-    public void block(){
-        this.status = "BLOCKED";
-    }*/
-
     @Override
     public String toString() {
         return "Friendship{" +
