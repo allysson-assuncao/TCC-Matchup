@@ -17,6 +17,14 @@ public class DefaultNotification extends Notification {
 
     // <editor-fold desc="Encapsulation">
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     // </editor-fold>
 
 }

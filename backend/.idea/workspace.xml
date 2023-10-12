@@ -4,18 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Get Notification method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/NotificationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/enums/NotificationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/notification.ts" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Making progress in the Notification features">
+      <change afterPath="$PROJECT_DIR$/../frontend/src/model/notification.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/NotificationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/NotificationDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/DefaultNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/notification/DefaultNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/notification/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/notification/NotificationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/Notification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/Notification.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/notification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/notificationRequests.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/Notification.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/NotificationComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/NotificationsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/NotificationsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="47ddb2be-f6cb-4fa1-996a-b95fb4a5c481" name="Changes by Allysson" comment="Get Notification method" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/enums/FriendshipStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/enums/FriendshipStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/enums/NotificationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/enums/NotificationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+    </list>
     <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +62,42 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
+      <ranges>
+        <range start1="7" end1="7" start2="7" end2="8" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="13" end1="13" start2="14" end2="15" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="22" end1="24" start2="24" end2="24" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="26" end1="27" start2="26" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="29" end1="33" start2="28" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="34" end1="35" start2="29" end2="29" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="37" end1="38" start2="31" end2="32" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="41" end1="42" start2="35" end2="35" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="50" end1="50" start2="43" end2="45" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="82" end1="83" start2="77" end2="79" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="87" end1="87" start2="83" end2="84" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="88" end1="90" start2="85" end2="116" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="91" end1="91" start2="117" end2="118" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="92" end1="92" start2="119" end2="146" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java">
+      <ranges>
+        <range start1="17" end1="18" start2="17" end2="17" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="20" end1="21" start2="19" end2="19" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="22" end1="22" start2="20" end2="22" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="23" end1="24" start2="23" end2="23" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="27" end1="28" start2="26" end2="27" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="30" end1="30" start2="29" end2="30" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="37" end1="38" start2="37" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="45" end1="50" start2="45" end2="46" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="51" end1="52" start2="47" end2="48" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="53" end1="53" start2="49" end2="51" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="55" end1="55" start2="53" end2="54" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="66" end1="67" start2="65" end2="65" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -148,6 +195,7 @@
       <workItem from="1696869396285" duration="4513000" />
       <workItem from="1696940731393" duration="3715000" />
       <workItem from="1696962671664" duration="1198000" />
+      <workItem from="1697133084082" duration="10144000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -344,7 +392,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697049478147</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Making progress in the Notification features">
+      <option name="closed" value="true" />
+      <created>1697053002036</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1697053002036</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Making progress in the Notification features">
+      <option name="closed" value="true" />
+      <created>1697053011469</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1697053011469</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -363,6 +427,7 @@
     <MESSAGE value="Deciding how to the block feature will work" />
     <MESSAGE value="Working on user block features" />
     <MESSAGE value="Get Notification method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Get Notification method" />
+    <MESSAGE value="Making progress in the Notification features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Making progress in the Notification features" />
   </component>
 </project>

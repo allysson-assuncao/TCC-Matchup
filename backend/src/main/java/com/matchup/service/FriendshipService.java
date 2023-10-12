@@ -21,13 +21,16 @@ public class FriendshipService {
     @Autowired
     private final NotificationRepository notificationRepository;
 
+    private final NotificationService notificationService;
+
     @Autowired
     private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
 
     @Autowired
-    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository) {
+    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, NotificationService notificationService, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository) {
         this.friendshipRepository = friendshipRepository;
         this.notificationRepository = notificationRepository;
+        this.notificationService = notificationService;
         this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
     }
 
@@ -35,7 +38,7 @@ public class FriendshipService {
         return friendshipRepository.save(friendshipToSave);
     }
 
-    @Transactional
+
     public boolean sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted){
         Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
         if(friendshipOp.isEmpty()) return false;
@@ -43,16 +46,15 @@ public class FriendshipService {
 
         System.out.println(accepted);
         if (accepted){
-            friendship.setStatus(FriendshipStatus.APPROVED);
-            System.out.println(LocalDateTime.now());
-            friendship.setDate(LocalDateTime.now());
-            System.out.println(friendship.getDate());
-            saveFriendship(friendship);
+            friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
             friendshipRepository.delete(friendship);
         }
+        friendship.setDate(LocalDateTime.now());
+        saveFriendship(friendship);
 
         friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
+        notificationService.sendFriendshipSolicitationResponseNotification(friendship);
         return true;
 
     }
@@ -64,7 +66,6 @@ public class FriendshipService {
     @Transactional
     public boolean endFriendship(long user1Id, long user2Id){
         Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(user1Id, user2Id);
-        System.out.println();
         if(friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 

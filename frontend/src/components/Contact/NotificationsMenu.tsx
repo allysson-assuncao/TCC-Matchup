@@ -1,34 +1,33 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
-import Notification from "./Notification";
-import {getNotificationsByUserId} from "../../api/user_requests/notification";
+import {getNotificationsByUserId} from "../../api/user_requests/notificationRequests";
 import {getUser} from "../../pages/home/Home";
-import {getUserByUsername} from "../../api/user_requests/getUserBy";
-import {Grid} from "@mui/material";
+import {Grid, Typography} from "@mui/material";
+import {Notification} from "../../model/notification";
+import NotificationComponent from "./NotificationComponent";
 
-const NotificationMenu = () => {
-    const [notifications, setNotifications] = useState<Object[]>([]);
+const NotificationsMenu = () => {
+    const [notifications, setNotifications] = useState<Notification[]>();
 
     useEffect(() => {
         const fetchData = async () => {
             let notifications = await getNotificationsByUserId(getUser().id);
-
+            console.log(notifications);
             setNotifications(notifications);
-
-
         };
-
         fetchData();
-    }, []);
+    }, [getUser().id]);
 
     return (
         <Grid>
-            {notifications.map(notification =>
-                <Notification
-                    key={notification.id}
-                    text={notification.text}
+            {notifications && notifications.map(notification =>
+                /*<Typography> {notification.senderUsername} </Typography>*/
+                <NotificationComponent
+                    key={notification.id.toString()}
+                    id={notification.id}
+                    content={notification.content}
                     type={notification.type}
-                    sender={notification.sender}
+                    senderId={notification.senderId}
+                    senderUsername={notification.senderUsername}
                     date={notification.date}
                 />
             )}
@@ -36,4 +35,4 @@ const NotificationMenu = () => {
     );
 };
 
-export default NotificationMenu;
+export default NotificationsMenu;

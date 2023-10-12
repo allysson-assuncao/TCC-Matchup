@@ -1,11 +1,11 @@
-import {User} from "../../model/user";
-import axios, {AxiosError, AxiosResponse} from "axios/index";
+import axios, {AxiosError, AxiosResponse} from "axios";
+import {Notification} from "../../model/notification";
 
 const API_BASE_URL = 'http://localhost:8080/api/notification';
 
-export const getNotificationsByUserId = async (userId: bigint | undefined): Promise<Array<Object>> => {
+export const getNotificationsByUserId = async (userId: bigint | undefined): Promise<Array<Notification>> => {
     try {
-        const response: AxiosResponse<Array<Object>> = await axios.get(`${API_BASE_URL}/get-by-user-id/${userId}`);
+        const response: AxiosResponse<Array<Notification>> = await axios.get(`${API_BASE_URL}/get-by-user-id/${userId}`);
 
         console.log(response);
         return response.data;

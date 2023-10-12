@@ -11,10 +11,14 @@ public class NotificationDto {
     private NotificationType type;
 
     private long senderId;
+
+    private String senderUsername;
     private long receiverId;
     private LocalDateTime date;
     private long friendshipId;
     private String content;
+
+    private boolean viewed;
 
     public long getId() {
         return id;
@@ -70,5 +74,21 @@ public class NotificationDto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public boolean isViewed() {
+        return viewed;
+    }
+
+    public void setViewed(boolean viewed) {
+        this.viewed = viewed;
+    }
+
+    public String getSenderUsername() {
+        return senderUsername;
+    }
+
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
     }
 }

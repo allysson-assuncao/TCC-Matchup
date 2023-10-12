@@ -3,20 +3,15 @@ import * as React from "react";
 import {
     AppBar,
     Toolbar,
-    Avatar,
     Box,
     Container,
     CssBaseline,
-    Grid,
     MenuItem,
-    Stack,
     Tab,
     Tabs,
     Typography,
     Menu,
-    Button,
     Tooltip,
-    useScrollTrigger
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
@@ -24,9 +19,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import theme from '../theme'
 import {getUser, logout} from "../pages/home/Home";
-import {ROUTE_ABOUT_US, ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_PROFILE, ROUTE_SETTINGS} from "../App";
+import {ROUTE_ABOUT_US, ROUTE_PROFILE, ROUTE_SETTINGS} from "../App";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -34,10 +28,8 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
-import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {useEffect, useState} from "react";
 import ProfilePicture from "../components/ProfilePicture";
-import Notification, {NOTIFICATION_TYPES} from "../components/Contact/Notification";
+import NotificationsMenu from "../components/Contact/NotificationsMenu";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -304,7 +296,9 @@ const AppBarHome = () => {
                 </AppBar>
 
                 <CustomTabPanel value={value} index={0}>
-                    <Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>
+                    {/*<Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>*/}
+                    Item One
+                    <NotificationsMenu></NotificationsMenu>
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     Item Two

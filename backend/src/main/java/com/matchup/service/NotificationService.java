@@ -5,12 +5,14 @@ import com.matchup.enums.FriendshipStatus;
 import com.matchup.enums.NotificationType;
 import com.matchup.model.Friendship;
 import com.matchup.model.User;
+import com.matchup.model.notification.DefaultNotification;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.model.notification.Notification;
 import com.matchup.repository.*;
 import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,17 +22,10 @@ import java.util.Optional;
 
 @Service
 public class NotificationService {
-
-    @Autowired
     private final UserRepository userRepository;
 
-    @Autowired
     private final FriendshipRepository friendshipRepository;
 
-    @Autowired
-    private final FriendshipService friendshipService;
-
-    @Autowired
     private final NotificationRepository notificationRepository;
 
 
@@ -39,7 +34,6 @@ public class NotificationService {
         this.userRepository = userRepository;
         this.notificationRepository = notificationRepository;
         this.friendshipRepository = friendshipRepository;
-        this.friendshipService = friendshipService;
     }
 
     /*public User saveUser(User userToSave) {
@@ -48,6 +42,8 @@ public class NotificationService {
     }*/
 
     public boolean sendFriendshipSolicitationNotification(long senderId, long receiverId){
+        if(senderId == receiverId) return false;
+
         User receiver = userRepository.findById(receiverId).get();
         User sender = userRepository.findById(senderId).get();
 
@@ -80,11 +76,13 @@ public class NotificationService {
         return true;
     }
 
-    public List<Notification> getNotificationsByUserId(long userId) {
+    @Transactional
+    public List<NotificationDto> getNotificationsByUserId(long userId) {
         Optional<List<Notification>> notificationsOp = notificationRepository.findByUserId(userId);
         if(notificationsOp.isEmpty()) return null;
         List<Notification> notifications = notificationsOp.get();
         List<NotificationDto> notificationsDto = new ArrayList<>();
+
         for(Notification n: notifications){
             NotificationDto notificationDto = new NotificationDto();
             notificationDto.setType(NotificationType.DEFAULT);

@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.NotificationDto;
 import com.matchup.model.notification.Notification;
 import com.matchup.service.FriendshipService;
 import com.matchup.service.NotificationService;
@@ -42,10 +43,14 @@ public class NotificationController {
 
     @GetMapping("/get-by-user-id/{userId}")
     @PostAuthorize("true")
-    public ResponseEntity<List<Notification>> getNotificationsByUserId(@PathVariable long userId) {
+    public ResponseEntity<List<NotificationDto>> getNotificationsByUserId(@PathVariable long userId) {
         return new ResponseEntity<>(notificationService.getNotificationsByUserId(userId), HttpStatus.OK);
     }
 
-
+    @DeleteMapping("/delete-notification-by-id/{notificationId}")
+    @PostAuthorize("true")
+    public ResponseEntity<Boolean> deleteNotificationById(@PathVariable long notificationId) {
+        return new ResponseEntity<>(notificationService.deleteNotificationById(notificationId), HttpStatus.OK);
+    }
 
 }
