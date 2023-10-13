@@ -1,6 +1,7 @@
 package com.matchup.controller;
 
 import com.matchup.enums.FriendshipStatus;
+import com.matchup.model.Friendship;
 import com.matchup.service.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,10 +34,9 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.existsFriendshipByUsersId(user1Id, user2Id), HttpStatus.OK);
     }
 
-    @GetMapping("get-friendship-status-by/{user1Id}/and/{user2Id}")
-    @PostAuthorize("true")
-    public ResponseEntity<String> getFriendshipStatus(@PathVariable Long user1Id, @PathVariable Long user2Id) {
-        return new ResponseEntity<>(friendshipService.getFriendshipStatus(user1Id, user2Id), HttpStatus.OK);
+    @GetMapping("get-friendship-by/{user1Id}/and/{user2Id}")
+    public ResponseEntity<Friendship> getFriendshipByUsers(@PathVariable Long user1Id, @PathVariable Long user2Id) {
+        return new ResponseEntity<>(friendshipService.getFriendship(user1Id, user2Id), HttpStatus.OK);
     }
 
     @DeleteMapping("/end-friendship")
