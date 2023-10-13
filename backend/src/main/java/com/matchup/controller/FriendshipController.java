@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.enums.FriendshipStatus;
 import com.matchup.service.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,13 +25,23 @@ public class FriendshipController {
     @PostMapping("/solicitation-response/{accepted}")
     @PostAuthorize("true")
     public ResponseEntity<Boolean> solicitationResponse(@RequestBody Map<String, Long> friendshipId, @PathVariable String accepted) {
-        return new ResponseEntity<Boolean>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
+        return new ResponseEntity<>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
     }
 
+    @GetMapping("{user1Id}/is-friends-with/{user2Id}")
+    public ResponseEntity<Boolean> isFriendsWith(@PathVariable Long user1Id, @PathVariable Long user2Id) {
+        return new ResponseEntity<>(friendshipService.existsFriendshipByUsersId(user1Id, user2Id), HttpStatus.OK);
+    }
+
+    @GetMapping("get-friendship-status-by/{user1Id}/and/{user2Id}")
+    @PostAuthorize("true")
+    public ResponseEntity<String> getFriendshipStatus(@PathVariable Long user1Id, @PathVariable Long user2Id) {
+        return new ResponseEntity<>(friendshipService.getFriendshipStatus(user1Id, user2Id), HttpStatus.OK);
+    }
 
     @DeleteMapping("/end-friendship")
     public ResponseEntity<Boolean> endFriendship(@RequestBody Map<String, Long> usersId) {
-        return new ResponseEntity<Boolean>(friendshipService.endFriendship(usersId.get("userId1"), usersId.get("userId2")), HttpStatus.OK);
+        return new ResponseEntity<>(friendshipService.endFriendship(usersId.get("userId1"), usersId.get("userId2")), HttpStatus.OK);
     }
 
 }

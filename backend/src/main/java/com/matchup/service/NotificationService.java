@@ -58,19 +58,19 @@ public class NotificationService {
         friendship.setStatus(FriendshipStatus.PENDING);
         friendship = friendshipRepository.save(friendship);
 
-        FriendshipSolicitationNotification friendshipSolicitationNotification = new FriendshipSolicitationNotification();
-        friendshipSolicitationNotification.setFriendship(friendship);
-        friendshipSolicitationNotification.setDate(LocalDateTime.now());
-        friendshipSolicitationNotification.setViewed(false);
-        friendshipSolicitationNotification.setUser(userRepository.findById(receiverId).get());
-        receiver.addNotification(friendshipSolicitationNotification);
+        FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
+        fSNotification.setFriendship(friendship);
+        fSNotification.setDate(LocalDateTime.now());
+        fSNotification.setViewed(false);
+        fSNotification.setUser(userRepository.findById(receiverId).get());
+        receiver.addNotification(fSNotification);
 
         receiver.addFriendship(friendship);
         sender.addFriendship(friendship);
 
         userRepository.save(receiver);
         userRepository.save(sender);
-        notificationRepository.save(friendshipSolicitationNotification);
+        notificationRepository.save(fSNotification);
 
         return true;
     }
@@ -118,13 +118,28 @@ public class NotificationService {
         return notificationsDto;
     }
 
-    public void sendFriendshipSolicitationResponseNotification(Friendship friendship){
-        FriendshipSolicitationNotification friendshipSolicitationNotification = new FriendshipSolicitationNotification();
-        friendshipSolicitationNotification.setUser(friendship.getUser());
-        friendshipSolicitationNotification.setFriendship(friendship);
-        friendshipSolicitationNotification.setViewed(false);
-        friendshipSolicitationNotification.setDate(friendship.getDate());
-        notificationRepository.save(friendshipSolicitationNotification);
+    public void sendFriendshipSolicitationResponseNotification(long friendshipId){
+        Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
+        if(friendshipOp.isEmpty()) return;
+        Friendship friendship = friendshipOp.get();
+
+        User receiver = userRepository.findById(friendship.getUser().getId()).get();
+        User sender = userRepository.findById(friendship.getFriend().getId()).get();
+
+
+        FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
+        fSNotification.setFriendship(friendship);
+        fSNotification.setDate(LocalDateTime.now());
+        fSNotification.setViewed(false);
+        fSNotification.setUser(userRepository.findById(receiver.getId()).get());
+        receiver.addNotification(fSNotification);
+
+        receiver.addFriendship(friendship);
+        sender.addFriendship(friendship);
+
+        userRepository.save(receiver);
+        userRepository.save(sender);
+        notificationRepository.save(fSNotification);
     }
 
     @Transactional
