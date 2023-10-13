@@ -32,6 +32,7 @@ import {Form, Formik} from "formik";
 import {string} from "yup";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
+
 function Copyright() {
     return (
         <Typography variant="body2" color="text.secondary" align="center">
@@ -83,7 +84,7 @@ const ForgotPassword: React.FC = () => {
                 if (!tempId) {
                     setOpen(true);
                     setMessage('Email inválido!');
-                }else{
+                } else {
                     setId(tempId);
                     handleNext();
                 }
@@ -94,14 +95,14 @@ const ForgotPassword: React.FC = () => {
                 if (!valid) {
                     setOpen(true);
                     setMessage('Código inválido!');
-                }else{
+                } else {
                     handleNext();
                 }
             }
         } else {
             console.log("updatePassword");
             let valid = await updatePassword(id, values.rawPassword);
-            if (!valid){
+            if (!valid) {
                 setOpen(true);
                 setMessage('Deu erro vei!');
             }
@@ -115,9 +116,9 @@ const ForgotPassword: React.FC = () => {
             case 0:
                 return <ForgotPasswordStep1/>;
             case 1:
-                return <ForgotPasswordStep2 />;
+                return <ForgotPasswordStep2/>;
             case 2:
-                return <ForgotPasswordStep3 />;
+                return <ForgotPasswordStep3/>;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -196,7 +197,7 @@ const ForgotPassword: React.FC = () => {
                     action={
                         <React.Fragment>
                             <IconButton size="small" aria-label="close" color="inherit" onClick={closeSnackbar}>
-                                <CloseIcon fontSize="small" />
+                                <CloseIcon fontSize="small"/>
                             </IconButton>
                         </React.Fragment>
                     }

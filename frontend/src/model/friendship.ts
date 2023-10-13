@@ -7,3 +7,11 @@ export interface Friendship {
     user: User;
     friend: User;
 }
+
+export const FRIENDSHIP_STATUS = {
+    PENDING: "PENDING",
+    ACCEPTED: "ACCEPTED",
+    REFUSED: "REFUSED",
+    BLOCKED: "BLOCKED",
+    ENDED: "ENDED"
+}

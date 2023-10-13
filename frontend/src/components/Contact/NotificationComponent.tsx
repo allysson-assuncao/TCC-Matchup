@@ -30,9 +30,10 @@ interface NotificationProps {
     senderId: bigint;
     senderUsername: string;
     date: Date;
+    friendshipId: bigint;
 }
 
-const NotificationComponent: React.FC<NotificationProps> = ({content, type, senderId, senderUsername, id, date}) => {
+const NotificationComponent: React.FC<NotificationProps> = ({content, type, senderId, senderUsername, id, date, friendshipId}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -63,25 +64,14 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
             <Grid item>
                 <Typography color={theme.palette.text.primary}>
                     {senderUsername && type !== NOTIFICATION_TYPES.DEFAULT &&
-                        <Typography
-                            onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}
-                            style={{cursor: 'pointer'}}>
-                            {senderUsername}
-                        </Typography>
+                        <b  style={{cursor: 'pointer'}} onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}>{senderUsername}</b>
                     }
                     {text}
                 </Typography>
             </Grid>
             <Grid item>
                 {type === NOTIFICATION_TYPES.PENDING && senderUsername &&
-                    <Grid item>
-                        <IconButton>
-                            <CheckCircle color="primary"></CheckCircle>
-                        </IconButton>
-                        <IconButton>
-                            <CloseIcon color="disabled"></CloseIcon>
-                        </IconButton>
-                    </Grid>
+                    <FriendshipResponseButtons friendshipId={friendshipId}/>
                 }
                 {type !== NOTIFICATION_TYPES.PENDING && !text &&
                     <IconButton>

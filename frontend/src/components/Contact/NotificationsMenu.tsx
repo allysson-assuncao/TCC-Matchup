@@ -123,6 +123,7 @@ const NotificationsMenu = () => {
                             senderId={notification.senderId}
                             senderUsername={notification.senderUsername}
                             date={notification.date}
+                            friendshipId={notification.friendshipId}
                         />
                     );
                 })}

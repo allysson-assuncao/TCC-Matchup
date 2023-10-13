@@ -36,28 +36,35 @@ public class FriendshipService {
     }
 
 
-    public boolean sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted){
+    public boolean  sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted){
         Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
         if(friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 
         System.out.println(accepted);
+        System.out.println(friendship.getUser().getUsername());
         if (accepted){
             friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
             friendship.setStatus(FriendshipStatus.REJECTED);
         }
         friendship.setDate(LocalDateTime.now());
-        saveFriendship(friendship);
+        friendship = saveFriendship(friendship);
 
         friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
-        notificationService.sendFriendshipSolicitationResponseNotification(friendship);
+        System.out.println("Em nome do pai");
+        notificationService.sendFriendshipSolicitationResponseNotification(friendship.getId());
         return true;
 
     }
 
     public boolean existsFriendshipByUsersId(Long user1Id, Long user2Id) {
         return friendshipRepository.existsByUsers(user1Id, user2Id);
+    }
+
+    public String getFriendshipStatus(Long user1Id, Long user2Id) {
+        if(!friendshipRepository.existsByUsers(user1Id, user2Id)) return null;
+        return friendshipRepository.findStatusByUsers(user1Id, user2Id).get();
     }
 
     @Transactional

@@ -23,10 +23,16 @@ import {Theme} from "@mui/material/styles";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {areUsersFriends, getFriendshipStatus, sendFriendshipSolicitation} from "../api/user_requests/friendship";
+import {getNotificationsByUserId} from "../api/user_requests/notificationRequests";
+import {PersonRemove} from "@mui/icons-material";
+import {FRIENDSHIP_STATUS} from "../model/friendship";
 
 interface PropsAppBarProfile {
     editable: boolean,
-    username: string | undefined
+    blocked: boolean,
+    username: string | undefined,
+    idProfile: bigint
 }
 
 var loggedUser: User = getUser();
@@ -40,7 +46,18 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
         const userJSON = localStorage.getItem('user')+"";
         if(!userJSON) return;
         const user = JSON.parse(userJSON);
+        verifyFriendship(user);
     }, []);
+
+
+    const verifyFriendship = async (user: User) => {
+        try {
+            setFriendShipStatus(await getFriendshipStatus(user.id, idProfile));
+        } catch (error) {
+            // Trate erros da requisição aqui, se necessário
+            console.error("Erro ao buscar notificações:", error);
+        }
+    };
 
     return (
         <Box bgcolor={theme.palette.background.default}>
@@ -72,7 +89,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
                                 <Grid item xs alignItems='left' margin='auto'>
                                     <Box margin={'auto'} display="flex" justifyContent="flex-end">
                                         <ToggleColorModeButton></ToggleColorModeButton>
-                                        {editable && (
+                                        {editable && friendshipStatus == "" &&(
                                             <Button
                                                 onClick={() => history(ROUTE_PROFILE_SETTINGS)}
                                                 variant="contained"
@@ -82,11 +99,31 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
                                                 Editar Perfil
                                             </Button>
                                         )}
-                                        {!editable && (
+                                        {!editable && !friendshipStatus &&(
                                             <IconButton
-                                                onClick={() => history(ROUTE_PROFILE_SETTINGS)}
-                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}>
+                                                onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
+                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
+                                                disabled={blocked}
+                                            >
                                                 <PersonAddIcon></PersonAddIcon>
+                                            </IconButton>
+                                        )}
+                                        {!editable && friendshipStatus == FRIENDSHIP_STATUS.ACCEPTED &&(
+                                            <IconButton
+                                                onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
+                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
+                                                disabled={blocked}
+                                            >
+                                                <PersonRemove></PersonRemove>
+                                            </IconButton>
+                                        )}
+                                        {!editable && friendshipStatus == FRIENDSHIP_STATUS.PENDING &&(
+                                            <IconButton
+                                                onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
+                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
+                                                disabled={blocked}
+                                            >
+                                                <PersonRemove></PersonRemove>
                                             </IconButton>
                                         )}
                                     </Box>
