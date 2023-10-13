@@ -62,9 +62,11 @@ public class FriendshipService {
         return friendshipRepository.existsByUsers(user1Id, user2Id);
     }
 
-    public String getFriendshipStatus(Long user1Id, Long user2Id) {
+    @Transactional
+    public Friendship getFriendship(Long user1Id, Long user2Id) {
+        System.out.println(friendshipRepository.existsByUsers(user1Id, user2Id) + "  " + user1Id + "  " + user2Id);
         if(!friendshipRepository.existsByUsers(user1Id, user2Id)) return null;
-        return friendshipRepository.findStatusByUsers(user1Id, user2Id).get();
+        return friendshipRepository.findByUsers(user1Id, user2Id).get();
     }
 
     @Transactional

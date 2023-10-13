@@ -19,8 +19,9 @@ import getTheme from "../theme";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {areUsersFriends, getFriendshipStatus, sendFriendshipSolicitation} from "../api/user_requests/friendship";
 import {getNotificationsByUserId} from "../api/user_requests/notificationRequests";
-import {PersonRemove} from "@mui/icons-material";
-import {FRIENDSHIP_STATUS} from "../model/friendship";
+import {Block, PersonRemove} from "@mui/icons-material";
+import {Friendship, FRIENDSHIP_STATUS} from "../model/friendship";
+import FriendshipResponseButtons from "../components/Contact/FriendshipResponseButtons";
 
 interface PropsAppBarProfile {
     editable: boolean,
@@ -35,7 +36,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
-    const [friendshipStatus, setFriendShipStatus] = React.useState('');
+    const [friendship, setFriendShip] = React.useState<Friendship>();
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user')+"";
@@ -47,7 +48,9 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
 
     const verifyFriendship = async (user: User) => {
         try {
-            setFriendShipStatus(await getFriendshipStatus(user.id, idProfile));
+            console.log(getUser().id, idProfile);
+            setFriendShip(await getFriendshipStatus(getUser().id, idProfile));
+            console.log(friendship);
         } catch (error) {
             // Trate erros da requisição aqui, se necessário
             console.error("Erro ao buscar notificações:", error);
@@ -84,7 +87,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
                                 <Grid item xs alignItems='left' margin='auto'>
                                     <Box margin={'auto'} display="flex" justifyContent="flex-end">
                                         <ToggleColorModeButton></ToggleColorModeButton>
-                                        {editable && friendshipStatus == "" &&(
+                                        {editable && (
                                             <Button
                                                 onClick={() => history(ROUTE_PROFILE_SETTINGS)}
                                                 variant="contained"
@@ -94,7 +97,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
                                                 Editar Perfil
                                             </Button>
                                         )}
-                                        {!editable && !friendshipStatus &&(
+                                        {!editable && !friendship &&(
                                             <IconButton
                                                 onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
@@ -103,7 +106,10 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
                                                 <PersonAddIcon></PersonAddIcon>
                                             </IconButton>
                                         )}
-                                        {!editable && friendshipStatus == FRIENDSHIP_STATUS.ACCEPTED &&(
+                                        {!editable && (
+                                            <Block color={'error'}></Block>
+                                        )}
+                                        {!editable && friendship?.status == FRIENDSHIP_STATUS.ACCEPTED && (
                                             <IconButton
                                                 onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
@@ -112,7 +118,16 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
                                                 <PersonRemove></PersonRemove>
                                             </IconButton>
                                         )}
-                                        {!editable && friendshipStatus == FRIENDSHIP_STATUS.PENDING &&(
+                                        {!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship.friend.id == getUser().id &&(
+                                            <IconButton
+                                                onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
+                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
+                                                disabled={blocked}
+                                            >
+                                                <FriendshipResponseButtons friendshipId={friendship.id}></FriendshipResponseButtons>
+                                            </IconButton>
+                                        )}
+                                        {!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship.user.id == getUser().id && (
                                             <IconButton
                                                 onClick={loggedUser? () => sendFriendshipSolicitation(getUser().id, idProfile): () => history(ROUTE_SIGN_IN)}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
@@ -121,6 +136,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, usernam
                                                 <PersonRemove></PersonRemove>
                                             </IconButton>
                                         )}
+
                                     </Box>
                                 </Grid>
                             </Grid>

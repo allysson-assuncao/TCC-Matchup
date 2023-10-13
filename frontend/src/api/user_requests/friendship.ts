@@ -1,4 +1,5 @@
 import axios, {AxiosError, AxiosResponse} from "axios";
+import {Friendship} from "../../model/friendship";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
@@ -62,9 +63,9 @@ export const friendshipSolicitationResponse = async (friendshipId: bigint, accep
     }
 };
 
-export const getFriendshipStatus = async (user1Id: bigint, user2Id: bigint): Promise<string> => {
+export const getFriendshipStatus = async (user1Id: bigint, user2Id: bigint): Promise<Friendship> => {
     try {
-        const response: AxiosResponse<string> = await axios.get(API_BASE_URL + `get-friendship-status-by/${user1Id}/and/${user2Id}`);
+        const response: AxiosResponse<Friendship> = await axios.get(API_BASE_URL + `friendship/get-friendship-by/${user1Id}/and/${user2Id}`);
         return response.data;
 
     } catch (error) {

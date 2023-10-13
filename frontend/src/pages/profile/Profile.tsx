@@ -51,7 +51,7 @@ const Profile = () => {
                     user = JSON.parse(userJSON);
                 } else {
                     user = await getUserByUsername(usernamePathVariable);
-                    let blocked: boolean = await isBlockedBy(getUser().id, idProfile);
+                    let blocked: boolean = await isBlockedBy(getUser().id, user.id);
                     setBlocked(blocked);
                     if (blocked) openSnackbar();
                 }
