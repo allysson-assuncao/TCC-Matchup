@@ -36,17 +36,11 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
 
-    /*const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const [username, setUsername] = useState(null);*/
-
     useEffect(() => {
         const userJSON = localStorage.getItem('user')+"";
         if(!userJSON) return;
         const user = JSON.parse(userJSON);
-        /*setLoggedUser(user);
-        setUsername(user.username);*/
     }, []);
-
 
     return (
         <Box bgcolor={theme.palette.background.default}>
@@ -87,6 +81,13 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
                                             >
                                                 Editar Perfil
                                             </Button>
+                                        )}
+                                        {!editable && (
+                                            <IconButton
+                                                onClick={() => history(ROUTE_PROFILE_SETTINGS)}
+                                                sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}>
+                                                <PersonAddIcon></PersonAddIcon>
+                                            </IconButton>
                                         )}
                                     </Box>
                                 </Grid>

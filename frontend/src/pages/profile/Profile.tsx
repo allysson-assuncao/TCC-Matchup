@@ -34,53 +34,11 @@ const Profile = () => {
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
 
-    /*useEffect( () => {
-            const userJSON = localStorage.getItem('user');
-            if (!userJSON) {
-                history(ROUTE_SIGN_IN);
-            } else {
-                let user;
-
-                if (usernamePathVariable == JSON.parse(userJSON).username) {
-                    setEditability(true);
-                    user = JSON.parse(userJSON);
-                }else{
-                    user = getUserByUsername(usernamePathVariable);
-                    setEditability(false);
-                }
-                setImage(user.profilePicture);
-                setName(user.name);
-                setBio(user.bio);
-            }
-        }, []
-    );*/
-
     useEffect(() => {
         const fetchData = async () => {
             let userJSON = localStorage.getItem('user');
 
             let user;
-
-            /*if (userJSON)/!*usuario esta logado?*!/ {
-                if (usernamePathVariable == JSON.parse(userJSON).username) /!*o perfil acessado é o do usuário logado?*!/ {
-                    setEditability(true);
-                    user = JSON.parse(userJSON);
-                }else {
-                    console.log(usernamePathVariable);
-                    user = await getUserByUsername(usernamePathVariable);
-                    console.log(user.id);
-                    setEditability(false);
-                }
-            } else {
-                console.log(usernamePathVariable);
-                user = await getUserByUsername(usernamePathVariable);
-                console.log(user.id);
-                setEditability(false);
-            }
-            /!*setImage(user.profilePicture);*!/
-            setIdProfile(user.id);
-            setName(user.name);
-            setBio(user.bio);*/
 
             if (userJSON) {
                 if (usernamePathVariable == JSON.parse(userJSON).username) {
@@ -103,16 +61,6 @@ const Profile = () => {
 
         fetchData();
     }, []);
-
-    /*useEffect(() => {
-        async function fetchProfilePicture() {
-            const url = await getProfilePictureByUserId(getUser().id);
-            setProfilePicture(url);
-        }
-
-        fetchProfilePicture();
-    }, []);*/
-
 
     return (
         <React.Fragment>

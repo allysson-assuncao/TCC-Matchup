@@ -104,6 +104,7 @@ const AppBarHome = () => {
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
     };
+
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -300,7 +301,7 @@ const AppBarHome = () => {
                 <CustomTabPanel value={value} index={0}>
                     {/*<Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>*/}
                     Item One
-                    <NotificationsMenu></NotificationsMenu>
+                    {/*<NotificationsMenu></NotificationsMenu>*/}
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     Item Two

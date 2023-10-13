@@ -36,10 +36,7 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
-    /*const [text, setText] = useState(content);*/
     var text;
-
-
 
     switch (type) {
         case NOTIFICATION_TYPES.PENDING:
@@ -57,14 +54,14 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
     }
 
     return (
-        <Grid bgcolor={theme.palette.background.default} borderBottom={'2px'}  borderColor={theme.palette.divider} container>
+        <Grid bgcolor={theme.palette.background.default} container>
             <Grid item>
                 {type !== NOTIFICATION_TYPES.DEFAULT &&
                     <ProfilePicture id={senderId} small={true}/>
                 }
             </Grid>
             <Grid item>
-                <Typography color={theme.palette.primary.main}>
+                <Typography color={theme.palette.text.primary}>
                     {senderUsername && type !== NOTIFICATION_TYPES.DEFAULT &&
                         <Typography
                             onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}
@@ -82,7 +79,7 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
                             <CheckCircle color="primary"></CheckCircle>
                         </IconButton>
                         <IconButton>
-                            <CloseIcon color="error"></CloseIcon>
+                            <CloseIcon color="disabled"></CloseIcon>
                         </IconButton>
                     </Grid>
                 }
