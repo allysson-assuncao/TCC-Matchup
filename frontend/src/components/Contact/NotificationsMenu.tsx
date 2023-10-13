@@ -8,14 +8,39 @@ import NotificationComponent from "./NotificationComponent";
 const NotificationsMenu = () => {
     const [notifications, setNotifications] = useState<Notification[]>();
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchData = async () => {
             let notifications = await getNotificationsByUserId(getUser().id);
+            const unseenCount = notifications.filter(notification => !notification.viewed).length;
+            setUnseenNotificationsNumber(unseenCount);
             console.log(notifications);
             setNotifications(notifications);
         };
         fetchData();
-    }, [getUser().id]);
+    }, [getUser().id, notifications]);*/
+
+    const fetchNotifications = async () => {
+        try {
+            const fetchedNotifications = await getNotificationsByUserId(getUser().id);
+            setNotifications(fetchedNotifications);
+            const unseenCount = fetchedNotifications.filter(notification => !notification.viewed).length;
+            setUnseenNotificationsNumber(unseenCount);
+        } catch (error) {
+            // Trate erros da requisição aqui, se necessário
+            console.error("Erro ao buscar notificações:", error);
+        }
+    };
+
+    useEffect(() => {
+        // Busca notificações quando o componente é montado inicialmente
+        fetchNotifications();
+    }, []);
+
+    /*useEffect(() => {
+        // @ts-ignore
+        const unseenCount = notifications.filter(notification => !notification.viewed).length;
+        setUnseenNotificationsNumber(unseenCount);
+    }, [notifications]);*/
 
     return (
         <Grid>

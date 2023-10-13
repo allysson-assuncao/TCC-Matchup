@@ -11,7 +11,7 @@ import {
     Tabs,
     Typography,
     Menu,
-    Tooltip,
+    Tooltip, Grid,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
@@ -242,7 +242,9 @@ const AppBarHome = () => {
                                 </Button>
                             ))}*/}
                             </Box>
-
+                            <Grid sx={{mr: '30px', ml: '20px'}}>
+                                <NotificationsMenu></NotificationsMenu>
+                            </Grid>
                             <Box sx={{flexGrow: 0}}>
                                 <Tooltip title="Abrir opções">
                                     <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
@@ -250,7 +252,7 @@ const AppBarHome = () => {
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
-                                    sx={{mt: '45px'}}
+                                    sx={{mt: '45px' }}
                                     id="menu-appbar"
                                     anchorEl={anchorElUser}
                                     anchorOrigin={{

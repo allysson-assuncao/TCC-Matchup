@@ -87,6 +87,7 @@ const Profile = () => {
                     user = JSON.parse(userJSON);
                 } else {
                     user = await getUserByUsername(usernamePathVariable);
+
                 }
                 setEditability(usernamePathVariable == JSON.parse(userJSON).username);
             } else {

@@ -22,6 +22,7 @@ import {SxProps} from "@mui/system";
 import {Theme} from "@mui/material/styles";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 interface PropsAppBarProfile {
     editable: boolean,
