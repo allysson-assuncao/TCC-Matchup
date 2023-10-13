@@ -1,6 +1,5 @@
-import React, {useState} from "react";
-import {User} from "../../model/user";
-import {IconButton, Button, Grid, Typography} from "@mui/material";
+import React from "react";
+import {IconButton, Grid, Typography} from "@mui/material";
 import ProfilePicture from "../ProfilePicture";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
@@ -8,7 +7,7 @@ import {CheckCircle, Clear} from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
-import {Notification} from "../../model/notification";
+import FriendshipResponseButtons from "./FriendshipResponseButtons";
 
 export const NOTIFICATION_TYPES = {
     DEFAULT: 'DEFAULT',
@@ -61,7 +60,7 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
                     <ProfilePicture id={senderId} small={true}/>
                 }
             </Grid>
-            <Grid item>
+            <Grid alignItems="center" item>
                 <Typography color={theme.palette.text.primary}>
                     {senderUsername && type !== NOTIFICATION_TYPES.DEFAULT &&
                         <b  style={{cursor: 'pointer'}} onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}>{senderUsername}</b>

@@ -88,9 +88,9 @@ const NotificationsMenu = () => {
 
     return (
         <Box sx={{flexGrow: 0}}>
-            <Tooltip title="Abrir opções">
+            <Tooltip onClick={handleOpenUserMenu} title="Abrir opções">
                 <IconButton>
-                    <Badge badgeContent={unseenNotificationsNumber} color="primary" onClick={handleOpenUserMenu}
+                    <Badge badgeContent={unseenNotificationsNumber} color="primary"
                            sx={{p: 0}}>
                         <Notifications sx={{color: `${theme.palette.text.primary}`}}/>
                     </Badge>

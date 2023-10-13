@@ -1,25 +1,19 @@
-import logo from '../img/logo-matchup2.png'
 import * as React from "react";
 import {
     AppBar,
     Box,
     Button, Container, CssBaseline,
     Grid,
-    Link,
     Toolbar, Typography,
-    useScrollTrigger,
 } from "@mui/material";
-import theme from "../theme";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_PROFILE_SETTINGS, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
+import {ROUTE_HOME, ROUTE_PROFILE_SETTINGS, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../App";
 import ToggleColorModeButton from "../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../model/user";
 import {getUser} from "../pages/home/Home";
-import {useEffect, useState} from "react";
-import {SxProps} from "@mui/system";
-import {Theme} from "@mui/material/styles";
+import {useEffect} from "react";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
@@ -37,10 +31,11 @@ interface PropsAppBarProfile {
 
 var loggedUser: User = getUser();
 
-const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, username}) => {
+const AppBarProfile: React.FC<PropsAppBarProfile> = ({editable, blocked, username, idProfile}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
+    const [friendshipStatus, setFriendShipStatus] = React.useState('');
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user')+"";

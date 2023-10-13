@@ -1,24 +1,20 @@
 import {
-    Avatar,
     Box,
     Container,
-    CssBaseline,
+    CssBaseline, Snackbar,
     Typography
 } from "@mui/material";
-import AppBarHome from "../../containers/AppBarHome";
 import React, {useEffect, useState} from "react";
-import logo from "../../img/logo-matchup3.png";
-import {User} from "../../model/user";
 import {getUser} from "../home/Home";
-import theme from "../../theme";
-import {ROUTE_SIGN_IN} from "../../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../../containers/AppBarProfile";
-import {getProfilePictureByUserId, getUserByUsername} from "../../api/user_requests/getUserBy";
+import {getUserByUsername} from "../../api/user_requests/getUserBy";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import ProfilePicture from "../../components/ProfilePicture";
-import {id} from "date-fns/locale";
+import {isBlockedBy} from "../../api/user_requests/block";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Profile = () => {
     const {theme: mode} = useCustomTheme();
@@ -29,10 +25,20 @@ const Profile = () => {
 
     const [editable, setEditability] = useState(false);
     const [idProfile, setIdProfile] = useState(BigInt(0));
-    const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const [profilePicture, setProfilePicture] = useState('');
+    /*const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [profilePicture, setProfilePicture] = useState('');*/
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
+    const [blocked, setBlocked] = useState(false);
+    const [open, setOpen] = React.useState(false);
+
+    const openSnackbar = () => {
+        setOpen(true);
+    };
+
+    const closeSnackbar = () => {
+        setOpen(false);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +51,9 @@ const Profile = () => {
                     user = JSON.parse(userJSON);
                 } else {
                     user = await getUserByUsername(usernamePathVariable);
-
+                    let blocked: boolean = await isBlockedBy(getUser().id, idProfile);
+                    setBlocked(blocked);
+                    if (blocked) openSnackbar();
                 }
                 setEditability(usernamePathVariable == JSON.parse(userJSON).username);
             } else {
@@ -64,7 +72,7 @@ const Profile = () => {
 
     return (
         <React.Fragment>
-            <AppBarProfile username={usernamePathVariable} editable={editable}></AppBarProfile>
+            <AppBarProfile editable={editable} blocked={blocked} username={usernamePathVariable} idProfile={idProfile}></AppBarProfile>
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -90,6 +98,17 @@ const Profile = () => {
                     {idProfile ? <ProfilePicture id={idProfile} small={false}></ProfilePicture> : null}
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
+                <Snackbar
+                    open={open}
+                    message="Você foi blockeado por esse usuário, por isso não pode enviar um pedido de amizade"
+                    action={
+                        <React.Fragment>
+                            <IconButton size="small" aria-label="close" color="inherit" onClick={closeSnackbar}>
+                                <CloseIcon fontSize="small"/>
+                            </IconButton>
+                        </React.Fragment>
+                    }
+                />
             </Container>
         </React.Fragment>
     );
