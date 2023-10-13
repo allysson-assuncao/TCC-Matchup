@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface BlockRepository extends JpaRepository<Block, Long> {
 
-    boolean existsByBlockedIdAndBlockerId(long blockerId, long blockedId);
+    boolean existsByBlockedIdAndBlockerId(long blockedId, long blockerId);
 
     @Query("SELECT b.blocker.id FROM Block b WHERE b.blocked.id = :userId")
     List<Long> findBlockerIdListByBlockedId(@Param("userId") Long userId);

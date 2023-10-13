@@ -209,7 +209,7 @@ public class UserService {
         User userBlocker = userBlockerOp.get();
         if(userBlockedOp.isEmpty()) return false;
         User userBlocked = userBlockedOp.get();
-        if(friendshipService.existsFriendshipByUserAndFriend(blockerId, blockedId)) {
+        if(friendshipService.existsFriendshipByUsersId(blockerId, blockedId)) {
             friendshipService.endFriendship(blockerId, blockedId);
         }
         Block block = new Block(userBlocker, userBlocked);
@@ -233,6 +233,10 @@ public class UserService {
 
     public List<Long> getBlockedIdListByBlockerId(Long userId){
         return blockRepository.findBlockedIdListByBlockerId(userId);
+    }
+
+    public boolean isBlockedBy(long blockedId, long blockerId){
+        return blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId);
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -48,6 +49,12 @@ public class BlockController {
     @PostAuthorize("true")
     public ResponseEntity<List<Long>> getBlockedIdListByBlockekId(@RequestBody Map<String, Long> requestBody) {
         return new ResponseEntity<>(userService.getBlockerIdListByBlockedId(requestBody.get("userId")), HttpStatus.OK);
+    }
+
+    @GetMapping("/{blockedId}/is-blocked-by/{blockerId}")
+    @PostAuthorize("true")
+    public ResponseEntity<Boolean> isBlockedBy(@PathVariable long blockedId, @PathVariable long blockerId) {
+        return new ResponseEntity<>(userService.isBlockedBy(blockedId, blockerId), HttpStatus.OK);
     }
 
 }

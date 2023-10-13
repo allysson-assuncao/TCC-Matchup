@@ -56,7 +56,7 @@ public class FriendshipService {
 
     }
 
-    public boolean existsFriendshipByUserAndFriend(Long user1Id, Long user2Id) {
+    public boolean existsFriendshipByUsersId(Long user1Id, Long user2Id) {
         return friendshipRepository.existsByUsers(user1Id, user2Id);
     }
 
@@ -66,6 +66,7 @@ public class FriendshipService {
         if(friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 
+        friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
         friendshipRepository.delete(friendship);
         return true;
 
