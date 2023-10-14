@@ -1,4 +1,3 @@
-import {Notification} from "../../model/notification";
 import axios, {AxiosError, AxiosResponse} from "axios";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
@@ -42,10 +41,9 @@ export const block = async (blockedId: bigint, blockerId: bigint): Promise<boole
     }
 };
 
-export const unblock = async (blockedId: bigint, blockerId: bigint): Promise<boolean> => {
+export const unblock = async (blockerId: bigint, blockedId: bigint): Promise<boolean> => {
     try {
-        const response: AxiosResponse<boolean> = await axios.post(API_BASE_URL + `unblock`,
-            {blockedId, blockerId});
+        const response: AxiosResponse<boolean> = await axios.delete(API_BASE_URL + `${blockerId}/unblock/${blockedId}`);
         return response.data;
 
     } catch (error) {

@@ -85,6 +85,11 @@ const NotificationsMenu = () => {
         const unseenCount = notifications.filter(notification => !notification.viewed).length;
         setUnseenNotificationsNumber(unseenCount);
     }, [notifications]);*/
+    const removeNotificationById = (idToRemove: bigint) => {
+        if (!notifications || !setNotifications) return;
+        const updatedNotifications = notifications.filter(notification => notification.id !== idToRemove);
+        setNotifications(updatedNotifications);
+    };
 
     return (
         <Box sx={{flexGrow: 0}}>
@@ -124,6 +129,7 @@ const NotificationsMenu = () => {
                             senderUsername={notification.senderUsername}
                             date={notification.date}
                             friendshipId={notification.friendshipId}
+                            removeNotificationById={removeNotificationById}
                         />
                     );
                 })}

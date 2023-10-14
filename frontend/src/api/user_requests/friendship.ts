@@ -63,7 +63,7 @@ export const friendshipSolicitationResponse = async (friendshipId: bigint, accep
     }
 };
 
-export const getFriendshipStatus = async (user1Id: bigint, user2Id: bigint): Promise<Friendship> => {
+export const getFriendship = async (user1Id: bigint, user2Id: bigint): Promise<Friendship> => {
     try {
         const response: AxiosResponse<Friendship> = await axios.get(API_BASE_URL + `friendship/get-friendship-by/${user1Id}/and/${user2Id}`);
         return response.data;
@@ -81,3 +81,23 @@ export const getFriendshipStatus = async (user1Id: bigint, user2Id: bigint): Pro
         }
     }
 };
+
+export const endFriendship = async (user1Id: bigint, user2Id: bigint): Promise<boolean> => {
+    try {
+        const response: AxiosResponse<boolean> = await axios.delete(API_BASE_URL + `friendship/end-friendship-between/${user1Id}/and/${user2Id}`);
+        return response.data;
+
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response?.status === 409) {
+                console.error('Network or Server Error:', axiosError.message);
+            }
+            throw error;
+        } else {
+            console.error('Erro não relacionado ao Axios:', error);
+            throw error;
+        }
+    }
+};
+

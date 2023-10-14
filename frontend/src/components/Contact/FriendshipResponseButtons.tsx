@@ -10,12 +10,16 @@ import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
 import {Notification} from "../../model/notification";
 import {friendshipSolicitationResponse} from "../../api/user_requests/friendship";
+import {getUser} from "../../pages/home/Home";
 
 interface NotificationProps {
-    friendshipId: bigint
+    friendshipId: bigint,
+    removeNotificationById?: (notificationId: bigint) => void;
+    notificationId?: bigint;
+    verifyFriendship?: (user: User) => void;
 }
 
-const FriendshipResponseButtons: React.FC<NotificationProps> = ({friendshipId}) => {
+const FriendshipResponseButtons: React.FC<NotificationProps> = ({verifyFriendship, notificationId, removeNotificationById, friendshipId}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -23,12 +27,20 @@ const FriendshipResponseButtons: React.FC<NotificationProps> = ({friendshipId}) 
     console.log(friendshipId);
 
     return (
-        <Grid bgcolor={theme.palette.background.default} container>
+        <Grid alignItems={'center'} bgcolor={theme.palette.background.default} container>
             <Grid item>
-                <IconButton onClick={() => friendshipSolicitationResponse(friendshipId, true)}>
+                <IconButton onClick={async () => {
+                    let response = await friendshipSolicitationResponse(friendshipId, true);
+                    if(removeNotificationById && response && notificationId) removeNotificationById(notificationId);
+                    if (verifyFriendship) verifyFriendship(getUser());
+                }}>
                     <CheckCircle color="primary"></CheckCircle>
                 </IconButton>
-                <IconButton onClick={() => friendshipSolicitationResponse(friendshipId, false)}>
+                <IconButton onClick={async () => {
+                    let response = await friendshipSolicitationResponse(friendshipId, false);
+                    if(removeNotificationById && response && notificationId) removeNotificationById(notificationId);
+                    if (verifyFriendship) verifyFriendship(getUser());
+                }}>
                     <CloseIcon color="disabled"></CloseIcon>
                 </IconButton>
             </Grid>

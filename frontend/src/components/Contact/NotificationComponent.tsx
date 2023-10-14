@@ -8,6 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
 import FriendshipResponseButtons from "./FriendshipResponseButtons";
+import {deleteNotification} from "../../api/user_requests/notificationRequests";
+import {Notification} from "../../model/notification";
 
 export const NOTIFICATION_TYPES = {
     DEFAULT: 'DEFAULT',
@@ -30,13 +32,16 @@ interface NotificationProps {
     senderUsername: string;
     date: Date;
     friendshipId: bigint;
+    removeNotificationById?: (notificationId: bigint) => void;
 }
 
-const NotificationComponent: React.FC<NotificationProps> = ({content, type, senderId, senderUsername, id, date, friendshipId}) => {
+const NotificationComponent: React.FC<NotificationProps> = ({removeNotificationById, content, type, senderId, senderUsername, id, date, friendshipId}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
     var text;
+
+    
 
     switch (type) {
         case NOTIFICATION_TYPES.PENDING:
@@ -63,17 +68,23 @@ const NotificationComponent: React.FC<NotificationProps> = ({content, type, send
             <Grid alignItems="center" item>
                 <Typography color={theme.palette.text.primary}>
                     {senderUsername && type !== NOTIFICATION_TYPES.DEFAULT &&
-                        <b  style={{cursor: 'pointer'}} onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}>{senderUsername}</b>
+                        <b style={{cursor: 'pointer'}}
+                           onClick={() => history(`${ROUTE_PROFILE}/${senderUsername}`)}>{senderUsername}</b>
                     }
                     {text}
                 </Typography>
             </Grid>
             <Grid item>
                 {type === NOTIFICATION_TYPES.PENDING && senderUsername &&
-                    <FriendshipResponseButtons friendshipId={friendshipId}/>
+                    <FriendshipResponseButtons notificationId={id} removeNotificationById={removeNotificationById} friendshipId={friendshipId}/>
                 }
-                {type !== NOTIFICATION_TYPES.PENDING && !text &&
-                    <IconButton>
+                {type !== NOTIFICATION_TYPES.PENDING &&
+                    <IconButton
+                        onClick={() => {
+                            deleteNotification(id);
+                            if(removeNotificationById) removeNotificationById(id);
+                        }}
+                    >
                         <Clear color="error"></Clear>
                     </IconButton>
                 }
