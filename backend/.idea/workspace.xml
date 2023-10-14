@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Making a lot of progress in a bunch of stuff">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment=";-; idProfile is making us mad">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/friendship.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/friendship.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBarProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" afterDir="false" />
     </list>
     <list id="bf0428cd-38ac-41de-a66a-9357dd87260d" name="Changes by 0063398" comment="" />
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Making a lot of progress in a bunch of stuff">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment=";-; idProfile is making us mad">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Friendship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,6 +54,30 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
+      <ranges>
+        <range start1="11" end1="11" start2="11" end2="12" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="29" end1="29" start2="30" end2="32" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="31" end1="32" start2="34" end2="35" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="35" end1="35" start2="38" end2="39" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="36" end1="41" start2="40" end2="40" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="48" end1="48" start2="47" end2="49" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="50" end1="51" start2="51" end2="58" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="52" end1="52" start2="59" end2="61" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="53" end1="55" start2="62" end2="62" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="59" end1="59" start2="66" end2="68" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="67" end1="68" start2="76" end2="77" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="71" end1="72" start2="80" end2="81" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="204" end1="204" start2="204" end2="205" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="205" end1="205" start2="206" end2="207" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -149,7 +176,8 @@
       <workItem from="1696940731393" duration="3715000" />
       <workItem from="1696962671664" duration="1198000" />
       <workItem from="1697133084082" duration="10994000" />
-      <workItem from="1697200190536" duration="14411000" />
+      <workItem from="1697200190536" duration="15117000" />
+      <workItem from="1697304639241" duration="9046000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -378,7 +406,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697148305784</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary=";-; idProfile is making us mad">
+      <option name="closed" value="true" />
+      <created>1697232112243</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1697232112244</updated>
+    </task>
+    <task id="LOCAL-00031" summary=";-; idProfile is making us mad">
+      <option name="closed" value="true" />
+      <created>1697232142078</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1697232142078</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,6 +443,7 @@
     <MESSAGE value="Get Notification method" />
     <MESSAGE value="Making progress in the Notification features" />
     <MESSAGE value="Making a lot of progress in a bunch of stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="Making a lot of progress in a bunch of stuff" />
+    <MESSAGE value=";-; idProfile is making us mad" />
+    <option name="LAST_COMMIT_MESSAGE" value=";-; idProfile is making us mad" />
   </component>
 </project>

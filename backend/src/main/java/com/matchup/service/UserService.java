@@ -202,6 +202,7 @@ public class UserService {
         return img.getContent();
     }
 
+    @Transactional
     public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
         Optional<User> userBlockerOp = userRepository.findById(blockerId);
         Optional<User> userBlockedOp = userRepository.findById(blockedId);

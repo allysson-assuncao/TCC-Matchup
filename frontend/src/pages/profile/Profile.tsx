@@ -1,7 +1,7 @@
 import {
     Box,
     Container,
-    CssBaseline, Snackbar,
+    CssBaseline, Grid, Snackbar,
     Typography
 } from "@mui/material";
 import React, {useEffect, useState} from "react";
@@ -31,9 +31,11 @@ const Profile = () => {
     const [bio, setBio] = useState(undefined);
     const [blocked, setBlocked] = useState(false);
     const [open, setOpen] = React.useState(false);
+    const [message, setMessage] = React.useState('');
 
-    const openSnackbar = () => {
+    const openSnackbar = (msg: string) => {
         setOpen(true);
+        setMessage(msg)
     };
 
     const closeSnackbar = () => {
@@ -52,8 +54,9 @@ const Profile = () => {
                 } else {
                     user = await getUserByUsername(usernamePathVariable);
                     let blocked: boolean = await isBlockedBy(getUser().id, user.id);
+                    console.log("blocked Profile: "+ blocked);
                     setBlocked(blocked);
-                    if (blocked) openSnackbar();
+                    if (blocked) openSnackbar("Você foi blockeado por esse usuário, por isso não pode enviar um pedido de amizade");
                 }
                 setEditability(usernamePathVariable == JSON.parse(userJSON).username);
             } else {
@@ -72,7 +75,9 @@ const Profile = () => {
 
     return (
         <React.Fragment>
-            <AppBarProfile editable={editable} blocked={blocked} username={usernamePathVariable} idProfile={idProfile}></AppBarProfile>
+            {(idProfile != BigInt(0)) && (
+            <AppBarProfile editable={editable} blocked={blocked} username={usernamePathVariable}
+                           idProfile={idProfile} openSnackBar={openSnackbar}></AppBarProfile>)}
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -94,13 +99,12 @@ const Profile = () => {
                     }}
                 >
                     <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
-                    {/*<Avatar alt={name} src={profilePicture} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>*/}
                     {idProfile ? <ProfilePicture id={idProfile} small={false}></ProfilePicture> : null}
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
                 <Snackbar
                     open={open}
-                    message="Você foi blockeado por esse usuário, por isso não pode enviar um pedido de amizade"
+                    message={message}
                     action={
                         <React.Fragment>
                             <IconButton size="small" aria-label="close" color="inherit" onClick={closeSnackbar}>

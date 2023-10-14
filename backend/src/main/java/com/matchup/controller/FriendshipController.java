@@ -39,9 +39,9 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.getFriendship(user1Id, user2Id), HttpStatus.OK);
     }
 
-    @DeleteMapping("/end-friendship")
-    public ResponseEntity<Boolean> endFriendship(@RequestBody Map<String, Long> usersId) {
-        return new ResponseEntity<>(friendshipService.endFriendship(usersId.get("userId1"), usersId.get("userId2")), HttpStatus.OK);
+    @DeleteMapping("/end-friendship-between/{user1Id}/and/{user2Id}")
+    public ResponseEntity<Boolean> endFriendship(@PathVariable Long user1Id, @PathVariable Long user2Id) {
+        return new ResponseEntity<>(friendshipService.endFriendship(user1Id, user2Id), HttpStatus.OK);
     }
 
 }

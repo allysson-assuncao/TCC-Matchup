@@ -46,17 +46,27 @@ public class NotificationService {
         User receiver = userRepository.findById(receiverId).get();
         User sender = userRepository.findById(senderId).get();
 
+        System.out.println("sender: " + sender.getUsername());
+        System.out.println("receiver: " + receiver.getUsername());
 
         System.out.println(friendshipRepository.existsByUsers(senderId, receiverId));
-        if(friendshipRepository.existsByUsers(senderId, receiverId)){
+        Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(senderId, receiverId);
+        Friendship friendship = null;
+        if(friendshipOp.isPresent() && friendshipOp.get().getStatus().equals(FriendshipStatus.REJECTED)){
+            friendship = friendshipOp.get();
+            friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
+            friendship.setDate(null);
+        }else if (friendshipOp.isPresent() && !friendshipOp.get().getStatus().equals(FriendshipStatus.REJECTED)){
             return false;
+        }else{
+            friendship = new Friendship();
         }
-
-        Friendship friendship = new Friendship();
         friendship.setUser(sender);
         friendship.setFriend(receiver);
         friendship.setStatus(FriendshipStatus.PENDING);
         friendship = friendshipRepository.save(friendship);
+        System.out.println("friendship User: " + friendship.getUser().getUsername());
+        System.out.println("friendship Friend: " + friendship.getFriend().getUsername());
 
         FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
         fSNotification.setFriendship(friendship);
@@ -65,11 +75,11 @@ public class NotificationService {
         fSNotification.setUser(userRepository.findById(receiverId).get());
         receiver.addNotification(fSNotification);
 
-        receiver.addFriendship(friendship);
+        /*receiver.addFriendship(friendship);
         sender.addFriendship(friendship);
 
         userRepository.save(receiver);
-        userRepository.save(sender);
+        userRepository.save(sender);*/
         notificationRepository.save(fSNotification);
 
         return true;

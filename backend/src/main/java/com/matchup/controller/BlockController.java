@@ -32,10 +32,9 @@ public class BlockController {
         return new ResponseEntity<>(userService.blockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockedId")), HttpStatus.OK);
     }
 
-    @PostMapping("/unblock")
-    @PostAuthorize("true")
-    public ResponseEntity<Boolean> unblock(@RequestBody Map<String, Long> requestBody ) {
-        return new ResponseEntity<>(userService.unblockUserByBlockerIdAndBlockedId(requestBody.get("blockerId"), requestBody.get("blockedId")), HttpStatus.OK);
+    @DeleteMapping("{blockerId}/unblock/{blockedId}")
+    public ResponseEntity<Boolean> unblock(@PathVariable long blockedId, @PathVariable long blockerId) {
+        return new ResponseEntity<>(userService.unblockUserByBlockerIdAndBlockedId(blockerId, blockedId), HttpStatus.OK);
     }
 
     //get list of ids of the users that blocked this user ()
