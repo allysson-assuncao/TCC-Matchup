@@ -9,6 +9,7 @@ import com.matchup.model.notification.DefaultNotification;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.model.notification.Notification;
 import com.matchup.repository.*;
+import com.matchup.repository.notification.FriendshipSolicitationNotificationRepository;
 import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,17 +29,15 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
+    private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
+
     @Autowired
-    public NotificationService(UserRepository userRepository, FriendshipRepository friendshipRepository, NotificationRepository notificationRepository) {
+    public NotificationService(UserRepository userRepository, FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository) {
         this.userRepository = userRepository;
         this.notificationRepository = notificationRepository;
         this.friendshipRepository = friendshipRepository;
+        this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
     }
-
-    /*public User saveUser(User userToSave) {
-        //requires password verification
-        return userRepository.save(userToSave);
-    }*/
 
     public boolean sendFriendshipSolicitationNotification(long senderId, long receiverId){
         if(senderId == receiverId) return false;

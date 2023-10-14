@@ -22,11 +22,11 @@ public class Friendship {
     private LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, updatable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "friend_id", updatable = false)
+    @JoinColumn(name = "friend_id", nullable = false)
     private User friend;
 
     // <editor-fold desc="Constructors">

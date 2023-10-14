@@ -204,6 +204,7 @@ public class UserService {
 
     @Transactional
     public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
+        if(blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId)) return false;
         Optional<User> userBlockerOp = userRepository.findById(blockerId);
         Optional<User> userBlockedOp = userRepository.findById(blockedId);
         if(userBlockerOp.isEmpty()) return false;
