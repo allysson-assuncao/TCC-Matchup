@@ -30,6 +30,7 @@ import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import ProfilePicture from "../components/ProfilePicture";
 import NotificationsMenu from "../components/Contact/NotificationsMenu";
+import ContactContainer from "./ContactContainer";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -307,7 +308,7 @@ const AppBarHome = () => {
                     Item Two
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    Item Three
+                    <ContactContainer></ContactContainer>
                 </CustomTabPanel>
             </Container>
         </Box>

@@ -22,8 +22,9 @@ const NotificationsMenu = () => {
         setAnchorElNav(event.currentTarget);
     };
 
-    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    const handleOpenUserMenu = async (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
+        await fetchNotifications();
         /*// @ts-ignore
         const unseenNotifications = notifications.filter(notification => !notification.viewed);
 
@@ -67,34 +68,51 @@ const NotificationsMenu = () => {
         try {
             const fetchedNotifications = await getNotificationsByUserId(getUser().id);
             setNotifications(fetchedNotifications);
-            const unseenCount = fetchedNotifications.filter(notification => !notification.viewed).length;
-            setUnseenNotificationsNumber(unseenCount);
+            return true;
+            let unseenCount = await getUnseenNotificationsCountByUserId
+            //const unseenCount = fetchedNotifications.filter(notification => !notification.viewed).length;
+            //setUnseenNotificationsNumber(unseenCount);
         } catch (error) {
-            // Trate erros da requisição aqui, se necessário
             console.error("Erro ao buscar notificações:", error);
         }
     };
 
+    const fetchUnseenNotificationsCount = async () => {
+        try {
+            let unseenCount = await getUnseenNotificationsCountByUserId(getUser().id);
+            setUnseenNotificationsNumber(unseenCount);
+        } catch (error) {
+            console.error("Erro ao buscar número de notificações não visualizadas:", error);
+        }
+    };
+
+
+
     useEffect(() => {
-        // Busca notificações quando o componente é montado inicialmente
-        fetchNotifications();
+        fetchUnseenNotificationsCount();
     }, []);
 
     /*useEffect(() => {
-        // @ts-ignore
+// @ts-ignore
         const unseenCount = notifications.filter(notification => !notification.viewed).length;
         setUnseenNotificationsNumber(unseenCount);
     }, [notifications]);*/
+
     const removeNotificationById = (idToRemove: bigint) => {
         if (!notifications || !setNotifications) return;
         const updatedNotifications = notifications.filter(notification => notification.id !== idToRemove);
         setNotifications(updatedNotifications);
     };
 
+    {/*onClick={async (e) => {
+                await fetchNotifications();
+                handleOpenUserMenu(e);
+            }}*/}
     return (
         <Box sx={{flexGrow: 0}}>
-            <Tooltip onClick={handleOpenUserMenu} title="Abrir opções">
-                <IconButton>
+            <Tooltip onClick={handleOpenUserMenu}
+                title="Abrir opções">
+                <IconButton >
                     <Badge badgeContent={unseenNotificationsNumber} color="primary"
                            sx={{p: 0}}>
                         <Notifications sx={{color: `${theme.palette.text.primary}`}}/>
