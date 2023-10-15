@@ -58,4 +58,9 @@ export type UpdateUserPayload = {
     profilePicture?: undefined | File;
 };
 
+export type FriendPayload = {
+    id: bigint;
+    username: string;
+};
+
 export type SignUpPayload = Pick<User, "username" | "hashedPassword" | "name">;

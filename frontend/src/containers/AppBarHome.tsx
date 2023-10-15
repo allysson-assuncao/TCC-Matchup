@@ -301,14 +301,14 @@ const AppBarHome = () => {
 
                 <CustomTabPanel value={value} index={0}>
                     {/*<Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>*/}
-                    Item One
+                    <ContactContainer></ContactContainer>
                     {/*<NotificationsMenu></NotificationsMenu>*/}
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     Item Two
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={2}>
-                    <ContactContainer></ContactContainer>
+
                 </CustomTabPanel>
             </Container>
         </Box>
