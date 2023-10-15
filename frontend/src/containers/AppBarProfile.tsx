@@ -52,7 +52,6 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
         isBlockedByMe(user);
     }, []);
 
-
     const verifyFriendship = async (user: User) => {
         try {
             setFriendShip(await getFriendship(getUser().id, idProfile));
