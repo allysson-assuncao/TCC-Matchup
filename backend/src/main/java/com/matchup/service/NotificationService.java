@@ -86,6 +86,7 @@ public class NotificationService {
 
     @Transactional
     public List<NotificationDto> getNotificationsByUserId(long userId) {
+        notificationRepository.updateStatusToViewedByUserId(userId);
         Optional<List<Notification>> notificationsOp = notificationRepository.findByUserId(userId);
         if(notificationsOp.isEmpty()) return null;
         List<Notification> notifications = notificationsOp.get();
@@ -125,6 +126,10 @@ public class NotificationService {
             notificationsDto.add(nDto);
         }
         return notificationsDto;
+    }
+
+    public int getNotificationsUnseenCountByUserId(long userId){
+        return notificationRepository.countUnviewedNotificationsByUserId(userId);
     }
 
     public void sendFriendshipSolicitationResponseNotification(long friendshipId){

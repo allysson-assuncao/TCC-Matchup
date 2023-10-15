@@ -42,9 +42,13 @@ public class NotificationController {
     }
 
     @GetMapping("/get-by-user-id/{userId}")
-    @PostAuthorize("true")
     public ResponseEntity<List<NotificationDto>> getNotificationsByUserId(@PathVariable long userId) {
         return new ResponseEntity<>(notificationService.getNotificationsByUserId(userId), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-unseen-count-by-user-id/{userId}")
+    public ResponseEntity<Integer> getUnseenNotificationsCount(@PathVariable long userId) {
+        return new ResponseEntity<>(notificationService.getNotificationsUnseenCountByUserId(userId), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-notification-by-id/{notificationId}")

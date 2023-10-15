@@ -20,5 +20,17 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     Optional<List<Notification>> findByUserId(long userId);
 
 
+    /*@Modifying
+    @Transactional
+    @Query("UPDATE Notification n SET n.viewed = TRUE WHERE n.user.id = :userId")
+    void updateStatusToViewedByUserId(@Param("userId") Long userId);*/
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Notification n SET n.viewed = TRUE WHERE n.viewed = FALSE and n.user.id = :receiverId")
+    void updateStatusToViewedByUserId(@Param("receiverId") Long receiverId);
+
+    @Query("SELECT COUNT(n) FROM Notification n WHERE n.user.id = :userId AND n.viewed = false")
+    int countUnviewedNotificationsByUserId(@Param("userId") long userId);
 
 }

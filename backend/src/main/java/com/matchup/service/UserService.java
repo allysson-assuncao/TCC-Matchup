@@ -238,7 +238,9 @@ public class UserService {
     }
 
     public boolean isBlockedBy(long blockedId, long blockerId){
-        return blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId);
+        boolean response = blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId);
+        System.out.println(response);
+        return response;
     }
 
 }
