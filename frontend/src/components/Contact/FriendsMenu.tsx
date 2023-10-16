@@ -1,15 +1,8 @@
 import {useEffect, useState} from "react";
-import {
-    getNotificationsByUserId,
-    getUnseenNotificationsCountByUserId
-} from "../../api/user_requests/notificationRequests";
 import {getUser} from "../../pages/home/Home";
-import {Badge, Box, Menu, Tooltip} from "@mui/material";
-import {Notification} from "../../model/notification";
-import NotificationComponent from "./NotificationComponent";
+import {Box, Menu} from "@mui/material";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import {Notifications} from "@mui/icons-material";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {FriendPayload} from "../../model/user";
@@ -46,6 +39,10 @@ const FriendsMenu = () => {
             console.error("Erro ao buscar amigos:", error);
         }
     };
+
+    useEffect(() => {
+        fetchFriends();
+    }, []);
 
     /*const removeNotificationById = (idToRemove: bigint) => {
         if (!notifications || !setNotifications) return;
