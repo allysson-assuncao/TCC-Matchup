@@ -15,6 +15,7 @@ import getTheme from "../../theme";
 import {FriendPayload} from "../../model/user";
 import FriendComponent from "./FriendComponent";
 import GroupIcon from "@mui/icons-material/Group";
+import {getFriendsByUserId} from "../../api/user_requests/friendship";
 
 const FriendsMenu = () => {
     const {theme: mode} = useCustomTheme();
