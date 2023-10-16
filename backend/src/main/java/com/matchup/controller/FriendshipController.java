@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.FriendDto;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.service.FriendshipService;
@@ -41,7 +42,7 @@ public class FriendshipController {
     }
 
     @GetMapping("get-friends-by/{userId}")
-    public ResponseEntity<List<Object[]>> getFriendsByUserId(@PathVariable Long userId) {
+    public ResponseEntity<List<FriendDto>> getFriendsByUserId(@PathVariable Long userId) {
         return new ResponseEntity<>(friendshipService.getFriendsByUserId(userId), HttpStatus.OK);
     }
 

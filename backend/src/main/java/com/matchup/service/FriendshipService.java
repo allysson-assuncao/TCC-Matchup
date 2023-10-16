@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.dto.FriendDto;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.repository.FriendshipRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,8 +84,16 @@ public class FriendshipService {
 
     }
 
-    public List<Object[]> getFriendsByUserId(long userId){
-        return friendshipRepository.findFriendsByUserId(userId);
+    public List<FriendDto> getFriendsByUserId(long userId){
+        List<Object[]> friendsFromDB = friendshipRepository.findFriendsByUserId(userId);
+
+        List<FriendDto> friends = new ArrayList<>();
+        for (Object[] o : friendsFromDB){
+            FriendDto newFriend = new FriendDto((Long) o[0] , o[1] + "");
+            friends.add(newFriend);
+        }
+
+        return friends;
     }
 
 }

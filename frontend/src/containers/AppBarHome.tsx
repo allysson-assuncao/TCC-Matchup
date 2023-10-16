@@ -30,7 +30,7 @@ import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import ProfilePicture from "../components/ProfilePicture";
 import NotificationsMenu from "../components/Contact/NotificationsMenu";
-import ContactContainer from "./ContactContainer";
+import Contact from "../pages/Contact/Contact";
 
 interface TabPanelProps {
     children?: React.ReactNode;

@@ -2,7 +2,15 @@ package com.matchup.dto;
 
 public class FriendDto {
     private long id;
-    private long username;
+    private String username;
+
+    public FriendDto() {
+    }
+
+    public FriendDto(long id, String username) {
+        this.id = id;
+        this.username = username;
+    }
 
     public long getId() {
         return id;
@@ -12,11 +20,11 @@ public class FriendDto {
         this.id = id;
     }
 
-    public long getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(long username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
