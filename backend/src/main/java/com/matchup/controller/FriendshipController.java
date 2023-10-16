@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -37,6 +38,11 @@ public class FriendshipController {
     @GetMapping("get-friendship-by/{user1Id}/and/{user2Id}")
     public ResponseEntity<Friendship> getFriendshipByUsers(@PathVariable Long user1Id, @PathVariable Long user2Id) {
         return new ResponseEntity<>(friendshipService.getFriendship(user1Id, user2Id), HttpStatus.OK);
+    }
+
+    @GetMapping("get-friends-by/{userId}")
+    public ResponseEntity<List<Object[]>> getFriendsByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(friendshipService.getFriendsByUserId(userId), HttpStatus.OK);
     }
 
     @DeleteMapping("/end-friendship-between/{user1Id}/and/{user2Id}")
