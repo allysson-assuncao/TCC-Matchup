@@ -19,7 +19,16 @@ public abstract class  Message {
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
 
+    @ManyToOne
+    @JoinColumn(name = "sender", nullable = false, updatable = false)
+    private User sender;
 
+    @ManyToOne
+    @JoinColumn(name = "receiver", nullable = false, updatable = false)
+    private User receiver;
+
+    @Column(name = "viewed", nullable = false)
+    private boolean viewed;
 
     // <editor-fold desc="Constructors">
     public Message() {
