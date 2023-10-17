@@ -16,14 +16,8 @@ public abstract class  Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "hashed_content", nullable = false, length = 1023)
-    private byte[] hashedContent;
-
     @Column(name = "date", nullable = false, updatable = false)
     private LocalDateTime date;
-
-    @Column(name = "extension", nullable = false, length = 5)
-    private String extension;
 
 
 
@@ -32,13 +26,11 @@ public abstract class  Message {
 
     }
 
-    public Message(byte[] hashedContent, LocalDateTime date, String extension, User sender, User receiver, String statusViewed) {
-        this.hashedContent = hashedContent;
+    public Message(LocalDateTime date, User sender, User receiver, boolean viewed) {
         this.date = date;
-        this.extension = extension;
         this.sender = sender;
         this.receiver = receiver;
-        this.status = statusViewed;
+        this.viewed = viewed;
     }
     // </editor-fold>
 
@@ -47,28 +39,12 @@ public abstract class  Message {
         return id;
     }
 
-    public byte[] getHashedContent() {
-        return hashedContent;
-    }
-
-    public void setHashedContent(byte[] hashedContent) {
-        this.hashedContent = hashedContent;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
 
     public void setDate(LocalDateTime date) {
         this.date = date;
-    }
-
-    public String getExtension() {
-        return extension;
-    }
-
-    public void setExtension(String extension) {
-        this.extension = extension;
     }
 
     public User getSender() {
@@ -87,39 +63,16 @@ public abstract class  Message {
         this.receiver = receiver;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    // </editor-fold>
-
-
-    public void setStatusPending() {
-        this.status = "PENDING";
-    }
-
-    public void setStatusSent() {
-        this.status = "SENT";
-    }
-
-    public void setStatusReceived() {
-        this.status = "RECEIVED";
-    }
-
-    public void setStatusViewed() {
-        this.status = "VIEWED";
-    }
+    // </editor-fold>=
 
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", hashedContent=" + Arrays.toString(hashedContent) +
                 ", date=" + date +
-                ", extension='" + extension + '\'' +
                 ", sender=" + sender +
                 ", receiver=" + receiver +
-                ", status='" + status + '\'' +
+                ", status='" + viewed + '\'' +
                 '}';
     }
 }

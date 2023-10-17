@@ -10,10 +10,6 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
 
-    List<Message> findByExtension(String extension);
 
-    List<Message> findBySender(User sender);
-
-    List<Message> findByReceiver(User receiver);
 
 }
