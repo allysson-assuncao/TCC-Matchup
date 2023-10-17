@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 const Contact = ({ name }) => <div>{name}</div>;
@@ -11,3 +12,4 @@ const ContactList = ({ contacts }) => (
 );
 
 export default ContactList;
+*/

@@ -1,3 +1,4 @@
+/*
 import {
     Box,
     CssBaseline,
@@ -29,7 +30,7 @@ const Contact = () => {
                     width: 'fullwidth',
                 }}
             >
-                {/*<Grid container spacing={2}>
+                {/!*<Grid container spacing={2}>
                     <Grid item xs={1} width={'maxContent'} textAlign="center" alignItems='left' margin="auto" sx={{border: '3px solid white'}}>
                         <Typography>Teste</Typography>
                         <FriendsMenu></FriendsMenu>
@@ -38,7 +39,7 @@ const Contact = () => {
                     <Grid item xs={4} width={'maxContent'} alignItems='center' margin="auto" sx={{border: '3px solid', borderColor: theme.palette.primary.main}}>
                         <Typography>Teste</Typography>
                     </Grid>
-                </Grid>*/}
+                </Grid>*!/}
                 <Grid container spacing={2} justifyContent="space-between" sx={{width: 'fullwidth'}}>
                     <Grid item xs={3} textAlign="center" alignItems='left' sx={{ border: '3px solid white', height: '85vh', width: '20vw' }}>
                          Barra lateral (contendo a lista de contatos, a barra de busca e o botão de mostrar os amigos): deve ocupar 25% da tela
@@ -64,3 +65,4 @@ const Contact = () => {
 }
 
 export default Contact;
+*/

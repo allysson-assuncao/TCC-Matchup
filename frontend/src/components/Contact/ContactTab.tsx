@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 const ContactTab = ({ contact }) => (
@@ -8,3 +9,4 @@ const ContactTab = ({ contact }) => (
 );
 
 export default ContactTab;
+*/

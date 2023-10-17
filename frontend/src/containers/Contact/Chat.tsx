@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Message from "../../components/Contact/Message";
@@ -26,3 +27,4 @@ const ChatContainer = () => {
 };
 
 export default ChatContainer;
+*/

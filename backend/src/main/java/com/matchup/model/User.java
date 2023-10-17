@@ -2,14 +2,14 @@ package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.dto.UserDto;
+import com.matchup.model.image.ProfilePicture;
+import com.matchup.model.message.Message;
 import com.matchup.model.notification.Notification;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.List;
 
 @Entity

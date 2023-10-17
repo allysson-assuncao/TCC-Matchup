@@ -4,20 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working on Friendship Solicitation pendencies">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/teste.tsx" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working on user block features">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/ProfilePicture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ImageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ProfilePictureRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/FriendDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/FriendDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/ProfilePicture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/ImageModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ProfilePictureRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/ContactTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/ContactTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/Message.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/ContactContainer.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/Contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/Contact/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/Contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/Contact/ContactList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Contact/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Contact/Contact.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="f1a482a3-179d-4459-8602-c8c4a7d987e9" name="Changes by allysson" comment="Working on user block features">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" afterDir="false" />
     </list>
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Working on Friendship Solicitation pendencies" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +40,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -56,11 +67,30 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="f1a482a3-179d-4459-8602-c8c4a7d987e9" />
-        <range start1="12" end1="12" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="84" end1="86" start2="86" end2="96" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="2" end1="3" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="12" end1="13" start2="12" end2="12" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="14" end1="17" start2="13" end2="13" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="1" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="2" end1="2" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="8" end1="10" start2="9" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="15" end1="18" start2="17" end2="17" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="21" end1="24" start2="20" end2="20" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="25" end1="35" start2="21" end2="21" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="42" end1="44" start2="28" end2="29" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="45" end1="46" start2="30" end2="30" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="48" end1="49" start2="32" end2="33" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="56" end1="64" start2="40" end2="40" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="72" end1="80" start2="48" end2="48" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="97" end1="119" start2="65" end2="66" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="124" end1="125" start2="71" end2="71" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="126" end1="127" start2="72" end2="72" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="129" end1="130" start2="74" end2="75" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
       </ranges>
     </file>
   </component>
@@ -165,6 +195,8 @@
       <workItem from="1697304639241" duration="9209000" />
       <workItem from="1697391093830" duration="4542000" />
       <workItem from="1697453194633" duration="3527000" />
+      <workItem from="1697478825264" duration="8000" />
+      <workItem from="1697544995417" duration="5849000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

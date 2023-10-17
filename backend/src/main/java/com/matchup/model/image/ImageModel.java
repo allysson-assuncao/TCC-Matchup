@@ -1,13 +1,11 @@
-package com.matchup.model;
+package com.matchup.model.image;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "profile_picture", schema = "matchup")
-public class ProfilePicture {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "image_type")
+public abstract class ImageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,20 +23,24 @@ public class ProfilePicture {
     @Column(name = "content_type")
     private String contentType;
 
+    /*@OneToOne
+    private User user;*/
 
-    @OneToOne
-    private User user;
+    // <editor-fold desc="Constructors">
 
-    public ProfilePicture() {
+    public ImageModel() {
     }
 
-    public ProfilePicture(String name, String originalName, byte[] content, String contentType, User user) {
+    public ImageModel(String name, String originalName, byte[] content, String contentType) {
         this.name = name;
         this.originalName = originalName;
         this.content = content;
         this.contentType = contentType;
-        this.user = user;
     }
+
+    // </editor-fold>
+
+    // <editor-fold desc="Encapsulation">
 
     public long getId() {
         return id;
@@ -77,11 +79,6 @@ public class ProfilePicture {
         this.originalName = originalName;
     }
 
-    public User getUser() {
-        return user;
-    }
+    // </editor-fold>
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

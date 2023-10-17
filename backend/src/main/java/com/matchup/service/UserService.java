@@ -2,30 +2,22 @@ package com.matchup.service;
 
 /*import com.matchup.config.JavaMailSender;*/
 import com.matchup.dto.UserDto;
-import com.matchup.exceptions.InvalidCodeException;
 import com.matchup.model.*;
+import com.matchup.model.image.ProfilePicture;
 import com.matchup.repository.*;
+import com.matchup.repository.image.ProfilePictureRepository;
 import com.matchup.tools.BlobMultipartFile;
 import com.matchup.tools.ImageResizer;
-import com.sun.jdi.InvalidCodeIndexException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
-import java.util.List;
 import java.util.regex.Pattern;
 
 @Service
@@ -35,7 +27,7 @@ public class UserService {
 
     private final InterestRepository interestRepository;
 
-    private final ProfilePictureRepository profilePictureRepository;
+    private final com.matchup.repository.image.ProfilePictureRepository ProfilePictureRepository;
 
     private final FriendshipService friendshipService;
 
@@ -44,11 +36,11 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository profilePictureRepository, InterestRepository interestRepository, FriendshipService friendshipService, BlockRepository blockRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ProfilePictureRepository ProfilePictureRepository, InterestRepository interestRepository, FriendshipService friendshipService, BlockRepository blockRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.interestRepository = interestRepository;
-        this.profilePictureRepository = profilePictureRepository;
+        this.ProfilePictureRepository = ProfilePictureRepository;
         this.friendshipService = friendshipService;
         this.blockRepository = blockRepository;
     }
@@ -156,12 +148,12 @@ public class UserService {
             profilePicture.setName(userDto.getProfilePicture().getName());
             profilePicture.setContentType(userDto.getProfilePicture().getContentType());
             profilePicture.setOriginalName(userDto.getProfilePicture().getOriginalFilename());
-            profilePicture = profilePictureRepository.save(profilePicture);
+            profilePicture = ProfilePictureRepository.save(profilePicture);
             if(userToUpdate.getProfilePicture() != null){
-                profilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
+                ProfilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
             }
             profilePicture.setUser(userToUpdate);
-            profilePictureRepository.save(profilePicture);
+            ProfilePictureRepository.save(profilePicture);
         }
 
         if(userDto.getUsername() != null){
@@ -188,9 +180,9 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public byte[] getProfilePictureById(long userId, int width, int height){
-        Optional<ProfilePicture> profilePictureOp = profilePictureRepository.findByUserId(userId);
-        if(profilePictureOp.isEmpty()) return null;
-        ProfilePicture img = profilePictureOp.get();
+        Optional<ProfilePicture> ProfilePictureOp = ProfilePictureRepository.findByUserId(userId);
+        if(ProfilePictureOp.isEmpty()) return null;
+        ProfilePicture img = ProfilePictureOp.get();
         MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
 
         try {

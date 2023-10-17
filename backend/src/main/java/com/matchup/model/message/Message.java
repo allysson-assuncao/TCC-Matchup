@@ -1,13 +1,15 @@
-package com.matchup.model;
+package com.matchup.model.message;
 
+import com.matchup.model.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Entity
-@Table(name = "Message", schema = "matchup")
-public class Message {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "message_type")
+public abstract class  Message {
 
     @Id
     @Column(nullable = false, updatable = false)
@@ -23,16 +25,6 @@ public class Message {
     @Column(name = "extension", nullable = false, length = 5)
     private String extension;
 
-    @ManyToOne
-    @JoinColumn(name = "sender", nullable = false, updatable = false)
-    private User sender;
-
-    @ManyToOne
-    @JoinColumn(name = "receiver", nullable = false, updatable = false)
-    private User receiver;
-
-    @Column(name = "status", nullable = false)
-    private String status;
 
 
     // <editor-fold desc="Constructors">
