@@ -18,7 +18,7 @@ public class Text {
     @Column(name = "edited", nullable = false, updatable = true)
     private boolean edited;
 
-    @OneToMany
+    @OneToMany(mappedBy = "hashedText")
     private List<TextMessage> textMessages;
 
     // <editor-fold desc="Constructors">

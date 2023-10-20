@@ -1,7 +1,9 @@
 package com.matchup.service;
 
-import com.matchup.model.message.Message;
-import com.matchup.repository.MessageRepository;
+import com.matchup.dto.MessageDto;
+import com.matchup.repository.ContactRepository;
+import com.matchup.repository.image.MessageImageRepository;
+import com.matchup.repository.message.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

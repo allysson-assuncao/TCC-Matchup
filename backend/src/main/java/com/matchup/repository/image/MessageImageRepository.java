@@ -1,6 +1,6 @@
 package com.matchup.repository.image;
 
-import com.matchup.model.image.ImageModel;
+import com.matchup.model.image.MessageImage;
 import com.matchup.model.image.ProfilePicture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ProfilePictureRepository extends JpaRepository<ProfilePicture, Long> {
+public interface MessageImageRepository extends JpaRepository<MessageImage, Long> {
 
-    Optional<ProfilePicture> findById(long id);
+    Optional<MessageImage> findById(long id);
 
-    Optional<ProfilePicture> findByUserId(long id);
+    Optional<MessageImage> findByUserId(long id);
 
     void deleteById(long id);
 

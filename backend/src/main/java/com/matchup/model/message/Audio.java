@@ -4,7 +4,7 @@ import com.matchup.model.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-
+import java.util.List;
 
 
 @Entity
@@ -19,6 +19,8 @@ public abstract class  Audio {
     @Column(name = "hashed_audio", nullable = false, updatable = false)
     private byte[] hashedAudio;
 
+    @OneToMany(mappedBy = "hashedAudio")
+    private List<AudioMessage> audioMessages;
     
     // <editor-fold desc="Constructors">
     public Audio() {

@@ -1,4 +1,4 @@
-package com.matchup.repository;
+package com.matchup.repository.message;
 
 import com.matchup.model.message.Message;
 import com.matchup.model.User;

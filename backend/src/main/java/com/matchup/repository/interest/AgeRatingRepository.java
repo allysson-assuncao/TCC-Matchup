@@ -1,4 +1,4 @@
-package com.matchup.repository.interest_dependencies;
+package com.matchup.repository.interest;
 
 import com.matchup.model.insterest.AgeRating;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -11,8 +11,8 @@ import java.util.List;
 @DiscriminatorValue("image")
 public abstract class  ImageMessage extends Message{
 
-    @ManyToMany
-    private List<ImageModel> hashedImage;
+    @ManyToMany(mappedBy = "imageMessages")
+    private List<MessageImage> hashedImage;
 
     // <editor-fold desc="Constructors">
 
