@@ -12,7 +12,6 @@ public abstract class  TextMessage extends Message{
     @ManyToOne
     private Text hashedText;
 
-
     // <editor-fold desc="Constructors">
     public TextMessage() {
     }

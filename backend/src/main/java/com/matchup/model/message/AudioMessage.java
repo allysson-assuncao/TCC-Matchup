@@ -21,8 +21,6 @@ public class AudioMessage  extends Message{
         super(date, sender, receiver, viewed);
         this.hashedAudio = hashedAudio;
     }
-
-
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">

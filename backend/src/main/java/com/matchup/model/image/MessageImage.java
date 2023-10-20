@@ -1,6 +1,5 @@
 package com.matchup.model.image;
 
-import com.matchup.model.User;
 import com.matchup.model.message.ImageMessage;
 import jakarta.persistence.*;
 

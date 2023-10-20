@@ -22,7 +22,6 @@ public class Text {
     private List<TextMessage> textMessages;
 
     // <editor-fold desc="Constructors">
-
     public Text() {
     }
 
@@ -38,7 +37,6 @@ public class Text {
         this.edited = edited;
         this.textMessages = textMessages;
     }
-
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">

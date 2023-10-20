@@ -23,6 +23,7 @@ public abstract class  Audio {
     private List<AudioMessage> audioMessages;
     
     // <editor-fold desc="Constructors">
+
     public Audio() {
     }
 
@@ -33,6 +34,7 @@ public abstract class  Audio {
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
+
     public long getId() {
         return id;
     }
