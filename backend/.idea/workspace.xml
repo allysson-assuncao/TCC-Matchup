@@ -6,16 +6,59 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Reworking Image making message classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ImageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/Contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/Contact/ContactList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/ImageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/ImageModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/AgeRating.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/AgeRating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Genre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/Genre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Language.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/Language.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterests_dependencies/SubGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/insterest/SubGenre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/AgeRatingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/AgeRatingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/CompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/GenreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/GenreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/LanguageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/LanguageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/PlatformRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/PlatformRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/SubGenreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/SubGenreRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/updateUserData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/updateUserData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendshipResponseButtons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/FriendshipResponseButtons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Contact/NotificationsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Contact/NotificationsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/EditProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/EditProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfoRegister.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Options/GeneralInfoRegister.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ProfilePicture.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ProfilePicture.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarGeneral.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBars/AppBarGeneral.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBars/AppBarHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarIndex.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBars/AppBarIndex.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/AppBarProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/AppBars/AppBarProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/forgot_password_form/ForgotPasswordStep1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/forgot_password_form/ForgotPasswordStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/forgot_password_form/ForgotPasswordStep3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/form/SignUpStep1.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep1.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/form/SignUpStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/form/SignUpStep3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/form/SignUpStep4.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep4.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/AboutUs/AboutUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/AboutUs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/AppIndex/AppIndex.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/AppIndex/AppIndex.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Contact/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Contact.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/forgot_password/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ForgotPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/home/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/EditableProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/EditableProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/settings/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signin/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/signup/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Signup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/utils/validation/UserValidation.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/utils/validation/UserValidation.ts" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" afterDir="false" />
-    </list>
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Working on Friendship Solicitation pendencies" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

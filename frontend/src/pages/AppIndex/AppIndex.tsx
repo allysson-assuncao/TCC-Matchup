@@ -4,7 +4,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import Container from '@mui/material/Container';
-import AppBarIndex from "../../containers/AppBarIndex";
+import AppBarIndex from "../../containers/AppBars/AppBarIndex";
 import AppAppBar from "../../components/AppIndex/AppAppBar";
 import GameGenres from "../../components/AppIndex/GameGenres";
 import WhatIsMatchup from "../../components/AppIndex/WhatIsMatchup";

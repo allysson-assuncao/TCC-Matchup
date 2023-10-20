@@ -4,7 +4,7 @@ import * as React from "react";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {getUser} from "../pages/home/Home";
+import {getUser} from "../pages/Home";
 import {Avatar, Button, Grid} from "@mui/material";
 
 interface ProfilePictureProp {

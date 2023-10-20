@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
 import {Notification} from "../../model/notification";
 import {friendshipSolicitationResponse} from "../../api/user_requests/friendship";
-import {getUser} from "../../pages/home/Home";
+import {getUser} from "../../pages/Home";
 
 interface NotificationProps {
     friendshipId: bigint,

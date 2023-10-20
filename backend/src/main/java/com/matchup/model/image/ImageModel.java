@@ -23,9 +23,6 @@ public abstract class ImageModel {
     @Column(name = "content_type")
     private String contentType;
 
-    /*@OneToOne
-    private User user;*/
-
     // <editor-fold desc="Constructors">
 
     public ImageModel() {

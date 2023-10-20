@@ -8,7 +8,7 @@ import theme from './theme';
 import {CustomThemeProvider} from "./CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import Notification from "./components/Contact/NotificationComponent";
-import {getUser} from "./pages/home/Home";
+import {getUser} from "./pages/Home";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

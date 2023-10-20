@@ -7,15 +7,15 @@ import {
 } from 'react-router-dom'
 import './App.css';
 import AppIndex from './pages/AppIndex/AppIndex';
-import SignIn from "./pages/signin/SignIn";
-import SignUp from "./pages/signup/Signup";
-import Home from "./pages/home/Home";
-import Profile from "./pages/profile/Profile";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/Signup";
+import Home from "./pages/Home";
+import Profile from "./pages/Profile";
 import {User} from "./model/user";
-import ForgotPassword from "./pages/forgot_password/ForgotPassword";
-import EditableProfile from "./pages/profile/EditableProfile";
-import AboutUs from "./pages/AboutUs/AboutUs";
-import Settings from "./pages/settings/Settings";
+import ForgotPassword from "./pages/ForgotPassword";
+import EditableProfile from "./pages/EditableProfile";
+import AboutUs from "./pages/AboutUs";
+import Settings from "./pages/Settings";
 import EditProfile from "./components/Options/EditProfile";
 import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";

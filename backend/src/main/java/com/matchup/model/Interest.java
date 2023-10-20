@@ -1,8 +1,7 @@
 package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.matchup.model.insterests_dependencies.*;
+import com.matchup.model.insterest.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

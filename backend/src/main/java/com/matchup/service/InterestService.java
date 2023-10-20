@@ -3,12 +3,11 @@ package com.matchup.service;
 import com.matchup.dto.InterestDto;
 import com.matchup.dto.RequestDto;
 import com.matchup.model.Interest;
-import com.matchup.model.insterests_dependencies.*;
-import com.matchup.model.insterests_dependencies.Company;
+import com.matchup.model.insterest.*;
+import com.matchup.model.insterest.Company;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.interest_dependencies.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 

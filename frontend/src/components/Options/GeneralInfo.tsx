@@ -5,7 +5,7 @@ import {
     Button,
     Snackbar, FormControl, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
-import {getUser, updateUser} from "../../pages/home/Home";
+import {getUser, updateUser} from "../../pages/Home";
 import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";

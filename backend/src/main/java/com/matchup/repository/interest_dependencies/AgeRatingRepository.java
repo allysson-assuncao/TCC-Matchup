@@ -1,7 +1,6 @@
 package com.matchup.repository.interest_dependencies;
 
-import com.matchup.model.insterests_dependencies.AgeRating;
-import com.matchup.model.insterests_dependencies.Platform;
+import com.matchup.model.insterest.AgeRating;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

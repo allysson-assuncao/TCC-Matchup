@@ -1,10 +1,7 @@
 package com.matchup.controller;
 
-import com.matchup.dto.InterestDto;
 import com.matchup.dto.RequestDto;
 import com.matchup.model.Interest;
-import com.matchup.model.insterests_dependencies.*;
-import com.matchup.service.FilterSpecificationService;
 import com.matchup.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
