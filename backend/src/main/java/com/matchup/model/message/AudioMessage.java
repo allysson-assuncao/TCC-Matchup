@@ -24,7 +24,6 @@ public class AudioMessage  extends Message{
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-
     public Audio getHashedAudio() {
         return hashedAudio;
     }
@@ -32,8 +31,6 @@ public class AudioMessage  extends Message{
     public void setHashedAudio(Audio hashedAudio) {
         this.hashedAudio = hashedAudio;
     }
-
-
     // </editor-fold>=
 
 }

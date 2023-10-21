@@ -19,18 +19,18 @@ public class  TextMessage extends Message{
     public TextMessage() {
     }
 
-    public TextMessage(LocalDateTime date, User sender, User receiver, boolean viewed, Text hashedText) {
+    public TextMessage(LocalDateTime date, User sender, User receiver, boolean viewed, String hashedText) {
         super(date, sender, receiver, viewed);
         this.hashedText = hashedText;
     }
     // </editor-fold>
 
     // <editor-fold desc="Encapsulation">
-    public Text getHashedText() {
+    public String getHashedText() {
         return hashedText;
     }
 
-    public void setHashedText(Text hashedText) {
+    public void setHashedText(String hashedText) {
         this.hashedText = hashedText;
     }
     // </editor-fold>=

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("image")
-public abstract class  ImageMessage extends Message{
+public class  ImageMessage extends Message{
 
     @ManyToMany(mappedBy = "imageMessages")
     private List<MessageImage> hashedImage;

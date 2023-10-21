@@ -39,10 +39,6 @@ public class  Audio {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public byte[] getHashedAudio() {
         return hashedAudio;
     }
