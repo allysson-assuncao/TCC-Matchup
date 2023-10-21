@@ -24,7 +24,7 @@ import {
 } from "../../api/user_requests/friendship";
 import {Block, PersonRemove} from "@mui/icons-material";
 import {Friendship, FRIENDSHIP_STATUS} from "../../model/friendship";
-import FriendshipResponseButtons from "../../components/Contact/FriendshipResponseButtons";
+import FriendshipResponseButtons from "../../components/contact/FriendshipResponseButtons";
 import {block, isBlockedBy, unblock} from "../../api/user_requests/block";
 
 interface PropsAppBarProfile {

@@ -7,7 +7,7 @@ import {
 import React, {useEffect, useState} from "react";
 import {getUser} from "./Home";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
-import AppBarProfile from "../containers/AppBars/AppBarProfile";
+import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUserByUsername} from "../api/user_requests/getUserBy";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";

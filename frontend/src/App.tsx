@@ -6,7 +6,7 @@ import {
     RouterProvider, useNavigate
 } from 'react-router-dom'
 import './App.css';
-import AppIndex from './pages/AppIndex/AppIndex';
+import AppIndex from './pages/AppIndex';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import Home from "./pages/Home";
@@ -16,7 +16,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import EditableProfile from "./pages/EditableProfile";
 import AboutUs from "./pages/AboutUs";
 import Settings from "./pages/Settings";
-import EditProfile from "./components/Options/EditProfile";
+import EditProfile from "./containers/options/EditProfile";
 import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";

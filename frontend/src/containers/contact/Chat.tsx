@@ -1,7 +1,7 @@
 /*
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Message from "../../components/Contact/Message";
+import Message from "../../components/contact/Message";
 
 const ChatContainer = () => {
     const [messages, setMessages] = useState([]);

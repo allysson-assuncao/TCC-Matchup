@@ -1,9 +1,9 @@
-import {Company} from "./interest_dependencies/company";
-import {Language} from "./interest_dependencies/language";
-import {Genre} from "./interest_dependencies/genre";
-import {SubGenre} from "./interest_dependencies/subGenre";
-import {Platform} from "./interest_dependencies/platform";
-import {AgeRating} from "./interest_dependencies/ageRating";
+import {Company} from "./interest/company";
+import {Language} from "./interest/language";
+import {Genre} from "./interest/genre";
+import {SubGenre} from "./interest/subGenre";
+import {Platform} from "./interest/platform";
+import {AgeRating} from "./interest/ageRating";
 import {User} from "./user";
 
 export interface Interest {

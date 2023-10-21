@@ -7,7 +7,7 @@ import {ThemeProvider} from '@mui/material/styles';
 import theme from './theme';
 import {CustomThemeProvider} from "./CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
-import Notification from "./components/Contact/NotificationComponent";
+import Notification from "./components/contact/NotificationComponent";
 import {getUser} from "./pages/Home";
 
 const root = ReactDOM.createRoot(

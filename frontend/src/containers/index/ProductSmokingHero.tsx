@@ -26,12 +26,6 @@ function ProductSmokingHero() {
       <Typography variant="subtitle1" sx={{ my: 3 }}>
         Estamos aqui para ajudar. Entre em contato.
       </Typography>
-      {/*<Box
-        component="img"
-        src="/static/themes/onepirate/productBuoy.svg"
-        alt="buoy"
-        sx={{ width: 60 }}
-      />*/}
     </Container>
   );
 }

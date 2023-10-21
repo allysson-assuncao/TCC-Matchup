@@ -2,10 +2,10 @@ import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {User} from "../../model/user";
 import {ROUTE_SIGN_IN} from "../../App";
-import AppBarProfile from "../../containers/AppBars/AppBarProfile";
+import AppBarProfile from "../appbars/AppBarProfile";
 import {Avatar, Box, Container, CssBaseline, Typography} from "@mui/material";
 import theme from "../../theme";
-import AppBarGeneral from "../../containers/AppBars/AppBarGeneral";
+import AppBarGeneral from "../appbars/AppBarGeneral";
 import GeneralInfo from "./GeneralInfo";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
@@ -70,9 +70,6 @@ const Profile = () => {
                         backgroundColor: '9c27b0',
                     }}
                 >
-                    {/*<Typography color={theme.palette.primary.main} variant="h4">{}</Typography>
-                    <Avatar alt={name} src={image} style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
-                    <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>*/}
                     <GeneralInfo fromRegister={false}></GeneralInfo>
                 </Box>
             </Container>

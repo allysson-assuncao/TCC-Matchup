@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {Field, FieldProps} from 'formik';
-import DatePickerField from "../../../components/form/DatePickerField";
+import DatePickerField from "../../../components/DatePickerField";
 import logo from '../../img/logo-matchup3.png';
 
 const SignUpStep1: React.FC = () => {

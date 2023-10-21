@@ -1,18 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Grid,
     TextField,
     Button,
-    Snackbar, FormControl, CssBaseline, Container, Box, Avatar
+    Snackbar, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
 import {getUser, updateUser} from "../../pages/Home";
-import {SignInPayload, UpdateUserPayload, User} from "../../model/user";
+import {UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import {Field, FieldProps} from "formik";
-import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_HOME} from "../../App";
 
@@ -21,7 +19,6 @@ const GeneralInfoRegister = () => {
     const {theme: mode} = useCustomTheme();
     const history = useNavigate();
     const theme = getTheme(mode);
-    const [birthday, setBirthday] = useState("");
     const [image, setImage] = useState("");
     const [profilePicture, setProfilePicture] = useState(undefined);
     const [bio, setBio] = useState("");

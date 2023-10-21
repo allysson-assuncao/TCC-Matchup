@@ -14,7 +14,7 @@ import {ROUTE_PROFILE, ROUTE_SIGN_IN} from "../App";
 import React, {useEffect, useState} from "react";
 import {User} from "../model/user";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import AppBarHome from "../containers/AppBars/AppBarHome";
+import AppBarHome from "../containers/appbars/AppBarHome";
 import logo from '../img/logo-matchup2.png'
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";

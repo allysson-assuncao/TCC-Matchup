@@ -24,8 +24,8 @@ import GoogleIcon from '@mui/icons-material/Google';
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {getUser, logout, removeProfilePicture, setUser} from "./Home";
-import GeneralInfo from "../components/Options/GeneralInfo";
-import GeneralInfoRegister from "../components/Options/GeneralInfoRegister";
+import GeneralInfo from "../containers/options/GeneralInfo";
+import GeneralInfoRegister from "../containers/options/GeneralInfoRegister";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 
 const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];

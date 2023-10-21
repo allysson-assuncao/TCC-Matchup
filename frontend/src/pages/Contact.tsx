@@ -9,12 +9,12 @@ import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {useNavigate} from "react-router-dom";
 import * as React from "react";
-import FriendComponent from "../../components/Contact/FriendComponent";
-import FriendsMenu from "../../components/Contact/FriendsMenu";
-import ChatWindow from "../../components/Contact/teste";
-import ContactList from "../../containers/Contact/ContactList";
+import FriendComponent from "../../components/contact/FriendComponent";
+import FriendsMenu from "../../components/contact/FriendsMenu";
+import ChatWindow from "../../components/contact/teste";
+import ContactList from "../../containers/contact/ContactList";
 
-const Contact = () => {
+const contact = () => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -64,5 +64,5 @@ const Contact = () => {
     );
 }
 
-export default Contact;
+export default contact;
 */

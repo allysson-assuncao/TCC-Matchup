@@ -48,24 +48,6 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
         reader.readAsDataURL(file);
     };
 
-   /* function formatPhoneNumber(value: any) {
-        if (!value) {
-            return value;
-        }
-
-        const onlyNums = value.replace(/[^\d]/g, '');
-        if (onlyNums.length <= 2) {
-            setCellphoneNumber(`(${onlyNums}`);
-        }
-        if (onlyNums.length <= 6) {
-            setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`);
-        }
-        if (onlyNums.length <= 10) {
-            setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`);
-        }
-        setCellphoneNumber(`(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`);
-    }*/
-
     const initialValues = {
         username: getUser().username,
         bio: getUser().bio,

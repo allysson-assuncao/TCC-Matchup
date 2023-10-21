@@ -29,8 +29,8 @@ import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import getTheme from "../../theme";
 import {useCustomTheme} from "../../CustomThemeContext";
 import ProfilePicture from "../../components/ProfilePicture";
-import NotificationsMenu from "../../components/Contact/NotificationsMenu";
-/*import Contact from "../pages/Contact/Contact";*/
+import NotificationsMenu from "../../components/contact/NotificationsMenu";
+/*import contact from "../pages/contact/contact";*/
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -301,7 +301,7 @@ const AppBarHome = () => {
 
                 <CustomTabPanel value={value} index={0}>
                     {/*<Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>*/}
-                    {/*<Contact></Contact>*/}
+                    {/*<contact></contact>*/}
                     {/*<NotificationsMenu></NotificationsMenu>*/}
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>

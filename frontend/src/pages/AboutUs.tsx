@@ -8,7 +8,7 @@ import theme from "../theme";
 import {ROUTE_SIGN_IN} from "../App";
 import React, {useEffect} from "react";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import AppBarHome from "../containers/AppBars/AppBarHome";
+import AppBarHome from "../containers/appbars/AppBarHome";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 

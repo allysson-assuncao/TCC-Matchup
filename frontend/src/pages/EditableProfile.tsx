@@ -11,7 +11,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import AppBarHome from "../containers/AppBars/AppBarHome";
+import AppBarHome from "../containers/appbars/AppBarHome";
 import React, {useEffect, useState} from "react";
 import logo from "../../img/logo-matchup3.png";
 import {User} from "../model/user";
