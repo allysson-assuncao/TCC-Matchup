@@ -7,10 +7,13 @@ import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue("text")
-public abstract class  TextMessage extends Message{
+public class  TextMessage extends Message{
 
-    @ManyToOne
-    private Text hashedText;
+    @Column(name = "hashed_text", nullable = false, updatable = true)
+    private String hashedText;
+
+    @Column(name = "edited", nullable = false, updatable = true)
+    private boolean edited;
 
     // <editor-fold desc="Constructors">
     public TextMessage() {

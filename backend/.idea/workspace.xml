@@ -5,42 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Reworking Image making message classes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/MessageImageRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/TextRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ImageModelRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ProfilePictureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ProfilePictureRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/AgeRatingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/AgeRatingRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/CompanyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/GenreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/GenreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/LanguageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/LanguageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/PlatformRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/PlatformRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest_dependencies/SubGenreRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/interest/SubGenreRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/MessageImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/MessageImageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java" afterDir="false" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Working on Friendship Solicitation pendencies">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/AudioMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/AudioMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Image.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/TextRepository.java" beforeDir="false" />
     </list>
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Working on Friendship Solicitation pendencies" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,59 +59,19 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java">
-      <ranges>
-        <range start1="2" end1="4" start2="2" end2="6" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="11" end1="11" start2="13" end2="27" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="13" end1="14" start2="29" end2="45" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java">
-      <ranges>
-        <range start1="20" end1="21" start2="20" end2="21" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="24" end1="25" start2="24" end2="24" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="40" end1="41" start2="39" end2="39" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="4" end1="4" start2="5" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="10" end1="11" start2="13" end2="13" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="13" end1="14" start2="15" end2="17" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="15" end1="16" start2="18" end2="22" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="19" end1="20" start2="25" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="21" end1="22" start2="29" end2="32" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="23" end1="23" start2="33" end2="34" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="13" end1="15" start2="14" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="17" end1="18" start2="18" end2="18" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="21" end1="22" start2="21" end2="22" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="25" end1="26" start2="25" end2="25" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="29" end1="31" start2="28" end2="29" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="34" end1="35" start2="32" end2="33" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="37" end1="39" start2="35" end2="35" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="9" end1="10" start2="9" end2="10" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="11" end1="13" start2="11" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="18" end1="19" start2="21" end2="22" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="25" end1="26" start2="28" end2="29" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="29" end1="30" start2="32" end2="33" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java">
       <ranges>
-        <range start1="6" end1="7" start2="6" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="21" end1="21" start2="21" end2="23" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="23" end1="23" start2="25" end2="26" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="33" end1="33" start2="36" end2="37" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/image/MessageImage.java">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="2" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="16" end1="16" start2="15" end2="17" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="17" end1="17" start2="18" end2="22" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="20" end1="20" start2="25" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="21" end1="21" start2="29" end2="32" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="11" end1="12" start2="11" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="40" end1="44" start2="40" end2="40" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
       </ranges>
     </file>
   </component>

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "audio", schema = "matchup")
-public abstract class  Audio {
+public class  Audio {
 
     @Id
     @Column(nullable = false, updatable = false)

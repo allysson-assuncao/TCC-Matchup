@@ -12,7 +12,6 @@ public interface MessageImageRepository extends JpaRepository<MessageImage, Long
 
     Optional<MessageImage> findById(long id);
 
-    Optional<MessageImage> findByUserId(long id);
 
     void deleteById(long id);
 

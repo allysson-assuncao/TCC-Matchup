@@ -2,6 +2,8 @@ package com.matchup.dto;
 
 import com.matchup.enums.MessageType;
 import com.matchup.model.image.MessageImage;
+import jakarta.mail.Multipart;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,7 +22,7 @@ public class MessageDto {
 
     private boolean viewed;
 
-    private List<MessageImage> hashedImage;
+    private List<MultipartFile> hashedImage;
 
     private String hashedAudio;
 
@@ -74,11 +76,11 @@ public class MessageDto {
         this.viewed = viewed;
     }
 
-    public List<MessageImage> getHashedImage() {
+    public List<MultipartFile> getHashedImage() {
         return hashedImage;
     }
 
-    public void setHashedImage(List<MessageImage> hashedImage) {
+    public void setHashedImage(List<MultipartFile> hashedImage) {
         this.hashedImage = hashedImage;
     }
 
