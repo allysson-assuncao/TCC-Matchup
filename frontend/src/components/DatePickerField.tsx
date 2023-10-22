@@ -10,7 +10,6 @@ interface DatePickerFieldProps {
     id: string;
     label: string;
     sx: SxProps<Theme>;
-    // Adicione outras props personalizadas, se necessário
 }
 
 const DatePickerField: React.FC<DatePickerFieldProps & FieldProps> = ({ id, label, sx, field, form, meta }) => {

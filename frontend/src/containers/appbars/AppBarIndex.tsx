@@ -1,4 +1,4 @@
-import logo from '../img/logo-matchup2.png'
+import logo from '../../img/logo-matchup2.png'
 import * as React from "react";
 import {
     AppBar,
@@ -9,7 +9,6 @@ import {
     Toolbar,
     useScrollTrigger,
 } from "@mui/material";
-import theme from "../../theme";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
 import ToggleColorModeButton from "../../components/ToggleColorModeButton";

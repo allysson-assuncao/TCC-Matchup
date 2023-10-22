@@ -3,19 +3,13 @@ import {
     Container,
     CssBaseline,
     Box,
-    Avatar,
     Typography,
     TextField,
-    FormControlLabel,
-    Checkbox,
-    Button,
-    Grid,
-    Link
+    Grid
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {Field, FieldProps} from 'formik';
 import DatePickerField from "../../../components/DatePickerField";
-import logo from '../../img/logo-matchup3.png';
+import logo from '../../../img/logo-matchup3.png';
 
 const SignUpStep1: React.FC = () => {
     return (
@@ -29,9 +23,6 @@ const SignUpStep1: React.FC = () => {
                     alignItems: 'center',
                 }}
             >
-                {/*<Avatar sx={{m: 1, bgcolor: 'primary.main'}}>
-
-                </Avatar>*/}
                 <img src={logo+''} alt=""/>
                 <Typography component="h1" variant="h5">
                     Faça Cadastro

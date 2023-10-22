@@ -1,22 +1,13 @@
-import React, {useState} from "react";
+import React, {} from "react";
 import {
     Container,
     CssBaseline,
     Box,
-    Avatar,
     Typography,
     TextField,
-    FormControlLabel,
-    Checkbox,
-    Button,
-    Grid,
-    Link,
-    Alert, CardHeader,
 } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import InputMask from 'react-input-mask';
 import {Field, FieldProps} from "formik";
-import logo from '../../img/logo-matchup3.png';
+import logo from '../../../img/logo-matchup3.png';
 
 function formatPhoneNumber(value: any) {
     if (!value) {
@@ -37,30 +28,6 @@ function formatPhoneNumber(value: any) {
 }
 
 const SignUpStep4:  React.FC = () => {
-    //const [value, setValue] = useState();
-    /*const formik = useFormik({
-        initialValues: {
-            name: '',
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-        },
-        validationSchema: validateSignUpStep1, // Use o esquema Yup aqui
-        onSubmit: (values) => {
-            console.log(values); // Lógica de envio do formulário
-        },
-    });*/
-
-
-    /*
-        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const data = new FormData(event.currentTarget);
-
-        };
-    */
-
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline/>

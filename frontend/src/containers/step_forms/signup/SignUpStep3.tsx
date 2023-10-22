@@ -1,9 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-    FormControlLabel,
-    Checkbox,
-    Button,
-    Avatar,
     Autocomplete,
     Grid,
     Container,
@@ -11,15 +7,12 @@ import {
     Box, TextField, Typography
 } from '@mui/material';
 import {Field, ErrorMessage, FieldProps, FormikProps} from 'formik';
-import * as Yup from 'yup';
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import {Interest} from "../../../model/interest";
 import {getAllInterests} from "../../../api/user_requests/register";
-import logo from '../../img/logo-matchup3.png';
+import logo from '../../../img/logo-matchup3.png';
 
 const SignUpStep3: React.FC = () => {
     const [notSelectedInterests, setNotSelectedInterests] = useState<Interest[]>([]);
-    const [interests, setSelectedInterests] = useState<Interest[]>([]);
 
     useEffect(() => {
         const fetchData = async () => {

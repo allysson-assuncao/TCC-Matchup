@@ -1,11 +1,9 @@
 import React, {useState} from 'react';
-import {Formik, Form, Field, FieldProps, FormikProps, FormikHelpers} from 'formik';
-import * as Yup from 'yup';
+import {Formik, Form, Field, FieldProps, FormikHelpers} from 'formik';
 import {
     Container,
     CssBaseline,
     Box,
-    Avatar,
     Typography,
     TextField,
     FormControlLabel,
@@ -17,15 +15,14 @@ import {
 } from '@mui/material';
 import {emailExists, login, usernameExists, ValidationResponse} from '../api/user_requests/login';
 import {SignInPayload, User} from '../model/user';
-import {isEmail, validateEmail, validationLogin} from '../utils/validation/UserValidation';
+import {isEmail, validationLogin} from '../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
-import theme from "../theme";
 import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
-import logo from '../../img/logo-matchup3.png';
+import logo from '../img/logo-matchup3.png';
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {getUser, logout, removeProfilePicture} from "./Home";
+import {getUser} from "./Home";
 
 const SignIn = () => {
     const { theme: mode } = useCustomTheme();
@@ -42,13 +39,9 @@ const SignIn = () => {
 
     let userData: User;
     const handleSubmit = async (values: SignInPayload, formikProps: FormikHelpers<SignInPayload>) => {
-
         if(!valid){
             return;
         }
-        /*if(formikProps.isValid){
-
-        }*/
         try {
             let validationResponse: ValidationResponse;
 
@@ -105,7 +98,6 @@ const SignIn = () => {
                     backgroundColor: '9c27b0',
                 }}
             >
-                {/*<Avatar alt='Matchup' src={logo} />*/}
                 <img src={logo+''} alt=""/>
 
                 <Typography component="h1" variant="h5">

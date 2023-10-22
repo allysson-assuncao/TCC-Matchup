@@ -1,7 +1,16 @@
-/*
 import React from 'react';
+import {Typography} from "@mui/material";
 
-const Message = ({ text }) => <div>{text}</div>;
+interface MessageProps {
+    text: string;
+}
+
+const Message: React.FC<MessageProps> = ({ text }) => {
+
+    return(
+        <Typography>{text}</Typography>
+    );
+
+}
 
 export default Message;
-*/

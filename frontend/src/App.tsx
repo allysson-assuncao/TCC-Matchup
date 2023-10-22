@@ -11,7 +11,6 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import {User} from "./model/user";
 import ForgotPassword from "./pages/ForgotPassword";
 import EditableProfile from "./pages/EditableProfile";
 import AboutUs from "./pages/AboutUs";
@@ -20,8 +19,6 @@ import EditProfile from "./containers/options/EditProfile";
 import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
-import ContactTabs from "./components/Contacts/ContactTabs";
-import ErrorBoundary from "./utils/ErrorBoundary";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
