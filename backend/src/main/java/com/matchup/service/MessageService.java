@@ -141,6 +141,7 @@ public class MessageService {
         textMessage.setDate(LocalDateTime.now());
         textMessage.setReceiver(receiver);
         textMessage.setSender(sender);
+        textMessage.setHashedText(messageDto.getHashedText());
         TextMessage savedTextMessage = textMessageRepository.save(textMessage);
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
