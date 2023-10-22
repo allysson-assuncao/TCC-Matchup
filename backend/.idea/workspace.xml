@@ -4,25 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Reworking Image making message classes">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/WebSocketConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/MessageImageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/MessageImageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Working on Friendship Solicitation pendencies">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/AudioMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/AudioMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/ImageMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Text.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/TextRepository.java" beforeDir="false" />
-    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,19 +54,10 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/TextMessage.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java">
       <ranges>
-        <range start1="9" end1="10" start2="9" end2="10" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="11" end1="13" start2="11" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="18" end1="19" start2="21" end2="22" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
-        <range start1="25" end1="26" start2="28" end2="29" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
-        <range start1="29" end1="30" start2="32" end2="33" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Audio.java">
-      <ranges>
-        <range start1="11" end1="12" start2="11" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="40" end1="44" start2="40" end2="40" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="143" end1="143" start2="143" end2="144" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
+        <range start1="145" end1="145" start2="146" end2="147" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
       </ranges>
     </file>
   </component>
@@ -180,6 +166,8 @@
       <workItem from="1697478825264" duration="8000" />
       <workItem from="1697544995417" duration="6001000" />
       <workItem from="1697571212310" duration="1253000" />
+      <workItem from="1697992559353" duration="676000" />
+      <workItem from="1697993239679" duration="7444000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -469,7 +457,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697551148269</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
+      <option name="closed" value="true" />
+      <created>1697897520629</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1697897520629</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
+      <option name="closed" value="true" />
+      <created>1697897532093</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1697897532093</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,6 +497,7 @@
     <MESSAGE value=";-; idProfile is making us mad" />
     <MESSAGE value="Working on Friendship Solicitation pendencies" />
     <MESSAGE value="Reworking Image making message classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworking Image making message classes" />
+    <MESSAGE value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
   </component>
 </project>

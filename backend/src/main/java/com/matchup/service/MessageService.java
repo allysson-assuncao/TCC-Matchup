@@ -143,6 +143,7 @@ public class MessageService {
         textMessage.setSender(sender);
         TextMessage savedTextMessage = textMessageRepository.save(textMessage);
         messageDto.setDate(savedTextMessage.getDate());
+        messageDto.setId(savedTextMessage.getId());
         return messageDto;
     }
 
