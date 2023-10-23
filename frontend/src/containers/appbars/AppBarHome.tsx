@@ -30,7 +30,7 @@ import getTheme from "../../theme";
 import {useCustomTheme} from "../../CustomThemeContext";
 import ProfilePicture from "../../components/ProfilePicture";
 import NotificationsMenu from "../../components/contact/NotificationsMenu";
-/*import contact from "../pages/contact/contact";*/
+import ContactPage from "../../pages/ContactPage";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -81,15 +81,6 @@ const AppBarHome = () => {
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
     const history = useNavigate();
     const [value, setValue] = React.useState(0);
-
-   /* myRef = React.createRef();
-
-    componentDidMount() {
-        if (this.myRef.current) {
-            this.myRef.current.click();
-        }
-    }*/
-
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
@@ -308,7 +299,7 @@ const AppBarHome = () => {
             <Box sx={{border: '3px solid white'}}>
                 <CustomTabPanel value={value} index={0}>
                     {/*<NotificationsMenu></NotificationsMenu>*/}
-                    <Contact></Contact>
+                    <ContactPage></ContactPage>
                 </CustomTabPanel>
             </Box>
             <CustomTabPanel value={value} index={1}>
@@ -319,8 +310,7 @@ const AppBarHome = () => {
             </CustomTabPanel>
 
         </Box>
-    )
-
+    );
 }
 
 export default AppBarHome;

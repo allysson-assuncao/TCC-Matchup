@@ -1,5 +1,3 @@
-
-
 export interface Notification {
     id: bigint;
     senderId: bigint;

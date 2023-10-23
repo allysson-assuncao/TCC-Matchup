@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -19,7 +19,7 @@ import EditProfile from "./containers/options/EditProfile";
 import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
-import Contact from "./pages/Contact";
+import ContactPage from "./pages/ContactPage";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
@@ -34,6 +34,13 @@ export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
+
+    useEffect(() => {
+        // Coloque o código que deseja executar aqui
+        console.log("Código executado quando o componente é montado ou quando o usuário acessa a plataforma");
+        // Pode ser uma chamada de API, manipulação de estado, etc.
+    }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
+
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
             <Route>
@@ -47,7 +54,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<Contact/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage/>}/>
 
             </Route>
         )

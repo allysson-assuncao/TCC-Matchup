@@ -4,20 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/WebSocketConfig.java" afterDir="false" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working in a bunch of stuff (Contact, Message and its types)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/ContactTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/ContactTab.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/Message.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/model/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/message.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/model/notification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/notification.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/model/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
-    </list>
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -53,13 +57,8 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java">
-      <ranges>
-        <range start1="143" end1="143" start2="143" end2="144" changelist="a997d091-d57c-4564-aa89-23fd9d581a67" />
-        <range start1="145" end1="145" start2="146" end2="147" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-autoconfigure/3.1.2/spring-boot-autoconfigure-3.1.2.jar!/org/springframework/boot/autoconfigure/jdbc/DataSourceProperties.class" root0="SKIP_INSPECTION" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -168,6 +167,7 @@
       <workItem from="1697571212310" duration="1253000" />
       <workItem from="1697992559353" duration="676000" />
       <workItem from="1697993239679" duration="7444000" />
+      <workItem from="1698086208398" duration="2588000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

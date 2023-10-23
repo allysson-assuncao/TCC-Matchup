@@ -1,17 +1,23 @@
-import {User} from "./user";
-
-export enum DefaultPrivacyLevel {
-    public = "public",
-    private = "private",
-    contacts = "contacts",
+export const MESSAGE_TYPE = {
+    TEXT: 'TEXT',
+    AUDIO: 'AUDIO',
+    IMAGE: 'IMAGE'
 }
 
 export interface Message {
     id: bigint;
-    hashedContent: string;
     date: Date;
-    extension: string;
-    sender: User;
-    receiver: User;
-    status: string;
+    senderId: bigint;
+    receiverId: bigint;
+    viewed: boolean;
+    messageType: string;
+    hashedImage: string;
+    hashedAudio: string;
+    hashedText: string;
+
+    /*private List<MultipartFile> hashedImage;
+
+    private String hashedAudio;
+
+    private String hashedText;*/
 }

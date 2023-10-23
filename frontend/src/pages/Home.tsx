@@ -87,7 +87,7 @@ const Home = () => {
     if (!loggedUser) return null;
 
     return (
-           <AppBarHome></AppBarHome>
+        <AppBarHome></AppBarHome>
 
 
         /*<Container component="main" maxWidth="xs">
