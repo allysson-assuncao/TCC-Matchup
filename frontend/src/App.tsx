@@ -1,9 +1,9 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
-    RouterProvider, useNavigate
+    RouterProvider
 } from 'react-router-dom'
 import './App.css';
 import AppIndex from './pages/AppIndex';
@@ -30,7 +30,7 @@ export const ROUTE_FORGOT_PASSWORD = '/esquececu_a_senha';
 export const ROUTE_SETTINGS = '/configuracoes';
 export const ROUTE_ABOUT_US = '/sobre_nos';
 export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
-export const ROUTE_CONTACT_TABS = '/contatos';
+export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
     const contacts = [
@@ -58,7 +58,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_TABS} element={<ContactTabs contacts={contacts}/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<Contact/>}/>
             </Route>
         )
     ), []);
