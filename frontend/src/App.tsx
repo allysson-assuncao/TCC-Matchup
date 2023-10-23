@@ -19,6 +19,7 @@ import EditProfile from "./containers/options/EditProfile";
 import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
+import Contact from "./pages/Contact";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
@@ -33,18 +34,6 @@ export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
-    const contacts = [
-        {
-            id: '1',
-            name: 'Contato 1',
-            imageUrl: '',
-        },
-        {
-            id: '2',
-            name: 'Contato 2',
-            imageUrl: '',
-        },
-    ];
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
             <Route>
