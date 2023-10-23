@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import Grid from "@mui/material/Grid";
 import {Tab, Tabs, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
@@ -72,4 +72,39 @@ const ContactList = () => {
         </Grid>
     );
 }
+export default ContactList;*/
+
+
+import * as React from "react";
+import {Grid, Tab, Tabs} from "@mui/material";
+import ContactTab from "../../components/contact/ContactTab";
+
+const ContactList = ({contacts, setSelectedContact}) => {
+
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setValue(newValue);
+        setSelectedContact(contacts[newValue]);
+    };
+
+    return (
+        <Grid container>
+            <Tabs
+                orientation="vertical"
+                variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="Vertical tabs example"
+                sx={{borderRight: 1, borderColor: 'divider'}}
+            >
+                {contacts.map((contact) => (
+                    <ContactTab id= name={contact.name} viewed={contact.viewed}></ContactTab>
+                    /*<Tab label={contact.name} key={contact.id}/>*/
+                ))}
+            </Tabs>
+        </Grid>
+    );
+}
+
 export default ContactList;

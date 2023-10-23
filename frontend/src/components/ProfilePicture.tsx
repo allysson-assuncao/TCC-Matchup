@@ -34,7 +34,6 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
             }else{
                 url = localStorage.getItem('profilePicture') + "";
             }
-            console.log(url)
             setProfilePicture(url);
         }
 

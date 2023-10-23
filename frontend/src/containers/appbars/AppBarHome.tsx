@@ -67,15 +67,15 @@ function a11yProps(index: number) {
 
 const settings = ['Perfil', 'Configurações', 'Contato', '', 'Sair'];
 const menuIcons: { [key: string]: React.ReactElement } = {
-    'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'} />,
-    'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'} />,
-    'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'} />,
-    'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'} />,
+    'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'}/>,
+    'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'}/>,
+    'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'}/>,
+    'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'}/>,
     '': <ToggleColorModeButton buttonText='Mudar Tema'/>,
 };
 
 const AppBarHome = () => {
-    const { theme: mode } = useCustomTheme();
+    const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
@@ -120,69 +120,74 @@ const AppBarHome = () => {
 
     return (
         <Box bgcolor={theme.palette.background.default}>
-            <Container component="main">
-                <CssBaseline/>
-                <AppBar position="static"
-                        color="default"
-                        elevation={0}
-                        sx={{
-                            border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                            marginTop: '15px',
-                            borderRadius: '40px',
-                            bgcolor: 'background.default',
-                        }}>
-
-                    <Container maxWidth="xl">
-
-                        <Toolbar disableGutters>
-                            <Typography
-                                variant="h6"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 2,
-                                    display: {xs: 'none', md: 'flex'},
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                <img src={logo + ''}/>
-                            </Typography>
-
-                            <Box bgcolor={theme.palette.background.default} sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
-                                <IconButton
-                                    size="large"
-                                    aria-label="account of current user"
-                                    aria-controls="menu-appbar"
-                                    aria-haspopup="true"
-                                    onClick={handleOpenNavMenu}
-                                    color="inherit"
-                                >
-                                    <MenuIcon/>
-                                </IconButton>
-                                <Menu
-                                    id="menu-appbar"
-                                    anchorEl={anchorElNav}
-                                    anchorOrigin={{
-                                        vertical: 'bottom',
-                                        horizontal: 'left',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'left',
-                                    }}
-                                    open={Boolean(anchorElNav)}
-                                    onClose={handleCloseNavMenu}
+            <CssBaseline/>
+            <Grid
+                container
+                direction="row"
+                justifyContent="center"
+                alignItems="center"
+            >
+                <Grid item xs={8} md={6}>
+                    <AppBar position="static"
+                            color="default"
+                            elevation={0}
+                            sx={{
+                                border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                                marginTop: '15px',
+                                borderRadius: '40px',
+                                bgcolor: 'background.default',
+                            }}>
+                        <Container>
+                            <Toolbar disableGutters>
+                                <Typography
+                                    variant="h6"
+                                    noWrap
+                                    component="a"
+                                    href="/"
                                     sx={{
-                                        display: {xs: 'block', md: 'none'},
+                                        mr: 2,
+                                        display: {xs: 'none', md: 'flex'},
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        letterSpacing: '.3rem',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
                                     }}
                                 >
-                                   {/* //{pages.map((page) => (*/}
+                                    <img src={logo + ''}/>
+                                </Typography>
+
+                                <Box bgcolor={theme.palette.background.default}
+                                     sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                                    <IconButton
+                                        size="large"
+                                        aria-label="account of current user"
+                                        aria-controls="menu-appbar"
+                                        aria-haspopup="true"
+                                        onClick={handleOpenNavMenu}
+                                        color="inherit"
+                                    >
+                                        <MenuIcon/>
+                                    </IconButton>
+                                    <Menu
+                                        id="menu-appbar"
+                                        anchorEl={anchorElNav}
+                                        anchorOrigin={{
+                                            vertical: 'bottom',
+                                            horizontal: 'left',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'left',
+                                        }}
+                                        open={Boolean(anchorElNav)}
+                                        onClose={handleCloseNavMenu}
+                                        sx={{
+                                            display: {xs: 'block', md: 'none'},
+                                        }}
+                                    >
+                                        {/* //{pages.map((page) => (*/}
                                         <MenuItem onClick={handleCloseNavMenu}>
                                             <Box justifyContent={'center'} sx={{
                                                 display: {md: 'flex'},
@@ -197,44 +202,44 @@ const AppBarHome = () => {
                                                 </Tabs>
                                             </Box>
                                         </MenuItem>
-                                </Menu>
-                            </Box>
-                            <Typography
-                                variant="h5"
-                                noWrap
-                                component="a"
-                                href="/"
-                                sx={{
-                                    mr: 2,
-                                    display: {xs: 'flex', md: 'none'},
+                                    </Menu>
+                                </Box>
+                                <Typography
+                                    variant="h5"
+                                    noWrap
+                                    component="a"
+                                    href="/"
+                                    sx={{
+                                        mr: 2,
+                                        display: {xs: 'flex', md: 'none'},
+                                        flexGrow: 1,
+                                        fontFamily: 'monospace',
+                                        fontWeight: 700,
+                                        letterSpacing: '.3rem',
+                                        color: 'inherit',
+                                        textDecoration: 'none',
+                                    }}
+                                >
+                                    <img src={logo + ''}/>
+                                </Typography>
+                                <Box justifyContent={'center'} sx={{
                                     flexGrow: 1,
-                                    fontFamily: 'monospace',
-                                    fontWeight: 700,
-                                    letterSpacing: '.3rem',
-                                    color: 'inherit',
-                                    textDecoration: 'none',
-                                }}
-                            >
-                                <img src={logo + ''}/>
-                            </Typography>
-                            <Box justifyContent={'center'} sx={{
-                                flexGrow: 1,
-                                display: {xs: 'none', md: 'flex'},
-                                bgcolor: `theme.palette.background.default`
-                            }}>
-                                <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
-                                    <Box>
-                                        <Tabs
-                                            value={value}
-                                            onChange={handleChange}
-                                        >
-                                            <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
-                                            <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
-                                            <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
-                                        </Tabs>
-                                    </Box>
-                                </Toolbar>
-                                {/*{pages.map((page) => (
+                                    display: {xs: 'none', md: 'flex'},
+                                    bgcolor: `theme.palette.background.default`
+                                }}>
+                                    <Toolbar sx={{display: 'flex', justifyContent: 'center'}}>
+                                        <Box>
+                                            <Tabs
+                                                value={value}
+                                                onChange={handleChange}
+                                            >
+                                                <Tab icon={<PersonAddIcon/>} iconPosition="start" label="Encontro"/>
+                                                <Tab icon={<HomeIcon/>} iconPosition="start" label="Menu"/>
+                                                <Tab icon={<GroupIcon/>} iconPosition="start" label="Contatos"/>
+                                            </Tabs>
+                                        </Box>
+                                    </Toolbar>
+                                    {/*{pages.map((page) => (
                                 <Button
                                     key={page}
                                     onClick={handleCloseNavMenu}
@@ -243,74 +248,76 @@ const AppBarHome = () => {
                                     {page}
                                 </Button>
                             ))}*/}
-                            </Box>
-                            <Grid sx={{mr: '30px', ml: '20px'}}>
-                                <NotificationsMenu></NotificationsMenu>
-                            </Grid>
-                            <Box sx={{flexGrow: 0}}>
-                                <Tooltip title="Abrir opções">
-                                    <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                        <ProfilePicture id={getUser().id} small={true}></ProfilePicture>
-                                    </IconButton>
-                                </Tooltip>
-                                <Menu
-                                    sx={{mt: '45px' }}
-                                    id="menu-appbar"
-                                    anchorEl={anchorElUser}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorElUser)}
-                                    onClose={handleCloseUserMenu}
-                                >
-                                    {settings.map((setting) => (
-                                        <MenuItem
-                                            key={setting}
-                                            onClick={() => {
-                                                handleCloseUserMenu();
-                                                if (setting === 'Perfil') {
-                                                    history(`${ROUTE_PROFILE}/${getUser().username}`);
-                                                } else if (setting === 'Configurações') {
-                                                    history(ROUTE_SETTINGS);
-                                                } else if (setting === 'Contato') {
-                                                    history(ROUTE_ABOUT_US);
-                                                } else if (setting === 'Mudar Tema') {
+                                </Box>
+                                <Grid sx={{mr: '30px', ml: '20px'}}>
+                                    <NotificationsMenu></NotificationsMenu>
+                                </Grid>
+                                <Box sx={{flexGrow: 0}}>
+                                    <Tooltip title="Abrir opções">
+                                        <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                                            <ProfilePicture id={getUser().id} small={true}></ProfilePicture>
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Menu
+                                        sx={{mt: '45px'}}
+                                        id="menu-appbar"
+                                        anchorEl={anchorElUser}
+                                        anchorOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        keepMounted
+                                        transformOrigin={{
+                                            vertical: 'top',
+                                            horizontal: 'right',
+                                        }}
+                                        open={Boolean(anchorElUser)}
+                                        onClose={handleCloseUserMenu}
+                                    >
+                                        {settings.map((setting) => (
+                                            <MenuItem
+                                                key={setting}
+                                                onClick={() => {
+                                                    handleCloseUserMenu();
+                                                    if (setting === 'Perfil') {
+                                                        history(`${ROUTE_PROFILE}/${getUser().username}`);
+                                                    } else if (setting === 'Configurações') {
+                                                        history(ROUTE_SETTINGS);
+                                                    } else if (setting === 'Contato') {
+                                                        history(ROUTE_ABOUT_US);
+                                                    } else if (setting === 'Mudar Tema') {
 
-                                                } else if (setting === 'Sair') {
-                                                    logout();
-                                                }
-                                            }}
-                                        >
-                                            {menuIcons[setting]}
+                                                    } else if (setting === 'Sair') {
+                                                        logout();
+                                                    }
+                                                }}
+                                            >
+                                                {menuIcons[setting]}
 
-                                            <Typography textAlign="center">{setting}</Typography>
-                                        </MenuItem>
-                                    ))}
-                                </Menu>
-                            </Box>
-                        </Toolbar>
+                                                <Typography textAlign="center">{setting}</Typography>
+                                            </MenuItem>
+                                        ))}
+                                    </Menu>
+                                </Box>
+                            </Toolbar>
+                        </Container>
+                    </AppBar>
+                </Grid>
+            </Grid>
 
-                    </Container>
-                </AppBar>
-
+            <Box sx={{border: '3px solid white'}}>
                 <CustomTabPanel value={value} index={0}>
-                    {/*<Notification type={NOTIFICATION_TYPES.FRIENDSHIP_SOLICITATION} date={new Date()} sender={getUser()}></Notification>*/}
-                    {/*<contact></contact>*/}
                     {/*<NotificationsMenu></NotificationsMenu>*/}
+                    <Contact></Contact>
                 </CustomTabPanel>
-                <CustomTabPanel value={value} index={1}>
-                    Item Two
-                </CustomTabPanel>
-                <CustomTabPanel value={value} index={2}>
+            </Box>
+            <CustomTabPanel value={value} index={1}>
+                Item Two
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
 
-                </CustomTabPanel>
-            </Container>
+            </CustomTabPanel>
+
         </Box>
     )
 

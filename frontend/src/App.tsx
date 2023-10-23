@@ -37,7 +37,7 @@ const App: React.FC = () => {
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
             <Route>
-                <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
+                <Route path={ROUTE_INDEX} index element={<YourComponent/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
                 <Route path={ROUTE_HOME} element={<Home/>}/>
@@ -48,6 +48,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
                 <Route path={ROUTE_CONTACT_PROTOTYPE} element={<Contact/>}/>
+
             </Route>
         )
     ), []);
@@ -60,5 +61,11 @@ const App: React.FC = () => {
         </ThemeProvider>
     );
 }
+
+const YourComponent = () => {
+
+
+    return <div>Seu componente React</div>;
+};
 
 export default App;
