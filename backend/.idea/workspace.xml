@@ -4,24 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working in a bunch of stuff (Contact, Message and its types)">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="working on the request to send all contacts, changes on the message repository, service, contact repository, service...">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ContactController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Contact.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/message/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/MessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/ContactTab.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/ContactTab.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/Message.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/model/message.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/message.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/model/notification.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/notification.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/model/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Contact.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,6 +167,7 @@
       <workItem from="1697992559353" duration="676000" />
       <workItem from="1697993239679" duration="7444000" />
       <workItem from="1698086208398" duration="2588000" />
+      <workItem from="1698150322033" duration="4102000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -498,6 +498,7 @@
     <MESSAGE value="Working on Friendship Solicitation pendencies" />
     <MESSAGE value="Reworking Image making message classes" />
     <MESSAGE value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
+    <MESSAGE value="working on the request to send all contacts, changes on the message repository, service, contact repository, service..." />
+    <option name="LAST_COMMIT_MESSAGE" value="working on the request to send all contacts, changes on the message repository, service, contact repository, service..." />
   </component>
 </project>

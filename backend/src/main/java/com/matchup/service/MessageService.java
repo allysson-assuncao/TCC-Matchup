@@ -32,7 +32,6 @@ public class MessageService {
 
     private final TextMessageRepository textMessageRepository;
 
-
     private final AudioRepository audioRepository;
 
     private final MessageImageRepository messageImageRepository;
@@ -73,14 +72,14 @@ public class MessageService {
         contactRepository.save(contact2);
 
         switch (messageDto.getMessageType()){
+            case TEXT -> {
+                return sendTextMessage(messageDto, receiverOp.get(), senderOp.get());
+            }
             case AUDIO -> {
                 return /*sendAudioMessage(messageDto, receiverOp.get(), senderOp.get())*/ null;
             }
             case IMAGE -> {
                 return /*sendImageMessage(messageDto, receiverOp.get(), senderOp.get())*/ null;
-            }
-            case TEXT -> {
-                return sendTextMessage(messageDto, receiverOp.get(), senderOp.get());
             }
         }
 

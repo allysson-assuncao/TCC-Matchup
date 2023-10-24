@@ -50,14 +50,25 @@ const contacts: Contact[] = [
                 messageType: MESSAGE_TYPE.TEXT,
                 hashedImage: '',
                 hashedAudio: '',
+                hashedText: 'Mensagem 1'
+            },
+            {
+                id: BigInt(2),
+                date: new Date(),
+                senderId: BigInt(1),
+                receiverId: BigInt(2),
+                viewed: false,
+                messageType: MESSAGE_TYPE.TEXT,
+                hashedImage: '',
+                hashedAudio: '',
                 hashedText: 'Mensagem 2'
             }
         ]
     },
     {
         id: BigInt(2),
-        user1Id: BigInt(3),
-        user2Id: BigInt(4),
+        user1Id: BigInt(2),
+        user2Id: BigInt(1),
         user2Username: 'Contato 2',
         viewed: false,
         messages: [
@@ -94,7 +105,6 @@ const ContactPage = () => {
     const theme = getTheme(mode);
     const history = useNavigate();
 
-    // @ts-ignore
     return (
         <Grid
             container

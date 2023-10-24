@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Grid, Tabs} from "@mui/material";
+import {Grid, Tab, Tabs} from "@mui/material";
 import ContactTab from "../../components/contact/ContactTab";
 import {Contact} from "../../model/contact";
 
@@ -15,6 +15,7 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setSelectedContact }) =
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
         setSelectedContact(contacts[newValue]);
+        console.log(newValue);
     };
 
     return (
@@ -28,8 +29,8 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setSelectedContact }) =
                 sx={{borderRight: 1, borderColor: 'divider'}}
             >
                 {contacts.map((contact) => (
-                    <ContactTab id={BigInt(value)} name={contact.user2Username} viewed={contact.viewed}></ContactTab>
-                    /*<Tab label={contact.name} key={contact.id}/>*/
+                    /*<ContactTab id={BigInt(value)} username={contact.user2Username} viewed={contact.viewed} key={contact.id.toString()}></ContactTab>*/
+                    <Tab label={contact.user2Username} key={contact.id.toString()}/>
                 ))}
             </Tabs>
         </Grid>

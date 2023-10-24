@@ -36,15 +36,21 @@ export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 const App: React.FC = () => {
 
     useEffect(() => {
-        // Coloque o código que deseja executar aqui
-        console.log("Código executado quando o componente é montado ou quando o usuário acessa a plataforma");
-        // Pode ser uma chamada de API, manipulação de estado, etc.
+        if (!sessionStorage.getItem('hasRunBefore')) {
+            // Coloque o código que deseja executar aqui
+            console.log("Código executado quando o componente é montado ou quando o usuário acessa a plataforma");
+            // Pode ser uma chamada de API, manipulação de estado, etc.
+
+            // Depois que o código for executado, defina um item na sessionStorage para que não seja executado novamente
+            sessionStorage.setItem('hasRunBefore', 'true');
+        }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
+
 
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
             <Route>
-                <Route path={ROUTE_INDEX} index element={<YourComponent/>}/>
+                <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
                 <Route path={ROUTE_HOME} element={<Home/>}/>
@@ -55,7 +61,6 @@ const App: React.FC = () => {
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
                 <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage/>}/>
-
             </Route>
         )
     ), []);
@@ -68,11 +73,5 @@ const App: React.FC = () => {
         </ThemeProvider>
     );
 }
-
-const YourComponent = () => {
-
-
-    return <div>Seu componente React</div>;
-};
 
 export default App;
