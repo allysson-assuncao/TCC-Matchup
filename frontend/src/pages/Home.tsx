@@ -18,6 +18,7 @@ import AppBarHome from "../containers/appbars/AppBarHome";
 import logo from '../img/logo-matchup2.png'
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
+import {Contact} from "../model/contact";
 
 var loggedUser: User;
 
@@ -62,7 +63,12 @@ export const logout = () => {
     history(ROUTE_SIGN_IN);
 }
 
-const Home = () => {
+interface HomeProps {
+    contacts: Contact[] | null;
+    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+}
+
+const Home: React.FC<HomeProps> = ({contacts, setContacts}) => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     history = useNavigate();
@@ -87,7 +93,7 @@ const Home = () => {
     if (!loggedUser) return null;
 
     return (
-        <AppBarHome></AppBarHome>
+        <AppBarHome contacts={contacts} setContacts={setContacts}></AppBarHome>
 
 
         /*<Container component="main" maxWidth="xs">

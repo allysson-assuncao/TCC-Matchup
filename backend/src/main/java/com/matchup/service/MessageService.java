@@ -55,9 +55,10 @@ public class MessageService {
     public MessageDto sendMessage(MessageDto messageDto){
         Optional<User> receiverOp = userRepository.findById(messageDto.getReceiverId());
         if(receiverOp.isEmpty()) return null;
-        Optional<User> senderOp = userRepository.findById(messageDto.getReceiverId());
+        Optional<User> senderOp = userRepository.findById(messageDto.getSenderId());
         if(senderOp.isEmpty()) return null;
 
+        if(contactRepository.existsByUser1IdAndUser2Id(senderOp.get().getId(), receiverOp.get().getId())) return null;
         Contact contact1 = new Contact();
         contact1.setDisplayed(true);
         contact1.setUser1(senderOp.get());

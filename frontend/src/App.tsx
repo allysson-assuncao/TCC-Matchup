@@ -9,7 +9,7 @@ import './App.css';
 import AppIndex from './pages/AppIndex';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
-import Home from "./pages/Home";
+import Home, {getUser} from "./pages/Home";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import EditableProfile from "./pages/EditableProfile";
@@ -20,8 +20,10 @@ import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
 import ContactPage from "./pages/ContactPage";
-import {User} from "./model/user";
 import {Contact} from "./model/contact";
+import {getContactsByUserId} from "./api/user_requests/contactRequests";
+import {Message} from "./model/message";
+import {getNotificationsByUserId} from "./api/user_requests/notificationRequests";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
@@ -39,10 +41,38 @@ const App: React.FC = () => {
 
     const [contacts, setContacts] = useState<Contact[] | null>(null);
 
+    const updateContactsWithMessage = (contactId: bigint, message: Message) => {
+        // @ts-ignore
+        setContacts(prevContacts => {
+            if(prevContacts == null)
+            return prevContacts.map(contact => {
+                if (contact.id === contactId) {
+                    return {
+                        ...contact,
+                        messages: [...contact.messages, {...message}]
+                    };
+                } else {
+                    return contact;
+                }
+            });
+        });
+    };
+
+    const fetchContacts = async () => {
+        try {
+            const fetchedContacts = await getContactsByUserId(getUser().id);
+            setContacts(fetchedContacts);
+            return true;
+        } catch (error) {
+            console.error("Erro ao buscar notificações:", error);
+        }
+    };
+
     useEffect(() => {
         if (!sessionStorage.getItem('hasRunBefore')) {
 
-
+            fetchContacts();
+            console.log('')
 
             sessionStorage.setItem('hasRunBefore', 'true');
         }
@@ -55,14 +85,14 @@ const App: React.FC = () => {
                 <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
-                <Route path={ROUTE_HOME} element={<Home/>}/>
+                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts}/>}/>
                 <Route path="/perfil/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>
                 <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage contacts={contacts} setContacts={setContacts}/>}/>
             </Route>
         )
     ), []);

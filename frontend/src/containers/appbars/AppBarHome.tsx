@@ -31,6 +31,7 @@ import {useCustomTheme} from "../../CustomThemeContext";
 import ProfilePicture from "../../components/ProfilePicture";
 import NotificationsMenu from "../../components/contact/NotificationsMenu";
 import ContactPage from "../../pages/ContactPage";
+import {Contact} from "../../model/contact";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -74,7 +75,12 @@ const menuIcons: { [key: string]: React.ReactElement } = {
     '': <ToggleColorModeButton buttonText='Mudar Tema'/>,
 };
 
-const AppBarHome = () => {
+interface AppBarHomeProps {
+    contacts: Contact[] | null;
+    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+}
+
+const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -299,7 +305,7 @@ const AppBarHome = () => {
             <Box sx={{border: '3px solid white'}}>
                 <CustomTabPanel value={value} index={0}>
                     {/*<NotificationsMenu></NotificationsMenu>*/}
-                    <ContactPage></ContactPage>
+                    <ContactPage contacts={contacts} setContacts={setContacts}/>
                 </CustomTabPanel>
             </Box>
             <CustomTabPanel value={value} index={1}>

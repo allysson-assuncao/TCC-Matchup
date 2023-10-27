@@ -2,6 +2,7 @@ package com.matchup.service;
 
 import com.matchup.dto.ContactDto;
 import com.matchup.dto.MessageDto;
+import com.matchup.enums.MessageType;
 import com.matchup.model.Contact;
 import com.matchup.model.message.AudioMessage;
 import com.matchup.model.message.ImageMessage;
@@ -12,6 +13,7 @@ import com.matchup.repository.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,9 +32,9 @@ public class ContactService {
     public List<ContactDto> getContactsByUser1Id(long user1Id) {
         if (contactRepository.findContactsByUser1Id(user1Id).isEmpty()) return null;
         List<Contact> contactList = contactRepository.findContactsByUser1Id(user1Id).get();
-        List<ContactDto> contactDtoList = null;
+        List<ContactDto> contactDtoList = new ArrayList<>();
         List<Message> messageList;
-        List<MessageDto> messageDtoList = null;
+        List<MessageDto> messageDtoList = new ArrayList<>();
         for (Contact contact : contactList) {
             ContactDto contactDto = new ContactDto();
             contactDto.setId(contact.getId());
@@ -41,6 +43,8 @@ public class ContactService {
             contactDto.setDisplayed(contact.isDisplayed());
             contactDto.setUser2Username(contact.getUser2().getUsername());
             messageList = messageRepository.findMessagesBySenderIdAndReceiverId(contactDto.getUser1Id(), contactDto.getUser2Id()).get();
+            System.out.println(messageList);
+            System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO MORA NUM ABAXI EMBAIXO DO MAR, BOB ESPONJA, CALÇA QUADRADA!");
             for (Message message : messageList) {
                 MessageDto messageDto = new MessageDto();
                 messageDto.setId(message.getId());
