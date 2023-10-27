@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
     createBrowserRouter,
     createRoutesFromElements,
@@ -20,6 +20,8 @@ import {useCustomTheme} from "./CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
 import ContactPage from "./pages/ContactPage";
+import {User} from "./model/user";
+import {Contact} from "./model/contact";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
@@ -35,13 +37,13 @@ export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
 
+    const [contacts, setContacts] = useState<Contact[] | null>(null);
+
     useEffect(() => {
         if (!sessionStorage.getItem('hasRunBefore')) {
-            // Coloque o código que deseja executar aqui
-            console.log("Código executado quando o componente é montado ou quando o usuário acessa a plataforma");
-            // Pode ser uma chamada de API, manipulação de estado, etc.
 
-            // Depois que o código for executado, defina um item na sessionStorage para que não seja executado novamente
+
+
             sessionStorage.setItem('hasRunBefore', 'true');
         }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
