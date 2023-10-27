@@ -26,11 +26,11 @@ public class MessageController {
     }
 
 
-    /*@PostMapping("/send-message")
+    @PostMapping("/send-message")
     @PostAuthorize("true")
     public ResponseEntity<MessageDto> sendMessage(@RequestBody MessageDto messageDto) {
         return new ResponseEntity<>(messageService.sendMessage(messageDto), HttpStatus.OK);
-    }*/
+    }
 
     /*@MessageMapping("/message")
     @SendTo("/chatroom/public")

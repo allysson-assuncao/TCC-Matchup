@@ -34,10 +34,10 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Data inválida", HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NullPointerException.class)
+    /*@ExceptionHandler(NullPointerException.class)
     public ResponseEntity<Object> handleNullPointer(NullPointerException ex) {
         return new ResponseEntity<>("Usuário não encontrado", HttpStatus.BAD_REQUEST);
-    }
+    }*/
 
     @ExceptionHandler(InvalidPasswordException.class)
     public ResponseEntity<Object> handleInvalidPassword(IllegalArgumentException ex) {

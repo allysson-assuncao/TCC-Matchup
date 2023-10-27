@@ -19,4 +19,6 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     Optional<List<Contact>> findContactsByUser1Id(long user1Id);
 
+    boolean existsByUser1IdAndUser2Id(long user1Id, long user2Id);
+
 }

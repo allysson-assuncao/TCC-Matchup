@@ -50,22 +50,30 @@ public class ContactService {
                 messageDto.setId(message.getId());
                 messageDto.setDate(message.getDate());
                 messageDto.setSenderId(message.getSender().getId());
-                /*messageDto.setViewed(message.get);*/ //requires smt
-                /*messageDto.setMessageType(message.get);*/ //set message type
-                switch (messageDto.getMessageType()){
-                    case TEXT -> {
+                messageDto.setViewed(message.isViewed());
+                String messageType = message.getClass().getSimpleName();
+
+                switch (messageType) {
+                    case "TextMessage" -> {
+                        messageDto.setMessageType(MessageType.TEXT);
                         TextMessage textMessage = (TextMessage) message;
                         messageDto.setHashedText(textMessage.getHashedText());
                     }
-                    case AUDIO -> {
+                    case "AudioMessage" -> {
+                        messageDto.setMessageType(MessageType.AUDIO);
                         AudioMessage audioMessage = (AudioMessage) message;
                         messageDto.setHashedAudio(audioMessage.getHashedAudio().getHashedAudio().toString());
                     }
-                    case IMAGE -> {
+                    case "ImageMessage" -> {
+                        messageDto.setMessageType(MessageType.IMAGE);
                         ImageMessage imageMessage = (ImageMessage) message;
-                        /*messageDto.setHashedImage(imageMessage.getHashedImage());*/ //requires convertion
+                        //messageDto.setHashedImage(imageMessage.getHashedImage()); //requires convertion
+                    }
+                    default -> {
+                        System.out.println("Tipo de mensagem desconhecido: " + messageType);
                     }
                 }
+                messageDtoList.add(messageDto);
             }
             contactDto.setMessages(messageDtoList);
             contactDtoList.add(contactDto);
