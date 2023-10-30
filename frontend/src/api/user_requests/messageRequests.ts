@@ -1,11 +1,12 @@
 import axios, {AxiosError, AxiosResponse} from "axios";
+import {Message} from "../../model/message";
 import {Contact} from "../../model/contact";
 
 const API_BASE_URL = 'http://localhost:8080/api/message/';
-export const getContactsByUserId = async (userId: bigint): Promise<Contact[]> => {
+
+export const getLastMessages = async (lastMessageDate: Date, user1Id: bigint, user2Id: bigint): Promise<Message[]> => {
     try {
-        const response: AxiosResponse<Contact[]> = await axios.get(API_BASE_URL + `get-by-user1-id/${userId}`);
-        console.log("Contacts:");
+        const response: AxiosResponse<Message[]> = await axios.get(`${API_BASE_URL}get-by-last-message-${lastMessageDate}-and-users-id-${user1Id}-${user2Id}`);
         console.log(response.data);
         return response.data;
     } catch (error) {
@@ -21,3 +22,4 @@ export const getContactsByUserId = async (userId: bigint): Promise<Contact[]> =>
         }
     }
 };
+
