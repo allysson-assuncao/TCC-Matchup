@@ -9,7 +9,43 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({ contact }) => {
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState('');
+    const [hasMoreItems, setHasMoreItems] = useState(true);
+
+    const fetchMoreData = () => {
+        fetch('/api/messages?limit=50')
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    setHasMoreItems(false);
+                } else {
+                    setMessages(messages.concat(data));
+                }
+            });
+    };
+
+    const sendMessage = () => {
+        fetch('/api/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text: newMessage }),
+        })
+            .then(response => response.json())
+            .then(message => {
+                setMessages([message, ...messages]);
+                setNewMessage('');
+            });
+    };
+
+    useEffect(() => {
+        fetchMoreData();
+    }, []);
+
     return (
+
         <Grid>
             {contact.messages.map((message) => (
                 <Message key={message.id.toString()} text={message.hashedText}/>

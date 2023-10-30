@@ -83,7 +83,7 @@ const App: React.FC = () => {
         createRoutesFromElements(
             <Route>
                 <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
-                <Route path={ROUTE_SIGN_IN} element={<SignIn/>}/>
+                <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
                 <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts}/>}/>
                 <Route path="/perfil/:usernamePathVariable" element={<Profile/>}/>

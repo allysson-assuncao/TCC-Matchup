@@ -23,8 +23,14 @@ import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 import {getUser} from "./Home";
+import {Contact} from "../model/contact";
+import {getContactsByUserId} from "../api/user_requests/contactRequests";
 
-const SignIn = () => {
+interface SignInProps {
+    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+}
+
+const SignIn: React.FC<SignInProps> = ({setContacts}) => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -35,6 +41,16 @@ const SignIn = () => {
         emailOrUsername: 'liceki',
         password: 'Senha123#',
         remember: false,
+    };
+
+    const fetchContacts = async () => {
+        try {
+            const fetchedContacts = await getContactsByUserId(getUser().id);
+            setContacts(fetchedContacts);
+            return true;
+        } catch (error) {
+            console.error("Erro ao buscar notificações:", error);
+        }
     };
 
     let userData: User;
@@ -58,6 +74,7 @@ const SignIn = () => {
                 return;
             } else {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
+                fetchContacts();
                 console.log(userData);
             }
         } catch (error) {
