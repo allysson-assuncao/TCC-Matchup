@@ -11,6 +11,9 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/message")
@@ -39,10 +42,15 @@ public class MessageController {
     }*/
 
     @MessageMapping("/private-message")
-    public MessageDto recMessage(@Payload MessageDto message){
+    public MessageDto receiveMessage(@Payload MessageDto message){
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageService.sendMessage(message).getReceiverId()),"/private", message);
         System.out.println(message.toString());
         return message;
+    }
+
+    @GetMapping("/get-by-last-message-{lastMessageDate}-and-users-id-{user1Id}-{user2Id}")
+    public List<MessageDto> getLastMessages(@PathVariable LocalDateTime lastMessageDate, @PathVariable long user1Id, @PathVariable long user2Id) {
+        return messageService.getMessageListByLastMessageDate(lastMessageDate, user1Id, user2Id);
     }
 
 }

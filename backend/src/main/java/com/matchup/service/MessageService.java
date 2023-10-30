@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.dto.ContactDto;
 import com.matchup.dto.MessageDto;
 import com.matchup.enums.MessageType;
 import com.matchup.model.Contact;
@@ -52,13 +53,13 @@ public class MessageService {
         this.userRepository = userRepository;
     }
 
-    public MessageDto sendMessage(MessageDto messageDto){
+    public MessageDto sendMessage(MessageDto messageDto) {
         Optional<User> receiverOp = userRepository.findById(messageDto.getReceiverId());
-        if(receiverOp.isEmpty()) return null;
+        if (receiverOp.isEmpty()) return null;
         Optional<User> senderOp = userRepository.findById(messageDto.getSenderId());
-        if(senderOp.isEmpty()) return null;
+        if (senderOp.isEmpty()) return null;
 
-        if(contactRepository.existsByUser1IdAndUser2Id(senderOp.get().getId(), receiverOp.get().getId())) return null;
+        if (contactRepository.existsByUser1IdAndUser2Id(senderOp.get().getId(), receiverOp.get().getId())) return null;
         Contact contact1 = new Contact();
         contact1.setDisplayed(true);
         contact1.setUser1(senderOp.get());
@@ -72,7 +73,7 @@ public class MessageService {
         contactRepository.save(contact1);
         contactRepository.save(contact2);
 
-        switch (messageDto.getMessageType()){
+        switch (messageDto.getMessageType()) {
             case TEXT -> {
                 return sendTextMessage(messageDto, receiverOp.get(), senderOp.get());
             }
@@ -136,7 +137,7 @@ public class MessageService {
         return messageDto;
     }*/
 
-    public MessageDto sendTextMessage(MessageDto messageDto, User receiver, User sender){
+    public MessageDto sendTextMessage(MessageDto messageDto, User receiver, User sender) {
         TextMessage textMessage = new TextMessage();
         textMessage.setDate(LocalDateTime.now());
         textMessage.setReceiver(receiver);
@@ -146,6 +147,44 @@ public class MessageService {
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
         return messageDto;
+    }
+
+    public List<MessageDto> getMessageListByLastMessageDate(LocalDateTime lastMessageDate, long user1Id, long user2Id) {
+        List<Message> messageList;
+        List<MessageDto> messageDtoList = new ArrayList<>();
+        messageList = messageRepository.findMessagesBySenderIdAndReceiverId(user1Id, user2Id).get();
+        for (Message message : messageList) {
+            MessageDto messageDto = new MessageDto();
+            messageDto.setId(message.getId());
+            messageDto.setDate(message.getDate());
+            messageDto.setSenderId(message.getSender().getId());
+            messageDto.setViewed(message.isViewed());
+            String messageType = message.getClass().getSimpleName();
+
+            switch (messageType) {
+                case "TextMessage" -> {
+                    messageDto.setMessageType(MessageType.TEXT);
+                    TextMessage textMessage = (TextMessage) message;
+                    messageDto.setHashedText(textMessage.getHashedText());
+                }
+                case "AudioMessage" -> {
+                    messageDto.setMessageType(MessageType.AUDIO);
+                    AudioMessage audioMessage = (AudioMessage) message;
+                    messageDto.setHashedAudio(audioMessage.getHashedAudio().getHashedAudio().toString());
+                }
+                case "ImageMessage" -> {
+                    messageDto.setMessageType(MessageType.IMAGE);
+                    ImageMessage imageMessage = (ImageMessage) message;
+                    //messageDto.setHashedImage(imageMessage.getHashedImage()); //requires convertion
+                }
+                default -> {
+                    System.out.println("Tipo de mensagem desconhecido: " + messageType);
+                }
+            }
+            messageDtoList.add(messageDto);
+        }
+
+        return messageDtoList;
     }
 
 }
