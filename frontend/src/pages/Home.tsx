@@ -19,6 +19,7 @@ import logo from '../img/logo-matchup2.png'
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import {Contact} from "../model/contact";
+import {Message} from "../model/message";
 
 var loggedUser: User;
 
@@ -66,9 +67,10 @@ export const logout = () => {
 interface HomeProps {
     contacts: Contact[] | null;
     setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
-const Home: React.FC<HomeProps> = ({contacts, setContacts}) => {
+const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     history = useNavigate();
@@ -93,7 +95,7 @@ const Home: React.FC<HomeProps> = ({contacts, setContacts}) => {
     if (!loggedUser) return null;
 
     return (
-        <AppBarHome contacts={contacts} setContacts={setContacts}></AppBarHome>
+        <AppBarHome contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}></AppBarHome>
 
 
         /*<Container component="main" maxWidth="xs">

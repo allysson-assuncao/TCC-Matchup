@@ -32,6 +32,7 @@ import ProfilePicture from "../../components/ProfilePicture";
 import NotificationsMenu from "../../components/contact/NotificationsMenu";
 import ContactPage from "../../pages/ContactPage";
 import {Contact} from "../../model/contact";
+import {Message} from "../../model/message";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -78,9 +79,10 @@ const menuIcons: { [key: string]: React.ReactElement } = {
 interface AppBarHomeProps {
     contacts: Contact[] | null;
     setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
-const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts}) => {
+const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -305,7 +307,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts}) => {
             <Box sx={{border: '3px solid white'}}>
                 <CustomTabPanel value={value} index={0}>
                     {/*<NotificationsMenu></NotificationsMenu>*/}
-                    <ContactPage contacts={contacts} setContacts={setContacts}/>
+                    <ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>
                 </CustomTabPanel>
             </Box>
             <CustomTabPanel value={value} index={1}>

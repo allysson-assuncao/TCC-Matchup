@@ -84,7 +84,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
-                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts}/>}/>
+                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
                 <Route path="/perfil/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>
