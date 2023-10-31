@@ -21,9 +21,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MessageService {
+
+    public static final int MESSAGE_LIMIT = 15;
 
     private final MessageRepository messageRepository;
 
@@ -83,9 +86,11 @@ public class MessageService {
             case IMAGE -> {
                 return /*sendImageMessage(messageDto, receiverOp.get(), senderOp.get())*/ null;
             }
+            default -> {
+                return null;
+            }
         }
 
-        return null;
     }
 
     /*public MessageDto sendAudioMessage(MessageDto messageDto, User receiver, User sender){
@@ -153,6 +158,8 @@ public class MessageService {
         List<Message> messageList;
         List<MessageDto> messageDtoList = new ArrayList<>();
         messageList = messageRepository.findMessagesBySenderIdAndReceiverId(user1Id, user2Id).get();
+        //setting message limit
+        messageList = messageList.stream().limit(MESSAGE_LIMIT).collect(Collectors.toList());
         for (Message message : messageList) {
             MessageDto messageDto = new MessageDto();
             messageDto.setId(message.getId());
