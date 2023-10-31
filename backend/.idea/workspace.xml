@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="making the request to get the last message by last message date">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/message/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/VerificationCodeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/messageRequests.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/messageRequests.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/Message.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/MessageComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -165,7 +156,8 @@
       <workItem from="1698171371982" duration="617000" />
       <workItem from="1698426440614" duration="511000" />
       <workItem from="1698682376263" duration="1108000" />
-      <workItem from="1698754831045" duration="3527000" />
+      <workItem from="1698754831045" duration="3766000" />
+      <workItem from="1698776623764" duration="1427000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -478,7 +470,14 @@
       <option name="project" value="LOCAL" />
       <updated>1698688272420</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages">
+      <created>1698760293502</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1698760293502</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -504,6 +503,7 @@
     <MESSAGE value="Reworking Image making message classes" />
     <MESSAGE value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <MESSAGE value="making the request to get the last message by last message date" />
-    <option name="LAST_COMMIT_MESSAGE" value="making the request to get the last message by last message date" />
+    <MESSAGE value="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
+    <option name="LAST_COMMIT_MESSAGE" value="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
   </component>
 </project>

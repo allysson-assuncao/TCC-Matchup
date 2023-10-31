@@ -2,23 +2,17 @@ import * as React from "react";
 import {
     AppBar,
     Box,
-    Button, Container, CssBaseline,
+    Container,
+    CssBaseline,
     Grid,
-    Link,
-    Toolbar, Typography,
-    useScrollTrigger,
+    Toolbar,
+    Typography,
 } from "@mui/material";
-import theme from "../../theme";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {ROUTE_EDITABLE_PROFILE, ROUTE_HOME, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
-import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
 import {getUser} from "../../pages/Home";
-import {useEffect, useState} from "react";
-import {SxProps} from "@mui/system";
-import {Theme} from "@mui/material/styles";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 

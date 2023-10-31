@@ -38,7 +38,7 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
     const [valid, setValid] = useState(true);
 
     const initialValues = {
-        emailOrUsername: 'liceki',
+        emailOrUsername: 'renedescartes',
         password: 'Senha123#',
         remember: false,
     };
