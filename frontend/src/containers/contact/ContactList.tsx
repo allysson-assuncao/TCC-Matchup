@@ -6,8 +6,8 @@ import ProfilePicture from "../../components/ProfilePicture";
 
 interface ContactProps {
     contacts: Contact[] | null;
-    setContacts: React.Dispatch<React.SetStateAction<Contact>>;
-    setSelectedContact: React.Dispatch<React.SetStateAction<Contact>>;
+    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+    setSelectedContact: React.Dispatch<React.SetStateAction<Contact | null>>;
 }
 
 const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelectedContact }) => {
@@ -16,7 +16,9 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelecte
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
-        setSelectedContact(contacts[newValue]);
+        if (contacts) {
+            setSelectedContact(contacts[newValue]);
+        }
         console.log(newValue);
     };
 
@@ -31,14 +33,7 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelecte
                 sx={{borderRight: 1, borderColor: 'divider'}}
             >
                 {contacts && contacts.map((contact) => (
-                    /*<ContactTab id={BigInt(value)} username={contact.user2Username} viewed={contact.viewed} key={contact.id.toString()}></ContactTab>*/
                     <Tab icon={<ProfilePicture id={contact.user2Id} small/>} iconPosition="start" label={contact.user2Username} key={contact.id.toString()}/>
-
-                    /*<Tab
-                        label={contact.user2Username}
-                        key={contact.id.toString()}
-                        component={() => <ContactTab id={contact.id} key={contact.id.toString()} username={contact.user2Username} viewed={contact.viewed} />}
-                    />*/
                 ))}
             </Tabs>
         </Grid>

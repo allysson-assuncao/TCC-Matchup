@@ -23,7 +23,6 @@ import ContactPage from "./pages/ContactPage";
 import {Contact} from "./model/contact";
 import {getContactsByUserId} from "./api/user_requests/contactRequests";
 import {Message} from "./model/message";
-import {getNotificationsByUserId} from "./api/user_requests/notificationRequests";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_HOME = '/home';
@@ -42,19 +41,19 @@ const App: React.FC = () => {
     const [contacts, setContacts] = useState<Contact[] | null>(null);
 
     const updateContactsWithMessage = (contactId: bigint, message: Message) => {
-        // @ts-ignore
         setContacts(prevContacts => {
-            if(prevContacts == null)
-            return prevContacts.map(contact => {
-                if (contact.id === contactId) {
-                    return {
-                        ...contact,
-                        messages: [...contact.messages, {...message}]
-                    };
-                } else {
-                    return contact;
-                }
-            });
+            if (prevContacts == null) { // @ts-ignore
+                return prevContacts.map(contact => {
+                    if (contact.id === contactId) {
+                        return {
+                            ...contact,
+                            messages: [...contact.messages, {...message}]
+                        };
+                    } else {
+                        return contact;
+                    }
+                });
+            }
         });
     };
 
@@ -92,7 +91,8 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage contacts={contacts} setContacts={setContacts}/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE}
+                       element={<ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
             </Route>
         )
     ), []);

@@ -15,10 +15,11 @@ import Chat from "../containers/contact/Chat";
 interface TabPanelProps {
     selectedContactId: bigint;
     contact: Contact;
+    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
 function TabPanel(props: TabPanelProps) {
-    const {selectedContactId, contact, ...other} = props;
+    const {selectedContactId, contact, updateContactsWithMessage, ...other} = props;
 
     return (
         <Grid
@@ -28,82 +29,18 @@ function TabPanel(props: TabPanelProps) {
             aria-labelledby={`vertical-tab-${contact.id}`}
             {...other}
         >
-            {selectedContactId === contact.id && <Chat contact={contact}/>}
+            {selectedContactId === contact.id && <Chat contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>}
         </Grid>
     );
 }
 
-/*const contacts: Contact[] = [
-    {
-        id: BigInt(1),
-        user1Id: BigInt(1),
-        user2Id: BigInt(2),
-        user2Username: 'Contato 1',
-        viewed: false,
-        messages: [
-            {
-                id: BigInt(1),
-                date: new Date(),
-                senderId: BigInt(1),
-                receiverId: BigInt(2),
-                viewed: false,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: 'Mensagem 1'
-            },
-            {
-                id: BigInt(2),
-                date: new Date(),
-                senderId: BigInt(1),
-                receiverId: BigInt(2),
-                viewed: false,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: 'Mensagem 2'
-            }
-        ]
-    },
-    {
-        id: BigInt(2),
-        user1Id: BigInt(2),
-        user2Id: BigInt(1),
-        user2Username: 'Contato 2',
-        viewed: false,
-        messages: [
-            {
-                id: BigInt(3),
-                date: new Date(),
-                senderId: BigInt(3),
-                receiverId: BigInt(4),
-                viewed: false,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: 'Mensagem 3'
-            },
-            {
-                id: BigInt(4),
-                date: new Date(),
-                senderId: BigInt(3),
-                receiverId: BigInt(4),
-                viewed: false,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: 'Mensagem 4'
-            }
-        ]
-    }
-];*/
-
 interface ContactPageProps {
     contacts: Contact[] | null;
     setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts}) => {
+const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
     const [selectedContact, setSelectedContact] = React.useState(contacts? contacts[0]: null);
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
@@ -126,7 +63,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts}) => {
             </Grid>
             <Grid item xs={6} md={8} sx={{border: '3px solid', borderColor: theme.palette.primary.main}}>
                 {contacts && contacts.map((contact) => (
-                    <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact.id}/>
+                    <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)} updateContactsWithMessage={updateContactsWithMessage}/>
                 ))}
             </Grid>
         </Grid>

@@ -17,6 +17,10 @@ import java.util.Random;
 @Service
 public class VerificationCodeService {
 
+    public static final int CODE_EXPIRATION_TIME = 5;
+
+    public static final String EMAIL_TITLE = "Solicitação de Redefinição de Senha";;
+
     @Autowired
     private final VerificationCodeRepository verificationCodeRepository;
 
@@ -53,40 +57,16 @@ public class VerificationCodeService {
             Random random = new Random();
             String code = String.format("%06d", random.nextInt(1000000));
 
-            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(5);
+            LocalDateTime expirationDate = LocalDateTime.now().plusMinutes(CODE_EXPIRATION_TIME);
             VerificationCode newCode = new VerificationCode(code, expirationDate);
             newCode = verificationCodeRepository.save(newCode);
             User userCode = userRepository.findById(id).get();
-            System.out.println("Nome de usuario sendCOde: " + userCode.getName());
             newCode.setUser(userCode);
             userCode.getCodes().add(newCode);
             userRepository.save(userCode);
             verificationCodeRepository.save(newCode);
 
-            System.out.println("Código: " + code);
-
-            String subject = "Solicitação de Redefinição de Senha";
-            String text = "Olá,\n" +
-                    "Recebemos uma solicitação para redefinir a senha da sua conta. Se você fez essa solicitação, " +
-                    "clique no link abaixo e copie esse código no seu navegador para criar uma nova senha:\n" +
-                    "\n" + code +
-                    "\n" +
-                    "localhost/3000/esqueceu_a_senha\n" +
-                    "\n" +
-                    "Se você não consegue clicar no link, copie e cole a seguinte URL no seu navegador:\n" +
-                    "\n" +
-                    "localhost/3000/esqueceu_a_senha\n" +
-                    "\n" +
-                    "Por favor, note que este link expirará em 2 minutos. Se você não solicitou uma redefinição de senha, " +
-                    "por favor, ignore este e-mail.\n" +
-                    "\n" +
-                    "Para sua segurança, nunca compartilhe suas informações de login com ninguém e sempre verifique o " +
-                    "site ao qual você está sendo direcionado.\n" +
-                    "\n" +
-                    "Obrigado,\n" +
-                    "Equipe Matchup\n";
-            emailService.sendEmail(email, subject, text);
-            System.out.println("Email enviado!");
+            emailService.sendEmail(email, EMAIL_TITLE, code);
 
             return id;
         }else{

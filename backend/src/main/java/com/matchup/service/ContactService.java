@@ -15,9 +15,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ContactService {
+
+    public static final int MESSAGE_LIMIT = 50;
 
     private final ContactRepository contactRepository;
 
@@ -43,6 +46,8 @@ public class ContactService {
             contactDto.setDisplayed(contact.isDisplayed());
             contactDto.setUser2Username(contact.getUser2().getUsername());
             messageList = messageRepository.findMessagesBySenderIdAndReceiverId(contactDto.getUser1Id(), contactDto.getUser2Id()).get();
+            //setting message limit
+            messageList = messageList.stream().limit(MESSAGE_LIMIT).collect(Collectors.toList());
             System.out.println(messageList);
             System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOO MORA NUM ABAXI EMBAIXO DO MAR, BOB ESPONJA, CALÇA QUADRADA!");
             for (Message message : messageList) {

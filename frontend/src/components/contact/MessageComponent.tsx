@@ -5,7 +5,7 @@ interface MessageProps {
     text: string;
 }
 
-const Message: React.FC<MessageProps> = ({ text }) => {
+const MessageComponent: React.FC<MessageProps> = ({ text }) => {
 
     return(
         <Typography>{text}</Typography>
@@ -13,4 +13,4 @@ const Message: React.FC<MessageProps> = ({ text }) => {
 
 }
 
-export default Message;
+export default MessageComponent;
