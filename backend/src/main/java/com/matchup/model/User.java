@@ -59,9 +59,11 @@ public class User {
     @ManyToMany
     private List<Interest> interests;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "sender")
     private List<Message> sentMessages = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "receiver")
     private List<Message> receivedMessages;
 
