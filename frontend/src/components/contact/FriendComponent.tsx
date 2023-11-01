@@ -6,8 +6,6 @@ import getTheme from "../../theme";
 import {ChatBubble, Clear} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../../App";
-import FriendshipResponseButtons from "./FriendshipResponseButtons";
-import {deleteNotification} from "../../api/user_requests/notificationRequests";
 
 export const NOTIFICATION_TYPES = {
     DEFAULT: 'DEFAULT',
