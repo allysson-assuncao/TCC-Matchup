@@ -152,7 +152,11 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
 
                                         {!editable && friendship?.status == FRIENDSHIP_STATUS.ACCEPTED && (
                                             <IconButton
-                                                onClick={() => endFriendship(getUser().id, idProfile)}
+                                                onClick={async () => {
+                                                    if(await endFriendship(getUser().id, idProfile)){
+                                                        friendship.status = FRIENDSHIP_STATUS.REJECTED;
+                                                    }
+                                                }}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.primary.main}`}}
                                                 disabled={blocked}
                                             >

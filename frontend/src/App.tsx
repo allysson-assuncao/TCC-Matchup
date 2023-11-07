@@ -68,10 +68,11 @@ const App: React.FC = () => {
     };
 
     useEffect(() => {
-        if (!sessionStorage.getItem('hasRunBefore')) {
+        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
 
             fetchContacts();
-            console.log('')
+            console.log("CONTATOS (APP)");
+            console.log(contacts);
 
             sessionStorage.setItem('hasRunBefore', 'true');
         }

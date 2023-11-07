@@ -45,6 +45,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
+    console.log("CONTATOS:");
     console.log(contacts);
 
     return (

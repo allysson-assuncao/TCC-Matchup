@@ -12,6 +12,7 @@ import com.matchup.repository.ContactRepository;
 import com.matchup.repository.message.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,9 @@ public class ContactService {
         this.messageRepository = messageRepository;
     }
 
+    @Transactional
     public List<ContactDto> getContactsByUser1Id(long user1Id) {
-        if (contactRepository.findContactsByUser1Id(user1Id).isEmpty()) return null;
+        /*if (contactRepository.findContactsByUser1Id(user1Id).isEmpty()) return null;*/
         List<Contact> contactList = contactRepository.findContactsByUser1Id(user1Id).get();
         List<ContactDto> contactDtoList = new ArrayList<>();
         List<Message> messageList;
@@ -83,7 +85,8 @@ public class ContactService {
             contactDto.setMessages(messageDtoList);
             contactDtoList.add(contactDto);
         }
-
+        System.out.println(contactList);
+        System.out.println("contactdto:" + contactDtoList);
         return contactDtoList;
 
     }
