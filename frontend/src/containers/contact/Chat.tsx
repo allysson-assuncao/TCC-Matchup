@@ -6,6 +6,7 @@ import {Message, MESSAGE_TYPE} from "../../model/message";
 import {getLastMessages, sendMessage} from "../../api/user_requests/messageRequests";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {Button, TextField, Typography} from "@mui/material";
+import {getUser} from "../../pages/Home";
 
 interface ChatProps {
     contact: Contact;
@@ -20,7 +21,6 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const handleSendMessage = async () => {
         if (newMessage.trim() !== '') {
             const message: Message = {
-                id: BigInt(0), //irrelevant
                 date: new Date(),
                 senderId: contact.user1Id,
                 receiverId: contact.user2Id,
@@ -30,6 +30,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                 hashedAudio: '',
                 hashedText: newMessage
             };
+
             updateContactsWithMessage(contact.user1Id, (await sendMessage(message)));
             setNewMessage('');
         }
@@ -49,13 +50,11 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
         }
     };
 
-    useEffect(() => {
-        fetchMoreData();
-    }, []);
+    const messagesTest = [{id: 1, hashedText: "olá"}, {id: 2, hashedText: "salve"}]
 
     return (
         <Grid>
-            <InfiniteScroll
+            {/*<InfiniteScroll
                 dataLength={messages.length}
                 next={fetchMoreData}
                 hasMore={hasMoreItems}
@@ -75,7 +74,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                         <MessageComponent key={message.id.toString()} text={message.hashedText}/>
                     ))}*/}
                 </Grid>
-            </InfiniteScroll>
+            {/*</InfiniteScroll>*/}
             <TextField
                 value={newMessage}
                 onChange={event => setNewMessage(event.target.value)}

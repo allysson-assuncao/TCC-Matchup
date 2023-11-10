@@ -3,12 +3,13 @@ import {Typography} from "@mui/material";
 
 interface MessageProps {
     text: string;
+    sender: boolean;
 }
 
-const MessageComponent: React.FC<MessageProps> = ({ text }) => {
+const MessageComponent: React.FC<MessageProps> = ({ text, sender }) => {
 
     return(
-        <Typography>{text}</Typography>
+        <Typography justifyContent={sender? "right" : "left"}>{text}</Typography>
     );
 
 }

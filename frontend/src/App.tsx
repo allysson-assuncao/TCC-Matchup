@@ -80,6 +80,11 @@ const App: React.FC = () => {
         //}
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
+    useEffect(() => {
+        console.log("USE EFFECT CONTACTS");
+        console.log(contacts);
+    }, [contacts]);
+
 
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
@@ -95,8 +100,8 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_PROTOTYPE}
-                       element={<ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
+
             </Route>
         )
     ), [contacts, setContacts, updateContactsWithMessage]);
