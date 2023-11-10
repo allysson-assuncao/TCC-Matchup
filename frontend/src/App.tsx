@@ -60,22 +60,24 @@ const App: React.FC = () => {
     const fetchContacts = async () => {
         try {
             const fetchedContacts = await getContactsByUserId(getUser().id);
-            setContacts(fetchedContacts);
+            await setContacts(fetchedContacts);
+            //console.log("FETCHCONTACTS (APP)");
+            //console.log(contacts);
+            //console.log(fetchedContacts);
             return true;
         } catch (error) {
-            console.error("Erro ao buscar notificações:", error);
+            console.error("Erro ao buscar CONTATOS:", error);
         }
     };
 
     useEffect(() => {
-        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
-
+        //if (/* !sessionStorage.getItem('hasRunBefore') */true) {
             fetchContacts();
-            console.log("CONTATOS (APP)");
+
             console.log(contacts);
 
             sessionStorage.setItem('hasRunBefore', 'true');
-        }
+        //}
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
 
@@ -85,6 +87,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
+
                 <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
                 <Route path="/perfil/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile/>}/>
@@ -96,7 +99,7 @@ const App: React.FC = () => {
                        element={<ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
             </Route>
         )
-    ), []);
+    ), [contacts, setContacts, updateContactsWithMessage]);
 
     const {theme} = useCustomTheme();
 

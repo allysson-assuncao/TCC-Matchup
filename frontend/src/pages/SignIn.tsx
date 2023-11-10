@@ -38,7 +38,7 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
     const [valid, setValid] = useState(true);
 
     const initialValues = {
-        emailOrUsername: 'renedescartes',
+        emailOrUsername: 'liceki',
         password: 'Senha123#',
         remember: false,
     };
@@ -74,7 +74,6 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
                 return;
             } else {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
-                fetchContacts();
                 console.log(userData);
             }
         } catch (error) {
@@ -90,6 +89,7 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
         console.log(userData);
         localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
         history(ROUTE_HOME);
+        fetchContacts();
 
     }
 

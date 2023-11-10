@@ -5,6 +5,6 @@ export interface Contact {
     user1Id: bigint;
     user2Id: bigint;
     user2Username: string;
-    viewed: boolean;
+    displayed: boolean;
     messages: Message[];
 }

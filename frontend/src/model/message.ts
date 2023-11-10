@@ -5,14 +5,14 @@ export const MESSAGE_TYPE = {
 }
 
 export interface Message {
-    id: bigint;
+    id?: bigint;
     date: Date;
     senderId: bigint;
     receiverId: bigint;
-    viewed: boolean;
     messageType: string;
-    hashedImage: string;
-    hashedAudio: string;
+    viewed: boolean;
+    hashedImage: string | null;
+    hashedAudio: string  | null;
     hashedText: string;
 
     /*private List<MultipartFile> hashedImage;

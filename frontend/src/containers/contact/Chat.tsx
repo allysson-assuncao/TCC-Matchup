@@ -65,15 +65,15 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                         <b>Você não tem mais mensagens!</b>
                     </Typography>
                 }
-            >
+            >*/}
+                <Grid sx={{height: '100%', width: '100%'}}>
+                    {contact.messages.map((message) => (
+                        <MessageComponent key={message.id.toString()} text={message.hashedText} sender={true}/>
+                    ))}
 
-                <Grid>
-                    {/*{contact.messages.map((message) => (
+                    {/*{messages.map((message) => (
                         <MessageComponent key={message.id.toString()} text={message.hashedText}/>
                     ))}*/}
-                    {messages.map((message) => (
-                        <MessageComponent key={message.id.toString()} text={message.hashedText}/>
-                    ))}
                 </Grid>
             </InfiniteScroll>
             <TextField
