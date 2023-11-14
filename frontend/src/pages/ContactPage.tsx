@@ -57,12 +57,11 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
             sx={{border: '3px solid blue', height: '80vh'}}
         >
             <CssBaseline/>
-            {/*<Grid container spacing={2} alignItems="flex-end">*/}
-            <Grid item xs={6} md={4} textAlign="center" sx={{border: '3px solid white'}}>
+            <Grid item xs={1} md={3} textAlign="center" sx={{border: '3px solid green', weight: '40vh'}}>
                 <FriendsMenu></FriendsMenu>
                 <ContactList contacts={contacts} setSelectedContact={setSelectedContact} setContacts={setContacts}></ContactList>
             </Grid>
-            <Grid item xs={6} md={8} sx={{border: '3px solid', borderColor: theme.palette.primary.main, height: '100%', width: '100%'}} >
+            <Grid item xs={4} md={9} sx={{border: '3px solid', borderColor: theme.palette.primary.main, height: '100%', width: '100%'}} >
                 {contacts && contacts.map((contact) => (
                     <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)} updateContactsWithMessage={updateContactsWithMessage}/>
                 ))}

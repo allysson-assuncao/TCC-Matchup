@@ -304,19 +304,29 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                 </Grid>
             </Grid>
 
-            <Box sx={{border: '3px solid white'}}>
-                <CustomTabPanel value={value} index={0}>
-                    {/*<NotificationsMenu></NotificationsMenu>*/}
-                    <ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>
-                </CustomTabPanel>
-            </Box>
-            <CustomTabPanel value={value} index={1}>
-                Item Two
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
+            <Grid container justifyContent={'center'} sx={{height: '80vh'}}>
+                <Grid item md={10} sm={11} xs={12} sx={{height: '80vh'}}>
+                    <CustomTabPanel value={value} index={0}>
+                        {/*<NotificationsMenu></NotificationsMenu>*/}
+                        <ContactPage contacts={contacts} setContacts={setContacts}
+                                     updateContactsWithMessage={updateContactsWithMessage}/>
+                    </CustomTabPanel>
+                </Grid>
+            </Grid>
+            <Grid container justifyContent={'center'}>
+                <Grid item md={10} sm={11} xs={12}>
+                    <CustomTabPanel value={value} index={1}>
+                        Item Two
+                    </CustomTabPanel>
+                </Grid>
+            </Grid>
+            <Grid container justifyContent={'center'}>
+                <Grid item md={10} sm={11} xs={12}>
+                    <CustomTabPanel value={value} index={2}>
 
-            </CustomTabPanel>
-
+                    </CustomTabPanel>
+                </Grid>
+            </Grid>
         </Box>
     );
 }
