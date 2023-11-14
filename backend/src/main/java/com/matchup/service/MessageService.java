@@ -62,19 +62,20 @@ public class MessageService {
         Optional<User> senderOp = userRepository.findById(messageDto.getSenderId());
         if (senderOp.isEmpty()) return null;
 
-        if (contactRepository.existsByUser1IdAndUser2Id(senderOp.get().getId(), receiverOp.get().getId())) return null;
-        Contact contact1 = new Contact();
-        contact1.setDisplayed(true);
-        contact1.setUser1(senderOp.get());
-        contact1.setUser2(receiverOp.get());
+        if (!contactRepository.existsByUser1IdAndUser2Id(senderOp.get().getId(), receiverOp.get().getId())) {
+            Contact contact1 = new Contact();
+            contact1.setDisplayed(true);
+            contact1.setUser1(senderOp.get());
+            contact1.setUser2(receiverOp.get());
 
-        Contact contact2 = new Contact();
-        contact2.setDisplayed(true);
-        contact2.setUser1(receiverOp.get());
-        contact2.setUser2(senderOp.get());
+            Contact contact2 = new Contact();
+            contact2.setDisplayed(true);
+            contact2.setUser1(receiverOp.get());
+            contact2.setUser2(senderOp.get());
 
-        contactRepository.save(contact1);
-        contactRepository.save(contact2);
+            contactRepository.save(contact1);
+            contactRepository.save(contact2);
+        }
 
         switch (messageDto.getMessageType()) {
             case TEXT -> {

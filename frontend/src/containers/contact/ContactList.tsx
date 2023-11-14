@@ -23,7 +23,7 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelecte
     };
 
     return (
-        <Grid container>
+        <Grid>
             <Tabs
                 orientation="vertical"
                 variant="scrollable"

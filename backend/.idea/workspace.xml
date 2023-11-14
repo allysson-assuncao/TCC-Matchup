@@ -11,7 +11,6 @@
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
     </list>
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
@@ -49,17 +48,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java">
-      <ranges>
-        <range start1="39" end1="39" start2="39" end2="40" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="41" end1="42" start2="42" end2="43" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="43" end1="43" start2="44" end2="45" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="59" end1="59" start2="61" end2="62" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="85" end1="85" start2="88" end2="89" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -176,7 +164,8 @@
       <workItem from="1698776623764" duration="1427000" />
       <workItem from="1699552833355" duration="218000" />
       <workItem from="1699633002669" duration="63000" />
-      <workItem from="1699633080442" duration="5813000" />
+      <workItem from="1699633080442" duration="6324000" />
+      <workItem from="1699964446301" duration="2572000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

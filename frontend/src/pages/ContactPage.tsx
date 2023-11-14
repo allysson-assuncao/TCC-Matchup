@@ -52,10 +52,9 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
     return (
         <Grid
             container
-            direction="row"
-            alignItems="center"
-            justifyContent="space-around"
-            sx={{border: '3px solid white'}}
+            /*direction="row"
+            justifyContent="space-around"*/
+            sx={{border: '3px solid blue', height: '80vh'}}
         >
             <CssBaseline/>
             {/*<Grid container spacing={2} alignItems="flex-end">*/}

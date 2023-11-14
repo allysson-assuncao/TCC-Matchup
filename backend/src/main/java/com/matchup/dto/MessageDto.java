@@ -1,15 +1,18 @@
 package com.matchup.dto;
 
 import com.matchup.enums.MessageType;
-import com.matchup.model.image.MessageImage;
-import jakarta.mail.Multipart;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class MessageDto {
-
     long id;
 
     private LocalDateTime date;
@@ -22,81 +25,11 @@ public class MessageDto {
 
     private boolean viewed;
 
-    private List<MultipartFile> hashedImage;
+    /*private List<MultipartFile> hashedImage;*/
+
+    private List<byte[]> hashedImage;
 
     private String hashedAudio;
 
     private String hashedText;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public long getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(long senderId) {
-        this.senderId = senderId;
-    }
-
-    public long getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(long receiverId) {
-        this.receiverId = receiverId;
-    }
-
-    public MessageType getMessageType() {
-        return messageType;
-    }
-
-    public void setMessageType(MessageType messageType) {
-        this.messageType = messageType;
-    }
-
-    public boolean isViewed() {
-        return viewed;
-    }
-
-    public void setViewed(boolean viewed) {
-        this.viewed = viewed;
-    }
-
-    public List<MultipartFile> getHashedImage() {
-        return hashedImage;
-    }
-
-    public void setHashedImage(List<MultipartFile> hashedImage) {
-        this.hashedImage = hashedImage;
-    }
-
-    public String getHashedAudio() {
-        return hashedAudio;
-    }
-
-    public void setHashedAudio(String hashedAudio) {
-        this.hashedAudio = hashedAudio;
-    }
-
-    public String getHashedText() {
-        return hashedText;
-    }
-
-    public void setHashedText(String hashedText) {
-        this.hashedText = hashedText;
-    }
 }

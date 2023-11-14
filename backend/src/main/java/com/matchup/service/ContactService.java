@@ -37,10 +37,12 @@ public class ContactService {
     public List<ContactDto> getContactsByUser1Id(long user1Id) {
         /*if (contactRepository.findContactsByUser1Id(user1Id).isEmpty()) return null;*/
         List<Contact> contactList = contactRepository.findContactsByUser1Id(user1Id).get();
+        System.out.println(contactList);
         List<ContactDto> contactDtoList = new ArrayList<>();
         List<Message> messageList;
-        List<MessageDto> messageDtoList = new ArrayList<>();
+
         for (Contact contact : contactList) {
+            List<MessageDto> messageDtoList = new ArrayList<>();
             ContactDto contactDto = new ContactDto();
             contactDto.setId(contact.getId());
             contactDto.setUser1Id(contact.getUser1().getId());
@@ -57,6 +59,7 @@ public class ContactService {
                 messageDto.setId(message.getId());
                 messageDto.setDate(message.getDate());
                 messageDto.setSenderId(message.getSender().getId());
+                messageDto.setReceiverId(message.getReceiver().getId());
                 messageDto.setViewed(message.isViewed());
                 String messageType = message.getClass().getSimpleName();
 
@@ -83,6 +86,7 @@ public class ContactService {
                 messageDtoList.add(messageDto);
             }
             contactDto.setMessages(messageDtoList);
+            System.out.println("\n-------------------------" + contactDto.getMessages() + "\n---------------------");
             contactDtoList.add(contactDto);
         }
         System.out.println(contactList);
