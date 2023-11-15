@@ -7,6 +7,7 @@ import {getLastMessages, sendMessage} from "../../api/user_requests/messageReque
 import InfiniteScroll from "react-infinite-scroll-component";
 import {Button, TextField, Typography} from "@mui/material";
 import {getUser} from "../../pages/Home";
+import AppBarChat from "../appbars/AppBarChat";
 
 interface ChatProps {
     contact: Contact;
@@ -53,8 +54,12 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const messagesTest = [{id: 1, hashedText: "olá"}, {id: 2, hashedText: "salve"}]
 
     return (
-        <Grid>
-            {/*<InfiniteScroll
+        <Grid container direction="column">
+            <Grid item>
+                <AppBarChat contact={contact}/>
+            </Grid>
+            <Grid item>
+                {/*<InfiniteScroll
                 dataLength={messages.length}
                 next={fetchMoreData}
                 hasMore={hasMoreItems}
@@ -74,12 +79,13 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                         <MessageComponent key={message.id.toString()} text={message.hashedText}/>
                     ))}*/}
                 </Grid>
-            {/*</InfiniteScroll>*/}
-            <TextField
-                value={newMessage}
-                onChange={event => setNewMessage(event.target.value)}
-            />
-            <Button onClick={handleSendMessage}>Send</Button>
+                {/*</InfiniteScroll>*/}
+                <TextField
+                    value={newMessage}
+                    onChange={event => setNewMessage(event.target.value)}
+                />
+                <Button onClick={handleSendMessage}>Send</Button>
+            </Grid>
         </Grid>
     );
 };

@@ -33,10 +33,24 @@ const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelecte
                 sx={{borderRight: 1, borderColor: 'divider'}}
             >
                 {contacts && contacts.map((contact) => (
-                        <Tab icon={
+                    <Tab
+                        icon={
+                            <Grid container spacing={2} alignItems="center">
+                                <Grid item>
+                                    <ProfilePicture id={contact.user2Id} small/>
+                                </Grid>
+                                <Grid item>
+                                    {contact.user2Username}
+                                </Grid>
+                            </Grid>
+                        }
+                        iconPosition="start"
+                        key={contact.id.toString()}
+                    />
+                        /*<Tab icon={
                             <ProfilePicture id={contact.user2Id} small/>
                         }
-                             iconPosition="start" label={contact.user2Username} key={contact.id.toString()}/>
+                             iconPosition="start" label={contact.user2Username} key={contact.id.toString()}/>*/
                 ))}
             </Tabs>
         </Grid>

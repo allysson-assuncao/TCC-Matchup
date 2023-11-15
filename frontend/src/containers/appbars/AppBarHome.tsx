@@ -127,15 +127,16 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                 alignItems="center"
             >
                 <Grid item xs={8} md={6}>
-                    <AppBar position="static"
-                            color="default"
-                            elevation={0}
-                            sx={{
-                                border: (theme) => `1px solid ${theme.palette.primary.dark}`,
-                                marginTop: '15px',
-                                borderRadius: '40px',
-                                bgcolor: 'background.default',
-                            }}>
+                    <AppBar
+                        position="static"
+                        color="default"
+                        elevation={0}
+                        sx={{
+                            border: (theme) => `1px solid ${theme.palette.primary.dark}`,
+                            marginTop: '15px',
+                            borderRadius: '40px',
+                            bgcolor: 'background.default',
+                        }}>
                         <Container>
                             <Toolbar disableGutters>
                                 <Typography
