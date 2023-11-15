@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
+import {AppBar, Toolbar, Typography, Box, Paper, List, ListItem, ListItemText} from '@mui/material';
 import SentMessage from "../../components/contact/SentMessage";
-import Grid from "@mui/material/Grid";
-import {Contact} from "../../model/contact";
-import {Message, MESSAGE_TYPE} from "../../model/message";
-import {getLastMessages, sendMessage} from "../../api/user_requests/messageRequests";
-import AppBarChat from "../appbars/AppBarChat";
-import ChatFooter from "../footers/ChatFooter";
-import {AppBar, TextField, Toolbar, Typography} from "@mui/material";
+import {getUser} from "../../pages/Home";
+import ReceivedMessage from "../../components/contact/ReceivedMessage";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
-import ReceivedMessage from "../../components/contact/ReceivedMessage";
-import {getUser} from "../../pages/Home";
+import {Contact} from "../../model/contact";
+import {Message} from "../../model/message";
+import Grid from "@mui/material/Grid";
+import AppBarChat from "../appbars/AppBarChat";
+import ChatFooter from "../footers/ChatFooter";
+import {getLastMessages} from "../../api/user_requests/messageRequests";
 
 interface ChatProps {
     contact: Contact;
@@ -20,56 +20,72 @@ interface ChatProps {
 const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
-    const [messages, setMessages] = useState<Message[]>([]);
-    const [hasMoreItems, setHasMoreItems] = useState(true);
+    const [messages, setMessages] = useState<Array<Message>>(contact.messages);
 
     const fetchMoreData = async () => {
-        //the last message is the first one or the last one in the list? messages.length - 1
         const lastMessageDate = messages.length > 0 ? messages[0].date : new Date();
         const user1Id = contact.user1Id;
         const user2Id = contact.user2Id;
 
         const data: Message[] = await getLastMessages(lastMessageDate, user1Id, user2Id);
-        if (data.length === 0) {
-            setHasMoreItems(false);
-        } else {
+        if (data.length !== 0) {
             setMessages(data);
         }
     };
 
-    const messagesTest = [{id: 1, hashedText: "olá"}, {id: 2, hashedText: "salve"}]
-
     return (
-        <Grid container direction="column" height={'80vh'} sx={{border: '3px solid', borderColor: theme.palette.primary.dark}}>
-            <Grid item>
+        <Grid container direction="column" height={'75vh'}
+              sx={{border: '3px solid', borderColor: theme.palette.primary.dark}}>
+            <Grid item xs={2}>
                 <AppBarChat contact={contact}/>
             </Grid>
-            <Grid item>
-                {/*<InfiniteScroll
-                dataLength={messages.length}
-                next={fetchMoreData}
-                hasMore={hasMoreItems}
-                loader={<Typography variant={'h4'}>Carregando...</Typography>}
-                endMessage={
-                    <Typography style={{textAlign: 'center'}}>
-                        <b>Você não tem mais mensagens!</b>
-                    </Typography>
-                }
-            >*/}
-                <Grid>
-                    {contact.messages.map((message) => (
-                        message.senderId == getUser().id
-                            ? <SentMessage key={message.id.toString()} text={message.hashedText}/>
-                            : <ReceivedMessage key={message.id.toString()} text={message.hashedText}/>
-                    ))}
-
-                    {/*{messages.map((message) => (
-                        <SentMessage key={message.id.toString()} text={message.hashedText}/>
-                    ))}*/}
-                </Grid>
-                {/*</InfiniteScroll>*/}
+            <Grid item xs={8}>
+                <Box component="main" sx={{flex: '1 0 auto', overflow: 'auto', maxHeight: '48vh'}}>
+                    <Paper sx={{bgcolor: theme.palette.background.default}}>
+                        <List>
+                            {messages.map((message, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={
+                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                            <ReceivedMessage text={message.hashedText}/>
+                                    }/>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <List>
+                            {messages.map((message, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={
+                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                            <ReceivedMessage text={message.hashedText}/>
+                                    }/>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <List>
+                            {messages.map((message, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={
+                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                            <ReceivedMessage text={message.hashedText}/>
+                                    }/>
+                                </ListItem>
+                            ))}
+                        </List>
+                        <List>
+                            {messages.map((message, index) => (
+                                <ListItem key={index}>
+                                    <ListItemText primary={
+                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                            <ReceivedMessage text={message.hashedText}/>
+                                    }/>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Paper>
+                </Box>
             </Grid>
-            <Grid item>
+            <Grid item xs={2}>
                 <ChatFooter contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>
             </Grid>
         </Grid>

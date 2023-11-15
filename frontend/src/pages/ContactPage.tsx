@@ -55,7 +55,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
             container
             /*direction="row"
             justifyContent="space-around"*/
-            sx={{border: '3px solid blue', height: '80vh'}}
+            sx={{border: '3px solid blue', height: '75vh'}}
         >
             <CssBaseline/>
             <Grid item xs={1} md={3} textAlign="center" sx={{border: '3px solid green', weight: '40vh'}}>
