@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import MessageComponent from "../../components/contact/MessageComponent";
+import SentMessage from "../../components/contact/SentMessage";
 import Grid from "@mui/material/Grid";
 import {Contact} from "../../model/contact";
 import {Message, MESSAGE_TYPE} from "../../model/message";
@@ -9,6 +9,8 @@ import ChatFooter from "../footers/ChatFooter";
 import {AppBar, TextField, Toolbar, Typography} from "@mui/material";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
+import ReceivedMessage from "../../components/contact/ReceivedMessage";
+import {getUser} from "../../pages/Home";
 
 interface ChatProps {
     contact: Contact;
@@ -56,11 +58,13 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
             >*/}
                 <Grid>
                     {contact.messages.map((message) => (
-                        <MessageComponent key={message.id.toString()} text={message.hashedText} sender={true}/>
+                        message.senderId == getUser().id
+                            ? <SentMessage key={message.id.toString()} text={message.hashedText}/>
+                            : <ReceivedMessage key={message.id.toString()} text={message.hashedText}/>
                     ))}
 
                     {/*{messages.map((message) => (
-                        <MessageComponent key={message.id.toString()} text={message.hashedText}/>
+                        <SentMessage key={message.id.toString()} text={message.hashedText}/>
                     ))}*/}
                 </Grid>
                 {/*</InfiniteScroll>*/}
