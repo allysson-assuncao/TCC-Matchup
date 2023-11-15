@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {AppBar, Toolbar, Typography, Box, Paper, List, ListItem, ListItemText} from '@mui/material';
 import SentMessage from "../../components/contact/SentMessage";
 import {getUser} from "../../pages/Home";
@@ -22,6 +22,8 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const theme = getTheme(mode);
     const [messages, setMessages] = useState<Array<Message>>(contact.messages);
 
+    const scrollRef = useRef<HTMLElement>(null);
+
     const fetchMoreData = async () => {
         const lastMessageDate = messages.length > 0 ? messages[0].date : new Date();
         const user1Id = contact.user1Id;
@@ -33,6 +35,30 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
         }
     };
 
+    useEffect(() => {
+        const scrollElement = scrollRef.current;
+        if (!scrollElement) return;
+
+        const handleScroll = async () => {
+            if (scrollElement.scrollTop === 5) {
+                await fetchMoreData();
+            }
+        };
+
+        scrollElement.addEventListener('scroll', handleScroll);
+
+        return () => {
+            scrollElement.removeEventListener('scroll', handleScroll);
+        };
+    }, [messages, fetchMoreData]);
+
+
+    useEffect(() => {
+        const scrollElement = scrollRef.current;
+        if (!scrollElement) return;
+        scrollElement.scrollTop = scrollElement.scrollHeight;
+    }, [messages]);
+
     return (
         <Grid container direction="column" height={'75vh'}
               sx={{border: '3px solid', borderColor: theme.palette.primary.dark}}>
@@ -40,7 +66,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                 <AppBarChat contact={contact}/>
             </Grid>
             <Grid item xs={8}>
-                <Box component="main" sx={{flex: '1 0 auto', overflow: 'auto', maxHeight: '48vh'}}>
+                <Box component="main" sx={{flex: '1 0 auto', overflow: 'auto', maxHeight: '48vh'}} ref={scrollRef}>
                     <Paper sx={{bgcolor: theme.palette.background.default}}>
                         <List>
                             {messages.map((message, index) => (
