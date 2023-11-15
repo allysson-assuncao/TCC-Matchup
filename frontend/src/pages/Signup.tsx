@@ -1,18 +1,13 @@
 import React, {useState} from 'react';
-import {Container, CssBaseline, Typography, Stepper, Step, StepLabel, Button, Grid, Box, Link} from '@mui/material';
-import {Formik, Form, Field, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
+import {CssBaseline, Stepper, Step, StepLabel, Button, Grid, Box, Link} from '@mui/material';
+import {Formik, Form} from 'formik';
 
 import SignUpStep1 from "../containers/step_forms/signup/SignUpStep1";
 import SignUpStep2 from "../containers/step_forms/signup/SignUpStep2";
-import SignUpStep4 from "../containers/step_forms/signup/SignUpStep4";
 import SignUpStep3 from "../containers/step_forms/signup/SignUpStep3";
-import {Interest} from "../model/interest";
 import {register} from "../api/user_requests/register";
-import {Link as RouterLink, useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_INDEX, ROUTE_SIGN_IN} from "../App";
-import {User} from "../model/user";
-import {string} from "yup";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_HOME, ROUTE_SIGN_IN} from "../App";
 import {format} from 'date-fns';
 import {
     validateSignUpStep1,

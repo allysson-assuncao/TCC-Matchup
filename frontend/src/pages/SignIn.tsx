@@ -207,3 +207,57 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
 
 
 export default SignIn;
+
+/*import React, { useState, useEffect } from 'react';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+
+export default function SignIn() {
+    const [messages, setMessages] = useState(Array.from({ length: 20 }, (_, i) => `Mensagem ${20 - i}`));
+
+    const handleScroll = () => {
+        if (window.pageYOffset === 0) {
+            setMessages((prevMessages) => [`Nova mensagem ${prevMessages.length + 1}`, ...prevMessages]);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    return (
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+            <AppBar position="fixed">
+                <Toolbar>
+                    <Typography variant="h6">Seu AppBar</Typography>
+                </Toolbar>
+            </AppBar>
+            <Box component="main" sx={{ flex: '1 0 auto', mt: 8, mb: 8, overflow: 'auto' }}>
+                <Paper>
+                    <List>
+                        {messages.map((message, index) => (
+                            <ListItem key={index}>
+                                <ListItemText primary={message} />
+                            </ListItem>
+                        ))}
+                    </List>
+                </Paper>
+            </Box>
+            <AppBar position="fixed" sx={{ top: 'auto', bottom: 0 }}>
+                <Toolbar>
+                    <Typography variant="h6">Seu Rodapé</Typography>
+                </Toolbar>
+            </AppBar>
+        </Box>
+    );
+}
+*/
