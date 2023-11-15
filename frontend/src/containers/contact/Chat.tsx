@@ -4,10 +4,9 @@ import Grid from "@mui/material/Grid";
 import {Contact} from "../../model/contact";
 import {Message, MESSAGE_TYPE} from "../../model/message";
 import {getLastMessages, sendMessage} from "../../api/user_requests/messageRequests";
-import InfiniteScroll from "react-infinite-scroll-component";
-import {Button, TextField, Typography} from "@mui/material";
-import {getUser} from "../../pages/Home";
 import AppBarChat from "../appbars/AppBarChat";
+import ChatFooter from "../footers/ChatFooter";
+import {Typography} from "@mui/material";
 
 interface ChatProps {
     contact: Contact;
@@ -16,26 +15,7 @@ interface ChatProps {
 
 const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const [messages, setMessages] = useState<Message[]>([]);
-    const [newMessage, setNewMessage] = useState('');
     const [hasMoreItems, setHasMoreItems] = useState(true);
-
-    const handleSendMessage = async () => {
-        if (newMessage.trim() !== '') {
-            const message: Message = {
-                date: new Date(),
-                senderId: contact.user1Id,
-                receiverId: contact.user2Id,
-                viewed: false,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: newMessage
-            };
-
-            updateContactsWithMessage(contact.user1Id, (await sendMessage(message)));
-            setNewMessage('');
-        }
-    };
 
     const fetchMoreData = async () => {
         //the last message is the first one or the last one in the list? messages.length - 1
@@ -70,7 +50,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                     </Typography>
                 }
             >*/}
-                <Grid sx={{height: '100%', width: '100%'}}>
+                <Grid>
                     {contact.messages.map((message) => (
                         <MessageComponent key={message.id.toString()} text={message.hashedText} sender={true}/>
                     ))}
@@ -80,12 +60,15 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                     ))}*/}
                 </Grid>
                 {/*</InfiniteScroll>*/}
-                <TextField
+            </Grid>
+            <Grid item>
+                <ChatFooter contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>
+            </Grid>
+            {/*<TextField
                     value={newMessage}
                     onChange={event => setNewMessage(event.target.value)}
                 />
-                <Button onClick={handleSendMessage}>Send</Button>
-            </Grid>
+                <Button onClick={handleSendMessage}>Send</Button>*/}
         </Grid>
     );
 };

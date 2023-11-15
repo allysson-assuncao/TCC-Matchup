@@ -61,7 +61,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
                 <FriendsMenu></FriendsMenu>
                 <ContactList contacts={contacts} setSelectedContact={setSelectedContact} setContacts={setContacts}></ContactList>
             </Grid>
-            <Grid item xs={4} md={9} sx={{border: '3px solid', borderColor: theme.palette.primary.main, height: '100%', width: '100%'}} >
+            <Grid item xs={4} md={9} sx={{border: '3px solid', borderColor: theme.palette.primary.main, weight: '60vh'}} >
                 {contacts && contacts.map((contact) => (
                     <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)} updateContactsWithMessage={updateContactsWithMessage}/>
                 ))}
