@@ -39,7 +39,7 @@ const ChatFooter: React.FC<ChatFooterProps> = ({contact, updateContactsWithMessa
     };
 
     return (
-        <Box component="footer" bgcolor={theme.palette.background.default}>
+        <Box bgcolor={theme.palette.background.default}>
             <CssBaseline/>
             <Grid
                 container

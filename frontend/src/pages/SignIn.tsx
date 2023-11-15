@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+/*import React, {useState} from 'react';
 import {Formik, Form, Field, FieldProps, FormikHelpers} from 'formik';
 import {
     Container,
@@ -149,8 +149,8 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
                                         id="emailOrUsername"
                                         label="Email ou Nome de Usuário"
                                         variant="outlined"
-                                        error={!valid/*|| (meta.touched && !!meta.error)*/}
-                                        //helperText={/*meta.touched && meta.error*/}
+                                        error={!valid/!*|| (meta.touched && !!meta.error)*!/}
+                                        //helperText={/!*meta.touched && meta.error*!/}
                                     />
                                 )}
                             </Field>
@@ -166,7 +166,7 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
                                         type="password"
                                         autoComplete="current-password"
                                         variant="outlined"
-                                        error={!valid/*|| (meta.touched && !!meta.error)*/}
+                                        error={!valid/!*|| (meta.touched && !!meta.error)*!/}
                                         //helperText={meta.touched && meta.error}
                                     />
                                 )}
@@ -206,9 +206,9 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
 };
 
 
-export default SignIn;
+export default SignIn;*/
 
-/*import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -260,4 +260,3 @@ export default function SignIn() {
         </Box>
     );
 }
-*/

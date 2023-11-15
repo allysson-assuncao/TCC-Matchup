@@ -19,6 +19,8 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
+    const {theme: mode} = useCustomTheme();
+    const theme = getTheme(mode);
     const {selectedContactId, contact, updateContactsWithMessage, ...other} = props;
 
     return (
@@ -27,7 +29,6 @@ function TabPanel(props: TabPanelProps) {
             hidden={selectedContactId !== contact.id}
             id={`vertical-tabpanel-${contact.id}`}
             aria-labelledby={`vertical-tab-${contact.id}`}
-            style={{ height: '100%', width: '100%' }}
             {...other}
         >
             {selectedContactId === contact.id && <Chat contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>}
@@ -61,7 +62,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
                 <FriendsMenu></FriendsMenu>
                 <ContactList contacts={contacts} setSelectedContact={setSelectedContact} setContacts={setContacts}></ContactList>
             </Grid>
-            <Grid item xs={4} md={9} sx={{border: '3px solid', borderColor: theme.palette.primary.main, weight: '60vh'}} >
+            <Grid item xs={4} md={9} sx={{weight: '60vh'}} >
                 {contacts && contacts.map((contact) => (
                     <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)} updateContactsWithMessage={updateContactsWithMessage}/>
                 ))}

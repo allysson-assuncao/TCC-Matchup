@@ -3,6 +3,8 @@ import {Grid, Tab, Tabs, Typography} from "@mui/material";
 import {Contact} from "../../model/contact";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ProfilePicture from "../../components/ProfilePicture";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 interface ContactProps {
     contacts: Contact[] | null;
@@ -11,7 +13,8 @@ interface ContactProps {
 }
 
 const ContactList: React.FC<ContactProps> = ({ contacts, setContacts, setSelectedContact }) => {
-
+    const {theme: mode} = useCustomTheme();
+    const theme = getTheme(mode);
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {

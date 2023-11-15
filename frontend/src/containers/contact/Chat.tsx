@@ -6,7 +6,9 @@ import {Message, MESSAGE_TYPE} from "../../model/message";
 import {getLastMessages, sendMessage} from "../../api/user_requests/messageRequests";
 import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
-import {Typography} from "@mui/material";
+import {AppBar, TextField, Toolbar, Typography} from "@mui/material";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 interface ChatProps {
     contact: Contact;
@@ -14,6 +16,8 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
+    const {theme: mode} = useCustomTheme();
+    const theme = getTheme(mode);
     const [messages, setMessages] = useState<Message[]>([]);
     const [hasMoreItems, setHasMoreItems] = useState(true);
 
@@ -34,7 +38,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const messagesTest = [{id: 1, hashedText: "olá"}, {id: 2, hashedText: "salve"}]
 
     return (
-        <Grid container direction="column">
+        <Grid container direction="column" height={'80vh'} sx={{border: '3px solid', borderColor: theme.palette.primary.dark}}>
             <Grid item>
                 <AppBarChat contact={contact}/>
             </Grid>
@@ -64,11 +68,6 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
             <Grid item>
                 <ChatFooter contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>
             </Grid>
-            {/*<TextField
-                    value={newMessage}
-                    onChange={event => setNewMessage(event.target.value)}
-                />
-                <Button onClick={handleSendMessage}>Send</Button>*/}
         </Grid>
     );
 };
