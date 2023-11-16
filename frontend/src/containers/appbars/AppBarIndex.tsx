@@ -10,7 +10,7 @@ import {
     useScrollTrigger,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
+import {ROUTE_ABOUT_US, ROUTE_FAQ, ROUTE_FEATURES, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
 import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import getTheme from "../../theme";
 import {useCustomTheme} from "../../CustomThemeContext";
@@ -50,31 +50,30 @@ const AppBarIndex = () => {
                         </Grid>
                         <Grid item xs={6} textAlign="center" margin="auto"  sx={{fontSize: '20px'}}>
                             <nav>
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
+                                <Button
+                                    variant="text"
+                                    color="secondary"
+                                    onClick={() => history(ROUTE_FEATURES)}
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Funcionalidades
-                                </Link>
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    color="secondary"
+                                    onClick={() => history(ROUTE_ABOUT_US)}
                                     sx={{my: 1, mx: 1.5}}
                                 >
-                                    Empresa
-                                </Link>
-
-                                <Link
-                                    variant="button"
-                                    color={theme.palette.secondary.main}
-                                    href="#"
+                                    Contato
+                                </Button>
+                                <Button
+                                    variant="text"
+                                    color="secondary"
+                                    onClick={() => history(ROUTE_FAQ)}
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Suporte
-                                </Link>
+                                </Button>
                             </nav>
                         </Grid>
                         <Grid item xs textAlign="right">

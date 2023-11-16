@@ -20,7 +20,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {getUser, logout} from "../../pages/Home";
-import {ROUTE_ABOUT_US, ROUTE_PROFILE, ROUTE_SETTINGS} from "../../App";
+import {ROUTE_ABOUT_US, ROUTE_PREMIUM, ROUTE_PROFILE, ROUTE_SETTINGS} from "../../App";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -67,7 +67,7 @@ function a11yProps(index: number) {
     };
 }
 
-const settings = ['Perfil', 'Configurações', 'Contato', '', 'Sair'];
+const settings = ['Perfil', 'Configurações', 'Contato', 'Plano Premium', '', 'Sair'];
 const menuIcons: { [key: string]: React.ReactElement } = {
     'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'}/>,
@@ -285,6 +285,8 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                                         history(ROUTE_SETTINGS);
                                                     } else if (setting === 'Contato') {
                                                         history(ROUTE_ABOUT_US);
+                                                    } else if (setting === 'Plano Premium') {
+                                                        history(ROUTE_PREMIUM);
                                                     } else if (setting === 'Mudar Tema') {
 
                                                     } else if (setting === 'Sair') {

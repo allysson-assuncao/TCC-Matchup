@@ -109,8 +109,6 @@ const GeneralInfoRegister = () => {
                             src={image}
                             style={{width: '100px', height: '100px', cursor: 'pointer'}}/>
                     </label>
-
-
                     <TextField
                         onChange={e => {
                             const formatted = formatPhoneNumber(e.target.value);
@@ -124,8 +122,6 @@ const GeneralInfoRegister = () => {
                         autoFocus
                         variant="outlined"
                     />
-
-
                     <TextField
                         margin="normal"
                         fullWidth
@@ -137,8 +133,6 @@ const GeneralInfoRegister = () => {
                         rows={10}
                         onChange={e => setBio(e.target.value + '')}
                     />
-
-
                 </Grid>
                 <Button
                     fullWidth
@@ -147,7 +141,6 @@ const GeneralInfoRegister = () => {
                     onClick={() => handleSubmit()} sx={{mt: 3}}>
                     CONCLUIR
                 </Button>
-
                 <Grid item>
                     <Snackbar
                         open={open}
@@ -155,7 +148,6 @@ const GeneralInfoRegister = () => {
                         message="Informações alteradas com sucesso!"
                     />
                 </Grid>
-
             </Box>
         </Container>
 

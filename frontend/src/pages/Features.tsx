@@ -9,7 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 
-const AboutUs = () => {
+const Features = () => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -40,8 +40,7 @@ const AboutUs = () => {
                 {/*Put our social medias here, gitHub, linkedin...*/}
             </Box>
         </Container>
-    )
-
+    );
 }
 
-export default AboutUs;
+export default Features;
