@@ -4,10 +4,9 @@ import {SxProps} from '@mui/system';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import {Button, Grow, Typography, useScrollTrigger} from "@mui/material";
+import {Grow, Typography} from "@mui/material";
 import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-import theme from "../../theme";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 

@@ -13,7 +13,7 @@ import {
     FormControl, Dialog, DialogTitle, DialogActions, DialogContent,
 } from '@mui/material';
 import { Field, Form, Formik, FieldProps } from 'formik';
-import {registerAll, registerInterestDependency} from "../api/interest_requests/registerInterest";
+import {getAll, registerAll, registerInterestDependency} from "../api/interest_requests/registerInterest";
 import {SubGenre} from "../model/interest/subGenre";
 import {Platform} from "../model/interest/platform";
 import {Genre} from "../model/interest/genre";
@@ -46,7 +46,7 @@ const RegisterInterests: React.FC = () => {
     const [highestPrice, setHighestPrice] = useState<number | string>('');
     const [dubbedLanguages, setDubbedLanguages] = useState<Language[]>([]);
     const [subtitledLanguages, setSubtitledLanguages] = useState<Language[]>([]);
-    const [ageRating, setAgeRating] = useState<AgeRating>('');
+    const [ageRating, setAgeRating] = useState<AgeRating>();
     const [genres, setGenres] = useState<Genre[]>([]);
     const [subgenres, setSubgenres] = useState<SubGenre[]>([]);
     const [platforms, setPlatforms] = useState<Platform[]>([]);
@@ -151,10 +151,11 @@ const RegisterInterests: React.FC = () => {
         if (!name) return;
 
         try {
-            let obj = await registerInterestDependency(type, name);
+            let response = await registerInterestDependency(type, name);
             // Reload dropdown data after registration
 
-            setDropdownData((prevData) => ({ ...prevData, [type]: response.data }));
+            // @ts-ignore
+            setDropdownData((prevData) => ({ ...prevData, [type]: response.data })); //response.data?
         } catch (error) {
             console.error(`Error registering ${type}:`, error);
         }
@@ -169,23 +170,6 @@ const RegisterInterests: React.FC = () => {
             // Handle error, e.g., show an error message
         }
     };
-
-    /*const register = async (type: string, data: any) => {
-        try {
-            await axios.post(`http://localhost:8080/api/admin/register/${type}`, data);
-        } catch (error) {
-            throw new Error(`Error registering ${type}: ${error}`);
-        }
-    };
-
-    const getAll = async (type: string) => {
-        try {
-            const response = await axios.get(`http://localhost:8080/api/admin/get/${type}/all`);
-            return response.data;
-        } catch (error) {
-            throw new Error(`Error getting ${type}s: ${error}`);
-        }
-    };*/
 
     return (
         <Container component="main" maxWidth="md">

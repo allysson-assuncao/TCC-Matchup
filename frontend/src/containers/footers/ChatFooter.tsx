@@ -4,13 +4,15 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import {AppBar, TextField, Toolbar} from "@mui/material";
-import {Message, MESSAGE_TYPE} from "../../model/message";
+import {Message, MESSAGE_TYPE, TextMessageToBeSent} from "../../model/message";
 import {sendMessage} from "../../api/user_requests/messageRequests";
 import {useState} from "react";
 import {Contact} from "../../model/contact";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from '@mui/icons-material/Send';
+import {getUser} from "../../pages/Home";
+import socket from "../../api/WebSocketService";
 
 
 interface ChatFooterProps {
@@ -36,10 +38,40 @@ const ChatFooter: React.FC<ChatFooterProps> = ({contact, updateContactsWithMessa
                 hashedText: newMessage
             };
 
-            updateContactsWithMessage(contact.user1Id, (await sendMessage(message)));
+            /*updateContactsWithMessage(contact.user1Id, (await socket.emit('/app/private-message', message)));*/
+            function isMessage(obj: any): obj is Message {
+                return obj && obj.date && obj.senderId && obj.receiverId && obj.messageType;
+            }
+
+            socket.emit('/app/private-message', message, (response) => {
+                if(isMessage(response)) {
+                    updateContactsWithMessage(contact.user1Id, response);
+                } else {
+                    console.error('A resposta não é do tipo Message');
+                }
+            });
+
+
             setNewMessage('');
         }
     };
+
+   /* const sendTextMessage = () => {
+        if (newTextMessage.trim() !== '') {
+            const textMessageToBeSent: TextMessageToBeSent = {
+                senderId: BigInt(getUser().id),
+                receiverId: contact.user2Id,
+                messageType: MESSAGE_TYPE.TEXT,
+                hashedText: newTextMessage,
+            };
+
+
+            // Enviar a mensagem para o servidor via WebSocket
+            let variable = socket.emit('/app/chat', textMessageToBeSent);
+
+            setNewTextMessage('');
+        }
+    };*/
 
     return (
         <Box>

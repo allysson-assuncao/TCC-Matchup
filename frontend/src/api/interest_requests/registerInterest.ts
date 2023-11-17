@@ -24,7 +24,7 @@ export const registerAll = async (type: string, jsonObject: JsonObject) => {
     }
 }
 
-export const registerInterestDependency = async (type: string, name: string):  => {
+export const registerInterestDependency = async (type: string, name: string)  => {
     const jsonObject: JsonObject = {};
 
     if (!name || !type) return;
@@ -34,9 +34,9 @@ export const registerInterestDependency = async (type: string, name: string):  =
     return jsonObject;
 }
 
-export const getAll = async (type: string): Promise<boolean> => {
+export const getAll = async (type: string) => {
     try {
-        const response = axios.get(`${API_BASE_URL}${type}/all`);
+        const response = await axios.get(`${API_BASE_URL}${type}/all`);
         return response.data;
     } catch (error) {
         throw new Error(`Error getting ${type}s: ${error}`);

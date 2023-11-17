@@ -56,22 +56,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
         };
     }, [messages, fetchMoreData]);
 
-    const sendMessage = () => {
-        if (newTextMessage.trim() !== '') {
-            const textMessageToBeSent: TextMessageToBeSent = {
-                senderId: BigInt(getUser().id),
-                receiverId: contact.user2Id,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedText: newTextMessage,
-            };
 
-
-            // Enviar a mensagem para o servidor via WebSocket
-            socket.emit('/app/chat', textMessageToBeSent);
-
-            setNewTextMessage('');
-        }
-    };
 
     useEffect(() => {
         // Configurar ouvinte para novas mensagens via WebSocket
