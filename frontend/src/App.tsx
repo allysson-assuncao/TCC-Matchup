@@ -26,6 +26,7 @@ import {Message} from "./model/message";
 import Features from "./pages/Features";
 import FAQ from "./pages/FAQ";
 import Premium from "./pages/Premium";
+import RegisterInterests from "./pages/RegisterInterests";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/features';

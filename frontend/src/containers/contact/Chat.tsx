@@ -6,11 +6,12 @@ import ReceivedMessage from "../../components/contact/ReceivedMessage";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {Contact} from "../../model/contact";
-import {Message} from "../../model/message";
+import {Message, MESSAGE_TYPE, TextMessageToBeSent} from "../../model/message";
 import Grid from "@mui/material/Grid";
 import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
 import {getLastMessages} from "../../api/user_requests/messageRequests";
+import socket from "../../api/WebSocketService";
 
 interface ChatProps {
     contact: Contact;
@@ -21,6 +22,9 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [messages, setMessages] = useState<Array<Message>>(contact.messages);
+
+    const [newTextMessage, setNewTextMessage] = useState<string>('');
+
 
     const scrollRef = useRef<HTMLElement>(null);
 
@@ -51,6 +55,35 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
             scrollElement.removeEventListener('scroll', handleScroll);
         };
     }, [messages, fetchMoreData]);
+
+    const sendMessage = () => {
+        if (newTextMessage.trim() !== '') {
+            const textMessageToBeSent: TextMessageToBeSent = {
+                senderId: BigInt(getUser().id),
+                receiverId: contact.user2Id,
+                messageType: MESSAGE_TYPE.TEXT,
+                hashedText: newTextMessage,
+            };
+
+
+            // Enviar a mensagem para o servidor via WebSocket
+            socket.emit('/app/chat', textMessageToBeSent);
+
+            setNewTextMessage('');
+        }
+    };
+
+    useEffect(() => {
+        // Configurar ouvinte para novas mensagens via WebSocket
+        socket.on('topic/private/messages', (message: Message) => {
+            setMessages([...messages, message]);
+        });
+
+        // Cleanup ao desmontar o componente
+        return () => {
+            socket.off('topic/private/messages');
+        };
+    }, [messages]);
 
 
     useEffect(() => {

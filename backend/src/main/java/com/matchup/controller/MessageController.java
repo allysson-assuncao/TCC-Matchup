@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api/message")
+/*@RequestMapping("/api/message")*/
 public class MessageController {
 
     private final MessageService messageService;
@@ -54,4 +54,3 @@ public class MessageController {
     }
 
 }
-

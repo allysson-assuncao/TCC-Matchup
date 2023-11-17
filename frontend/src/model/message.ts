@@ -21,3 +21,10 @@ export interface Message {
 
     private String hashedText;*/
 }
+
+export type TextMessageToBeSent = {
+    senderId: bigint;
+    receiverId: bigint;
+    messageType: string;
+    hashedText: string;
+}
