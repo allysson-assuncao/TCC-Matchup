@@ -6,7 +6,7 @@ import ReceivedMessage from "../../components/contact/ReceivedMessage";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {Contact} from "../../model/contact";
-import {Message, MESSAGE_TYPE, TextMessageToBeSent} from "../../model/message";
+import {Message} from "../../model/message";
 import Grid from "@mui/material/Grid";
 import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
