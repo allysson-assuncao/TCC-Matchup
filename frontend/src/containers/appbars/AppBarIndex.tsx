@@ -10,7 +10,14 @@ import {
     useScrollTrigger,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_ABOUT_US, ROUTE_FAQ, ROUTE_FEATURES, ROUTE_SIGN_IN, ROUTE_SIGN_UP} from "../../App";
+import {
+    ROUTE_ABOUT_US,
+    ROUTE_FAQ,
+    ROUTE_FEATURES,
+    ROUTE_REGISTER_INTERESTS,
+    ROUTE_SIGN_IN,
+    ROUTE_SIGN_UP
+} from "../../App";
 import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import getTheme from "../../theme";
 import {useCustomTheme} from "../../CustomThemeContext";
@@ -69,7 +76,8 @@ const AppBarIndex = () => {
                                 <Button
                                     variant="text"
                                     color="secondary"
-                                    onClick={() => history(ROUTE_FAQ)}
+                                    /*onClick={() => history(ROUTE_FAQ)}*/
+                                    onClick={() => history(ROUTE_REGISTER_INTERESTS)}
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Suporte

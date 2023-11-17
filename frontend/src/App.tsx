@@ -34,6 +34,7 @@ export const ROUTE_FAQ = '/faq';
 export const ROUTE_HOME = '/home';
 export const ROUTE_SIGN_IN = '/login';
 export const ROUTE_SIGN_UP = '/cadastro';
+export const ROUTE_REGISTER_INTERESTS = '/cadastro_de_interesses';
 export const ROUTE_PROFILE = '/perfil';
 export const ROUTE_EDITABLE_PROFILE = '/editar_perfil';
 export const ROUTE_FORGOT_PASSWORD = '/esquececu_a_senha';
@@ -101,6 +102,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_FAQ} index element={<FAQ/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
+                <Route path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}/>
 
                 <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
                 <Route path="/perfil/:usernamePathVariable" element={<Profile/>}/>
