@@ -131,26 +131,27 @@ const App: React.FC = () => {
                 <Route path={ROUTE_FAQ} index element={<FAQ/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
-                {/*<Route path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}/>*/}
+                <Route path={ROUTE_HOME}
+                       element={<ProtectedRoute
+                           isAllowed={getUser() !== null}
+                           element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>
 
-                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts}
-                                                        updateContactsWithMessage={updateContactsWithMessage}/>}/>
-                {/*<Route path={ROUTE_HOME}
-                       element={<ProtectedRoute isAllowed={!getUser() || getUser().type === USER_TYPE.DEVELOPER || getUser().type === USER_TYPE.ADMIN} element={<RegisterInterests/>}/>}/>*/}
+                       }/>}/>
                 <Route path="/:usernamePathVariable" element={<Profile/>}/>
-                <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile/>}/>
+                <Route path={ROUTE_EDITABLE_PROFILE}
+                       element={<ProtectedRoute isAllowed={getUser() !== null}  element={<EditableProfile/>}/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>
-                <Route path={ROUTE_SETTINGS} element={<Settings/>}/>
+                <Route path={ROUTE_SETTINGS}
+                       element={<ProtectedRoute isAllowed={getUser() !== null }  element={<Settings/>}/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PREMIUM} element={<Premium/>}/>
-                <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
+                <Route path={ROUTE_PROFILE_SETTINGS}
+                       element={<ProtectedRoute isAllowed={getUser() !== null}  element={<EditProfile/>}/>}/>
                 <Route path={ROUTE_CONTACT_PROTOTYPE}
                        element={<ContactPage contacts={contacts} setContacts={setContacts}
                                              updateContactsWithMessage={updateContactsWithMessage}/>}/>
 
-                {/*<ProtectedRoute isAllowed={false} path={ROUTE_REGISTER_INTERESTS}
-                                element={<RegisterInterests/>}></ProtectedRoute>*/}
-                {/*<ProtectedRoute isAllowed={false} path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}></ProtectedRoute>*/}
+
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
                            isAllowed={getUser() && getUser().access === USER_TYPE.ADMIN}
