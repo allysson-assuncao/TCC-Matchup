@@ -1,11 +1,10 @@
 package com.matchup.model.message;
 
-import com.matchup.model.User;
+import com.matchup.model.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Arrays;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

@@ -27,7 +27,7 @@ import {Contact} from "../model/contact";
 import {getContactsByUserId} from "../api/user_requests/contactRequests";
 
 interface SignInProps {
-    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
+    setContacts?: React.Dispatch<React.SetStateAction<Contact[] | null>>;
 }
 
 const SignIn: React.FC<SignInProps> = ({setContacts}) => {

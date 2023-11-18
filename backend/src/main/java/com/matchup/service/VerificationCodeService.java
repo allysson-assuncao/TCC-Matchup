@@ -1,13 +1,11 @@
 package com.matchup.service;
 
-import com.matchup.model.User;
+import com.matchup.model.user.User;
 import com.matchup.model.VerificationCode;
-import com.matchup.repository.UserRepository;
+import com.matchup.repository.user.UserRepository;
 import com.matchup.repository.VerificationCodeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

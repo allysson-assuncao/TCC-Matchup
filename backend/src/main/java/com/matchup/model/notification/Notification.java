@@ -1,6 +1,6 @@
 package com.matchup.model.notification;
 
-import com.matchup.model.User;
+import com.matchup.model.user.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

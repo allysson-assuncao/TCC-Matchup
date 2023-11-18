@@ -1,8 +1,6 @@
 package com.matchup.repository.message;
 
-import com.matchup.model.Friendship;
 import com.matchup.model.message.Message;
-import com.matchup.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

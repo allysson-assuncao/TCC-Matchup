@@ -1,9 +1,9 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {ReactNode, useEffect, useMemo, useState} from 'react';
 import {
     createBrowserRouter,
-    createRoutesFromElements,
-    Route,
-    RouterProvider
+    createRoutesFromElements, Navigate,
+    Route, RouteProps,
+    RouterProvider, RoutesProps, useNavigate
 } from 'react-router-dom'
 import './App.css';
 import AppIndex from './pages/AppIndex';
@@ -27,6 +27,7 @@ import Features from "./pages/Features";
 import FAQ from "./pages/FAQ";
 import Premium from "./pages/Premium";
 import RegisterInterests from "./pages/RegisterInterests";
+import {USER_TYPE} from "./model/user";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/features';
@@ -80,11 +81,11 @@ const App: React.FC = () => {
 
     useEffect(() => {
         //if (/* !sessionStorage.getItem('hasRunBefore') */true) {
-            fetchContacts();
+        fetchContacts();
 
-            console.log(contacts);
+        console.log(contacts);
 
-            sessionStorage.setItem('hasRunBefore', 'true');
+        sessionStorage.setItem('hasRunBefore', 'true');
         //}
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
@@ -92,6 +93,31 @@ const App: React.FC = () => {
         console.log("USE EFFECT CONTACTS");
         console.log(contacts);
     }, [contacts]);
+
+
+    interface ProtectedRouteProps {
+        isAllowed: boolean;
+        redirectPath?: string;
+        element: any;
+
+    }
+
+    const ProtectedRoute: React.FC<ProtectedRouteProps> = ({isAllowed, redirectPath, element}: ProtectedRouteProps) => {
+        const history = useNavigate();
+        useEffect(() => {
+            if (!isAllowed) {
+                console.log("ACESSO NEGADO!");
+                history(redirectPath || ROUTE_SIGN_IN);
+            }
+        }, [isAllowed, history, redirectPath]);
+
+        if (isAllowed) {
+            console.log("ACESSO CONCEDIDO!");
+            return element;
+        } else {
+            return null;
+        }
+    }
 
 
     const router = useMemo(() => createBrowserRouter(
@@ -102,9 +128,12 @@ const App: React.FC = () => {
                 <Route path={ROUTE_FAQ} index element={<FAQ/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
-                <Route path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}/>
+                {/*<Route path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}/>*/}
 
-                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
+                <Route path={ROUTE_HOME} element={<Home contacts={contacts} setContacts={setContacts}
+                                                        updateContactsWithMessage={updateContactsWithMessage}/>}/>
+                {/*<Route path={ROUTE_HOME}
+                       element={<ProtectedRoute isAllowed={!getUser() || getUser().type === USER_TYPE.DEVELOPER || getUser().type === USER_TYPE.ADMIN} element={<RegisterInterests/>}/>}/>*/}
                 <Route path="/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE} element={<EditableProfile/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>
@@ -112,7 +141,16 @@ const App: React.FC = () => {
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PREMIUM} element={<Premium/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS} element={<EditProfile/>}/>
-                <Route path={ROUTE_CONTACT_PROTOTYPE} element={<ContactPage contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>}/>
+                <Route path={ROUTE_CONTACT_PROTOTYPE}
+                       element={<ContactPage contacts={contacts} setContacts={setContacts}
+                                             updateContactsWithMessage={updateContactsWithMessage}/>}/>
+
+                {/*<ProtectedRoute isAllowed={false} path={ROUTE_REGISTER_INTERESTS}
+                                element={<RegisterInterests/>}></ProtectedRoute>*/}
+                {/*<ProtectedRoute isAllowed={false} path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}></ProtectedRoute>*/}
+                <Route path={ROUTE_REGISTER_INTERESTS}
+                       element={<ProtectedRoute isAllowed={getUser() && getUser().type === USER_TYPE.ADMIN}
+                                                element={<RegisterInterests/>}/>}/>
             </Route>
         )
     ), [contacts, setContacts, updateContactsWithMessage]);

@@ -1,22 +1,17 @@
 package com.matchup.service;
 
-import com.matchup.dto.ContactDto;
 import com.matchup.dto.MessageDto;
 import com.matchup.enums.MessageType;
 import com.matchup.model.Contact;
-import com.matchup.model.User;
-import com.matchup.model.image.MessageImage;
-import com.matchup.model.image.ProfilePicture;
+import com.matchup.model.user.User;
 import com.matchup.model.message.*;
 import com.matchup.repository.ContactRepository;
-import com.matchup.repository.UserRepository;
+import com.matchup.repository.user.UserRepository;
 import com.matchup.repository.image.MessageImageRepository;
 import com.matchup.repository.message.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

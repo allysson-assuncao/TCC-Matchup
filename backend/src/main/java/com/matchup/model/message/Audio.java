@@ -1,9 +1,7 @@
 package com.matchup.model.message;
 
-import com.matchup.model.User;
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 

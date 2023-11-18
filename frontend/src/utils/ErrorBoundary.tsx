@@ -1,5 +1,5 @@
 import React, {ErrorInfo, ReactNode} from 'react';
-import {Alert, AlertTitle, Button, Card, CardContent, Typography} from '@mui/material';
+import {Button, Card, CardContent, Typography} from '@mui/material';
 
 interface Props {
     children: ReactNode;
@@ -32,7 +32,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     }
 
     render() {
-        if (this.state.hasError) {
+        if (this.state.hasError && this.state.error && this.state.errorInfo) {
             return (
                 <Card>
                     <CardContent>
@@ -41,6 +41,12 @@ class ErrorBoundary extends React.Component<Props, State> {
                         </Typography>
                         <Typography sx={{ mb: 1.5 }} color="text.secondary">
                             Desculpe pelo inconveniente. Por favor, tente novamente.
+                        </Typography>
+                        <Typography variant="body2" color="error.main">
+                            {this.state.error.name}: {this.state.error.message}
+                        </Typography>
+                        <Typography variant="body2" color="error.main">
+                            {this.state.errorInfo.componentStack}
                         </Typography>
                         <Button variant="contained" onClick={this.handleTryAgain}>Tentar Novamente</Button>
                     </CardContent>

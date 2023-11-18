@@ -1,21 +1,14 @@
 package com.matchup.controller;
 
 import com.matchup.dto.UserDto;
-import com.matchup.model.Interest;
-import com.matchup.model.User;
+import com.matchup.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.support.NullValue;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
 
-import javax.lang.model.util.Elements;
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @RestController
 @CrossOrigin(origins = "*")

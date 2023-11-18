@@ -1,6 +1,7 @@
 package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.matchup.model.user.User;
 import jakarta.persistence.*;
 
 @Entity

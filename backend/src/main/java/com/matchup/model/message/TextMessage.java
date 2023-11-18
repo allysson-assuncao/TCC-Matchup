@@ -1,10 +1,7 @@
 package com.matchup.model.message;
 
-import com.matchup.model.User;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Entity
 @DiscriminatorValue("text")

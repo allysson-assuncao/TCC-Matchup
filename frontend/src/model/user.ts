@@ -9,6 +9,14 @@ import {Message} from "./message";
     contacts = "contacts",
 }*/
 
+export const USER_TYPE = {
+    DEFAULT: 'DEFAULT',
+    INTERMEDIATE: 'INTERMEDIATE',
+    PREMIUM: 'PREMIUM',
+    DEVELOPER: 'DEVELOPER',
+    ADMIN: 'ADMIN'
+}
+
 export interface User {
     id: bigint;
     name: string;
@@ -24,6 +32,7 @@ export interface User {
     interests: Interest;
     sentMessages: Array<Message>;
     receivedMessages: Array<Message>;
+    type: string;
 }
 
 export type SignInPayload = {

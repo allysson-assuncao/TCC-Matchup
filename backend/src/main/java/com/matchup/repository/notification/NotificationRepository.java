@@ -1,6 +1,5 @@
 package com.matchup.repository.notification;
 
-import com.matchup.model.User;
 import com.matchup.model.notification.Notification;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;

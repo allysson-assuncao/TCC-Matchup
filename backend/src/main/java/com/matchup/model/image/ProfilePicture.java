@@ -1,8 +1,8 @@
 package com.matchup.model.image;
 
-import com.matchup.model.Friendship;
-import com.matchup.model.User;
+import com.matchup.model.user.User;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @DiscriminatorValue("profile_picture")
