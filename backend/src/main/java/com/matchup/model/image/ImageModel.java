@@ -1,10 +1,16 @@
 package com.matchup.model.image;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "image_type")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public abstract class ImageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,60 +28,5 @@ public abstract class ImageModel {
 
     @Column(name = "content_type")
     private String contentType;
-
-    // <editor-fold desc="Constructors">
-
-    public ImageModel() {
-    }
-
-    public ImageModel(String name, String originalName, byte[] content, String contentType) {
-        this.name = name;
-        this.originalName = originalName;
-        this.content = content;
-        this.contentType = contentType;
-    }
-
-    // </editor-fold>
-
-    // <editor-fold desc="Encapsulation">
-
-    public long getId() {
-        return id;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public byte[] getContent() {
-        return content;
-    }
-
-    public void setContent(byte[] content) {
-        this.content = content;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
-    public void setContentType(String contentType) {
-        this.contentType = contentType;
-    }
-
-    public String getOriginalName() {
-        return originalName;
-    }
-
-    public void setOriginalName(String originalName) {
-        this.originalName = originalName;
-    }
-
-    // </editor-fold>
 
 }
