@@ -45,7 +45,7 @@ const Features = () => {
     }, [scrolled]);
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth={false}>
             <CssBaseline/>
             <Box
                 component="section"
@@ -61,13 +61,13 @@ const Features = () => {
                         alignItems: 'center',
                     }}
                 >
-                    <Typography variant="h4" component="h2" color={theme.palette.secondary.main} sx={{mb: 14}}>
+                    <Typography variant="h4" component="h2" color={theme.palette.secondary.main} sx={{mb: 10}}>
                         Funcionalidades
                     </Typography>
                     <Grid>
                         <Grid container spacing={5} sx={{marginBottom: '100px'}}>
-                            <Grow in={scrolled}>
-                                <Grid item xs={12} md={4}>
+                            {/*<Grow in={scrolled}>*/}
+                                <Grid item xs={12} md={3}>
                                     <Box sx={item}>
                                         <SportsEsportsOutlinedIcon color="primary"
                                                                    sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
@@ -76,12 +76,12 @@ const Features = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                            </Grow>
+                            {/*</Grow>
                             <Grow in={scrolled}
                                   style={{transformOrigin: '0 0 0'}}
                                   {...(scrolled ? {timeout: 1000} : {})}
-                            >
-                                <Grid item xs={12} md={4}>
+                            >*/}
+                                <Grid item xs={12} md={3}>
                                     <Box sx={item}>
                                         <GroupAddOutlinedIcon color="primary"
                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
@@ -90,12 +90,12 @@ const Features = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                            </Grow>
+                            {/*</Grow>
                             <Grow in={scrolled}
                                   style={{transformOrigin: '0 0 0'}}
                                   {...(scrolled ? {timeout: 2000} : {})}
-                            >
-                                <Grid item xs={12} md={4}>
+                            >*/}
+                                <Grid item xs={12} md={3}>
                                     <Box sx={item}>
                                         <SportsEsportsOutlinedIcon color="primary"
                                                                    sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
@@ -104,57 +104,27 @@ const Features = () => {
                                         </Typography>
                                     </Box>
                                 </Grid>
-                            </Grow>
-                        </Grid>
-                    </Grid>
-                    <Grid>
-                        <Grid container spacing={5} sx={{marginBottom: '100px'}}>
-                            <Grow in={scrolled}>
-                                <Grid item xs={12} md={4}>
-                                    <Box sx={item}>
-                                        <SportsEsportsOutlinedIcon color="primary"
-                                                                   sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                        <Typography color={theme.palette.primary.main} variant="h5" align="center">
-                                            Selecione seus jogos favoritos e converse sobre eles com seus amigos!
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            </Grow>
-                            <Grow in={scrolled}
+                            {/*</Grow>*/}
+                            {/*<Grow in={scrolled}
                                   style={{transformOrigin: '0 0 0'}}
-                                  {...(scrolled ? {timeout: 1000} : {})}
-                            >
-                                <Grid item xs={12} md={4}>
-                                    <Box sx={item}>
-                                        <GroupAddOutlinedIcon color="primary"
-                                                              sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                        <Typography color={theme.palette.primary.main} variant="h5" align="center">
-                                            Encontre pessoas com gostos em comum para conversar pela plataforma!
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            </Grow>
-                            <Grow in={scrolled}
-                                  style={{transformOrigin: '0 0 0'}}
-                                  {...(scrolled ? {timeout: 2000} : {})}
-                            >
-                                <Grid item xs={12} md={4}>
-                                    <Box sx={item}>
-                                        <SportsEsportsOutlinedIcon color="primary"
-                                                                   sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                        <Typography color={theme.palette.primary.main} variant="h5" align="center">
-                                            Descubra novos jogos recomendados com base nos seus interesses!
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            </Grow>
+                                  {...(scrolled ? {timeout: 3000} : {})}
+                            >*/}
+                            <Grid item xs={12} md={3}>
+                                <Box sx={item}>
+                                    <SportsEsportsOutlinedIcon color="primary"
+                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
+                                        Descubra novos jogos recomendados com base nos seus interesses!
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                            {/*</Grow>*/}
                         </Grid>
                     </Grid>
                 </Container>
             </Box>
         </Container>
-    )
-
+    );
 }
 
 export default Features;
