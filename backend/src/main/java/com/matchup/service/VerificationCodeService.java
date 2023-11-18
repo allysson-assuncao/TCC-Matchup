@@ -1,8 +1,8 @@
 package com.matchup.service;
 
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import com.matchup.model.VerificationCode;
-import com.matchup.repository.user.UserRepository;
+import com.matchup.repository.UserRepository;
 import com.matchup.repository.VerificationCodeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

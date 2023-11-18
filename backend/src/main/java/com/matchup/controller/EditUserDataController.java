@@ -1,7 +1,7 @@
 package com.matchup.controller;
 
 import com.matchup.dto.UserDto;
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

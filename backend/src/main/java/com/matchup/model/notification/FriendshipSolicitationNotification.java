@@ -1,7 +1,7 @@
 package com.matchup.model.notification;
 
 import com.matchup.model.Friendship;
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

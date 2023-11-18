@@ -1,6 +1,5 @@
 package com.matchup.model;
 
-import com.matchup.model.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 

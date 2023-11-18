@@ -2,18 +2,27 @@ package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.dto.UserDto;
+import com.matchup.enums.UserAccess;
 import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.message.Message;
 import com.matchup.model.notification.Notification;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
+import lombok.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "matchup")
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class User {
     @Id
     @Column(nullable = false)
@@ -48,9 +57,17 @@ public class User {
     @Column(name = "bio", length = 2000, updatable = true)
     private String bio;
 
+    @Column(name = "access", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserAccess access;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
+
+    /*@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "access_identifier")
+    private AccessIdentifier accessIdentifier;*/
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
@@ -79,170 +96,7 @@ public class User {
     @OneToMany(mappedBy = "blocker")
     private List<Block> blockList;
 
-    // <editor-fold desc="Constructors">
-    public User() {
 
-    }
-
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.hashedPassword = hashedPassword;
-        this.cellphoneNumber = cellphoneNumber;
-        this.profilePicture = profilePicture;
-        this.bio = bio;
-    }
-
-    public User(String name, String username, String email, LocalDate birthDate, String hashedPassword, String cellphoneNumber, ProfilePicture profilePicture, String bio, Address address, List<Friendship> friends, List<Interest> interests, List<Message> sentMessages, List<Message> receivedMessages, List<Block> blockList) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.birthDate = birthDate;
-        this.hashedPassword = hashedPassword;
-        this.cellphoneNumber = cellphoneNumber;
-        this.profilePicture = profilePicture;
-        this.bio = bio;
-        this.address = address;
-        this.friends = friends;
-        this.interests = interests;
-        this.sentMessages = sentMessages;
-        this.receivedMessages = receivedMessages;
-        this.blockList = blockList;
-    }
-
-    // </editor-fold>
-
-    // <editor-fold desc="Encapsulation">
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUsername() {return username;}
-
-    public void setUsername(String username) {this.username = username;}
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate age) {
-        this.birthDate = age;
-    }
-
-    public String getHashedPassword() {
-        return hashedPassword;
-    }
-
-    public void setHashedPassword(String hashedPassword) {
-        this.hashedPassword = hashedPassword;
-    }
-
-    public String getCellphoneNumber() {
-        return cellphoneNumber;
-    }
-
-    public void setCellphoneNumber(String cellphoneNumber) {
-        this.cellphoneNumber = cellphoneNumber;
-    }
-
-    public ProfilePicture getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(ProfilePicture profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public List<Friendship> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<Friendship> friends) {
-        this.friends = friends;
-    }
-
-    public List<Interest> getInterests() {
-        return interests;
-    }
-
-    public void setInterests(List<Interest> interests) {
-        this.interests = interests;
-    }
-
-    public List<Message> getSentMessages() {
-        return sentMessages;
-    }
-
-    public void setSentMessages(List<Message> sentMessages) {
-        this.sentMessages = sentMessages;
-    }
-
-    public List<Message> getReceivedMessages() {
-        return receivedMessages;
-    }
-
-    public void setReceivedMessages(List<Message> receivedMessages) {
-        this.receivedMessages = receivedMessages;
-    }
-
-    public List<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(List<Notification> notifications) {
-        this.notifications = notifications;
-    }
-
-    public List<Block> getBlockList() {
-        return blockList;
-    }
-
-    public void setBlockList(List<Block> blockList) {
-        this.blockList = blockList;
-    }
-
-    public List<VerificationCode> getCodes() {
-        return codes;
-    }
-
-    public void setCodes(List<VerificationCode> codes) {
-        this.codes = codes;
-    }
-
-    // </editor-fold>
 
     public Friendship getFriendshipWithThisUser(User user){
         for(Friendship f: this.friends){

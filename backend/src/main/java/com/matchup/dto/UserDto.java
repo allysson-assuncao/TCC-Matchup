@@ -1,5 +1,6 @@
 package com.matchup.dto;
 
+import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
@@ -26,6 +27,7 @@ public class UserDto {
     private List<Long> interests;
     private List<Long> sentMessages;
     private List<Long> receivedMessages;
+    private UserAccess access;
 
 
     private long addressId;

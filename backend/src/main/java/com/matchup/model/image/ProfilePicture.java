@@ -1,6 +1,6 @@
 package com.matchup.model.image;
 
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

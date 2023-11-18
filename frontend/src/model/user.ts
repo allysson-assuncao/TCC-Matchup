@@ -32,7 +32,7 @@ export interface User {
     interests: Interest;
     sentMessages: Array<Message>;
     receivedMessages: Array<Message>;
-    type: string;
+    access: string;
 }
 
 export type SignInPayload = {

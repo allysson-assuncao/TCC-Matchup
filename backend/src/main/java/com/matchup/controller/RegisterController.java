@@ -2,7 +2,7 @@ package com.matchup.controller;
 
 import com.matchup.dto.UserDto;
 import com.matchup.model.Address;
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import com.matchup.service.AddressService;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

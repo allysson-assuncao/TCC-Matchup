@@ -97,17 +97,20 @@ const App: React.FC = () => {
 
     interface ProtectedRouteProps {
         isAllowed: boolean;
-        redirectPath?: string;
+        redirectPath?: any;
         element: any;
 
     }
 
-    const ProtectedRoute: React.FC<ProtectedRouteProps> = ({isAllowed, redirectPath, element}: ProtectedRouteProps) => {
+    const ProtectedRoute: React.FC<ProtectedRouteProps> = ({isAllowed, redirectPath = ROUTE_SIGN_IN, element}: ProtectedRouteProps) => {
         const history = useNavigate();
         useEffect(() => {
+
             if (!isAllowed) {
+
                 console.log("ACESSO NEGADO!");
-                history(redirectPath || ROUTE_SIGN_IN);
+                console.log(getUser());
+                history(redirectPath);
             }
         }, [isAllowed, history, redirectPath]);
 
@@ -149,8 +152,10 @@ const App: React.FC = () => {
                                 element={<RegisterInterests/>}></ProtectedRoute>*/}
                 {/*<ProtectedRoute isAllowed={false} path={ROUTE_REGISTER_INTERESTS} element={<RegisterInterests/>}></ProtectedRoute>*/}
                 <Route path={ROUTE_REGISTER_INTERESTS}
-                       element={<ProtectedRoute isAllowed={getUser() && getUser().type === USER_TYPE.ADMIN}
-                                                element={<RegisterInterests/>}/>}/>
+                       element={<ProtectedRoute
+                           isAllowed={getUser() && getUser().access === USER_TYPE.ADMIN}
+                           redirectPath={-1}
+                           element={<RegisterInterests/>}/>}/>
             </Route>
         )
     ), [contacts, setContacts, updateContactsWithMessage]);

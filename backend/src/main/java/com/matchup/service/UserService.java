@@ -2,10 +2,13 @@ package com.matchup.service;
 
 /*import com.matchup.config.JavaMailSender;*/
 import com.matchup.dto.UserDto;
+import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
 import com.matchup.model.image.ProfilePicture;
+import com.matchup.model.User;
 import com.matchup.repository.*;
 import com.matchup.repository.image.ProfilePictureRepository;
+import com.matchup.repository.UserRepository;
 import com.matchup.tools.BlobMultipartFile;
 import com.matchup.tools.ImageResizer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +99,7 @@ public class UserService {
         User userToRegister = new User();
         Address addressToRegister = new Address();
 
+        userToRegister.setAccess(UserAccess.DEFAULT);
         userToRegister.setName(userDto.getName());
         userToRegister.setUsername(userDto.getUsername());
         userToRegister.setEmail(userDto.getEmail());

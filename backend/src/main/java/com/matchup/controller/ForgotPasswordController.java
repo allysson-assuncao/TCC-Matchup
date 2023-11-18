@@ -1,7 +1,7 @@
 package com.matchup.controller;
 
 import com.matchup.dto.ResetPasswordDto;
-import com.matchup.model.user.User;
+import com.matchup.model.User;
 import com.matchup.service.EmailService;
 import com.matchup.service.UserService;
 import com.matchup.service.VerificationCodeService;
