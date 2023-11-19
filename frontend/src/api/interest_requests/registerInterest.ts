@@ -4,34 +4,23 @@ interface JsonObject {
     [key: string]: any;
 }
 
-const API_BASE_URL = 'http://localhost:8080/api/admin/register/';
+const API_BASE_URL = 'http://localhost:8080/api/interests/';
 
 export const registerAll = async (type: string, jsonObject: JsonObject) => {
     try {
-        const response = await axios.post(API_BASE_URL + type, jsonObject, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.status !== 200) {
-            throw new Error(`Error sending data: ${response.statusText}`);
-        }
-
-        addOptionToDropDown(type, response.data);
+        const response: any = await axios.post(`http://localhost:8080/api/interests/register/company`, JSON.stringify(jsonObject));
+        return response;
     } catch (error) {
         alert(`An error occurred in register(): ${error}`);
     }
 }
 
 export const registerInterestDependency = async (type: string, name: string)  => {
-    const jsonObject: JsonObject = {};
 
     if (!name || !type) return;
 
-    jsonObject['name'] = name;
-    registerAll(type, jsonObject);
-    return jsonObject;
+    return registerAll(type, {name: name});
+
 }
 
 export const getAll = async (type: string) => {
@@ -43,8 +32,11 @@ export const getAll = async (type: string) => {
     }
 };
 
-function addOptionToDropDown(type: string, data: any) {
-    // Implement this function based on your specific requirements
-    // This function should handle the logic for adding options to the dropdown
-    console.log(`Option added to dropdown for ${type}:`, data);
-}
+export const getAllInterestDependencies = async () => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}get-all-dependencies`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error getting dependencies`);
+    }
+};

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     Container,
@@ -10,15 +10,17 @@ import {
     Select,
     MenuItem,
     InputLabel,
-    FormControl, Dialog, DialogTitle, DialogActions, DialogContent,
+    FormControl,
 } from '@mui/material';
-import { Field, Form, Formik, FieldProps } from 'formik';
-import {getAll, registerAll, registerInterestDependency} from "../api/interest_requests/registerInterest";
-import {SubGenre} from "../model/interest/subGenre";
-import {Platform} from "../model/interest/platform";
-import {Genre} from "../model/interest/genre";
-import {Language} from "../model/interest/language";
-import {AgeRating} from "../model/interest/ageRating";
+import {Field, Form, Formik, FieldProps} from 'formik';
+import {
+    getAllInterestDependencies,
+    registerAll,
+} from "../api/interest_requests/registerInterest";
+import {languages} from "../resources/languages";
+import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
+import {INTEREST_DEPENDENCIES, InterestDependency} from "../model/interest";
+import MultipleSelect from "../components/fields/MultipleSelect";
 
 interface InterestFormValues {
     name: string;
@@ -33,8 +35,6 @@ interface InterestFormValues {
     platforms: string[];
 }
 
-const INTEREST_DEPENDENCIES = ['company', 'language', 'age-rating', 'genre', 'subgenre', 'platform'];
-
 
 
 const RegisterInterests: React.FC = () => {
@@ -44,24 +44,36 @@ const RegisterInterests: React.FC = () => {
     const [company, setCompany] = useState<string>('');
     const [lowestPrice, setLowestPrice] = useState<number | string>('');
     const [highestPrice, setHighestPrice] = useState<number | string>('');
-    const [dubbedLanguages, setDubbedLanguages] = useState<Language[]>([]);
-    const [subtitledLanguages, setSubtitledLanguages] = useState<Language[]>([]);
-    const [ageRating, setAgeRating] = useState<AgeRating>();
-    const [genres, setGenres] = useState<Genre[]>([]);
-    const [subgenres, setSubgenres] = useState<SubGenre[]>([]);
-    const [platforms, setPlatforms] = useState<Platform[]>([]);
+
+    const [dubbedLanguages, setDubbedLanguages] = useState<InterestDependency[]>(languages);
+    const [selectedDubbedLanguages, setSelectedDubbedLanguages] = useState<InterestDependency[]>([]);
+
+    const [subtitledLanguages, setSubtitledLanguages] = useState<InterestDependency[]>(languages);
+    const [selectedSubtitledLanguages, setSelectedSubtitledLanguages] = useState<InterestDependency[]>([]);
+
+
+    const [ageRatings, setAgeRatings] = useState<InterestDependency[]>();
+    const [selectedAgeRating, setSelectedAgeRating] = useState<InterestDependency | null | string>();
+
+    const [genres, setGenres] = useState<InterestDependency[]>([]);
+    const [selectedGenres, setSelectedGenres] = useState<InterestDependency[]>([]);
+
+    const [subgenres, setSubgenres] = useState<InterestDependency[]>([]);
+    const [selectedSubGenres, setSelectedSubGenres] = useState<InterestDependency[]>([]);
+
+    const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
+    const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
 
 
     const loadDropdowns = async () => {
         try {
-            const data: { [key: string]: any[] } = {};
-            await Promise.all(
-                INTEREST_DEPENDENCIES.map(async (type) => {
-                    const response = await getAll(type);
-                    data[type] = response.data;
-                })
-            );
-            setDropdownData(data);
+            let data = await getAllInterestDependencies();
+            setCompanies(data.companies);
+            setAgeRatings(data.ageRatings);
+            setGenres(data.genres);
+            setSubgenres(data.subGenres);
+            setPlatforms(data.platforms);
+
         } catch (error) {
             console.error('Error loading dropdowns:', error);
         }
@@ -84,83 +96,6 @@ const RegisterInterests: React.FC = () => {
         platforms: [],
     };
 
-    interface RegisterCompanyProps {
-        onCompanyRegistered: () => void;
-    }
-
-
-
-    const RegisterCompanyDialog: React.FC<RegisterCompanyProps> = ({ onCompanyRegistered }) => {
-        const [open, setOpen] = useState(false);
-        const [newCompanyName, setNewCompanyName] = useState('');
-
-        const handleOpen = () => {
-            setOpen(true);
-        };
-
-        const handleClose = () => {
-            setOpen(false);
-        };
-
-        const handleRegisterCompany = async () => {
-            try {
-                // Fazer a requisição para cadastrar a empresa com newCompanyName
-                // ...
-
-                // Após o cadastro, fechar o diálogo
-                handleClose();
-
-                // Atualizar a lista de empresas ou realizar outras ações necessárias
-                onCompanyRegistered();
-            } catch (error) {
-                console.error('Erro ao cadastrar empresa:', error);
-            }
-        };
-
-        return (
-            <>
-                <Button variant="contained" color="primary" onClick={handleOpen}>
-                    Cadastrar Nova Empresa
-                </Button>
-                <Dialog open={open} onClose={handleClose}>
-                    <DialogTitle>Cadastrar Nova Empresa</DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            label="Nome da Empresa"
-                            variant="outlined"
-                            fullWidth
-                            value={newCompanyName}
-                            onChange={(e) => setNewCompanyName(e.target.value)}
-                        />
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Cancelar
-                        </Button>
-                        <Button onClick={handleRegisterCompany} color="primary">
-                            Cadastrar
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </>
-        );
-    };
-
-    const handleRegisterInterestDependency = async (type: string) => {
-
-        if (!name) return;
-
-        try {
-            let response = await registerInterestDependency(type, name);
-            // Reload dropdown data after registration
-
-            // @ts-ignore
-            setDropdownData((prevData) => ({ ...prevData, [type]: response.data })); //response.data?
-        } catch (error) {
-            console.error(`Error registering ${type}:`, error);
-        }
-    };
-
     const handleFormSubmit = async (values: InterestFormValues) => {
         try {
             await registerAll('interest', values);
@@ -173,8 +108,8 @@ const RegisterInterests: React.FC = () => {
 
     return (
         <Container component="main" maxWidth="md">
-            <CssBaseline />
-            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <CssBaseline/>
+            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Typography component="h1" variant="h5">
                     Cadastrar Interesses
                 </Typography>
@@ -183,7 +118,7 @@ const RegisterInterests: React.FC = () => {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Field name="name">
-                                    {({ field }: FieldProps) => (
+                                    {({field}: FieldProps) => (
                                         <TextField
                                             {...field}
                                             variant="outlined"
@@ -199,9 +134,16 @@ const RegisterInterests: React.FC = () => {
                                     {({ field }: FieldProps) => (
                                         <FormControl fullWidth variant="outlined" required>
                                             <InputLabel htmlFor="company">Empresas:</InputLabel>
-                                            <Select {...field} label="Empresas">
-                                                {dropdownData['company']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
+                                            <Select
+                                                {...field}
+                                                label="Empresas"
+                                                value={selectedCompany}
+                                                onChange={(e, child) => {
+                                                    setSelectedCompany(e.target.value);
+                                                }}
+                                            >
+                                                {companies?.map((item) => (
+                                                    <MenuItem value={Number(item.id)}>
                                                         {item.name}
                                                     </MenuItem>
                                                 ))}
@@ -213,7 +155,7 @@ const RegisterInterests: React.FC = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <Field name="lowestPrice">
-                                    {({ field }: FieldProps) => (
+                                    {({field}: FieldProps) => (
                                         <TextField
                                             {...field}
                                             variant="outlined"
@@ -221,14 +163,14 @@ const RegisterInterests: React.FC = () => {
                                             fullWidth
                                             type="number"
                                             label="Menor preço"
-                                            inputProps={{ min: 0, step: 0.01 }}
+                                            inputProps={{min: 0, step: 0.01}}
                                         />
                                     )}
                                 </Field>
                             </Grid>
                             <Grid item xs={6}>
                                 <Field name="highestPrice">
-                                    {({ field }: FieldProps) => (
+                                    {({field}: FieldProps) => (
                                         <TextField
                                             {...field}
                                             variant="outlined"
@@ -236,51 +178,49 @@ const RegisterInterests: React.FC = () => {
                                             fullWidth
                                             type="number"
                                             label="Maior preço"
-                                            inputProps={{ min: 0, step: 0.01 }}
+                                            inputProps={{min: 0, step: 0.01}}
                                         />
                                     )}
                                 </Field>
                             </Grid>
-                            <Grid item xs={12}>
-                                <Field name="dubbedLanguages">
-                                    {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="dubbedLanguages">Dublado:</InputLabel>
-                                            <Select {...field} label="Dublado" multiple>
-                                                {dropdownData['language']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Field name="subtitledLanguages">
-                                    {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="subtitledLanguages">Legendado:</InputLabel>
-                                            <Select {...field} label="Legendado" multiple>
-                                                {dropdownData['language']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                            </Grid>
+
+                            <MultipleSelect
+                                fieldName={'dubbedLanguages'}
+                                label={'Dublado'}
+                                placeholder={'Selecione as linguagens dubladas:'}
+                                options={dubbedLanguages}
+                                selectedOptions={selectedDubbedLanguages}
+                                setSelectedOptions={setSelectedDubbedLanguages}
+                            />
+
+
+                            <MultipleSelect
+                                fieldName={'subtitledLanguages'}
+                                label={'Legendado'}
+                                placeholder={'Selecione as linguagens legendadas:'}
+                                options={subtitledLanguages}
+                                selectedOptions={selectedSubtitledLanguages}
+                                setSelectedOptions={setSelectedSubtitledLanguages}
+                            />
+
+                            {/*DIALOG*/}
+
+
                             <Grid item xs={12}>
                                 <Field name="ageRating">
                                     {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="ageRating">Idade:</InputLabel>
-                                            <Select {...field} label="Idade">
-                                                {dropdownData['age-rating']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
+                                        <FormControl fullWidth variant="outlined" required>
+                                            <InputLabel htmlFor="ageRating">Classificação Indicativa:</InputLabel>
+                                            <Select
+                                                {...field}
+                                                label="Classificação Indicativa"
+                                                value={selectedAgeRating}
+                                                onChange={(e, child) => {
+                                                    setSelectedAgeRating(e.target.value);
+                                                }}
+                                            >
+                                                {ageRatings?.map((item) => (
+                                                    <MenuItem value={Number(item.id)}>
                                                         {item.name}
                                                     </MenuItem>
                                                 ))}
@@ -290,58 +230,41 @@ const RegisterInterests: React.FC = () => {
                                 </Field>
                             </Grid>
 
-                            <Grid item xs={12}>
-                                <Field name="genres">
-                                    {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="genres">Gênero(s):</InputLabel>
-                                            <Select {...field} label="Gênero(s)" multiple>
-                                                {genres?.map((item) => (
-                                                    <MenuItem key={Number(item.id)} value={item.name}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Button onClick={() => handleRegisterInterestDependency('genre')}>Cadastrar</Button>
-                            </Grid>
+                            {/*DIALOG*/}
 
-                            <Grid item xs={12}>
-                                <Field name="subgenres">
-                                    {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="subgenres">Subgênero(s):</InputLabel>
-                                            <Select {...field} label="Subgênero(s)" multiple>
-                                                {dropdownData['subgenre']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Button onClick={() => handleRegisterInterestDependency('subgenre')}>Cadastrar</Button>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Field name="platforms">
-                                    {({ field }: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined">
-                                            <InputLabel htmlFor="platforms">Plataforma(s):</InputLabel>
-                                            <Select {...field} label="Plataforma(s)" multiple>
-                                                {dropdownData['platform']?.map((item) => (
-                                                    <MenuItem key={item.id} value={item.id}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                                <Button onClick={() => handleRegisterInterestDependency('platform')}>Cadastrar</Button>
-                            </Grid>
+
+                            <MultipleSelect
+                                fieldName={'genres'}
+                                label={'Generos'}
+                                placeholder={'Selecione os generos:'}
+                                options={genres}
+                                selectedOptions={selectedGenres}
+                                setSelectedOptions={setSelectedGenres}
+                            />
+
+                            {/*DIALOG*/}
+
+
+                            <MultipleSelect
+                                fieldName={'subGenres'}
+                                label={'Sub Generos'}
+                                placeholder={'Selecione os sub generos:'}
+                                options={subgenres}
+                                selectedOptions={selectedSubGenres}
+                                setSelectedOptions={setSelectedSubGenres}
+                            />
+
+                            {/*DIALOG*/}
+
+
+                            <MultipleSelect
+                                fieldName={'platforms'}
+                                label={'Plataforma'}
+                                placeholder={'Selecione as plataformas:'}
+                                options={platforms}
+                                selectedOptions={selectedPlatforms}
+                                setSelectedOptions={setSelectedPlatforms}
+                            />
                             <Grid item xs={12}>
                                 <Button type="submit" fullWidth variant="contained" color="primary">
                                     ENVIAR

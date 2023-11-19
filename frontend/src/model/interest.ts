@@ -1,23 +1,25 @@
-import {Company} from "./interest/company";
-import {Language} from "./interest/language";
-import {Genre} from "./interest/genre";
-import {SubGenre} from "./interest/subGenre";
-import {Platform} from "./interest/platform";
-import {AgeRating} from "./interest/ageRating";
 import {User} from "./user";
+
+export const INTEREST_DEPENDENCIES = {
+    COMPANY: 'company', LANGUAGE: 'language', AGE_RATING: 'age-rating', GENRE: 'genre', SUBGENRE: 'subgenre', PLATFORM: 'platform'};
 
 export interface Interest {
     id: bigint;
     name: string;
     description: string;
-    company: Company;
+    company: InterestDependency;
     lowestPrice: number;
     highestPrice: number;
-    dubbingLanguages: Array<Language>;
-    subtitleLanguages: Array<Language>;
-    genres: Array<Genre>;
-    subGenres: Array<SubGenre>;
-    platforms: Array<Platform>;
-    ageRating: Array<AgeRating>;
+    dubbingLanguages: Array<InterestDependency>;
+    subtitleLanguages: Array<InterestDependency>;
+    genres: Array<InterestDependency>;
+    subGenres: Array<InterestDependency>;
+    platforms: Array<InterestDependency>;
+    ageRating: Array<InterestDependency>;
     users: Array<User>;
+}
+
+export interface InterestDependency {
+    id: bigint | string;
+    name: string;
 }

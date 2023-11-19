@@ -8,7 +8,7 @@ import {
     Grid
 } from '@mui/material';
 import {Field, FieldProps} from 'formik';
-import DatePickerField from "../../../components/DatePickerField";
+import DatePickerField from "../../../components/fields/DatePickerField";
 import logo from '../../../img/logo-matchup3.png';
 
 const SignUpStep1: React.FC = () => {

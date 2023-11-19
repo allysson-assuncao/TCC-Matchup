@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.dto.InterestDependenciesDto;
 import com.matchup.dto.InterestDto;
 import com.matchup.dto.RequestDto;
 import com.matchup.model.Interest;
@@ -123,4 +124,13 @@ public class InterestService {
         return platformRepository.findAll();
     }
 
+    public InterestDependenciesDto getInterestsDependencies() {
+        InterestDependenciesDto interestDependenciesDto = new InterestDependenciesDto();
+        interestDependenciesDto.setCompanies(companyRepository.findAll());
+        interestDependenciesDto.setAgeRatings(ageRatingRepository.findAll());
+        interestDependenciesDto.setGenres(genreRepository.findAll());
+        interestDependenciesDto.setSubGenres(subGenreRepository.findAll());
+        interestDependenciesDto.setPlatforms(platformRepository.findAll());
+        return interestDependenciesDto;
+    }
 }
