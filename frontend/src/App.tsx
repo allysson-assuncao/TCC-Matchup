@@ -30,7 +30,7 @@ import RegisterInterests from "./pages/RegisterInterests";
 import {USER_TYPE} from "./model/user";
 
 export const ROUTE_INDEX = '/';
-export const ROUTE_FEATURES = '/features';
+export const ROUTE_FEATURES = '/funcionalidades';
 export const ROUTE_FAQ = '/faq';
 export const ROUTE_HOME = '/home';
 export const ROUTE_SIGN_IN = '/login';
@@ -41,7 +41,7 @@ export const ROUTE_EDITABLE_PROFILE = '/editar_perfil';
 export const ROUTE_FORGOT_PASSWORD = '/esquececu_a_senha';
 export const ROUTE_SETTINGS = '/configuracoes';
 export const ROUTE_ABOUT_US = '/sobre_nos';
-export const ROUTE_PREMIUM = '/premium';
+export const ROUTE_PREMIUM = '/planos';
 export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 

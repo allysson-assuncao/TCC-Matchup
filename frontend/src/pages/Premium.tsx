@@ -14,6 +14,7 @@ import Container from '@mui/material/Container';
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {grey} from "@mui/material/colors";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
 function Copyright(props: any) {
     return (
@@ -75,6 +76,7 @@ const Premium = () => {
     return (
         <Box sx={{backgroundColor:`theme.palette.background.defeult`}}>
             <CssBaseline/>
+            <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <Container disableGutters maxWidth="sm" component="main" sx={{pt: 8, pb: 6}}>
                 <Typography
                     component="h1"
@@ -97,7 +99,7 @@ const Premium = () => {
                             item
                             key={tier.title}
                             xs={12}
-                            sm={tier.title === 'Enterprise' ? 12 : 6}
+                            sm={tier.title === 'Intermediário' ? 12 : 6}
                             md={4}
                         >
                             <Card>
@@ -105,7 +107,7 @@ const Premium = () => {
                                     title={tier.title}
                                     subheader={tier.subheader}
                                     titleTypographyProps={{align: 'center'}}
-                                    action={tier.title === 'Pro' ? <StarIcon/> : null}
+                                    action={tier.title === 'Premium' ? <StarIcon/> : null}
                                     subheaderTypographyProps={{
                                         color: (theme) => theme.palette.secondary.dark,
                                         align: 'center',

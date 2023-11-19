@@ -13,6 +13,28 @@ import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined
 import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
 import {SxProps} from "@mui/system";
 import {Theme} from "@mui/material/styles";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import StarIcon from "@mui/icons-material/StarBorder";
+import {grey} from "@mui/material/colors";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
+import GlobalStyles from "@mui/material/GlobalStyles";
+
+function Copyright(props: any) {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" sx={{mt:'50px', mb:'50px'}}>
+            {'Copyright © '}
+            <Link color="inherit" href="https://mui.com/">
+                Matchup
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
 
 const item: SxProps<Theme> = {
     display: 'flex',
@@ -20,6 +42,58 @@ const item: SxProps<Theme> = {
     alignItems: 'center',
     px: 5,
 };
+
+const tiers = [
+    {
+        title: 'Gratuito',
+        price: '0',
+        description: [
+            '10 matches por dia',
+            'Limite de mensagens',
+            'Limite de Contatos',
+            'Anúncios',
+        ],
+        buttonText: 'Cadastre-se de graça!',
+        buttonVariant: 'outlined',
+    },
+    {
+        title: 'Premium',
+        subheader: 'Mais popular',
+        price: '7,90',
+        description: [
+            'Matches ilimitados',
+            'Mensagens ilimitados',
+            'Contatos ilimitados',
+            'Sem anúncios',
+        ],
+        buttonText: 'Começe já!',
+        buttonVariant: 'contained',
+    },
+    {
+        title: 'Intermediário',
+        price: '2,90',
+        description: [
+            '30 matches por dia',
+            'Maior limite de mensagens',
+            'Maior limite de Contatos',
+            'Menos anúncios',
+        ],
+        buttonText: 'Começe já!',
+        buttonVariant: 'outlined',
+    },
+    {
+        title: 'Intermediário',
+        price: '2,90',
+        description: [
+            '30 matches por dia',
+            'Maior limite de mensagens',
+            'Maior limite de Contatos',
+            'Menos anúncios',
+        ],
+        buttonText: 'Começe já!',
+        buttonVariant: 'outlined',
+    },
+];
 
 const Features = () => {
     const { theme: mode } = useCustomTheme();
@@ -47,6 +121,7 @@ const Features = () => {
     return (
         <Container component="main" maxWidth={false}>
             <CssBaseline/>
+            <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
             <Box
                 component="section"
                 sx={{display: 'flex', bgcolor: 'background', overflow: 'hidden'}}
@@ -121,8 +196,75 @@ const Features = () => {
                             {/*</Grow>*/}
                         </Grid>
                     </Grid>
+                    <Grid container spacing={5} alignItems="flex-end">
+                        {tiers.map((tier) => (
+                            <Grid
+                                item
+                                key={tier.title}
+                                xs={12}
+                                sm={tier.title === 'Enterprise' ? 12 : 6}
+                                md={3}
+                            >
+                                <Card>
+                                    <CardHeader
+                                        title={tier.title}
+                                        subheader={tier.subheader}
+                                        titleTypographyProps={{align: 'center'}}
+                                        action={tier.title === 'Pro' ? <StarIcon/> : null}
+                                        subheaderTypographyProps={{
+                                            color: (theme) => theme.palette.secondary.dark,
+                                            align: 'center',
+                                        }}
+                                        sx={{
+                                            color: (theme) => theme.palette.primary.main,
+                                            backgroundColor: (theme) => grey[900],
+                                        }}
+                                    />
+                                    <CardContent sx={{backgroundColor: (theme) => theme.palette.text.secondary}}>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'baseline',
+                                                mb: 2,
+                                            }}
+                                        >
+                                            <Typography component="h2" variant="h3" color={theme.palette.background.paper}>
+                                                ${tier.price}
+                                            </Typography>
+                                            <Typography variant="h6" color={theme.palette.background.paper}>
+                                                /mês
+                                            </Typography>
+                                        </Box>
+                                        <ul>
+                                            {tier.description.map((line) => (
+                                                <Typography
+                                                    component="li"
+                                                    variant="subtitle1"
+                                                    align="center"
+                                                    key={line}
+                                                    color={theme.palette.background.paper}
+                                                >
+                                                    {line}
+                                                </Typography>
+                                            ))}
+                                        </ul>
+                                    </CardContent>
+                                    <CardActions sx={{backgroundColor: (theme) => theme.palette.text.primary}}>
+                                        <Button
+                                            fullWidth
+                                            variant={'contained'}
+                                        >
+                                            {tier.buttonText}
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
                 </Container>
             </Box>
+            <Copyright/>
         </Container>
     );
 }

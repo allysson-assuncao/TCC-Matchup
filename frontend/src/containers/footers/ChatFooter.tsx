@@ -43,7 +43,7 @@ const ChatFooter: React.FC<ChatFooterProps> = ({contact, updateContactsWithMessa
                 return obj && obj.date && obj.senderId && obj.receiverId && obj.messageType;
             }
 
-            socket.emit('/app/private-message', message, (response) => {
+            socket.emit('/app/private-message', message, (response: Message) => {
                 if(isMessage(response)) {
                     updateContactsWithMessage(contact.user1Id, response);
                 } else {

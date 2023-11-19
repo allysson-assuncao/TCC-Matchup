@@ -46,7 +46,9 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
     const fetchContacts = async () => {
         try {
             const fetchedContacts = await getContactsByUserId(getUser().id);
-            setContacts(fetchedContacts);
+            if (setContacts) {
+                setContacts(fetchedContacts);
+            }
             return true;
         } catch (error) {
             console.error("Erro ao buscar notificações:", error);
