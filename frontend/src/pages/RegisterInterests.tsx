@@ -41,7 +41,10 @@ const RegisterInterests: React.FC = () => {
     const [dropdownData, setDropdownData] = useState<{ [key: string]: any[] }>({});
 
     const [name, setName] = useState<string>('');
-    const [company, setCompany] = useState<string>('');
+
+    const [companies, setCompanies] = useState<InterestDependency[]>([]);
+    const [selectedCompany, setSelectedCompany] = useState<InterestDependency | null | string>();
+
     const [lowestPrice, setLowestPrice] = useState<number | string>('');
     const [highestPrice, setHighestPrice] = useState<number | string>('');
 
@@ -64,6 +67,7 @@ const RegisterInterests: React.FC = () => {
     const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
     const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
 
+    //let dropDownLoader = [setCompany, setDubbedLanguages];
 
     const loadDropdowns = async () => {
         try {
@@ -151,7 +155,17 @@ const RegisterInterests: React.FC = () => {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <RegisterCompanyDialog onCompanyRegistered={loadDropdowns} />
+                                <RegisterDependencyDialog
+                                    type={INTEREST_DEPENDENCIES.COMPANY}
+                                    dialogTitle={'Nova Empresa'}
+                                    buttonText={'Nova Empresa'}
+                                    label={'Nome da Empresa'}
+                                    onCompanyRegistered={loadDropdowns}
+                                    setCompanies={setCompanies}
+                                    setGenres={setGenres}
+                                    setPlatforms={setPlatforms}
+                                    setSubgenres={setSubgenres}
+                                />
                             </Grid>
                             <Grid item xs={6}>
                                 <Field name="lowestPrice">
