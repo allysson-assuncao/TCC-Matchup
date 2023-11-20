@@ -32,7 +32,7 @@ interface PropsAppBarProfile {
     blocked: boolean,
     username: string | undefined,
     idProfile: bigint,
-    openSnackBar: (message: string) => void;
+    openSnackBar?: (message: string) => void;
 }
 
 var loggedUser: User = getUser();
@@ -141,7 +141,9 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                                 onClick={loggedUser ? async () => {
                                                     await sendFriendshipSolicitation(getUser().id, idProfile);
                                                     verifyFriendship(getUser());
-                                                    openSnackBar(`A solicitação já foi enviada! Aguarde a resposta de ${username}`);
+                                                    if (openSnackBar) {
+                                                        openSnackBar(`A solicitação já foi enviada! Aguarde a resposta de ${username}`);
+                                                    }
                                                 }: () => history(ROUTE_SIGN_IN)}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
                                                 disabled={(blocked || (!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship.user.id == getUser().id))}

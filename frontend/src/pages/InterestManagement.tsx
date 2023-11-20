@@ -21,6 +21,8 @@ import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
 import {INTEREST_DEPENDENCIES, InterestDependency} from "../model/interest";
 import MultipleSelect from "../components/fields/MultipleSelect";
+import AppBarProfile from "../containers/appbars/AppBarProfile";
+import {getUser} from "./Home";
 
 interface InterestFormValues {
     name: string;
@@ -37,7 +39,7 @@ interface InterestFormValues {
 
 
 
-const InterestSelection: React.FC = () => {
+const InterestManagement: React.FC = () => {
     const [name, setName] = useState<string>('');
 
     const [companies, setCompanies] = useState<InterestDependency[]>([]);
@@ -110,11 +112,10 @@ const InterestSelection: React.FC = () => {
 
     return (
         <Container component="main" maxWidth="md">
+            <AppBarProfile editable={true} blocked={false} username={getUser().username}
+                           idProfile={getUser().id}></AppBarProfile>
             <CssBaseline/>
-            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Typography component="h1" variant="h5">
-                    Cadastrar Interesses
-                </Typography>
+            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
                     <Form>
                         <Grid container spacing={3}>
@@ -290,4 +291,4 @@ const InterestSelection: React.FC = () => {
     );
 };
 
-export default InterestSelection;
+export default InterestManagement;

@@ -28,7 +28,7 @@ import FAQ from "./pages/FAQ";
 import Premium from "./pages/Premium";
 import RegisterInterests from "./pages/RegisterInterests";
 import {USER_TYPE} from "./model/user";
-import InterestSelection from "./pages/InterestSelection";
+import InterestManagement from "./pages/InterestManagement";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/funcionalidades';
@@ -36,7 +36,7 @@ export const ROUTE_FAQ = '/faq';
 export const ROUTE_HOME = '/home';
 export const ROUTE_SIGN_IN = '/login';
 export const ROUTE_SIGN_UP = '/cadastro';
-export const ROUTE_INTEREST_SELECTION = '/seleção_de_interesses';
+export const ROUTE_INTEREST_MANAGEMENT = '/seleção_de_interesses';
 export const ROUTE_REGISTER_INTERESTS = '/cadastro_de_interesses';
 export const ROUTE_PROFILE = '/perfil';
 export const ROUTE_EDITABLE_PROFILE = '/editar_perfil';
@@ -133,7 +133,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_FAQ} index element={<FAQ/>}/>
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
-                <Route path={ROUTE_INTEREST_SELECTION} element={<InterestSelection/>}/>
+                <Route path={ROUTE_INTEREST_MANAGEMENT} element={<InterestManagement/>}/>
                 <Route path={ROUTE_HOME}
                        element={<ProtectedRoute
                            isAllowed={getUser() !== null}
