@@ -9,12 +9,12 @@ const API_BASE_URL = 'http://localhost:8080/api/interests/';
 
 export const registerAll = async (type: string, jsonObject: JsonObject) => {
     console.log(jsonObject);
-    try {
+    /*try {*/
         const response: AxiosResponse<InterestDependency> = await axios.post(`${API_BASE_URL}register/${type}`, jsonObject);
         return response.data;
-    } catch (error) {
+    /*} catch (error) {
         alert(`An error occurred in register(): ${error}`);
-    }
+    }*/
 }
 
 export const registerInterestDependency = async (type: string, name: string)  => {

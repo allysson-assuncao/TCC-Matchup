@@ -8,6 +8,7 @@ import com.matchup.model.insterest.*;
 import com.matchup.model.insterest.Company;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.interest.*;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@ToString
+@Setter
+@Getter
 public class InterestService {
 
     private final FilterSpecificationService<Interest> filterSpecificationService;
@@ -44,13 +48,16 @@ public class InterestService {
     public Interest saveInterest(InterestDto interestDto){
         Interest interestToSave = new Interest();
 
+        System.out.println("Interest: " + interestDto);
+        System.out.println("DubbingLaguage Id: " + interestDto.getDubbingLanguagesIdList());
+
         interestToSave.setName(interestDto.getName());
-        interestToSave.setCompany(
-                companyRepository.findById(interestDto.getCompanyId()).get());
+        /*interestToSave.setCompany(
+                companyRepository.findById(interestDto.getCompanyId()).get());*/
         interestToSave.setLowestPrice(interestDto.getLowestPrice());
         interestToSave.setHighestPrice(interestDto.getHighestPrice());
-        interestToSave.setAgeRating(
-                ageRatingRepository.findById(interestDto.getAgeRatingId()).get());
+        /*interestToSave.setAgeRating(
+                ageRatingRepository.findById(interestDto.getAgeRatingId()).get());*/
         interestToSave.setDubbingLanguages(
                 languageRepository.findByIdIn(interestDto.getDubbingLanguagesIdList()));
         interestToSave.setSubtitleLanguages(
@@ -67,7 +74,7 @@ public class InterestService {
 
     public List<Interest> getInterestsBySpecification(RequestDto requestDto){
         Specification<Interest> searchSpecification =
-                filterSpecificationService.getSearchSpecification(requestDto.getSearchRequestDto(), requestDto.getGlobalOperator());
+                filterSpecificationService.getSearchSpecification(requestDto.getSearchRequestDto());
         return interestRepository.findAll(searchSpecification);
     }
 

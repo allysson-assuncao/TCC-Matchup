@@ -19,45 +19,32 @@ import {
 } from "../api/interest_requests/registerInterest";
 import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
-import {INTEREST_DEPENDENCIES, InterestDependency} from "../model/interest";
+import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../model/interest";
 import MultipleSelect from "../components/fields/MultipleSelect";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
-
-interface InterestFormValues {
-    name: string;
-    company: string;
-    lowestPrice: number;
-    highestPrice: number;
-    dubbedLanguages: string[];
-    subtitledLanguages: string[];
-    ageRating: string;
-    genres: string[];
-    subgenres: string[];
-    platforms: string[];
-}
-
+import SimpleSelect from "../components/fields/SimpleSelect";
 
 const RegisterInterests: React.FC = () => {
     const [dropdownData, setDropdownData] = useState<{ [key: string]: any[] }>({});
 
-    const [name, setName] = useState<string>('');
+    const [name, setName] = useState<string>();
 
     const [companies, setCompanies] = useState<InterestDependency[]>([]);
-    const [selectedCompany, setSelectedCompany] = useState<InterestDependency | null | string>(null);
+    const [selectedCompany, setSelectedCompany] = useState<InterestDependency>();
 
-    const [lowestPrice, setLowestPrice] = useState<number | string>('');
-    const [highestPrice, setHighestPrice] = useState<number | string>('');
+    const [lowestPrice, setLowestPrice] = useState<number>();
+    const [highestPrice, setHighestPrice] = useState<number>();
 
-    const [dubbedLanguages, setDubbedLanguages] = useState<InterestDependency[]>(languages);
-    const [selectedDubbedLanguages, setSelectedDubbedLanguages] = useState<InterestDependency[]>([]);
+    const [dubbingLanguages, setDubbingLanguages] = useState<InterestDependency[]>(languages);
+    const [selectedDubbingLanguages, setSelectedDubbingLanguages] = useState<InterestDependency[]>([]);
 
     const [subtitledLanguages, setSubtitledLanguages] = useState<InterestDependency[]>(languages);
     const [selectedSubtitledLanguages, setSelectedSubtitledLanguages] = useState<InterestDependency[]>([]);
 
 
-    const [ageRatings, setAgeRatings] = useState<InterestDependency[]>();
-    const [selectedAgeRating, setSelectedAgeRating] = useState<InterestDependency | null | string>();
+    const [ageRatings, setAgeRatings] = useState<InterestDependency[]>([]);
+    const [selectedAgeRating, setSelectedAgeRating] = useState<InterestDependency>();
 
     const [genres, setGenres] = useState<InterestDependency[]>([]);
     const [selectedGenres, setSelectedGenres] = useState<InterestDependency[]>([]);
@@ -68,7 +55,7 @@ const RegisterInterests: React.FC = () => {
     const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
     const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
 
-    //let dropDownLoader = [setCompany, setDubbedLanguages];
+    //let dropDownLoader = [setCompany, setDubbingLanguages];
 
     const loadDropdowns = async () => {
         try {
@@ -88,28 +75,27 @@ const RegisterInterests: React.FC = () => {
         loadDropdowns();
     }, []);
 
-    const initialValues: InterestFormValues = {
-        name: '',
-        company: '',
-        lowestPrice: 0,
-        highestPrice: 0,
-        dubbedLanguages: [],
-        subtitledLanguages: [],
-        ageRating: '',
-        genres: [],
-        subgenres: [],
-        platforms: [],
-    };
 
-    const handleFormSubmit = async (values: InterestFormValues) => {
-        try {
-            console.log(values);
-            await registerAll('interest', values);
-            // Handle success, e.g., redirect or show a success message
-        } catch (error) {
-            console.error('Error registering interest:', error);
-            // Handle error, e.g., show an error message
+    const handleFormSubmit = async () => {
+        let interest: InterestDto = {
+            name: name,
+            companyId: Number(selectedCompany?.id),
+            highestPrice: highestPrice,
+            lowestPrice: lowestPrice,
+            dubbingLanguagesIdList: selectedDubbingLanguages.map(o => o.id + ""),
+            subtitleLanguagesIdList: selectedSubtitledLanguages.map(o => o.id + ""),
+            genresIdList: selectedGenres.map(o => Number(o.id)),
+            ageRatingId: Number(selectedAgeRating?.id),
+            subGenresIdList: selectedGenres.map(o => Number(o.id)),
+            platformsIdList: selectedPlatforms.map(o => Number(o.id)),
         }
+
+
+        console.log(interest);
+        alert(interest)
+        await registerAll('interest', interest);
+        // Handle success, e.g., redirect or show a success message
+
     };
 
     return (
@@ -119,26 +105,33 @@ const RegisterInterests: React.FC = () => {
                 <Typography component="h1" variant="h5">
                     Cadastrar Interesses
                 </Typography>
-                <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
-                    <Form>
-                        <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                                <Field name="name">
-                                    {({field}: FieldProps) => (
-                                        <TextField
-                                            {...field}
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            label="Nome do jogo..."
-                                        />
-                                    )}
-                                </Field>
-                            </Grid>
 
-                            <Grid item xs={12}>
-                                <Grid container flexDirection={'row'} spacing={3}>
-                                    <Grid item md={10}>
+
+                <Grid container spacing={3}>
+                    <Grid item xs={12}>
+                        <TextField
+                            autoFocus
+                            value={name}
+                            variant="outlined"
+                            required
+                            fullWidth
+                            label="Nome do jogo..."
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Grid container flexDirection={'row'} spacing={3}>
+                            <Grid item xs={10}>
+                                <SimpleSelect
+                                    setSelectedOption={setSelectedCompany}
+                                    selectedOption={selectedCompany}
+                                    options={companies}
+                                    label={"Empresas"}
+                                    placeholder={"Empresas"}
+                                    fieldName={"company"}
+                                />
+                            </Grid>
+                            {/*<Grid item md={10}>
                                         <Field name="company">
                                             {({field}: FieldProps) => (
                                                 <FormControl fullWidth variant="outlined" required>
@@ -160,177 +153,150 @@ const RegisterInterests: React.FC = () => {
                                                 </FormControl>
                                             )}
                                         </Field>
-                                    </Grid>
-                                    <Grid item md={2} alignItems={'center'}>
-                                        <RegisterDependencyDialog
-                                            type={INTEREST_DEPENDENCIES.COMPANY}
-                                            dialogTitle={'Nova Empresa'}
-                                            buttonText={''}
-                                            label={'Nome da Empresa'}
-                                            onDependencyRegistered={loadDropdowns}
-                                            setDependency={setCompanies}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Field name="lowestPrice">
-                                    {({field}: FieldProps) => (
-                                        <TextField
-                                            {...field}
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            type="number"
-                                            label="Menor preço"
-                                            inputProps={{min: 0, step: 0.01}}
-                                        />
-                                    )}
-                                </Field>
-                            </Grid>
-                            <Grid item xs={6}>
-                                <Field name="highestPrice">
-                                    {({field}: FieldProps) => (
-                                        <TextField
-                                            {...field}
-                                            variant="outlined"
-                                            required
-                                            fullWidth
-                                            type="number"
-                                            label="Maior preço"
-                                            inputProps={{min: 0, step: 0.01}}
-                                        />
-                                    )}
-                                </Field>
-                            </Grid>
-
-                            <MultipleSelect
-                                fieldName={'dubbingLanguages'}
-                                label={'Dublado'}
-                                placeholder={'Selecione as linguagens dubladas:'}
-                                options={dubbedLanguages}
-                                selectedOptions={selectedDubbedLanguages}
-                                setSelectedOptions={setSelectedDubbedLanguages}
-                            />
-
-
-                            <MultipleSelect
-                                fieldName={'subtitledLanguages'}
-                                label={'Legendado'}
-                                placeholder={'Selecione as linguagens legendadas:'}
-                                options={subtitledLanguages}
-                                selectedOptions={selectedSubtitledLanguages}
-                                setSelectedOptions={setSelectedSubtitledLanguages}
-                            />
-
-
-                            <Grid item xs={12}>
-                                <Field name="ageRating">
-                                    {({field}: FieldProps) => (
-                                        <FormControl fullWidth variant="outlined" required>
-                                            <InputLabel htmlFor="ageRating">Classificação Indicativa:</InputLabel>
-                                            <Select
-                                                {...field}
-                                                label="Classificação Indicativa"
-                                                value={selectedAgeRating}
-                                                onChange={(e, child) => {
-                                                    setSelectedAgeRating(e.target.value);
-                                                }}
-                                            >
-                                                {ageRatings?.map((item) => (
-                                                    <MenuItem value={Number(item.id)}>
-                                                        {item.name}
-                                                    </MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
-                                    )}
-                                </Field>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <Grid container flexDirection={'row'} spacing={3}>
-                                    <Grid item md={10}>
-                                        <MultipleSelect
-                                            fieldName={'genres'}
-                                            label={'Generos'}
-                                            placeholder={'Selecione os generos:'}
-                                            options={genres}
-                                            selectedOptions={selectedGenres}
-                                            setSelectedOptions={setSelectedGenres}
-                                        />
-                                    </Grid>
-                                    <Grid item md={2} alignItems={'center'}>
-                                        <RegisterDependencyDialog
-                                            type={INTEREST_DEPENDENCIES.GENRE}
-                                            dialogTitle={'Novo Gênero'}
-                                            buttonText={''}
-                                            label={'Nome do Gênero'}
-                                            onDependencyRegistered={loadDropdowns}
-                                            setDependency={setGenres}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <Grid container flexDirection={'row'} spacing={3}>
-                                    <Grid item md={10}>
-                                        <MultipleSelect
-                                            fieldName={'subGenres'}
-                                            label={'Sub Generos'}
-                                            placeholder={'Selecione os sub generos:'}
-                                            options={subgenres}
-                                            selectedOptions={selectedSubGenres}
-                                            setSelectedOptions={setSelectedSubGenres}
-                                        />
-                                    </Grid>
-                                    <Grid item md={2} alignItems={'center'}>
-                                        <RegisterDependencyDialog
-                                            type={INTEREST_DEPENDENCIES.SUBGENRE}
-                                            dialogTitle={'Novo Sub Gênero'}
-                                            buttonText={''}
-                                            label={'Nome do Sub Gênero'}
-                                            onDependencyRegistered={loadDropdowns}
-                                            setDependency={setSubgenres}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                                <Grid container flexDirection={'row'} spacing={3}>
-                                    <Grid item md={10}>
-
-                                        <MultipleSelect
-                                            fieldName={'platforms'}
-                                            label={'Plataforma'}
-                                            placeholder={'Selecione as plataformas:'}
-                                            options={platforms}
-                                            selectedOptions={selectedPlatforms}
-                                            setSelectedOptions={setSelectedPlatforms}
-                                        />
-                                    </Grid>
-                                    <Grid item md={2} alignItems={'center'}>
-                                        <RegisterDependencyDialog
-                                            type={INTEREST_DEPENDENCIES.PLATFORM}
-                                            dialogTitle={'Nova Plataforma'}
-                                            buttonText={''}
-                                            label={'Nome da Plataforma'}
-                                            onDependencyRegistered={loadDropdowns}
-                                            setDependency={setPlatforms}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Button type="submit" fullWidth variant="contained" color="primary">
-                                    ENVIAR
-                                </Button>
+                                    </Grid>*/}
+                            <Grid item md={2} alignItems={'center'}>
+                                <RegisterDependencyDialog
+                                    type={INTEREST_DEPENDENCIES.COMPANY}
+                                    dialogTitle={'Nova Empresa'}
+                                    buttonText={''}
+                                    label={'Nome da Empresa'}
+                                    setDependency={setCompanies}
+                                />
                             </Grid>
                         </Grid>
-                    </Form>
-                </Formik>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            variant="outlined"
+                            required
+                            fullWidth
+                            type="number"
+                            label="Menor preço"
+                            value={lowestPrice}
+                            inputProps={{min: 0, step: 0.01}}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            variant="outlined"
+                            required
+                            fullWidth
+                            type="number"
+                            label="Maior preço"
+                            value={highestPrice}
+                            inputProps={{min: 0, step: 0.01}}
+                        />
+                    </Grid>
+
+                    <MultipleSelect
+                        fieldName={'dubbingLanguages'}
+                        label={'Dublado'}
+                        placeholder={'Selecione as linguagens dubladas:'}
+                        options={dubbingLanguages}
+                        selectedOptions={selectedDubbingLanguages}
+                        setSelectedOptions={setSelectedDubbingLanguages}
+                    />
+
+
+                    <MultipleSelect
+                        fieldName={'subtitledLanguages'}
+                        label={'Legendado'}
+                        placeholder={'Selecione as linguagens legendadas:'}
+                        options={subtitledLanguages}
+                        selectedOptions={selectedSubtitledLanguages}
+                        setSelectedOptions={setSelectedSubtitledLanguages}
+                    />
+
+
+                    <Grid item xs={12}>
+                        <SimpleSelect
+                            setSelectedOption={setSelectedAgeRating}
+                            selectedOption={selectedAgeRating}
+                            options={ageRatings}
+                            label={"Classificação Indicativa"}
+                            placeholder={"Classificação Indicativa:"}
+                            fieldName={"ageRating"}
+                        />
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Grid container flexDirection={'row'} spacing={3}>
+                            <Grid item md={10}>
+                                <MultipleSelect
+                                    fieldName={'genres'}
+                                    label={'Generos'}
+                                    placeholder={'Selecione os generos:'}
+                                    options={genres}
+                                    selectedOptions={selectedGenres}
+                                    setSelectedOptions={setSelectedGenres}
+                                />
+                            </Grid>
+                            <Grid item md={2} alignItems={'center'}>
+                                <RegisterDependencyDialog
+                                    type={INTEREST_DEPENDENCIES.GENRE}
+                                    dialogTitle={'Novo Gênero'}
+                                    buttonText={''}
+                                    label={'Nome do Gênero'}
+                                    setDependency={setGenres}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Grid container flexDirection={'row'} spacing={3}>
+                            <Grid item md={10}>
+                                <MultipleSelect
+                                    fieldName={'subGenres'}
+                                    label={'Sub Generos'}
+                                    placeholder={'Selecione os sub generos:'}
+                                    options={subgenres}
+                                    selectedOptions={selectedSubGenres}
+                                    setSelectedOptions={setSelectedSubGenres}
+                                />
+                            </Grid>
+                            <Grid item md={2} alignItems={'center'}>
+                                <RegisterDependencyDialog
+                                    type={INTEREST_DEPENDENCIES.SUBGENRE}
+                                    dialogTitle={'Novo Sub Gênero'}
+                                    buttonText={''}
+                                    label={'Nome do Sub Gênero'}
+                                    setDependency={setSubgenres}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <Grid container flexDirection={'row'} spacing={3}>
+                            <Grid item md={10}>
+                                <MultipleSelect
+                                    fieldName={'platforms'}
+                                    label={'Plataforma'}
+                                    placeholder={'Selecione as plataformas:'}
+                                    options={platforms}
+                                    selectedOptions={selectedPlatforms}
+                                    setSelectedOptions={setSelectedPlatforms}
+                                />
+                            </Grid>
+                            <Grid item md={2} alignItems={'center'}>
+                                <RegisterDependencyDialog
+                                    type={INTEREST_DEPENDENCIES.PLATFORM}
+                                    dialogTitle={'Nova Plataforma'}
+                                    buttonText={''}
+                                    label={'Nome da Plataforma'}
+                                    setDependency={setPlatforms}
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Button type="submit" fullWidth variant="contained" color="primary"
+                                onClick={() => handleFormSubmit()}>
+                            ENVIAR
+                        </Button>
+                    </Grid>
+                </Grid>
             </Box>
         </Container>
     );

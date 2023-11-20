@@ -7,7 +7,6 @@ import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 
 interface RegisterDependencyDialogProps {
-    onDependencyRegistered: () => void;
     type: string;
 
     buttonText: string;
@@ -19,7 +18,6 @@ interface RegisterDependencyDialogProps {
 const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
 
     {
-        onDependencyRegistered,
         type,
         label,
         dialogTitle,
@@ -47,9 +45,8 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
 
             if(!response) return;
 
-            setDependency(prevDependency => prevDependency.map(dependency => response));
+            setDependency(prevDependency => [...prevDependency, response]);
             setName("");
-            onDependencyRegistered();
         } catch (error) {
             console.error(`Erro ao cadastrar ${type}:`, error);
         }

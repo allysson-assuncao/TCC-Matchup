@@ -14,7 +14,7 @@ interface MultipleSelectProps {
     //requiredField?: boolean;
 }
 
-const MultipleSelect = ({fieldName, label, placeholder, options, setSelectedOptions, selectedOptions}: MultipleSelectProps) => {
+const MultipleSelectFormik = ({fieldName, label, placeholder, options, setSelectedOptions, selectedOptions}: MultipleSelectProps) => {
 
     return (
         <Grid item xs={12}>
@@ -47,9 +47,9 @@ const MultipleSelect = ({fieldName, label, placeholder, options, setSelectedOpti
                     );
                 }}
             </Field>
-            <ErrorMessage name="" component="div"/>
+            <ErrorMessage name={fieldName} component="div"/>
         </Grid>
     );
 };
 
-export default MultipleSelect;
+export default MultipleSelectFormik;

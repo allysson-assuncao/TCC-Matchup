@@ -72,9 +72,6 @@ const App: React.FC = () => {
         try {
             const fetchedContacts = await getContactsByUserId(getUser().id);
             await setContacts(fetchedContacts);
-            //console.log("FETCHCONTACTS (APP)");
-            //console.log(contacts);
-            //console.log(fetchedContacts);
             return true;
         } catch (error) {
             console.error("Erro ao buscar CONTATOS:", error);
