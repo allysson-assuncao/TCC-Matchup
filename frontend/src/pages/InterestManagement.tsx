@@ -18,11 +18,12 @@ import {
     registerAll,
 } from "../api/interest_requests/registerInterest";
 import {languages} from "../resources/languages";
-import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
-import {INTEREST_DEPENDENCIES, InterestDependency} from "../model/interest";
-import MultipleSelect from "../components/fields/MultipleSelect";
+import {InterestDependency} from "../model/interest";
+import MultipleSelectFormik from "../components/fields/MultipleSelectFormik";
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUser} from "./Home";
+import MultipleSelect from "../components/fields/MultipleSelect";
+import SimpleSelect from "../components/fields/SimpleSelect";
 
 /*interface InterestFormValues {
     name: string;
@@ -192,34 +193,30 @@ const InterestManagement: React.FC = () => {
                             setSelectedOptions={setSelectedGenres}
                         />
 
-                            <MultipleSelect
-                                fieldName={'subGenres'}
-                                label={'Sub Generos'}
-                                placeholder={'Selecione os sub generos:'}
-                                options={subgenres}
-                                selectedOptions={selectedSubGenres}
-                                setSelectedOptions={setSelectedSubGenres}
-                            />
+                        <MultipleSelect
+                            fieldName={'subGenres'}
+                            label={'Sub Generos'}
+                            placeholder={'Selecione os sub generos:'}
+                            options={subgenres}
+                            selectedOptions={selectedSubGenres}
+                            setSelectedOptions={setSelectedSubGenres}
+                        />
 
-                            {/*DIALOG*/}
-
-
-                            <MultipleSelect
-                                fieldName={'platforms'}
-                                label={'Plataforma'}
-                                placeholder={'Selecione as plataformas:'}
-                                options={platforms}
-                                selectedOptions={selectedPlatforms}
-                                setSelectedOptions={setSelectedPlatforms}
-                            />
-                            <Grid item xs={12}>
-                                <Button type="submit" fullWidth variant="contained" color="primary">
-                                    ENVIAR
-                                </Button>
-                            </Grid>
+                        <MultipleSelect
+                            fieldName={'platforms'}
+                            label={'Plataforma'}
+                            placeholder={'Selecione as plataformas:'}
+                            options={platforms}
+                            selectedOptions={selectedPlatforms}
+                            setSelectedOptions={setSelectedPlatforms}
+                        />
+                        <Grid item xs={12}>
+                            <Button type="submit" fullWidth variant="contained" color="primary">
+                                ENVIAR
+                            </Button>
                         </Grid>
-                    </Form>
-                </Formik>
+                    </Grid>
+                </Grid>
             </Box>
         </Container>
     );

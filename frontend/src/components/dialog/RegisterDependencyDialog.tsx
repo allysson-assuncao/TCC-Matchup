@@ -71,12 +71,14 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose} color="primary">
-                            Cancelar
-                        </Button>
-                        <Button onClick={handleRegisterDependency} color="primary" variant={'outlined'}>
-                            Cadastrar
-                        </Button>
+                        <Grid justifyContent={'space-between'}>
+                            <Button onClick={handleClose} color="primary">
+                                Cancelar
+                            </Button>
+                            <Button onClick={handleRegisterDependency} color="primary" variant={'outlined'}>
+                                Cadastrar
+                            </Button>
+                        </Grid>
                     </DialogActions>
                 </Dialog>
             </Grid>
