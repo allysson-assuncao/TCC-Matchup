@@ -17,15 +17,17 @@ interface RegisterDependencyDialogProps {
 }
 
 const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
-    {onCompanyRegistered,
+
+    {
+        onDependencyRegistered,
         type,
         label,
         dialogTitle,
         buttonText,
-        setCompanies,
-        setSubgenres,
-        setGenres,
-        setPlatforms}) => {
+        setDependency,
+    }) => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
 
@@ -65,7 +67,7 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
 
             onCompanyRegistered();
         } catch (error) {
-            console.error('Erro ao cadastrar empresa:', error);
+            console.error(`Erro ao cadastrar ${type}:`, error);
         }
     };
 
@@ -74,27 +76,29 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
             <Button variant="contained" color="primary" onClick={handleOpen}>
                 Cadastrar {buttonText}
             </Button>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Cadastrar {dialogTitle}</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        label={label}
-                        variant="outlined"
-                        fullWidth
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        sx={{mt: '10px'}}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancelar
-                    </Button>
-                    <Button onClick={handleRegisterCompany} color="primary">
-                        Cadastrar
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <Grid bgcolor={theme.palette.background.default}>
+                <Dialog open={open} onClose={handleClose}>
+                    <DialogTitle>Cadastrar {dialogTitle}</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            label={label}
+                            variant="outlined"
+                            fullWidth
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            sx={{mt: '10px'}}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleClose} color="primary">
+                            Cancelar
+                        </Button>
+                        <Button onClick={handleRegisterDependency} color="primary" variant={'outlined'}>
+                            Cadastrar
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </Grid>
         </>
     );
 };

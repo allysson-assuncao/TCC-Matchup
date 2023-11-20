@@ -13,6 +13,7 @@ interface MultipleSelectProps {
     options: InterestDependency[];
     selectedOptions: InterestDependency[];
     setSelectedOptions: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
+    //requiredField?: boolean;
 }
 
 const MultipleSelect = ({fieldName, label, placeholder, options, setSelectedOptions, selectedOptions}: MultipleSelectProps) => {
@@ -40,7 +41,6 @@ const MultipleSelect = ({fieldName, label, placeholder, options, setSelectedOpti
                                 <TextField
                                     {...params}
                                     label={label}
-                                    required
                                     placeholder={placeholder}
                                     sx={{minWidth: '420px'}}
                                 />
@@ -49,7 +49,7 @@ const MultipleSelect = ({fieldName, label, placeholder, options, setSelectedOpti
                     );
                 }}
             </Field>
-            <ErrorMessage name="company" component="div"/>
+            <ErrorMessage name="" component="div"/>
         </Grid>
     );
 };

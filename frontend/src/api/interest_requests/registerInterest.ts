@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, {AxiosResponse} from 'axios';
+import {InterestDependency} from "../../model/interest";
 
 interface JsonObject {
     [key: string]: any;
@@ -7,9 +8,10 @@ interface JsonObject {
 const API_BASE_URL = 'http://localhost:8080/api/interests/';
 
 export const registerAll = async (type: string, jsonObject: JsonObject) => {
+    console.log(jsonObject);
     try {
-        const response: any = await axios.post(`http://localhost:8080/api/interests/register/company`, JSON.stringify(jsonObject));
-        return response;
+        const response: AxiosResponse<InterestDependency> = await axios.post(`${API_BASE_URL}register/${type}`, jsonObject);
+        return response.data;
     } catch (error) {
         alert(`An error occurred in register(): ${error}`);
     }

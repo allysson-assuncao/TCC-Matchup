@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-/*@RequestMapping("/api/message")*/
+@RequestMapping("/api/message")
 public class MessageController {
 
     private final MessageService messageService;
@@ -42,11 +42,20 @@ public class MessageController {
     }*/
 
     @MessageMapping("/private-message")
-    public MessageDto receiveMessage(@Payload MessageDto message){
-        simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageService.sendMessage(message).getReceiverId()),"/private", message);
+    public String receiveMessage(@Payload String message){
+        System.out.println("mensagem recebida!!!!!!!!!!!!!!!!");
+        /*simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageService.sendMessage(message).getReceiverId()),"/private", message);*/
         System.out.println(message.toString());
         return message;
     }
+
+    /*@MessageMapping("/private-message")
+    public MessageDto receiveMessage(@Payload MessageDto message){
+        System.out.println("mensagem recebida!!!!!!!!!!!!!!!!");
+        simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageService.sendMessage(message).getReceiverId()),"/private", message);
+        System.out.println(message.toString());
+        return message;
+    }*/
 
     @GetMapping("/get-by-last-message-{lastMessageDate}-and-users-id-{user1Id}-{user2Id}")
     public List<MessageDto> getLastMessages(@PathVariable LocalDateTime lastMessageDate, @PathVariable long user1Id, @PathVariable long user2Id) {
