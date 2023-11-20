@@ -4,8 +4,6 @@ import {Autocomplete, Grid, TextField} from "@mui/material";
 import {ErrorMessage, Field, FieldProps, FormikProps} from "formik";
 import {InterestDependency} from "../../model/interest";
 
-
-
 interface MultipleSelectProps {
     fieldName: string;
     label: string;

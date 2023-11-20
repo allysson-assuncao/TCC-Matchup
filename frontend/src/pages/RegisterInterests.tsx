@@ -21,6 +21,8 @@ import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
 import {INTEREST_DEPENDENCIES, InterestDependency} from "../model/interest";
 import MultipleSelect from "../components/fields/MultipleSelect";
+import {useCustomTheme} from "../CustomThemeContext";
+import getTheme from "../theme";
 
 interface InterestFormValues {
     name: string;
@@ -42,7 +44,7 @@ const RegisterInterests: React.FC = () => {
     const [name, setName] = useState<string>('');
 
     const [companies, setCompanies] = useState<InterestDependency[]>([]);
-    const [selectedCompany, setSelectedCompany] = useState<InterestDependency | null | string>();
+    const [selectedCompany, setSelectedCompany] = useState<InterestDependency | null | string>(null);
 
     const [lowestPrice, setLowestPrice] = useState<number | string>('');
     const [highestPrice, setHighestPrice] = useState<number | string>('');

@@ -38,8 +38,6 @@ interface InterestFormValues {
 
 
 const InterestSelection: React.FC = () => {
-    const [dropdownData, setDropdownData] = useState<{ [key: string]: any[] }>({});
-
     const [name, setName] = useState<string>('');
 
     const [companies, setCompanies] = useState<InterestDependency[]>([]);
@@ -155,7 +153,7 @@ const InterestSelection: React.FC = () => {
                                         </FormControl>
                                     )}
                                 </Field>
-                                <RegisterDependencyDialog
+                                {/*<RegisterDependencyDialog
                                     type={INTEREST_DEPENDENCIES.COMPANY}
                                     dialogTitle={'Nova Empresa'}
                                     buttonText={'Nova Empresa'}
@@ -165,7 +163,7 @@ const InterestSelection: React.FC = () => {
                                     setGenres={setGenres}
                                     setPlatforms={setPlatforms}
                                     setSubgenres={setSubgenres}
-                                />
+                                />*/}
                             </Grid>
                             <Grid item xs={6}>
                                 <Field name="lowestPrice">

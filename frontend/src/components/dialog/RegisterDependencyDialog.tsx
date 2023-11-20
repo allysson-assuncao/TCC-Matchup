@@ -2,18 +2,18 @@ import React, {useState} from "react";
 import {registerInterestDependency} from "../../api/interest_requests/registerInterest";
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
 import {INTEREST_DEPENDENCIES, InterestDependency} from "../../model/interest";
+import Grid from "@mui/material/Grid";
+import {useCustomTheme} from "../../CustomThemeContext";
+import getTheme from "../../theme";
 
 interface RegisterDependencyDialogProps {
-    onCompanyRegistered: () => void;
+    onDependencyRegistered: () => void;
     type: string;
 
     buttonText: string;
     dialogTitle: string;
     label: string;
-    setCompanies: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
-    setGenres: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
-    setSubgenres: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
-    setPlatforms: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
+    setDependency: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
 }
 
 const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
@@ -39,33 +39,17 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
         setOpen(false);
     };
 
-    const handleRegisterCompany = async () => {
+    const handleRegisterDependency = async () => {
         try {
             handleClose();
 
             const response = await registerInterestDependency(type, name);
-            if (type == INTEREST_DEPENDENCIES.COMPANY) {
-                setCompanies((prevCompany) => {
-                    return prevCompany.map(company => {
-                        return response;
-                    });
-                });
-            }
 
-            /*switch(type){
-                case INTEREST_DEPENDENCIES.COMPANY:
-                    const response: Company | undefined = await registerInterestDependency(type, name);
-                    break;
-                case INTEREST_DEPENDENCIES.AGE_RATING:
+            if(!response) return;
 
-                    break;
-                case INTEREST_DEPENDENCIES.GENRE:
-
-                    break;
-
-            }*/
-
-            onCompanyRegistered();
+            setDependency(prevDependency => prevDependency.map(dependency => response));
+            setName("");
+            onDependencyRegistered();
         } catch (error) {
             console.error(`Erro ao cadastrar ${type}:`, error);
         }
