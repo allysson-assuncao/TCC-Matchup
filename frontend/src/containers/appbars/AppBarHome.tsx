@@ -19,8 +19,17 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GroupIcon from '@mui/icons-material/Group';
 import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import GamesIcon from '@mui/icons-material/Games';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import {getUser, logout} from "../../pages/Home";
-import {ROUTE_ABOUT_US, ROUTE_PREMIUM, ROUTE_PROFILE, ROUTE_SETTINGS} from "../../App";
+import {
+    ROUTE_ABOUT_US,
+    ROUTE_INTEREST_MANAGEMENT,
+    ROUTE_PREMIUM,
+    ROUTE_PROFILE,
+    ROUTE_REGISTER_INTERESTS,
+    ROUTE_SETTINGS
+} from "../../App";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
@@ -33,6 +42,7 @@ import NotificationsMenu from "../../components/contact/NotificationsMenu";
 import ContactPage from "../../pages/ContactPage";
 import {Contact} from "../../model/contact";
 import {Message} from "../../model/message";
+import {USER_ACCESS} from "../../model/user";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -67,10 +77,12 @@ function a11yProps(index: number) {
     };
 }
 
-const settings = ['Perfil', 'Configurações', 'Contato', 'Plano Premium', '', 'Sair'];
+const settings = ['Perfil', 'Configurações', 'Contato', 'Gerenciar Interesses', 'Cadastrar Interesses', 'Plano Premium', '', 'Sair'];
 const menuIcons: { [key: string]: React.ReactElement } = {
     'Perfil': <AccountCircleIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Configurações': <SettingsIcon sx={{mr: '10px'}} color={'primary'}/>,
+    'Gerenciar Interesses': <SportsEsportsIcon sx={{mr: '10px'}} color={'primary'}/>,
+    'Cadastrar Interesses': <GamesIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'}/>,
     '': <ToggleColorModeButton buttonText='Mudar Tema'/>,

@@ -137,7 +137,7 @@ const App: React.FC = () => {
                            element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>
 
                        }/>}/>
-                <Route path="/:usernamePathVariable" element={<Profile/>}/>
+                <Route path="perfil/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE}
                        element={<ProtectedRoute isAllowed={getUser() !== null}  element={<EditableProfile/>}/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>

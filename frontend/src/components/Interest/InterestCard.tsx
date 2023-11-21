@@ -7,7 +7,6 @@ import {
 import {Interest} from "../../model/interest";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
-import StarIcon from "@mui/icons-material/StarBorder";
 import {grey} from "@mui/material/colors";
 
 interface InterestCardProps {
@@ -37,7 +36,7 @@ const InterestCard: React.FC<InterestCardProps> = ({ interest }) => {
                     subheader={interest.company?.name}
                     titleTypographyProps={{ align: 'center' }}
                     subheaderTypographyProps={{ align: 'center' }}
-                    action={interest.title === 'Premium' ? <StarIcon /> : null}
+                    /*action={interest.title === 'Premium' ? <StarIcon /> : null}*/
                     sx={{
                         color: (theme) => theme.palette.primary.main,
                         backgroundColor: (theme) => grey[900],
