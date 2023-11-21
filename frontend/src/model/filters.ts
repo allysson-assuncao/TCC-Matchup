@@ -25,18 +25,18 @@ export const sla = {
         ID: 'id',
         NAME: 'name',
         DESCRIPTION: 'description',
-        LOWEST_PRICE: 'lowest_price',
-        HIGHEST_PRICE: 'highest_price'
+        LOWEST_PRICE: 'lowestPrice',
+        HIGHEST_PRICE: 'highestPrice'
     },
 
     INTEREST_DEPENDENCIES:{
         COMPANY_COLUMN_NAME: 'company',
-        AGE_RATING_COLUMN_NAME: 'age_rating',
-        DUBBING_LANGUAGES_COLUMN_NAME: 'dubbing_languages',
-        SUBTITLED_LANGUAGES_COLUMN_NAME: 'subtitled_languages',
-        GENRE_COLUMN_NAME: 'genre',
-        SUBGENRE_COLUMN_NAME: 'subgenre',
-        PLATFORM_COLUMN_NAME: 'platform',
+        AGE_RATING_COLUMN_NAME: 'ageRating',
+        DUBBING_LANGUAGES_COLUMN_NAME: 'dubbingLanguages',
+        SUBTITLED_LANGUAGES_COLUMN_NAME: 'subtitledLanguages',
+        GENRE_COLUMN_NAME: 'genres',
+        SUBGENRE_COLUMN_NAME: 'subGenre',
+        PLATFORM_COLUMN_NAME: 'platforms',
         ID: 'id',
         NAME: 'name',
     }

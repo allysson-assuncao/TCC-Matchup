@@ -27,7 +27,7 @@ import Features from "./pages/Features";
 import FAQ from "./pages/FAQ";
 import Premium from "./pages/Premium";
 import RegisterInterests from "./pages/RegisterInterests";
-import {USER_TYPE} from "./model/user";
+import {USER_ACCESS} from "./model/user";
 import InterestManagement from "./pages/InterestManagement";
 
 export const ROUTE_INDEX = '/';
@@ -154,7 +154,7 @@ const App: React.FC = () => {
 
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
-                           isAllowed={getUser() && getUser().access === USER_TYPE.ADMIN}
+                           isAllowed={getUser() && getUser().access === USER_ACCESS.ADMIN}
                            redirectPath={-1}
                            element={<RegisterInterests/>}/>}/>
             </Route>

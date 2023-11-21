@@ -9,7 +9,7 @@ import {Message} from "./message";
     contacts = "contacts",
 }*/
 
-export const USER_TYPE = {
+export const USER_ACCESS = {
     DEFAULT: 'DEFAULT',
     INTERMEDIATE: 'INTERMEDIATE',
     PREMIUM: 'PREMIUM',

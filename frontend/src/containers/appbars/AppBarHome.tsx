@@ -274,31 +274,46 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                         open={Boolean(anchorElUser)}
                                         onClose={handleCloseUserMenu}
                                     >
-                                        {settings.map((setting) => (
-                                            <MenuItem
-                                                key={setting}
-                                                onClick={() => {
-                                                    handleCloseUserMenu();
-                                                    if (setting === 'Perfil') {
-                                                        history(`${ROUTE_PROFILE}/${getUser().username}`);
-                                                    } else if (setting === 'Configurações') {
-                                                        history(ROUTE_SETTINGS);
-                                                    } else if (setting === 'Contato') {
-                                                        history(ROUTE_ABOUT_US);
-                                                    } else if (setting === 'Plano Premium') {
-                                                        history(ROUTE_PREMIUM);
-                                                    } else if (setting === 'Mudar Tema') {
+                                        {settings.map((setting) => {
+                                            if (setting === 'Cadastrar Interesses' && getUser().access !== USER_ACCESS.ADMIN) return;
+                                            return (
+                                                <MenuItem
+                                                    key={setting}
+                                                    onClick={() => {
+                                                        handleCloseUserMenu();
+                                                        switch (setting) {
+                                                            case 'Perfil':
+                                                                history(`${ROUTE_PROFILE}/${getUser().username}`);
+                                                                break;
+                                                            case 'Configurações':
+                                                                history(ROUTE_SETTINGS);
+                                                                break;
+                                                            case 'Contato':
+                                                                history(ROUTE_ABOUT_US);
+                                                                break;
+                                                            case 'Gerenciar Interesses':
+                                                                history(ROUTE_INTEREST_MANAGEMENT);
+                                                                break;
+                                                            case 'Cadastrar Interesses':
+                                                                history(ROUTE_REGISTER_INTERESTS);
+                                                                break;
+                                                            case 'Plano Premium':
+                                                                history(ROUTE_PREMIUM);
+                                                                break;
+                                                            case 'Sair':
+                                                                logout();
+                                                                break;
+                                                            default:
+                                                                break;
+                                                        }
+                                                    }}
+                                                >
+                                                    {menuIcons[setting]}
+                                                    <Typography textAlign="center">{setting}</Typography>
+                                                </MenuItem>
+                                            );
+                                        })}
 
-                                                    } else if (setting === 'Sair') {
-                                                        logout();
-                                                    }
-                                                }}
-                                            >
-                                                {menuIcons[setting]}
-
-                                                <Typography textAlign="center">{setting}</Typography>
-                                            </MenuItem>
-                                        ))}
                                     </Menu>
                                 </Box>
                             </Toolbar>
