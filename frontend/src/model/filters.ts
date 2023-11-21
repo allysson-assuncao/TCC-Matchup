@@ -32,11 +32,11 @@ export const sla = {
     INTEREST_DEPENDENCIES:{
         COMPANY_COLUMN_NAME: 'company',
         AGE_RATING_COLUMN_NAME: 'age_rating',
-        DUBBING_LANGUAGES_COLUMN_NAME: 'interest_dubbing_languages',
-        SU_LANGUAGES_COLUMN_NAME: 'interest_subtitled_languages',
-        AGE_RATING_COLUMN_NAME: 'age_rating',
-        AGE_RATING_COLUMN_NAME: 'age_rating',
-        PLATFORM_COLUMN_NAME: 'platforms',
+        DUBBING_LANGUAGES_COLUMN_NAME: 'dubbing_languages',
+        SUBTITLED_LANGUAGES_COLUMN_NAME: 'subtitled_languages',
+        GENRE_COLUMN_NAME: 'genre',
+        SUBGENRE_COLUMN_NAME: 'subgenre',
+        PLATFORM_COLUMN_NAME: 'platform',
         ID: 'id',
         NAME: 'name',
     }

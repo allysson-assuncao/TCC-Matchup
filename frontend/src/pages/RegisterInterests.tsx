@@ -7,12 +7,7 @@ import {
     TextField,
     Button,
     Grid,
-    Select,
-    MenuItem,
-    InputLabel,
-    FormControl,
 } from '@mui/material';
-import {Field, Form, Formik, FieldProps} from 'formik';
 import {
     getAllInterestDependencies,
     registerAll,
@@ -21,13 +16,9 @@ import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
 import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../model/interest";
 import MultipleSelect from "../components/fields/MultipleSelect";
-import {useCustomTheme} from "../CustomThemeContext";
-import getTheme from "../theme";
 import SimpleSelect from "../components/fields/SimpleSelect";
 
 const RegisterInterests: React.FC = () => {
-    const [dropdownData, setDropdownData] = useState<{ [key: string]: any[] }>({});
-
     const [name, setName] = useState<string>();
 
     const [companies, setCompanies] = useState<InterestDependency[]>([]);
@@ -92,7 +83,6 @@ const RegisterInterests: React.FC = () => {
         console.log(interest);
         alert(interest)
         await registerAll('interest', interest);
-        // Handle success, e.g., redirect or show a success message
 
     };
 
