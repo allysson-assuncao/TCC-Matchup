@@ -91,7 +91,7 @@ const InterestManagement: React.FC = () => {
 
 
     return (
-        <Container component="main" maxWidth="md">
+        <Grid>
             <AppBarProfile editable={true} blocked={false} username={getUser().username}
                            idProfile={getUser().id}></AppBarProfile>
             <CssBaseline/>

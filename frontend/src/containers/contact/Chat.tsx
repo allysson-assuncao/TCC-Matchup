@@ -58,7 +58,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
 
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         // Configurar ouvinte para novas mensagens via WebSocket
         socket.on('topic/private/messages', (message: Message) => {
             setMessages([...messages, message]);
@@ -68,7 +68,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
         return () => {
             socket.off('topic/private/messages');
         };
-    }, [messages]);
+    }, [messages]);*/
 
 
     useEffect(() => {

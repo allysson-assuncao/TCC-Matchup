@@ -111,10 +111,10 @@ const RegisterInterests: React.FC = () => {
                     <Grid item xs={12}>
                         <TextField
                             autoFocus
-                            value={name}
                             variant="outlined"
                             required
                             fullWidth
+                            onChange={(e) => setName(e.target.value)}
                             label="Nome do jogo..."
                         />
                     </Grid>
@@ -172,7 +172,7 @@ const RegisterInterests: React.FC = () => {
                             fullWidth
                             type="number"
                             label="Menor preço"
-                            value={lowestPrice}
+                            onChange={(e) => setLowestPrice(Number(e.target.value))}
                             inputProps={{min: 0, step: 0.01}}
                         />
                     </Grid>

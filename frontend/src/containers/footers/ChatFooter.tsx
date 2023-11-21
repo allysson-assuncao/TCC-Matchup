@@ -11,8 +11,7 @@ import {Contact} from "../../model/contact";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from '@mui/icons-material/Send';
-import {getUser} from "../../pages/Home";
-import socket from "../../api/WebSocketService";
+/*import socket from "../../api/WebSocketService";*/
 
 
 interface ChatFooterProps {

@@ -6,26 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/dialog/RegisterDependencyDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/dialog/RegisterDependencyDialog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/fields/MultipleSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/fields/MultipleSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/InterestSelection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/InterestSelection.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
-    </list>
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,40 +45,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java">
-      <ranges>
-        <range start1="45" end1="45" start2="45" end2="48" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="47" end1="49" start2="50" end2="52" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="51" end1="53" start2="54" end2="56" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="69" end1="70" start2="72" end2="73" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/FilterSpecificationService.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="11" end1="12" start2="12" end2="13" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="45" end1="46" start2="46" end2="133" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java">
-      <ranges>
-        <range start1="18" end1="19" start2="18" end2="19" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="44" end1="46" start2="44" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="49" end1="49" start2="50" end2="58" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/dto/SearchRequestDto.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="5" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="4" end1="4" start2="7" end2="12" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="5" end1="5" start2="13" end2="15" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="9" end1="9" start2="19" end2="20" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="16" end1="35" start2="27" end2="27" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="36" end1="47" start2="28" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -221,6 +172,7 @@
       <workItem from="1700083443184" duration="736000" />
       <workItem from="1700245291644" duration="92000" />
       <workItem from="1700475054389" duration="627000" />
+      <workItem from="1700569490147" duration="2123000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

@@ -52,12 +52,12 @@ public class InterestService {
         System.out.println("DubbingLaguage Id: " + interestDto.getDubbingLanguagesIdList());
 
         interestToSave.setName(interestDto.getName());
-        /*interestToSave.setCompany(
-                companyRepository.findById(interestDto.getCompanyId()).get());*/
+        interestToSave.setCompany(
+                companyRepository.findById(interestDto.getCompanyId()).get());
         interestToSave.setLowestPrice(interestDto.getLowestPrice());
         interestToSave.setHighestPrice(interestDto.getHighestPrice());
-        /*interestToSave.setAgeRating(
-                ageRatingRepository.findById(interestDto.getAgeRatingId()).get());*/
+        interestToSave.setAgeRating(
+                ageRatingRepository.findById(interestDto.getAgeRatingId()).get());
         interestToSave.setDubbingLanguages(
                 languageRepository.findByIdIn(interestDto.getDubbingLanguagesIdList()));
         interestToSave.setSubtitleLanguages(
