@@ -1,6 +1,6 @@
 
 import React from "react";
-import {Autocomplete, FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
+import {Autocomplete, FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 
 import {InterestDependency} from "../../model/interest";
 import Grid from "@mui/material/Grid";

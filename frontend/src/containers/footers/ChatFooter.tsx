@@ -5,7 +5,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import {AppBar, TextField, Toolbar} from "@mui/material";
 import {Message, MESSAGE_TYPE, TextMessageToBeSent} from "../../model/message";
-import {sendMessage} from "../../api/user_requests/messageRequests";
 import {useState} from "react";
 import {Contact} from "../../model/contact";
 import * as React from "react";
@@ -42,13 +41,13 @@ const ChatFooter: React.FC<ChatFooterProps> = ({contact, updateContactsWithMessa
                 return obj && obj.date && obj.senderId && obj.receiverId && obj.messageType;
             }
 
-            socket.emit('/app/private-message', message, (response: Message) => {
+            /*socket.emit('/app/private-message', message, (response: Message) => {
                 if(isMessage(response)) {
                     updateContactsWithMessage(contact.user1Id, response);
                 } else {
                     console.error('A resposta não é do tipo Message');
                 }
-            });
+            });*/
 
 
             setNewMessage('');

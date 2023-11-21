@@ -1,224 +1,166 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     Box,
-    Container,
     CssBaseline,
     Typography,
-    TextField,
     Button,
     Grid,
-    Select,
-    MenuItem,
-    InputLabel,
-    FormControl,
 } from '@mui/material';
-import {Field, Form, Formik, FieldProps} from 'formik';
-import {
-    getAllInterestDependencies,
-    registerAll,
-} from "../api/interest_requests/registerInterest";
-import {languages} from "../resources/languages";
-import {InterestDependency} from "../model/interest";
-import MultipleSelectFormik from "../components/fields/MultipleSelectFormik";
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUser} from "./Home";
-import MultipleSelect from "../components/fields/MultipleSelect";
-import SimpleSelect from "../components/fields/SimpleSelect";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import StarIcon from "@mui/icons-material/StarBorder";
+import {grey} from "@mui/material/colors";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Link from "@mui/material/Link";
+import {useCustomTheme} from "../CustomThemeContext";
+import getTheme from "../theme";
+import InterestFilters from "../containers/interest/InterestFilters";
+import {Interest} from "../model/interest";
 
-/*interface InterestFormValues {
-    name: string;
-    company: string;
-    lowestPrice: number;
-    highestPrice: number;
-    dubbedLanguages: string[];
-    subtitledLanguages: string[];
-    ageRating: string;
-    genres: string[];
-    subgenres: string[];
-    platforms: string[];
-}*/
+function Copyright(props: any) {
+    return (
+        <Typography variant="body2" color="text.secondary" align="center" sx={{mt:'50px', mb:'50px'}}>
+            {'Copyright © '}
+            <Link color="inherit" href="https://mui.com/">
+                Matchup
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
 
+const tiers = [
+    {
+        title: 'Gratuito',
+        price: '0',
+        description: [
+            '10 matches por dia',
+            'Limite de mensagens',
+            'Limite de Contatos',
+            'Anúncios',
+        ],
+        buttonText: 'Cadastre-se de graça!',
+        buttonVariant: 'outlined',
+    },
+    {
+        title: 'Premium',
+        subheader: 'Mais popular',
+        price: '7,90',
+        description: [
+            'Matches ilimitados',
+            'Mensagens ilimitados',
+            'Contatos ilimitados',
+            'Sem anúncios',
+        ],
+        buttonText: 'Começe já!',
+        buttonVariant: 'contained',
+    },
+    {
+        title: 'Intermediário',
+        price: '2,90',
+        description: [
+            '30 matches por dia',
+            'Maior limite de mensagens',
+            'Maior limite de Contatos',
+            'Menos anúncios',
+        ],
+        buttonText: 'Começe já!',
+        buttonVariant: 'outlined',
+    },
+];
 
 const InterestManagement: React.FC = () => {
-    const [name, setName] = useState<string>('');
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
 
-    const [companies, setCompanies] = useState<InterestDependency[]>([]);
-    const [selectedCompany, setSelectedCompany] = useState<InterestDependency>();
-
-    const [lowestPrice, setLowestPrice] = useState<number | string>('');
-    const [highestPrice, setHighestPrice] = useState<number | string>('');
-
-    const [dubbedLanguages, setDubbedLanguages] = useState<InterestDependency[]>(languages);
-    const [selectedDubbedLanguages, setSelectedDubbedLanguages] = useState<InterestDependency[]>([]);
-
-    const [subtitledLanguages, setSubtitledLanguages] = useState<InterestDependency[]>(languages);
-    const [selectedSubtitledLanguages, setSelectedSubtitledLanguages] = useState<InterestDependency[]>([]);
-
-
-    const [ageRatings, setAgeRatings] = useState<InterestDependency[]>();
-    const [selectedAgeRating, setSelectedAgeRating] = useState<InterestDependency>();
-
-    const [genres, setGenres] = useState<InterestDependency[]>([]);
-    const [selectedGenres, setSelectedGenres] = useState<InterestDependency[]>([]);
-
-    const [subgenres, setSubgenres] = useState<InterestDependency[]>([]);
-    const [selectedSubGenres, setSelectedSubGenres] = useState<InterestDependency[]>([]);
-
-    const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
-    const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
-
-    //let dropDownLoader = [setCompany, setDubbedLanguages];
-
-    const loadDropdowns = async () => {
-        try {
-            let data = await getAllInterestDependencies();
-            setCompanies(data.companies);
-            setAgeRatings(data.ageRatings);
-            setGenres(data.genres);
-            setSubgenres(data.subGenres);
-            setPlatforms(data.platforms);
-
-        } catch (error) {
-            console.error('Error loading dropdowns:', error);
-        }
-    };
-
-    useEffect(() => {
-        loadDropdowns();
-    }, []);
-
-
-
+    const [interest, setInterests] = useState<Interest[]>([]);
 
     return (
         <Grid>
             <AppBarProfile editable={true} blocked={false} username={getUser().username}
                            idProfile={getUser().id}></AppBarProfile>
             <CssBaseline/>
-            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Field name="name">
-                                {({field}: FieldProps) => (
-                                    <TextField
-                                        {...field}
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        label="Nome do jogo..."
-                                    />
-                                )}
-                            </Field>
-                        </Grid>
-
-                        {/*<Grid item xs={12}>
-                            <SimpleSelect
-                                setSelectedOption={setSelectedCompany}
-                                selectedOption={selectedCompany}
-                                options={companies}
-                                label={"Empresas"}
-                                placeholder={"Empresas"}
-                                fieldName={"company"}
-                            />
-                        </Grid>*/}
-
-                        <Grid item xs={6}>
-                            <Field name="lowestPrice">
-                                {({field}: FieldProps) => (
-                                    <TextField
-                                        {...field}
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        type="number"
-                                        label="Menor preço"
-                                        inputProps={{min: 0, step: 0.01}}
-                                    />
-                                )}
-                            </Field>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Field name="highestPrice">
-                                {({field}: FieldProps) => (
-                                    <TextField
-                                        {...field}
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        type="number"
-                                        label="Maior preço"
-                                        inputProps={{min: 0, step: 0.01}}
-                                    />
-                                )}
-                            </Field>
-                        </Grid>
-
-                        <MultipleSelect
-                            fieldName={'dubbedLanguages'}
-                            label={'Dublado'}
-                            placeholder={'Selecione as linguagens dubladas:'}
-                            options={dubbedLanguages}
-                            selectedOptions={selectedDubbedLanguages}
-                            setSelectedOptions={setSelectedDubbedLanguages}
-                        />
-
-
-                        <MultipleSelect
-                            fieldName={'subtitledLanguages'}
-                            label={'Legendado'}
-                            placeholder={'Selecione as linguagens legendadas:'}
-                            options={subtitledLanguages}
-                            selectedOptions={selectedSubtitledLanguages}
-                            setSelectedOptions={setSelectedSubtitledLanguages}
-                        />
-
-                       {/* <Grid item xs={12}>
-                            <SimpleSelect
-                                setSelectedOption={setSelectedAgeRating}
-                                selectedOption={selectedAgeRating}
-                                options={ageRatings}
-                                label={"Classificação Indicativa"}
-                                placeholder={"Classificação Indicativa:"}
-                                fieldName={"ageRating"}
-                            />
-                        </Grid>*/}
-
-                        <MultipleSelect
-                            fieldName={'genres'}
-                            label={'Generos'}
-                            placeholder={'Selecione os generos:'}
-                            options={genres}
-                            selectedOptions={selectedGenres}
-                            setSelectedOptions={setSelectedGenres}
-                        />
-
-                        <MultipleSelect
-                            fieldName={'subGenres'}
-                            label={'Sub Generos'}
-                            placeholder={'Selecione os sub generos:'}
-                            options={subgenres}
-                            selectedOptions={selectedSubGenres}
-                            setSelectedOptions={setSelectedSubGenres}
-                        />
-
-                        <MultipleSelect
-                            fieldName={'platforms'}
-                            label={'Plataforma'}
-                            placeholder={'Selecione as plataformas:'}
-                            options={platforms}
-                            selectedOptions={selectedPlatforms}
-                            setSelectedOptions={setSelectedPlatforms}
-                        />
-                        <Grid item xs={12}>
-                            <Button type="submit" fullWidth variant="contained" color="primary">
-                                ENVIAR
-                            </Button>
+                    <Grid item md={4}>
+                        <InterestFilters></InterestFilters>
+                    </Grid>
+                    <Grid item md={8}>
+                        <Grid container spacing={5} alignItems="flex-end">
+                            {tiers.map((tier) => (
+                                <Grid
+                                    item
+                                    key={tier.title}
+                                    xs={12}
+                                    sm={tier.title === 'Intermediário' ? 12 : 6}
+                                    md={4}
+                                >
+                                    <Card>
+                                        <CardHeader
+                                            title={tier.title}
+                                            subheader={tier.subheader}
+                                            titleTypographyProps={{align: 'center'}}
+                                            action={tier.title === 'Premium' ? <StarIcon/> : null}
+                                            subheaderTypographyProps={{
+                                                color: (theme) => theme.palette.secondary.dark,
+                                                align: 'center',
+                                            }}
+                                            sx={{
+                                                color: (theme) => theme.palette.primary.main,
+                                                backgroundColor: (theme) => grey[900],
+                                            }}
+                                        />
+                                        <CardContent sx={{backgroundColor: (theme) => theme.palette.text.secondary}}>
+                                            <Box
+                                                sx={{
+                                                    display: 'flex',
+                                                    justifyContent: 'center',
+                                                    alignItems: 'baseline',
+                                                    mb: 2,
+                                                }}
+                                            >
+                                                <Typography component="h2" variant="h3" color={theme.palette.background.paper}>
+                                                    ${tier.price}
+                                                </Typography>
+                                                <Typography variant="h6" color={theme.palette.background.paper}>
+                                                    /mês
+                                                </Typography>
+                                            </Box>
+                                            <ul>
+                                                {tier.description.map((line) => (
+                                                    <Typography
+                                                        component="li"
+                                                        variant="subtitle1"
+                                                        align="center"
+                                                        key={line}
+                                                        color={theme.palette.background.paper}
+                                                    >
+                                                        {line}
+                                                    </Typography>
+                                                ))}
+                                            </ul>
+                                        </CardContent>
+                                        <CardActions sx={{backgroundColor: (theme) => theme.palette.text.primary}}>
+                                            <Button
+                                                fullWidth
+                                                variant={'contained'}
+                                            >
+                                                {tier.buttonText}
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            ))}
                         </Grid>
                     </Grid>
                 </Grid>
             </Box>
-        </Container>
+            <Copyright/>
+        </Grid>
     );
 };
 

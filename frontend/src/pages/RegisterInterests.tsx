@@ -55,8 +55,6 @@ const RegisterInterests: React.FC = () => {
     const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
     const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
 
-    //let dropDownLoader = [setCompany, setDubbingLanguages];
-
     const loadDropdowns = async () => {
         try {
             let data = await getAllInterestDependencies();
@@ -183,7 +181,7 @@ const RegisterInterests: React.FC = () => {
                             fullWidth
                             type="number"
                             label="Maior preço"
-                            value={highestPrice}
+                            onChange={(e) => setHighestPrice(Number(e.target.value))}
                             inputProps={{min: 0, step: 0.01}}
                         />
                     </Grid>

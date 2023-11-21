@@ -11,7 +11,7 @@ import Grid from "@mui/material/Grid";
 import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
 import {getLastMessages} from "../../api/user_requests/messageRequests";
-import socket from "../../api/WebSocketService";
+/*import socket from "../../api/WebSocketService";*/
 
 interface ChatProps {
     contact: Contact;
