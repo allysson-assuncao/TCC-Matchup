@@ -3,13 +3,16 @@ package com.matchup.controller;
 import com.matchup.dto.InterestDependenciesDto;
 import com.matchup.dto.InterestDto;
 import com.matchup.dto.RequestDto;
+import com.matchup.dto.SearchRequestDto;
 import com.matchup.model.Interest;
 import com.matchup.model.insterest.Company;
 import com.matchup.model.insterest.Genre;
 import com.matchup.model.insterest.Platform;
 import com.matchup.model.insterest.SubGenre;
+import com.matchup.service.FilterSpecificationService;
 import com.matchup.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
@@ -24,9 +27,12 @@ public class InterestController {
 
     private final InterestService interestService;
 
+    private final FilterSpecificationService filterSpecificationService;
+
     @Autowired
-    public InterestController(InterestService interestService) {
+    public InterestController(InterestService interestService, FilterSpecificationService filterSpecificationService) {
         this.interestService = interestService;
+        this.filterSpecificationService = filterSpecificationService;
     }
 
 
@@ -69,6 +75,12 @@ public class InterestController {
     @PostAuthorize("true")
     public ResponseEntity<Platform> registerPlatform(@RequestBody Platform platform) {
         return new ResponseEntity<>(interestService.savePlatform(platform), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/get-all-filtered")
+    @PostAuthorize("true")
+    public ResponseEntity<Specification> getAllFiltered(@RequestBody List<SearchRequestDto> searchRequestDtos) {
+        return new ResponseEntity<>(filterSpecificationService.getSearchSpecification(searchRequestDtos), HttpStatus.ACCEPTED);
     }
 
 }

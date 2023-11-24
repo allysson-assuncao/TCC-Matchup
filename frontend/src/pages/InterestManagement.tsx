@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     CssBaseline,
@@ -13,6 +13,8 @@ import getTheme from "../theme";
 import InterestFilters from "../containers/interest/InterestFilters";
 import {Interest} from "../model/interest";
 import InterestCardList from "../containers/interest/InterestCardList";
+import {getFilteredInterests} from "../api/interest_requests/filterRequest";
+import {Filters} from "../model/filters";
 
 function Copyright(props: any) {
     return (
@@ -31,7 +33,16 @@ const InterestManagement: React.FC = () => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
 
-    const [interest, setInterests] = useState<Interest[]>([]);
+    const [filters, setFilters] = useState<Filters[]>([]);
+    const [filteredInterests, setFilteredInterests] = useState<Interest[]>([]);
+
+    /*const handleSearch = async (event: React.MouseEvent<HTMLElement>) => {
+        await fetchFilteredInterests();
+    };*/
+
+    /*useEffect(() => {
+        fetchFilteredInterests();
+    }, []);*/
 
     return (
         <Grid>
@@ -41,10 +52,10 @@ const InterestManagement: React.FC = () => {
             <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container>
                     <Grid item md={4}>
-                        <InterestFilters></InterestFilters>
+                        <InterestFilters filters={filters} filteredInterests={filteredInterests} setFilteredInterests={setFilteredInterests}></InterestFilters>
                     </Grid>
                     <Grid item md={8}>
-                        <InterestCardList interests={interest} />
+                        <InterestCardList interests={filteredInterests} />
                     </Grid>
                 </Grid>
             </Box>

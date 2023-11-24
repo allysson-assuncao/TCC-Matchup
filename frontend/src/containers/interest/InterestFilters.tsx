@@ -5,7 +5,7 @@ import {
     Button,
     Grid,
 } from '@mui/material';
-import {INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
+import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
 import {languages} from "../../resources/languages";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
@@ -13,13 +13,18 @@ import {getAllInterestDependencies, registerAll} from "../../api/interest_reques
 import SimpleSelect from "../../components/fields/SimpleSelect";
 import RegisterDependencyDialog from "../../components/dialog/RegisterDependencyDialog";
 import MultipleSelect from "../../components/fields/MultipleSelect";
+import {Filters} from "../../model/filters";
+import {getFilteredInterests} from "../../api/interest_requests/filterRequest";
 
-interface InterestFilters {
-    filteredInterests: InterestDependency[];
-    setFilteredInterests: React.Dispatch<React.SetStateAction<InterestDependency[]>>;
+interface InterestFiltersProps {
+    filters: Filters[];
+    /*filteredInterests: InterestDependency[];
+    setFilteredInterests: React.Dispatch<React.SetStateAction<InterestDependency[]>>;*/
+    filteredInterests: Interest[];
+    setFilteredInterests: React.Dispatch<React.SetStateAction<Interest[]>>;
 }
 
-const InterestFilters: React.FC = () => {
+const InterestFilters: React.FC<InterestFiltersProps> = ({ filters, filteredInterests, setFilteredInterests }) => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
 
@@ -49,7 +54,19 @@ const InterestFilters: React.FC = () => {
     const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
     const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
 
+    const fetchFilteredInterests = async () => {
+        try {
+            const fetchFilteredInterests = await getFilteredInterests(filters);
+            setFilteredInterests(fetchFilteredInterests);
+            return true;
+        } catch (error) {
+            console.error("Erro ao buscar notificações:", error);
+        }
+    };
 
+    const handleSearch = async (event: React.MouseEvent<HTMLElement>) => {
+        await fetchFilteredInterests();
+    };
 
     const loadDropdowns = async () => {
         try {
