@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/api/interest_requests/filterRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
-    </list>
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
@@ -174,7 +170,7 @@
       <workItem from="1700245291644" duration="92000" />
       <workItem from="1700475054389" duration="627000" />
       <workItem from="1700569490147" duration="2123000" />
-      <workItem from="1700849790877" duration="1730000" />
+      <workItem from="1700849790877" duration="2282000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

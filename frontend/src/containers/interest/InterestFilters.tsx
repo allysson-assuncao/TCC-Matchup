@@ -15,6 +15,8 @@ import RegisterDependencyDialog from "../../components/dialog/RegisterDependency
 import MultipleSelect from "../../components/fields/MultipleSelect";
 import {Filters} from "../../model/filters";
 import {getFilteredInterests} from "../../api/interest_requests/filterRequest";
+import SearchIcon from '@mui/icons-material/Search';
+import IconButton from "@mui/material/IconButton";
 
 interface InterestFiltersProps {
     filters: Filters[];
@@ -64,7 +66,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({ filters, filteredInte
         }
     };
 
-    const handleSearch = async (event: React.MouseEvent<HTMLElement>) => {
+    const handleSearch = async () => {
         await fetchFilteredInterests();
     };
 
@@ -118,8 +120,12 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({ filters, filteredInte
                         required
                         fullWidth
                         onChange={(e) => setName(e.target.value)}
-                        label="Nome do jogo..."
+                        label="Nome"
+                        placeholder={'Nome do jogo...'}
                     />
+                    <IconButton sx={{color: `theme.palette.primary.main`}} onClick={() => handleSearch()}>
+                        <SearchIcon></SearchIcon>
+                    </IconButton>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -270,12 +276,12 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({ filters, filteredInte
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12}>
+                {/*<Grid item xs={12}>
                     <Button type="submit" fullWidth variant="contained" color="primary"
                             onClick={() => handleFormSubmit()}>
                         ENVIAR
                     </Button>
-                </Grid>
+                </Grid>*/}
             </Grid>
         </Box>
     );
