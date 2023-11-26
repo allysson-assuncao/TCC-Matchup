@@ -2,7 +2,7 @@ package com.matchup.service;
 
 import com.matchup.dto.InterestDependenciesDto;
 import com.matchup.dto.InterestDto;
-import com.matchup.dto.RequestDto;
+import com.matchup.dto.SearchRequestDto;
 import com.matchup.model.Interest;
 import com.matchup.model.insterest.*;
 import com.matchup.model.insterest.Company;
@@ -10,6 +10,10 @@ import com.matchup.repository.InterestRepository;
 import com.matchup.repository.interest.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -72,10 +76,11 @@ public class InterestService {
         return interestRepository.save(interestToSave);
     }
 
-    public List<Interest> getInterestsBySpecification(RequestDto requestDto){
+    public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction){
         Specification<Interest> searchSpecification =
-                filterSpecificationService.getSearchSpecification(requestDto.getSearchRequestDto());
-        return interestRepository.findAll(searchSpecification);
+                filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, orderBy));
+        return interestRepository.findAll(searchSpecification, pageable);
     }
 
     public Company saveCompany(Company company){

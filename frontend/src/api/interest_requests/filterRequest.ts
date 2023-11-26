@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosResponse} from "axios";
-import {Filters} from "../../model/filters";
+
 import {Interest} from "../../model/interest";
 
 const API_BASE_URL = 'http://localhost:8080/api/interests/';

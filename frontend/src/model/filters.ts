@@ -2,7 +2,7 @@ export const OPERATION = {
     EQUAL: 'EQUAL',
     LIKE: 'LIKE',
     LOWER_THAN: 'LOWER_THAN',
-    GREATER_THAN: 'LIGREATER_THANKE',
+    GREATER_THAN: 'GREATER_THAN',
     JOIN: 'JOIN'
 }
 
@@ -11,7 +11,7 @@ export const OPERATOR = {
     OR: 'OR'
 }
 
-export const sla = {
+export const FILTERS_ATTRIBUTES = {
     /*USER:{
         tableName: 'user',
         birth_date: Date,
@@ -33,9 +33,9 @@ export const sla = {
         COMPANY_COLUMN_NAME: 'company',
         AGE_RATING_COLUMN_NAME: 'ageRating',
         DUBBING_LANGUAGES_COLUMN_NAME: 'dubbingLanguages',
-        SUBTITLED_LANGUAGES_COLUMN_NAME: 'subtitledLanguages',
+        SUBTITLED_LANGUAGES_COLUMN_NAME: 'subtitleLanguages',
         GENRE_COLUMN_NAME: 'genres',
-        SUBGENRE_COLUMN_NAME: 'subGenre',
+        SUBGENRE_COLUMN_NAME: 'subGenres',
         PLATFORM_COLUMN_NAME: 'platforms',
         ID: 'id',
         NAME: 'name',
@@ -43,10 +43,10 @@ export const sla = {
 
 }
 
-export interface Filters {
+export interface Filter {
     column: string;
-    values: [],
-    joinTable: string;
+    values: string[] | bigint[] | number[] | undefined,
+    joinTable?: string;
     operation: string;
     operator: string;
 }

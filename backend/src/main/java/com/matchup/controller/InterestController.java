@@ -12,6 +12,8 @@ import com.matchup.model.insterest.SubGenre;
 import com.matchup.service.FilterSpecificationService;
 import com.matchup.service.InterestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +38,11 @@ public class InterestController {
     }
 
 
-    @PostMapping("/specification")
+    /*@PostMapping("/specification")
     @PostAuthorize("true")
     public ResponseEntity<List<Interest>> searchInterest(@RequestBody RequestDto requestDto) {
         return new ResponseEntity<>(interestService.getInterestsBySpecification(requestDto), HttpStatus.ACCEPTED);
-    }
+    }*/
 
     @GetMapping("/get-all-dependencies")
     public ResponseEntity<InterestDependenciesDto> getInterestDependencies() {
@@ -77,10 +79,21 @@ public class InterestController {
         return new ResponseEntity<>(interestService.savePlatform(platform), HttpStatus.ACCEPTED);
     }
 
-    @PostMapping("/get-all-filtered")
+    /*@PostMapping("/get-all-filtered")
     @PostAuthorize("true")
     public ResponseEntity<Specification> getAllFiltered(@RequestBody List<SearchRequestDto> searchRequestDtos) {
         return new ResponseEntity<>(filterSpecificationService.getSearchSpecification(searchRequestDtos), HttpStatus.ACCEPTED);
-    }
+    }*/
 
+    @PostMapping("/get-by-specifications")
+    public Page<Interest> getInterestsBySpecificationWithPagination(
+            @RequestParam(required = false) String searchTerm,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size,
+            @RequestParam(defaultValue = "name") String orderBy,
+            @RequestParam(defaultValue = "ASC") Sort.Direction direction,
+            @RequestBody RequestDto requestsDto) {
+
+        return interestService.getInterestsBySpecificationWithPagination(requestsDto.getSearchRequestDtos(), page, size, orderBy, direction);
+    }
 }

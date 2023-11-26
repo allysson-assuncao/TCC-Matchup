@@ -1,29 +1,30 @@
 package com.matchup.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.domain.Sort;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class RequestDto {
-    private List<SearchRequestDto> searchRequestDto;
+
+/*    private final String NAME = "name";
+    private final String LOWEST_PRICE = "lowestPrice";
+    private final String HIGHEST_PRICE = "highestPrice";*/
+
+
+    private List<SearchRequestDto> searchRequestDtos;
 
     private GlobalOperator globalOperator;
+
+    /*private String orderBy;
+
+    private Sort.Direction direction;*/
 
     public enum GlobalOperator{
         OR, AND
     }
 
-    public List<SearchRequestDto> getSearchRequestDto() {
-        return searchRequestDto;
-    }
-
-    public void setSearchRequestDto(List<SearchRequestDto> searchRequestDto) {
-        this.searchRequestDto = searchRequestDto;
-    }
-
-    public GlobalOperator getGlobalOperator() {
-        return globalOperator;
-    }
-
-    public void setGlobalOperator(GlobalOperator globalOperator) {
-        this.globalOperator = globalOperator;
-    }
 }
