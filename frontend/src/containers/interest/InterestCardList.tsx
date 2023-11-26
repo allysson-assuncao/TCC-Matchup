@@ -5,9 +5,10 @@ import {
 } from '@mui/material';
 import InterestCard from "../../components/Interest/InterestCard";
 import {Interest} from "../../model/interest";
+import {InterestRequest} from "../../model/interest_filtered_request";
 
 interface InterestCardListProps {
-    interests: Interest[];
+    interests: InterestRequest | undefined;
 }
 
 const exampleInterests: Interest[] = [
@@ -143,8 +144,8 @@ const InterestCardList: React.FC<InterestCardListProps> = ({ interests }) => {
     return (
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Grid container spacing={5} alignItems="flex-end">
-                {exampleInterests.map((interest) => (
-                    <InterestCard key={interest.id} interest={interest} />
+                {interests && interests.content && interests.content.map((interest) => (
+                    <InterestCard key={Number(interest.id)} interest={interest} />
                 ))}
             </Grid>
         </Box>

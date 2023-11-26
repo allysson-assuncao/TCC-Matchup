@@ -13,8 +13,7 @@ import getTheme from "../theme";
 import InterestFilters from "../containers/interest/InterestFilters";
 import {Interest} from "../model/interest";
 import InterestCardList from "../containers/interest/InterestCardList";
-import {getFilteredInterests} from "../api/interest_requests/filterRequest";
-import {Filters} from "../model/filters";
+import {InterestRequest} from "../model/interest_filtered_request";
 
 function Copyright(props: any) {
     return (
@@ -33,8 +32,7 @@ const InterestManagement: React.FC = () => {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
 
-    const [filters, setFilters] = useState<Filters[]>([]);
-    const [filteredInterests, setFilteredInterests] = useState<Interest[]>([]);
+    const [filteredInterests, setFilteredInterests] = useState<InterestRequest>();
 
     /*const handleSearch = async (event: React.MouseEvent<HTMLElement>) => {
         await fetchFilteredInterests();
@@ -52,7 +50,7 @@ const InterestManagement: React.FC = () => {
             <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container>
                     <Grid item md={4}>
-                        <InterestFilters filters={filters} filteredInterests={filteredInterests} setFilteredInterests={setFilteredInterests}></InterestFilters>
+                        <InterestFilters filteredInterests={filteredInterests} setFilteredInterests={setFilteredInterests}></InterestFilters>
                     </Grid>
                     <Grid item md={8}>
                         <InterestCardList interests={filteredInterests} />

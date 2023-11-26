@@ -2,16 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {
     Box,
     TextField,
-    Button,
     Grid,
 } from '@mui/material';
-import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
+import {InterestDependency, InterestDto} from "../../model/interest";
 import {languages} from "../../resources/languages";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {getAllInterestDependencies, registerAll} from "../../api/interest_requests/registerInterest";
 import SimpleSelect from "../../components/fields/SimpleSelect";
-import RegisterDependencyDialog from "../../components/dialog/RegisterDependencyDialog";
 import MultipleSelect from "../../components/fields/MultipleSelect";
 import {Filter, FILTERS_ATTRIBUTES, OPERATION, OPERATOR} from "../../model/filters";
 import {getFilteredInterests} from "../../api/interest_requests/filterRequest";
@@ -170,51 +168,38 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                         </IconButton>
                     </Grid>
 
-                <Grid item xs={12}>
-                    <Grid container flexDirection={'row'} spacing={3}>
-                        <Grid item xs={10}>
-                            <SimpleSelect
-                                setSelectedOption={setSelectedCompany}
-                                selectedOption={selectedCompany}
-                                options={companies}
-                                label={"Empresas"}
-                                placeholder={"Empresas"}
-                                fieldName={"company"}
-                            />
-                        </Grid>
-                        <Grid item md={2} alignItems={'center'}>
-                            <RegisterDependencyDialog
-                                type={INTEREST_DEPENDENCIES.COMPANY}
-                                dialogTitle={'Nova Empresa'}
-                                buttonText={''}
-                                label={'Nome da Empresa'}
-                                setDependency={setCompanies}
-                            />
-                        </Grid>
+                    <Grid item xs={12}>
+                        <SimpleSelect
+                            setSelectedOption={setSelectedCompany}
+                            selectedOption={selectedCompany}
+                            options={companies}
+                            label={"Empresas"}
+                            placeholder={"Empresas"}
+                            fieldName={"company"}
+                        />
                     </Grid>
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        type="number"
-                        label="Menor preço"
-                        onChange={(e) => setLowestPrice(Number(e.target.value))}
-                        inputProps={{min: 0, step: 0.01}}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <TextField
-                        variant="outlined"
-                        required
-                        fullWidth
-                        type="number"
-                        label="Maior preço"
-                        onChange={(e) => setHighestPrice(Number(e.target.value))}
-                        inputProps={{min: 0, step: 0.01}}
-                    />
-                </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            variant="outlined"
+                            required
+                            fullWidth
+                            type="number"
+                            label="Menor preço"
+                            onChange={(e) => setLowestPrice(Number(e.target.value))}
+                            inputProps={{min: 0, step: 0.01}}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField
+                            variant="outlined"
+                            required
+                            fullWidth
+                            type="number"
+                            label="Maior preço"
+                            onChange={(e) => setHighestPrice(Number(e.target.value))}
+                            inputProps={{min: 0, step: 0.01}}
+                        />
+                    </Grid>
 
                     <MultipleSelect
                         fieldName={'dubbingLanguages'}
@@ -247,29 +232,16 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                         />
                     </Grid>
 
-                <Grid item xs={12}>
-                    <Grid container flexDirection={'row'} spacing={3}>
-                        <Grid item md={10}>
-                            <MultipleSelect
-                                fieldName={'genres'}
-                                label={'Generos'}
-                                placeholder={'Selecione os generos:'}
-                                options={genres}
-                                selectedOptions={selectedGenres}
-                                setSelectedOptions={setSelectedGenres}
-                            />
-                        </Grid>
-                        <Grid item md={2} alignItems={'center'}>
-                            <RegisterDependencyDialog
-                                type={INTEREST_DEPENDENCIES.GENRE}
-                                dialogTitle={'Novo Gênero'}
-                                buttonText={''}
-                                label={'Nome do Gênero'}
-                                setDependency={setGenres}
-                            />
-                        </Grid>
+                    <Grid item xs={12}>
+                        <MultipleSelect
+                            fieldName={'genres'}
+                            label={'Generos'}
+                            placeholder={'Selecione os generos:'}
+                            options={genres}
+                            selectedOptions={selectedGenres}
+                            setSelectedOptions={setSelectedGenres}
+                        />
                     </Grid>
-                </Grid>
 
                     <Grid item xs={12}>
                         <MultipleSelect
