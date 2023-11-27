@@ -3,17 +3,18 @@ import {
     getNotificationsByUserId,
     getUnseenNotificationsCountByUserId
 } from "../../api/user_requests/notificationRequests";
-import {getUser} from "../../App";
 import {Badge, Box, Menu, Tooltip} from "@mui/material";
 import {Notification} from "../../model/notification";
 import NotificationComponent from "./NotificationComponent";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import {Notifications} from "@mui/icons-material";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
+import {useLoggedUser} from "../../contexts/UserContext";
 
 const NotificationsMenu = () => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -68,8 +69,12 @@ const NotificationsMenu = () => {
     }, [getUser().id, notifications]);*/
 
     const fetchNotifications = async () => {
+        if (!loggedUser) {
+            console.error("Erro: Usuário não está logado.");
+            return false;
+        }
         try {
-            const fetchedNotifications = await getNotificationsByUserId(getUser().id);
+            const fetchedNotifications = await getNotificationsByUserId(loggedUser.id);
             setNotifications(fetchedNotifications);
             return true;
             let unseenCount = await getUnseenNotificationsCountByUserId
@@ -81,8 +86,12 @@ const NotificationsMenu = () => {
     };
 
     const fetchUnseenNotificationsCount = async () => {
+        if (!loggedUser) {
+            console.error("Erro: Usuário não está logado.");
+            return;
+        }
         try {
-            let unseenCount = await getUnseenNotificationsCountByUserId(getUser().id);
+            let unseenCount = await getUnseenNotificationsCountByUserId(loggedUser.id);
             setUnseenNotificationsNumber(unseenCount);
         } catch (error) {
             console.error("Erro ao buscar número de notificações não visualizadas:", error);

@@ -1,9 +1,9 @@
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import * as React from "react";
 import {useEffect, useState} from "react";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {getUser} from "../App";
 import {Avatar, Grid} from "@mui/material";
+import {useLoggedUser} from "../contexts/UserContext";
 
 interface ProfilePictureProp {
     id: BigInt,
@@ -11,6 +11,7 @@ interface ProfilePictureProp {
 }
 
 const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const [profilePicture, setProfilePicture] = useState('');
 
@@ -19,7 +20,7 @@ const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
 
         async function fetchProfilePicture() {
             let url = "";
-            if (getUser() == null || id != getUser().id) {
+            if (!loggedUser || id != loggedUser.id) {
                 console.log("id:" + id);
                 url = small? await getProfilePictureByUserId(id, 96,96) : await getProfilePictureByUserId(id, 192, 192);
             }else{

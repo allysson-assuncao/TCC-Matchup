@@ -12,7 +12,7 @@ import {
     validateSignUpStep1,
     validateSignUpStep2
 } from "../utils/validation/UserValidation";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import {getUser, logout, setUser} from "../App";
 import GeneralInfoRegister from "../containers/options/GeneralInfoRegister";

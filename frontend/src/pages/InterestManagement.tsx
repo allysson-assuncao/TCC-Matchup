@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import Link from "@mui/material/Link";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import InterestFilters from "../containers/interest/InterestFilters";
 import {Interest} from "../model/interest";

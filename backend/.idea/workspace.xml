@@ -5,16 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest">
+      <change afterPath="$PROJECT_DIR$/../frontend/src/contexts/UserContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/CustomThemeContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/contexts/CustomThemeContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep3.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ProfilePicture.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ProfilePicture.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ToggleColorModeButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ToggleColorModeButton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/FriendComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/FriendComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/FriendsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/FriendsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/FriendshipResponseButtons.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/FriendshipResponseButtons.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/NotificationComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/NotificationComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/contact/NotificationsMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/contact/NotificationsMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/dialog/RegisterDependencyDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/dialog/RegisterDependencyDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarChat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarChat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarGeneral.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarGeneral.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarIndex.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarIndex.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/ContactList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/footers/ChatFooter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/footers/ChatFooter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/index/ForWho.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/index/ForWho.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/index/GameGenres.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/index/GameGenres.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/index/GetBeta.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/index/GetBeta.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/index/Introduction.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/index/Introduction.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/index/WhatIsMatchup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/index/WhatIsMatchup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/interest/InterestFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/interest/InterestFilters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/options/EditProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/options/EditProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/options/GeneralInfo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/options/GeneralInfo.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/options/GeneralInfoRegister.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/options/GeneralInfoRegister.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep3.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/step_forms/forgot_password/ForgotPasswordStep3.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/AboutUs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/AboutUs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/AppIndex.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/AppIndex.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/EditableProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/EditableProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/FAQ.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/FAQ.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Features.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Features.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ForgotPassword.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ForgotPassword.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/InterestManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/InterestManagement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Premium.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Premium.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Settings.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Settings.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Signup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Signup.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
-    </list>
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +219,7 @@
       <workItem from="1700475054389" duration="627000" />
       <workItem from="1700569490147" duration="2123000" />
       <workItem from="1700849790877" duration="2685000" />
-      <workItem from="1701102100115" duration="3707000" />
+      <workItem from="1701102100115" duration="4300000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />

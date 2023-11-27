@@ -20,7 +20,7 @@ import img15 from '../../img/img15.jpg'
 import img16 from '../../img/img16.jpg'
 import img17 from '../../img/img17.jpg'
 import theme from "../../theme";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 

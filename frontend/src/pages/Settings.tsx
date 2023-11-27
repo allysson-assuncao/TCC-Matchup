@@ -10,7 +10,7 @@ import React, {useEffect} from "react";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import AppBarHome from "../containers/appbars/AppBarHome";
 import getTheme from "../theme";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 
 
 const Settings = () => {

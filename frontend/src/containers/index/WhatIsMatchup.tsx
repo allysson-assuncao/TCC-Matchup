@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import {Grow, Typography} from "@mui/material";
 import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 const item: SxProps<Theme> = {

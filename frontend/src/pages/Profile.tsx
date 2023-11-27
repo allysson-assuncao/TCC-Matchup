@@ -9,7 +9,7 @@ import {getUser} from "../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUserByUsername} from "../api/user_requests/getUserBy";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import ProfilePicture from "../components/ProfilePicture";
 import {isBlockedBy} from "../api/user_requests/block";

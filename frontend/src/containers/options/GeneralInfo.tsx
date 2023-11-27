@@ -9,7 +9,7 @@ import {getUser, updateUser} from "../../App";
 import {UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {Field, FieldProps, Form, Formik} from "formik";
 import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";

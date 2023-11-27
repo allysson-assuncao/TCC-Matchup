@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {CustomThemeProvider} from "./CustomThemeContext";
+import {CustomThemeProvider} from "./contexts/CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import {getUser} from "./App";
 
