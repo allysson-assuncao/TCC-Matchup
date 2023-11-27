@@ -1,6 +1,7 @@
 package com.matchup.service;
 
 /*import com.matchup.config.JavaMailSender;*/
+import com.matchup.dto.InterestDto;
 import com.matchup.dto.UserDto;
 import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
@@ -108,9 +109,9 @@ public class UserService {
                 passwordEncoder.encode(userDto.getRawPassword()));
         //userToRegister.setCellphoneNumber(userDto.getCellphoneNumber());
         //userToRegister.setProfilePicture(userDto.getProfilePicture());
-        userDto.getInterests().forEach(System.out::println);
-        userToRegister.setInterests(
-                interestRepository.findAllById(userDto.getInterests()));
+        //userDto.getInterests().forEach(System.out::println);
+       /* userToRegister.setInterests(
+                interestRepository.findAllById(userDto.getInterests()));*/
         addressToRegister.setCity(userDto.getAddressCity());
         addressToRegister.setNumber(userDto.getAddressNumber());
         addressToRegister.setStreet(userDto.getAddressStreet());
@@ -120,6 +121,20 @@ public class UserService {
 
         userToRegister.setAddress(addressToRegister);
         return userRepository.save(userToRegister);
+    }
+
+    public boolean linkInterestToUser(Long userId, Long interestId) {
+        Optional<User> userOp = userRepository.findById(userId);
+        Optional<Interest> interestOp = interestRepository.findById(interestId);
+        if(userOp.isEmpty() || interestOp.isEmpty()) return false;
+
+        User user = userOp.get();
+        Interest interest = interestOp.get();
+        user.addInterest(interest);
+        interest.addUser(user);
+        userRepository.save(user);
+        interestRepository.save(interest);
+        return true;
     }
 
     public List<User> getAllUsers(){

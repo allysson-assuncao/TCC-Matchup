@@ -11,6 +11,7 @@ import com.matchup.model.insterest.Platform;
 import com.matchup.model.insterest.SubGenre;
 import com.matchup.service.FilterSpecificationService;
 import com.matchup.service.InterestService;
+import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -21,6 +22,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -28,13 +30,21 @@ import java.util.List;
 public class InterestController {
 
     private final InterestService interestService;
+    private final UserService userService;
 
     private final FilterSpecificationService filterSpecificationService;
 
     @Autowired
-    public InterestController(InterestService interestService, FilterSpecificationService filterSpecificationService) {
+    public InterestController(InterestService interestService, FilterSpecificationService filterSpecificationService, UserService userService) {
         this.interestService = interestService;
         this.filterSpecificationService = filterSpecificationService;
+        this.userService = userService;
+    }
+
+    @PostMapping("/link-to-user")
+    @PostAuthorize("true")
+    public ResponseEntity<Boolean> linkInterestToUser(@RequestBody Map<String, Long> linkInterestToUser) {
+        return new ResponseEntity<>(userService.linkInterestToUser(linkInterestToUser.get("userId"), linkInterestToUser.get("interestId")), HttpStatus.OK);
     }
 
 
