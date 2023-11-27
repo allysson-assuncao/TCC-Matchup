@@ -1,6 +1,6 @@
 import {UpdateUserPayload, User} from "../../model/user";
 import axios, {AxiosResponse} from "axios";
-import {setUser} from "../../pages/Home";
+import {setUser} from "../../App";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 

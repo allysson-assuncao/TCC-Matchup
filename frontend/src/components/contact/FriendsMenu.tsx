@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 import {Box, Menu} from "@mui/material";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";

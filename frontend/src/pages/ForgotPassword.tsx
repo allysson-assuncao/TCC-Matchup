@@ -21,7 +21,7 @@ import {ROUTE_SIGN_IN} from "../App";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {confirmEmail, updatePassword, verifyCode} from "../api/user_requests/forgot_password";
-import {getUser} from "./Home";
+import {getUser} from "../App";
 import {
     validateForgotPasswordStep1, validateForgotPasswordStep2, validateForgotPasswordStep3,
 } from "../utils/validation/UserValidation";

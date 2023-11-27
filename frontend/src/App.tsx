@@ -50,6 +50,8 @@ export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 const App: React.FC = () => {
 
     const [contacts, setContacts] = useState<Contact[] | null>(null);
+    history = useNavigate();
+
 
     const updateContactsWithMessage = (contactId: bigint, message: Message) => {
         setContacts(prevContacts => {
@@ -79,13 +81,28 @@ const App: React.FC = () => {
     };
 
     useEffect(() => {
-        //if (/* !sessionStorage.getItem('hasRunBefore') */true) {
-        fetchContacts();
+        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
+            console.log('Testeeeeeeeeeeeeeeeeeeeee');
+            fetchContacts();
 
-        console.log(contacts);
+            console.log(contacts);
+            setUser();
+            sessionStorage.setItem('hasRunBefore', 'true');
 
-        sessionStorage.setItem('hasRunBefore', 'true');
-        //}
+            localStorage.setItem('user', {
+                id: BigInt(1),
+                name: "Henrique Leão Paim",
+                username: "liceki",
+                email: "henrique.lp2006@gmail.com",
+                rawPassword: "Hlp123456$",
+                cellphoneNumber: "(31) 97118-2315",
+                addressStreet: "Rua Artur Bernardes",
+                addressNumber: 56,
+                addressNeighborhood: "Pioneiros",
+                addressState: "Minas Gerais",
+                addressZipcode: "36420000"
+            }.toString());
+        }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
     useEffect(() => {

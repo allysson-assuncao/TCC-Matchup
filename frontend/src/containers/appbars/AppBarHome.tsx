@@ -21,7 +21,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GamesIcon from '@mui/icons-material/Games';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import {getUser, logout} from "../../pages/Home";
+import {getUser, logout} from "../../App";
 import {
     ROUTE_ABOUT_US,
     ROUTE_INTEREST_MANAGEMENT,

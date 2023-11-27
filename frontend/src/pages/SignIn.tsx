@@ -17,12 +17,12 @@ import {emailExists, login, usernameExists, ValidationResponse} from '../api/use
 import {SignInPayload, User} from '../model/user';
 import {isEmail, validationLogin} from '../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
-import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
+import {getUser, ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
 import logo from '../img/logo-matchup3.png';
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {getUser} from "./Home";
+
 import {Contact} from "../model/contact";
 import {getContactsByUserId} from "../api/user_requests/contactRequests";
 

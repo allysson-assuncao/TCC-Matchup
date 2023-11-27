@@ -3,7 +3,7 @@ import {
     getNotificationsByUserId,
     getUnseenNotificationsCountByUserId
 } from "../../api/user_requests/notificationRequests";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 import {Badge, Box, Menu, Tooltip} from "@mui/material";
 import {Notification} from "../../model/notification";
 import NotificationComponent from "./NotificationComponent";

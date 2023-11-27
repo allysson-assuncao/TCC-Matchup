@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import {emailExists} from "../../api/user_requests/login";
 import {isEmailAvailable, isUsernameAvailable} from "../../api/user_requests/register";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 
 export var isEmail: boolean;
 export const validationLogin = Yup.object().shape({

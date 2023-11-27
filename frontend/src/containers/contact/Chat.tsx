@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {AppBar, Toolbar, Typography, Box, Paper, List, ListItem, ListItemText} from '@mui/material';
 import SentMessage from "../../components/contact/SentMessage";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 import ReceivedMessage from "../../components/contact/ReceivedMessage";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";

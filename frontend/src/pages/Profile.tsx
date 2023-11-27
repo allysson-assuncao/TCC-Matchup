@@ -5,7 +5,7 @@ import {
     Typography
 } from "@mui/material";
 import React, {useEffect, useState} from "react";
-import {getUser} from "./Home";
+import {getUser} from "../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUserByUsername} from "../api/user_requests/getUserBy";

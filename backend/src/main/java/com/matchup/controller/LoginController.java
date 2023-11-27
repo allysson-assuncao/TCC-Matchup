@@ -24,8 +24,6 @@ public class LoginController {
 
     @PostMapping("/")
     public ResponseEntity<User> login(@RequestBody UserDto userDto) {
-        System.out.println(userDto.getEmail());
-        System.out.println(userDto.getRawPassword());
         Optional<User> user = userService.findByEmailAndHashedPassword(userDto);
         if (user.isEmpty()){
             throw new NullPointerException();

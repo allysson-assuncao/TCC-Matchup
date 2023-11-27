@@ -6,7 +6,6 @@ import {
     Grid,
 } from '@mui/material';
 import AppBarProfile from "../containers/appbars/AppBarProfile";
-import {getUser} from "./Home";
 import Link from "@mui/material/Link";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
@@ -14,6 +13,7 @@ import InterestFilters from "../containers/interest/InterestFilters";
 import {Interest} from "../model/interest";
 import InterestCardList from "../containers/interest/InterestCardList";
 import {InterestRequest} from "../model/interest_filtered_request";
+import {getUser} from "../App";
 
 function Copyright(props: any) {
     return (

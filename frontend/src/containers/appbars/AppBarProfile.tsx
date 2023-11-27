@@ -12,7 +12,7 @@ import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 import {useEffect} from "react";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";

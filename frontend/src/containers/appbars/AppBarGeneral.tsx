@@ -12,7 +12,7 @@ import {NavigateFunction, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
-import {getUser} from "../../pages/Home";
+import {getUser} from "../../App";
 import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 

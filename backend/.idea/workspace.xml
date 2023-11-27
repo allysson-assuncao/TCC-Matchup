@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/step_forms/signup/SignUpStep3.tsx" beforeDir="false" />
+    </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" afterDir="false" />
+    </list>
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,6 +178,7 @@
       <workItem from="1700475054389" duration="627000" />
       <workItem from="1700569490147" duration="2123000" />
       <workItem from="1700849790877" duration="2685000" />
+      <workItem from="1701102100115" duration="3707000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -490,7 +498,21 @@
       <option name="project" value="LOCAL" />
       <updated>1698760293502</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Interest Filters working beautifully (with OR, AND, etc)">
+      <created>1701086565146</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1701086565146</updated>
+    </task>
+    <task id="LOCAL-00043" summary="backend commit after adding the controller for linking a user to an interest">
+      <created>1701110282252</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1701110282252</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,6 +539,8 @@
     <MESSAGE value="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <MESSAGE value="making the request to get the last message by last message date" />
     <MESSAGE value="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
+    <MESSAGE value="Interest Filters working beautifully (with OR, AND, etc)" />
+    <MESSAGE value="backend commit after adding the controller for linking a user to an interest" />
+    <option name="LAST_COMMIT_MESSAGE" value="backend commit after adding the controller for linking a user to an interest" />
   </component>
 </project>

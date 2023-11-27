@@ -4,7 +4,6 @@ import {Formik, Form} from 'formik';
 
 import SignUpStep1 from "../containers/step_forms/signup/SignUpStep1";
 import SignUpStep2 from "../containers/step_forms/signup/SignUpStep2";
-import SignUpStep3 from "../containers/step_forms/signup/SignUpStep3";
 import {register} from "../api/user_requests/register";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_HOME, ROUTE_SIGN_IN} from "../App";
@@ -22,8 +21,9 @@ import {getUser, logout, removeProfilePicture, setUser} from "./Home";
 import GeneralInfo from "../containers/options/GeneralInfo";
 import GeneralInfoRegister from "../containers/options/GeneralInfoRegister";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
+import {removeProfilePicture} from "./Home";
 
-const steps = ['Pessoais', 'Endereço', 'Interesses', 'Conclusão'];
+const steps = ['Pessoais', 'Endereço', 'Perfil'];
 
 const SignUp: React.FC = () => {
     const {theme: mode} = useCustomTheme();
@@ -73,8 +73,7 @@ const SignUp: React.FC = () => {
             handleNext();
         } else if (activeStep == steps.length - 1) {
             localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
-            history(ROUTE_HOME);
-
+            history(ROUTE_INTEREST_MANAGEMENT);
         }
 
     };
@@ -86,8 +85,6 @@ const SignUp: React.FC = () => {
             case 1:
                 return <SignUpStep2/>;
             case 2:
-                return <SignUpStep3/>;
-            case 3:
                 return <GeneralInfoRegister/>;
             default:
                 return 'Erro: Etapa desconhecida';
@@ -100,8 +97,6 @@ const SignUp: React.FC = () => {
                 return validateSignUpStep1;
             case 1:
                 return validateSignUpStep2;
-            case 2:
-                return validateSignUpStep3;
             default:
                 return 'Erro: Etapa desconhecida';
         }
@@ -167,7 +162,7 @@ const SignUp: React.FC = () => {
 
                                 <Grid item>{getStepContent(activeStep)}</Grid>
                                 <Grid container justifyContent="space-between" sx={{marginTop: '20px'}}>
-                                    {(activeStep !== 3) && (
+                                    {(activeStep !== 2) && (
                                         <Grid item>
                                             <Button
                                                 onClick={activeStep !== 0 ? handleBack : () => history(-1)}
@@ -176,7 +171,7 @@ const SignUp: React.FC = () => {
                                             </Button>
                                         </Grid>
                                     )}
-                                    {activeStep !== 3 && (
+                                    {activeStep !== 2 && (
                                         <Grid item>
                                             <Button
                                                 variant="contained"
