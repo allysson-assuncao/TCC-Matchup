@@ -20,7 +20,7 @@ import {
 } from "../../App";
 import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import getTheme from "../../theme";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 
 const AppBarIndex = () => {
     const { theme: mode } = useCustomTheme();
