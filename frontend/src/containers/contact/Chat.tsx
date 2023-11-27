@@ -3,7 +3,7 @@ import {AppBar, Toolbar, Typography, Box, Paper, List, ListItem, ListItemText} f
 import SentMessage from "../../components/contact/SentMessage";
 import {getUser} from "../../App";
 import ReceivedMessage from "../../components/contact/ReceivedMessage";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {Contact} from "../../model/contact";
 import {Message} from "../../model/message";

@@ -12,7 +12,7 @@ import AppFooter from "../containers/index/AppFooter";
 import Introduction from "../containers/index/Introduction";
 import ForWho from "../containers/index/ForWho";
 import getTheme from "../theme";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 
 
 const AppIndex: React.FC = () => {

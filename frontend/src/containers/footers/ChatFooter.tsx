@@ -1,4 +1,4 @@
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
