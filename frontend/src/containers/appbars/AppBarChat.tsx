@@ -7,7 +7,7 @@ import {
     Toolbar,
 } from "@mui/material";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import ProfilePicture from "../../components/ProfilePicture";
 import {Contact} from "../../model/contact";
