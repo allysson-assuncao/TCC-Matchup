@@ -12,15 +12,12 @@ import {NavigateFunction, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
-import {getUser} from "../../App";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 interface PropsAppBarProfile {
     title: string;
 }
-
-var loggedUser: User = getUser();
 
 const AppBarProfile: React.FC<PropsAppBarProfile> = ({ title }) => {
     const { theme: mode } = useCustomTheme();
