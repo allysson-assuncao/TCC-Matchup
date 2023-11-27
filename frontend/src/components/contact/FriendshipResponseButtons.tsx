@@ -1,16 +1,13 @@
-import React, {useState} from "react";
+import React from "react";
 import {User} from "../../model/user";
-import {IconButton, Button, Grid, Typography} from "@mui/material";
-import ProfilePicture from "../ProfilePicture";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {IconButton, Grid} from "@mui/material";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
-import {CheckCircle, Clear} from "@mui/icons-material";
+import {CheckCircle} from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_PROFILE} from "../../App";
-import {Notification} from "../../model/notification";
 import {friendshipSolicitationResponse} from "../../api/user_requests/friendship";
-import {getUser} from "../../App";
+import {useLoggedUser} from "../../contexts/UserContext";
 interface NotificationProps {
     friendshipId: bigint,
     removeNotificationById?: (notificationId: bigint) => void;
@@ -19,6 +16,7 @@ interface NotificationProps {
 }
 
 const FriendshipResponseButtons: React.FC<NotificationProps> = ({verifyFriendship, notificationId, removeNotificationById, friendshipId}) => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -31,14 +29,22 @@ const FriendshipResponseButtons: React.FC<NotificationProps> = ({verifyFriendshi
                 <IconButton onClick={async () => {
                     let response = await friendshipSolicitationResponse(friendshipId, true);
                     if(removeNotificationById && response && notificationId) removeNotificationById(notificationId);
-                    if (verifyFriendship) verifyFriendship(getUser());
+                    if (!loggedUser) {
+                        console.error("Erro: Usuário não está logado.");
+                        return;
+                    }
+                    if (verifyFriendship) verifyFriendship(loggedUser);
                 }}>
                     <CheckCircle color="primary"></CheckCircle>
                 </IconButton>
                 <IconButton onClick={async () => {
                     let response = await friendshipSolicitationResponse(friendshipId, false);
                     if(removeNotificationById && response && notificationId) removeNotificationById(notificationId);
-                    if (verifyFriendship) verifyFriendship(getUser());
+                    if (!loggedUser) {
+                        console.error("Erro: Usuário não está logado.");
+                        return;
+                    }
+                    if (verifyFriendship) verifyFriendship(loggedUser);
                 }}>
                     <CloseIcon color="disabled"></CloseIcon>
                 </IconButton>

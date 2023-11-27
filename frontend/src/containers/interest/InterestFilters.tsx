@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import {INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
 import {languages} from "../../resources/languages";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {getAllInterestDependencies, registerAll} from "../../api/interest_requests/registerInterest";
 import SimpleSelect from "../../components/fields/SimpleSelect";

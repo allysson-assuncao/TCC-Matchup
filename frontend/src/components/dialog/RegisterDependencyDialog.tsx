@@ -3,7 +3,7 @@ import {registerInterestDependency} from "../../api/interest_requests/registerIn
 import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material";
 import {INTEREST_DEPENDENCIES, InterestDependency} from "../../model/interest";
 import Grid from "@mui/material/Grid";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 interface RegisterDependencyDialogProps {

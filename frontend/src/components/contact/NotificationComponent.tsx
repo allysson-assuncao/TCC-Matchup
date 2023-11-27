@@ -1,7 +1,7 @@
 import React from "react";
 import {IconButton, Grid, Typography} from "@mui/material";
 import ProfilePicture from "../ProfilePicture";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {CheckCircle, Clear} from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";

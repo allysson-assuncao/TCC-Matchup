@@ -19,7 +19,7 @@ import {isEmail, validationLogin} from '../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
 import {getUser, ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
 import logo from '../img/logo-matchup3.png';
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 

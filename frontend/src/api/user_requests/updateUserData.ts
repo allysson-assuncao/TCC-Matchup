@@ -1,6 +1,5 @@
 import {UpdateUserPayload, User} from "../../model/user";
 import axios, {AxiosResponse} from "axios";
-import {setUser} from "../../App";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
@@ -14,7 +13,7 @@ export const updateUserData = async (user: UpdateUserPayload): Promise<User> => 
         });
         return response.data;
     } catch (error) {
-        setUser();
+        /*setUser();*/
         throw error;
     }
 

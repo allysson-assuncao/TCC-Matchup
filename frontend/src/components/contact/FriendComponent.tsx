@@ -1,7 +1,7 @@
 import React from "react";
 import {IconButton, Grid, Typography} from "@mui/material";
 import ProfilePicture from "../ProfilePicture";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {ChatBubble, Clear} from "@mui/icons-material";
 import {useNavigate} from "react-router-dom";
