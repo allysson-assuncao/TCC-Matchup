@@ -14,7 +14,7 @@ import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
 import {getUser} from "../../App";
 import {useEffect} from "react";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import {

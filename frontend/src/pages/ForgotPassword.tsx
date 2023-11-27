@@ -16,7 +16,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {ROUTE_SIGN_IN} from "../App";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import {confirmEmail, updatePassword, verifyCode} from "../api/user_requests/forgot_password";
 import {getUser} from "../App";

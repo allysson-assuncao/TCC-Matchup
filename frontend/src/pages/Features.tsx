@@ -6,7 +6,7 @@ import {
 } from "@mui/material";
 import React, {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import Grid from "@mui/material/Grid";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
