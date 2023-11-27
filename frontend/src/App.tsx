@@ -16,7 +16,7 @@ import EditableProfile from "./pages/EditableProfile";
 import AboutUs from "./pages/AboutUs";
 import Settings from "./pages/Settings";
 import EditProfile from "./containers/options/EditProfile";
-import {useCustomTheme} from "./CustomThemeContext";
+import {useCustomTheme} from "./contexts/CustomThemeContext";
 import {ThemeProvider} from "@mui/material/styles";
 import getTheme from "./theme";
 import ContactPage from "./pages/ContactPage";
@@ -30,6 +30,7 @@ import RegisterInterests from "./pages/RegisterInterests";
 import {User, USER_ACCESS} from "./model/user";
 import InterestManagement from "./pages/InterestManagement";
 import Home from "./pages/Home";
+import {useLoggedUser, UserProvider} from "./contexts/UserContext";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/funcionalidades';
@@ -48,49 +49,11 @@ export const ROUTE_PREMIUM = '/planos';
 export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
-var loggedUser: User;
-
-var history: NavigateFunction;
-
-export function isLogged() {
-    const userJSON = localStorage.getItem('user');
-    if (!userJSON) {
-        history(ROUTE_SIGN_IN);
-    } else {
-        loggedUser = JSON.parse(userJSON);
-    }
-}
-
-export const setUser = () => {
-    loggedUser = JSON.parse('' + localStorage.getItem('user'));
-}
-
-export const getUser = () => {
-    if (!loggedUser) console.log('Testeeeeeeeeeeeeeeeeeeeee');
-    setUser();
-    return loggedUser;
-}
-
-export const updateUser = (user: User) => {
-    removeUser()
-    localStorage.setItem('user', JSON.stringify(user));
-    setUser();
-    return loggedUser;
-}
-
-const removeUser = () => {
-    localStorage.removeItem('user');
-}
-
-export const logout = () => {
-    removeUser();
-    history(ROUTE_SIGN_IN);
-}
-
 const App: React.FC = () => {
 
+    const {loggedUser, setLoggedUser, logout} = useLoggedUser();
+
     const [contacts, setContacts] = useState<Contact[] | null>(null);
-    history = useNavigate();
 
 
     const updateContactsWithMessage = (contactId: bigint, message: Message) => {
@@ -111,8 +74,12 @@ const App: React.FC = () => {
     };
 
     const fetchContacts = async () => {
+        if (!loggedUser) {
+            console.error("Erro: Usuário não está logado.");
+            return false;
+        }
         try {
-            const fetchedContacts = await getContactsByUserId(getUser().id);
+            const fetchedContacts = await getContactsByUserId(loggedUser.id);
             await setContacts(fetchedContacts);
             return true;
         } catch (error) {
@@ -120,28 +87,13 @@ const App: React.FC = () => {
         }
     };
 
+
     useEffect(() => {
         if (/* !sessionStorage.getItem('hasRunBefore') */true) {
-            console.log('Testeeeeeeeeeeeeeeeeeeeee');
             fetchContacts();
 
             console.log(contacts);
-            setUser();
             sessionStorage.setItem('hasRunBefore', 'true');
-
-            localStorage.setItem('user', {
-                id: BigInt(1),
-                name: "Henrique Leão Paim",
-                username: "liceki",
-                email: "henrique.lp2006@gmail.com",
-                rawPassword: "Hlp123456$",
-                cellphoneNumber: "(31) 97118-2315",
-                addressStreet: "Rua Artur Bernardes",
-                addressNumber: 56,
-                addressNeighborhood: "Pioneiros",
-                addressState: "Minas Gerais",
-                addressZipcode: "36420000"
-            }.toString());
         }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
@@ -159,13 +111,11 @@ const App: React.FC = () => {
     }
 
     const ProtectedRoute: React.FC<ProtectedRouteProps> = ({isAllowed, redirectPath = ROUTE_SIGN_IN, element}: ProtectedRouteProps) => {
-        history = useNavigate();
+        const history = useNavigate();
         useEffect(() => {
-
             if (!isAllowed) {
-
                 console.log("ACESSO NEGADO!");
-                console.log(getUser());
+                console.log(loggedUser);
                 history(redirectPath);
             }
         }, [isAllowed, history, redirectPath]);
@@ -189,26 +139,27 @@ const App: React.FC = () => {
                 <Route path={ROUTE_INTEREST_MANAGEMENT} element={<InterestManagement/>}/>
                 <Route path={ROUTE_HOME}
                        element={<ProtectedRoute
-                           isAllowed={getUser() !== null}
-                           element={<Home contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}/>
+                           isAllowed={loggedUser !== null}
+                           element={<Home contacts={contacts} setContacts={setContacts}
+                                          updateContactsWithMessage={updateContactsWithMessage}/>
 
-                       }/>}/>
+                           }/>}/>
                 <Route path="perfil/:usernamePathVariable" element={<Profile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE}
-                       element={<ProtectedRoute isAllowed={getUser() !== null}  element={<EditableProfile/>}/>}/>
+                       element={<ProtectedRoute isAllowed={loggedUser !== null} element={<EditableProfile/>}/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>
                 <Route path={ROUTE_SETTINGS}
-                       element={<ProtectedRoute isAllowed={getUser() !== null }  element={<Settings/>}/>}/>
+                       element={<ProtectedRoute isAllowed={loggedUser !== null} element={<Settings/>}/>}/>
                 <Route path={ROUTE_ABOUT_US} element={<AboutUs/>}/>
                 <Route path={ROUTE_PREMIUM} element={<Premium/>}/>
                 <Route path={ROUTE_PROFILE_SETTINGS}
-                       element={<ProtectedRoute isAllowed={getUser() !== null}  element={<EditProfile/>}/>}/>
+                       element={<ProtectedRoute isAllowed={loggedUser !== null} element={<EditProfile/>}/>}/>
                 <Route path={ROUTE_CONTACT_PROTOTYPE}
                        element={<ContactPage contacts={contacts} setContacts={setContacts}
                                              updateContactsWithMessage={updateContactsWithMessage}/>}/>
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
-                           isAllowed={getUser() && getUser().access === USER_ACCESS.ADMIN}
+                           isAllowed={loggedUser?.access === USER_ACCESS.ADMIN ?? false}
                            redirectPath={-1}
                            element={<RegisterInterests/>}/>}/>
             </Route>
@@ -218,9 +169,11 @@ const App: React.FC = () => {
     const {theme} = useCustomTheme();
 
     return (
-        <ThemeProvider theme={getTheme(theme)}>
-            <RouterProvider router={router}/>
-        </ThemeProvider>
+        <UserProvider>
+            <ThemeProvider theme={getTheme(theme)}>
+                <RouterProvider router={router}/>
+            </ThemeProvider>
+        </UserProvider>
     );
 }
 
