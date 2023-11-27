@@ -29,7 +29,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
         const [name, setName] = useState<string>("");
 
         const [companies, setCompanies] = useState<InterestDependency[]>([]);
-        const [selectedCompany, setSelectedCompany] = useState<InterestDependency>();
+        const [selectedCompanies, setSelectedCompanies] = useState<InterestDependency[]>([]);
 
         const [lowestPrice, setLowestPrice] = useState<number | null>(null);
         const [highestPrice, setHighestPrice] = useState<number | null>(null);
@@ -41,7 +41,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
         const [selectedSubtitledLanguages, setSelectedSubtitledLanguages] = useState<InterestDependency[]>([]);
 
         const [ageRatings, setAgeRatings] = useState<InterestDependency[]>([]);
-        const [selectedAgeRating, setSelectedAgeRating] = useState<InterestDependency>();
+        const [selectedAgeRatings, setSelectedAgeRatings] = useState<InterestDependency[]>([]);
 
         const [genres, setGenres] = useState<InterestDependency[]>([]);
         const [selectedGenres, setSelectedGenres] = useState<InterestDependency[]>([]);
@@ -101,16 +101,16 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                         operation: OPERATION.JOIN,
                         operator: OPERATOR.OR
                     }] : []),
-                    ...(selectedCompany ? [{
+                    ...(selectedCompanies ? [{
                         column: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.ID,
-                        values: [selectedCompany?.id + ""],
+                        values: selectedCompanies.map((c) => c.id + ""),
                         joinTable: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.COMPANY_COLUMN_NAME,
                         operation: OPERATION.JOIN,
                         operator: OPERATOR.OR
                     }] : []),
-                    ...(selectedAgeRating ? [{
+                    ...(selectedAgeRatings ? [{
                         column: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.ID,
-                        values: [selectedAgeRating?.id + ""],
+                        values: selectedAgeRatings.map((aR) => aR.id + ""),
                         joinTable: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.AGE_RATING_COLUMN_NAME,
                         operation: OPERATION.JOIN,
                         operator: OPERATOR.AND
@@ -169,13 +169,21 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                     </Grid>
 
                     <Grid item xs={12}>
-                        <SimpleSelect
+                        {/*<SimpleSelect
                             setSelectedOption={setSelectedCompany}
                             selectedOption={selectedCompany}
                             options={companies}
                             label={"Empresas"}
                             placeholder={"Empresas"}
                             fieldName={"company"}
+                        />*/}
+                        <MultipleSelect
+                            fieldName={'company'}
+                            label={'Empresas'}
+                            placeholder={'Selecione as empresas:'}
+                            options={selectedCompanies}
+                            selectedOptions={selectedCompanies}
+                            setSelectedOptions={setSelectedCompanies}
                         />
                     </Grid>
                     <Grid item xs={6}>
@@ -222,13 +230,21 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
 
 
                     <Grid item xs={12}>
-                        <SimpleSelect
-                            setSelectedOption={setSelectedAgeRating}
-                            selectedOption={selectedAgeRating}
+                        {/*<SimpleSelect
+                            setSelectedOption={setSelectedAgeRatings}
+                            selectedOption={selectedAgeRatings}
                             options={ageRatings}
                             label={"Classificação Indicativa"}
                             placeholder={"Classificação Indicativa:"}
                             fieldName={"ageRating"}
+                        />*/}
+                        <MultipleSelect
+                            fieldName={'ageRating'}
+                            label={'Classificação Indicativa'}
+                            placeholder={'Selecione a classificação indicativa:'}
+                            options={ageRatings}
+                            selectedOptions={selectedAgeRatings}
+                            setSelectedOptions={setSelectedAgeRatings}
                         />
                     </Grid>
 
