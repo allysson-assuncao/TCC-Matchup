@@ -21,7 +21,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import GamesIcon from '@mui/icons-material/Games';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
-import {getUser, logout} from "../../App";
 import {
     ROUTE_ABOUT_US,
     ROUTE_INTEREST_MANAGEMENT,
@@ -36,13 +35,14 @@ import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import getTheme from "../../theme";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import ProfilePicture from "../../components/ProfilePicture";
 import NotificationsMenu from "../../components/contact/NotificationsMenu";
 import ContactPage from "../../pages/ContactPage";
 import {Contact} from "../../model/contact";
 import {Message} from "../../model/message";
 import {USER_ACCESS} from "../../model/user";
+import {useLoggedUser} from "../../contexts/UserContext";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -95,6 +95,7 @@ interface AppBarHomeProps {
 }
 
 const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
+    const {loggedUser, logout} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -267,7 +268,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                 <Box sx={{flexGrow: 0}}>
                                     <Tooltip title="Abrir opções">
                                         <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                            <ProfilePicture id={getUser().id} small={true}></ProfilePicture>
+                                            {loggedUser && <ProfilePicture id={loggedUser.id} small={true}></ProfilePicture>}
                                         </IconButton>
                                     </Tooltip>
                                     <Menu
@@ -287,7 +288,8 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                         onClose={handleCloseUserMenu}
                                     >
                                         {settings.map((setting) => {
-                                            if (setting === 'Cadastrar Interesses' && getUser().access !== USER_ACCESS.ADMIN) return;
+                                            if (setting === 'Cadastrar Interesses' && loggedUser && loggedUser.access !== USER_ACCESS.ADMIN) return;
+
                                             return (
                                                 <MenuItem
                                                     key={setting}
@@ -295,7 +297,11 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                                         handleCloseUserMenu();
                                                         switch (setting) {
                                                             case 'Perfil':
-                                                                history(`${ROUTE_PROFILE}/${getUser().username}`);
+                                                                if (!loggedUser) {
+                                                                    console.error("Erro: Usuário não está logado.");
+                                                                    return;
+                                                                }
+                                                                history(`${ROUTE_PROFILE}/${loggedUser.username}`);
                                                                 break;
                                                             case 'Configurações':
                                                                 history(ROUTE_SETTINGS);
