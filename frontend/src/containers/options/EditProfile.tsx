@@ -2,12 +2,10 @@ import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {User} from "../../model/user";
 import {ROUTE_SIGN_IN} from "../../App";
-import AppBarProfile from "../appbars/AppBarProfile";
-import {Avatar, Box, Container, CssBaseline, Typography} from "@mui/material";
-import theme from "../../theme";
+import {Box, Container, CssBaseline} from "@mui/material";
 import AppBarGeneral from "../appbars/AppBarGeneral";
 import GeneralInfo from "./GeneralInfo";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 

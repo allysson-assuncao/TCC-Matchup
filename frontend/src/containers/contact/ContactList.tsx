@@ -3,7 +3,7 @@ import {Grid, Tab, Tabs, Typography} from "@mui/material";
 import {Contact} from "../../model/contact";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import ProfilePicture from "../../components/ProfilePicture";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 interface ContactProps {

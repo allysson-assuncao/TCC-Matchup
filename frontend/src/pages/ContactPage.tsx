@@ -5,7 +5,7 @@ import {
 import {useNavigate} from "react-router-dom";
 import * as React from "react";
 import getTheme from "../theme";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import FriendsMenu from "../components/contact/FriendsMenu";
 import ContactList from "../containers/contact/ContactList";
 import {Contact} from "../model/contact";
