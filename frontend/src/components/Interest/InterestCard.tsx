@@ -8,7 +8,10 @@ import {Interest} from "../../model/interest";
 import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import {grey} from "@mui/material/colors";
-
+import AddIcon from '@mui/icons-material/Add';
+import IconButton from "@mui/material/IconButton";
+import {linkInterestToUser} from "../../api/user_requests/link_interest";
+import {getUser} from "../../App";
 interface InterestCardProps {
     interest: Interest;
 }
@@ -22,6 +25,11 @@ const InterestCard: React.FC<InterestCardProps> = ({ interest }) => {
 
     const handleMouseLeave = () => {
         setExpanded(false);
+    };
+
+    const handleAddInterest = async () => {
+        // @ts-ignore
+        await linkInterestToUser(getUser().id, interest.id);
     };
 
     return (
@@ -56,7 +64,9 @@ const InterestCard: React.FC<InterestCardProps> = ({ interest }) => {
                         <Typography variant="body2" color="text.secondary">
                             Age Rating: {interest.ageRating?.name}
                         </Typography>
-                        {/* Add more details as needed */}
+                        <IconButton sx={{color: `theme.palette.primary.main`}} onClick={() => handleAddInterest()}>
+                            <AddIcon></AddIcon>
+                        </IconButton>
                     </CardContent>
                 )}
                 <CardActions>

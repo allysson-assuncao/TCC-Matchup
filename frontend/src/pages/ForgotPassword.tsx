@@ -11,12 +11,10 @@ import {
     StepLabel,
     Button,
     Grid,
-    Box,
     Link, Snackbar
 } from '@mui/material';
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
-import {Link as RouterLink} from 'react-router-dom';
 import {ROUTE_SIGN_IN} from "../App";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
@@ -29,7 +27,6 @@ import ForgotPasswordStep2 from "../containers/step_forms/forgot_password/Forgot
 import ForgotPasswordStep3 from "../containers/step_forms/forgot_password/ForgotPasswordStep3";
 import ForgotPasswordStep1 from "../containers/step_forms/forgot_password/ForgotPasswordStep1";
 import {Form, Formik} from "formik";
-import {string} from "yup";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from '@mui/icons-material/Close';
 

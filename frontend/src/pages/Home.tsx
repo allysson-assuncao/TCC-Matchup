@@ -1,67 +1,15 @@
-import {
-    Alert,
-    Box,
-    Button,
-    Checkbox, Container,
-    CssBaseline,
-    FormControlLabel,
-    Grid,
-    Link,
-    TextField,
-    Typography
-} from "@mui/material";
-import {ROUTE_PROFILE, ROUTE_SIGN_IN} from "../App";
+import {ROUTE_PROFILE, ROUTE_SIGN_IN, setUser} from "../App";
 import React, {useEffect, useState} from "react";
 import {User} from "../model/user";
-import {NavigateFunction, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import AppBarHome from "../containers/appbars/AppBarHome";
-import logo from '../img/logo-matchup2.png'
 import getTheme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import {Contact} from "../model/contact";
 import {Message} from "../model/message";
 
-var loggedUser: User;
-
-var history: NavigateFunction;
-
-function isLogged() {
-    const userJSON = localStorage.getItem('user');
-    if (!userJSON) {
-        history(ROUTE_SIGN_IN);
-    } else {
-        loggedUser = JSON.parse(userJSON);
-    }
-}
-
-export const setUser = () => {
-    loggedUser = JSON.parse('' + localStorage.getItem('user'));
-}
-
-export const getUser = () => {
-    setUser();
-    return loggedUser;
-}
-
-
-export const updateUser = (user: User) => {
-    removeUser()
-    localStorage.setItem('user', JSON.stringify(user));
-    setUser();
-    return loggedUser;
-}
-
-const removeUser = () => {
-    localStorage.removeItem('user');
-}
-
 export const removeProfilePicture = () => {
     localStorage.removeItem('profilePicture');
-}
-
-export const logout = () => {
-    removeUser();
-    history(ROUTE_SIGN_IN);
 }
 
 interface HomeProps {
@@ -73,7 +21,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
-    history = useNavigate();
+    const history = useNavigate();
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
     const [profileRoute, setProfileRoute] = useState(ROUTE_PROFILE);
 

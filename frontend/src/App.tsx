@@ -1,15 +1,15 @@
-import React, {ReactNode, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {
     createBrowserRouter,
-    createRoutesFromElements, Navigate,
-    Route, RouteProps,
-    RouterProvider, RoutesProps, useNavigate
+    createRoutesFromElements, NavigateFunction,
+    Route,
+    RouterProvider,
+    useNavigate
 } from 'react-router-dom'
 import './App.css';
 import AppIndex from './pages/AppIndex';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
-import Home, {getUser} from "./pages/Home";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import EditableProfile from "./pages/EditableProfile";
@@ -27,8 +27,9 @@ import Features from "./pages/Features";
 import FAQ from "./pages/FAQ";
 import Premium from "./pages/Premium";
 import RegisterInterests from "./pages/RegisterInterests";
-import {USER_ACCESS} from "./model/user";
+import {User, USER_ACCESS} from "./model/user";
 import InterestManagement from "./pages/InterestManagement";
+import Home from "./pages/Home";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/funcionalidades';
@@ -46,6 +47,45 @@ export const ROUTE_ABOUT_US = '/sobre_nos';
 export const ROUTE_PREMIUM = '/planos';
 export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
+
+var loggedUser: User;
+
+var history: NavigateFunction;
+
+export function isLogged() {
+    const userJSON = localStorage.getItem('user');
+    if (!userJSON) {
+        history(ROUTE_SIGN_IN);
+    } else {
+        loggedUser = JSON.parse(userJSON);
+    }
+}
+
+export const setUser = () => {
+    loggedUser = JSON.parse('' + localStorage.getItem('user'));
+}
+
+export const getUser = () => {
+    if (!loggedUser) console.log('Testeeeeeeeeeeeeeeeeeeeee');
+    setUser();
+    return loggedUser;
+}
+
+export const updateUser = (user: User) => {
+    removeUser()
+    localStorage.setItem('user', JSON.stringify(user));
+    setUser();
+    return loggedUser;
+}
+
+const removeUser = () => {
+    localStorage.removeItem('user');
+}
+
+export const logout = () => {
+    removeUser();
+    history(ROUTE_SIGN_IN);
+}
 
 const App: React.FC = () => {
 
@@ -119,7 +159,7 @@ const App: React.FC = () => {
     }
 
     const ProtectedRoute: React.FC<ProtectedRouteProps> = ({isAllowed, redirectPath = ROUTE_SIGN_IN, element}: ProtectedRouteProps) => {
-        const history = useNavigate();
+        history = useNavigate();
         useEffect(() => {
 
             if (!isAllowed) {
@@ -137,7 +177,6 @@ const App: React.FC = () => {
             return null;
         }
     }
-
 
     const router = useMemo(() => createBrowserRouter(
         createRoutesFromElements(
@@ -167,8 +206,6 @@ const App: React.FC = () => {
                 <Route path={ROUTE_CONTACT_PROTOTYPE}
                        element={<ContactPage contacts={contacts} setContacts={setContacts}
                                              updateContactsWithMessage={updateContactsWithMessage}/>}/>
-
-
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
                            isAllowed={getUser() && getUser().access === USER_ACCESS.ADMIN}

@@ -1,11 +1,9 @@
 import {useCustomTheme} from "../CustomThemeContext";
-import getTheme from "../theme";
 import * as React from "react";
-import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
-import {getUser} from "../pages/Home";
-import {Avatar, Button, Grid} from "@mui/material";
+import {getUser} from "../App";
+import {Avatar, Grid} from "@mui/material";
 
 interface ProfilePictureProp {
     id: BigInt,
@@ -15,13 +13,6 @@ interface ProfilePictureProp {
 const ProfilePicture: React.FC<ProfilePictureProp> = ({id, small}) => {
     const {theme: mode} = useCustomTheme();
     const [profilePicture, setProfilePicture] = useState('');
-    /* myRef = React.createRef();
-
-     componentDidMount() {
-         if (this.myRef.current) {
-             this.myRef.current.click();
-         }
-     }*/
 
     useEffect(() => {
 

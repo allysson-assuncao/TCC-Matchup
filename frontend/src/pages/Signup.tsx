@@ -6,19 +6,15 @@ import SignUpStep1 from "../containers/step_forms/signup/SignUpStep1";
 import SignUpStep2 from "../containers/step_forms/signup/SignUpStep2";
 import {register} from "../api/user_requests/register";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_SIGN_IN} from "../App";
+import {ROUTE_INTEREST_MANAGEMENT, ROUTE_SIGN_IN} from "../App";
 import {format} from 'date-fns';
 import {
     validateSignUpStep1,
-    validateSignUpStep2,
-    validateSignUpStep3,
-    validateSignUpStep4
+    validateSignUpStep2
 } from "../utils/validation/UserValidation";
-import GoogleIcon from '@mui/icons-material/Google';
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
-import {getUser, logout, removeProfilePicture, setUser} from "./Home";
-import GeneralInfo from "../containers/options/GeneralInfo";
+import {getUser, logout, setUser} from "../App";
 import GeneralInfoRegister from "../containers/options/GeneralInfoRegister";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 import {removeProfilePicture} from "./Home";

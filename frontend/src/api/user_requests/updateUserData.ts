@@ -4,9 +4,6 @@ import {setUser} from "../../App";
 
 const API_BASE_URL = 'http://localhost:8080/api/';
 
-/*interface updateUserProp{
-    user: User
-}*/
 export const updateUserData = async (user: UpdateUserPayload): Promise<User> => {
     try {
         let response: AxiosResponse<User, any>;

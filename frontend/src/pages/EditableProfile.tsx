@@ -1,25 +1,18 @@
 import {
     Avatar,
     Box,
-    Button,
-    Card,
-    CardContent,
     Container,
     CssBaseline,
-    FormControl,
-    Grid, InputLabel, MenuItem, Select,
+    Grid,
     TextField,
     Typography
 } from "@mui/material";
-import AppBarHome from "../containers/appbars/AppBarHome";
 import React, {useEffect, useState} from "react";
-import logo from "../../img/logo-matchup3.png";
 import {User} from "../model/user";
-import {getUser} from "./Home";
+import {getUser} from "../App";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import EditOffIcon from '@mui/icons-material/EditOff';
-import theme from "../theme";
 import {useCustomTheme} from "../CustomThemeContext";
 import getTheme from "../theme";
 
@@ -29,7 +22,6 @@ const EditableProfile = () => {
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
 
-    /*const [image, setImage] = useState(loggedUser.profilePicture);*/
     const [image, setImage] = useState('');
     const [username, setUsername] = useState(loggedUser.username);
     const [name, setName] = useState(loggedUser.name);
@@ -51,7 +43,6 @@ const EditableProfile = () => {
         reader.readAsDataURL(file);
     };
 
-    // Atualiza o estado quando o usuário muda
     useEffect(() => {
         setImage('');
         setUsername('username2');

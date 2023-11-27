@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Grid,
     TextField,
     Button,
-    Snackbar, FormControl, CssBaseline, Container, Box, Avatar
+    Snackbar, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
 import {getUser, updateUser} from "../../App";
 import {UpdateUserPayload, User} from "../../model/user";
@@ -13,8 +13,8 @@ import {useCustomTheme} from "../../CustomThemeContext";
 import getTheme from "../../theme";
 import {Field, FieldProps, Form, Formik} from "formik";
 import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
-import {Link as RouterLink, useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_INDEX, ROUTE_PROFILE} from "../../App";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_HOME, ROUTE_PROFILE} from "../../App";
 import {validateUpdateUserData} from "../../utils/validation/UserValidation";
 
 interface GeneralInfoProps {
