@@ -11,7 +11,6 @@ import {grey} from "@mui/material/colors";
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from "@mui/material/IconButton";
 import {linkInterestToUser} from "../../api/user_requests/link_interest";
-import {getUser} from "../../App";
 interface InterestCardProps {
     interest: Interest;
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Container, Button, Grid, Link, Typography, TextField, Box, CssBaseline} from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import theme from "../../../theme";
-import {useCustomTheme} from "../../../CustomThemeContext";
+import {useCustomTheme} from "../../../contexts/CustomThemeContext";
 import getTheme from "../../../theme";
 import {Field, FieldProps} from "formik";
 

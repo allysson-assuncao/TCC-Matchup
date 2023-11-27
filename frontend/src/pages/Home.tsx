@@ -4,7 +4,7 @@ import {User} from "../model/user";
 import {useNavigate} from "react-router-dom";
 import AppBarHome from "../containers/appbars/AppBarHome";
 import getTheme from "../theme";
-import {useCustomTheme} from "../CustomThemeContext";
+import {useCustomTheme} from "../contexts/CustomThemeContext";
 import {Contact} from "../model/contact";
 import {Message} from "../model/message";
 

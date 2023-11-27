@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import {Button, Snackbar, TextField, Typography} from "@mui/material";
 import theme from "../../theme";
 import getTheme from "../../theme";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 
 const GetBeta = () => {
     const { theme: mode } = useCustomTheme();

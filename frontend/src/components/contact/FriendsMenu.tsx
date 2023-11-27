@@ -1,16 +1,17 @@
 import {useEffect, useState} from "react";
-import {getUser} from "../../App";
 import {Box, Menu} from "@mui/material";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {FriendPayload} from "../../model/user";
 import FriendComponent from "./FriendComponent";
 import GroupIcon from "@mui/icons-material/Group";
 import {getFriendsByUserId} from "../../api/user_requests/friendship";
+import {useLoggedUser} from "../../contexts/UserContext";
 
 const FriendsMenu = () => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -31,8 +32,12 @@ const FriendsMenu = () => {
     };
 
     const fetchFriends = async () => {
+        if (!loggedUser) {
+            console.error("Erro: Usuário não está logado.");
+            return;
+        }
         try {
-            const fetchedFriends = await getFriendsByUserId(getUser().id);
+            const fetchedFriends = await getFriendsByUserId(loggedUser.id);
             setFriends(fetchedFriends);
             return true;
         } catch (error) {

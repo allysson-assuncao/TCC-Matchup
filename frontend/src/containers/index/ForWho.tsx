@@ -9,7 +9,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import GroupsIcon from '@mui/icons-material/Groups';
 import SchoolIcon from '@mui/icons-material/School';
 import theme from "../../theme";
-import {useCustomTheme} from "../../CustomThemeContext";
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 
 const item: SxProps<Theme> = {
