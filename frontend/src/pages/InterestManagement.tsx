@@ -47,13 +47,18 @@ const InterestManagement: React.FC = () => {
             <AppBarProfile editable={true} blocked={false} username={getUser().username}
                            idProfile={getUser().id}></AppBarProfile>
             <CssBaseline/>
-            <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                <Grid container>
-                    <Grid item md={4}>
-                        <InterestFilters filteredInterests={filteredInterests} setFilteredInterests={setFilteredInterests}></InterestFilters>
-                    </Grid>
-                    <Grid item md={8}>
-                        <InterestCardList interests={filteredInterests} />
+            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <Grid container justifyContent={'center'}>
+                    <Grid item md={10} sm={11} xs={12}>
+                        <Grid container spacing={5}>
+                            <Grid item md={4}>
+                                <InterestFilters filteredInterests={filteredInterests}
+                                                 setFilteredInterests={setFilteredInterests}></InterestFilters>
+                            </Grid>
+                            <Grid item md={8}>
+                                <InterestCardList interests={filteredInterests}/>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Box>
