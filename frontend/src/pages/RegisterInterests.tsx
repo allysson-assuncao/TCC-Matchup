@@ -108,7 +108,7 @@ const RegisterInterests: React.FC = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Grid container flexDirection={'row'} spacing={3}>
+                        <Grid container flexDirection={'row'} spacing={3} alignItems={'center'}>
                             <Grid item xs={10}>
                                 <SimpleSelect
                                     setSelectedOption={setSelectedCompany}
@@ -119,30 +119,7 @@ const RegisterInterests: React.FC = () => {
                                     fieldName={"company"}
                                 />
                             </Grid>
-                            {/*<Grid item md={10}>
-                                        <Field name="company">
-                                            {({field}: FieldProps) => (
-                                                <FormControl fullWidth variant="outlined" required>
-                                                    <InputLabel htmlFor="company">Empresas:</InputLabel>
-                                                    <Select
-                                                        {...field}
-                                                        label="Empresas"
-                                                        value={selectedCompany}
-                                                        onChange={(e, child) => {
-                                                            setSelectedCompany(e.target.value);
-                                                        }}
-                                                    >
-                                                        {companies?.map((item) => (
-                                                            <MenuItem value={Number(item.id)}>
-                                                                {item.name}
-                                                            </MenuItem>
-                                                        ))}
-                                                    </Select>
-                                                </FormControl>
-                                            )}
-                                        </Field>
-                                    </Grid>*/}
-                            <Grid item md={2} alignItems={'center'}>
+                            <Grid item md={2}>
                                 <RegisterDependencyDialog
                                     type={INTEREST_DEPENDENCIES.COMPANY}
                                     dialogTitle={'Nova Empresa'}
@@ -208,7 +185,7 @@ const RegisterInterests: React.FC = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Grid container flexDirection={'row'} spacing={3}>
+                        <Grid container flexDirection={'row'} spacing={3} alignItems={'center'}>
                             <Grid item md={10}>
                                 <MultipleSelect
                                     fieldName={'genres'}
@@ -232,7 +209,7 @@ const RegisterInterests: React.FC = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Grid container flexDirection={'row'} spacing={3}>
+                        <Grid container flexDirection={'row'} spacing={3} alignItems={'center'}>
                             <Grid item md={10}>
                                 <MultipleSelect
                                     fieldName={'subGenres'}
@@ -256,7 +233,7 @@ const RegisterInterests: React.FC = () => {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <Grid container flexDirection={'row'} spacing={3}>
+                        <Grid container flexDirection={'row'} spacing={3} alignItems={'center'}>
                             <Grid item md={10}>
                                 <MultipleSelect
                                     fieldName={'platforms'}
