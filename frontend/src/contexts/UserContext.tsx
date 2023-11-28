@@ -16,7 +16,7 @@ interface UserProviderProps {
 }
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const history = useNavigate();
+    /*const history = useNavigate();*/
 
     const removeUser = () => {
         localStorage.removeItem('user');
@@ -24,15 +24,15 @@ export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
 
     const logout = () => {
         removeUser();
-        history(ROUTE_SIGN_IN);
+        /*history(ROUTE_SIGN_IN);*/
     };
 
     useEffect(() => {
         if(loggedUser){
             localStorage.setItem('user', JSON.stringify(loggedUser));
-        } else {
+        } /*else {
             history(ROUTE_SIGN_IN);
-        }
+        }*/
     }, [loggedUser]);
 
     return (

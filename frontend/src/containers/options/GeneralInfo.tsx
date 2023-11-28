@@ -1,11 +1,11 @@
 import React, {useState} from "react";
+import * as Yup from "yup";
 import {
     Grid,
     TextField,
     Button,
     Snackbar, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
-import {getUser, updateUser} from "../../App";
 import {UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";
@@ -16,12 +16,14 @@ import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_HOME, ROUTE_PROFILE} from "../../App";
 import {validateUpdateUserData} from "../../utils/validation/UserValidation";
+import {useLoggedUser} from "../../contexts/UserContext";
 
 interface GeneralInfoProps {
     fromRegister: boolean
 }
 
 const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
+    const {loggedUser, setLoggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const history = useNavigate();
     const theme = getTheme(mode);
@@ -49,14 +51,15 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
     };
 
     const initialValues = {
-        username: getUser().username,
-        bio: getUser().bio,
-        cellphoneNumber: getUser().cellphoneNumber
+        username: loggedUser ? loggedUser.username : '',
+        bio: loggedUser ? loggedUser.bio : '',
+        cellphoneNumber: loggedUser ? loggedUser.cellphoneNumber : ''
     }
+
 
     const handleSubmit = async (values: any, actions: any) => {
         let user: UpdateUserPayload = {
-            id: getUser().id,
+            id: loggedUser ? loggedUser.id : BigInt(-1),
         }
 
         if(imageWasChanged){
@@ -79,13 +82,17 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
         let updatedUser: User = await updateUserData(user);
 
         if (!updatedUser) return;
-        updateUser(updatedUser);
-        if(imageWasChanged) localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
+        setLoggedUser(updatedUser);
+        if (!loggedUser) {
+            console.error("Erro: Usuário não está logado.");
+            return;
+        }
+        if(imageWasChanged) localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser.id, 800, 800));
         setOpen(true);
         if(fromRegister){
             history(ROUTE_HOME);
         }else {
-            history(`${ROUTE_PROFILE}/${getUser().username}`);
+            history(`${ROUTE_PROFILE}/${loggedUser.username}`);
         }
         
     }
@@ -107,12 +114,27 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
             >
                 <Formik
                     initialValues={initialValues}
-                    validationSchema={validateUpdateUserData}
                     validateOnBlur={true}
-
                     onSubmit={(values, actions) => handleSubmit(values, actions)}
+                    validate={(values) => {
+                        const schema = validateUpdateUserData(loggedUser);
+                        return schema.validate(values, { abortEarly: false })
+                            .then(() => { return {}; })
+                            .catch((err) => {
+                                if (err instanceof Yup.ValidationError) {
+                                    return err.errors.reduce((errors: {[key: string]: string}, error) => {
+                                        const path = err.inner.find((e) => e.message === error)?.path;
+                                        if (path) {
+                                            errors[path] = error;
+                                        }
+                                        return errors;
+                                    }, {});
+                                }
+                                return Promise.reject(err);
+                            });
+                    }}
                 >
-                    {(formikProps) => (
+                {(formikProps) => (
                         <Form>
                             <Grid container alignContent={"center"} justifyContent="center" justifyItems={"center"}>
                                 <input

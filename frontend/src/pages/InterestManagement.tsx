@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     Box,
     CssBaseline,
@@ -10,10 +10,9 @@ import Link from "@mui/material/Link";
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
 import InterestFilters from "../containers/interest/InterestFilters";
-import {Interest} from "../model/interest";
 import InterestCardList from "../containers/interest/InterestCardList";
 import {InterestRequest} from "../model/interest_filtered_request";
-import {getUser} from "../App";
+import {useLoggedUser} from "../contexts/UserContext";
 
 function Copyright(props: any) {
     return (
@@ -29,6 +28,7 @@ function Copyright(props: any) {
 }
 
 const InterestManagement: React.FC = () => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
 
@@ -44,8 +44,12 @@ const InterestManagement: React.FC = () => {
 
     return (
         <Grid>
-            <AppBarProfile editable={true} blocked={false} username={getUser().username}
-                           idProfile={getUser().id}></AppBarProfile>
+            <AppBarProfile
+                editable={true}
+                blocked={false}
+                username={loggedUser ? loggedUser.username : ''}
+                idProfile={loggedUser ? loggedUser.id : BigInt(-1)}
+            />
             <CssBaseline/>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container justifyContent={'center'}>

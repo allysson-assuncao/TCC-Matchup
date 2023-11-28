@@ -12,7 +12,6 @@ import ToggleColorModeButton from "../../components/ToggleColorModeButton";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
 import {User} from "../../model/user";
-import {getUser} from "../../App";
 import {useEffect} from "react";
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
@@ -26,6 +25,7 @@ import {Block, PersonRemove} from "@mui/icons-material";
 import {Friendship, FRIENDSHIP_STATUS} from "../../model/friendship";
 import FriendshipResponseButtons from "../../components/contact/FriendshipResponseButtons";
 import {block, isBlockedBy, unblock} from "../../api/user_requests/block";
+import {useLoggedUser} from "../../contexts/UserContext";
 
 interface PropsAppBarProfile {
     editable: boolean,
@@ -35,9 +35,8 @@ interface PropsAppBarProfile {
     openSnackBar?: (message: string) => void;
 }
 
-var loggedUser: User = getUser();
-
 const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, blocked, username, idProfile}) => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history: NavigateFunction = useNavigate();
@@ -54,7 +53,11 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
 
     const verifyFriendship = async (user: User) => {
         try {
-            setFriendShip(await getFriendship(getUser().id, idProfile));
+            if (!loggedUser) {
+                console.error("Erro: Usuário não está logado.");
+                return;
+            }
+            setFriendShip(await getFriendship(loggedUser.id, idProfile));
         } catch (error) {
             console.error("Erro ao buscar status da amizade:", error);
         }
@@ -62,12 +65,8 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
 
     const isBlockedByMe = async (user: User) => {
         try {
-            console.log(getUser().id, idProfile);
-
-            let blockedByMeTemp: boolean = await isBlockedBy(idProfile, user.id)
-            console.log(blockedByMeTemp)
+            let blockedByMeTemp: boolean = await isBlockedBy(idProfile, user.id);
             setBlockedByMe(blockedByMeTemp);
-            console.log("blockedByMe: " + blockedByMe);
         } catch (error) {
             console.error("Erro ao buscar notificações:", error);
         }
@@ -103,23 +102,24 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                 <Grid item xs alignItems='left' margin='auto'>
                                     <Box margin={'auto'} display="flex" justifyContent="flex-end">
                                         <ToggleColorModeButton></ToggleColorModeButton>
-                                        {!editable && getUser() && !blockedByMe &&(
+
+                                        {!editable && loggedUser && !blockedByMe &&(
                                             <IconButton
                                                 onClick={async () => {
-                                                    await block(idProfile, getUser().id);
-                                                    verifyFriendship(getUser());
-                                                    isBlockedByMe(getUser());
+                                                    await block(idProfile, loggedUser.id);
+                                                    verifyFriendship(loggedUser);
+                                                    isBlockedByMe(loggedUser);
                                                 }}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
                                             >
                                                 <Block color={'error'}></Block>
                                             </IconButton>
                                         )}
-                                        {!editable && getUser() && blockedByMe && (
+                                        {!editable && loggedUser && blockedByMe && (
                                             <IconButton
                                                 onClick={async () => {
-                                                    await unblock(getUser().id, idProfile);
-                                                    isBlockedByMe(getUser());
+                                                    await unblock(loggedUser.id, idProfile);
+                                                    isBlockedByMe(loggedUser);
                                                 }}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
                                             >
@@ -136,17 +136,19 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                                 Editar Perfil
                                             </Button>
                                         )}
-                                        {!editable && !blockedByMe && friendship?.status != FRIENDSHIP_STATUS.ACCEPTED && (!friendship || friendship && friendship?.status == FRIENDSHIP_STATUS.REJECTED || (friendship && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship?.user.id == getUser().id)) &&(
+                                        {!editable && !blockedByMe && friendship?.status != FRIENDSHIP_STATUS.ACCEPTED && (!friendship || friendship && friendship?.status == FRIENDSHIP_STATUS.REJECTED || (friendship && friendship?.status == FRIENDSHIP_STATUS.PENDING && loggedUser && friendship?.user.id == loggedUser.id)) &&(
                                             <IconButton
                                                 onClick={loggedUser ? async () => {
-                                                    await sendFriendshipSolicitation(getUser().id, idProfile);
-                                                    verifyFriendship(getUser());
+                                                    await sendFriendshipSolicitation(loggedUser.id, idProfile);
+                                                    verifyFriendship(loggedUser);
                                                     if (openSnackBar) {
                                                         openSnackBar(`A solicitação já foi enviada! Aguarde a resposta de ${username}`);
                                                     }
                                                 }: () => history(ROUTE_SIGN_IN)}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
-                                                disabled={(blocked || (!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship.user.id == getUser().id))}
+                                                /*disabled={(blocked || (!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && loggedUser && friendship?.user.id == loggedUser.id))}*/
+                                                disabled={(blocked || (!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && loggedUser && loggedUser.id && friendship?.user.id == loggedUser.id)) || false}
+
                                             >
                                                 <PersonAddIcon color={(friendship?.status != FRIENDSHIP_STATUS.ACCEPTED)? "disabled": "primary" } sx={{color:`${theme.palette.primary.main}`}}></PersonAddIcon>
                                             </IconButton>
@@ -155,7 +157,11 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                         {!editable && friendship?.status == FRIENDSHIP_STATUS.ACCEPTED && (
                                             <IconButton
                                                 onClick={async () => {
-                                                    if(await endFriendship(getUser().id, idProfile)){
+                                                    if (!loggedUser) {
+                                                        console.error("Erro: Usuário não está logado.");
+                                                        return;
+                                                    }
+                                                    if(await endFriendship(loggedUser.id, idProfile)){
                                                         friendship.status = FRIENDSHIP_STATUS.REJECTED;
                                                     }
                                                 }}
@@ -165,7 +171,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                                 <PersonRemove></PersonRemove>
                                             </IconButton>
                                         )}
-                                        {!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && friendship.friend.id == getUser().id && (
+                                        {!editable && friendship?.status == FRIENDSHIP_STATUS.PENDING && loggedUser && friendship?.user.id == loggedUser.id && (
 
                                             <FriendshipResponseButtons verifyFriendship={verifyFriendship}
                                                 friendshipId={friendship.id}></FriendshipResponseButtons>

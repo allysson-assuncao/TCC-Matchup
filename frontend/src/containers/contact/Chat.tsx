@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {AppBar, Toolbar, Typography, Box, Paper, List, ListItem, ListItemText} from '@mui/material';
+import {Box, Paper, List, ListItem, ListItemText} from '@mui/material';
 import SentMessage from "../../components/contact/SentMessage";
-import {getUser} from "../../App";
 import ReceivedMessage from "../../components/contact/ReceivedMessage";
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
@@ -11,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
 import {getLastMessages} from "../../api/user_requests/messageRequests";
+import {useLoggedUser} from "../../contexts/UserContext";
 /*import socket from "../../api/WebSocketService";*/
 
 interface ChatProps {
@@ -19,6 +19,7 @@ interface ChatProps {
 }
 
 const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [messages, setMessages] = useState<Array<Message>>(contact.messages);
@@ -90,7 +91,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                             {messages.map((message, index) => (
                                 <ListItem key={index}>
                                     <ListItemText primary={
-                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
                                             <ReceivedMessage text={message.hashedText}/>
                                     }/>
                                 </ListItem>
@@ -100,7 +101,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                             {messages.map((message, index) => (
                                 <ListItem key={index}>
                                     <ListItemText primary={
-                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
                                             <ReceivedMessage text={message.hashedText}/>
                                     }/>
                                 </ListItem>
@@ -110,7 +111,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                             {messages.map((message, index) => (
                                 <ListItem key={index}>
                                     <ListItemText primary={
-                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
                                             <ReceivedMessage text={message.hashedText}/>
                                     }/>
                                 </ListItem>
@@ -120,7 +121,7 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
                             {messages.map((message, index) => (
                                 <ListItem key={index}>
                                     <ListItemText primary={
-                                        message.senderId === getUser().id ? <SentMessage text={message.hashedText}/> :
+                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
                                             <ReceivedMessage text={message.hashedText}/>
                                     }/>
                                 </ListItem>

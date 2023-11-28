@@ -1,4 +1,4 @@
-import {ROUTE_PROFILE, ROUTE_SIGN_IN, setUser} from "../App";
+import {ROUTE_PROFILE, ROUTE_SIGN_IN} from "../App";
 import React, {useEffect, useState} from "react";
 import {User} from "../model/user";
 import {useNavigate} from "react-router-dom";
@@ -7,6 +7,7 @@ import getTheme from "../theme";
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import {Contact} from "../model/contact";
 import {Message} from "../model/message";
+import {useLoggedUser} from "../contexts/UserContext";
 
 export const removeProfilePicture = () => {
     localStorage.removeItem('profilePicture');
@@ -19,10 +20,10 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
+    const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
-    const [loggedUser, setLoggedUser] = useState<User | null>(null);
     const [profileRoute, setProfileRoute] = useState(ROUTE_PROFILE);
 
     useEffect(() => {
@@ -36,7 +37,7 @@ const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMes
         }
     }, []);
 
-    setUser();
+    /*setUser();*/
 
     console.log('HOME');
     console.log(loggedUser);

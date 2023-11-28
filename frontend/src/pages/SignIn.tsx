@@ -17,7 +17,7 @@ import {emailExists, login, usernameExists, ValidationResponse} from '../api/use
 import {SignInPayload, User} from '../model/user';
 import {isEmail, validationLogin} from '../utils/validation/UserValidation';
 import {useNavigate} from "react-router-dom";
-import {getUser, ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
+import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
 import logo from '../img/logo-matchup3.png';
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
@@ -25,12 +25,14 @@ import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 
 import {Contact} from "../model/contact";
 import {getContactsByUserId} from "../api/user_requests/contactRequests";
+import {useLoggedUser} from "../contexts/UserContext";
 
 interface SignInProps {
     setContacts?: React.Dispatch<React.SetStateAction<Contact[] | null>>;
 }
 
 const SignIn: React.FC<SignInProps> = ({setContacts}) => {
+    const {loggedUser} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -45,7 +47,11 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
 
     const fetchContacts = async () => {
         try {
-            const fetchedContacts = await getContactsByUserId(getUser().id);
+            if (!loggedUser) {
+                console.error("Erro: Usuário não está logado.");
+                return false;
+            }
+            const fetchedContacts = await getContactsByUserId(loggedUser.id);
             if (setContacts) {
                 setContacts(fetchedContacts);
             }
@@ -89,7 +95,7 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
         localStorage.removeItem('profilePicture');
         localStorage.setItem('user', JSON.stringify(userData));
         console.log(userData);
-        localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
+        localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
         history(ROUTE_HOME);
         fetchContacts();
 

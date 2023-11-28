@@ -1,11 +1,10 @@
 import {
     Box,
     Container,
-    CssBaseline, Grid, Snackbar,
+    CssBaseline, Snackbar,
     Typography
 } from "@mui/material";
 import React, {useEffect, useState} from "react";
-import {getUser} from "../App";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import AppBarProfile from "../containers/appbars/AppBarProfile";
 import {getUserByUsername} from "../api/user_requests/getUserBy";
@@ -15,8 +14,10 @@ import ProfilePicture from "../components/ProfilePicture";
 import {isBlockedBy} from "../api/user_requests/block";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import {useLoggedUser} from "../contexts/UserContext";
 
 const Profile = () => {
+    const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const {usernamePathVariable} = useParams();
@@ -25,8 +26,6 @@ const Profile = () => {
 
     const [editable, setEditability] = useState(false);
     const [idProfile, setIdProfile] = useState(BigInt(0));
-    /*const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    const [profilePicture, setProfilePicture] = useState('');*/
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
     const [blocked, setBlocked] = useState(false);
@@ -53,7 +52,11 @@ const Profile = () => {
                     user = JSON.parse(userJSON);
                 } else {
                     user = await getUserByUsername(usernamePathVariable);
-                    let blocked: boolean = await isBlockedBy(getUser().id, user.id);
+                    if (!loggedUser) {
+                        console.error("Erro: Usuário não está logado.");
+                        return;
+                    }
+                    let blocked: boolean = await isBlockedBy(loggedUser.id, user.id);
                     console.log("blocked Profile: "+ blocked);
                     setBlocked(blocked);
                     if (blocked) openSnackbar("Você foi blockeado por esse usuário, por isso não pode enviar um pedido de amizade");

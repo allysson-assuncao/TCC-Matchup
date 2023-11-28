@@ -4,19 +4,17 @@ import {
     TextField,
     Grid, Switch, FormControlLabel,
 } from '@mui/material';
-import {INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
 import {languages} from "../../resources/languages";
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
-import {getAllInterestDependencies, registerAll} from "../../api/interest_requests/registerInterest";
-import SimpleSelect from "../../components/fields/SimpleSelect";
+import {getAllInterestDependencies} from "../../api/interest_requests/registerInterest";
 import MultipleSelect from "../../components/fields/MultipleSelect";
 import {Filter, FILTERS_ATTRIBUTES, OPERATION, OPERATOR} from "../../model/filters";
 import {getFilteredInterests} from "../../api/interest_requests/filterRequest";
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from "@mui/material/IconButton";
 import {InterestRequest} from "../../model/interest_filtered_request";
-import RegisterDependencyDialog from "../../components/dialog/RegisterDependencyDialog";
+import {InterestDependency} from "../../model/interest";
 
 interface InterestFiltersProps {
     filteredInterests: InterestRequest | undefined;
@@ -310,7 +308,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                                     <Switch checked={genresSwitchChecked}
                                             onChange={(e) => handleSwitchChange(e, setGenresOperator, genresSwitchChecked, setGenresSwitchChecked)}
                                             inputProps={{'aria-label': 'controlled'}}/>}
-                                                  label={genresOperator}
+                                                  label={genresOperator == "OR" ? "OU" : "E"}
                                                   labelPlacement="start"
                                 />
                             </Grid>

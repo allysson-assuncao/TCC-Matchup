@@ -1,7 +1,6 @@
 import * as Yup from "yup";
-import {emailExists} from "../../api/user_requests/login";
 import {isEmailAvailable, isUsernameAvailable} from "../../api/user_requests/register";
-import {getUser} from "../../App";
+import {User} from "../../model/user";
 
 export var isEmail: boolean;
 export const validationLogin = Yup.object().shape({
@@ -91,15 +90,16 @@ export const validateSignUpStep4 = Yup.object().shape({
 
 });
 
-export const validateUpdateUserData = Yup.object().shape({
+export const validateUpdateUserData = (loggedUser: User | null) => Yup.object().shape({
     username:
         Yup.string()
             .required('Campo obrigatório!')
             .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
             .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
             .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
-            .test('username', 'Nome de Usuário já está em Uso!',  async (value)  => {
-                return (await isUsernameAvailable(value)) || getUser().username == value;
+            .test('username', 'Nome de Usuário já está em Uso!',  async function(value)  {
+                // @ts-ignore
+                return (await isUsernameAvailable(value)) || (loggedUser.username == value);
             }),
 });
 

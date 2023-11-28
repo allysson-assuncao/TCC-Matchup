@@ -9,23 +9,22 @@ import {
 } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {User} from "../model/user";
-import {getUser} from "../App";
 import IconButton from "@mui/material/IconButton";
 import EditIcon from '@mui/icons-material/Edit';
 import EditOffIcon from '@mui/icons-material/EditOff';
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
-
-var loggedUser: User = getUser();
+import {useLoggedUser} from "../contexts/UserContext";
 
 const EditableProfile = () => {
+    const {loggedUser} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
 
     const [image, setImage] = useState('');
-    const [username, setUsername] = useState(loggedUser.username);
-    const [name, setName] = useState(loggedUser.name);
-    const [bio, setBio] = useState(loggedUser.bio + 'bio');
+    const [username, setUsername] = useState(loggedUser ? loggedUser.username : 'username');
+    const [name, setName] = useState(loggedUser ? loggedUser.name : 'nome');
+    const [bio, setBio] = useState(loggedUser ? loggedUser.username : 'bio');
     const [isEditingUsername, setIsEditingUsername] = useState(false);
     const [isEditingName, setIsEditingName] = useState(false);
     const [isEditingBio, setIsEditingBio] = useState(false);

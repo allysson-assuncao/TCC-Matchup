@@ -50,11 +50,8 @@ export const ROUTE_PROFILE_SETTINGS = '/settings/profile';
 export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
-
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
-
     const [contacts, setContacts] = useState<Contact[] | null>(null);
-
 
     const updateContactsWithMessage = (contactId: bigint, message: Message) => {
         setContacts(prevContacts => {

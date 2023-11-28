@@ -5,7 +5,6 @@ import {
     Button,
     Snackbar, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
-import {getUser, updateUser} from "../../App";
 import {UpdateUserPayload, User} from "../../model/user";
 
 import {updateUserData} from "../../api/user_requests/updateUserData";
@@ -13,9 +12,10 @@ import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_HOME} from "../../App";
-
+import {useLoggedUser} from "../../contexts/UserContext";
 
 const GeneralInfoRegister = () => {
+    const {loggedUser, setLoggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const history = useNavigate();
     const theme = getTheme(mode);
@@ -63,7 +63,7 @@ const GeneralInfoRegister = () => {
 
     const handleSubmit = async () => {
         let user: UpdateUserPayload = {
-            id: getUser().id,
+            id: loggedUser ? loggedUser.id : BigInt(-1),
             bio: bio,
             cellphoneNumber: cellphoneNumber,
         }
@@ -75,7 +75,7 @@ const GeneralInfoRegister = () => {
         let updatedUser: User = await updateUserData(user);
 
         if (!updatedUser) return;
-        updateUser(updatedUser);
+        setLoggedUser(updatedUser);
         setOpen(true);
         history(ROUTE_HOME);
     }

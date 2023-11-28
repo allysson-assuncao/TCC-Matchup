@@ -11,7 +11,6 @@ import {
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import IconButton from "@mui/material/IconButton";
-import {User} from "../../model/user";
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 

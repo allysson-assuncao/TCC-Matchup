@@ -14,14 +14,15 @@ import {
 } from "../utils/validation/UserValidation";
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
-import {getUser, logout, setUser} from "../App";
 import GeneralInfoRegister from "../containers/options/GeneralInfoRegister";
 import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 import {removeProfilePicture} from "./Home";
+import {useLoggedUser} from "../contexts/UserContext";
 
 const steps = ['Pessoais', 'Endereço', 'Perfil'];
 
 const SignUp: React.FC = () => {
+    const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
@@ -63,12 +64,16 @@ const SignUp: React.FC = () => {
             logout();
             removeProfilePicture();
             localStorage.setItem('user', JSON.stringify(user));
-            setUser();
+            setLoggedUser(user);
             console.log(localStorage.getItem('user'));
 
             handleNext();
         } else if (activeStep == steps.length - 1) {
-            localStorage.setItem("profilePicture", await getProfilePictureByUserId(getUser().id, 800, 800));
+            if (!loggedUser) {
+                console.error("Erro: Usuário não está logado.");
+                return;
+            }
+            localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser.id, 800, 800));
             history(ROUTE_INTEREST_MANAGEMENT);
         }
 
