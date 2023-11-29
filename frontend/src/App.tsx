@@ -31,6 +31,8 @@ import {User, USER_ACCESS} from "./model/user";
 import InterestManagement from "./pages/InterestManagement";
 import Home from "./pages/Home";
 import {useLoggedUser, UserProvider} from "./contexts/UserContext";
+import ChatTest from "./ChatTest";
+import ChatTest2 from "./ChatTest";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/funcionalidades';
@@ -85,8 +87,8 @@ const App: React.FC = () => {
     };
 
 
-    useEffect(() => {
-        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
+   /* useEffect(() => {
+        if (/!* !sessionStorage.getItem('hasRunBefore') *!/true) {
             fetchContacts();
 
             console.log(contacts);
@@ -97,7 +99,7 @@ const App: React.FC = () => {
     useEffect(() => {
         console.log("USE EFFECT CONTACTS");
         console.log(contacts);
-    }, [contacts]);
+    }, [contacts]);*/
 
 
     interface ProtectedRouteProps {
@@ -134,6 +136,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
                 <Route path={ROUTE_INTEREST_MANAGEMENT} element={<InterestManagement/>}/>
+                <Route path={"/test"} element={<ChatTest2/>}/>
                 <Route path={ROUTE_HOME}
                        element={<ProtectedRoute
                            isAllowed={loggedUser !== null}

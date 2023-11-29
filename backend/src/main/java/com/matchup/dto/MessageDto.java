@@ -15,6 +15,8 @@ import java.util.List;
 public class MessageDto {
     long id;
 
+    private String receiverUsername;
+
     private LocalDateTime date;
 
     private long senderId;

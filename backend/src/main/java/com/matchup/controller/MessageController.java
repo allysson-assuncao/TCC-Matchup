@@ -5,11 +5,17 @@ import com.matchup.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -41,13 +47,36 @@ public class MessageController {
         return message;
     }*/
 
-    @MessageMapping("/private-message")
-    public String receiveMessage(@Payload String message){
-        System.out.println("mensagem recebida!!!!!!!!!!!!!!!!");
-        /*simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageService.sendMessage(message).getReceiverId()),"/private", message);*/
-        System.out.println(message.toString());
-        return message;
+
+    @MessageMapping("/chat")
+    public void sendPrivateMessage(Authentication authentication, Message message) {
+        System.out.println("oi");
+       /* message.setFrom(authentication.getName());
+        messagingTemplate.convertAndSendToUser(message.getTo(), "/queue/messages", message);*/
     }
+
+    /*@MessageMapping("/user/{userId}/queue/messages")*/
+    @MessageMapping("/send-private-massage-to/{userId}")
+    public void handlePrivateMessage(@Payload Message message, @DestinationVariable String userId) {
+        System.out.println("olá");
+        System.out.println(userId);
+        System.out.println(message.toString() + "  " + message.getPayload().toString());
+        simpMessagingTemplate.convertAndSend("/user/" + userId + "/queue/messages", message);
+    }
+
+    @MessageMapping("/send-private-message")
+    /*@SendToUser("/queue/private-messages")*/
+    public MessageDto o(MessageDto m) {
+        System.out.println("olá: " + m.getReceiverUsername());
+        simpMessagingTemplate.convertAndSendToUser(
+                m.getReceiverUsername(), "/queue/private-messages", m);
+        return m;
+
+    }
+
+
+
+
 
     /*@MessageMapping("/private-message")
     public MessageDto receiveMessage(@Payload MessageDto message){
