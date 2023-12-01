@@ -87,8 +87,8 @@ const App: React.FC = () => {
     };
 
 
-   /* useEffect(() => {
-        if (/!* !sessionStorage.getItem('hasRunBefore') *!/true) {
+    useEffect(() => {
+        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
             fetchContacts();
 
             console.log(contacts);
@@ -99,7 +99,7 @@ const App: React.FC = () => {
     useEffect(() => {
         console.log("USE EFFECT CONTACTS");
         console.log(contacts);
-    }, [contacts]);*/
+    }, [contacts]);
 
 
     interface ProtectedRouteProps {
@@ -123,6 +123,8 @@ const App: React.FC = () => {
             console.log("ACESSO CONCEDIDO!");
             return element;
         } else {
+            console.log("ACESSO NEGADO!");
+            console.log(loggedUser);
             return null;
         }
     }
@@ -139,7 +141,7 @@ const App: React.FC = () => {
                 <Route path={"/test"} element={<ChatTest2/>}/>
                 <Route path={ROUTE_HOME}
                        element={<ProtectedRoute
-                           isAllowed={loggedUser !== null}
+                           isAllowed={!loggedUser}
                            element={<Home contacts={contacts} setContacts={setContacts}
                                           updateContactsWithMessage={updateContactsWithMessage}/>
 
@@ -159,7 +161,7 @@ const App: React.FC = () => {
                                              updateContactsWithMessage={updateContactsWithMessage}/>}/>
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
-                           isAllowed={loggedUser?.access === USER_ACCESS.ADMIN ?? false}
+                           isAllowed={loggedUser !== null/* && loggedUser.access === USER_ACCESS.ADMIN*/}
                            redirectPath={-1}
                            element={<RegisterInterests/>}/>}/>
             </Route>

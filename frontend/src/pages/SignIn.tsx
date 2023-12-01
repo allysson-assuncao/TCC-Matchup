@@ -90,11 +90,10 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
         }
 
         formikProps.setSubmitting(false);
+        localStorage.removeItem('user');
         setIsLoggedIn(true);
         localStorage.removeItem('user');
         localStorage.removeItem('profilePicture');
-        localStorage.setItem('user', JSON.stringify(userData));
-        console.log(userData);
         localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
         history(ROUTE_HOME);
         fetchContacts();

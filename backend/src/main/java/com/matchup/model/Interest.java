@@ -1,13 +1,22 @@
 package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.matchup.model.image.InterestImage;
 import com.matchup.model.insterest.*;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "interest", schema = "matchup")
 public class Interest {
     @Id
@@ -61,140 +70,8 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
-
-
-    // <editor-fold desc="Constructors">
-    public Interest() {
-    }
-
-    public Interest(String name, String description, Company company, double lowestPrice, double highestPrice, AgeRating ageRating) {
-        this.name = name;
-        this.description = description;
-        this.company = company;
-        this.lowestPrice = lowestPrice;
-        this.highestPrice = highestPrice;
-        this.ageRating = ageRating;
-    }
-
-    public Interest(String name, String description, Company company, double lowestPrice, double highestPrice, List<Language> dubbingLanguages, List<Language> subtitleLanguages, List<Genre> genres, List<SubGenre> subGenres, List<Platform> platforms, AgeRating ageRating, List<User> users) {
-        this.name = name;
-        this.description = description;
-        this.company = company;
-        this.lowestPrice = lowestPrice;
-        this.highestPrice = highestPrice;
-        this.dubbingLanguages = dubbingLanguages;
-        this.subtitleLanguages = subtitleLanguages;
-        this.genres = genres;
-        this.subGenres = subGenres;
-        this.platforms = platforms;
-        this.ageRating = ageRating;
-        this.users = users;
-    }
-
-    // </editor-fold>
-
-    // <editor-fold desc="Encapsulation">
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getLowestPrice() {
-        return lowestPrice;
-    }
-
-    public void setLowestPrice(double lowestPrice) {
-        this.lowestPrice = lowestPrice;
-    }
-
-    public double getHighestPrice() {
-        return highestPrice;
-    }
-
-    public void setHighestPrice(double highestPrice) {
-        this.highestPrice = highestPrice;
-    }
-
-    public List<Language> getDubbingLanguages() {
-        return dubbingLanguages;
-    }
-
-    public void setDubbingLanguages(List<Language> dubbingLanguages) {
-        this.dubbingLanguages = dubbingLanguages;
-    }
-
-    public List<Language> getSubtitleLanguages() {
-        return subtitleLanguages;
-    }
-
-    public void setSubtitleLanguages(List<Language> subtitleLanguages) {
-        this.subtitleLanguages = subtitleLanguages;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(List<Genre> genres) {
-        this.genres = genres;
-    }
-
-    public List<SubGenre> getSubGenres() {
-        return subGenres;
-    }
-
-    public void setSubGenres(List<SubGenre> subGenre) {
-        this.subGenres = subGenre;
-    }
-
-    public List<Platform> getPlatforms() {
-        return platforms;
-    }
-
-    public void setPlatforms(List<Platform> platforms) {
-        this.platforms = platforms;
-    }
-
-    public AgeRating getAgeRating() {
-        return ageRating;
-    }
-
-    public void setAgeRating(AgeRating ageRating) {
-        this.ageRating = ageRating;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    // </editor-fold>
+    @OneToMany(mappedBy = "interest")
+    private List<InterestImage> images;
 
     public void addDubbingLanguages(Language dubbingLanguage){
         if(this.dubbingLanguages == null){
@@ -237,22 +114,5 @@ public class Interest {
         this.users.add(user);
     }
 
-    /*@Override
-    public String toString() {
-        return "Interest{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", company=" + company +
-                ", lowestPrice=" + lowestPrice +
-                ", highestPrice=" + highestPrice +
-                ", dubbingLanguages=" + dubbingLanguages +
-                ", subtitleLanguages=" + subtitleLanguages +
-                ", genres=" + genres +
-                ", subGenres=" + subGenres +
-                ", platforms=" + platforms +
-                ", ageRating=" + ageRating +
-                ", users=" + users +
-                '}';
-    }*/
 
 }
