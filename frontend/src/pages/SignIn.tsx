@@ -32,7 +32,7 @@ interface SignInProps {
 }
 
 const SignIn: React.FC<SignInProps> = ({setContacts}) => {
-    const {loggedUser} = useLoggedUser();
+    const {loggedUser, setLoggedUser} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -92,7 +92,8 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
         formikProps.setSubmitting(false);
         localStorage.removeItem('user');
         setIsLoggedIn(true);
-        localStorage.removeItem('user');
+        setLoggedUser(userData);
+
         localStorage.removeItem('profilePicture');
         localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
         history(ROUTE_HOME);

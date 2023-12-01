@@ -17,6 +17,7 @@ import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDia
 import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../model/interest";
 import MultipleSelect from "../components/fields/MultipleSelect";
 import SimpleSelect from "../components/fields/SimpleSelect";
+import ImageUploader from "../components/fields/ImageUploader";
 
 const RegisterInterests: React.FC = () => {
     const [name, setName] = useState<string>();
@@ -45,6 +46,8 @@ const RegisterInterests: React.FC = () => {
 
     const [platforms, setPlatforms] = useState<InterestDependency[]>([]);
     const [selectedPlatforms, setSelectedPlatforms] = useState<InterestDependency[]>([]);
+
+    const [images, setImages] = useState<File[]>([]);
 
     const loadDropdowns = async () => {
         try {
@@ -255,6 +258,7 @@ const RegisterInterests: React.FC = () => {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <ImageUploader></ImageUploader>
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth variant="contained" color="primary"
                                 onClick={() => handleFormSubmit()}>

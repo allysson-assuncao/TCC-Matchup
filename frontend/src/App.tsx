@@ -121,6 +121,7 @@ const App: React.FC = () => {
 
         if (isAllowed) {
             console.log("ACESSO CONCEDIDO!");
+
             return element;
         } else {
             console.log("ACESSO NEGADO!");

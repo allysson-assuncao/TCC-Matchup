@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {CustomThemeProvider} from "./contexts/CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
+import {UserProvider} from "./contexts/UserContext";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

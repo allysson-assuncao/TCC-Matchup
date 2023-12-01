@@ -26,7 +26,6 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
 
     const [newTextMessage, setNewTextMessage] = useState<string>('');
 
-
     const scrollRef = useRef<HTMLElement>(null);
 
     const fetchMoreData = async () => {

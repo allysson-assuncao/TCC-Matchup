@@ -288,6 +288,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                         onClose={handleCloseUserMenu}
                                     >
                                         {settings.map((setting) => {
+                                            console.log('')
                                             if (setting === 'Cadastrar Interesses' && loggedUser && loggedUser.access !== USER_ACCESS.ADMIN) return;
 
                                             return (

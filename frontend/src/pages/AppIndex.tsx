@@ -13,6 +13,7 @@ import Introduction from "../containers/index/Introduction";
 import ForWho from "../containers/index/ForWho";
 import getTheme from "../theme";
 import {useCustomTheme} from "../contexts/CustomThemeContext";
+import {useLoggedUser} from "../contexts/UserContext";
 
 
 const AppIndex: React.FC = () => {

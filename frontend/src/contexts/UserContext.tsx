@@ -1,7 +1,5 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import {User} from "../model/user";
-import {ROUTE_SIGN_IN} from "../App";
-import {useNavigate} from "react-router-dom";
 
 interface UserContextData {
     loggedUser: User | null;
@@ -16,23 +14,21 @@ interface UserProviderProps {
 }
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
     const [loggedUser, setLoggedUser] = useState<User | null>(null);
-    /*const history = useNavigate();*/
 
     const removeUser = () => {
         localStorage.removeItem('user');
+
     };
 
     const logout = () => {
         removeUser();
-        /*history(ROUTE_SIGN_IN);*/
+        setLoggedUser(null);
     };
 
     useEffect(() => {
         if(loggedUser){
             localStorage.setItem('user', JSON.stringify(loggedUser));
-        } /*else {
-            history(ROUTE_SIGN_IN);
-        }*/
+        }
     }, [loggedUser]);
 
     return (
