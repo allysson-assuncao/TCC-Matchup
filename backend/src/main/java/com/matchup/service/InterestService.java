@@ -4,10 +4,14 @@ import com.matchup.dto.InterestDependenciesDto;
 import com.matchup.dto.InterestDto;
 import com.matchup.dto.SearchRequestDto;
 import com.matchup.model.Interest;
+import com.matchup.model.image.InterestImage;
+import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.insterest.*;
 import com.matchup.model.insterest.Company;
 import com.matchup.repository.InterestRepository;
+import com.matchup.repository.image.InterestImageRepository;
 import com.matchup.repository.interest.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +21,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,9 +40,10 @@ public class InterestService {
     private final LanguageRepository languageRepository;
     private final PlatformRepository platformRepository;
     private final CompanyRepository companyRepository;
+    private final InterestImageRepository interestImageRepository;
 
     @Autowired
-    public InterestService(FilterSpecificationService<Interest> filterSpecificationService, InterestRepository interestRepository, AgeRatingRepository ageRatingRepository, GenreRepository genreRepository, SubGenreRepository subGenreRepository, LanguageRepository languageRepository, PlatformRepository platformRepository, CompanyRepository companyRepository) {
+    public InterestService(FilterSpecificationService<Interest> filterSpecificationService, InterestRepository interestRepository, AgeRatingRepository ageRatingRepository, GenreRepository genreRepository, SubGenreRepository subGenreRepository, LanguageRepository languageRepository, PlatformRepository platformRepository, CompanyRepository companyRepository, InterestImageRepository interestImageRepository) {
         this.filterSpecificationService = filterSpecificationService;
         this.interestRepository = interestRepository;
         this.ageRatingRepository = ageRatingRepository;
@@ -45,11 +52,12 @@ public class InterestService {
         this.languageRepository = languageRepository;
         this.platformRepository = platformRepository;
         this.companyRepository = companyRepository;
+        this.interestImageRepository = interestImageRepository;
     }
 
 
-    // SAVE
-    public Interest saveInterest(InterestDto interestDto){
+    @Transactional
+    public Interest saveInterest(InterestDto interestDto) {
         Interest interestToSave = new Interest();
 
         System.out.println("Interest: " + interestDto);
@@ -73,66 +81,87 @@ public class InterestService {
         interestToSave.setPlatforms(
                 platformRepository.findAllById(interestDto.getPlatformsIdList()));
 
+        List<InterestImage> images = new ArrayList<>();
+
+
+        interestDto.getImages().forEach((i) -> {
+            try {
+                InterestImage image = new InterestImage();
+                image.setContent(i.getBytes());
+                image.setName(i.getName());
+                image.setContentType(i.getContentType());
+                image.setOriginalName(i.getOriginalFilename());
+                image = interestImageRepository.save(image);
+                images.add(image);
+                
+            } catch (IOException e) {
+                System.out.println("updateUser() -> IOException");
+                throw new RuntimeException(e);
+            }
+        });
+
+        interestToSave.setImages(images);
+
         return interestRepository.save(interestToSave);
     }
 
-    public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction){
+    public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
         Specification<Interest> searchSpecification =
                 filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, orderBy));
         return interestRepository.findAll(searchSpecification, pageable);
     }
 
-    public Company saveCompany(Company company){
+    public Company saveCompany(Company company) {
         return companyRepository.save(company);
     }
 
-    public Language saveLanguage(Language language){
+    public Language saveLanguage(Language language) {
         return languageRepository.save(language);
     }
 
-    public AgeRating saveAgeRating(AgeRating ageRating){
+    public AgeRating saveAgeRating(AgeRating ageRating) {
         return ageRatingRepository.save(ageRating);
     }
 
-    public Genre saveGenre(Genre genre){
+    public Genre saveGenre(Genre genre) {
         return genreRepository.save(genre);
     }
 
-    public SubGenre saveSubGenre(SubGenre subGenre){
+    public SubGenre saveSubGenre(SubGenre subGenre) {
         return subGenreRepository.save(subGenre);
     }
 
-    public Platform savePlatform(Platform platform){
+    public Platform savePlatform(Platform platform) {
         return platformRepository.save(platform);
     }
 
     // GET ALL
-    public List<Interest> getAllInterests(){
+    public List<Interest> getAllInterests() {
         return interestRepository.findAll();
     }
 
-    public List<Company> getAllCompanies(){
+    public List<Company> getAllCompanies() {
         return companyRepository.findAll();
     }
 
-    public List<Language> getAllLanguages(){
+    public List<Language> getAllLanguages() {
         return languageRepository.findAll();
     }
 
-    public List<AgeRating> getAllAgeRatings(){
+    public List<AgeRating> getAllAgeRatings() {
         return ageRatingRepository.findAll();
     }
 
-    public List<Genre> getAllGenres(){
+    public List<Genre> getAllGenres() {
         return genreRepository.findAll();
     }
 
-    public List<SubGenre> getAllSubGenres(){
+    public List<SubGenre> getAllSubGenres() {
         return subGenreRepository.findAll();
     }
 
-    public List<Platform> getAllPlatforms(){
+    public List<Platform> getAllPlatforms() {
         return platformRepository.findAll();
     }
 
