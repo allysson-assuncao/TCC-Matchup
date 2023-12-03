@@ -17,6 +17,7 @@ export interface Interest {
     platforms: Array<InterestDependency>;
     ageRating: InterestDependency | undefined;
     users?: Array<User>;
+    images: File[];
 }
 
 

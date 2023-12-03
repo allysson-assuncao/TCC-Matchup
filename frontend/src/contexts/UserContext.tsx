@@ -13,7 +13,11 @@ interface UserProviderProps {
     children: React.ReactNode;
 }
 export const UserProvider: React.FC<UserProviderProps> = ({children}) => {
-    const [loggedUser, setLoggedUser] = useState<User | null>(null);
+    const [loggedUser, setLoggedUser] = useState<User | null>(() => {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+    });
+    /*const [loggedUser, setLoggedUser] = useState<User | null>(null);*/
 
     const removeUser = () => {
         localStorage.removeItem('user');

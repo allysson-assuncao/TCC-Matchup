@@ -33,6 +33,8 @@ import Home from "./pages/Home";
 import {useLoggedUser, UserProvider} from "./contexts/UserContext";
 import ChatTest from "./ChatTest";
 import ChatTest2 from "./ChatTest";
+import {useContact} from "./contexts/ContactsContext";
+import {Contacts} from "@mui/icons-material";
 
 export const ROUTE_INDEX = '/';
 export const ROUTE_FEATURES = '/funcionalidades';
@@ -53,7 +55,7 @@ export const ROUTE_CONTACT_PROTOTYPE = '/contact/prototype';
 
 const App: React.FC = () => {
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
-    const [contacts, setContacts] = useState<Contact[] | null>(null);
+    const {contacts, setContacts, updateContactsWithMessage, fetchContacts, subscribeUser} = useContact();
 
     /*const updateContactsWithMessage = (contactId: bigint, message: Message) => {
         setContacts(prevContacts => {
@@ -72,7 +74,7 @@ const App: React.FC = () => {
         });
     };*/
 
-    const fetchContacts = async () => {
+    /*const fetchContacts = async () => {
         if (!loggedUser) {
             console.error("Erro: Usuário não está logado.");
             return false;
@@ -84,15 +86,37 @@ const App: React.FC = () => {
         } catch (error) {
             console.error("Erro ao buscar CONTATOS:", error);
         }
-    };
+    };*/
+    
+    /*useEffect(() => {
+        window.addEventListener('beforeunload', () => /!*sessionStorage.setItem('contacts', JSON.stringify(contacts)*!/alert("HELLOOO"));
 
-
-    useEffect(() => {
-        if (/* !sessionStorage.getItem('hasRunBefore') */true) {
+        if (!sessionStorage.getItem('hasRunBefore')  && loggedUser) {
             fetchContacts();
 
             console.log(contacts);
             sessionStorage.setItem('hasRunBefore', 'true');
+
+        } else {
+            setContacts(JSON.parse(sessionStorage.getItem('contacts') || '[]'));
+            subscribeUser();
+        }
+
+        return () => {
+            window.removeEventListener('beforeunload', () => alert("HELLOOO")/!*sessionStorage.removeItem('contacts')*!/);
+        }
+    }, []);*/
+
+    useEffect(() => {
+        if (!sessionStorage.getItem('hasRunBefore')  && loggedUser) {
+            fetchContacts();
+
+            console.log(contacts);
+            sessionStorage.setItem('hasRunBefore', 'true');
+            sessionStorage.setItem('contacts', JSON.parse(contacts + ''));
+        }else{
+            setContacts(JSON.parse(sessionStorage.getItem('contacts') + ''));
+            subscribeUser();
         }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
@@ -136,7 +160,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_INDEX} index element={<AppIndex/>}/>
                 <Route path={ROUTE_FEATURES} index element={<Features/>}/>
                 <Route path={ROUTE_FAQ} index element={<FAQ/>}/>
-                <Route path={ROUTE_SIGN_IN} element={<SignIn setContacts={setContacts}/>}/>
+                <Route path={ROUTE_SIGN_IN} element={<SignIn/>}/>
                 <Route path={ROUTE_SIGN_UP} element={<SignUp/>}/>
                 <Route path={ROUTE_INTEREST_MANAGEMENT} element={<InterestManagement/>}/>
                 <Route path={"/test"} element={<ChatTest2/>}/>
@@ -160,7 +184,7 @@ const App: React.FC = () => {
                        element={<ContactPage/>}/>
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
-                           isAllowed={loggedUser !== null/* && loggedUser.access === USER_ACCESS.ADMIN*/}
+                           isAllowed={!(!loggedUser) && loggedUser.access === USER_ACCESS.ADMIN}
                            redirectPath={-1}
                            element={<RegisterInterests/>}/>}/>
             </Route>

@@ -11,14 +11,15 @@ import AppBarChat from "../appbars/AppBarChat";
 import ChatFooter from "../footers/ChatFooter";
 import {getLastMessages} from "../../api/user_requests/messageRequests";
 import {useLoggedUser} from "../../contexts/UserContext";
+import {useContact} from "../../contexts/ContactsContext";
 /*import socket from "../../api/WebSocketService";*/
 
 interface ChatProps {
     contact: Contact;
-    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
-const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
+const Chat: React.FC<ChatProps> = ({contact}) => {
+    const {updateContactsWithMessage} = useContact();
     const {loggedUser} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
@@ -86,36 +87,6 @@ const Chat: React.FC<ChatProps> = ({contact, updateContactsWithMessage}) => {
             <Grid item xs={8}>
                 <Box component="main" sx={{flex: '1 0 auto', overflow: 'auto', maxHeight: '48vh'}} ref={scrollRef}>
                     <Paper sx={{bgcolor: theme.palette.background.default}}>
-                        <List>
-                            {messages.map((message, index) => (
-                                <ListItem key={index}>
-                                    <ListItemText primary={
-                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
-                                            <ReceivedMessage text={message.hashedText}/>
-                                    }/>
-                                </ListItem>
-                            ))}
-                        </List>
-                        <List>
-                            {messages.map((message, index) => (
-                                <ListItem key={index}>
-                                    <ListItemText primary={
-                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
-                                            <ReceivedMessage text={message.hashedText}/>
-                                    }/>
-                                </ListItem>
-                            ))}
-                        </List>
-                        <List>
-                            {messages.map((message, index) => (
-                                <ListItem key={index}>
-                                    <ListItemText primary={
-                                        loggedUser && message?.senderId === loggedUser.id ? <SentMessage text={message.hashedText}/> :
-                                            <ReceivedMessage text={message.hashedText}/>
-                                    }/>
-                                </ListItem>
-                            ))}
-                        </List>
                         <List>
                             {messages.map((message, index) => (
                                 <ListItem key={index}>

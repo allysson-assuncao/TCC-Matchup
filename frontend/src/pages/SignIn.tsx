@@ -21,22 +21,16 @@ import {ROUTE_FORGOT_PASSWORD, ROUTE_HOME, ROUTE_SIGN_UP} from "../App";
 import logo from '../img/logo-matchup3.png';
 import {useCustomTheme} from "../contexts/CustomThemeContext";
 import getTheme from "../theme";
-import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 
-import {Contact} from "../model/contact";
 import {getContactsByUserId} from "../api/user_requests/contactRequests";
 import {useLoggedUser} from "../contexts/UserContext";
-
-interface SignInProps {
-    setContacts?: React.Dispatch<React.SetStateAction<Contact[] | null>>;
-}
+import {useContact} from "../contexts/ContactsContext";
 
 const SignIn: React.FC = () => {
     const {setContacts} = useContact();
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const history = useNavigate();
     const [valid, setValid] = useState(true);
 
@@ -46,13 +40,13 @@ const SignIn: React.FC = () => {
         remember: false,
     };
 
-    const fetchContacts = async () => {
+    const fetchContacts = async (user: User) => {
         try {
-            if (!loggedUser) {
+            if (!user) {
                 console.error("Erro: Usuário não está logado.");
                 return false;
             }
-            const fetchedContacts = await getContactsByUserId(loggedUser.id);
+            const fetchedContacts = await getContactsByUserId(user.id);
             if (setContacts) {
                 setContacts(fetchedContacts);
             }

@@ -8,6 +8,7 @@ import {useCustomTheme} from "../contexts/CustomThemeContext";
 import {Contact} from "../model/contact";
 import {Message} from "../model/message";
 import {useLoggedUser} from "../contexts/UserContext";
+import {getProfilePictureByUserId} from "../api/user_requests/getUserBy";
 
 export const removeProfilePicture = () => {
     localStorage.removeItem('profilePicture');
@@ -26,7 +27,7 @@ const Home: React.FC<HomeProps> = () => {
 
     useEffect(() => {
         const userJSON = localStorage.getItem('user');
-        if (!userJSON) {
+        if (!loggedUser) {
             history(ROUTE_SIGN_IN);
         } else {
             /*const user = JSON.parse(userJSON);
@@ -35,11 +36,22 @@ const Home: React.FC<HomeProps> = () => {
         }
     }, []);
 
+    async function profilePictureTest(){
+        localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
+        console.log('Profile Picture');
+        console.log(loggedUser);
+        console.log(localStorage.getItem('user'));
+        console.log(!loggedUser);
+
+        console.log(localStorage.getItem("profilePicture"));
+    }
+
     /*setUser();*/
 
     console.log('HOME');
     console.log(loggedUser);
-    if (!loggedUser) return null;
+    profilePictureTest();
+    /*if (!loggedUser) return null;*/
 
     return (
         <AppBarHome></AppBarHome>

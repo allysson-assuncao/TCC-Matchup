@@ -51,6 +51,7 @@ const InterestCard: React.FC<InterestCardProps> = ({ interest }) => {
                 />
                 {isExpanded && (
                     <CardContent>
+                        <img src={URL.createObjectURL(interest.images[0])}/>
                         <Typography variant="body2" color="text.secondary">
                             Description: {interest.description}
                         </Typography>

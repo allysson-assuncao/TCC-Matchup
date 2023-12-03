@@ -16,13 +16,12 @@ import {useContact} from "../contexts/ContactsContext";
 interface TabPanelProps {
     selectedContactId: bigint;
     contact: Contact;
-    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
 function TabPanel(props: TabPanelProps) {
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
-    const {selectedContactId, contact, updateContactsWithMessage, ...other} = props;
+    const {selectedContactId, contact, ...other} = props;
 
     return (
         <Grid
@@ -32,24 +31,18 @@ function TabPanel(props: TabPanelProps) {
             aria-labelledby={`vertical-tab-${contact.id}`}
             {...other}
         >
-            {selectedContactId === contact.id && <Chat contact={contact} updateContactsWithMessage={updateContactsWithMessage}/>}
+            {selectedContactId === contact.id && <Chat contact={contact}/>}
         </Grid>
     );
 }
 
-interface ContactPageProps {
-    contacts: Contact[] | null;
-    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
-    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
-}
-
-const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
+const ContactPage: React.FC = () => {
+    const {contacts, setContacts} = useContact();
     const [selectedContact, setSelectedContact] = React.useState(contacts? contacts[0]: null);
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const history = useNavigate();
-    console.log("CONTATOS:");
-    console.log(contacts);
+
 
     return (
         <Grid
@@ -65,7 +58,7 @@ const ContactPage: React.FC<ContactPageProps> = ({contacts, setContacts, updateC
             </Grid>
             <Grid item xs={4} md={9} sx={{weight: '60vh'}} >
                 {contacts && contacts.map((contact) => (
-                    <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)} updateContactsWithMessage={updateContactsWithMessage}/>
+                    <TabPanel contact={contact} key={contact.id.toString()} selectedContactId={selectedContact ? selectedContact.id : BigInt(-1)}/>
                 ))}
             </Grid>
         </Grid>

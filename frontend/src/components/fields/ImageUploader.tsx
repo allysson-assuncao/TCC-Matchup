@@ -1,28 +1,29 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Button, Grid, IconButton, MobileStepper, Paper, Typography} from '@mui/material';
-import {KeyboardArrowLeft, KeyboardArrowRight, Delete, DeleteForever} from '@mui/icons-material';
+import {Button, Grid, IconButton, MobileStepper, Paper} from '@mui/material';
+import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload} from '@mui/icons-material';
+import {useCustomTheme} from "../../contexts/CustomThemeContext";
+import getTheme from "../../theme";
 
+interface ImageUploaderProps {
+    setImages: React.Dispatch<React.SetStateAction<File[]>>;
+}
 
-const ImageUploader: React.FC = () => {
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
+    const { theme: mode } = useCustomTheme();
+    const theme = getTheme(mode);
+    const [selectedImages, setSelectedImages] = useState<string[]>([]);
     const [activeStep, setActiveStep] = useState(0);
 
-    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            setSelectedImages(Array.from(e.target.files));
+            const filesArray: File[] = Array.from(e.target.files);
+            const resizedImages = await Promise.all(filesArray.map((file) => resizeImage(file)));
+            const fileUrls = resizedImages.map((file) => URL.createObjectURL(file));
+            setSelectedImages(fileUrls);
+            setImages(resizedImages);
             setActiveStep(0);
         }
     };
-
-    /*const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      const filesArray: File[] = Array.from(e.target.files);
-      const fileUrls = filesArray.map((file) => URL.createObjectURL(file));
-      setImages(filesArray);
-      setSelectedImages(fileUrls);
-      setActiveStep(0);
-    }
-  };*/
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -33,12 +34,13 @@ const ImageUploader: React.FC = () => {
     };
 
     const handleDelete = (index: number) => {
+        setImages((prevImages) => prevImages.filter((image, i) => i !== index));
         setSelectedImages((prevImages) => prevImages.filter((image, i) => i !== index));
         setActiveStep((prevActiveStep) => prevActiveStep > 0 ? prevActiveStep - 1 : 0);
     };
 
     return (
-        <Grid container direction="column" alignItems="center" spacing={2}>
+        <Grid container direction="column" alignItems="center">
             <Grid item>
                 <Button variant="contained" component="label" sx={{alignItems: "center"}}>
                     <Upload sx={{mr:'13px'}}/>  Adicionar Imagens
@@ -51,14 +53,10 @@ const ImageUploader: React.FC = () => {
                 </Button>
             </Grid>
             {selectedImages.length > 0 && (
-                <Grid item>
+                <Grid item justifyContent={'center'}>
                     <Paper square elevation={0}>
                         <Grid container justifyContent="space-between" alignItems="center">
-                            <img src={URL.createObjectURL(selectedImages[activeStep])}/>
-                            <IconButton onClick={() => handleDelete(activeStep)}>
-                                <DeleteForever/>
-                            </IconButton>
-
+                            <img src={selectedImages[activeStep]} alt="Selected" style={{maxWidth: '100%'}}/>
                         </Grid>
                         <IconButton sx={{color:'primary', bgcolor:`theme.palette.background.default`}} onClick={() => handleDelete(activeStep)}>
                             <Delete/>
@@ -88,5 +86,33 @@ const ImageUploader: React.FC = () => {
         </Grid>
     );
 };
+
+async function resizeImage(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+        const img = document.createElement('img');
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            let { width, height } = img;
+            if (height > 800) {
+                width *= 800 / height;
+                height = 800;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            ctx?.drawImage(img, 0, 0, width, height);
+            canvas.toBlob((blob) => {
+                if (!blob) {
+                    reject(new Error('Could not resize image'));
+                    return;
+                }
+                const resizedFile = new File([blob], file.name, { type: blob.type });
+                resolve(resizedFile);
+            }, file.type);
+        };
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+    });
+}
 
 export default ImageUploader;

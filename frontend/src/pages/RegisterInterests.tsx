@@ -99,7 +99,7 @@ const RegisterInterests: React.FC = () => {
                 </Typography>
 
 
-                <Grid container spacing={3}>
+                <Grid container spacing={3} justifyContent={'center'}>
                     <Grid item xs={12}>
                         <TextField
                             autoFocus
