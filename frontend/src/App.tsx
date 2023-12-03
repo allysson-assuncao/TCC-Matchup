@@ -55,7 +55,7 @@ const App: React.FC = () => {
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const [contacts, setContacts] = useState<Contact[] | null>(null);
 
-    const updateContactsWithMessage = (contactId: bigint, message: Message) => {
+    /*const updateContactsWithMessage = (contactId: bigint, message: Message) => {
         setContacts(prevContacts => {
             if (prevContacts == null) { // @ts-ignore
                 return prevContacts.map(contact => {
@@ -70,7 +70,7 @@ const App: React.FC = () => {
                 });
             }
         });
-    };
+    };*/
 
     const fetchContacts = async () => {
         if (!loggedUser) {
@@ -96,10 +96,10 @@ const App: React.FC = () => {
         }
     }, []); // O array vazio como segundo argumento faz com que o efeito seja executado apenas uma vez, equivalente ao componentDidMount
 
-    useEffect(() => {
+/*    useEffect(() => {
         console.log("USE EFFECT CONTACTS");
         console.log(contacts);
-    }, [contacts]);
+    }, [contacts]);*/
 
 
     interface ProtectedRouteProps {
@@ -142,9 +142,8 @@ const App: React.FC = () => {
                 <Route path={"/test"} element={<ChatTest2/>}/>
                 <Route path={ROUTE_HOME}
                        element={<ProtectedRoute
-                           isAllowed={!loggedUser}
-                           element={<Home contacts={contacts} setContacts={setContacts}
-                                          updateContactsWithMessage={updateContactsWithMessage}/>
+                           isAllowed={!(!loggedUser)}
+                           element={<Home/>
 
                            }/>}/>
                 <Route path="perfil/:usernamePathVariable" element={<Profile/>}/>
@@ -158,8 +157,7 @@ const App: React.FC = () => {
                 <Route path={ROUTE_PROFILE_SETTINGS}
                        element={<ProtectedRoute isAllowed={loggedUser !== null} element={<EditProfile/>}/>}/>
                 <Route path={ROUTE_CONTACT_PROTOTYPE}
-                       element={<ContactPage contacts={contacts} setContacts={setContacts}
-                                             updateContactsWithMessage={updateContactsWithMessage}/>}/>
+                       element={<ContactPage/>}/>
                 <Route path={ROUTE_REGISTER_INTERESTS}
                        element={<ProtectedRoute
                            isAllowed={loggedUser !== null/* && loggedUser.access === USER_ACCESS.ADMIN*/}
@@ -172,11 +170,11 @@ const App: React.FC = () => {
     const {theme} = useCustomTheme();
 
     return (
-        <UserProvider>
+        /*<UserProvider>*/
             <ThemeProvider theme={getTheme(theme)}>
                 <RouterProvider router={router}/>
             </ThemeProvider>
-        </UserProvider>
+        /*</UserProvider>*/
     );
 }
 

@@ -6,18 +6,23 @@ import reportWebVitals from './reportWebVitals';
 import {CustomThemeProvider} from "./contexts/CustomThemeContext";
 import ErrorBoundary from "./utils/ErrorBoundary";
 import {UserProvider} from "./contexts/UserContext";
+import {ContactsProvider} from "./contexts/ContactsContext";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
-    <React.StrictMode>
-        <ErrorBoundary>
-            <CustomThemeProvider>
-                <App/>
-            </CustomThemeProvider>
-        </ErrorBoundary>
-    </React.StrictMode>
+    /*<React.StrictMode>*/
+    <UserProvider>
+        <ContactsProvider>
+            <ErrorBoundary>
+                <CustomThemeProvider>
+                    <App/>
+                </CustomThemeProvider>
+            </ErrorBoundary>
+        </ContactsProvider>
+    </UserProvider>
+    /*</React.StrictMode>*/
 );
 
 // If you want to start measuring performance in your app, pass a function

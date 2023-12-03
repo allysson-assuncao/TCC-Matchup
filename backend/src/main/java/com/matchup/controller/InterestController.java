@@ -61,7 +61,8 @@ public class InterestController {
 
     @PostMapping("/register/interest")
     @PostAuthorize("true")
-    public ResponseEntity<Interest> registerInterest(@RequestBody InterestDto interestDto) {
+    public ResponseEntity<Interest> registerInterest(@ModelAttribute InterestDto interestDto) {
+        System.out.println(interestDto.getName());
         return new ResponseEntity<>(interestService.saveInterest(interestDto), HttpStatus.ACCEPTED);
     }
 

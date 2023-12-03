@@ -1,5 +1,6 @@
 package com.matchup.model.image;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.matchup.model.Interest;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class InterestImage extends ImageModel {
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "interest_id")
     private Interest interest;

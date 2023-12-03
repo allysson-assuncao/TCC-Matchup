@@ -40,8 +40,8 @@ const ImageUploader: React.FC = () => {
     return (
         <Grid container direction="column" alignItems="center" spacing={2}>
             <Grid item>
-                <Button variant="contained" component="label">
-                    Upload File
+                <Button variant="contained" component="label" sx={{alignItems: "center"}}>
+                    <Upload sx={{mr:'13px'}}/>  Adicionar Imagens
                     <input
                         type="file"
                         hidden
@@ -60,6 +60,9 @@ const ImageUploader: React.FC = () => {
                             </IconButton>
 
                         </Grid>
+                        <IconButton sx={{color:'primary', bgcolor:`theme.palette.background.default`}} onClick={() => handleDelete(activeStep)}>
+                            <Delete/>
+                        </IconButton>
                     </Paper>
                     <MobileStepper
                         steps={selectedImages.length}

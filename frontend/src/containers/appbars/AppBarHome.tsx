@@ -27,7 +27,7 @@ import {
     ROUTE_PREMIUM,
     ROUTE_PROFILE,
     ROUTE_REGISTER_INTERESTS,
-    ROUTE_SETTINGS
+    ROUTE_SETTINGS, ROUTE_SIGN_IN
 } from "../../App";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -89,12 +89,10 @@ const menuIcons: { [key: string]: React.ReactElement } = {
 };
 
 interface AppBarHomeProps {
-    contacts: Contact[] | null;
-    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
-    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
+
 }
 
-const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
+const AppBarHome: React.FC<AppBarHomeProps> = () => {
     const {loggedUser, logout} = useLoggedUser();
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
@@ -321,6 +319,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                                                                 break;
                                                             case 'Sair':
                                                                 logout();
+                                                                history(ROUTE_SIGN_IN);
                                                                 break;
                                                             default:
                                                                 break;
@@ -345,8 +344,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = ({contacts, setContacts, updateCon
                 <Grid item md={10} sm={11} xs={12} sx={{height: '75vh'}}>
                     <CustomTabPanel value={value} index={0}>
                         {/*<NotificationsMenu></NotificationsMenu>*/}
-                        <ContactPage contacts={contacts} setContacts={setContacts}
-                                     updateContactsWithMessage={updateContactsWithMessage}/>
+                        <ContactPage/>
                     </CustomTabPanel>
                 </Grid>
             </Grid>

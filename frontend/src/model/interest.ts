@@ -32,7 +32,7 @@ export type InterestDto = {
     subGenresIdList: Array<number>;
     platformsIdList: Array<number>;
     ageRatingId: undefined | string | number;
-
+    images: File[];
 }
 
 

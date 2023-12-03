@@ -14,6 +14,7 @@ const ChatTest2: React.FC = () => {
     const [client, setClient] = useState<Client | null>(null);
     const [message, setMessage] = useState<Message>(
         {senderId: 0, receiverId: 0, hashedText: '', messageType: "TEXT", viewed: false});
+    const [text, setText] = useState<string>("");
     const [receivedMessages, setReceivedMessages] = useState<Message[]>([]);
 
     useEffect(() => {
@@ -57,11 +58,11 @@ const ChatTest2: React.FC = () => {
             client.publish({
                 destination: `/app/send-private-message`, body: JSON.stringify({
                     senderId: 2,
-                    receiverId: 2,
+                    receiverId: 4,
                     messageType: "TEXT",
                     viewed: false,
                     hashedText: "OLÁ",
-                    receiverUsername: "liceki"
+                    receiverUsername: "jorge"
                 })
             });
         }
@@ -69,7 +70,7 @@ const ChatTest2: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Typography variant="h4">ChatTest2 Privado</Typography>
+            <Typography variant="h4">LICEKI</Typography>
             <TextField
                 name="from"
                 label="De"

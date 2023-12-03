@@ -11,6 +11,7 @@ import ContactList from "../containers/contact/ContactList";
 import {Contact} from "../model/contact";
 import {Message, MESSAGE_TYPE} from "../model/message";
 import Chat from "../containers/contact/Chat";
+import {useContact} from "../contexts/ContactsContext";
 
 interface TabPanelProps {
     selectedContactId: bigint;

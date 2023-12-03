@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,6 +85,9 @@ public class InterestService {
         List<InterestImage> images = new ArrayList<>();
 
 
+        interestToSave = interestRepository.save(interestToSave);
+
+        Interest finalInterestToSave = interestToSave;
         interestDto.getImages().forEach((i) -> {
             try {
                 InterestImage image = new InterestImage();
@@ -91,6 +95,8 @@ public class InterestService {
                 image.setName(i.getName());
                 image.setContentType(i.getContentType());
                 image.setOriginalName(i.getOriginalFilename());
+                image = interestImageRepository.save(image);
+                image.setInterest(finalInterestToSave);
                 image = interestImageRepository.save(image);
                 images.add(image);
                 
@@ -105,6 +111,7 @@ public class InterestService {
         return interestRepository.save(interestToSave);
     }
 
+    @Transactional
     public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
         Specification<Interest> searchSpecification =
                 filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);

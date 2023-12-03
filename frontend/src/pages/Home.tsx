@@ -14,12 +14,10 @@ export const removeProfilePicture = () => {
 }
 
 interface HomeProps {
-    contacts: Contact[] | null;
-    setContacts: React.Dispatch<React.SetStateAction<Contact[] | null>>;
-    updateContactsWithMessage: (contactId: bigint, message: Message) => void;
+
 }
 
-const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMessage}) => {
+const Home: React.FC<HomeProps> = () => {
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
@@ -31,9 +29,9 @@ const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMes
         if (!userJSON) {
             history(ROUTE_SIGN_IN);
         } else {
-            const user = JSON.parse(userJSON);
-            setLoggedUser(user);
-            setProfileRoute(`/perfil/${user.username}`);
+            /*const user = JSON.parse(userJSON);
+            setLoggedUser(user);*/
+            setProfileRoute(`/perfil/${loggedUser.username}`);
         }
     }, []);
 
@@ -44,7 +42,7 @@ const Home: React.FC<HomeProps> = ({contacts, setContacts, updateContactsWithMes
     if (!loggedUser) return null;
 
     return (
-        <AppBarHome contacts={contacts} setContacts={setContacts} updateContactsWithMessage={updateContactsWithMessage}></AppBarHome>
+        <AppBarHome></AppBarHome>
 
 
         /*<Container component="main" maxWidth="xs">

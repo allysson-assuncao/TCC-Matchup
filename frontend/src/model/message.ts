@@ -5,6 +5,7 @@ export const MESSAGE_TYPE = {
 }
 
 export interface Message {
+    receiverContactId: bigint;
     id?: bigint;
     date: Date;
     senderId: bigint;

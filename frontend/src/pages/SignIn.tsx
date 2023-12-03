@@ -31,8 +31,9 @@ interface SignInProps {
     setContacts?: React.Dispatch<React.SetStateAction<Contact[] | null>>;
 }
 
-const SignIn: React.FC<SignInProps> = ({setContacts}) => {
-    const {loggedUser, setLoggedUser} = useLoggedUser();
+const SignIn: React.FC = () => {
+    const {setContacts} = useContact();
+    const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const { theme: mode } = useCustomTheme();
     const theme = getTheme(mode);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -84,20 +85,22 @@ const SignIn: React.FC<SignInProps> = ({setContacts}) => {
                 userData = await login(isEmail, values.emailOrUsername, values.password, values.remember);
                 console.log(userData);
             }
+
+            formikProps.setSubmitting(false);
+            logout();
+            //setIsLoggedIn(true);
+            await setLoggedUser(userData);
+
+            localStorage.removeItem('profilePicture');
+            //await localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
+            await fetchContacts(userData);
+            history(ROUTE_HOME);
+
         } catch (error) {
             setValid(false);
             return;
         }
 
-        formikProps.setSubmitting(false);
-        localStorage.removeItem('user');
-        setIsLoggedIn(true);
-        setLoggedUser(userData);
-
-        localStorage.removeItem('profilePicture');
-        localStorage.setItem("profilePicture", await getProfilePictureByUserId(loggedUser ? loggedUser.id : BigInt(-1), 800, 800));
-        history(ROUTE_HOME);
-        fetchContacts();
 
     }
 

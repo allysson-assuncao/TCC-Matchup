@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import {
     getAllInterestDependencies,
-    registerAll,
+    registerAll, registerInterest, registerInterestDependency,
 } from "../api/interest_requests/registerInterest";
 import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
@@ -80,12 +80,13 @@ const RegisterInterests: React.FC = () => {
             ageRatingId: Number(selectedAgeRating?.id),
             subGenresIdList: selectedGenres.map(o => Number(o.id)),
             platformsIdList: selectedPlatforms.map(o => Number(o.id)),
+            images: images
         }
 
 
         console.log(interest);
         alert(interest)
-        await registerAll('interest', interest);
+        await registerInterest(interest);
 
     };
 
@@ -258,7 +259,10 @@ const RegisterInterests: React.FC = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <ImageUploader></ImageUploader>
+
+                    <Grid item xs={6} justifyContent={"center"}>
+                        <ImageUploader setImages={setImages} ></ImageUploader>
+                    </Grid>
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth variant="contained" color="primary"
                                 onClick={() => handleFormSubmit()}>
