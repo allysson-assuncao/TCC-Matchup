@@ -12,7 +12,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     Optional<Contact> findById(long id);
 
-    Optional<Long> findContactIdByUser1IdAndUser2Id(long user1Id, long user2Id);
+    Optional<Contact> findByUser1IdAndUser2Id(long user1Id, long user2Id);
 
     Optional<List<Contact>> findContactsByUser1Id(long user1Id);
 

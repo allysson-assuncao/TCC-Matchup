@@ -9,6 +9,7 @@ import com.matchup.repository.ContactRepository;
 import com.matchup.repository.UserRepository;
 import com.matchup.repository.image.MessageImageRepository;
 import com.matchup.repository.message.*;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -138,6 +139,7 @@ public class MessageService {
         return messageDto;
     }*/
 
+    @Transactional
     public MessageDto sendTextMessage(MessageDto messageDto, User receiver, User sender) {
         TextMessage textMessage = new TextMessage();
         textMessage.setDate(LocalDateTime.now());
@@ -148,10 +150,11 @@ public class MessageService {
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
         messageDto.setReceiverContactId(
-                contactRepository.findContactIdByUser1IdAndUser2Id(messageDto.getReceiverId(), messageDto.getSenderId()).get());
+                contactRepository.findByUser1IdAndUser2Id(messageDto.getReceiverId(), messageDto.getSenderId()).get().getId());
         return messageDto;
     }
 
+    @Transactional
     public List<MessageDto> getMessageListByLastMessageDate(LocalDateTime lastMessageDate, long user1Id, long user2Id) {
         List<Message> messageList;
         List<MessageDto> messageDtoList = new ArrayList<>();

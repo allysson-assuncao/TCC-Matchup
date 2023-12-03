@@ -11,7 +11,6 @@ import com.matchup.model.insterest.Company;
 import com.matchup.repository.InterestRepository;
 import com.matchup.repository.image.InterestImageRepository;
 import com.matchup.repository.interest.*;
-import jakarta.transaction.Transactional;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
@@ -30,6 +30,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
+@Transactional
 public class InterestService {
 
     private final FilterSpecificationService<Interest> filterSpecificationService;
@@ -111,7 +112,7 @@ public class InterestService {
         return interestRepository.save(interestToSave);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
         Specification<Interest> searchSpecification =
                 filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);

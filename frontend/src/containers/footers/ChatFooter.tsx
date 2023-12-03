@@ -10,6 +10,8 @@ import {Contact} from "../../model/contact";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import SendIcon from '@mui/icons-material/Send';
+import {useContact} from "../../contexts/ContactsContext";
+
 /*import socket from "../../api/WebSocketService";*/
 
 
@@ -18,58 +20,25 @@ interface ChatFooterProps {
     updateContactsWithMessage: (contactId: bigint, message: Message) => void;
 }
 
-const ChatFooter: React.FC<ChatFooterProps> = ({contact, updateContactsWithMessage}) => {
+const ChatFooter: React.FC<ChatFooterProps> = ({contact}) => {
+    const {sendTextMessage} = useContact();
+
     const {theme: mode} = useCustomTheme();
     const theme = getTheme(mode);
     const [newMessage, setNewMessage] = useState('');
 
     const handleSendMessage = async () => {
         if (newMessage.trim() !== '') {
-            const message: Message = {
-                date: new Date(),
+            const message: TextMessageToBeSent = {
                 senderId: contact.user1Id,
                 receiverId: contact.user2Id,
-                viewed: false,
                 messageType: MESSAGE_TYPE.TEXT,
-                hashedImage: '',
-                hashedAudio: '',
-                hashedText: newMessage
+                hashedText: newMessage,
             };
 
-            /*updateContactsWithMessage(contact.user1Id, (await socket.emit('/app/private-message', message)));*/
-            function isMessage(obj: any): obj is Message {
-                return obj && obj.date && obj.senderId && obj.receiverId && obj.messageType;
-            }
-
-            /*socket.emit('/app/private-message', message, (response: Message) => {
-                if(isMessage(response)) {
-                    updateContactsWithMessage(contact.user1Id, response);
-                } else {
-                    console.error('A resposta não é do tipo Message');
-                }
-            });*/
-
-
-            setNewMessage('');
+            sendTextMessage(message);
         }
-    };
-
-   /* const sendTextMessage = () => {
-        if (newTextMessage.trim() !== '') {
-            const textMessageToBeSent: TextMessageToBeSent = {
-                senderId: BigInt(getUser().id),
-                receiverId: contact.user2Id,
-                messageType: MESSAGE_TYPE.TEXT,
-                hashedText: newTextMessage,
-            };
-
-
-            // Enviar a mensagem para o servidor via WebSocket
-            let variable = socket.emit('/app/chat', textMessageToBeSent);
-
-            setNewTextMessage('');
-        }
-    };*/
+    }
 
     return (
         <Box>

@@ -1,6 +1,6 @@
 import React, {createContext, useState, useContext, useEffect} from 'react';
 import {Contact} from "../model/contact";
-import {Message} from "../model/message";
+import {Message, TextMessageToBeSent} from "../model/message";
 import {getContactsByUserId} from "../api/user_requests/contactRequests";
 import {useLoggedUser} from "./UserContext";
 import {Client} from "@stomp/stompjs";
@@ -25,26 +25,26 @@ export const ContactsProvider: React.FC<ContactsProviderProps> = ({children}) =>
     const {loggedUser} = useLoggedUser();
 
     const [client, setClient] = useState<Client | null>(null);
-/*
-    const [message, setMessage] = useState<Message>({senderId: BigInt(0), receiverId: 0, hashedText: '', messageType: "TEXT", viewed: false});
-*/
+    /*
+        const [message, setMessage] = useState<Message>({senderId: BigInt(0), receiverId: 0, hashedText: '', messageType: "TEXT", viewed: false});
+    */
     const [text, setText] = useState<string>("");
     const [receivedMessages, setReceivedMessages] = useState<Message[]>([]);
 
     const updateContactsWithMessage = (contactId: bigint, message: Message) => {
         setContacts(prevContacts => {
-            if (prevContacts == null) { // @ts-ignore
-                return prevContacts.map(contact => {
-                    if (contact.id === contactId) {
-                        return {
-                            ...contact,
-                            messages: [...contact.messages, {...message}]
-                        };
-                    } else {
-                        return contact;
-                    }
-                });
-            }
+            // @ts-ignore
+            return prevContacts.map(contact => {
+                if (contact.id === contactId) {
+                    return {
+                        ...contact,
+                        messages: [...contact.messages, {...message}]
+                    };
+                } else {
+                    return contact;
+                }
+            });
+
         });
     };
 
@@ -82,6 +82,14 @@ export const ContactsProvider: React.FC<ContactsProviderProps> = ({children}) =>
         setClient(client);
     }
 
+    const sendTextMessage = (msg: TextMessageToBeSent) => {
+        if (!client) return;
+        let ooo = client.publish({
+            destination: `/app/send-private-message`, body: JSON.stringify(msg)
+        });
+        updateContactsWithMessage(-1, ooo);
+    }
+
     const fetchContacts = async () => {
         if (!loggedUser) {
             console.error("Erro: Usuário não está logado.");
@@ -90,15 +98,15 @@ export const ContactsProvider: React.FC<ContactsProviderProps> = ({children}) =>
         try {
             const fetchedContacts = await getContactsByUserId(loggedUser.id);
             await setContacts(fetchedContacts);
+            subscribeUser();
             return true;
         } catch (error) {
             console.error("Erro ao buscar CONTATOS:", error);
         }
-        subscribeUser();
     };
 
     useEffect(() => {
-        if(contacts){
+        if (contacts) {
             sessionStorage.setItem('contacts', JSON.stringify(contacts));
         }
         }, [contacts]);
