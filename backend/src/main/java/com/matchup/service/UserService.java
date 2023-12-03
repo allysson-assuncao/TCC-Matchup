@@ -1,7 +1,6 @@
 package com.matchup.service;
 
 /*import com.matchup.config.JavaMailSender;*/
-import com.matchup.dto.InterestDto;
 import com.matchup.dto.UserDto;
 import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
