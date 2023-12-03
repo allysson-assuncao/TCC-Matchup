@@ -147,6 +147,8 @@ public class MessageService {
         TextMessage savedTextMessage = textMessageRepository.save(textMessage);
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
+        messageDto.setReceiverContactId(
+                contactRepository.findContactIdByUser1IdAndUser2Id(messageDto.getReceiverId(), messageDto.getSenderId()).get());
         return messageDto;
     }
 

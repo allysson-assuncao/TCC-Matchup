@@ -67,9 +67,9 @@ public class MessageController {
     @MessageMapping("/send-private-message")
     /*@SendToUser("/queue/private-messages")*/
     public MessageDto o(MessageDto m) {
-        System.out.println("olá: " + m.getReceiverUsername());
+        m = messageService.sendMessage(m);
         simpMessagingTemplate.convertAndSendToUser(
-                m.getReceiverUsername(), "/queue/private-messages", m);
+                m.getReceiverId()+"", "/queue/private-messages", m);
         return m;
 
     }

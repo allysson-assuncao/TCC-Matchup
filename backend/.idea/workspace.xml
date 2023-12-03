@@ -5,25 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/InterestImage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/src/components/fields/ImageUploader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/src/contexts/ContactsContext.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/InterestImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/InterestImage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/ChatTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/ChatTest.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/fields/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/fields/ImageUploader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/contexts/UserContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/contexts/UserContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/model/interest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/interest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" afterDir="false" />
     </list>
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,44 +69,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="5" end1="5" start2="6" end2="10" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="10" end1="10" start2="15" end2="19" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="63" end1="197" start2="72" end2="74" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="239" end1="256" start2="116" end2="116" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java">
-      <ranges>
-        <range start1="6" end1="6" start2="6" end2="8" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="9" end1="9" start2="11" end2="12" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="10" end1="10" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="19" end1="19" start2="23" end2="25" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="36" end1="36" start2="42" end2="43" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="38" end1="39" start2="45" end2="46" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="47" end1="47" start2="54" end2="55" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="50" end1="52" start2="58" end2="60" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="75" end1="75" start2="83" end2="104" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="78" end1="79" start2="107" end2="108" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="85" end1="86" start2="114" end2="115" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="89" end1="90" start2="118" end2="119" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="93" end1="94" start2="122" end2="123" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="97" end1="98" start2="126" end2="127" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="101" end1="102" start2="130" end2="131" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="105" end1="106" start2="134" end2="135" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="110" end1="111" start2="139" end2="140" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="114" end1="115" start2="143" end2="144" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="118" end1="119" start2="147" end2="148" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="122" end1="123" start2="151" end2="152" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="126" end1="127" start2="155" end2="156" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="130" end1="131" start2="159" end2="160" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="134" end1="135" start2="163" end2="164" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -131,7 +103,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\0063400\\AppData\\Local\\JetBrains\\IntelliJ IDEA 2023.2.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/462/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -227,6 +199,7 @@
       <workItem from="1700849790877" duration="2685000" />
       <workItem from="1701102100115" duration="4304000" />
       <workItem from="1701447393739" duration="4742000" />
+      <workItem from="1701610814006" duration="2453000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
