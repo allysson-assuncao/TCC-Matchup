@@ -11,6 +11,7 @@ interface ContactContextData {
     updateContactsWithMessage: (contactId: bigint, message: Message) => void;
     fetchContacts: () => void;
     subscribeUser: () => void;
+    sendTextMessage: (msg: TextMessageToBeSent) => void;
 }
 
 const ContactContext = createContext<ContactContextData>({} as ContactContextData);
@@ -109,10 +110,11 @@ export const ContactsProvider: React.FC<ContactsProviderProps> = ({children}) =>
         if (contacts) {
             sessionStorage.setItem('contacts', JSON.stringify(contacts));
         }
-        }, [contacts]);
+    }, [contacts]);
 
     return (
-        <ContactContext.Provider value={{contacts, setContacts, updateContactsWithMessage, fetchContacts, subscribeUser}}>
+        <ContactContext.Provider
+            value={{contacts, setContacts, updateContactsWithMessage, fetchContacts, subscribeUser, sendTextMessage}}>
             {children}
         </ContactContext.Provider>
     );

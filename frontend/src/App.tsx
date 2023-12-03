@@ -87,7 +87,7 @@ const App: React.FC = () => {
             console.error("Erro ao buscar CONTATOS:", error);
         }
     };*/
-    
+
     /*useEffect(() => {
         window.addEventListener('beforeunload', () => /!*sessionStorage.setItem('contacts', JSON.stringify(contacts)*!/alert("HELLOOO"));
 
@@ -108,13 +108,13 @@ const App: React.FC = () => {
     }, []);*/
 
     useEffect(() => {
-        if (!sessionStorage.getItem('hasRunBefore')  && loggedUser) {
+        if (/*!sessionStorage.getItem('hasRunBefore')  && */loggedUser) {
             fetchContacts();
 
             console.log(contacts);
             sessionStorage.setItem('hasRunBefore', 'true');
             sessionStorage.setItem('contacts', JSON.parse(contacts + ''));
-        }else{
+        }else if (loggedUser) {
             setContacts(JSON.parse(sessionStorage.getItem('contacts') + ''));
             subscribeUser();
         }
