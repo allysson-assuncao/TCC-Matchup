@@ -22,8 +22,8 @@ import {
 
 import { useTheme } from "@mui/material/styles";
 import { faker } from "@faker-js/faker";
-import ThemeDialog from "../../../sections/dashboard/Settings/ThemeDialog";
-import ShortcutDialog from "../../../sections/dashboard/Settings/ShortcutDialog";
+import ThemeDialog from "../../../sections/Dashboard/Settings/ThemeDialog";
+import ShortcutDialog from "../../../sections/Dashboard/Settings/ShortcutDialog";
 
 const Settings = () => {
   const theme = useTheme();

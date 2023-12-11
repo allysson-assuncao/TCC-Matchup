@@ -7,25 +7,26 @@ import {S3_BUCKET_NAME} from "../../config";
 // ----------------------------------------------------------------------
 
 const initialState = {
-  user: {},
-  sideBar: {
-    open: false,
-    type: "CONTACT", // can be CONTACT, STARRED, SHARED
-  },
-  isLoggedIn: true,
-  tab: 0, // [0, 1, 2, 3]
-  snackbar: {
-    open: null,
-    severity: null,
-    message: null,
-  },
-  users: [], // all users of app who are not friends and not requested yet
-  all_users: [],
-  friends: [], // all friends
-  friendRequests: [], // all friend requests
-  chat_type: null,
-  room_id: null,
-  call_logs: [],
+    user: {},
+    sideBar: {
+        open: false,
+        type: "CONTACT", // can be CONTACT, STARRED, SHARED
+    },
+    profilePicture: null,
+    isLoggedIn: true,
+    tab: 0, // [0, 1, 2, 3]
+    snackbar: {
+        open: null,
+        severity: null,
+        message: null,
+    },
+    users: [], // all users of app who are not friends and not requested yet
+    all_users: [],
+    friends: [], // all friends
+    friendRequests: [], // all friend requests
+    chat_type: null,
+    room_id: null,
+    call_logs: [],
 };
 
 const slice = createSlice({
@@ -303,6 +304,41 @@ export const UpdateUserProfile = (formValues) => {
             .then((response) => {
                 console.log(response);
                 dispatch(slice.actions.updateUser({user: response.data.data}));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
+export const FetchProfilePicture = (userId, width, height) => {
+    return async (dispatch, getState) => {
+
+        axios
+            .get(
+                `http://localhost:8080/api/get/user/profile-picture/by/id/${userId}?width=${width}&height=${height}`,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${getState().auth.token}`,
+                    },
+                }
+            )
+            .then((response) => {
+                console.log(response);
+                dispatch(slice.actions.updateProfilePicture({profilePicture: new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            if (typeof reader.result === 'string') {
+                                resolve(`data:image/png;base64,${reader.result.split(',')[1]}`);
+                            } else {
+                                reject('Erro ao converter a imagem para Base64');
+                            }
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(response.data);
+                    })}));
             })
             .catch((err) => {
                 console.log(err);

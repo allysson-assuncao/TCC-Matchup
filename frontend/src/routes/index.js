@@ -42,6 +42,7 @@ export default function Router() {
         { path: "chats", element: <Chats /> },
         { path: "contact", element: <Contact /> },
         { path: "profile", element: <Profile /> },
+        { path: "old-profile", element: <GeneralInfo/> },
 
         {path: "call", element: <CallPage />},
         
@@ -69,6 +70,7 @@ const Page404 = Loadable(lazy(() => import("../pages/Page404")));
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")));
 const VerifyPage = Loadable(lazy(() => import("../pages/auth/Verify")));
 const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
+const GeneralInfo = Loadable(lazy(() => import("../containers/options/GeneralInfo")));
 const ResetPasswordPage = Loadable(
   lazy(() => import("../pages/auth/ResetPassword"))
 );

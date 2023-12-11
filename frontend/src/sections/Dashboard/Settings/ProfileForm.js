@@ -23,6 +23,8 @@ const ProfileForm = () => {
     avatar: Yup.string().required("Avatar is required").nullable(true),
   });
 
+  console.log(user);
+  console.log(user?.name);
   const defaultValues = {
     name: user?.name,
     bio: user?.bio,

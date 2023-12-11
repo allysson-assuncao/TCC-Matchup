@@ -35,6 +35,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -314,6 +315,7 @@ public class UserService {
                 .build();
     }
 
+    @Transactional
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         boolean isEmail = request.getEmail() != null;
 
