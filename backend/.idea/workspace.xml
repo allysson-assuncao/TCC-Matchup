@@ -4,36 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest">
-      <change afterPath="$PROJECT_DIR$/../frontend/src/contexts/ContactsContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MessageDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/InterestImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/image/InterestImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/ChatTest.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/ChatTest.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/interest_requests/registerInterest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Interest/InterestCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/fields/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/fields/ImageUploader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/appbars/AppBarHome.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/contact/Chat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/contexts/UserContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/contexts/UserContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/model/interest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/interest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/ContactPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/RegisterInterests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/SignIn.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest" />
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/ContactRepository.java" afterDir="false" />
-    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes" />
+    <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,6 +174,7 @@
       <workItem from="1701102100115" duration="4304000" />
       <workItem from="1701447393739" duration="4742000" />
       <workItem from="1701610814006" duration="2453000" />
+      <workItem from="1702289625450" duration="415000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
