@@ -23,7 +23,7 @@ interface InterestFiltersProps {
 
 const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, setFilteredInterests}) => {
 
-        const {theme: mode} = useCustomTheme();
+    const {theme: mode} = useCustomTheme();
         const theme = getTheme(mode);
 
         const [name, setName] = useState<string>("");
@@ -365,7 +365,6 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({filteredInterests, set
                 </Grid>
             </Box>
         );
-    }
-;
+};
 
 export default InterestFilters;
