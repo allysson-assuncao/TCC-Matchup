@@ -36,7 +36,6 @@ public class UserDto {
     private List<Long> sentMessages;
     private List<Long> receivedMessages;
     private UserAccess access;
-    private String description;
 
 
     private long addressId;
