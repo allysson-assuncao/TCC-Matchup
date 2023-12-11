@@ -8,7 +8,7 @@ import MuiAlert from "@mui/material/Alert";
 import ThemeSettings from "./components/settings";
 import ThemeProvider from "./theme";
 import Router from "./routes";
-import { closeSnackBar } from "./redux/slices/app";
+import {closeSnackBar, FetchUserProfile} from "./redux/slices/app";
 import { socket } from "./socket";
 
 const vertical = "bottom";
@@ -20,6 +20,10 @@ const Alert = React.forwardRef((props, ref) => (
 
 function App() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(FetchUserProfile());
+  }, []);
 
   const { severity, message, open } = useSelector(
     (state) => state.app.snackbar

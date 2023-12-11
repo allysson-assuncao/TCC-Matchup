@@ -310,28 +310,31 @@ public class UserService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .userId(user.getId())
                 .build();
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        if(request.getEmail() == null){
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
-                            request.getPassword()
-                    )
-            );
-        }else{
+        boolean isEmail = request.getEmail() != null;
+
+        User user;
+        if(isEmail){
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(),
-                            request.getPassword()
+                            request.getRawPassword()
                     )
             );
+            user = userRepository.findByEmail(request.getEmail()).get();
+        }else {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            request.getUsername(),
+                            request.getRawPassword()
+                    )
+            );
+            user = userRepository.findByUsername(request.getUsername()).get();
         }
-
-        var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -339,6 +342,7 @@ public class UserService {
         return AuthenticationResponse.builder()
                 .accessToken(jwtToken)
                 .refreshToken(refreshToken)
+                .userId(user.getId())
                 .build();
     }
 
@@ -392,6 +396,10 @@ public class UserService {
         }
     }
 
-
+    public User getUserByUsername(String username){
+        Optional<User> userOp = userRepository.findByUsername(username);
+        if(userOp.isEmpty()) return null;
+        return userOp.get();
+    }
 
 }

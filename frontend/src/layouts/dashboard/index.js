@@ -36,9 +36,7 @@ const DashboardLayout = () => {
     (state) => state.conversation.direct_chat
   );
 
-  useEffect(() => {
-    dispatch(FetchUserProfile());
-  }, []);
+
   
 
   const handleCloseAudioDialog = () => {

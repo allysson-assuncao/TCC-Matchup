@@ -124,12 +124,11 @@ export function LoginUser(formValues) {
     // Make API call here
 
     dispatch(slice.actions.updateIsLoading({ isLoading: true, error: false }));
-
     await axios
       .post(
-        "/auth/login",
+        "http://localhost:8080/api/auth/authenticate",
         {
-          ...formValues,
+          ...formValues
         },
         {
           headers: {
@@ -177,7 +176,7 @@ export function RegisterUser(formValues) {
 
     await axios
       .post(
-        "/auth/register",
+        "http://localhost:8080/api/auth/register",
         {
           ...formValues,
         },

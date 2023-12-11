@@ -4,24 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="backend commit after adding the controller for linking a user to an interest">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="changing the whole authentication logic">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/deprecated/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/deprecated/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AuthenticationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src2/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/auth/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Call.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Chats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Conversation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/GeneralApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/GeneralApp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Group.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Group.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Reworking Image making message classes">
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="changing the whole authentication logic">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/deprecated/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Address.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +49,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -61,43 +78,29 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java">
       <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="6" end1="6" start2="7" end2="8" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="11" end1="11" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="12" end1="12" start2="15" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="15" end1="15" start2="19" end2="21" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="21" end1="21" start2="27" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="27" end1="27" start2="34" end2="45" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="35" end1="35" start2="53" end2="55" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="36" end1="40" start2="56" end2="57" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="41" end1="42" start2="58" end2="59" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="48" end1="49" start2="65" end2="75" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="50" end1="53" start2="76" end2="76" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="68" end1="72" start2="91" end2="91" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="49" end1="50" start2="49" end2="50" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="85" end1="86" start2="85" end2="85" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="90" end1="94" start2="89" end2="89" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
       </ranges>
     </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/deprecated/LoginController.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java">
       <ranges>
-        <range start1="0" end1="1" start2="0" end2="1" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="3" end1="3" start2="3" end2="4" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="4" end1="4" start2="5" end2="7" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="10" end1="10" start2="13" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="23" end1="23" start2="27" end2="28" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="15" end1="15" start2="15" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="25" end1="26" start2="26" end2="26" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="31" end1="31" start2="31" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
       <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="4" end1="4" start2="5" end2="9" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="13" end1="13" start2="18" end2="21" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="14" end1="14" start2="22" end2="25" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="40" end1="40" start2="51" end2="57" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="41" end1="42" start2="58" end2="59" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="43" end1="44" start2="60" end2="60" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="45" end1="46" start2="61" end2="62" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="48" end1="48" start2="64" end2="68" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="49" end1="49" start2="69" end2="70" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="254" end1="254" start2="275" end2="393" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="312" end1="312" start2="312" end2="313" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="316" end1="317" start2="317" end2="321" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="319" end1="321" start2="323" end2="325" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="323" end1="324" start2="327" end2="329" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="326" end1="328" start2="331" end2="333" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="330" end1="330" start2="335" end2="336" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="331" end1="334" start2="337" end2="337" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="341" end1="341" start2="344" end2="345" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="394" end1="395" start2="398" end2="403" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
       </ranges>
     </file>
   </component>
@@ -145,11 +148,11 @@
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\config" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\resources" />
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\controller" />
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\dto\auth" />
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\config" />
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\enums" />
-      <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\repository" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.matchup.repository" />
@@ -577,7 +580,28 @@
       <option name="project" value="LOCAL" />
       <updated>1701110282252</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="changing the whole authentication logic">
+      <created>1702303687393</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1702303687393</updated>
+    </task>
+    <task id="LOCAL-00045" summary="changing the whole authentication logic">
+      <created>1702303702712</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1702303702712</updated>
+    </task>
+    <task id="LOCAL-00046" summary="changing the whole authentication logic">
+      <created>1702303716304</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1702303716304</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,6 +630,7 @@
     <MESSAGE value="implementing lots of changes in the contact feature, including the methods to receive the requests to send message and get last messages" />
     <MESSAGE value="Interest Filters working beautifully (with OR, AND, etc)" />
     <MESSAGE value="backend commit after adding the controller for linking a user to an interest" />
-    <option name="LAST_COMMIT_MESSAGE" value="backend commit after adding the controller for linking a user to an interest" />
+    <MESSAGE value="changing the whole authentication logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="changing the whole authentication logic" />
   </component>
 </project>

@@ -14,18 +14,19 @@ import { AWS_S3_REGION, S3_BUCKET_NAME } from "../../../config";
 const ProfileForm = () => {
   const dispatch = useDispatch();
   const [file, setFile] = useState();
-  const { user } = useSelector((state) => state.app);
+  const { user, profilePicture } = useSelector((state) => state.app);
+
 
   const ProfileSchema = Yup.object().shape({
-    firstName: Yup.string().required("Name is required"),
-    about: Yup.string().required("About is required"),
+    name: Yup.string().required("Name is required"),
+    bio: Yup.string().required("About is required"),
     avatar: Yup.string().required("Avatar is required").nullable(true),
   });
 
   const defaultValues = {
-    firstName: user?.firstName,
-    about: user?.about,
-    avatar: `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`,
+    name: user?.name,
+    bio: user?.bio,
+    avatar: profilePicture,
   };
 
   const methods = useForm({
@@ -50,11 +51,19 @@ const ProfileForm = () => {
       console.log("DATA", data);
       dispatch(
         UpdateUserProfile({
-          firstName: data?.firstName,
-          about: data?.about,
+          name: data?.name,
+          about: data?.bio,
           avatar: file,
         })
       );
+      dispatch(
+          UpdateUserProfile({
+            name: data?.name,
+            about: data?.bio,
+            avatar: file,
+          })
+      );
+
     } catch (error) {
       console.error(error);
     }
@@ -84,10 +93,10 @@ const ProfileForm = () => {
 
         <RHFTextField
           helperText={"This name is visible to your contacts"}
-          name="firstName"
-          label="First Name"
+          name="name"
+          label="Name"
         />
-        <RHFTextField multiline rows={4} name="about" label="About" />
+        <RHFTextField multiline rows={4} name="bio" label="Bio" />
 
         <Stack direction={"row"} justifyContent="end">
           <LoadingButton
