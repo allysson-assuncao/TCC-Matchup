@@ -1,4 +1,4 @@
-package com.matchup.controller;
+package com.matchup.controller.deprecated;
 
 import com.matchup.dto.UserDto;
 import com.matchup.model.Address;

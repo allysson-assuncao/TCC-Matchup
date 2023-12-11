@@ -1,4 +1,4 @@
-package com.matchup.controller;
+package com.matchup.controller.deprecated;
 
 import com.matchup.dto.UserDto;
 import com.matchup.model.User;
@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.matchup.service.UserService;
 
+import java.io.IOException;
 import java.util.Optional;
 
 @RestController
