@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/frontend/node_modules
 /.pnp
 .pnp.js
 
@@ -9,7 +10,6 @@
 .png
 .jpg
 .jpeg
-.env
 /img
 /src/img
 /frontend/src/img
@@ -18,7 +18,7 @@
 /coverage
 
 # production
-# /build
+/build
 
 # misc
 .DS_Store
