@@ -22,12 +22,13 @@ const Alert = React.forwardRef((props, ref) => (
 
 function App() {
     const dispatch = useDispatch();
-    const { user, profilePicture } = useSelector((state) => state.app);
+    const {user, profilePicture} = useSelector((state) => state.app);
 
-    async function fetch (){
+    async function fetch() {
         await dispatch(FetchUserProfile());
         await dispatch(FetchProfilePicture(user?.id, 800, 800));
     }
+
     useEffect(() => {
         fetch();
     }, []);
