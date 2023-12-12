@@ -4,42 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="changing the whole authentication logic">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/auth/AuthenticationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src2/main/resources/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Call.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Call.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Chats.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Chats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Conversation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/GeneralApp.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/GeneralApp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Group.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Group.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Settings/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" afterDir="false" />
-    </list>
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="changing the whole authentication logic" />
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="a997d091-d57c-4564-aa89-23fd9d581a67" name="Changes by Allysson" comment="Changing some Message stuff -&gt; There's no Text model anymore ;-)" />
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="changing the whole authentication logic">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-    </list>
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="changing the whole authentication logic" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -75,35 +43,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/config/SecurityConfiguration.java">
-      <ranges>
-        <range start1="49" end1="50" start2="49" end2="50" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="85" end1="86" start2="85" end2="85" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="90" end1="94" start2="89" end2="89" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/config/JwtAuthenticationFilter.java">
-      <ranges>
-        <range start1="15" end1="15" start2="15" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="25" end1="26" start2="26" end2="26" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="31" end1="31" start2="31" end2="38" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
-      <ranges>
-        <range start1="312" end1="312" start2="312" end2="313" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-        <range start1="316" end1="317" start2="317" end2="321" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="319" end1="321" start2="323" end2="325" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="323" end1="324" start2="327" end2="329" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="326" end1="328" start2="331" end2="333" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="330" end1="330" start2="335" end2="336" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="331" end1="334" start2="337" end2="337" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="341" end1="341" start2="344" end2="345" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="394" end1="395" start2="398" end2="403" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
-      </ranges>
-    </file>
-  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -119,30 +58,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "openjdk-20",
-    "last_opened_file_path": "C:/Users/0063400/Downloads/TCC-Matchup/backend/src/main/java/com/matchup/config",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "5682d7df48f8a92df6c1c707a89aa0b0",
-    "ts.external.directory.path": "/snap/intellij-idea-ultimate/462/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-20&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/0063400/Downloads/TCC-Matchup/backend/src/main/java/com/matchup/config&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/462/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\0063400\Downloads\TCC-Matchup\backend\src\main\java\com\matchup\config" />
@@ -632,5 +571,16 @@
     <MESSAGE value="backend commit after adding the controller for linking a user to an interest" />
     <MESSAGE value="changing the whole authentication logic" />
     <option name="LAST_COMMIT_MESSAGE" value="changing the whole authentication logic" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java</url>
+          <line>307</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
