@@ -8,15 +8,13 @@ import {
 } from '@mui/material';
 import {UpdateUserPayload, User} from "../../model/user";
 
-import {updateUserData} from "../../api/user_requests/updateUserData";
-import {useCustomTheme} from "../../contexts/CustomThemeContext";
-import getTheme from "../../theme";
 import {Field, FieldProps, Form, Formik} from "formik";
 import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME, ROUTE_PROFILE} from "../../App";
+import {ROUTE_HOME, ROUTE_PROFILE} from "../../App2";
 import {validateUpdateUserData} from "../../utils/validation/UserValidation";
 import {useLoggedUser} from "../../contexts/UserContext";
+import {updateUserData} from "../../api/user_requests/updateUserData";
 
 interface GeneralInfoProps {
     fromRegister: boolean
@@ -24,9 +22,7 @@ interface GeneralInfoProps {
 
 const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
     const {loggedUser, setLoggedUser} = useLoggedUser();
-    const {theme: mode} = useCustomTheme();
     const history = useNavigate();
-    const theme = getTheme(mode);
     const [birthday, setBirthday] = useState("");
     const [image, setImage] = useState(localStorage.getItem('profilePicture')+"");
     const [profilePicture, setProfilePicture] = useState(undefined);
@@ -120,7 +116,7 @@ const GeneralInfo: React.FC<GeneralInfoProps> = ({fromRegister}) => {
                         const schema = validateUpdateUserData(loggedUser);
                         return schema.validate(values, { abortEarly: false })
                             .then(() => { return {}; })
-                            .catch((err) => {
+                            .catch((err: { errors: any[]; inner: any[]; }) => {
                                 if (err instanceof Yup.ValidationError) {
                                     return err.errors.reduce((errors: {[key: string]: string}, error) => {
                                         const path = err.inner.find((e) => e.message === error)?.path;

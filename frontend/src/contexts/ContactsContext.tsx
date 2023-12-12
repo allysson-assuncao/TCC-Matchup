@@ -88,7 +88,7 @@ export const ContactsProvider: React.FC<ContactsProviderProps> = ({children}) =>
         let ooo = client.publish({
             destination: `/app/send-private-message`, body: JSON.stringify(msg)
         });
-        updateContactsWithMessage(-1, ooo);
+        /*updateContactsWithMessage(BigInt(-1), ooo);*/
     }
 
     const fetchContacts = async () => {
