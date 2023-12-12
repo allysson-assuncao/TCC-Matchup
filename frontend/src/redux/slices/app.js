@@ -292,8 +292,8 @@ export const UpdateUserProfile = (formValues) => {
         console.log(getState().auth.token);
         axios
             .patch(
-                "/user/update-me",
-                {...formValues, avatar: key},
+                "http://localhost:8080/api/update/user",
+                {...formValues},
                 {
                     headers: {
                         "Content-Type": "multipart/form-data",

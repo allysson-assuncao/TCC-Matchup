@@ -96,12 +96,16 @@ const ProfileForm = () => {
             <Stack spacing={4}>
                 <RHFUploadAvatar name="profilePicture" maxSize={3145728} onDrop={handleDrop}/>
 
-        <RHFTextField
-          helperText={"This name is visible to your contacts"}
-          name="name"
-          label="Name"
-        />
-        <RHFTextField multiline rows={4} name="bio" label="Bio" />
+                <RHFTextField
+                    helperText={"This username is visible to your contacts"}
+                    name="username"
+                    label="Name"
+                />
+                <RHFTextField
+                    name="cellphoneNumber"
+                    label="Número de Celular"
+                />
+                <RHFTextField multiline rows={4} name="bio" label="Bio"/>
 
                 <Stack direction={"row"} justifyContent="end">
                     <LoadingButton
