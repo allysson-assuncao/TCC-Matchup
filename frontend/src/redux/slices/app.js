@@ -265,7 +265,7 @@ export const FetchUserProfile = () => {
 };
 export const UpdateUserProfile = (formValues) => {
     return async (dispatch, getState) => {
-        const file = formValues.avatar;
+        /*const file = formValues.avatar;
 
         const key = v4();
 
@@ -287,23 +287,23 @@ export const UpdateUserProfile = (formValues) => {
             );
         } catch (error) {
             console.log(error);
-        }
+        }*/
 
-
+        console.log(getState().auth.token);
         axios
             .patch(
                 "/user/update-me",
                 {...formValues, avatar: key},
                 {
                     headers: {
-                        "Content-Type": "application/json",
+                        "Content-Type": "multipart/form-data",
                         Authorization: `Bearer ${getState().auth.token}`,
                     },
                 }
             )
             .then((response) => {
                 console.log(response);
-                dispatch(slice.actions.updateUser({user: response.data.data}));
+                dispatch(slice.actions.updateUser({user: response.data}));
             })
             .catch((err) => {
                 console.log(err);
