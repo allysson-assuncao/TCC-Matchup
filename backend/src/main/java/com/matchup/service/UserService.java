@@ -23,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -170,8 +171,8 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public User updateUser(UserDto userDto){
-        Optional<User> userToUpdateOp = userRepository.findById(userDto.getId());
+    public User updateUser(UserDto userDto, UserDetails userDetails){
+        Optional<User> userToUpdateOp = userRepository.findByUsername(userDetails.getUsername());
         if(userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
 

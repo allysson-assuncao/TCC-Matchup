@@ -9,6 +9,7 @@ import {LogoutUser} from "../../redux/slices/auth";
 import {socket} from "../../socket";
 import {useNavigate} from "react-router-dom";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
+import {ClearUser} from "../../redux/slices/app";
 
 const ProfileMenu = () => {
     const {user} = useSelector((state) => state.app);
@@ -70,6 +71,7 @@ const ProfileMenu = () => {
                                             navigate("/settings");
                                         } else {
                                             dispatch(LogoutUser());
+                                            dispatch(ClearUser());
                                             socket.emit("end", {user_id});
                                         }
                                     }}

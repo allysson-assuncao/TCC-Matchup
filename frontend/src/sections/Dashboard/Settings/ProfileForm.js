@@ -20,11 +20,10 @@ const ProfileForm = () => {
     const ProfileSchema = Yup.object().shape({
         username: Yup.string(),
         bio: Yup.string(),
-        //avatar: Yup.string().nullable(true),
+        //profilePicture: Yup.string().nullable(true),
     });
 
-    console.log(user);
-    console.log(user?.username);
+
     const defaultValues = {
         username: user?.username,
         bio: user?.bio,
@@ -51,13 +50,13 @@ const ProfileForm = () => {
     const onSubmit = async (data) => {
         try {
             //   Send API request
-            console.log("DATA", data);
+
             dispatch(
                 UpdateUserProfile({
-                    username: data?.username !== user.username ? data?.username : "",
+                    username: data?.username !== user.username ? data?.username : null,
                     bio: data?.bio !== user.bio ? data?.bio : null,
-                    cellphoneNumber: data?.cellphoneNumber !== user.cellphoneNumber ? data?.cellphoneNumber : "",
-                    //avatar: file,
+                    cellphoneNumber: data?.cellphoneNumber !== user.cellphoneNumber ? data?.cellphoneNumber : null,
+                    profilePicture: file,
 
                 })
             );

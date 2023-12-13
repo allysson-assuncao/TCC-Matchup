@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/api/update")
 public class EditUserDataController {
 
@@ -21,11 +22,10 @@ public class EditUserDataController {
         this.userService = userService;
     }
 
-    @PutMapping("/user")
-    @PostAuthorize("true")
-    public ResponseEntity<User> update(@ModelAttribute UserDto userDto) {
-        System.out.println("editing user");
-        return new ResponseEntity<>(userService.updateUser(userDto), HttpStatus.OK);
+    @PatchMapping("/user")
+    public ResponseEntity<User> update(@ModelAttribute UserDto userDto, @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println("hello");
+        return new ResponseEntity<>(userService.updateUser(userDto, userDetails), HttpStatus.OK);
     }
 
 

@@ -13,7 +13,7 @@ const initialState = {
         type: "CONTACT", // can be CONTACT, STARRED, SHARED
     },
     profilePicture: null,
-    isLoggedIn: true,
+    isLoggedIn: false,
     tab: 0, // [0, 1, 2, 3]
     snackbar: {
         open: null,
@@ -83,6 +83,13 @@ const slice = createSlice({
             state.chat_type = "individual";
             state.room_id = action.payload.room_id;
         },
+        login(state, action) {
+            state.isLoggedIn = true;
+        },
+        clearUser(state, action) {
+            state.user = null;
+            state.isLoggedIn = false;
+        },
     },
 });
 
@@ -125,6 +132,12 @@ export function UpdateSidebarType(type) {
 export function UpdateTab(tab) {
     return async (dispatch, getState) => {
         dispatch(slice.actions.updateTab(tab));
+    };
+}
+
+export function ClearUser() {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.clearUser());
     };
 }
 
@@ -265,9 +278,9 @@ export const FetchUserProfile = () => {
 };
 export const UpdateUserProfile = (formValues) => {
     return async (dispatch, getState) => {
-        /*const file = formValues.avatar;
+        const file = formValues.profilePicture;
 
-        const key = v4();
+        /*const key = v4();
 
         try {
             S3.getSignedUrl(
@@ -288,16 +301,17 @@ export const UpdateUserProfile = (formValues) => {
         } catch (error) {
             console.log(error);
         }*/
-
+        //"Content-Type": "multipart/form-data; boundary=<calculated when request is sent>"
+        console.log("DATA", formValues);
         console.log(getState().auth.token);
         axios
             .patch(
                 "http://localhost:8080/api/update/user",
-                {...formValues},
+                formValues,
                 {
                     headers: {
-                        "Content-Type": "multipart/form-data",
-                        Authorization: `Bearer ${getState().auth.token}`,
+                        "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>",
+                        Authorization: `Bearer ${getState().auth.token}`
                     },
                 }
             )

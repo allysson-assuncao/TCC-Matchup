@@ -4,7 +4,7 @@ import {Navigate, Outlet} from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import SideNav from "./SideNav";
 import {useDispatch, useSelector} from "react-redux";
-import {FetchUserProfile, SelectConversation, showSnackbar} from "../../redux/slices/app";
+import {FetchProfilePicture, FetchUserProfile, SelectConversation, showSnackbar} from "../../redux/slices/app";
 import {socket, connectSocket} from "../../socket";
 import {
     UpdateDirectConversation,
@@ -35,6 +35,20 @@ const DashboardLayout = () => {
     const {conversations, current_conversation} = useSelector(
         (state) => state.conversation.direct_chat
     );
+
+   /* const dispatch = useDispatch();*/
+    const {user, profilePicture} = useSelector((state) => state.app);
+
+    async function fetch() {
+        await dispatch(FetchUserProfile());
+        await dispatch(FetchProfilePicture(user?.id, 800, 800));
+    }
+
+    useEffect(() => {
+        fetch();
+    }, []);
+
+
 
 
     const handleCloseAudioDialog = () => {

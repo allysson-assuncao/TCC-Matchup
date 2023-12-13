@@ -12,6 +12,7 @@ import FormProvider, {RHFTextField} from "../../components/hook-form";
 import {Eye, EyeSlash} from "phosphor-react";
 import {LoginUser} from "../../redux/slices/auth";
 import {useDispatch, useSelector} from "react-redux";
+import {FetchUserProfile, Login} from "../../redux/slices/app";
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +50,11 @@ export default function AuthLoginForm() {
         try {
             console.log(data);
             // submit data to backend
-            dispatch(LoginUser(data));
+            await dispatch(LoginUser(data)).then(() => {
+                dispatch(FetchUserProfile())
+                dispatch(Login())
+            });
+
         } catch (error) {
             console.error(error);
             reset();

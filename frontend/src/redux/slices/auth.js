@@ -31,7 +31,7 @@ const slice = createSlice({
         signOut(state, action) {
             state.isLoggedIn = false;
             state.token = "";
-            state.user_id = null;
+            state.user_id = null
         },
         updateRegisterEmail(state, action) {
             state.email = action.payload.email;
@@ -121,8 +121,6 @@ export function ForgotPassword(formValues) {
 
 export function LoginUser(formValues) {
     return async (dispatch, getState) => {
-        // Make API call here
-
         dispatch(slice.actions.updateIsLoading({isLoading: true, error: false}));
         await axios
             .post(
@@ -183,8 +181,10 @@ export function LogoutUser() {
         } catch (error) {
             console.error(error);
         }
+
         window.localStorage.removeItem("user_id");
         dispatch(slice.actions.signOut());
+
     };
 }
 

@@ -22,16 +22,6 @@ const Alert = React.forwardRef((props, ref) => (
 
 function App() {
     const dispatch = useDispatch();
-    const {user, profilePicture} = useSelector((state) => state.app);
-
-    async function fetch() {
-        await dispatch(FetchUserProfile());
-        await dispatch(FetchProfilePicture(user?.id, 800, 800));
-    }
-
-    useEffect(() => {
-        fetch();
-    }, []);
 
     const {severity, message, open} = useSelector(
         (state) => state.app.snackbar
