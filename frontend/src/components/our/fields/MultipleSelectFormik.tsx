@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Autocomplete, Grid, TextField} from "@mui/material";
 
 import {ErrorMessage, Field, FieldProps, FormikProps} from "formik";
-import {InterestDependency} from "../../model/interest";
+import {InterestDependency} from "../../../model/interest";
 
 interface MultipleSelectProps {
     fieldName: string;
