@@ -11,14 +11,16 @@ import {updateUserData} from "../../api/user_requests/updateUserData";
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
 import {useNavigate} from "react-router-dom";
-import {ROUTE_HOME} from "../../App";
+/*import {ROUTE_HOME} from "../../App";*/
 import {useLoggedUser} from "../../contexts/UserContext";
+import {useDispatch, useSelector} from "react-redux";
+import {LoginUser} from "../../redux/slices/auth";
+import {UpdateUserProfile} from "../../redux/slices/app";
 
 const GeneralInfoRegister = () => {
-    const {loggedUser, setLoggedUser} = useLoggedUser();
-    const {theme: mode} = useCustomTheme();
-    const history = useNavigate();
-    const theme = getTheme(mode);
+    const {user} = useSelector((state: any) => state.app);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [image, setImage] = useState("");
     const [profilePicture, setProfilePicture] = useState(undefined);
     const [bio, setBio] = useState("");
@@ -62,22 +64,23 @@ const GeneralInfoRegister = () => {
 
 
     const handleSubmit = async () => {
-        let user: UpdateUserPayload = {
-            id: loggedUser ? loggedUser.id : BigInt(-1),
+        let user2: UpdateUserPayload = {
+            id: user ? user?.id : BigInt(-1),
             bio: bio,
             cellphoneNumber: cellphoneNumber,
         }
 
         if (imageWasChanged) {
-            user.profilePicture = profilePicture;
+            user2.profilePicture = profilePicture;
         }
-        console.log(user);
+        console.log(user2);
         let updatedUser: User = await updateUserData(user);
 
         if (!updatedUser) return;
-        setLoggedUser(updatedUser);
+        // @ts-ignore
+        dispatch(UpdateUserProfile(updatedUser));
         setOpen(true);
-        history(ROUTE_HOME);
+        /*navigate("home");*/
     }
 
     const handleClose = () => {

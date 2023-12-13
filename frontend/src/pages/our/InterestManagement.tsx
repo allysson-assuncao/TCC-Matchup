@@ -5,14 +5,11 @@ import {
     Typography,
     Grid,
 } from '@mui/material';
-import AppBarProfile from "../containers/appbars/AppBarProfile";
+/*import AppBarProfile from "../containers/appbars/AppBarProfile";*/
 import Link from "@mui/material/Link";
-import {useCustomTheme} from "../contexts/CustomThemeContext";
-import getTheme from "../theme";
-import InterestFilters from "../containers/interest/InterestFilters";
-import InterestCardList from "../containers/interest/InterestCardList";
-import {InterestRequest} from "../model/interest_filtered_request";
-import {useLoggedUser} from "../contexts/UserContext";
+import InterestFilters from "../../containers/interest/InterestFilters";
+import InterestCardList from "../../containers/interest/InterestCardList";
+import {InterestRequest} from "../../model/interest_filtered_request";
 
 function Copyright(props: any) {
     return (
@@ -28,9 +25,6 @@ function Copyright(props: any) {
 }
 
 const InterestManagement: React.FC = () => {
-    const {loggedUser} = useLoggedUser();
-    const {theme: mode} = useCustomTheme();
-    const theme = getTheme(mode);
 
     const [filteredInterests, setFilteredInterests] = useState<InterestRequest>();
 
@@ -44,12 +38,12 @@ const InterestManagement: React.FC = () => {
 
     return (
         <Grid>
-            <AppBarProfile
+            {/*<AppBarProfile
                 editable={true}
                 blocked={false}
                 username={loggedUser ? loggedUser.username : ''}
                 idProfile={loggedUser ? loggedUser.id : BigInt(-1)}
-            />
+            />*/}
             <CssBaseline/>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container justifyContent={'center'}>

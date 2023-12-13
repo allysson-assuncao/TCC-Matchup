@@ -11,12 +11,12 @@ import {
 import {
     getAllInterestDependencies, registerInterest,
 } from "../../api/interest_requests/registerInterest";
-import {languages} from "../resources/languages";
-import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
-import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../model/interest";
-import MultipleSelect from "../components/fields/MultipleSelect";
-import SimpleSelect from "../components/fields/SimpleSelect";
-import ImageUploader from "../components/fields/ImageUploader";
+import {languages} from "../../resources/languages";
+import RegisterDependencyDialog from "../../components/our/dialog/RegisterDependencyDialog";
+import {INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../model/interest";
+import MultipleSelect from "../../components/our/fields/MultipleSelect";
+import SimpleSelect from "../../components/our/fields/SimpleSelect";
+import ImageUploader from "../../components/our/fields/ImageUploader";
 
 const RegisterInterests: React.FC = () => {
     const [name, setName] = useState<string>();

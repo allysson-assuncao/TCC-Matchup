@@ -1,16 +1,12 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Button, Grid, IconButton, MobileStepper, Paper} from '@mui/material';
 import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload} from '@mui/icons-material';
-import {useCustomTheme} from "../../contexts/CustomThemeContext";
-import getTheme from "../../theme";
 
 interface ImageUploaderProps {
     setImages: React.Dispatch<React.SetStateAction<File[]>>;
 }
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
-    const { theme: mode } = useCustomTheme();
-    const theme = getTheme(mode);
     const [selectedImages, setSelectedImages] = useState<string[]>([]);
     const [activeStep, setActiveStep] = useState(0);
 
