@@ -359,3 +359,9 @@ export const FetchProfilePicture = (userId, width, height) => {
             });
     };
 };
+
+export function Login() {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.login());
+    };
+}

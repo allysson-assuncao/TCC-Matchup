@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import {Stack} from "@mui/material";
 import {Navigate, Outlet} from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
-import SideNav from "./SideNav";
+import      SideNav from "./SideNav";
 import {useDispatch, useSelector} from "react-redux";
 import {FetchProfilePicture, FetchUserProfile, SelectConversation, showSnackbar} from "../../redux/slices/app";
 import {socket, connectSocket} from "../../socket";
@@ -57,6 +57,8 @@ const DashboardLayout = () => {
     const handleCloseVideoDialog = () => {
         dispatch(UpdateVideoCallDialog({state: false}));
     };
+
+
 
     useEffect(() => {
         if (isLoggedIn) {
