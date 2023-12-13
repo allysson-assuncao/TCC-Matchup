@@ -34,11 +34,13 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 /*import ToggleColorModeButton from "../../components/ToggleColorModeButton";*/
-import ProfilePicture from "../../components/ProfilePicture";
+/*import ProfilePicture from "../../components/ProfilePicture";
 import NotificationsMenu from "../../components/contact/NotificationsMenu";
-import ContactPage from "../../pages/ContactPage";
+import ContactPage from "../../pages/ContactPage";*/
 import {USER_ACCESS} from "../../model/user";
 import {useDispatch, useSelector} from "react-redux";
+import AntSwitch from "../../components/AntSwitch";
+import {LogoutUser} from "../../redux/slices/auth";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -81,7 +83,10 @@ const menuIcons: { [key: string]: React.ReactElement } = {
     'Cadastrar Interesses': <GamesIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Contato': <ContactMailIcon sx={{mr: '10px'}} color={'primary'}/>,
     'Sair': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'}/>,
-    '': <ToggleColorModeButton buttonText='Mudar Tema'/>,
+    '': <ExitToAppIcon sx={{mr: '10px'}} color={'primary'}/>/*<ToggleColorModeButton buttonText='Mudar Tema'/>*//*<AntSwitch
+        defaultChecked={theme.palette.mode === "dark"}
+        onChange={onToggleMode}
+    />*/,
 };
 
 interface AppBarHomeProps {
@@ -227,7 +232,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = () => {
                                         textDecoration: 'none',
                                     }}
                                 >
-                                    <img src={logo + ''}/>
+                                    {/*<img src={logo + ''}/>*/}
                                 </Typography>
                                 <Box justifyContent={'center'} sx={{
                                     flexGrow: 1,
@@ -257,12 +262,12 @@ const AppBarHome: React.FC<AppBarHomeProps> = () => {
                             ))}*/}
                                 </Box>
                                 <Grid sx={{mr: '30px', ml: '20px'}}>
-                                    <NotificationsMenu></NotificationsMenu>
+                                    {/*<NotificationsMenu></NotificationsMenu>*/}
                                 </Grid>
                                 <Box sx={{flexGrow: 0}}>
                                     <Tooltip title="Abrir opções">
                                         <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
-                                            {user && <ProfilePicture id={user?.id} small={true}></ProfilePicture>}
+                                            {/*{user && <ProfilePicture id={user?.id} small={true}></ProfilePicture>}*/}
                                         </IconButton>
                                     </Tooltip>
                                     <Menu
@@ -296,26 +301,26 @@ const AppBarHome: React.FC<AppBarHomeProps> = () => {
                                                                     console.error("Erro: Usuário não está logado.");
                                                                     return;
                                                                 }
-                                                                history(`${ROUTE_PROFILE}/${user?.username}`);
+                                                                /*navigate(`${ROUTE_PROFILE}/${user?.username}`);*/
                                                                 break;
                                                             case 'Configurações':
-                                                                history(ROUTE_SETTINGS);
+                                                                /*navigate(ROUTE_SETTINGS);*/
                                                                 break;
                                                             case 'Contato':
-                                                                history(ROUTE_ABOUT_US);
+                                                                /*navigate(ROUTE_ABOUT_US);*/
                                                                 break;
                                                             case 'Gerenciar Interesses':
-                                                                history(ROUTE_INTEREST_MANAGEMENT);
+                                                                navigate("gerenciamento_de_interesses");
                                                                 break;
                                                             case 'Cadastrar Interesses':
-                                                                history(ROUTE_REGISTER_INTERESTS);
+                                                                navigate("cadastro_de_interesses");
                                                                 break;
                                                             case 'Plano Premium':
-                                                                history(ROUTE_PREMIUM);
+                                                                /*navigate(ROUTE_PREMIUM);*/
                                                                 break;
                                                             case 'Sair':
-                                                                dispatch(SignOut());
-                                                                history(ROUTE_SIGN_IN);
+                                                                /*dispatch(LogoutUser());*/
+                                                                navigate("login");
                                                                 break;
                                                             default:
                                                                 break;
@@ -340,7 +345,7 @@ const AppBarHome: React.FC<AppBarHomeProps> = () => {
                 <Grid item md={10} sm={11} xs={12} sx={{height: '75vh'}}>
                     <CustomTabPanel value={value} index={0}>
                         {/*<NotificationsMenu></NotificationsMenu>*/}
-                        <ContactPage/>
+                        {/*<ContactPage/>*/}
                     </CustomTabPanel>
                 </Grid>
             </Grid>

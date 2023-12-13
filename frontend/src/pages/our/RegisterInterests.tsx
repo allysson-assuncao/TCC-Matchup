@@ -9,9 +9,8 @@ import {
     Grid,
 } from '@mui/material';
 import {
-    getAllInterestDependencies,
-    registerAll, registerInterest, registerInterestDependency,
-} from "../api/interest_requests/registerInterest";
+    getAllInterestDependencies, registerInterest,
+} from "../../api/interest_requests/registerInterest";
 import {languages} from "../resources/languages";
 import RegisterDependencyDialog from "../components/dialog/RegisterDependencyDialog";
 import {Interest, INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../model/interest";
