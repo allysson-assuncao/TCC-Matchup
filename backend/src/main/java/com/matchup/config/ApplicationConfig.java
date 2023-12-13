@@ -2,6 +2,7 @@ package com.matchup.config;
 
 
 import com.matchup.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

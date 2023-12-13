@@ -15,9 +15,21 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(long id);
 
+    @Transactional
     Optional<User> findByEmail(String email);
 
+    /*@Query("SELECT u.access, u.bio, u.birthDate, u.receivedMessages, u.sentMessages, u.email" +
+            ", u.address, u.blockList, u.codes, u.friends, u.cellphoneNumber, u.id, u.hashedPassword, " +
+            "u.email, u.name, u.username, u.notifications, u.interests, u.profilePicture FROM User u WHERE u.email = :email")
+    Optional<User> findByEmail(@Param("email") String email);*/
+
+    @Transactional
     Optional<User> findByUsername(String username);
+
+    /*@Query("SELECT u.access, u.bio, u.birthDate, u.receivedMessages, u.sentMessages, u.email" +
+            ", u.address, u.blockList, u.codes, u.friends, u.cellphoneNumber, u.id, u.hashedPassword, " +
+            "u.email, u.name, u.username, u.notifications, u.interests, u.profilePicture FROM User u WHERE u.username = :username")
+    Optional<User> findByUsername(@Param("username") String username);*/
 
     /*Set<User> findBlockListById(long id);*/
 
