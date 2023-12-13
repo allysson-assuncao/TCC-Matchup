@@ -25,6 +25,7 @@ export default function Router() {
             children: [
                 {path: "login", element: <LoginPage/>},
                 {path: "register", element: <RegisterPage/>},
+                {path: "cadastro", element: <SignUp/>},
                 {path: "reset-password", element: <ResetPasswordPage/>},
                 {path: "new-password", element: <NewPasswordPage/>},
                 {path: "verify", element: <VerifyPage/>},
@@ -44,6 +45,8 @@ export default function Router() {
                 {path: "contact", element: <Contact/>},
                 {path: "profile", element: <Profile/>},
                 {path: "old-profile", element: <GeneralInfo/>},
+                {path: "cadastro_de_interesses", element: <RegisterInterest/>},
+                {path: "gerenciamento_de_interesses", element: <InterestManagement/>},
 
                 {path: "call", element: <CallPage/>},
 
@@ -57,10 +60,12 @@ export default function Router() {
 }
 
 const AppIndex = Loadable(lazy(() => import("../pages/our/AppIndex")));
+const GeneralInfo = Loadable(lazy(() => import("../containers/options/GeneralInfo")));
+const RegisterInterest = Loadable(lazy(() => import("../pages/our/RegisterInterests")));
+const InterestManagement = Loadable(lazy(() => import("../pages/our/InterestManagement")));
 
-const GeneralApp = Loadable(
-    lazy(() => import("../pages/dashboard/GeneralApp"))
-);
+const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralApp")));
+
 const Conversation = Loadable(
     lazy(() => import("../pages/dashboard/Conversation"))
 );
@@ -71,9 +76,9 @@ const Contact = Loadable(lazy(() => import("../sections/Dashboard/Contact")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
 
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")));
+const SignUp = Loadable(lazy(() => import("../pages/our/SignUp")));
 const VerifyPage = Loadable(lazy(() => import("../pages/auth/Verify")));
 const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
-const GeneralInfo = Loadable(lazy(() => import("../containers/options/GeneralInfo")));
 const ResetPasswordPage = Loadable(
     lazy(() => import("../pages/auth/ResetPassword"))
 );
