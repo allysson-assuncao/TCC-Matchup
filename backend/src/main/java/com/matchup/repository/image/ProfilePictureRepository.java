@@ -16,4 +16,5 @@ public interface ProfilePictureRepository extends JpaRepository<ProfilePicture, 
 
     void deleteById(long id);
 
+    void deleteByUserId(long id);
 }
