@@ -43,7 +43,7 @@ public class UserService {
 
     private final InterestRepository interestRepository;
 
-    private final com.matchup.repository.image.ProfilePictureRepository ProfilePictureRepository;
+    private final com.matchup.repository.image.ProfilePictureRepository profilePictureRepository;
 
     private final FriendshipService friendshipService;
 
@@ -61,7 +61,7 @@ public class UserService {
     public UserService(UserRepository userRepository, InterestRepository interestRepository, com.matchup.repository.image.ProfilePictureRepository profilePictureRepository, FriendshipService friendshipService, BlockRepository blockRepository, PasswordEncoder passwordEncoder, TokenRepository tokenRepository, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.interestRepository = interestRepository;
-        ProfilePictureRepository = profilePictureRepository;
+        this.profilePictureRepository = profilePictureRepository;
         this.friendshipService = friendshipService;
         this.blockRepository = blockRepository;
         this.passwordEncoder = passwordEncoder;
@@ -176,9 +176,28 @@ public class UserService {
         if(userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
 
+        if(userDto.getUsername() != null){
+            userToUpdate.setUsername(userDto.getUsername());
+        }
+        if(userDto.getBio() != null){
+            userToUpdate.setBio(userDto.getBio());
+        }
+        System.out.println(userDto.getCellphoneNumber());
+        if(userDto.getCellphoneNumber() != null){
+            userToUpdate.setCellphoneNumber(userDto.getCellphoneNumber());
+        }
+
+
+
         ProfilePicture profilePicture = null;
         if(userDto.getProfilePicture() != null){
-            profilePicture = new ProfilePicture();
+            Optional<ProfilePicture> profilePictureOp = profilePictureRepository.findByUserId(userToUpdate.getId());
+            if(profilePictureOp.isEmpty()){
+                profilePicture = new ProfilePicture();
+            }else{
+                profilePicture = profilePictureOp.get();
+            }
+
             try {
                 profilePicture.setContent(userDto.getProfilePicture().getBytes());
             } catch (IOException e) {
@@ -189,23 +208,8 @@ public class UserService {
             profilePicture.setName(userDto.getProfilePicture().getName());
             profilePicture.setContentType(userDto.getProfilePicture().getContentType());
             profilePicture.setOriginalName(userDto.getProfilePicture().getOriginalFilename());
-            profilePicture = ProfilePictureRepository.save(profilePicture);
-            if(userToUpdate.getProfilePicture() != null){
-                ProfilePictureRepository.deleteById(userToUpdate.getProfilePicture().getId());
-            }
             profilePicture.setUser(userToUpdate);
-            ProfilePictureRepository.save(profilePicture);
-        }
-
-        if(userDto.getUsername() != null){
-            userToUpdate.setUsername(userDto.getUsername());
-        }
-        if(userDto.getBio() != null){
-            userToUpdate.setBio(userDto.getBio());
-        }
-        System.out.println(userDto.getCellphoneNumber());
-        if(userDto.getCellphoneNumber() != null){
-            userToUpdate.setCellphoneNumber(userDto.getCellphoneNumber());
+            profilePictureRepository.save(profilePicture);
         }
 
         return userRepository.save(userToUpdate);
@@ -221,7 +225,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public byte[] getProfilePictureById(long userId, int width, int height){
-        Optional<ProfilePicture> ProfilePictureOp = ProfilePictureRepository.findByUserId(userId);
+        Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(userId);
         if(ProfilePictureOp.isEmpty()) return null;
         ProfilePicture img = ProfilePictureOp.get();
         MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());

@@ -55,7 +55,6 @@ public class FriendshipService {
         friendship = saveFriendship(friendship);
 
         friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
-        System.out.println("Em nome do pai");
         notificationService.sendFriendshipSolicitationResponseNotification(friendship.getId());
         return true;
 
