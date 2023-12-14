@@ -41,7 +41,7 @@ const DashboardLayout = () => {
 
     async function fetch() {
         await dispatch(FetchUserProfile());
-        await dispatch(FetchProfilePicture(user?.id, 800, 800));
+        await dispatch(FetchProfilePicture(user_id, 800, 800));
     }
 
     useEffect(() => {

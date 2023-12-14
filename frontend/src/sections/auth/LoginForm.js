@@ -52,7 +52,6 @@ export default function AuthLoginForm() {
             // submit data to backend
             await dispatch(LoginUser(data)).then(() => {
                 dispatch(FetchUserProfile())
-                dispatch(Login())
             });
 
         } catch (error) {

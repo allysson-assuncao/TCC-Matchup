@@ -4,6 +4,7 @@ import axios from "../../utils/axios";
 import {v4} from 'uuid';
 import S3 from "../../utils/s3";
 import {S3_BUCKET_NAME} from "../../config";
+import {sl} from "date-fns/locale";
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
     },
     profilePicture: null,
     isLoggedIn: false,
+    isUserUpdated: false,
     tab: 0, // [0, 1, 2, 3]
     snackbar: {
         open: null,
@@ -83,12 +85,13 @@ const slice = createSlice({
             state.chat_type = "individual";
             state.room_id = action.payload.room_id;
         },
-        login(state, action) {
-            state.isLoggedIn = true;
-        },
         clearUser(state, action) {
             state.user = null;
             state.isLoggedIn = false;
+            state.isUserUpdated = false;
+        },
+        setIsUserUpdated(state, action) {
+            state.isUserUpdated = action.payload.isUserUpdated;
         },
     },
 });
@@ -270,6 +273,7 @@ export const FetchUserProfile = () => {
             })
             .then((response) => {
                 dispatch(slice.actions.fetchUser({user: response.data}));
+                dispatch(slice.actions.setIsUserUpdated({isUserUpdated: true}));
             })
             .catch((err) => {
                 console.log(err);
@@ -318,6 +322,7 @@ export const UpdateUserProfile = (formValues) => {
             .then((response) => {
                 console.log(response);
                 dispatch(slice.actions.updateUser({user: response.data}));
+                dispatch(slice.actions.updateProfilePicture({profilePicture: file}));
             })
             .catch((err) => {
                 console.log(err);
@@ -340,8 +345,8 @@ export const FetchProfilePicture = (userId, width, height) => {
                 }
             )
             .then((response) => {
-                console.log(response);
-                dispatch(slice.actions.updateProfilePicture({profilePicture: new Promise((resolve, reject) => {
+                console.log(response.data);
+                /*dispatch(slice.actions.updateProfilePicture({profilePicture: new Promise((resolve, reject) => {
                         const reader = new FileReader();
                         reader.onloadend = () => {
                             if (typeof reader.result === 'string') {
@@ -352,7 +357,12 @@ export const FetchProfilePicture = (userId, width, height) => {
                         };
                         reader.onerror = reject;
                         reader.readAsDataURL(response.data);
-                    })}));
+                    })}));*/
+                const arrayBufferView = new Uint8Array(response.data);
+                const blob = new Blob([arrayBufferView], { type: 'image/png' });
+                const imageUrl = URL.createObjectURL(blob);
+
+                dispatch(slice.actions.updateProfilePicture({profilePicture: imageUrl}));
             })
             .catch((err) => {
                 console.log(err);
@@ -360,8 +370,5 @@ export const FetchProfilePicture = (userId, width, height) => {
     };
 };
 
-export function Login() {
-    return async (dispatch, getState) => {
-        dispatch(slice.actions.login());
-    };
-}
+
+

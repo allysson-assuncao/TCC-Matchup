@@ -6,9 +6,9 @@ import Logo from "../../assets/Images/logo.ico";
 import {useSelector} from "react-redux";
 
 const AuthLayout = () => {
-    const {user} = useSelector((state) => state.app);
+    const {isLoggedIn} = useSelector((state) => state.auth);
 
-    if (user != null) {
+    if (isLoggedIn) {
         return <Navigate to={"/app"}/>;
     }
 

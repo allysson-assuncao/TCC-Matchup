@@ -170,7 +170,7 @@ export function LogoutUser() {
                 {},
                 {
                     headers: {
-                        'Authorization': `Bearer ${getState().auth.token}`,
+                        Authorization: `Bearer ${getState().auth.token}`,
                         'Content-Type': 'application/json',
                     },
                 }

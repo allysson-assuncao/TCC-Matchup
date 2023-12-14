@@ -14,7 +14,7 @@ import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
 const ProfileForm = () => {
     const dispatch = useDispatch();
     const [file, setFile] = useState();
-    const {user, profilePicture} = useSelector((state) => state.app);
+    const {user, profilePicture, isUserUpdated} = useSelector((state) => state.app);
 
 
     const ProfileSchema = Yup.object().shape({
@@ -60,13 +60,13 @@ const ProfileForm = () => {
 
                 })
             );
-          /*  dispatch(
-                UpdateUserProfile({
-                    name: data?.name,
-                    about: data?.bio,
-                    avatar: file,
-                })
-            );*/
+            /*  dispatch(
+                  UpdateUserProfile({
+                      name: data?.name,
+                      about: data?.bio,
+                      avatar: file,
+                  })
+              );*/
 
         } catch (error) {
             console.error(error);
@@ -79,9 +79,9 @@ const ProfileForm = () => {
 
             setFile(file);
 
-            const newFile = Object.assign(file, {
-                preview: URL.createObjectURL(file),
-            });
+                const newFile = Object.assign(file, {
+                    preview: URL.createObjectURL(file),f
+                });
 
             if (file) {
                 setValue("profilePicture", newFile, {shouldValidate: true});
@@ -91,34 +91,38 @@ const ProfileForm = () => {
     );
 
     return (
-        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Stack spacing={4}>
-                <RHFUploadAvatar name="profilePicture" maxSize={3145728} onDrop={handleDrop}/>
+        <>
+            {isUserUpdated && (
+                <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                    <Stack spacing={4}>
+                        <RHFUploadAvatar name="profilePicture" maxSize={3145728} onDrop={handleDrop}/>
 
-                <RHFTextField
-                    helperText={"This username is visible to your contacts"}
-                    name="username"
-                    label="Name"
-                />
-                <RHFTextField
-                    name="cellphoneNumber"
-                    label="Número de Celular"
-                />
-                <RHFTextField multiline rows={4} name="bio" label="Bio"/>
+                        <RHFTextField
+                            helperText={"This username is visible to your contacts"}
+                            name="username"
+                            label="Name"
+                        />
+                        <RHFTextField
+                            name="cellphoneNumber"
+                            label="Número de Celular"
+                        />
+                        <RHFTextField multiline rows={4} name="bio" label="Bio"/>
 
-                <Stack direction={"row"} justifyContent="end">
-                    <LoadingButton
-                        color="primary"
-                        size="large"
-                        type="submit"
-                        variant="contained"
-                        // loading={isSubmitSuccessful || isSubmitting}
-                    >
-                        Salvar
-                    </LoadingButton>
-                </Stack>
-            </Stack>
-        </FormProvider>
+                        <Stack direction={"row"} justifyContent="end">
+                            <LoadingButton
+                                color="primary"
+                                size="large"
+                                type="submit"
+                                variant="contained"
+                                // loading={isSubmitSuccessful || isSubmitting}
+                            >
+                                Salvar
+                            </LoadingButton>
+                        </Stack>
+                    </Stack>
+                </FormProvider>
+            )}
+        </>
     );
 };
 
