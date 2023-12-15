@@ -3,10 +3,13 @@ package com.matchup.service;
 import com.matchup.dto.FriendDto;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
+import com.matchup.model.User;
 import com.matchup.repository.FriendshipRepository;
+import com.matchup.repository.UserRepository;
 import com.matchup.repository.notification.FriendshipSolicitationNotificationRepository;
 import com.matchup.repository.notification.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +24,10 @@ public class FriendshipService {
 
     private final FriendshipRepository friendshipRepository;
 
+    private final UserRepository userRepository;
+
+    private final UserService userService;
+
     private final NotificationRepository notificationRepository;
 
     private final NotificationService notificationService;
@@ -28,11 +35,13 @@ public class FriendshipService {
     private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
 
     @Autowired
-    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, NotificationService notificationService, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository) {
+    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, NotificationService notificationService, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository, UserRepository userRepository, UserService userService) {
         this.friendshipRepository = friendshipRepository;
         this.notificationRepository = notificationRepository;
         this.notificationService = notificationService;
         this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Friendship saveFriendship(Friendship friendshipToSave){

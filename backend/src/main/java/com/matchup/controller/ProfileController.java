@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -28,8 +31,8 @@ public class ProfileController {
 
     @GetMapping("profile-picture/by/id/")
     @PostAuthorize("true")
-    public ResponseEntity<byte[]> getProfilePictureById(@PathVariable("id") long userId, @RequestParam("width") int width, @RequestParam("height") int height) {
-        return new ResponseEntity<>(userService.getProfilePictureById(userId, width, height), HttpStatus.OK);
+    public ResponseEntity<MultiPartFileDto> getProfilePictureById(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("width") int width, @RequestParam("height") int height) {
+        return new ResponseEntity<>(userService.getProfilePictureById(userDetails.getUsername(), width, height), HttpStatus.OK);
     }
 
 

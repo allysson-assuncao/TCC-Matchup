@@ -1,6 +1,5 @@
 package com.matchup.service;
 
-/*import com.matchup.config.JavaMailSender;*/
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matchup.dto.MultiPartFileDto;
 import com.matchup.dto.UserDto;
@@ -13,7 +12,6 @@ import com.matchup.model.*;
 import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.User;
 import com.matchup.repository.*;
-import com.matchup.repository.image.ProfilePictureRepository;
 import com.matchup.repository.UserRepository;
 import com.matchup.tools.BlobMultipartFile;
 import com.matchup.tools.ImageResizer;
