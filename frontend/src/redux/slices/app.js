@@ -79,7 +79,7 @@ const slice = createSlice({
             state.friendRequests = action.payload.requests;
         },
         updateProfilePicture(state, action) {
-            state.profilePicture = action.payload.requests;
+            state.profilePicture = action.payload.profilePicture;
         },
         selectConversation(state, action) {
             state.chat_type = "individual";
@@ -194,7 +194,7 @@ export function FetchFriends() {
     return async (dispatch, getState) => {
         await axios
             .get(
-                "/user/get-friends",
+                "/api/friendship/get-friends",
 
                 {
                     headers: {
@@ -205,7 +205,7 @@ export function FetchFriends() {
             )
             .then((response) => {
                 console.log(response);
-                dispatch(slice.actions.updateFriends({friends: response.data.data}));
+                dispatch(slice.actions.updateFriends({friends: response.data}));
             })
             .catch((err) => {
                 console.log(err);
@@ -335,7 +335,7 @@ export const FetchProfilePicture = (userId, width, height) => {
 
         axios
             .get(
-                `http://localhost:8080/api/get/user/profile-picture/by/id/${userId}?width=${width}&height=${height}`,
+                `http://localhost:8080/api/get/user/profile-picture/by/id/?width=${width}&height=${height}`,
 
                 {
                     headers: {
@@ -346,21 +346,9 @@ export const FetchProfilePicture = (userId, width, height) => {
             )
             .then((response) => {
                 console.log(response.data);
-                /*dispatch(slice.actions.updateProfilePicture({profilePicture: new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.onloadend = () => {
-                            if (typeof reader.result === 'string') {
-                                resolve(`data:image/png;base64,${reader.result.split(',')[1]}`);
-                            } else {
-                                reject('Erro ao converter a imagem para Base64');
-                            }
-                        };
-                        reader.onerror = reject;
-                        reader.readAsDataURL(response.data);
-                    })}));*/
-                const arrayBufferView = new Uint8Array(response.data);
-                const blob = new Blob([arrayBufferView], { type: 'image/png' });
-                const imageUrl = URL.createObjectURL(blob);
+
+
+                const imageUrl = `data:image/png;base64,${response.data.file.content}`;
 
                 dispatch(slice.actions.updateProfilePicture({profilePicture: imageUrl}));
             })

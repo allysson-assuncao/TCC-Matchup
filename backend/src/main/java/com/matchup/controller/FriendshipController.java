@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,19 +33,19 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
     }
 
-    @GetMapping("{user1Id}/is-friends-with/{user2Id}")
+    @GetMapping("/{user1Id}/is-friends-with/{user2Id}")
     public ResponseEntity<Boolean> isFriendsWith(@PathVariable Long user1Id, @PathVariable Long user2Id) {
         return new ResponseEntity<>(friendshipService.existsFriendshipByUsersId(user1Id, user2Id), HttpStatus.OK);
     }
 
-    @GetMapping("get-friendship-by/{user1Id}/and/{user2Id}")
+    @GetMapping("/get-friendship-by/{user1Id}/and/{user2Id}")
     public ResponseEntity<Friendship> getFriendshipByUsers(@PathVariable Long user1Id, @PathVariable Long user2Id) {
         return new ResponseEntity<>(friendshipService.getFriendship(user1Id, user2Id), HttpStatus.OK);
     }
 
-    @GetMapping("get-friends-by/{userId}")
-    public ResponseEntity<List<FriendDto>> getFriendsByUserId(@PathVariable Long userId) {
-        return new ResponseEntity<>(friendshipService.getFriendsByUserId(userId), HttpStatus.OK);
+    @GetMapping("/get-friends")
+    public ResponseEntity<List<FriendDto>> getFriendsByUserId(@AuthenticationPrincipal UserDetails userDetails) {
+        return new ResponseEntity<>(friendshipService.getFriendsByUserId(userDetails), HttpStatus.OK);
     }
 
     @DeleteMapping("/end-friendship-between/{user1Id}/and/{user2Id}")

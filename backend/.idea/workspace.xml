@@ -5,15 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="changing the whole authentication logic">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/MultiPartFileDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/tools/MultipartFileSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/FriendDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/FriendDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" afterDir="false" />
+    </list>
+    <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
+    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="changing the whole authentication logic">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
-    <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ProfilePictureRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/image/ProfilePictureRepository.java" afterDir="false" />
-    </list>
-    <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="changing the whole authentication logic" />
+    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,6 +60,41 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java">
+      <ranges>
+        <range start1="2" end1="2" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="8" end1="8" start2="9" end2="11" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="9" end1="9" start2="12" end2="13" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="27" end1="28" start2="31" end2="32" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="29" end1="31" start2="33" end2="35" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="4" end1="4" start2="3" end2="4" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="14" end1="15" start2="14" end2="14" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="226" end1="228" start2="225" end2="229" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="231" end1="232" start2="232" end2="232" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="237" end1="237" start2="237" end2="239" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="238" end1="239" start2="240" end2="241" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="6" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="6" end1="6" start2="7" end2="8" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="9" end1="9" start2="11" end2="12" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="12" end1="12" start2="15" end2="16" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="21" end1="21" start2="25" end2="29" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="29" end1="30" start2="37" end2="38" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="34" end1="34" start2="42" end2="44" changelist="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" />
+        <range start1="85" end1="87" start2="95" end2="100" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="90" end1="91" start2="103" end2="110" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -598,7 +645,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java</url>
-          <line>312</line>
+          <line>314</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

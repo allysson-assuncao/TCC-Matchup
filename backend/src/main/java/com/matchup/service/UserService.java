@@ -2,6 +2,7 @@ package com.matchup.service;
 
 /*import com.matchup.config.JavaMailSender;*/
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.matchup.dto.MultiPartFileDto;
 import com.matchup.dto.UserDto;
 import com.matchup.dto.auth.AuthenticationRequest;
 import com.matchup.dto.auth.AuthenticationResponse;
@@ -224,19 +225,22 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public byte[] getProfilePictureById(long userId, int width, int height){
-        Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(userId);
+    public MultiPartFileDto getProfilePictureById(String username, int width, int height){
+        Optional<User> userOp = userRepository.findByUsername(username);
+        if(userOp.isEmpty()) return null;
+        Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(userOp.get().getId());
         if(ProfilePictureOp.isEmpty()) return null;
         ProfilePicture img = ProfilePictureOp.get();
         MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
-
         try {
             img.setContent(ImageResizer.resizeImage(multipartFile, width, height));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
+        MultiPartFileDto multiPartFileDto = new MultiPartFileDto(multipartFile);
 
-        return img.getContent();
+        return multiPartFileDto;
     }
 
     @Transactional

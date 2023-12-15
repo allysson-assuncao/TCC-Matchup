@@ -12,7 +12,7 @@ import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {ClearUser} from "../../redux/slices/app";
 
 const ProfileMenu = () => {
-    const {user} = useSelector((state) => state.app);
+    const {user, profilePicture} = useSelector((state) => state.app);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,8 +26,8 @@ const ProfileMenu = () => {
 
     const user_id = window.localStorage.getItem("user_id");
 
-    const user_name = user?.firstName;
-    const user_img = `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`;
+    const user_name = user?.userName;
+    const user_img = profilePicture;
 
     return (
         <>

@@ -21,9 +21,7 @@ public class UserController {
 
     @GetMapping("/get-me")
     public ResponseEntity<User> getMyProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        String username = userDetails.getUsername();
-        System.out.println("username:" + username);
-        User user = userService.getUserByUsername(username);
+        User user = userService.getUserByUsername(userDetails.getUsername());
 
         if (user != null) {
             return ResponseEntity.ok(user);

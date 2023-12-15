@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.MultiPartFileDto;
 import com.matchup.model.User;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ProfileController {
         return new ResponseEntity<>(userService.findByUsername(username).get(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("profile-picture/by/id/{id}")
+    @GetMapping("profile-picture/by/id/")
     @PostAuthorize("true")
     public ResponseEntity<byte[]> getProfilePictureById(@PathVariable("id") long userId, @RequestParam("width") int width, @RequestParam("height") int height) {
         return new ResponseEntity<>(userService.getProfilePictureById(userId, width, height), HttpStatus.OK);

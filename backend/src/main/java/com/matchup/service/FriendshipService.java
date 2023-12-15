@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,12 +84,21 @@ public class FriendshipService {
 
     }
 
-    public List<FriendDto> getFriendsByUserId(long userId){
-        List<Object[]> friendsFromDB = friendshipRepository.findFriendsByUserId(userId);
+
+    public List<FriendDto> getFriendsByUserId(UserDetails userDetails){
+        Optional<User> userOp = userRepository.findByUsername(userDetails.getUsername());
+        if(userOp.isEmpty()) return null;
+        List<Object[]> friendsFromDB = friendshipRepository.findFriendsByUserId(userOp.get().getId());
 
         List<FriendDto> friends = new ArrayList<>();
         for (Object[] o : friendsFromDB){
-            FriendDto newFriend = new FriendDto((Long) o[0] , o[1] + "");
+            FriendDto newFriend = null;
+            try {
+                newFriend = new FriendDto((Long) o[0] , o[1]+"",
+                        "data:image/png;base64," + String.valueOf(userService.getProfilePictureById(o[1] + "", 128, 128).getFile().getBytes()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             friends.add(newFriend);
         }
 

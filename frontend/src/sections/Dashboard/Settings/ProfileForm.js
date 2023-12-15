@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import * as Yup from "yup";
 // form
 import {useForm} from "react-hook-form";
@@ -23,7 +23,6 @@ const ProfileForm = () => {
         //profilePicture: Yup.string().nullable(true),
     });
 
-
     const defaultValues = {
         username: user?.username,
         bio: user?.bio,
@@ -35,6 +34,8 @@ const ProfileForm = () => {
         resolver: yupResolver(ProfileSchema),
         defaultValues,
     });
+
+
 
     const {
         reset,
@@ -57,7 +58,6 @@ const ProfileForm = () => {
                     bio: data?.bio !== user.bio ? data?.bio : null,
                     cellphoneNumber: data?.cellphoneNumber !== user.cellphoneNumber ? data?.cellphoneNumber : null,
                     profilePicture: file,
-
                 })
             );
             /*  dispatch(
@@ -80,7 +80,7 @@ const ProfileForm = () => {
             setFile(file);
 
                 const newFile = Object.assign(file, {
-                    preview: URL.createObjectURL(file),f
+                    preview: URL.createObjectURL(file),
                 });
 
             if (file) {
