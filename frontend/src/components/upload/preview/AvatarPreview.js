@@ -17,7 +17,7 @@ export default function AvatarPreview({ file }) {
 
   return (
     <Image
-      alt="avatar"
+      alt="Foto de Perfil"
       src={imgUrl}
       sx={{
         zIndex: 8,
