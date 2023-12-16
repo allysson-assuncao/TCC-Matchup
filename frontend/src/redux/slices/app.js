@@ -5,6 +5,7 @@ import {v4} from 'uuid';
 import S3 from "../../utils/s3";
 import {S3_BUCKET_NAME} from "../../config";
 import {sl} from "date-fns/locale";
+import {useSelector} from "react-redux";
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
     room_id: null,
     call_logs: [],
 };
+
 
 const slice = createSlice({
     name: "app",

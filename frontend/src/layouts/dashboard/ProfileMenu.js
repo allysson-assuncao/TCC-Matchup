@@ -67,7 +67,7 @@ const ProfileMenu = () => {
                                 <Stack
                                     onClick={() => {
                                         if (idx === 0) {
-                                            navigate("/profile");
+                                            navigate(ROUTE_MY_PROFILE);
                                         } else if (idx === 1) {
                                             navigate("/settings");
                                         } else {

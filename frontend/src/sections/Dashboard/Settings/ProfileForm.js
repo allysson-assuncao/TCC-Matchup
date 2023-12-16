@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {UpdateUserProfile} from "../../../redux/slices/app";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
 
-const ProfileForm = () => {
+const   ProfileForm = () => {
     const dispatch = useDispatch();
     const [file, setFile] = useState();
     const {user, profilePicture, isUserUpdated} = useSelector((state) => state.app);

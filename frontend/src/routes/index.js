@@ -17,6 +17,10 @@ const Loadable = (Component) => (props) => {
     );
 };
 
+export const ROUTE_MY_PROFILE = "/meu-perfil";
+
+export const ROUTE_PROFILE = "/perfil";
+
 export default function Router() {
     return useRoutes([
         {
@@ -43,7 +47,8 @@ export default function Router() {
                 {path: "conversation", element: <Conversation/>},
                 {path: "chats", element: <Chats/>},
                 {path: "contact", element: <Contact/>},
-                {path: "profile", element: <Profile/>},
+                {path: ROUTE_MY_PROFILE, element: <MyProfile/>},
+                {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
                 {path: "old-profile", element: <GeneralInfo/>},
                 {path: "cadastro_de_interesses", element: <RegisterInterest/>},
                 {path: "gerenciamento_de_interesses", element: <InterestManagement/>},
@@ -90,4 +95,7 @@ const NewPasswordPage = Loadable(
 const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings")));
 const MyProfile = Loadable(
     lazy(() => import("../pages/dashboard/Settings/MyProfile"))
+);
+const Profile = Loadable(
+    lazy(() => import("../pages/our/Profile"))
 );
