@@ -3,6 +3,9 @@ package com.matchup.model.image;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Arrays;
+import java.util.Base64;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "image_type")
@@ -10,7 +13,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public abstract class ImageModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +31,8 @@ public abstract class ImageModel {
     @Column(name = "content_type")
     private String contentType;
 
+
+    public String getBase64EncodedContent() {
+        return Base64.getEncoder().encodeToString(this.content);
+    }
 }

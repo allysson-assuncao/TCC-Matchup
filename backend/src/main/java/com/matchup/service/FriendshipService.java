@@ -26,7 +26,7 @@ public class FriendshipService {
 
     private final UserRepository userRepository;
 
-    private final UserService userService;
+    private final ImageService imageService;
 
     private final NotificationRepository notificationRepository;
 
@@ -35,28 +35,28 @@ public class FriendshipService {
     private final FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository;
 
     @Autowired
-    public FriendshipService(FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, NotificationService notificationService, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository, UserRepository userRepository, UserService userService) {
+    public FriendshipService(ImageService imageService, FriendshipRepository friendshipRepository, NotificationRepository notificationRepository, NotificationService notificationService, FriendshipSolicitationNotificationRepository friendshipSolicitationNotificationRepository, UserRepository userRepository) {
         this.friendshipRepository = friendshipRepository;
         this.notificationRepository = notificationRepository;
         this.notificationService = notificationService;
         this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
         this.userRepository = userRepository;
-        this.userService = userService;
+        this.imageService = imageService;
     }
 
-    public Friendship saveFriendship(Friendship friendshipToSave){
+    public Friendship saveFriendship(Friendship friendshipToSave) {
         return friendshipRepository.save(friendshipToSave);
     }
 
 
-    public boolean  sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted){
+    public boolean sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted) {
         Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
-        if(friendshipOp.isEmpty()) return false;
+        if (friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 
         System.out.println(accepted);
         System.out.println(friendship.getUser().getUsername());
-        if (accepted){
+        if (accepted) {
             friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
             friendship.setStatus(FriendshipStatus.REJECTED);
@@ -77,14 +77,14 @@ public class FriendshipService {
     @Transactional
     public Friendship getFriendship(Long user1Id, Long user2Id) {
         System.out.println(friendshipRepository.existsByUsers(user1Id, user2Id) + "  " + user1Id + "  " + user2Id);
-        if(!friendshipRepository.existsByUsers(user1Id, user2Id)) return null;
+        if (!friendshipRepository.existsByUsers(user1Id, user2Id)) return null;
         return friendshipRepository.findByUsers(user1Id, user2Id).get();
     }
 
     @Transactional
-    public boolean endFriendship(long user1Id, long user2Id){
+    public boolean endFriendship(long user1Id, long user2Id) {
         Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(user1Id, user2Id);
-        if(friendshipOp.isEmpty()) return false;
+        if (friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 
         friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
@@ -94,20 +94,17 @@ public class FriendshipService {
     }
 
 
-    public List<FriendDto> getFriendsByUserId(UserDetails userDetails){
+    public List<FriendDto> getFriendsByUserId(UserDetails userDetails) {
         Optional<User> userOp = userRepository.findByUsername(userDetails.getUsername());
-        if(userOp.isEmpty()) return null;
+        if (userOp.isEmpty()) return null;
         List<Object[]> friendsFromDB = friendshipRepository.findFriendsByUserId(userOp.get().getId());
 
         List<FriendDto> friends = new ArrayList<>();
-        for (Object[] o : friendsFromDB){
+        for (Object[] o : friendsFromDB) {
             FriendDto newFriend = null;
-            try {
-                newFriend = new FriendDto((Long) o[0] , o[1]+"",
-                        "data:image/png;base64," + String.valueOf(userService.getProfilePictureById(o[1] + "", 128, 128).getFile().getBytes()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
+            newFriend = new FriendDto((Long) o[0], o[1] + "",
+                    imageService.getFormattedProfilePictureById((Long) o[0], 128, 128));
             friends.add(newFriend);
         }
 

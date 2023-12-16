@@ -10,6 +10,7 @@ import {socket} from "../../socket";
 import {useNavigate} from "react-router-dom";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {ClearUser} from "../../redux/slices/app";
+import {ROUTE_MY_PROFILE} from "../../routes";
 
 const ProfileMenu = () => {
     const {user, profilePicture} = useSelector((state) => state.app);

@@ -1,4 +1,4 @@
-/*import logo from '../../assets/Images/logo-matchup2.png'*/
+/*import logo from '../../assets/Images/logo.ico'*/
 import * as React from "react";
 import {
     AppBar,

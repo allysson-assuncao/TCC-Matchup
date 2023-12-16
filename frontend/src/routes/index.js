@@ -88,6 +88,6 @@ const NewPasswordPage = Loadable(
 
 // Settings
 const Settings = Loadable(lazy(() => import("../pages/dashboard/Settings")));
-const Profile = Loadable(
-    lazy(() => import("../pages/dashboard/Settings/Profile"))
+const MyProfile = Loadable(
+    lazy(() => import("../pages/dashboard/Settings/MyProfile"))
 );

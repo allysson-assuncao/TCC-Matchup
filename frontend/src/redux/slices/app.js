@@ -87,6 +87,7 @@ const slice = createSlice({
         },
         clearUser(state, action) {
             state.user = null;
+            state.profilePicture = null;
             state.isLoggedIn = false;
             state.isUserUpdated = false;
         },
@@ -194,7 +195,7 @@ export function FetchFriends() {
     return async (dispatch, getState) => {
         await axios
             .get(
-                "/api/friendship/get-friends",
+                "http://localhost:8080/api/friendship/get-friends",
 
                 {
                     headers: {

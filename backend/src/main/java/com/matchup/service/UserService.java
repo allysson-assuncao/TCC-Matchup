@@ -222,24 +222,7 @@ public class UserService {
         return userRepository.save(userToUpdate);
     }
 
-    @Transactional(readOnly = true)
-    public MultiPartFileDto getProfilePictureById(String username, int width, int height){
-        Optional<User> userOp = userRepository.findByUsername(username);
-        if(userOp.isEmpty()) return null;
-        Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(userOp.get().getId());
-        if(ProfilePictureOp.isEmpty()) return null;
-        ProfilePicture img = ProfilePictureOp.get();
-        MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
-        try {
-            img.setContent(ImageResizer.resizeImage(multipartFile, width, height));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
-        MultiPartFileDto multiPartFileDto = new MultiPartFileDto(multipartFile);
 
-        return multiPartFileDto;
-    }
 
     @Transactional
     public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){

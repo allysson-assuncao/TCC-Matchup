@@ -4,7 +4,7 @@ import {useTheme} from "@mui/material/styles";
 import {Box, Divider, IconButton, Stack} from "@mui/material";
 import AntSwitch from "../../components/AntSwitch";
 
-import Logo from "../../assets/Images/logo.ico";
+import Logo from "../../assets/Images/logo2.ico";
 
 import useSettings from "../../hooks/useSettings";
 import {Nav_Buttons, Nav_Setting} from "../../data";
@@ -167,7 +167,7 @@ const SideBar = () => {
                         defaultChecked={theme.palette.mode === "dark"}
                         onChange={onToggleMode}
                     />
-                    {/* Profile Menu */}
+                    {/* MyProfile Menu */}
                     <ProfileMenu/>
                 </Stack>
             </Stack>

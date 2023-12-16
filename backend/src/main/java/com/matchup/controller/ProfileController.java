@@ -2,6 +2,7 @@ package com.matchup.controller;
 
 import com.matchup.dto.MultiPartFileDto;
 import com.matchup.model.User;
+import com.matchup.service.ImageService;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,12 @@ public class ProfileController {
 
     private final UserService userService;
 
+    private final ImageService imageService;
+
     @Autowired
-    public ProfileController(UserService userService) {
+    public ProfileController(UserService userService, ImageService imageService) {
         this.userService = userService;
+        this.imageService = imageService;
     }
 
     @GetMapping("by/username/{username}")
@@ -32,7 +36,7 @@ public class ProfileController {
     @GetMapping("profile-picture/by/id/")
     @PostAuthorize("true")
     public ResponseEntity<MultiPartFileDto> getProfilePictureById(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("width") int width, @RequestParam("height") int height) {
-        return new ResponseEntity<>(userService.getProfilePictureById(userDetails.getUsername(), width, height), HttpStatus.OK);
+        return new ResponseEntity<>(imageService.getProfilePictureByUsername(userDetails.getUsername(), width, height), HttpStatus.OK);
     }
 
 

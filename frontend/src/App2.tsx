@@ -10,7 +10,7 @@ import './App.css';
 /*import AppIndex from './pages/AppIndex';
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/Signup";
-import Profile from "./pages/Profile";
+import MyProfile from "./pages/MyProfile";
 import ForgotPassword from "./pages/ForgotPassword";
 import EditableProfile from "./pages/EditableProfile";
 import AboutUs from "./pages/AboutUs";
@@ -166,7 +166,7 @@ const App: React.FC = () => {
                            element={<Home/>
 
                            }/>}/>
-                <Route path="perfil/:usernamePathVariable" element={<Profile/>}/>
+                <Route path="perfil/:usernamePathVariable" element={<MyProfile/>}/>
                 <Route path={ROUTE_EDITABLE_PROFILE}
                        element={<ProtectedRoute isAllowed={loggedUser !== null} element={<EditableProfile/>}/>}/>
                 <Route path={ROUTE_FORGOT_PASSWORD} element={<ForgotPassword/>}/>

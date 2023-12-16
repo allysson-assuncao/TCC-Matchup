@@ -19,6 +19,7 @@ const FriendsList = () => {
     const {friends} = useSelector((state) => state.app);
 
     useEffect(() => {
+        console.log("amigos");
         dispatch(FetchFriends());
     }, []);
 

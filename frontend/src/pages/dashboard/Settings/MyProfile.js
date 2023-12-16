@@ -5,7 +5,7 @@ import ProfileForm from "../../../sections/Dashboard/Settings/ProfileForm";
 import { useDispatch } from "react-redux";
 import { FetchUserProfile } from "../../../redux/slices/app";
 
-const Profile = () => {
+const MyProfile = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -40,7 +40,7 @@ const Profile = () => {
               <Typography variant="h5">Profile</Typography>
             </Stack>
 
-            {/* Profile Edit Form */}
+            {/* MyProfile Edit Form */}
             <ProfileForm />
           </Stack>
         </Box>
@@ -62,4 +62,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default MyProfile;

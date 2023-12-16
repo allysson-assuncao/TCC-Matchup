@@ -10,10 +10,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ProfilePicture extends ImageModel {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
 
 }

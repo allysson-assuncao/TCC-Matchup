@@ -73,7 +73,7 @@ const list = [
   },
   {
     key: 11,
-    title: "Profile & About",
+    title: "MyProfile & About",
     combination: ["Cmd", "P"],
   },
   {

@@ -127,7 +127,7 @@ const Settings = () => {
               <Typography variant="h5">Settings</Typography>
             </Stack>
 
-            {/* Profile */}
+            {/* MyProfile */}
             <Stack direction="row" spacing={3}>
               <Avatar
                 src={faker.image.avatar()}
