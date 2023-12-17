@@ -1,6 +1,7 @@
 package com.matchup.controller;
 
 import com.matchup.dto.MultiPartFileDto;
+import com.matchup.dto.ProfileDto;
 import com.matchup.model.User;
 import com.matchup.service.ImageService;
 import com.matchup.service.UserService;

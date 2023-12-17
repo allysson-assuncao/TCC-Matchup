@@ -2,10 +2,12 @@ package com.matchup.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matchup.dto.MultiPartFileDto;
+import com.matchup.dto.ProfileDto;
 import com.matchup.dto.UserDto;
 import com.matchup.dto.auth.AuthenticationRequest;
 import com.matchup.dto.auth.AuthenticationResponse;
 import com.matchup.dto.auth.RegisterRequest;
+import com.matchup.enums.FriendshipStatus;
 import com.matchup.enums.TokenType;
 import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
@@ -48,6 +50,8 @@ public class UserService {
 
     private final FriendshipService friendshipService;
 
+    private final FriendshipRepository friendshipRepository;
+
     private final BlockRepository blockRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -66,12 +70,16 @@ public class UserService {
         this.interestRepository = interestRepository;
         this.profilePictureRepository = profilePictureRepository;
         this.friendshipService = friendshipService;
+        this.friendshipRepository = friendshipRepository;
         this.blockRepository = blockRepository;
         this.passwordEncoder = passwordEncoder;
         this.tokenRepository = tokenRepository;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+        this.imageService = imageService;
     }
+
+
 
 
     public User saveUser(User userToSave){
@@ -156,8 +164,8 @@ public class UserService {
         User user = userOp.get();
         Interest interest = interestOp.get();
         user.addInterest(interest);
+        user = userRepository.save(user);
         interest.addUser(user);
-        userRepository.save(user);
         interestRepository.save(interest);
         return true;
     }
