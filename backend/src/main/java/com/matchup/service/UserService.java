@@ -412,25 +412,35 @@ public class UserService {
         if(userProfileOp.isEmpty()) return null;
         User userProfile = userProfileOp.get();
 
-        Optional<User> userOp = userRepository.findById(userId);
-        if(userOp.isEmpty()) return null;
-        User user = userOp.get();
-
-        boolean doesFriendshipExistis = friendshipRepository.existsByUsers(userId, userProfile.getId());
+        boolean doesFriendshipExist = false;
         String friendshipStatus = "";
-        if(doesFriendshipExistis){
-            friendshipStatus = friendshipRepository.findStatusByUsers(userId, userProfile.getId()).get();
+
+        boolean blockedMe = false;
+        boolean isBlockedByMe = false;
+
+        List<String> interestNames = new ArrayList<>();
+
+        Optional<User> userOp = userRepository.findById(userId);
+        if(userOp.isPresent()){
+            doesFriendshipExist = friendshipRepository.existsByUsers(userId, userProfile.getId());
+
+            if(doesFriendshipExist){
+                friendshipStatus = friendshipRepository.findStatusByUsers(userId, userProfile.getId()).get();
+                if(friendshipStatus.equals("PENDING")){
+                    friendshipStatus = (friendshipRepository.isUser1TheUser(userId, userProfile.getId())) ? "SENT" : friendshipStatus;
+                }
+            }
+
+            blockedMe = blockRepository.existsByBlockedIdAndBlockerId(userId, userProfile.getId());
+            isBlockedByMe = blockRepository.existsByBlockerIdAndBlockedId(userId, userProfile.getId());
+
+
+            interestNames = interestRepository.findCommonInterests(userId, userProfile.getId());
+
+            interestNames.forEach(System.out::println);
         }
 
-        boolean blockedMe = blockRepository.existsByBlockedIdAndBlockerId(userId, userProfile.getId());
-        boolean isBlockedByMe = blockRepository.existsByBlockerIdAndBlockedId(userId, userProfile.getId());
-
         String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 800, 800);
-
-
-        List<String> interestNames = interestRepository.findCommonInterests(userId, userProfile.getId());
-
-        interestNames.forEach(System.out::println);
 
         return ProfileDto.builder()
                 .id(userProfile.getId())
