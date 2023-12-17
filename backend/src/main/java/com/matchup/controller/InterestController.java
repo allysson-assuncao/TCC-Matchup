@@ -19,6 +19,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,10 +43,9 @@ public class InterestController {
         this.userService = userService;
     }
 
-    @PostMapping("/link-to-user")
-    @PostAuthorize("true")
-    public ResponseEntity<Boolean> linkInterestToUser(@RequestBody Map<String, Long> linkInterestToUser) {
-        return new ResponseEntity<>(userService.linkInterestToUser(linkInterestToUser.get("userId"), linkInterestToUser.get("interestId")), HttpStatus.OK);
+    @PostMapping("/add/{interestId}")
+    public ResponseEntity<Boolean> linkInterestToUser(@AuthenticationPrincipal UserDetails userDetails, @PathVariable("interestId") Long interestId) {
+        return new ResponseEntity<>(userService.linkInterestToUser(userDetails.getUsername(), interestId), HttpStatus.OK);
     }
 
 

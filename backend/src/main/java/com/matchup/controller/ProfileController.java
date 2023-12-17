@@ -39,6 +39,11 @@ public class ProfileController {
         return new ResponseEntity<>(imageService.getProfilePictureByUsername(userDetails.getUsername(), width, height), HttpStatus.OK);
     }
 
+    @GetMapping("profile/{username}/accessed-by/{userId}")
+    public ResponseEntity<ProfileDto> getProfile(@PathVariable("userId")  long userId, @PathVariable("username")  String username) {
+        return new ResponseEntity<>(userService.getProfileByUsernameAndUserId(userId, username), HttpStatus.OK);
+    }
+
 
 /*    @PostMapping("/user")
     @PostAuthorize("true")

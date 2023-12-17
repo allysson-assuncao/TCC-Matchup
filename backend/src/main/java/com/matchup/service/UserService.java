@@ -13,6 +13,7 @@ import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.User;
 import com.matchup.repository.*;
 import com.matchup.repository.UserRepository;
+import com.matchup.repository.image.ProfilePictureRepository;
 import com.matchup.tools.BlobMultipartFile;
 import com.matchup.tools.ImageResizer;
 import com.matchup.config.JwtService;
@@ -28,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -56,8 +58,10 @@ public class UserService {
 
     private final AuthenticationManager authenticationManager;
 
+    private final ImageService imageService;
+
     @Autowired
-    public UserService(UserRepository userRepository, InterestRepository interestRepository, com.matchup.repository.image.ProfilePictureRepository profilePictureRepository, FriendshipService friendshipService, BlockRepository blockRepository, PasswordEncoder passwordEncoder, TokenRepository tokenRepository, JwtService jwtService, AuthenticationManager authenticationManager) {
+    public UserService(UserRepository userRepository, InterestRepository interestRepository, ProfilePictureRepository profilePictureRepository, FriendshipService friendshipService, FriendshipRepository friendshipRepository, BlockRepository blockRepository, PasswordEncoder passwordEncoder, TokenRepository tokenRepository, JwtService jwtService, AuthenticationManager authenticationManager, ImageService imageService) {
         this.userRepository = userRepository;
         this.interestRepository = interestRepository;
         this.profilePictureRepository = profilePictureRepository;
@@ -144,8 +148,8 @@ public class UserService {
         return userRepository.save(userToRegister);
     }
 
-    public boolean linkInterestToUser(Long userId, Long interestId) {
-        Optional<User> userOp = userRepository.findById(userId);
+    public boolean linkInterestToUser(String username, Long interestId) {
+        Optional<User> userOp = userRepository.findByUsername(username);
         Optional<Interest> interestOp = interestRepository.findById(interestId);
         if(userOp.isEmpty() || interestOp.isEmpty()) return false;
 
@@ -394,4 +398,43 @@ public class UserService {
         return userOp.get();
     }
 
+    public ProfileDto getProfileByUsernameAndUserId(Long userId, String username) {
+        Optional<User> userProfileOp = userRepository.findByUsername(username);
+        if(userProfileOp.isEmpty()) return null;
+        User userProfile = userProfileOp.get();
+
+        Optional<User> userOp = userRepository.findById(userId);
+        if(userOp.isEmpty()) return null;
+        User user = userOp.get();
+
+        boolean doesFriendshipExistis = friendshipRepository.existsByUsers(userId, userProfile.getId());
+        String friendshipStatus = "";
+        if(doesFriendshipExistis){
+            friendshipStatus = friendshipRepository.findStatusByUsers(userId, userProfile.getId()).get();
+        }
+
+        boolean blockedMe = blockRepository.existsByBlockedIdAndBlockerId(userId, userProfile.getId());
+        boolean isBlockedByMe = blockRepository.existsByBlockerIdAndBlockedId(userId, userProfile.getId());
+
+        String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 800, 800);
+
+
+        List<String> interestNames = interestRepository.findCommonInterests(userId, userProfile.getId());
+
+        interestNames.forEach(System.out::println);
+
+        return ProfileDto.builder()
+                .id(userProfile.getId())
+                .name(userProfile.getName())
+                .username(userProfile.getUsername())
+                .bio(userProfile.getBio())
+                .doesFriendshipExist(doesFriendshipExistis)
+                .friendshipStatus(friendshipStatus)
+                .blockedMe(blockedMe)
+                .isBlockedByMe(isBlockedByMe)
+                .profilePicture(profilePicture)
+                .interestNames(interestNames)
+                .build();
+
+    }
 }

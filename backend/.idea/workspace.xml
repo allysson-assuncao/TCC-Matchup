@@ -4,9 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Profile picture being exhibited successfully :)" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Profile picture being exhibited successfully :)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ProfileDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="" />
+    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/BlockRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +55,32 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="5" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="8" end1="8" start2="9" end2="10" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="15" end1="15" start2="17" end2="18" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="30" end1="30" start2="33" end2="34" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="47" end1="47" start2="51" end2="53" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="58" end1="58" start2="64" end2="66" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="59" end1="60" start2="67" end2="68" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="64" end1="64" start2="72" end2="73" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="69" end1="69" start2="78" end2="79" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="70" end1="70" start2="80" end2="82" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="146" end1="148" start2="158" end2="160" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="154" end1="154" start2="166" end2="167" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="155" end1="156" start2="168" end2="168" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="396" end1="396" start2="408" end2="447" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java">
+      <ranges>
+        <range start1="3" end1="3" start2="3" end2="4" changelist="6433e4f2-9a5c-4557-8253-9585a133b1d0" />
+        <range start1="40" end1="40" start2="41" end2="46" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -201,6 +240,8 @@
       <workItem from="1702475006083" duration="2195000" />
       <workItem from="1702488047814" duration="5928000" />
       <workItem from="1702556612947" duration="4443000" />
+      <workItem from="1702752815947" duration="4799000" />
+      <workItem from="1702816069112" duration="8078000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -606,9 +647,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java</url>
-          <line>314</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/matchup/model/image/ProfilePicture.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

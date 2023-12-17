@@ -17,6 +17,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Table(name = "interest", schema = "matchup")
 public class Interest {
     @Id
