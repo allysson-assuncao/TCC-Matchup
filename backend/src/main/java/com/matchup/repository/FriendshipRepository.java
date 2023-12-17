@@ -24,4 +24,8 @@ public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
     @Query("SELECT CASE WHEN f.user.id = :user1Id THEN f.friend.id ELSE f.user.id END, CASE WHEN f.user.id = :user1Id THEN f.friend.username ELSE f.user.username END FROM Friendship f WHERE f.user.id = :user1Id OR f.friend.id = :user1Id")
     List<Object[]> findFriendsByUserId(@Param("user1Id") Long user1Id);
 
+    @Query("SELECT CASE WHEN COUNT(f) > 0 THEN true ELSE false END FROM Friendship f WHERE f.user.id = :user1Id AND f.friend.id = :user2Id")
+    boolean isUser1TheUser(@Param("user1Id") Long user1Id, @Param("user2Id") Long user2Id);
+
+
 }

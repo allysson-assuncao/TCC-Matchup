@@ -21,13 +21,16 @@ export const ROUTE_MY_PROFILE = "/meu-perfil";
 
 export const ROUTE_PROFILE = "/perfil";
 
+export const ROUTE_LOGIN = "login";
+
+
 export default function Router() {
     return useRoutes([
         {
             path: "/auth",
             element: <AuthLayout/>,
             children: [
-                {path: "login", element: <LoginPage/>},
+                {path: ROUTE_LOGIN, element: <LoginPage/>},
                 {path: "register", element: <RegisterPage/>},
                 {path: "cadastro", element: <SignUp/>},
                 {path: "reset-password", element: <ResetPasswordPage/>},
@@ -97,5 +100,5 @@ const MyProfile = Loadable(
     lazy(() => import("../pages/dashboard/Settings/MyProfile"))
 );
 const Profile = Loadable(
-    lazy(() => import("../pages/our/Profile"))
+    lazy(() => import("../pages/dashboard/Profile"))
 );

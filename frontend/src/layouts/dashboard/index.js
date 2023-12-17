@@ -61,6 +61,7 @@ const DashboardLayout = () => {
 
 
     useEffect(() => {
+
         if (isLoggedIn) {
             window.onload = function () {
                 if (!window.location.hash) {

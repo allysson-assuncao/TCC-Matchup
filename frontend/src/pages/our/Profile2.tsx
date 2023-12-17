@@ -2,30 +2,34 @@ import {
     Avatar,
     Box,
     Container,
-    CssBaseline, Snackbar,
+    CssBaseline, Snackbar, Stack,
     Typography
 } from "@mui/material";
 import React, {useEffect, useState} from "react";
 import {NavigateFunction, useNavigate, useParams} from "react-router-dom";
 import {getUserByUsername} from "../../api/user_requests/getUserBy";
-/*import ProfilePicture from "../components/ProfilePicture";*/
 import {isBlockedBy} from "../../api/user_requests/block";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import {useSelector} from "react-redux";
-import {ROUTE_MY_PROFILE, ROUTE_PROFILE} from "../../routes";
+import {ROUTE_MY_PROFILE} from "../../routes";
+import {useTheme} from "@mui/material/styles";
+import {CaretLeft} from "phosphor-react";
+import ProfileForm from "../../sections/Dashboard/Settings/ProfileForm";
+import {RHFTextField, RHFUploadAvatar} from "../../components/hook-form";
+import {LoadingButton} from "@mui/lab";
 
-const Profile = () => {
+const Profile2 = () => {
     const {user} = useSelector((state: any) => state.app);
-    const {theme} = useSelector((state: any) => state.theme);
     const {isLoggedIn} = useSelector((state: any) => state.auth);
+    const theme = useTheme();
 
     const {usernamePathVariable} = useParams();
 
     console.log(usernamePathVariable);
     const history: NavigateFunction = useNavigate();
 
-    const [editable, setEditability] = useState(false);
+    const [editable, setEditable] = useState(false);
     const [idProfile, setIdProfile] = useState(BigInt(0));
     const [name, setName] = useState(undefined);
     const [bio, setBio] = useState(undefined);
@@ -62,10 +66,10 @@ const Profile = () => {
                     setBlocked(blocked);
                     if (blocked) openSnackbar("Você foi blockeado por esse usuário, por isso não pode enviar um pedido de amizade");
                 }
-                setEditability(usernamePathVariable == JSON.parse(userJSON).username);
+                setEditable(usernamePathVariable == JSON.parse(userJSON).username);
             } else {
                 userProfile = await getUserByUsername(usernamePathVariable);
-                setEditability(false);
+                setEditable(false);
             }
 
             setIdProfile(user.id);
@@ -78,10 +82,43 @@ const Profile = () => {
     }, []);
 
     return (
-        <React.Fragment>
-            {/*{(idProfile != BigInt(0)) && (
+        <>
+            <Stack direction="row" sx={{ width: "100%" }}>
+                {/* Left Pane */}
+                {/*<Box
+                    sx={{
+                        overflowY: "scroll",
+
+                        height: "100vh",
+                        width: 320,
+                        backgroundColor: (theme) =>
+                            theme.palette.mode === "light"
+                                ? "#F8FAFF"
+                                : theme.palette.background,
+
+                        boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
+                    }}
+                >
+                </Box>*/}
+
+                {/* Right Pane */}
+                <Box
+                    sx={{
+                        height: "100%",
+                        width: "calc(100vw - 420px )",
+                        backgroundColor: (theme) =>
+                            theme.palette.mode === "light"
+                                ? "#FFF"
+                                : theme.palette.background.paper,
+                        borderBottom: "6px solid #0162C4",
+                    }}
+                ></Box>
+            </Stack>
+        </>
+        /*<React.Fragment>
+            {/!*{(idProfile != BigInt(0)) && (
             <AppBarProfile editable={editable} blocked={blocked} username={usernamePathVariable}
-                           idProfile={idProfile} openSnackBar={openSnackbar}></AppBarProfile>)}*/}
+                           idProfile={idProfile} openSnackBar={openSnackbar}></AppBarProfile>)}*!/}
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <Box
@@ -103,11 +140,11 @@ const Profile = () => {
                     }}
                 >
                     <Typography color={theme.palette.primary.main} variant="h4">{name}</Typography>
-                    {/*{idProfile ? <Avatar
+                    {/!*{idProfile ? <Avatar
                             src={current_conversation?.img}
                             alt={current_conversation?.name}
                             sx={{height: 64, width: 64}}
-                        /> : null}*/}
+                        /> : null}*!/}
                     <Typography color={theme.palette.primary.main} variant="body1" align="left">{bio}</Typography>
                 </Box>
                 <Snackbar
@@ -122,8 +159,8 @@ const Profile = () => {
                     }
                 />
             </Container>
-        </React.Fragment>
+        </React.Fragment>*/
     );
 }
 
-export default Profile;
+export default Profile2;
