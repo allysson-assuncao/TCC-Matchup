@@ -11,6 +11,8 @@ import {
 import {styled, useTheme} from "@mui/material/styles";
 import {Chat} from "phosphor-react";
 import {socket} from "../socket";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_PROFILE} from "../routes";
 
 const user_id = window.localStorage.getItem("user_id");
 
@@ -176,6 +178,8 @@ const FriendElement = ({
                        }) => {
     const theme = useTheme();
 
+    const navigate = useNavigate();
+
     const name = `${username}`;
 
     return (
@@ -194,7 +198,10 @@ const FriendElement = ({
                 alignItems={"center"}
                 justifyContent="space-between"
             >
-                <Stack direction="row" alignItems={"center"} spacing={2}>
+                <Stack
+                    direction="row"
+                    alignItems={"center"} spacing={2}
+                    onClick={() => navigate(`${ROUTE_PROFILE}/${username}`)}>
                     {" "}
                     {online ? (
                         <StyledBadge

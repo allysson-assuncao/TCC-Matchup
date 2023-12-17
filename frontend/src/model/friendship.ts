@@ -9,6 +9,7 @@ export interface Friendship {
 }
 
 export const FRIENDSHIP_STATUS = {
+    SENT: "SENT",
     PENDING: "PENDING",
     ACCEPTED: "ACCEPTED",
     REJECTED: "REJECTED",
