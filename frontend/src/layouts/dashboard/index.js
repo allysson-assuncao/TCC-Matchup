@@ -26,6 +26,7 @@ import {
 import AudioCallDialog from "../../sections/Dashboard/Audio/CallDialog";
 import VideoCallDialog from "../../sections/Dashboard/video/CallDialog";
 import {PushToVideoCallQueue, UpdateVideoCallDialog} from "../../redux/slices/videoCall";
+import {ROUTE_LOGIN} from "../../routes";
 
 const DashboardLayout = () => {
     const isDesktop = useResponsive("up", "md");
@@ -36,8 +37,7 @@ const DashboardLayout = () => {
         (state) => state.conversation.direct_chat
     );
 
-   /* const dispatch = useDispatch();*/
-    const {user, profilePicture} = useSelector((state) => state.app);
+    const {user, profilePicture, isUserUpdated, client} = useSelector((state) => state.app);
 
     async function fetch() {
         await dispatch(FetchUserProfile());

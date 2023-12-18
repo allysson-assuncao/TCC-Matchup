@@ -56,25 +56,19 @@ const ProfileButtons = ({profile, setProfile}) => {
     }
 
     const endFriendship = () => {
-        const severity = 'success';
-        const message = 'Amizade terminada!';
-        dispatch(showSnackbar({severity, message}));
+        dispatch(showSnackbar({severity: 'success', message: 'Amizade terminada!'}));
 
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ENDED}))
     }
 
     const acceptFriendship = () => {
-        const severity = 'success';
-        const message = 'Amizade aceita!';
-        dispatch(showSnackbar({severity, message}));
+        dispatch(showSnackbar({severity: 'success', message: 'Amizade aceita!'}));
 
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ACCEPTED}))
     }
 
     const rejectFriendship = () => {
-        const severity = 'success';
-        const message = 'Amizade recusada!';
-        dispatch(showSnackbar({severity, message}));
+        dispatch(showSnackbar({severity: 'success', message: 'Amizade recusada!'}));
 
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.REJECTED}))
     }

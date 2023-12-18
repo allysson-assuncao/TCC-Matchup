@@ -21,7 +21,7 @@ const AuthLayout = () => {
                         direction="column"
                         alignItems={"center"}
                     >
-                        <img style={{height: 120, width: 120}} src={Logo} alt="Logo"/>
+                        <img style={{height: 96, width: 96}} src={Logo} alt="Logo"/>
                     </Stack>
                     <Outlet/>
                 </Stack>

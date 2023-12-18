@@ -21,9 +21,7 @@ const BlockButtons = ({profile, setProfile}) => {
     const navigate = useNavigate();
 
     const block = () => {
-        const severity = 'success';
-        const message = 'Bloqueado com sucesso!';
-        dispatch(showSnackbar({severity, message}));
+        dispatch(showSnackbar({severity: 'success', message: 'Bloqueado com sucesso!'}));
 
 
         setProfile((prevProfile) => ({
@@ -35,9 +33,7 @@ const BlockButtons = ({profile, setProfile}) => {
     }
 
     const unblock = () => {
-        const severity = 'success';
-        const message = 'Desbloqueado com sucesso!';
-        dispatch(showSnackbar({severity, message}));
+        dispatch(showSnackbar({severity: 'success', message: 'Desbloqueado com sucesso!'}));
 
 
         setProfile((prevProfile) => ({...prevProfile, isBlockedByMe: !prevProfile.isBlockedByMe}));
