@@ -30,6 +30,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     void updateStatusToViewedByUserId(@Param("receiverId") Long receiverId);
 
     @Query("SELECT COUNT(n) FROM Notification n WHERE n.user.id = :userId AND n.viewed = false")
-    int countUnviewedNotificationsByUserId(@Param("userId") long userId);
+    int countUnseenNotificationsByUserId(@Param("userId") long userId);
 
+    @Query("SELECT COUNT(n) FROM Notification n WHERE n.user.username = :receiverUsername AND n.viewed = false")
+    int countUnseenNotificationsByUserUsername(@Param("receiverUsername")  String receiverUsername);
 }

@@ -12,9 +12,9 @@ const connectSocket = (user_id) => {
 export {socket, connectSocket};
 
 
-
-export const createStompClient = (loggedUser) => {
-    const client = new Client({
+let client;
+const createStompClient = (loggedUser) => {
+    client = new Client({
         brokerURL: 'ws://localhost:8080/ws',
         connectHeaders: {
             username: loggedUser?.username,
@@ -31,4 +31,6 @@ export const createStompClient = (loggedUser) => {
 
     return client;
 }
+
+export {createStompClient, client};
 

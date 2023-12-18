@@ -21,6 +21,8 @@ export const ROUTE_MY_PROFILE = "/meu-perfil";
 
 export const ROUTE_PROFILE = "/perfil";
 
+export const ROUTE_PAGE_NOT_FOUND = "/404";
+
 export const ROUTE_REGISTER_INTERESTS = "cadastro_de_interesses";
 
 export const ROUTE_MANAGE_INTERESTS = "gerenciamento_de_interesses";
@@ -62,7 +64,7 @@ export default function Router() {
 
                 {path: "call", element: <CallPage/>},
 
-                {path: "404", element: <Page404/>},
+                {path: PAGE_NOT_FOUND, element: <Page404/>},
                 {path: "*", element: <Navigate to="/404" replace/>},
             ],
         },

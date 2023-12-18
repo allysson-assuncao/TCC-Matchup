@@ -4,7 +4,7 @@ import {CaretLeft, Prohibit, Trash} from "phosphor-react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate, useParams} from "react-router-dom";
-import {ROUTE_MY_PROFILE} from "../../routes";
+import {ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
 import {getProfileByUsernameAndUserId} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
@@ -24,6 +24,7 @@ const Profile = () => {
 
         useEffect(() => {
                 if (usernamePathVariable == user.username) navigate(ROUTE_MY_PROFILE);
+                if (!usernamePathVariable || usernamePathVariable === "") navigate(ROUTE_PAGE_NOT_FOUND);
 
                 const fetchData = async () => {
                     const profile = await getProfileByUsernameAndUserId(usernamePathVariable, user.id);
@@ -59,7 +60,7 @@ const Profile = () => {
                                 {/* Header */}
                                 <Stack direction="row" justifyContent={"space-between"} alignItems={"center"} spacing={3}>
                                     <IconButton>
-                                        <CaretLeft size={24} color={"#4B4B4B"}/>
+                                        <CaretLeft size={24} color={"#4B4B4B"} onClick={() => navigate(-1)}/>
                                     </IconButton>
 
                                     <Typography variant="h5">{usernamePathVariable}</Typography>

@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {LoadingButton} from "@mui/lab";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate, useParams} from "react-router-dom";
+import {client} from "../../../socket";
 
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import {ROUTE_LOGIN} from "../../../routes";
@@ -16,7 +17,7 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const ProfileButtons = ({profile, setProfile}) => {
     const theme = useTheme();
-    const {user, client} = useSelector((state) => state.app);
+    const {user} = useSelector((state) => state.app);
     const {isLoggedIn, user_id} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
@@ -40,14 +41,13 @@ const ProfileButtons = ({profile, setProfile}) => {
     private List<String> interestNames;*/
 
     const sendFriendshipSolicitation = () => {
-        const sendTextMessage = () => {
-            if (!client) return;
-            console.log(client);
-            let ooo = client.publish({
-                destination: `/send/friendship-solicitation`,
-                body: {senderId: user_id, receiverId: profile.id}
-            });
-        }
+        //if (!client) return;
+        console.log(client);
+        let ooo = client.publish({
+            destination: `/app/send/friendship-solicitation`,
+            body: JSON.stringify({senderId: user_id, receiverId: profile.id})
+        });
+
 
         dispatch(showSnackbar({severity: 'success', message: 'Solicitação enviada!'}));
 
@@ -95,7 +95,9 @@ const ProfileButtons = ({profile, setProfile}) => {
                 )}
                 {(profile.doesFriendshipExist && profile.friendshipStatus == FRIENDSHIP_STATUS.ACCEPTED) && (
                     <Button
-                        onClick={() => {endFriendship()}}
+                        onClick={() => {
+                            endFriendship()
+                        }}
                         title={"Remover Amizade"}
                         fullWidth
                         startIcon={<PersonRemove/>}
@@ -107,7 +109,9 @@ const ProfileButtons = ({profile, setProfile}) => {
                 {(profile.doesFriendshipExist && profile.friendshipStatus == FRIENDSHIP_STATUS.PENDING) && (
                     <Stack direction="row" alignItems={"center"} spacing={2}>
                         <Button
-                            onClick={() => {acceptFriendship()}}
+                            onClick={() => {
+                                acceptFriendship()
+                            }}
                             title={"Aceitar solicitação de amizade"}
                             fullWidth
                             startIcon={<Check/>}
@@ -116,7 +120,9 @@ const ProfileButtons = ({profile, setProfile}) => {
                             Aceitar
                         </Button>
                         <Button
-                            onClick={() => {rejectFriendship()}}
+                            onClick={() => {
+                                rejectFriendship()
+                            }}
                             title={"Recusar solicitação de amizade"}
                             fullWidth
                             startIcon={<Close/>}

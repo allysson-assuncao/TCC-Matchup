@@ -5,13 +5,14 @@ import useResponsive from "../../hooks/useResponsive";
 import SideNav from "./SideNav";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    AddNotification,
     FetchProfilePicture,
     FetchUserProfile,
     SelectConversation,
     SetClient,
     showSnackbar
 } from "../../redux/slices/app";
-import {socket, connectSocket, createStompClient} from "../../socket";
+import {socket, connectSocket, createStompClient, client} from "../../socket";
 import {
     UpdateDirectConversation,
     AddDirectConversation,
@@ -27,6 +28,7 @@ import AudioCallDialog from "../../sections/Dashboard/Audio/CallDialog";
 import VideoCallDialog from "../../sections/Dashboard/video/CallDialog";
 import {PushToVideoCallQueue, UpdateVideoCallDialog} from "../../redux/slices/videoCall";
 import {ROUTE_LOGIN} from "../../routes";
+import {binaryBodyToJSON} from "../../utils/BinaryBodyToJSON";
 
 const DashboardLayout = () => {
     const isDesktop = useResponsive("up", "md");
@@ -37,7 +39,7 @@ const DashboardLayout = () => {
         (state) => state.conversation.direct_chat
     );
 
-    const {user, profilePicture, isUserUpdated, client} = useSelector((state) => state.app);
+    const {user, profilePicture, isUserUpdated} = useSelector((state) => state.app);
 
     async function fetch() {
         await dispatch(FetchUserProfile());
@@ -69,28 +71,33 @@ const DashboardLayout = () => {
 
                 window.onload();
 
-                let createdClient;
-                if (!client) {
-                    createdClient = await createStompClient(user);
-                }
 
-                createdClient.onConnect = (frame) => {
-                    createdClient.subscribe(`/user/${user.id}/queue/private-messages`, (msg) => {
+                createStompClient(user).onConnect = (frame) => {
+                    client.subscribe(`/user/${user.id}/queue/private-messages`, (msg) => {
                         console.log(msg);
                         const message = JSON.parse(msg.body)
                         //updateContactsWithMessage(message.receiverContactId, message);
                     });
-                    createdClient.subscribe(`/user/${user.id}/queue/notification/friendship-solicitation`, (notification) => {
-                        console.log(notification);
+                    client.subscribe(`/user/${user.id}/queue/notification/friendship-solicitation`, (obj) => {
+                        //dispatch(AddNotification(binaryBodyToJSON(obj)));
+
+                        binaryBodyToJSON(obj).then((notification) => {
+                            dispatch(
+                                showSnackbar({
+                                    severity: "success",
+                                    message: "New friend request received",
+                                })
+                            );
+                            dispatch(AddNotification(notification));
+                        });
+
                         //const message = JSON.parse(msg.body)
                         //updateContactsWithMessage(message.receiverContactId, message);
                     });
                 };
 
+                client.activate();
 
-
-                createdClient.activate();
-                dispatch(SetClient(createdClient));
 
 
                 /*socket.on("audio_call_notification", (data) => {
@@ -174,7 +181,7 @@ const DashboardLayout = () => {
 
         subscribeClient();
 
-    }, [isLoggedIn, socket]);
+    }, [isLoggedIn, socket, isUserUpdated]);
 
 
     if (!isLoggedIn) {

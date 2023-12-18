@@ -27,6 +27,7 @@ const initialState = {
     all_users: [],
     friends: [], // all friends
     friendRequests: [], // all friend requests
+    notifications: [],
     chat_type: null,
     room_id: null,
     call_logs: [],
@@ -99,6 +100,13 @@ const slice = createSlice({
         },
         setClient(state, action) {
             state.client = action.payload.client;
+        },
+        getNotifications(state, action) {
+            state.notifications = action.payload.notifications;
+        },
+        addNotification(state, action) {
+            state.notifications = [...state.notifications, action.payload.notification];
+            //state.notifications.push(action.payload.notification);
         }
     },
 });
@@ -110,6 +118,31 @@ export default slice.reducer;
 
 export const closeSnackBar = () => async (dispatch, getState) => {
     dispatch(slice.actions.closeSnackBar());
+};
+
+export const GetNotifications = () => async (dispatch, getState) => {
+    await axios
+        .get(
+            "http://localhost:8080/api/notification/get",
+
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${getState().auth.token}`,
+                },
+            }
+        )
+        .then((response) => {
+            console.log(response);
+            dispatch(slice.actions.getNotifications(response.data));
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+};
+
+export const AddNotification = (notification) => async (dispatch, getState) => {
+    dispatch(slice.actions.addNotification(notification));
 };
 
 export const showSnackbar =

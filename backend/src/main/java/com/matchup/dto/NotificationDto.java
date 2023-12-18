@@ -18,12 +18,14 @@ public class NotificationDto {
     private NotificationType type;
 
     private long senderId;
-
+    private String senderProfilePicture;
     private String senderUsername;
+
     private long receiverId;
     private LocalDateTime date;
     private long friendshipId;
-    private String content;
+    /*private String content;*/
+
 
     private boolean viewed;
 

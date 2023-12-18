@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,15 +54,15 @@ public class NotificationController {
         return notificationDto;
     }
 
-    @PostMapping("/solicitation-response/{accepted}")
+    /*@PostMapping("/solicitation-response/{accepted}")
     @PostAuthorize("true")
     public ResponseEntity<Boolean> solicitationResponse(@RequestBody Map<String, Long> friendshipId, @PathVariable String accepted) {
         return new ResponseEntity<Boolean>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
     }
 
-    @GetMapping("/get-by-user-id/{userId}")
-    public ResponseEntity<List<NotificationDto>> getNotificationsByUserId(@PathVariable long userId) {
-        return new ResponseEntity<>(notificationService.getNotificationsByUserId(userId), HttpStatus.OK);
+    @GetMapping("/get")
+    public ResponseEntity<List<NotificationDto>> getNotifications(@AuthenticationPrincipal UserDetails userDetails) {
+        return new ResponseEntity<>(notificationService.getNotificationsByUsername(userDetails), HttpStatus.OK);
     }
 
     @GetMapping("/get-unseen-count-by-user-id/{userId}")

@@ -13,6 +13,7 @@ import ProfileMenu from "./ProfileMenu";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {UpdateTab} from "../../redux/slices/app";
+import NotificationMenu from "./NotificationMenu";
 
 const getPath = (index) => {
     switch (index) {
@@ -163,10 +164,7 @@ const SideBar = () => {
                     </Stack>
                 </Stack>
                 <Stack spacing={4}>
-                    <AntSwitch
-                        defaultChecked={theme.palette.mode === "dark"}
-                        onChange={onToggleMode}
-                    />
+                    <NotificationMenu/>
                     {/* MyProfile Menu */}
                     <ProfileMenu/>
                 </Stack>

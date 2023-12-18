@@ -30,7 +30,6 @@ const slice = createSlice({
         },
         signOut(state, action) {
             state.isLoggedIn = false;
-            state.token = "";
             state.user_id = null
         },
         updateRegisterEmail(state, action) {
