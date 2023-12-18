@@ -1,6 +1,7 @@
 package com.matchup.service;
 
 import com.matchup.dto.FriendDto;
+import com.matchup.dto.NotificationDto;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.model.User;
@@ -69,6 +70,27 @@ public class FriendshipService {
         return true;
 
     }
+
+    /*public NotificationDto sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted) {
+        Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
+        if (friendshipOp.isEmpty()) return false;
+        Friendship friendship = friendshipOp.get();
+
+        System.out.println(accepted);
+        System.out.println(friendship.getUser().getUsername());
+        if (accepted) {
+            friendship.setStatus(FriendshipStatus.ACCEPTED);
+        } else {
+            friendship.setStatus(FriendshipStatus.REJECTED);
+        }
+        friendship.setDate(LocalDateTime.now());
+        friendship = saveFriendship(friendship);
+
+        friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
+        notificationService.sendFriendshipSolicitationResponseNotification(friendship.getId());
+        return true;
+
+    }*/
 
     public boolean existsFriendshipByUsersId(Long user1Id, Long user2Id) {
         return friendshipRepository.existsByUsers(user1Id, user2Id);

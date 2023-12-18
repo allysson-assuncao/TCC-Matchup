@@ -18,6 +18,8 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
 
     Optional<List<Notification>> findByUserId(long userId);
 
+    Optional<List<Notification>> findByUserUsername(String username);
+
 
     /*@Modifying
     @Transactional
@@ -28,6 +30,11 @@ public interface NotificationRepository extends JpaRepository<Notification, Long
     @Transactional
     @Query("UPDATE Notification n SET n.viewed = TRUE WHERE n.viewed = FALSE and n.user.id = :receiverId")
     void updateStatusToViewedByUserId(@Param("receiverId") Long receiverId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Notification n SET n.viewed = TRUE WHERE n.viewed = FALSE and n.user.username = :receiverUsername")
+    void updateStatusToViewedByUserUsername(@Param("receiverUsername") String receiverUsername);
 
     @Query("SELECT COUNT(n) FROM Notification n WHERE n.user.id = :userId AND n.viewed = false")
     int countUnseenNotificationsByUserId(@Param("userId") long userId);

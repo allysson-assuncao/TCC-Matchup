@@ -1,7 +1,9 @@
 package com.matchup.controller;
 
+import com.matchup.dto.FriendshipSolicitationDto;
 import com.matchup.dto.MessageDto;
 import com.matchup.dto.NotificationDto;
+import com.matchup.dto.SolicitationResponseDto;
 import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.model.notification.Notification;
 import com.matchup.service.FriendshipService;
@@ -39,16 +41,18 @@ public class NotificationController {
     }
 
 
-   /*@PostMapping("/send-solicitation")
+    /*@PostMapping("/send-solicitation")
     @PostAuthorize("true")
     public ResponseEntity<Boolean> sendFriendshipSolicitationNotification(@RequestBody Map<String, Long> requestBody) {
         return new ResponseEntity<>(notificationService.sendFriendshipSolicitationNotification(requestBody.get("senderId"), requestBody.get("receiverId")), HttpStatus.OK);
     }*/
 
     @MessageMapping("/send/friendship-solicitation")
-    public NotificationDto sendFriendshipSolicitationNotification(Map<String, Long> requestBody) {
-        System.out.println("Solicitação enviada");
-        NotificationDto notificationDto = notificationService.sendFriendshipSolicitationNotification(requestBody.get("senderId"), requestBody.get("receiverId"));
+    public NotificationDto sendFriendshipSolicitationNotification(FriendshipSolicitationDto friendshipSolicitationDto) {
+        NotificationDto notificationDto = notificationService.sendFriendshipSolicitationNotification(
+                friendshipSolicitationDto.getSenderId(), friendshipSolicitationDto.getReceiverId());
+
+        System.out.println("Notificação salva no BD");
         simpMessagingTemplate.convertAndSendToUser(
                 notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);
         return notificationDto;
@@ -58,6 +62,16 @@ public class NotificationController {
     @PostAuthorize("true")
     public ResponseEntity<Boolean> solicitationResponse(@RequestBody Map<String, Long> friendshipId, @PathVariable String accepted) {
         return new ResponseEntity<Boolean>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
+    }*/
+
+    @MessageMapping("/solicitation-response/")
+    public NotificationDto solicitationResponse(SolicitationResponseDto solicitationResponseDto) {
+        System.out.println("Solicitação aceita");
+        NotificationDto notificationDto = notificationService.sendFriendshipSolicitationResponseNotification(
+                solicitationResponseDto.getReceiverId(), solicitationResponseDto.getSenderId(), solicitationResponseDto.isAccepted());
+        simpMessagingTemplate.convertAndSendToUser(
+                notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);
+        return notificationDto;
     }
 
     @GetMapping("/get")

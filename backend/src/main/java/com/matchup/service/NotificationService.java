@@ -13,6 +13,7 @@ import com.matchup.repository.notification.FriendshipSolicitationNotificationRep
 import com.matchup.repository.notification.NotificationRepository;
 import com.matchup.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -79,6 +80,20 @@ public class NotificationService {
 
         fSNotification = notificationRepository.save(fSNotification);
 
+        NotificationDto notificationDto = NotificationDto.builder()
+                .friendshipId(friendship.getId())
+                .id(fSNotification.getId())
+                .receiverId(receiverId)
+                .senderId(senderId)
+                .senderUsername(sender.getUsername())
+                .type(NotificationType.PENDING)
+                .date(fSNotification.getDate())
+                .viewed(fSNotification.isViewed())
+                .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
+                .build();
+
+        System.out.println(notificationDto);
+
 
         return notificationDto;
     }
@@ -106,16 +121,19 @@ public class NotificationService {
                         nDto.setType(NotificationType.PENDING);
                         nDto.setSenderId(nSN.getFriendship().getUser().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getUser().getUsername());
+                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getUser().getId(), 64, 64));
                         break;
                     case ACCEPTED:
                         nDto.setType(NotificationType.ACCEPTED);
                         nDto.setSenderId(nSN.getFriendship().getFriend().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
+                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64, 64));
                         break;
                     case REJECTED:
                         nDto.setType(NotificationType.REJECTED);
                         nDto.setSenderId(nSN.getFriendship().getFriend().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
+                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64, 64));
                         break;
                 }
             } else if (n instanceof DefaultNotification) {
@@ -132,10 +150,11 @@ public class NotificationService {
         return notificationRepository.countUnseenNotificationsByUserId(userId);
     }
 
-    public void sendFriendshipSolicitationResponseNotification(long friendshipId){
-        Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
-        if(friendshipOp.isEmpty()) return;
+    public NotificationDto sendFriendshipSolicitationResponseNotification(long receiverId, long senderId, boolean accepted) {
+        Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(receiverId, senderId);
+        if (friendshipOp.isEmpty()) return null;
         Friendship friendship = friendshipOp.get();
+        friendship.set
 
         User receiver = userRepository.findById(receiverId).get();
         User sender = userRepository.findById(senderId).get();
