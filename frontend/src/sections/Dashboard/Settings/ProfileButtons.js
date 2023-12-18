@@ -16,8 +16,8 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const ProfileButtons = ({profile, setProfile}) => {
     const theme = useTheme();
-    const {user} = useSelector((state) => state.app);
-    const {isLoggedIn} = useSelector((state) => state.auth);
+    const {user, client} = useSelector((state) => state.app);
+    const {isLoggedIn, user_id} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     /*snackbar: {
@@ -40,9 +40,17 @@ const ProfileButtons = ({profile, setProfile}) => {
     private List<String> interestNames;*/
 
     const sendFriendshipSolicitation = () => {
-        const severity = 'success';
-        const message = 'Solicitação enviada!';
-        dispatch(showSnackbar({severity, message}));
+        const sendTextMessage = () => {
+            if (!client) return;
+            console.log(client);
+            let ooo = client.publish({
+                destination: `/send/friendship-solicitation`,
+                body: {senderId: user_id, receiverId: profile.id}
+            });
+        }
+
+        dispatch(showSnackbar({severity: 'success', message: 'Solicitação enviada!'}));
+
 
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.SENT}))
     }

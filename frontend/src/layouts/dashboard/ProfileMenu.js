@@ -10,7 +10,8 @@ import {socket} from "../../socket";
 import {useNavigate} from "react-router-dom";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {ClearUser} from "../../redux/slices/app";
-import {ROUTE_MY_PROFILE} from "../../routes";
+import {ROUTE_MANAGE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_REGISTER_INTERESTS} from "../../routes";
+import Grid from "@mui/material/Grid";
 
 const ProfileMenu = () => {
     const {user, profilePicture} = useSelector((state) => state.app);
@@ -69,6 +70,10 @@ const ProfileMenu = () => {
                                         if (idx === 0) {
                                             navigate(ROUTE_MY_PROFILE);
                                         } else if (idx === 1) {
+                                            navigate(ROUTE_REGISTER_INTERESTS);
+                                        } else if (idx === 2) {
+                                            navigate(ROUTE_MANAGE_INTERESTS);
+                                        } else if (idx === 3) {
                                             navigate("/settings");
                                         } else {
                                             dispatch(LogoutUser());
@@ -76,13 +81,17 @@ const ProfileMenu = () => {
                                             socket.emit("end", {user_id});
                                         }
                                     }}
-                                    sx={{width: 100}}
                                     direction="row"
                                     alignItems={"center"}
-                                    justifyContent="space-between"
                                 >
-                                    <span>{el.title}</span>
-                                    {el.icon}
+                                    <Grid container>
+                                        <Grid item md={10} justifyContent={'start'}>
+                                            <span>{el.title}</span>
+                                        </Grid>
+                                        <Grid item md={2} justifyContent={'end'}>
+                                            {el.icon}
+                                        </Grid>
+                                    </Grid>
                                 </Stack>{" "}
                             </MenuItem>
                         ))}

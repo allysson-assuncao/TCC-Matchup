@@ -21,6 +21,10 @@ export const ROUTE_MY_PROFILE = "/meu-perfil";
 
 export const ROUTE_PROFILE = "/perfil";
 
+export const ROUTE_REGISTER_INTERESTS = "cadastro_de_interesses";
+
+export const ROUTE_MANAGE_INTERESTS = "gerenciamento_de_interesses";
+
 export const ROUTE_LOGIN = "login";
 
 
@@ -53,8 +57,8 @@ export default function Router() {
                 {path: ROUTE_MY_PROFILE, element: <MyProfile/>},
                 {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
                 {path: "old-profile", element: <GeneralInfo/>},
-                {path: "cadastro_de_interesses", element: <RegisterInterest/>},
-                {path: "gerenciamento_de_interesses", element: <InterestManagement/>},
+                {path: `${ROUTE_MANAGE_INTERESTS}/:usernamePathVariable`, element: <RegisterInterest/>},
+                {path: ROUTE_MANAGE_INTERESTS, element: <InterestManagement/>},
 
                 {path: "call", element: <CallPage/>},
 

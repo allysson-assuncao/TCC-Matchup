@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
 import {
-  ChatCircleDots,
+  ChatCircleDots, GameController,
   Gear,
   GearSix,
-  Phone,
+  Phone, Plus,
   SignOut,
   User,
   Users,
@@ -11,15 +11,23 @@ import {
 
 const Profile_Menu = [
   {
-    title: "Profile",
+    title: "Perfil",
     icon: <User />,
   },
   {
-    title: "Settings",
+    title: "Cadastrar Interesses",
+    icon: <Plus />,
+  },
+  {
+    title: "Gerenciar Interesses",
+    icon: <GameController />,
+  },
+  {
+    title: "Configurações",
     icon: <Gear />,
   },
   {
-    title: "Sign Out",
+    title: "Sair",
     icon: <SignOut />,
   },
 ];

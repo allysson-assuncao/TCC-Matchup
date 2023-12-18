@@ -4,7 +4,7 @@ import {useTheme} from "@mui/material/styles";
 import {Box, Divider, IconButton, Stack} from "@mui/material";
 import AntSwitch from "../../components/AntSwitch";
 
-import Logo from "../../assets/Images/logo2.ico";
+import Logo from "../../assets/Images/logo_white.ico";
 
 import useSettings from "../../hooks/useSettings";
 import {Nav_Buttons, Nav_Setting} from "../../data";
@@ -79,7 +79,7 @@ const SideBar = () => {
                         }}
                         p={1}
                     >
-                        <img src={Logo} alt="Tawk"/>
+                        <img src={Logo} alt="Matchup"/>
                     </Box>
                     <Stack
                         sx={{width: "max-content"}}

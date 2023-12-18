@@ -30,6 +30,7 @@ const initialState = {
     chat_type: null,
     room_id: null,
     call_logs: [],
+    client: null
 };
 
 
@@ -96,6 +97,9 @@ const slice = createSlice({
         setIsUserUpdated(state, action) {
             state.isUserUpdated = action.payload.isUserUpdated;
         },
+        setClient(state, action) {
+            state.client = action.payload.client;
+        }
     },
 });
 
@@ -144,6 +148,12 @@ export function UpdateTab(tab) {
 export function ClearUser() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.clearUser());
+    };
+}
+
+export function SetClient(client) {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.setClient(client));
     };
 }
 
@@ -334,6 +344,35 @@ export const UpdateUserProfile = (formValues) => {
 };
 
 export const FetchProfilePicture = (userId, width, height) => {
+    return async (dispatch, getState) => {
+
+        axios
+            .get(
+                `http://localhost:8080/api/get/user/profile-picture/by/id/?width=${width}&height=${height}`,
+
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${getState().auth.token}`,
+                    },
+                }
+            )
+            .then((response) => {
+                console.log(response.data);
+
+
+                const imageUrl = `data:image/png;base64,${response.data.file.content}`;
+
+                dispatch(slice.actions.updateProfilePicture({profilePicture: imageUrl}));
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
+};
+
+
+export const SendFriendship = (userId, width, height) => {
     return async (dispatch, getState) => {
 
         axios
