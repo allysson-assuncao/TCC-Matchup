@@ -56,13 +56,12 @@ public class MessageController {
     }
 
     /*@MessageMapping("/user/{userId}/queue/messages")*/
-    @MessageMapping("/send-private-massage-to/{userId}")
+    /*@MessageMapping("/send-private-massage-to/{userId}")
     public void handlePrivateMessage(@Payload Message message, @DestinationVariable String userId) {
-        System.out.println("olá");
         System.out.println(userId);
         System.out.println(message.toString() + "  " + message.getPayload().toString());
         simpMessagingTemplate.convertAndSend("/user/" + userId + "/queue/messages", message);
-    }
+    }*/
 
     @MessageMapping("/send-private-message")
     /*@SendToUser("/queue/private-messages")*/
@@ -71,7 +70,6 @@ public class MessageController {
         simpMessagingTemplate.convertAndSendToUser(
                 m.getReceiverId()+"", "/queue/private-messages", m);
         return m;
-
     }
 
 

@@ -40,8 +40,8 @@ public class NotificationService {
         this.friendshipSolicitationNotificationRepository = friendshipSolicitationNotificationRepository;
     }
 
-    public boolean sendFriendshipSolicitationNotification(long senderId, long receiverId){
-        if(senderId == receiverId) return false;
+    public NotificationDto sendFriendshipSolicitationNotification(long senderId, long receiverId){
+        if(senderId == receiverId) return null;
 
         User receiver = userRepository.findById(receiverId).get();
         User sender = userRepository.findById(senderId).get();
@@ -57,7 +57,7 @@ public class NotificationService {
             friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
             friendship.setDate(null);
         }else if (friendshipOp.isPresent() && !friendshipOp.get().getStatus().equals(FriendshipStatus.REJECTED)){
-            return false;
+            return null;
         }else{
             friendship = new Friendship();
         }
@@ -75,14 +75,19 @@ public class NotificationService {
         fSNotification.setUser(userRepository.findById(receiverId).get());
         receiver.addNotification(fSNotification);
 
-        /*receiver.addFriendship(friendship);
-        sender.addFriendship(friendship);
+        fSNotification = notificationRepository.save(fSNotification);
 
-        userRepository.save(receiver);
-        userRepository.save(sender);*/
-        notificationRepository.save(fSNotification);
 
-        return true;
+        return new NotificationDto().builder()
+                .friendshipId(friendship.getId())
+                .id(fSNotification.getId())
+                .receiverId(receiverId)
+                .senderId(senderId)
+                .senderUsername(sender.getUsername())
+                .type(NotificationType.PENDING)
+                .date(fSNotification.getDate())
+                .viewed(fSNotification.isViewed())
+                .build();
     }
 
     @Transactional

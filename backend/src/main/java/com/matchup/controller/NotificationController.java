@@ -1,12 +1,16 @@
 package com.matchup.controller;
 
+import com.matchup.dto.MessageDto;
 import com.matchup.dto.NotificationDto;
+import com.matchup.model.notification.FriendshipSolicitationNotification;
 import com.matchup.model.notification.Notification;
 import com.matchup.service.FriendshipService;
 import com.matchup.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,16 +27,29 @@ public class NotificationController {
 
     private final FriendshipService friendshipService;
 
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     @Autowired
-    public NotificationController(NotificationService notificationService, FriendshipService friendshipService) {
+    public NotificationController(NotificationService notificationService, FriendshipService friendshipService, SimpMessagingTemplate simpMessagingTemplate) {
         this.notificationService = notificationService;
         this.friendshipService = friendshipService;
+        this.simpMessagingTemplate = simpMessagingTemplate;
     }
 
-    @PostMapping("/send-solicitation")
+
+   /*@PostMapping("/send-solicitation")
     @PostAuthorize("true")
     public ResponseEntity<Boolean> sendFriendshipSolicitationNotification(@RequestBody Map<String, Long> requestBody) {
         return new ResponseEntity<>(notificationService.sendFriendshipSolicitationNotification(requestBody.get("senderId"), requestBody.get("receiverId")), HttpStatus.OK);
+    }*/
+
+    @MessageMapping("/send/friendship-solicitation")
+    public NotificationDto sendFriendshipSolicitationNotification(Map<String, Long> requestBody) {
+        System.out.println("Solicitação enviada");
+        NotificationDto notificationDto = notificationService.sendFriendshipSolicitationNotification(requestBody.get("senderId"), requestBody.get("receiverId"));
+        simpMessagingTemplate.convertAndSendToUser(
+                notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);
+        return notificationDto;
     }
 
     @PostMapping("/solicitation-response/{accepted}")
