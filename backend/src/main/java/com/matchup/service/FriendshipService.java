@@ -55,8 +55,8 @@ public class FriendshipService {
         if (friendshipOp.isEmpty()) return false;
         Friendship friendship = friendshipOp.get();
 
-        System.out.println(accepted);
-        System.out.println(friendship.getUser().getUsername());
+        friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
+
         if (accepted) {
             friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
@@ -65,9 +65,7 @@ public class FriendshipService {
         friendship.setDate(LocalDateTime.now());
         friendship = saveFriendship(friendship);
 
-        friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendshipId);
-        notificationService.sendFriendshipSolicitationResponseNotification(friendship.getId());
-        return true;
+        return notificationService.sendFriendshipSolicitationResponseNotification(friendship);
 
     }
 

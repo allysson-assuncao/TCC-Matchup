@@ -49,9 +49,6 @@ public class NotificationService {
         User receiver = userRepository.findById(receiverId).get();
         User sender = userRepository.findById(senderId).get();
 
-        System.out.println("sender: " + sender.getUsername());
-        System.out.println("receiver: " + receiver.getUsername());
-
         System.out.println(friendshipRepository.existsByUsers(senderId, receiverId));
         Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(senderId, receiverId);
         Friendship friendship = null;
@@ -156,31 +153,33 @@ public class NotificationService {
         Friendship friendship = friendshipOp.get();
         friendship.set
 
-        User receiver = userRepository.findById(receiverId).get();
-        User sender = userRepository.findById(senderId).get();
+        //User receiver = userRepository.findById(receiverId).get();
+        User sender = friendship.getFriend();
 
-        if (accepted) {
-            FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
-            fSNotification.setFriendship(friendship);
-            fSNotification.setDate(LocalDateTime.now());
-            fSNotification.setViewed(false);
-            fSNotification.setUser(userRepository.findById(receiver.getId()).get());
-            receiver.addNotification(fSNotification);
+        FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
+        fSNotification.setFriendship(friendship);
+        fSNotification.setDate(LocalDateTime.now());
+        fSNotification.setViewed(false);
+        fSNotification.setUser(friendship.getUser());
+        //receiver.addNotification(fSNotification);
 
-            receiver.addFriendship(friendship);
-            sender.addFriendship(friendship);
+        //receiver.addFriendship(friendship);
+        //sender.addFriendship(friendship);
 
-            userRepository.save(receiver);
-            userRepository.save(sender);
-            fSNotification = notificationRepository.save(fSNotification);
+        /*userRepository.save(receiver);
+        userRepository.save(sender);*/
+        fSNotification = notificationRepository.save(fSNotification);
 
 
-            return NotificationDto.builder()
-
-                    .build();
-        } else{
-            return null;
-        }
+        return NotificationDto.builder()
+                .friendshipId(friendship.getId())
+                .viewed(fSNotification.isViewed())
+                .senderId(sender.getId())
+                .senderUsername(sender.getUsername())
+                .senderProfilePicture(imageService.getFormattedProfilePictureById(sender.getId(), 64, 64))
+                .date(fSNotification.getDate())
+                .type(NotificationType.ACCEPTED)
+                .build();
     }
 
     @Transactional
@@ -197,6 +196,12 @@ public class NotificationService {
         }
         notificationRepository.deleteById(notificationId);
         return true;
+    }
+
+
+    public long getFriendshipNotificationIdByUsers(long user1Id, long user2Id){
+        Optional<Long> friendshipId = friendshipRepository.getFriendshipIdByUsers(user1Id, user2Id);
+        return friendshipSolicitationNotificationRepository.getFriendshipNotificationIdByFriendshipId(friendshipId.get());
     }
 
 

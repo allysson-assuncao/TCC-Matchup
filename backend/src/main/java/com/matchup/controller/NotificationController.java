@@ -64,7 +64,7 @@ public class NotificationController {
         return new ResponseEntity<Boolean>(friendshipService.sendFriendshipSolicitationResponseNotification(friendshipId.get("friendshipId"), Boolean.parseBoolean(accepted)), HttpStatus.OK);
     }*/
 
-    @MessageMapping("/solicitation-response/")
+    /*@MessageMapping("/solicitation-response/")
     public NotificationDto solicitationResponse(SolicitationResponseDto solicitationResponseDto) {
         System.out.println("Solicitação aceita");
         NotificationDto notificationDto = notificationService.sendFriendshipSolicitationResponseNotification(
@@ -72,7 +72,7 @@ public class NotificationController {
         simpMessagingTemplate.convertAndSendToUser(
                 notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);
         return notificationDto;
-    }
+    }*/
 
     @GetMapping("/get")
     public ResponseEntity<List<NotificationDto>> getNotifications(@AuthenticationPrincipal UserDetails userDetails) {
