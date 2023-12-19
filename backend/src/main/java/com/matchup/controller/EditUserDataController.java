@@ -23,7 +23,7 @@ public class EditUserDataController {
     }
 
     @PatchMapping("/user")
-    public ResponseEntity<User> update(@ModelAttribute UserDto userDto, @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<UserDto> update(@ModelAttribute UserDto userDto, @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println("hello");
         return new ResponseEntity<>(userService.updateUser(userDto, userDetails), HttpStatus.OK);
     }

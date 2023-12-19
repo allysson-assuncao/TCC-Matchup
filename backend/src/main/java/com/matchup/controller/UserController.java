@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.UserDto;
 import com.matchup.model.User;
 import com.matchup.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class UserController {
     }
 
     @GetMapping("/get-me")
-    public ResponseEntity<User> getMyProfile(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = userService.getUserByUsername(userDetails.getUsername());
+    public ResponseEntity<UserDto> getMyProfile(@AuthenticationPrincipal UserDetails userDetails) {
+        UserDto user = userService.getLoggedUserProfileByUsername(userDetails.getUsername());
 
         if (user != null) {
             return ResponseEntity.ok(user);
