@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Working on Friendship Solicitation Response">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Receiving notifications and updating some buttons while accessing sender profile at the same time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileButtons.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="Working on Friendship Solicitation Response" />
+    <list id="6433e4f2-9a5c-4557-8253-9585a133b1d0" name="Changes by Allysson" comment="Receiving notifications and updating some buttons while accessing sender profile at the same time" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,23 +212,9 @@
       <workItem from="1702752815947" duration="4799000" />
       <workItem from="1702816069112" duration="8241000" />
       <workItem from="1702836024876" duration="6753000" />
-      <workItem from="1702989629714" duration="6898000" />
-    </task>
-    <task id="LOCAL-00006" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695600007160</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1695600007160</updated>
-    </task>
-    <task id="LOCAL-00007" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695600153425</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1695600153425</updated>
+      <workItem from="1702989629714" duration="6953000" />
+      <workItem from="1703008789871" duration="5267000" />
+      <workItem from="1703016653830" duration="4271000" />
     </task>
     <task id="LOCAL-00008" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
       <option name="closed" value="true" />
@@ -583,14 +575,29 @@
       <option name="project" value="LOCAL" />
       <updated>1703000002588</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Receiving notifications and updating some buttons while accessing sender profile at the same time">
+      <option name="closed" value="true" />
+      <created>1703017153497</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1703017153498</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Receiving notifications and updating some buttons while accessing sender profile at the same time">
+      <option name="closed" value="true" />
+      <created>1703017158997</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1703017158997</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="redoing stuff" />
     <MESSAGE value="workspace.xml" />
     <MESSAGE value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
     <MESSAGE value="removing the img.zip" />
@@ -615,7 +622,8 @@
     <MESSAGE value="Fetching Other users profile data" />
     <MESSAGE value="Other user's profile being loaded in the Profile component correctly and the buttons are being changed accordingly to the block and friendship parameters" />
     <MESSAGE value="Working on Friendship Solicitation Response" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on Friendship Solicitation Response" />
+    <MESSAGE value="Receiving notifications and updating some buttons while accessing sender profile at the same time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Receiving notifications and updating some buttons while accessing sender profile at the same time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

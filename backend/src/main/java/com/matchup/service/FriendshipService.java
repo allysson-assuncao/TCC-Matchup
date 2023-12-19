@@ -50,7 +50,7 @@ public class FriendshipService {
         return friendshipRepository.save(friendshipToSave);
     }
 
-
+    @Transactional
     public NotificationDto sendFriendshipSolicitationResponseNotification(long receiverId, long senderId, boolean accepted) {
         if (senderId == receiverId) return null;
 

@@ -33,7 +33,8 @@ const initialState = {
     chat_type: null,
     room_id: null,
     call_logs: [],
-    client: null
+    client: null,
+    lastEndedFriendship: null
 };
 
 
@@ -115,6 +116,9 @@ const slice = createSlice({
         },
         removeNotification(state, action) {
             state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
+        },
+        updateLastEndedFriendship(state, action) {
+            state.lastEndedFriendship = action.payload.lastEndedFriendship;
         }
 
     },
@@ -164,6 +168,10 @@ export function AddNotification(notification) {
 
 export const RemoveNotification = (notificationId) => async (dispatch, getState) => {
     dispatch(slice.actions.removeNotification({notificationId: notificationId}));
+};
+
+export const UpdateLastEndedFriendship = (lastEndedFriendship) => async (dispatch, getState) => {
+    dispatch(slice.actions.updateLastEndedFriendship({lastEndedFriendship: lastEndedFriendship}));
 };
 
 export const showSnackbar =
@@ -409,6 +417,21 @@ export const RespondFriendshipSolicitation = (senderId, receiverId, accepted) =>
         client.publish({
             destination: `/app/solicitation-response/`,
             body: JSON.stringify(solicitationResponseDto)
+        });
+
+    };
+};
+
+export const EndFriendship = (senderId, receiverId) => {
+    return async (dispatch, getState) => {
+        const endFriendshipDto = {
+            senderId: senderId,
+            receiverId: receiverId,
+        };
+
+        client.publish({
+            destination: `/app/friendship/end`,
+            body: JSON.stringify(endFriendshipDto)
         });
 
     };

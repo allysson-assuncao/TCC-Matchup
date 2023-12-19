@@ -10,7 +10,7 @@ import {
     FetchUserProfile, RemoveNotification,
     SelectConversation,
     SetClient,
-    showSnackbar
+    showSnackbar, UpdateLastEndedFriendship
 } from "../../redux/slices/app";
 import {socket, connectSocket, createStompClient, client} from "../../socket";
 import {
@@ -105,9 +105,14 @@ const DashboardLayout = () => {
                             console.log(notificationId);
                             dispatch(RemoveNotification(notificationId));
                         });
+                    });
 
-                        //const message = JSON.parse(msg.body)
-                        //updateContactsWithMessage(message.receiverContactId, message);
+                    client.subscribe(`/user/${user.id}/queue/friendship-ended`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((lastFriendshipEnded) => {
+                            console.log(lastFriendshipEnded);
+                            dispatch(UpdateLastEndedFriendship(lastFriendshipEnded));
+                        });
                     });
                 };
 

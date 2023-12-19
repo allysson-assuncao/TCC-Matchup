@@ -1,5 +1,6 @@
 package com.matchup.controller;
 
+import com.matchup.dto.EndFriendshipDto;
 import com.matchup.dto.FriendDto;
 import com.matchup.dto.NotificationDto;
 import com.matchup.dto.SolicitationResponseDto;
@@ -60,6 +61,19 @@ public class FriendshipController {
         return notificationDto;
     }
 
+    @MessageMapping("/friendship/end")
+    public EndFriendshipDto endFriendship(EndFriendshipDto endFriendshipDto) {
+        System.out.println("FRIENDSHIP ENDED!!!");
+        if(friendshipService.endFriendship(endFriendshipDto.getReceiverId(), endFriendshipDto.getSenderId())){
+            simpMessagingTemplate.convertAndSendToUser(
+                    endFriendshipDto.getReceiverId()+"",
+                    "/queue/friendship-ended",
+                    endFriendshipDto.getSenderId()+"");
+        }
+        return null;
+
+    }
+
     @GetMapping("/{user1Id}/is-friends-with/{user2Id}")
     public ResponseEntity<Boolean> isFriendsWith(@PathVariable Long user1Id, @PathVariable Long user2Id) {
         return new ResponseEntity<>(friendshipService.existsFriendshipByUsersId(user1Id, user2Id), HttpStatus.OK);
@@ -75,9 +89,6 @@ public class FriendshipController {
         return new ResponseEntity<>(friendshipService.getFriendsByUserId(userDetails), HttpStatus.OK);
     }
 
-    @DeleteMapping("/end-friendship-between/{user1Id}/and/{user2Id}")
-    public ResponseEntity<Boolean> endFriendship(@PathVariable Long user1Id, @PathVariable Long user2Id) {
-        return new ResponseEntity<>(friendshipService.endFriendship(user1Id, user2Id), HttpStatus.OK);
-    }
+
 
 }

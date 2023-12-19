@@ -9,11 +9,12 @@ import {getProfileByUsernameAndUserId} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
 import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
+import {UpdateLastEndedFriendship} from "../../redux/slices/app";
 
 const Profile = () => {
         const theme = useTheme();
         const dispatch = useDispatch();
-        const {user, notifications} = useSelector((state) => state.app);
+        const {user, notifications, lastEndedFriendship} = useSelector((state) => state.app);
         const {isLoggedIn} = useSelector((state) => state.auth);
 
         const [profile, setProfile] = useState(null);
@@ -37,17 +38,25 @@ const Profile = () => {
         );
 
         useEffect(() => {
-                console.log("useEffect - notifications");
-                if (!profile) return;
-                if (notifications[notifications.length - 1].senderId == profile.id && notifications[notifications.length - 1].type != NOTIFICATION_TYPES.DEFAULT) {
-                    let notification = notifications[notifications.length - 1];
-                    setProfile((prevProfile) => ({...prevProfile, friendshipStatus: notification.type}));
-                    if (notification.type == NOTIFICATION_TYPES.PENDING || notification.type == NOTIFICATION_TYPES.ACCEPTED) {
-                        setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: true}));
-                    }
+            if (!profile) return;
+            if (notifications[notifications.length - 1].senderId == profile.id && notifications[notifications.length - 1].type != NOTIFICATION_TYPES.DEFAULT) {
+                let notification = notifications[notifications.length - 1];
+                setProfile((prevProfile) => ({...prevProfile, friendshipStatus: notification.type}));
+                if (notification.type == NOTIFICATION_TYPES.PENDING || notification.type == NOTIFICATION_TYPES.ACCEPTED) {
+                    setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: true}));
                 }
-            }, [notifications]
-        );
+            }
+        }, [notifications]);
+
+        useEffect(() => {
+            if (!profile) return;
+            console.log('Amizade terminada detectada');
+            if (lastEndedFriendship == profile.id) {
+                console.log('Amizade terminada detectada e é desse perfil');
+                setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: false}));
+                UpdateLastEndedFriendship(null);
+            }
+        }, [lastEndedFriendship]);
 
 
         return (

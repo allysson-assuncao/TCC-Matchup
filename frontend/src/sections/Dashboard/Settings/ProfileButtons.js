@@ -9,7 +9,7 @@ import {client} from "../../../socket";
 
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import {ROUTE_LOGIN} from "../../../routes";
-import {RespondFriendshipSolicitation, showSnackbar} from "../../../redux/slices/app";
+import {EndFriendship, RespondFriendshipSolicitation, showSnackbar} from "../../../redux/slices/app";
 import {Check, Close, PersonRemove, Remove} from "@mui/icons-material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {ClockIcon} from "@mui/x-date-pickers";
@@ -55,7 +55,7 @@ const ProfileButtons = ({profile, setProfile}) => {
 
     const endFriendship = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Amizade terminada!'}));
-
+        dispatch(EndFriendship(user.id, profile.id))
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ENDED}))
     }
 
