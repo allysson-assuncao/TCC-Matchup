@@ -34,7 +34,7 @@ const DashboardLayout = () => {
     const isDesktop = useResponsive("up", "md");
     const dispatch = useDispatch();
     const {user_id, isLoggedIn} = useSelector((state) => state.auth);
-    const {user, profilePicture, isUserUpdated, notifications} = useSelector((state) => state.app);
+    const {user, isUserUpdated, notifications} = useSelector((state) => state.app);
 
     const {conversations, current_conversation} = useSelector(
         (state) => state.conversation.direct_chat
@@ -44,7 +44,7 @@ const DashboardLayout = () => {
 
     async function fetch() {
         await dispatch(FetchUserProfile());
-        await dispatch(FetchProfilePicture(user_id, 800, 800));
+        //await dispatch(FetchProfilePicture(user_id, 800, 800));
     }
 
     useEffect(() => {
@@ -100,8 +100,10 @@ const DashboardLayout = () => {
                     });
 
                     client.subscribe(`/user/${user.id}/queue/notification/delete`, (obj) => {
+                        console.log(obj);
                         binaryBodyToJSON(obj).then((notificationId) => {
-                            dispatch(RemoveNotification({notificationId: notificationId}));
+                            console.log(notificationId);
+                            dispatch(RemoveNotification(notificationId));
                         });
 
                         //const message = JSON.parse(msg.body)

@@ -47,10 +47,10 @@ public class FriendshipController {
     public NotificationDto solicitationResponse(SolicitationResponseDto solicitationResponseDto) {
         System.out.println("Solicitação aceita");
         long notificationId = notificationService.getFriendshipNotificationIdByUsers(solicitationResponseDto.getReceiverId(), solicitationResponseDto.getSenderId());
-
+        System.out.println("Notification ID:" + notificationId);
         NotificationDto notificationDto = friendshipService.sendFriendshipSolicitationResponseNotification(
                 solicitationResponseDto.getReceiverId(), solicitationResponseDto.getSenderId(), solicitationResponseDto.isAccepted());
-
+        System.out.println(notificationDto);
         if(notificationDto != null){
             simpMessagingTemplate.convertAndSendToUser(
                     notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);

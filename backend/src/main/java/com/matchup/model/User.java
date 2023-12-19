@@ -56,7 +56,7 @@ public class User implements UserDetails {
     private String cellphoneNumber;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
     private ProfilePicture profilePicture;
 
     @Column(name = "bio", length = 2000, updatable = true)

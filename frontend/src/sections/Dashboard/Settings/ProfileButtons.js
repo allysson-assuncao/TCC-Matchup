@@ -77,7 +77,6 @@ const ProfileButtons = ({profile, setProfile}) => {
         <>
 
             <Stack direction="row" alignItems={"center"} spacing={2}>
-                {console.log(profile)}
                 {(!profile.doesFriendshipExist || (profile.friendshipStatus != FRIENDSHIP_STATUS.PENDING && profile.friendshipStatus != FRIENDSHIP_STATUS.ACCEPTED)) && (
                     <Button
                         onClick={() => {

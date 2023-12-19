@@ -14,8 +14,9 @@ public interface FriendshipSolicitationNotificationRepository extends JpaReposit
     @Transactional
     void deleteByFriendshipId(long friendshipId);
 
-
-    long getFriendshipNotificationIdByFriendshipId(long friendshipId);
+    @Query("SELECT fsn.id FROM FriendshipSolicitationNotification fsn " +
+            "JOIN Friendship f ON fsn.friendship.id = f.id WHERE f.id = :friendshipId")
+    long getFriendshipNotificationIdByFriendshipId(@Param("friendshipId") long friendshipId);
 
 
 }

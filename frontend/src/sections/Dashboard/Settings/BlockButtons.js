@@ -43,7 +43,6 @@ const BlockButtons = ({profile, setProfile}) => {
         <>
 
             <Stack direction="row" alignItems={"center"}>
-                {console.log(profile)}
                 <Button
                     onClick={() => {
                         profile.isBlockedByMe ? unblock() : block();

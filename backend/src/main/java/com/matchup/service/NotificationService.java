@@ -168,9 +168,11 @@ public class NotificationService {
 
 
         return NotificationDto.builder()
+                .id(fSNotification.getId())
                 .friendshipId(friendship.getId())
                 .viewed(fSNotification.isViewed())
                 .senderId(sender.getId())
+                .receiverId(friendship.getUser().getId())
                 .senderUsername(sender.getUsername())
                 .senderProfilePicture(imageService.getFormattedProfilePictureById(sender.getId(), 64, 64))
                 .date(fSNotification.getDate())

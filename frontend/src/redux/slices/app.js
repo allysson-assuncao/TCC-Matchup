@@ -16,7 +16,7 @@ const initialState = {
         open: false,
         type: "CONTACT", // can be CONTACT, STARRED, SHARED
     },
-    profilePicture: null,
+    //profilePicture: null,
     isLoggedIn: false,
     isUserUpdated: false,
     tab: 0, // [0, 1, 2, 3]
@@ -84,16 +84,15 @@ const slice = createSlice({
         updateFriendRequests(state, action) {
             state.friendRequests = action.payload.requests;
         },
-        updateProfilePicture(state, action) {
+        /*updateProfilePicture(state, action) {
             state.profilePicture = action.payload.profilePicture;
-        },
+        },*/
         selectConversation(state, action) {
             state.chat_type = "individual";
             state.room_id = action.payload.room_id;
         },
         clearUser(state, action) {
             state.user = null;
-            state.profilePicture = null;
             state.isLoggedIn = false;
             state.isUserUpdated = false;
         },
@@ -163,8 +162,8 @@ export function AddNotification(notification) {
     };
 }
 
-export const RemoveNotification = (notification) => async (dispatch, getState) => {
-    dispatch(slice.actions.removeNotification(notification));
+export const RemoveNotification = (notificationId) => async (dispatch, getState) => {
+    dispatch(slice.actions.removeNotification({notificationId: notificationId}));
 };
 
 export const showSnackbar =
@@ -366,7 +365,6 @@ export const UpdateUserProfile = (formValues) => {
             .then((response) => {
                 console.log(response);
                 dispatch(slice.actions.updateUser({user: response.data}));
-                dispatch(slice.actions.updateProfilePicture({profilePicture: file}));
             })
             .catch((err) => {
                 console.log(err);
@@ -374,6 +372,7 @@ export const UpdateUserProfile = (formValues) => {
     };
 };
 
+/*
 export const FetchProfilePicture = (width, height) => {
     return async (dispatch, getState) => {
         axios
@@ -397,6 +396,7 @@ export const FetchProfilePicture = (width, height) => {
             });
     };
 };
+*/
 
 export const RespondFriendshipSolicitation = (senderId, receiverId, accepted) => {
     return async (dispatch, getState) => {

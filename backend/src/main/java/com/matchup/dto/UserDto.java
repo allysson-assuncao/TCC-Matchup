@@ -4,10 +4,7 @@ import com.matchup.enums.UserAccess;
 import com.matchup.model.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -19,6 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class UserDto {
 
     private long id;
@@ -30,6 +28,7 @@ public class UserDto {
     private String rawPassword;
     private String cellphoneNumber;
     private MultipartFile profilePicture;
+    private String formattedProfilePicture;
     private String bio;
     private List<Long> friends;
     private List<Long> interests;

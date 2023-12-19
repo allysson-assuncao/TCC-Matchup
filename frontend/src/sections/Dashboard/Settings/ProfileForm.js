@@ -14,7 +14,7 @@ import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
 const   ProfileForm = () => {
     const dispatch = useDispatch();
     const [file, setFile] = useState();
-    const {user, profilePicture, isUserUpdated} = useSelector((state) => state.app);
+    const {user, isUserUpdated} = useSelector((state) => state.app);
 
 
     const ProfileSchema = Yup.object().shape({
@@ -27,7 +27,7 @@ const   ProfileForm = () => {
         username: user?.username,
         bio: user?.bio,
         cellphoneNumber: user?.cellphoneNumber,
-        profilePicture: profilePicture,
+        profilePicture: user?.formattedProfilePicture,
     };
 
     const methods = useForm({

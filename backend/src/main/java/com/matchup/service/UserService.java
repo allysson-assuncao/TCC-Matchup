@@ -40,7 +40,6 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
-@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -183,7 +182,9 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
-    public User updateUser(UserDto userDto, UserDetails userDetails){
+    @Transactional
+    @jakarta.transaction.Transactional
+    public UserDto updateUser(UserDto userDto, UserDetails userDetails){
         Optional<User> userToUpdateOp = userRepository.findByUsername(userDetails.getUsername());
         if(userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
@@ -198,8 +199,6 @@ public class UserService {
         if(userDto.getCellphoneNumber() != null){
             userToUpdate.setCellphoneNumber(userDto.getCellphoneNumber());
         }
-
-
 
         ProfilePicture profilePicture = null;
         if(userDto.getProfilePicture() != null){
@@ -224,7 +223,21 @@ public class UserService {
             profilePictureRepository.save(profilePicture);
         }
 
-        return userRepository.save(userToUpdate);
+        User user = userRepository.save(userToUpdate);
+        return UserDto.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 800, 800))
+                .name(user.getName())
+                .email(user.getEmail())
+                .rawPassword(user.getHashedPassword())
+                .birthDate(user.getBirthDate())
+                .cellphoneNumber(user.getCellphoneNumber())
+                .bio(user.getBio())
+                .access(user.getAccess())
+                .build();
+
+
     }
 
     public User updateUserPassword(Long id, String rawPassword){
@@ -405,6 +418,24 @@ public class UserService {
         Optional<User> userOp = userRepository.findByUsername(username);
         if(userOp.isEmpty()) return null;
         return userOp.get();
+    }
+
+    public UserDto getLoggedUserProfileByUsername(String username){
+        Optional<User> userOp = userRepository.findByUsername(username);
+        if(userOp.isEmpty()) return null;
+        User user = userOp.get();
+        return UserDto.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 800, 800))
+                .name(user.getName())
+                .email(user.getEmail())
+                .rawPassword(user.getHashedPassword())
+                .birthDate(user.getBirthDate())
+                .cellphoneNumber(user.getCellphoneNumber())
+                .bio(user.getBio())
+                .access(user.getAccess())
+                .build();
     }
 
     public ProfileDto getProfileByUsernameAndUserId(Long userId, String username) {

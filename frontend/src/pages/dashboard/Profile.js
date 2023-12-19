@@ -8,11 +8,12 @@ import {ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
 import {getProfileByUsernameAndUserId} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
+import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
 
 const Profile = () => {
         const theme = useTheme();
         const dispatch = useDispatch();
-        const {user} = useSelector((state) => state.app);
+        const {user, notifications} = useSelector((state) => state.app);
         const {isLoggedIn} = useSelector((state) => state.auth);
 
         const [profile, setProfile] = useState(null);
@@ -33,6 +34,19 @@ const Profile = () => {
                 fetchData();
 
             }, []
+        );
+
+        useEffect(() => {
+                console.log("useEffect - notifications");
+                if (!profile) return;
+                if (notifications[notifications.length - 1].senderId == profile.id && notifications[notifications.length - 1].type != NOTIFICATION_TYPES.DEFAULT) {
+                    let notification = notifications[notifications.length - 1];
+                    setProfile((prevProfile) => ({...prevProfile, friendshipStatus: notification.type}));
+                    if (notification.type == NOTIFICATION_TYPES.PENDING || notification.type == NOTIFICATION_TYPES.ACCEPTED) {
+                        setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: true}));
+                    }
+                }
+            }, [notifications]
         );
 
 
@@ -98,7 +112,7 @@ const Profile = () => {
 
                                     <Stack direction={'row'} justifyContent={"right"} spacing={5}>
                                         {profile.interestNames.map((text, index) => (
-                                            <Chip key={index} label={text} style={{ margin: 4 }} />
+                                            <Chip key={index} label={text} style={{margin: 4}}/>
                                         ))}
                                     </Stack>
                                 </Stack>

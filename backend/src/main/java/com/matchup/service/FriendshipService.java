@@ -9,6 +9,7 @@ import com.matchup.repository.FriendshipRepository;
 import com.matchup.repository.UserRepository;
 import com.matchup.repository.notification.FriendshipSolicitationNotificationRepository;
 import com.matchup.repository.notification.NotificationRepository;
+import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -53,7 +54,6 @@ public class FriendshipService {
     public NotificationDto sendFriendshipSolicitationResponseNotification(long receiverId, long senderId, boolean accepted) {
         if (senderId == receiverId) return null;
 
-        System.out.println(friendshipRepository.existsByUsers(senderId, receiverId));
         Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(senderId, receiverId);
         if (friendshipOp.isEmpty()) return null;
         Friendship friendship = friendshipOp.get();

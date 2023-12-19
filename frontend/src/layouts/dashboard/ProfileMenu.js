@@ -14,7 +14,7 @@ import {ROUTE_MANAGE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_REGISTER_INTERESTS} from
 import Grid from "@mui/material/Grid";
 
 const ProfileMenu = () => {
-    const {user, profilePicture} = useSelector((state) => state.app);
+    const {user} = useSelector((state) => state.app);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,7 +29,7 @@ const ProfileMenu = () => {
     const user_id = window.localStorage.getItem("user_id");
 
     const user_name = user?.userName;
-    const user_img = profilePicture;
+    const user_img = user?.formattedProfilePicture;
 
     return (
         <>
