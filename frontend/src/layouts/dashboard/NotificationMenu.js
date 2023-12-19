@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Avatar, Box, Fade, Menu, MenuItem, Stack} from "@mui/material";
 
 import {useDispatch, useSelector} from "react-redux";
@@ -23,8 +23,8 @@ const NotificationMenu = () => {
         setAnchorEl(null);
     };
 
-    const [notifications, setNotifications] = useState<Notification[]>();
-    const [unseenNotificationsNumber, setUnseenNotificationsNumber] = useState<number>(0);
+    const [notifications, setNotifications] = useState([]);
+    const [unseenNotificationsNumber, setUnseenNotificationsNumber] = useState(0);
 
     //const user_id = window.localStorage.getItem("user_id");
 
@@ -36,10 +36,10 @@ const NotificationMenu = () => {
             return false;
         }
         try {
-            const fetchedNotifications = await getNotificationsByUserId(loggedUser.id);
-            setNotifications(fetchedNotifications);
+            /*const fetchedNotifications = await getNotificationsByUserId(loggedUser.id);
+            setNotifications(fetchedNotifications);*/
             return true;
-            let unseenCount = await getUnseenNotificationsCountByUserId
+            /*let unseenCount = await getUnseenNotificationsCountByUserId*/
             //const unseenCount = fetchedNotifications.filter(notification => !notification.viewed).length;
             //setUnseenNotificationsNumber(unseenCount);
         } catch (error) {
@@ -53,17 +53,16 @@ const NotificationMenu = () => {
             return;
         }
         try {
-            let unseenCount = await getUnseenNotificationsCountByUserId(loggedUser.id);
-            setUnseenNotificationsNumber(unseenCount);
+            /*let unseenCount = await getUnseenNotificationsCountByUserId(loggedUser.id);
+            setUnseenNotificationsNumber(unseenCount);*/
         } catch (error) {
             console.error("Erro ao buscar número de notificações não visualizadas:", error);
         }
     };
 
-
-    useEffect(() => {
+    /*useEffect(() => {
         fetchUnseenNotificationsCount();
-    }, []);
+    }, []);*/
 
     const removeNotificationById = (idToRemove) => {
         if (!notifications || !setNotifications) return;
@@ -79,7 +78,7 @@ const NotificationMenu = () => {
                 aria-haspopup="true"
                 aria-expanded={openMenu ? "true" : undefined}
                 alt={user_name}
-                src={user_img}
+                /*src={user_img}*/
                 onClick={handleClick}
             />
             <Menu
@@ -135,7 +134,7 @@ const NotificationMenu = () => {
                                 </Stack>{" "}
                             </MenuItem>
                         ))}*/}
-                        {notifications && notifications.map(notification => {
+                        {/*{notifications && notifications.map(notification => {
                             return (
                                 <NotificationElement
                                     key={notification.id.toString()}
@@ -149,7 +148,7 @@ const NotificationMenu = () => {
                                     removeNotificationById={removeNotificationById}
                                 />
                             );
-                        })}
+                        })}*/}
                     </Stack>
                 </Box>
             </Menu>

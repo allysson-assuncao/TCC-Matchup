@@ -9,7 +9,7 @@ import {client} from "../../../socket";
 
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import {ROUTE_LOGIN} from "../../../routes";
-import {showSnackbar} from "../../../redux/slices/app";
+import {RespondFriendshipSolicitation, showSnackbar} from "../../../redux/slices/app";
 import {Check, Close, PersonRemove, Remove} from "@mui/icons-material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {ClockIcon} from "@mui/x-date-pickers";
@@ -59,10 +59,14 @@ const ProfileButtons = ({profile, setProfile}) => {
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ENDED}))
     }
 
-    const acceptFriendship = () => {
-        dispatch(showSnackbar({severity: 'success', message: 'Amizade aceita!'}));
+    const respondFriendshipSolicitation = (accepted) => {
+        dispatch(showSnackbar({severity: 'success', message: accepted ? 'Amizade aceita!' : 'Amizade recusada!'}));
+        dispatch(RespondFriendshipSolicitation(user.id, profile.id, accepted))
 
-        setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ACCEPTED}))
+        setProfile((prevProfile) => (
+            {...prevProfile,
+                friendshipStatus: accepted ? FRIENDSHIP_STATUS.ACCEPTED : FRIENDSHIP_STATUS.REJECTED
+            }))
     }
 
 

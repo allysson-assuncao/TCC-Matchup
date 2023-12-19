@@ -30,14 +30,10 @@ const FriendshipResponseButtons = ({notification}) => {
 
     const acceptFriendship = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Amizade aceita!'}));
-
-        setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ACCEPTED}))
     }
 
     const rejectFriendship = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Amizade recusada!'}));
-
-        setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.REJECTED}))
     }
 
     return (

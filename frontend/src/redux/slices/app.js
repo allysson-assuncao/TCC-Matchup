@@ -1,11 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 import axios from "../../utils/axios";
+import {client, socket} from "../../socket";
 // import S3 from "../../utils/s3";
 import {v4} from 'uuid';
 import S3 from "../../utils/s3";
 import {S3_BUCKET_NAME} from "../../config";
 import {sl} from "date-fns/locale";
 import {useSelector} from "react-redux";
+import {useEffect} from "react";
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -115,6 +117,7 @@ const slice = createSlice({
         removeNotification(state, action) {
             state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
         }
+
     },
 });
 
@@ -395,5 +398,19 @@ export const FetchProfilePicture = (width, height) => {
     };
 };
 
+export const RespondFriendshipSolicitation = (senderId, receiverId, accepted) => {
+    return async (dispatch, getState) => {
+        const solicitationResponseDto = {
+            senderId: senderId,
+            receiverId: receiverId,
+            accepted: accepted
+        };
 
+        client.publish({
+            destination: `/app/solicitation-response/`,
+            body: JSON.stringify(solicitationResponseDto)
+        });
+
+    };
+};
 
