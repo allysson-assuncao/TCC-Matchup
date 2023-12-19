@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     AddNotification,
     FetchProfilePicture,
-    FetchUserProfile,
+    FetchUserProfile, RemoveNotification,
     SelectConversation,
     SetClient,
     showSnackbar
@@ -34,12 +34,13 @@ const DashboardLayout = () => {
     const isDesktop = useResponsive("up", "md");
     const dispatch = useDispatch();
     const {user_id, isLoggedIn} = useSelector((state) => state.auth);
+    const {user, profilePicture, isUserUpdated, notifications} = useSelector((state) => state.app);
 
     const {conversations, current_conversation} = useSelector(
         (state) => state.conversation.direct_chat
     );
 
-    const {user, profilePicture, isUserUpdated} = useSelector((state) => state.app);
+
 
     async function fetch() {
         await dispatch(FetchUserProfile());
@@ -49,6 +50,11 @@ const DashboardLayout = () => {
     useEffect(() => {
         fetch();
     }, []);
+
+    useEffect(() => {
+        console.log("NOTIFICATIONS UPDATED");
+        console.log(notifications);
+    }, [notifications]);
 
 
     const handleCloseAudioDialog = () => {
@@ -72,23 +78,30 @@ const DashboardLayout = () => {
                 window.onload();
 
 
-                createStompClient(user).onConnect = (frame) => {
+                createStompClient(user).onConnect =  (frame) => {
                     client.subscribe(`/user/${user.id}/queue/private-messages`, (msg) => {
                         console.log(msg);
                         const message = JSON.parse(msg.body)
                         //updateContactsWithMessage(message.receiverContactId, message);
                     });
-                    client.subscribe(`/user/${user.id}/queue/notification/friendship-solicitation`, (obj) => {
-                        //dispatch(AddNotification(binaryBodyToJSON(obj)));
 
-                        binaryBodyToJSON(obj).then((notification) => {
+                    client.subscribe(`/user/${user.id}/queue/notification/friendship-solicitation`, (obj) => {
+                        binaryBodyToJSON(obj).then(async (notification) => {
                             dispatch(
                                 showSnackbar({
                                     severity: "success",
                                     message: "New friend request received",
                                 })
                             );
+                            console.log("NOTIFICATION");
+                            console.log(notification);
                             dispatch(AddNotification(notification));
+                        });
+                    });
+
+                    client.subscribe(`/user/${user.id}/queue/notification/delete`, (obj) => {
+                        binaryBodyToJSON(obj).then((notificationId) => {
+                            dispatch(RemoveNotification({notificationId: notificationId}));
                         });
 
                         //const message = JSON.parse(msg.body)

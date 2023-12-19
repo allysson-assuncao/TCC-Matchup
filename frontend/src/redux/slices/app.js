@@ -105,8 +105,15 @@ const slice = createSlice({
             state.notifications = action.payload.notifications;
         },
         addNotification(state, action) {
-            state.notifications = [...state.notifications, action.payload.notification];
+            if (!state.notifications) {
+                state.notifications = [action.payload.notification];
+            } else {
+                state.notifications = [...state.notifications, action.payload.notification];
+            }
             //state.notifications.push(action.payload.notification);
+        },
+        removeNotification(state, action) {
+            state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
         }
     },
 });
@@ -141,8 +148,20 @@ export const GetNotifications = () => async (dispatch, getState) => {
         });
 };
 
-export const AddNotification = (notification) => async (dispatch, getState) => {
-    dispatch(slice.actions.addNotification(notification));
+/*export const AddNotification = (notification) => async (dispatch, getState) => {
+        dispatch(slice.actions.addNotification(notification));
+};*/
+
+export function AddNotification(notification) {
+    console.log("APP");
+    console.log(notification);
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.addNotification({notification: notification}));
+    };
+}
+
+export const RemoveNotification = (notification) => async (dispatch, getState) => {
+    dispatch(slice.actions.removeNotification(notification));
 };
 
 export const showSnackbar =
@@ -264,7 +283,6 @@ export function FetchFriendRequests() {
         await axios
             .get(
                 "/user/get-requests",
-
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -329,29 +347,6 @@ export const FetchUserProfile = () => {
 export const UpdateUserProfile = (formValues) => {
     return async (dispatch, getState) => {
         const file = formValues.profilePicture;
-
-        /*const key = v4();
-
-        try {
-            S3.getSignedUrl(
-                "putObject",
-                {Bucket: S3_BUCKET_NAME, Key: key, ContentType: `image/${file.type}`},
-                async (_err, presignedURL) => {
-                    await fetch(presignedURL, {
-                        method: "PUT",
-
-                        body: file,
-
-                        headers: {
-                            "Content-Type": file.type,
-                        },
-                    });
-                }
-            );
-        } catch (error) {
-            console.log(error);
-        }*/
-        //"Content-Type": "multipart/form-data; boundary=<calculated when request is sent>"
         console.log("DATA", formValues);
         console.log(getState().auth.token);
         axios
@@ -376,9 +371,8 @@ export const UpdateUserProfile = (formValues) => {
     };
 };
 
-export const FetchProfilePicture = (userId, width, height) => {
+export const FetchProfilePicture = (width, height) => {
     return async (dispatch, getState) => {
-
         axios
             .get(
                 `http://localhost:8080/api/get/user/profile-picture/by/id/?width=${width}&height=${height}`,
@@ -392,39 +386,7 @@ export const FetchProfilePicture = (userId, width, height) => {
             )
             .then((response) => {
                 console.log(response.data);
-
-
                 const imageUrl = `data:image/png;base64,${response.data.file.content}`;
-
-                dispatch(slice.actions.updateProfilePicture({profilePicture: imageUrl}));
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-};
-
-
-export const SendFriendship = (userId, width, height) => {
-    return async (dispatch, getState) => {
-
-        axios
-            .get(
-                `http://localhost:8080/api/get/user/profile-picture/by/id/?width=${width}&height=${height}`,
-
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${getState().auth.token}`,
-                    },
-                }
-            )
-            .then((response) => {
-                console.log(response.data);
-
-
-                const imageUrl = `data:image/png;base64,${response.data.file.content}`;
-
                 dispatch(slice.actions.updateProfilePicture({profilePicture: imageUrl}));
             })
             .catch((err) => {

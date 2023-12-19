@@ -64,7 +64,7 @@ export default function Router() {
 
                 {path: "call", element: <CallPage/>},
 
-                {path: PAGE_NOT_FOUND, element: <Page404/>},
+                {path: ROUTE_PAGE_NOT_FOUND, element: <Page404/>},
                 {path: "*", element: <Navigate to="/404" replace/>},
             ],
         },

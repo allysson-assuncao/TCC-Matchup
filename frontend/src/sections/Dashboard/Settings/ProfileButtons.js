@@ -43,17 +43,15 @@ const ProfileButtons = ({profile, setProfile}) => {
     const sendFriendshipSolicitation = () => {
         //if (!client) return;
         console.log(client);
-        let ooo = client.publish({
+        client.publish({
             destination: `/app/send/friendship-solicitation`,
             body: JSON.stringify({senderId: user_id, receiverId: profile.id})
         });
 
-
         dispatch(showSnackbar({severity: 'success', message: 'Solicitação enviada!'}));
-
-
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.SENT}))
     }
+
 
     const endFriendship = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Amizade terminada!'}));
@@ -67,11 +65,9 @@ const ProfileButtons = ({profile, setProfile}) => {
         setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.ACCEPTED}))
     }
 
-    const rejectFriendship = () => {
-        dispatch(showSnackbar({severity: 'success', message: 'Amizade recusada!'}));
 
-        setProfile((prevProfile) => ({...prevProfile, friendshipStatus: FRIENDSHIP_STATUS.REJECTED}))
-    }
+
+
 
     return (
         <>
@@ -110,7 +106,7 @@ const ProfileButtons = ({profile, setProfile}) => {
                     <Stack direction="row" alignItems={"center"} spacing={2}>
                         <Button
                             onClick={() => {
-                                acceptFriendship()
+                                respondFriendshipSolicitation(true);
                             }}
                             title={"Aceitar solicitação de amizade"}
                             fullWidth
@@ -121,7 +117,7 @@ const ProfileButtons = ({profile, setProfile}) => {
                         </Button>
                         <Button
                             onClick={() => {
-                                rejectFriendship()
+                                respondFriendshipSolicitation(false);
                             }}
                             title={"Recusar solicitação de amizade"}
                             fullWidth

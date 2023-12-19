@@ -1,29 +1,22 @@
 import React from "react";
 import {Avatar, Box, Fade, Menu, MenuItem, Stack} from "@mui/material";
 
-import {faker} from "@faker-js/faker";
-
-import {Profile_Menu} from "../../data";
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutUser} from "../../redux/slices/auth";
-import {socket} from "../../socket";
+
 import {useNavigate} from "react-router-dom";
-import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
-import {ClearUser} from "../../redux/slices/app";
-import {ROUTE_MANAGE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_REGISTER_INTERESTS} from "../../routes";
-import Grid from "@mui/material/Grid";
-import NotificationComponent from "../../components/NotificationElement";
+
 import NotificationElement from "../../components/NotificationElement";
 
 const NotificationMenu = () => {
     const {user} = useSelector((state) => state.app);
+    const {isLoggedIn, user_id} = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const openMenu = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
-        await fetchNotifications();
+        //await fetchNotifications();
         setUnseenNotificationsNumber(0);
     };
     const handleClose = () => {
@@ -33,12 +26,12 @@ const NotificationMenu = () => {
     const [notifications, setNotifications] = useState<Notification[]>();
     const [unseenNotificationsNumber, setUnseenNotificationsNumber] = useState<number>(0);
 
-    const user_id = window.localStorage.getItem("user_id");
+    //const user_id = window.localStorage.getItem("user_id");
 
     const user_name = user?.userName;
 
     const fetchNotifications = async () => {
-        if (!loggedUser) {
+        if (!isLoggedIn) {
             console.error("Erro: Usuário não está logado.");
             return false;
         }
@@ -55,7 +48,7 @@ const NotificationMenu = () => {
     };
 
     const fetchUnseenNotificationsCount = async () => {
-        if (!loggedUser) {
+        if (!isLoggedIn) {
             console.error("Erro: Usuário não está logado.");
             return;
         }
