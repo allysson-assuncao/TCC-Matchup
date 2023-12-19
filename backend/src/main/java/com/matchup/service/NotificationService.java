@@ -147,11 +147,7 @@ public class NotificationService {
         return notificationRepository.countUnseenNotificationsByUserId(userId);
     }
 
-    public NotificationDto sendFriendshipSolicitationResponseNotification(long receiverId, long senderId, boolean accepted) {
-        Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(receiverId, senderId);
-        if (friendshipOp.isEmpty()) return null;
-        Friendship friendship = friendshipOp.get();
-        friendship.set
+    public NotificationDto sendFriendshipSolicitationResponseNotification(Friendship friendship) {
 
         //User receiver = userRepository.findById(receiverId).get();
         User sender = friendship.getFriend();

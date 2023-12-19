@@ -6,6 +6,7 @@ import com.matchup.dto.SolicitationResponseDto;
 import com.matchup.enums.FriendshipStatus;
 import com.matchup.model.Friendship;
 import com.matchup.service.FriendshipService;
+import com.matchup.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

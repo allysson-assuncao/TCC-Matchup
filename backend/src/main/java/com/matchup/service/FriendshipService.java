@@ -50,9 +50,12 @@ public class FriendshipService {
     }
 
 
-    public boolean sendFriendshipSolicitationResponseNotification(long friendshipId, boolean accepted) {
-        Optional<Friendship> friendshipOp = friendshipRepository.findById(friendshipId);
-        if (friendshipOp.isEmpty()) return false;
+    public NotificationDto sendFriendshipSolicitationResponseNotification(long receiverId, long senderId, boolean accepted) {
+        if (senderId == receiverId) return null;
+
+        System.out.println(friendshipRepository.existsByUsers(senderId, receiverId));
+        Optional<Friendship> friendshipOp = friendshipRepository.findByUsers(senderId, receiverId);
+        if (friendshipOp.isEmpty()) return null;
         Friendship friendship = friendshipOp.get();
 
         friendshipSolicitationNotificationRepository.deleteByFriendshipId(friendship.getId());
@@ -60,7 +63,8 @@ public class FriendshipService {
         if (accepted) {
             friendship.setStatus(FriendshipStatus.ACCEPTED);
         } else {
-            friendship.setStatus(FriendshipStatus.REJECTED);
+            endFriendship(receiverId, senderId);
+            return null;
         }
         friendship.setDate(LocalDateTime.now());
         friendship = saveFriendship(friendship);
