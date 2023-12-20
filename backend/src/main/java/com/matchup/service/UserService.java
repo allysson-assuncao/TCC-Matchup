@@ -3,6 +3,7 @@ package com.matchup.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.matchup.dto.MultiPartFileDto;
 import com.matchup.dto.ProfileDto;
+import com.matchup.dto.UnblockDto;
 import com.matchup.dto.UserDto;
 import com.matchup.dto.auth.AuthenticationRequest;
 import com.matchup.dto.auth.AuthenticationResponse;
