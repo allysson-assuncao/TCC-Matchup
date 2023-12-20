@@ -17,6 +17,7 @@ const slice = createSlice({
     name: "conversation",
     initialState,
     reducers: {
+        resetState: (state) => initialState,
         fetchDirectConversations(state, action) {
             const list = action.payload.conversations.map((el) => {
                 const user = el.participants.find(

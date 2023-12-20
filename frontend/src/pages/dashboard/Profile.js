@@ -10,11 +10,18 @@ import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
 import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
 import {UpdateLastEndedFriendship} from "../../redux/slices/app";
+import {FRIENDSHIP_STATUS} from "../../model/friendship";
 
 const Profile = () => {
         const theme = useTheme();
         const dispatch = useDispatch();
-        const {user, notifications, lastEndedFriendship} = useSelector((state) => state.app);
+        const {
+            user,
+            notifications,
+            lastEndedFriendshipList,
+            lastBlocker,
+            lastUnblocker
+        } = useSelector((state) => state.app);
         const {isLoggedIn} = useSelector((state) => state.auth);
 
         const [profile, setProfile] = useState(null);
@@ -38,25 +45,55 @@ const Profile = () => {
         );
 
         useEffect(() => {
-            if (!profile) return;
-            if (notifications[notifications.length - 1].senderId == profile.id && notifications[notifications.length - 1].type != NOTIFICATION_TYPES.DEFAULT) {
+            if (!profile || !notifications || notifications.length === 0) return;
+            if (notifications[notifications.length - 1].senderId === profile.id && notifications[notifications.length - 1].type !== NOTIFICATION_TYPES.DEFAULT) {
                 let notification = notifications[notifications.length - 1];
-                setProfile((prevProfile) => ({...prevProfile, friendshipStatus: notification.type}));
-                if (notification.type == NOTIFICATION_TYPES.PENDING || notification.type == NOTIFICATION_TYPES.ACCEPTED) {
-                    setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: true}));
-                }
+                setProfile((prevProfile) => ({
+                    ...prevProfile,
+                    friendshipStatus: notification.type,
+                    doesFriendshipExist: notification.type === NOTIFICATION_TYPES.PENDING || notification.type === NOTIFICATION_TYPES.ACCEPTED
+                }));
             }
-        }, [notifications]);
+        }, [notifications])
+
+    /*useEffect(() => {
+            if (!profile) return;
+            if (lastEndedFriendshipList === profile.id) {
+                setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: false}));
+            }
+        }, [lastEndedFriendshipList]);*/
 
         useEffect(() => {
-            if (!profile) return;
-            console.log('Amizade terminada detectada');
-            if (lastEndedFriendship == profile.id) {
-                console.log('Amizade terminada detectada e é desse perfil');
-                setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: false}));
-                UpdateLastEndedFriendship(null);
+            if (!profile || !lastEndedFriendshipList || lastEndedFriendshipList.length === 0) return;
+            if (lastEndedFriendshipList[lastEndedFriendshipList.length - 1] === profile.id) {
+                setProfile((prevProfile) => ({
+                    ...prevProfile,
+                    doesFriendshipExist: false
+                }));
             }
-        }, [lastEndedFriendship]);
+        }, [lastEndedFriendshipList]);
+
+        useEffect(() => {
+            if (!profile || !lastBlocker || lastBlocker.length === 0) return;
+            if (lastBlocker[lastBlocker.length - 1] === profile.id) {
+                setProfile((prevProfile) => ({
+                    ...prevProfile,
+                    //friendshipStatus: notification.type,
+                    blockedMe: true
+                }));
+            }
+        }, [lastBlocker]);
+
+        useEffect(() => {
+            if (!profile || !lastUnblocker || lastUnblocker.length === 0) return;
+            if (lastUnblocker[lastUnblocker.length - 1] === profile.id) {
+                setProfile((prevProfile) => ({
+                    ...prevProfile,
+                    //friendshipStatus: notification.type,
+                    blockedMe: false
+                }));
+            }
+        }, [lastUnblocker]);
 
 
         return (

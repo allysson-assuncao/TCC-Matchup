@@ -34,7 +34,9 @@ const initialState = {
     room_id: null,
     call_logs: [],
     client: null,
-    lastEndedFriendship: null
+    lastEndedFriendshipList: [],
+    lastBlocker: [],
+    lastUnblocker: []
 };
 
 
@@ -42,6 +44,7 @@ const slice = createSlice({
     name: "app",
     initialState,
     reducers: {
+        resetState: (state) => initialState,
         fetchCallLogs(state, action) {
             state.call_logs = action.payload.call_logs;
         },
@@ -118,9 +121,14 @@ const slice = createSlice({
             state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
         },
         updateLastEndedFriendship(state, action) {
-            state.lastEndedFriendship = action.payload.lastEndedFriendship;
+            state.lastEndedFriendshipList = [action.payload.lastEndedFriendship];
+        },
+        updateLastBlocker(state, action) {
+            state.lastBlocker = [action.payload.lastBlocker];
+        },
+        updateLastUnblocker(state, action) {
+            state.lastUnblocker = [action.payload.lastUnblocker];
         }
-
     },
 });
 
@@ -174,6 +182,14 @@ export const UpdateLastEndedFriendship = (lastEndedFriendship) => async (dispatc
     dispatch(slice.actions.updateLastEndedFriendship({lastEndedFriendship: lastEndedFriendship}));
 };
 
+export const UpdateLastBlocker = (lastBlocker) => async (dispatch, getState) => {
+    dispatch(slice.actions.updateLastBlocker({lastBlocker: lastBlocker}));
+};
+
+export const UpdateLastUnblocker = (lastUnblocker) => async (dispatch, getState) => {
+    dispatch(slice.actions.updateLastUnblocker({lastUnblocker: lastUnblocker}));
+};
+
 export const showSnackbar =
     ({severity, message}) =>
         async (dispatch, getState) => {
@@ -209,7 +225,8 @@ export function UpdateTab(tab) {
 
 export function ClearUser() {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.clearUser());
+        dispatch(slice.actions.resetState());
+
     };
 }
 
@@ -432,6 +449,36 @@ export const EndFriendship = (senderId, receiverId) => {
         client.publish({
             destination: `/app/friendship/end`,
             body: JSON.stringify(endFriendshipDto)
+        });
+
+    };
+};
+
+export const Block = (loggedUserId, receiverId) => {
+    return async (dispatch, getState) => {
+        const blockDto = {
+            blockerId: loggedUserId,
+            blockedId: receiverId
+        };
+
+        client.publish({
+            destination: `/app/block`,
+            body: JSON.stringify(blockDto)
+        });
+
+    };
+};
+
+export const Unblock = (loggedUserId, receiverId) => {
+    return async (dispatch, getState) => {
+        const unblockDto = {
+            unblockerId: loggedUserId,
+            unblockedId: receiverId,
+        };
+
+        client.publish({
+            destination: `/app/unblock`,
+            body: JSON.stringify(unblockDto)
         });
 
     };

@@ -10,7 +10,7 @@ import {
     FetchUserProfile, RemoveNotification,
     SelectConversation,
     SetClient,
-    showSnackbar, UpdateLastEndedFriendship
+    showSnackbar, UpdateLastBlocker, UpdateLastEndedFriendship, UpdateLastUnblocker
 } from "../../redux/slices/app";
 import {socket, connectSocket, createStompClient, client} from "../../socket";
 import {
@@ -111,7 +111,25 @@ const DashboardLayout = () => {
                         console.log(obj);
                         binaryBodyToJSON(obj).then((lastFriendshipEnded) => {
                             console.log(lastFriendshipEnded);
+                            dispatch(UpdateLastEndedFriendship(null));
                             dispatch(UpdateLastEndedFriendship(lastFriendshipEnded));
+                        });
+                    });
+
+                    client.subscribe(`/user/${user.id}/queue/blocked`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((lastBlocker) => {
+                            console.log(lastBlocker);
+                            dispatch(UpdateLastBlocker(lastBlocker));
+
+                        });
+                    });
+
+                    client.subscribe(`/user/${user.id}/queue/unblocked`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((lastUnblocker) => {
+                            console.log(lastUnblocker);
+                            dispatch(UpdateLastUnblocker(lastUnblocker));
                         });
                     });
                 };

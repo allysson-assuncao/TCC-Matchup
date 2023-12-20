@@ -8,7 +8,7 @@ import {useNavigate, useParams} from "react-router-dom";
 
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import {ROUTE_LOGIN} from "../../../routes";
-import {showSnackbar} from "../../../redux/slices/app";
+import {Block, showSnackbar, Unblock} from "../../../redux/slices/app";
 import {Check, PersonRemove, Remove} from "@mui/icons-material";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 
@@ -22,21 +22,25 @@ const BlockButtons = ({profile, setProfile}) => {
 
     const block = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Bloqueado com sucesso!'}));
-
+        dispatch(Block(user.id, profile.id));
 
         setProfile((prevProfile) => ({
             ...prevProfile,
             doesFriendshipExist: false,
-            isBlockedByMe: !prevProfile.isBlockedByMe,
+            blockedByMe: true,
             friendshipStatus: FRIENDSHIP_STATUS.ENDED
         }));
     }
 
+    useEffect(() => {
+        console.log(profile);
+    },[])
+
     const unblock = () => {
         dispatch(showSnackbar({severity: 'success', message: 'Desbloqueado com sucesso!'}));
 
-
-        setProfile((prevProfile) => ({...prevProfile, isBlockedByMe: !prevProfile.isBlockedByMe}));
+        dispatch(Unblock(user.id, profile.id));
+        setProfile((prevProfile) => ({...prevProfile, blockedByMe: false}));
     }
 
     return (
@@ -45,11 +49,11 @@ const BlockButtons = ({profile, setProfile}) => {
             <Stack direction="row" alignItems={"center"}>
                 <Button
                     onClick={() => {
-                        profile.isBlockedByMe ? unblock() : block();
+                        profile.blockedByMe ? unblock() : block();
                     }}
-                    title={profile.isBlockedByMe ? "Desbloquear" : "Bloquear"}
+                    title={profile.blockedByMe ? "Desbloquear" : "Bloquear"}
                     fullWidth
-                    startIcon={profile.isBlockedByMe ? <Circle/> : <Prohibit/>}
+                    startIcon={profile.blockedByMe ? <Circle/> : <Prohibit/>}
                     variant="outlined"
                 />
 

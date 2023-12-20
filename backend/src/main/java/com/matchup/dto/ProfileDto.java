@@ -18,7 +18,7 @@ public class ProfileDto {
     private String username;
     private String name;
     private String bio;
-    private boolean isBlockedByMe;
+    private boolean blockedByMe;
     private boolean blockedMe;
     private boolean doesFriendshipExist;
     private String friendshipStatus;

@@ -19,6 +19,7 @@ const slice = createSlice({
     name: "auth",
     initialState,
     reducers: {
+        resetState: (state) => initialState,
         updateIsLoading(state, action) {
             state.error = action.payload.error;
             state.isLoading = action.payload.isLoading;
@@ -183,6 +184,7 @@ export function LogoutUser() {
 
         window.localStorage.removeItem("user_id");
         dispatch(slice.actions.signOut());
+        dispatch(slice.actions.resetState);
 
     };
 }

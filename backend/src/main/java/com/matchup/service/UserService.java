@@ -255,20 +255,15 @@ public class UserService {
         if(blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId)) return false;
         Optional<User> userBlockerOp = userRepository.findById(blockerId);
         Optional<User> userBlockedOp = userRepository.findById(blockedId);
-        if(userBlockerOp.isEmpty()) return false;
+        if(userBlockerOp.isEmpty() || userBlockedOp.isEmpty()) return false;
         User userBlocker = userBlockerOp.get();
-        if(userBlockedOp.isEmpty()) return false;
         User userBlocked = userBlockedOp.get();
+
         if(friendshipService.existsFriendshipByUsersId(blockerId, blockedId)) {
             friendshipService.endFriendship(blockerId, blockedId);
         }
         Block block = new Block(userBlocker, userBlocked);
         blockRepository.save(block);
-
-        for(Block block1: userRepository.findById(blockerId).get().getBlockList()){
-            System.out.println(block1.getBlocker().getId());
-        }
-
         return true;
     }
 
@@ -447,7 +442,7 @@ public class UserService {
         String friendshipStatus = "";
 
         boolean blockedMe = false;
-        boolean isBlockedByMe = false;
+        boolean blockedByMe = false;
 
         List<String> interestNames = new ArrayList<>();
 
@@ -463,7 +458,7 @@ public class UserService {
             }
 
             blockedMe = blockRepository.existsByBlockedIdAndBlockerId(userId, userProfile.getId());
-            isBlockedByMe = blockRepository.existsByBlockerIdAndBlockedId(userId, userProfile.getId());
+            blockedByMe = blockRepository.existsByBlockerIdAndBlockedId(userId, userProfile.getId());
 
 
             interestNames = interestRepository.findCommonInterests(userId, userProfile.getId());
@@ -481,7 +476,7 @@ public class UserService {
                 .doesFriendshipExist(doesFriendshipExist)
                 .friendshipStatus(friendshipStatus)
                 .blockedMe(blockedMe)
-                .isBlockedByMe(isBlockedByMe)
+                .blockedByMe(blockedByMe)
                 .profilePicture(profilePicture)
                 .interestNames(interestNames)
                 .build();

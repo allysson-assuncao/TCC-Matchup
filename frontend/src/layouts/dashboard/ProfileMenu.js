@@ -78,7 +78,7 @@ const ProfileMenu = () => {
                                         } else {
                                             dispatch(LogoutUser());
                                             dispatch(ClearUser());
-                                            socket.emit("end", {user_id});
+                                            //socket.emit("end", {user_id});
                                         }
                                     }}
                                     direction="row"
