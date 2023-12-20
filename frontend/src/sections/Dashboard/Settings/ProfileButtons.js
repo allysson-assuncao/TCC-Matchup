@@ -34,7 +34,7 @@ const ProfileButtons = ({profile, setProfile}) => {
     private String username;
     private String name;
     private String bio;
-    private boolean isBlockedByMe;
+    private boolean blockedByMe;
     private boolean blockedMe;
     private boolean doesFriendshipExist;
     private String friendshipStatus;
@@ -83,7 +83,7 @@ const ProfileButtons = ({profile, setProfile}) => {
                             /*isLoggedIn ? sendFriendshipSolicitation() : navigate(ROUTE_LOGIN);*/
                             sendFriendshipSolicitation();
                         }}
-                        disabled={profile.isBlockedByMe || profile.blockedMe || profile.friendshipStatus == FRIENDSHIP_STATUS.SENT}
+                        disabled={profile.blockedByMe || profile.blockedMe || profile.friendshipStatus == FRIENDSHIP_STATUS.SENT}
                         title={profile.blockedMe ? `Você foi bloqueado por ${profile.username} :/` : "Enviar solicitação de amizade"}
                         fullWidth
                         startIcon={<PersonAddIcon/>}

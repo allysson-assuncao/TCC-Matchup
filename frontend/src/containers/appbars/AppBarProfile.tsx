@@ -37,7 +37,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
         if (!userJSON) return;
         const user = JSON.parse(userJSON);
         verifyFriendship(user);
-        isBlockedByMe(user);
+        blockedByMe(user);
     }, []);
 
     const verifyFriendship = async (user: User) => {
@@ -52,7 +52,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
         }
     };
 
-    const isBlockedByMe = async (user: User) => {
+    const blockedByMe = async (user: User) => {
         try {
             let blockedByMeTemp: boolean = await isBlockedBy(idProfile, user.id);
             setBlockedByMe(blockedByMeTemp);
@@ -99,7 +99,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                                 onClick={async () => {
                                                     await block(idProfile, loggedUser.id);
                                                     verifyFriendship(loggedUser);
-                                                    isBlockedByMe(loggedUser);
+                                                    blockedByMe(loggedUser);
                                                 }}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
                                             >
@@ -110,7 +110,7 @@ const AppBarProfile: React.FC<PropsAppBarProfile> = ({openSnackBar, editable, bl
                                             <IconButton
                                                 onClick={async () => {
                                                     await unblock(loggedUser.id, idProfile);
-                                                    isBlockedByMe(loggedUser);
+                                                    blockedByMe(loggedUser);
                                                 }}
                                                 sx={{my: 1, mx: 1.5, color: `${theme.palette.text.primary}`}}
                                             >
