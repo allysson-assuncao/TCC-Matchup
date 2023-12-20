@@ -4,27 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="Remove Friendship working. Updating buttons while accessing the profile of whom ended in real time (kinda).">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/BlockDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UnblockDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/BlockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ProfileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ProfileDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/dashboard/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/BlockButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/BlockButtons.js" afterDir="false" />
-    </list>
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" name="Changes by Allysson" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
+    <list id="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" name="Changes by Allysson" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,20 +42,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" />
-        <range start1="257" end1="258" start2="258" end2="259" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="259" end1="260" start2="260" end2="260" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="261" end1="261" start2="261" end2="262" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="266" end1="271" start2="267" end2="267" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="449" end1="450" start2="445" end2="446" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="465" end1="466" start2="461" end2="462" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="483" end1="484" start2="479" end2="480" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -239,31 +208,7 @@
       <workItem from="1702989629714" duration="6953000" />
       <workItem from="1703008789871" duration="5267000" />
       <workItem from="1703016653830" duration="4458000" />
-      <workItem from="1703093270772" duration="4558000" />
-    </task>
-    <task id="LOCAL-00009" summary="successfully implementing the connection to gmail (kinda) and implementing most of the logic to the forgot password function in backend">
-      <option name="closed" value="true" />
-      <created>1695600423017</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1695600423017</updated>
-    </task>
-    <task id="LOCAL-00010" summary="redoing stuff">
-      <option name="closed" value="true" />
-      <created>1695643092332</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1695643092332</updated>
-    </task>
-    <task id="LOCAL-00011" summary="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)">
-      <option name="closed" value="true" />
-      <created>1695842363739</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1695842363739</updated>
+      <workItem from="1703093270772" duration="5248000" />
     </task>
     <task id="LOCAL-00012" summary="removing the img.zip">
       <option name="closed" value="true" />
@@ -616,16 +561,37 @@
       <option name="project" value="LOCAL" />
       <updated>1703022180630</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="All of profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <option name="closed" value="true" />
+      <created>1703104977960</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1703104977961</updated>
+    </task>
+    <task id="LOCAL-00059" summary="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <option name="closed" value="true" />
+      <created>1703105031221</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1703105031221</updated>
+    </task>
+    <task id="LOCAL-00060" summary="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <option name="closed" value="true" />
+      <created>1703105037256</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1703105037256</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="starting to implement the necessary changes to make the forgot password function work properly, (the logic to send emails is working already)" />
-    <MESSAGE value="removing the img.zip" />
-    <MESSAGE value="adding parameters to resize" />
     <MESSAGE value="Friendship being created successfully" />
     <MESSAGE value="Methods to accept, deny and end Friendships" />
     <MESSAGE value="Deciding how to the block feature will work" />
@@ -648,7 +614,10 @@
     <MESSAGE value="Working on Friendship Solicitation Response" />
     <MESSAGE value="Receiving notifications and updating some buttons while accessing sender profile at the same time" />
     <MESSAGE value="Remove Friendship working. Updating buttons while accessing the profile of whom ended in real time (kinda)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove Friendship working. Updating buttons while accessing the profile of whom ended in real time (kinda)." />
+    <MESSAGE value="All of profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
+    <MESSAGE value="Changes by Allysson" />
+    <MESSAGE value="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
+    <option name="LAST_COMMIT_MESSAGE" value="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
