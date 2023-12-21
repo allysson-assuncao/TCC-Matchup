@@ -36,6 +36,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u.blockList FROM User u WHERE u.id = :userId")
     Set<User> findBlockedUsersById(@Param("userId") Long userId);
 
+    @Query("SELECT u.id FROM User u WHERE u.username = :username")
+    long getIdByUsername(String username);
+
     @Transactional
     boolean existsByEmail(String email);
 

@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+    </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
+    <list id="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" name="Changes by Allysson" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
-    <list id="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" name="Changes by Allysson" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,6 +49,18 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
+      <ranges>
+        <range start1="99" end1="99" start2="99" end2="100" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="100" end1="102" start2="101" end2="103" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="107" end1="107" start2="108" end2="109" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="128" end1="129" start2="130" end2="131" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="133" end1="134" start2="135" end2="136" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="145" end1="147" start2="147" end2="149" changelist="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -208,7 +227,8 @@
       <workItem from="1702989629714" duration="6953000" />
       <workItem from="1703008789871" duration="5267000" />
       <workItem from="1703016653830" duration="4458000" />
-      <workItem from="1703093270772" duration="5248000" />
+      <workItem from="1703093270772" duration="5303000" />
+      <workItem from="1703179791719" duration="5700000" />
     </task>
     <task id="LOCAL-00012" summary="removing the img.zip">
       <option name="closed" value="true" />

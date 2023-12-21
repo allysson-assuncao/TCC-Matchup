@@ -97,14 +97,16 @@ public class NotificationService {
 
     @Transactional
     public List<NotificationDto> getNotificationsByUsername(UserDetails userDetails) {
+        long userId = userRepository.getIdByUsername(userDetails.getUsername());
 
-        notificationRepository.updateStatusToViewedByUserUsername(userDetails.getUsername());
-        Optional<List<Notification>> notificationsOp = notificationRepository.findByUserUsername(userDetails.getUsername());
+        notificationRepository.updateStatusToViewedByUserId(userId);
+        Optional<List<Notification>> notificationsOp = notificationRepository.findByUserId(userId);
         if (notificationsOp.isEmpty()) return null;
         List<Notification> notifications = notificationsOp.get();
         List<NotificationDto> notificationsDto = new ArrayList<>();
 
         for (Notification n : notifications) {
+
             NotificationDto nDto = new NotificationDto();
             nDto.setId(n.getId());
             nDto.setDate(n.getDate());
@@ -126,12 +128,12 @@ public class NotificationService {
                         nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
                         nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64, 64));
                         break;
-                    case REJECTED:
+                    /*case REJECTED:
                         nDto.setType(NotificationType.REJECTED);
                         nDto.setSenderId(nSN.getFriendship().getFriend().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
                         nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64, 64));
-                        break;
+                        break;*/
                 }
             } else if (n instanceof DefaultNotification) {
                 DefaultNotification nDN = (DefaultNotification) n;
