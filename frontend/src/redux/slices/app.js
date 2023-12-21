@@ -36,7 +36,8 @@ const initialState = {
     client: null,
     lastEndedFriendshipList: [],
     lastBlocker: [],
-    lastUnblocker: []
+    lastUnblocker: [],
+    lastFriendshipResponse: []
 };
 
 
@@ -118,7 +119,11 @@ const slice = createSlice({
             //state.notifications.push(action.payload.notification);
         },
         removeNotification(state, action) {
+
             state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
+        },
+        updateLastFriendshipResponse(state, action) {
+            state.lastFriendshipResponse = [action.payload.lastFriendshipResponse];
         },
         updateLastEndedFriendship(state, action) {
             state.lastEndedFriendshipList = [action.payload.lastEndedFriendship];
@@ -155,7 +160,7 @@ export const GetNotifications = () => async (dispatch, getState) => {
         )
         .then((response) => {
             console.log(response);
-            dispatch(slice.actions.getNotifications(response.data));
+            dispatch(slice.actions.getNotifications({notifications: response.data}));
         })
         .catch((err) => {
             console.log(err);
@@ -425,6 +430,13 @@ export const FetchProfilePicture = (width, height) => {
 
 export const RespondFriendshipSolicitation = (senderId, receiverId, accepted) => {
     return async (dispatch, getState) => {
+        dispatch(slice.actions.updateLastFriendshipResponse({
+            lastFriendshipResponse: {
+                respondedId: receiverId,
+                accepted: accepted
+            }
+        }));
+
         const solicitationResponseDto = {
             senderId: senderId,
             receiverId: receiverId,

@@ -5,7 +5,11 @@ import {useNavigate} from "react-router-dom";
 import {Clear} from "@mui/icons-material";
 import FriendshipResponseButtons from "../sections/Dashboard/Settings/FriendshipResponseButtons";
 import {ROUTE_PROFILE} from "../routes";
-
+import {dispatch} from "../redux/store";
+import {RemoveNotification} from "../redux/slices/app";
+import {formatDistanceToNow} from 'date-fns';
+import {ptBR} from 'date-fns/locale';
+import {deleteNotification} from "../api/user_requests/notificationRequests";
 
 export const NOTIFICATION_TYPES = {
     DEFAULT: 'DEFAULT',
@@ -37,35 +41,43 @@ const NotificationComponent: React.FC<NotificationProps> = ({notification}) => {
     const navigate = useNavigate();
     var text;
 
+    const formattedDate = formatDistanceToNow(new Date(notification.date), {addSuffix: true, locale: ptBR});
 
-    switch (notification) {
+    /*npm install date-fns
+npm install @date-fns/locale-pt-BR
+*/
+
+
+    switch (notification.type) {
         case NOTIFICATION_TYPES.PENDING:
             text = SOLICITATION_TEXT.PENDING;
             break;
         case NOTIFICATION_TYPES.ACCEPTED:
             text = SOLICITATION_TEXT.ACCEPTED;
             break;
-        case NOTIFICATION_TYPES.REJECTED:
-            text = SOLICITATION_TEXT.REJECTED;
-            break;
+        /* case NOTIFICATION_TYPES.REJECTED:
+             text = SOLICITATION_TEXT.REJECTED;
+             break;*/
         case NOTIFICATION_TYPES.DEFAULT:
             text = notification.content;
             break;
     }
 
     return (
-        <Grid bgcolor={theme.palette.background.default} container>
+        <Grid bgcolor={theme.palette.background.default} alignItems={"center"} alignContent={"center"} container
+              spacing={3}>
             <Grid item>
-                {notification.notification.type !== NOTIFICATION_TYPES.DEFAULT &&
+                {notification.type !== NOTIFICATION_TYPES.DEFAULT &&
                     /*<ProfilePicture id={senderId} small={true}/>*/
                     <Avatar
+                        onClick={() => navigate(`${ROUTE_PROFILE}/${notification.senderUsername}`)}
                         src={notification.senderProfilePicture}
                         alt={notification.senderUsername}
                         sx={{height: 64, width: 64}}
                     />
                 }
             </Grid>
-            <Grid alignItems="center" item>
+            <Grid item>
                 <Typography color={theme.palette.text.primary}>
                     {notification.senderUsername && notification.type !== NOTIFICATION_TYPES.DEFAULT &&
                         <b style={{cursor: 'pointer'}}
@@ -74,19 +86,21 @@ const NotificationComponent: React.FC<NotificationProps> = ({notification}) => {
                         </b>
                     }
                     {text}
+                    <span><b>{formattedDate}</b> </span>
                 </Typography>
             </Grid>
             <Grid item>
                 {notification.type === NOTIFICATION_TYPES.PENDING && notification.senderUsername &&
                     <FriendshipResponseButtons notification={notification}/>
                 }
-                {/**/}
                 {notification.type !== NOTIFICATION_TYPES.PENDING &&
                     <IconButton
                         onClick={() => {
-                            /*TODO -> REMOVE NOTIFICATION ON APP*/
-                            //deleteNotification(id);
-                            //if (removeNotificationById) removeNotificationById(id);
+                            deleteNotification(notification.id).then((response) => {
+                                    if (response) dispatch(RemoveNotification(notification.id));
+                                }
+                            )
+
                         }}
                     >
                         <Clear color="error"></Clear>

@@ -20,7 +20,8 @@ const Profile = () => {
             notifications,
             lastEndedFriendshipList,
             lastBlocker,
-            lastUnblocker
+            lastUnblocker,
+            lastFriendshipResponse
         } = useSelector((state) => state.app);
         const {isLoggedIn} = useSelector((state) => state.auth);
 
@@ -41,7 +42,7 @@ const Profile = () => {
                 }
                 fetchData();
 
-            }, []
+            }, [usernamePathVariable]
         );
 
         useEffect(() => {
@@ -56,12 +57,12 @@ const Profile = () => {
             }
         }, [notifications])
 
-    /*useEffect(() => {
-            if (!profile) return;
-            if (lastEndedFriendshipList === profile.id) {
-                setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: false}));
-            }
-        }, [lastEndedFriendshipList]);*/
+        /*useEffect(() => {
+                if (!profile) return;
+                if (lastEndedFriendshipList === profile.id) {
+                    setProfile((prevProfile) => ({...prevProfile, doesFriendshipExist: false}));
+                }
+            }, [lastEndedFriendshipList]);*/
 
         useEffect(() => {
             if (!profile || !lastEndedFriendshipList || lastEndedFriendshipList.length === 0) return;
@@ -94,6 +95,19 @@ const Profile = () => {
                 }));
             }
         }, [lastUnblocker]);
+
+        useEffect(() => {
+            if (!profile || !lastFriendshipResponse || lastFriendshipResponse.length === 0) return;
+            let previousFriendshipResponse = lastFriendshipResponse[lastFriendshipResponse.length - 1];
+            if (previousFriendshipResponse.respondedId === profile.id) {
+                setProfile((prevProfile) => ({
+                    ...prevProfile,
+                    doesFriendshipExist: previousFriendshipResponse.accepted,
+                    friendshipStatus: previousFriendshipResponse.accepted ? NOTIFICATION_TYPES.ACCEPTED : NOTIFICATION_TYPES.REJECTED,
+
+                }));
+            }
+        }, [lastFriendshipResponse]);
 
 
         return (

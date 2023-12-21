@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import {client} from "../../../socket";
 
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
-import {showSnackbar} from "../../../redux/slices/app";
+import {RespondFriendshipSolicitation, showSnackbar} from "../../../redux/slices/app";
 import {Check, Close} from "@mui/icons-material";
 
 const FriendshipResponseButtons = ({notification}) => {
@@ -17,23 +17,9 @@ const FriendshipResponseButtons = ({notification}) => {
 
     const navigate = useNavigate();
 
-    /*private long id;
-    private String profilePicture;
-    private String username;
-    private String name;
-    private String bio;
-    private boolean blockedByMe;
-    private boolean blockedMe;
-    private boolean doesFriendshipExist;
-    private String friendshipStatus;
-    private List<String> interestNames;*/
-
-    const acceptFriendship = () => {
-        dispatch(showSnackbar({severity: 'success', message: 'Amizade aceita!'}));
-    }
-
-    const rejectFriendship = () => {
-        dispatch(showSnackbar({severity: 'success', message: 'Amizade recusada!'}));
+    const respondFriendshipSolicitation = (accepted) => {
+        dispatch(showSnackbar({severity: 'success', message: accepted ? 'Amizade aceita!' : 'Amizade recusada!'}));
+        dispatch(RespondFriendshipSolicitation(user.id, notification.senderId, accepted))
     }
 
     return (
@@ -42,25 +28,23 @@ const FriendshipResponseButtons = ({notification}) => {
                     <Stack direction="row" alignItems={"center"} spacing={2}>
                         <Button
                             onClick={() => {
-                                acceptFriendship()
+                                respondFriendshipSolicitation(true);
                             }}
                             title={"Aceitar solicitação de amizade"}
                             fullWidth
                             startIcon={<Check/>}
                             variant="outlined"
                         >
-                            Aceitar
                         </Button>
                         <Button
                             onClick={() => {
-                                rejectFriendship()
+                                respondFriendshipSolicitation(false);
                             }}
                             title={"Recusar solicitação de amizade"}
                             fullWidth
                             startIcon={<Close/>}
                             variant="outlined"
                         >
-                            Recusar
                         </Button>
                     </Stack>
             </Stack>
