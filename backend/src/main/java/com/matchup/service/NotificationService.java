@@ -145,8 +145,8 @@ public class NotificationService {
         return notificationsDto;
     }
 
-    public int getNotificationsUnseenCountByUserId(long userId) {
-        return notificationRepository.countUnseenNotificationsByUserId(userId);
+    public int getNotificationsUnseenCountByUserId(UserDetails userDetails) {
+        return notificationRepository.countUnseenNotificationsByUserUsername(userDetails.getUsername());
     }
 
     public NotificationDto sendFriendshipSolicitationResponseNotification(Friendship friendship) {

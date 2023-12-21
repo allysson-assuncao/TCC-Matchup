@@ -79,9 +79,10 @@ public class NotificationController {
         return new ResponseEntity<>(notificationService.getNotificationsByUsername(userDetails), HttpStatus.OK);
     }
 
-    @GetMapping("/get-unseen-count-by-user-id/{userId}")
-    public ResponseEntity<Integer> getUnseenNotificationsCount(@PathVariable long userId) {
-        return new ResponseEntity<>(notificationService.getNotificationsUnseenCountByUserId(userId), HttpStatus.OK);
+    @GetMapping("/get-unseen-count")
+    public ResponseEntity<Integer> getUnseenNotificationsCount(@AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println("Buscando número de notificações não visualizadas...");
+        return new ResponseEntity<>(notificationService.getNotificationsUnseenCountByUserId(userDetails), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete-notification-by-id/{notificationId}")
