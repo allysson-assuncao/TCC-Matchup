@@ -99,13 +99,14 @@ public class InterestController {
 
     @PostMapping("/get-by-specifications")
     public Page<Interest> getInterestsBySpecificationWithPagination(
+            @AuthenticationPrincipal UserDetails userDetails,
             @RequestParam(required = false) String searchTerm,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size,
             @RequestParam(defaultValue = "name") String orderBy,
             @RequestParam(defaultValue = "ASC") Sort.Direction direction,
             @RequestBody RequestDto requestsDto) {
-
-        return interestService.getInterestsBySpecificationWithPagination(requestsDto.getSearchRequestDtos(), page, size, orderBy, direction);
+        System.out.println(userDetails.getUsername());
+        return interestService.getInterestsBySpecificationWithPagination(userDetails, requestsDto.getSearchRequestDtos(), page, size, orderBy, direction);
     }
 }

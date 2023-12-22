@@ -53,55 +53,7 @@ const App: React.FC = () => {
     const {loggedUser, setLoggedUser, logout} = useLoggedUser();
     const {contacts, setContacts, updateContactsWithMessage, fetchContacts, subscribeUser} = useContact();
 
-    /*const updateContactsWithMessage = (contactId: bigint, message: Message) => {
-        setContacts(prevContacts => {
-            if (prevContacts == null) { // @ts-ignore
-                return prevContacts.map(contact => {
-                    if (contact.id === contactId) {
-                        return {
-                            ...contact,
-                            messages: [...contact.messages, {...message}]
-                        };
-                    } else {
-                        return contact;
-                    }
-                });
-            }
-        });
-    };*/
 
-    /*const fetchContacts = async () => {
-        if (!loggedUser) {
-            console.error("Erro: Usuário não está logado.");
-            return false;
-        }
-        try {
-            const fetchedContacts = await getContactsByUserId(loggedUser.id);
-            await setContacts(fetchedContacts);
-            return true;
-        } catch (error) {
-            console.error("Erro ao buscar CONTATOS:", error);
-        }
-    };*/
-
-    /*useEffect(() => {
-        window.addEventListener('beforeunload', () => /!*sessionStorage.setItem('contacts', JSON.stringify(contacts)*!/alert("HELLOOO"));
-
-        if (!sessionStorage.getItem('hasRunBefore')  && loggedUser) {
-            fetchContacts();
-
-            console.log(contacts);
-            sessionStorage.setItem('hasRunBefore', 'true');
-
-        } else {
-            setContacts(JSON.parse(sessionStorage.getItem('contacts') || '[]'));
-            subscribeUser();
-        }
-
-        return () => {
-            window.removeEventListener('beforeunload', () => alert("HELLOOO")/!*sessionStorage.removeItem('contacts')*!/);
-        }
-    }, []);*/
 
     useEffect(() => {
         if (/*!sessionStorage.getItem('hasRunBefore')  && */loggedUser) {

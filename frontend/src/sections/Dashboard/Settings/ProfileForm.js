@@ -10,6 +10,7 @@ import {LoadingButton} from "@mui/lab";
 import {useDispatch, useSelector} from "react-redux";
 import {UpdateUserProfile} from "../../../redux/slices/app";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
+import {resizeImage} from "../../../utils/ResizeImage";
 
 const   ProfileForm = () => {
     const dispatch = useDispatch();
@@ -50,23 +51,15 @@ const   ProfileForm = () => {
 
     const onSubmit = async (data) => {
         try {
-            //   Send API request
 
             dispatch(
                 UpdateUserProfile({
                     username: data?.username !== user.username ? data?.username : null,
                     bio: data?.bio !== user.bio ? data?.bio : null,
                     cellphoneNumber: data?.cellphoneNumber !== user.cellphoneNumber ? data?.cellphoneNumber : null,
-                    profilePicture: file,
+                    profilePicture: await resizeImage(file),
                 })
             );
-            /*  dispatch(
-                  UpdateUserProfile({
-                      name: data?.name,
-                      about: data?.bio,
-                      avatar: file,
-                  })
-              );*/
 
         } catch (error) {
             console.error(error);

@@ -10,7 +10,7 @@ import {socket} from "../../socket";
 import {useNavigate} from "react-router-dom";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {ClearUser} from "../../redux/slices/app";
-import {ROUTE_MANAGE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_REGISTER_INTERESTS} from "../../routes";
+import {ROUTE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_REGISTER_INTERESTS} from "../../routes";
 import Grid from "@mui/material/Grid";
 
 const ProfileMenu = () => {
@@ -72,7 +72,7 @@ const ProfileMenu = () => {
                                         } else if (idx === 1) {
                                             navigate(ROUTE_REGISTER_INTERESTS);
                                         } else if (idx === 2) {
-                                            navigate(ROUTE_MANAGE_INTERESTS);
+                                            navigate(`${ROUTE_INTERESTS}/${user.username}`);
                                         } else if (idx === 3) {
                                             navigate("/settings");
                                         } else {

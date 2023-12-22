@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from "react";
 import {Avatar, Box, Button, Chip, IconButton, Stack, Typography} from "@mui/material";
-import {CaretLeft, Prohibit, Trash} from "phosphor-react";
+import {CaretLeft, GameController, Prohibit, Trash} from "phosphor-react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate, useParams} from "react-router-dom";
-import {ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
+import {ROUTE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
 import {getProfileByUsernameAndUserId} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
 import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
 import {UpdateLastEndedFriendship} from "../../redux/slices/app";
 import {FRIENDSHIP_STATUS} from "../../model/friendship";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import {ROUTE_INTEREST_MANAGEMENT} from "../../App2";
 
 const Profile = () => {
         const theme = useTheme();
@@ -69,7 +71,8 @@ const Profile = () => {
             if (lastEndedFriendshipList[lastEndedFriendshipList.length - 1] === profile.id) {
                 setProfile((prevProfile) => ({
                     ...prevProfile,
-                    doesFriendshipExist: false
+                    doesFriendshipExist: false,
+                    friendshipStatus: NOTIFICATION_TYPES.REJECTED, //*****************
                 }));
             }
         }, [lastEndedFriendshipList]);
@@ -175,6 +178,17 @@ const Profile = () => {
                                             <Chip key={index} label={text} style={{margin: 4}}/>
                                         ))}
                                     </Stack>
+                                    <Button
+                                        onClick={() => {
+                                            navigate(`${ROUTE_INTERESTS}/${usernamePathVariable}`);
+                                        }}
+                                        title={"Interesses"}
+                                        startIcon={<GameController />}
+                                        variant="contained"
+                                    >
+                                        Interesses
+                                    </Button>
+
                                 </Stack>
                             </Stack>)}
                         {!profile && (

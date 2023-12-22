@@ -4,6 +4,7 @@ import com.matchup.dto.InterestDependenciesDto;
 import com.matchup.dto.InterestDto;
 import com.matchup.dto.SearchRequestDto;
 import com.matchup.model.Interest;
+import com.matchup.model.User;
 import com.matchup.model.image.InterestImage;
 import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.insterest.*;
@@ -13,18 +14,19 @@ import com.matchup.repository.image.InterestImageRepository;
 import com.matchup.repository.interest.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @ToString
@@ -113,11 +115,18 @@ public class InterestService {
     }
 
     @Transactional(readOnly = true)
-    public Page<Interest> getInterestsBySpecificationWithPagination(List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
+    public Page<Interest> getInterestsBySpecificationWithPagination(UserDetails userDetails, List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
         Specification<Interest> searchSpecification =
                 filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, orderBy));
-        return interestRepository.findAll(searchSpecification, pageable);
+
+        Page<Interest> interestPage = interestRepository.findAll(searchSpecification, pageable);
+        interestPage.getContent().forEach((interest -> {
+            interest.getFormattedImageList();
+            interest.setAdded(interestRepository.existsByUserUsername(userDetails.getUsername()));
+        }));
+
+        return interestPage;
     }
 
     public Company saveCompany(Company company) {

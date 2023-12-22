@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -39,13 +40,12 @@ public class ImageService {
         Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(userOp.get().getId());
         if(ProfilePictureOp.isEmpty()) return null;
         ProfilePicture img = ProfilePictureOp.get();
-        MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
         try {
-            img.setContent(ImageResizer.resizeImage(multipartFile, width, height));
+            img.setContent(ImageResizer.resizeImage(img.getContent(), width, height));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
+        MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
         MultiPartFileDto multiPartFileDto = new MultiPartFileDto(multipartFile);
 
         return multiPartFileDto;
@@ -57,14 +57,13 @@ public class ImageService {
         Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(id);
         if(ProfilePictureOp.isEmpty()) return "";
 
-        ProfilePicture img = ProfilePictureOp.get();
-        MultipartFile multipartFile = new BlobMultipartFile(img.getContent(), img.getName(), img.getOriginalName(), img.getContentType());
+        ProfilePicture profilePicture = ProfilePictureOp.get();
         try {
-            img.setContent(ImageResizer.resizeImage(multipartFile, width, height));
+            byte[] img = ImageResizer.resizeImage(profilePicture.getContent(), width, height);
+            return "data:image/png;base64," + Base64.getEncoder().encodeToString(img);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "data:image/png;base64," + img.getBase64EncodedContent();
 
     }
 }

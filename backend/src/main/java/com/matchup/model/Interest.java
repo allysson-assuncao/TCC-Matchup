@@ -1,16 +1,25 @@
 package com.matchup.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.matchup.dto.InterestDto;
 import com.matchup.model.image.InterestImage;
+import com.matchup.model.image.ProfilePicture;
 import com.matchup.model.insterest.*;
+import com.matchup.tools.BlobMultipartFile;
+import com.matchup.tools.ImageResizer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -71,8 +80,19 @@ public class Interest {
     @ManyToMany(mappedBy = "interests")
     private List<User> users;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "interest")
     private List<InterestImage> images;
+
+    @Transient
+    private List<String> formattedImages = new ArrayList<>();
+
+    @Transient
+    private boolean added;
+    /*private List<String> formattedImages = images.stream()
+            .map(img -> "data:image/png;base64," + img.getBase64EncodedContent())
+            .collect(Collectors.toList());*/
+
 
     public void addDubbingLanguages(Language dubbingLanguage){
         if(this.dubbingLanguages == null){
@@ -115,5 +135,14 @@ public class Interest {
         this.users.add(user);
     }
 
+    public List<String> getFormattedImageList(){
+
+        for(InterestImage img: this.images){
+            formattedImages.add("data:image/png;base64," + img.getBase64EncodedContent());
+        }
+
+        return formattedImages;
+
+    }
 
 }

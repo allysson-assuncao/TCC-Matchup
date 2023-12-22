@@ -119,8 +119,10 @@ const slice = createSlice({
             //state.notifications.push(action.payload.notification);
         },
         removeNotification(state, action) {
-
             state.notifications = state.notifications.filter(notification => notification.id !== action.payload.notificationId);
+        },
+        removeNotificationBySenderId(state, action) {
+            state.notifications = state.notifications.filter(notification => notification.senderId !== action.payload.senderId);
         },
         updateLastFriendshipResponse(state, action) {
             state.lastFriendshipResponse = [action.payload.lastFriendshipResponse];
@@ -167,6 +169,7 @@ export const GetNotifications = () => async (dispatch, getState) => {
         });
 };
 
+
 /*export const AddNotification = (notification) => async (dispatch, getState) => {
         dispatch(slice.actions.addNotification(notification));
 };*/
@@ -184,7 +187,9 @@ export const RemoveNotification = (notificationId) => async (dispatch, getState)
 };
 
 export const UpdateLastEndedFriendship = (lastEndedFriendship) => async (dispatch, getState) => {
+    dispatch(slice.actions.removeNotificationBySenderId({senderId: lastEndedFriendship}));
     dispatch(slice.actions.updateLastEndedFriendship({lastEndedFriendship: lastEndedFriendship}));
+
 };
 
 export const UpdateLastBlocker = (lastBlocker) => async (dispatch, getState) => {
@@ -457,6 +462,8 @@ export const EndFriendship = (senderId, receiverId) => {
             senderId: senderId,
             receiverId: receiverId,
         };
+
+        dispatch(slice.actions.removeNotificationBySenderId({senderId: receiverId}));
 
         client.publish({
             destination: `/app/friendship/end`,

@@ -25,7 +25,7 @@ export const ROUTE_PAGE_NOT_FOUND = "/404";
 
 export const ROUTE_REGISTER_INTERESTS = "cadastro_de_interesses";
 
-export const ROUTE_MANAGE_INTERESTS = "gerenciamento_de_interesses";
+export const ROUTE_INTERESTS = "/interesses";
 
 export const ROUTE_LOGIN = "login";
 
@@ -59,8 +59,8 @@ export default function Router() {
                 {path: ROUTE_MY_PROFILE, element: <MyProfile/>},
                 {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
                 {path: "old-profile", element: <GeneralInfo/>},
-                {path: `${ROUTE_MANAGE_INTERESTS}/:usernamePathVariable`, element: <RegisterInterest/>},
-                {path: ROUTE_MANAGE_INTERESTS, element: <InterestManagement/>},
+                {path: ROUTE_REGISTER_INTERESTS, element: <RegisterInterest/>},
+                {path: `${ROUTE_INTERESTS}/:usernamePathVariable`, element: <InterestManagement/>},
 
                 {path: "call", element: <CallPage/>},
 

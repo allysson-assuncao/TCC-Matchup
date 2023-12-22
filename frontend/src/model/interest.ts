@@ -18,6 +18,8 @@ export interface Interest {
     ageRating: InterestDependency | undefined;
     users?: Array<User>;
     images: File[];
+    formattedImages: string[];
+    added: boolean;
 }
 
 

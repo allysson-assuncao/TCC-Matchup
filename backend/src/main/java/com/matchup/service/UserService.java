@@ -467,7 +467,7 @@ public class UserService {
             interestNames.forEach(System.out::println);
         }
 
-        String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 800, 800);
+        String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 256, 256);
 
         return ProfileDto.builder()
                 .id(userProfile.getId())

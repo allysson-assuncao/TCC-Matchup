@@ -10,6 +10,8 @@ import Link from "@mui/material/Link";
 import InterestFilters from "../../containers/interest/InterestFilters";
 import InterestCardList from "../../containers/interest/InterestCardList";
 import {InterestRequest} from "../../model/interest_filtered_request";
+import {useTheme} from "@mui/material/styles";
+import {useParams} from "react-router-dom";
 
 function Copyright(props: any) {
     return (
@@ -25,33 +27,24 @@ function Copyright(props: any) {
 }
 
 const InterestManagement: React.FC = () => {
-
+    const theme = useTheme();
     const [filteredInterests, setFilteredInterests] = useState<InterestRequest>();
-
-    /*const handleSearch = async (event: React.MouseEvent<HTMLElement>) => {
-        await fetchFilteredInterests();
-    };*/
-
-    /*useEffect(() => {
-        fetchFilteredInterests();
-    }, []);*/
+    const {usernamePathVariable} = useParams();
 
     return (
         <Grid>
-            {/*<AppBarProfile
-                editable={true}
-                blocked={false}
-                username={loggedUser ? loggedUser.username : ''}
-                idProfile={loggedUser ? loggedUser.id : BigInt(-1)}
-            />*/}
+
             <CssBaseline/>
             <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container justifyContent={'center'}>
                     <Grid item md={10} sm={11} xs={12}>
                         <Grid container spacing={5}>
                             <Grid item md={4}>
-                                <InterestFilters filteredInterests={filteredInterests}
-                                                 setFilteredInterests={setFilteredInterests}></InterestFilters>
+                                <InterestFilters
+                                    filteredInterests={filteredInterests}
+                                    setFilteredInterests={setFilteredInterests}
+                                    username={usernamePathVariable}
+                                />
                             </Grid>
                             <Grid item md={8}>
                                 <InterestCardList interests={filteredInterests}/>

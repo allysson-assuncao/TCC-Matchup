@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import {Button, Grid, IconButton, MobileStepper, Paper} from '@mui/material';
 import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload} from '@mui/icons-material';
+import {resizeImage} from "../../../utils/ResizeImage";
 
 interface ImageUploaderProps {
     setImages: React.Dispatch<React.SetStateAction<File[]>>;
@@ -83,32 +84,5 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
     );
 };
 
-async function resizeImage(file: File): Promise<File> {
-    return new Promise((resolve, reject) => {
-        const img = document.createElement('img');
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            let { width, height } = img;
-            if (height > 800) {
-                width *= 800 / height;
-                height = 800;
-            }
-            canvas.width = width;
-            canvas.height = height;
-            ctx?.drawImage(img, 0, 0, width, height);
-            canvas.toBlob((blob) => {
-                if (!blob) {
-                    reject(new Error('Could not resize image'));
-                    return;
-                }
-                const resizedFile = new File([blob], file.name, { type: blob.type });
-                resolve(resizedFile);
-            }, file.type);
-        };
-        img.onerror = reject;
-        img.src = URL.createObjectURL(file);
-    });
-}
 
 export default ImageUploader;

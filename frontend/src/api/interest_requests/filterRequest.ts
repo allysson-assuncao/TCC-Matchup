@@ -8,16 +8,24 @@ const API_BASE_URL = 'http://localhost:8080/api/interests/';
 
 export const getFilteredInterests = async (
     filters: Filter[] | null | undefined,
+    token: any,
     searchTerm?: string,
     page = 0,
     orderBy = "",
     direction = "",
-    size = 200
-    ): Promise<InterestRequest> => {
+    size = 200,
+): Promise<InterestRequest> => {
     try {
         const response: AxiosResponse<InterestRequest> = await axios.post(
             `${API_BASE_URL}get-by-specifications?orderBy=${orderBy}&direction=${direction}&size=${size}&page=${page}`,
-            {"searchRequestDtos": filters});
+            {"searchRequestDtos": filters},
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
         console.log(response);
         return response.data;
 

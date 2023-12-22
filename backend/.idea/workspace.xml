@@ -4,17 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="All Notification functionalities working pretty well :)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/FriendshipController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/model/Interest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/ImageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ImageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/tools/ImageResizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/tools/ImageResizer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/our/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/our/Interest/InterestCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/our/dialog/RegisterDependencyDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/our/dialog/RegisterDependencyDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/our/fields/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/our/fields/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/interest/InterestFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/containers/interest/InterestFilters.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/model/interest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/model/interest.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/our/InterestManagement.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/our/InterestManagement.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Settings/ProfileForm.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
-    <list id="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" name="Changes by Allysson" comment="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java" afterDir="false" />
-    </list>
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
+    <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/FriendshipService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,14 +69,15 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/NotificationService.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java">
       <ranges>
-        <range start1="99" end1="99" start2="99" end2="100" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="100" end1="102" start2="101" end2="103" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="107" end1="107" start2="108" end2="109" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="128" end1="129" start2="130" end2="131" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="133" end1="134" start2="135" end2="136" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="145" end1="147" start2="147" end2="149" changelist="d1f56583-f288-4fa8-87a8-61a5ea67fd0e" />
+        <range start1="6" end1="6" start2="6" end2="7" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="15" end1="19" start2="16" end2="17" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="20" end1="20" start2="18" end2="19" changelist="1d41a4b6-1be0-468e-a1df-8930e5904ca1" />
+        <range start1="26" end1="26" start2="25" end2="26" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="27" end1="27" start2="27" end2="29" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="115" end1="116" start2="117" end2="118" changelist="1d41a4b6-1be0-468e-a1df-8930e5904ca1" />
+        <range start1="119" end1="120" start2="121" end2="129" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
       </ranges>
     </file>
   </component>
@@ -99,7 +118,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;5682d7df48f8a92df6c1c707a89aa0b0&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/468/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/intellij-idea-ultimate/470/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -228,23 +247,10 @@
       <workItem from="1703008789871" duration="5267000" />
       <workItem from="1703016653830" duration="4458000" />
       <workItem from="1703093270772" duration="5303000" />
-      <workItem from="1703179791719" duration="5700000" />
-    </task>
-    <task id="LOCAL-00012" summary="removing the img.zip">
-      <option name="closed" value="true" />
-      <created>1696006090083</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1696006090083</updated>
-    </task>
-    <task id="LOCAL-00013" summary="removing the img.zip">
-      <option name="closed" value="true" />
-      <created>1696006498793</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1696006498793</updated>
+      <workItem from="1703179791719" duration="5817000" />
+      <workItem from="1703248531930" duration="1296000" />
+      <workItem from="1703250289904" duration="4004000" />
+      <workItem from="1703266242699" duration="10176000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>
@@ -252,22 +258,6 @@
       <option name="presentableId" value="LOCAL-00014" />
       <option name="project" value="LOCAL" />
       <updated>1696275969373</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Friendship being created successfully">
-      <option name="closed" value="true" />
-      <created>1696778291698</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1696778291698</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Friendship being created successfully">
-      <option name="closed" value="true" />
-      <created>1696778299592</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1696778299592</updated>
     </task>
     <task id="LOCAL-00017" summary="Friendship being created successfully">
       <option name="closed" value="true" />
@@ -605,14 +595,45 @@
       <option name="project" value="LOCAL" />
       <updated>1703105037256</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="All Notification functionalities working pretty well :)">
+      <option name="closed" value="true" />
+      <created>1703191044982</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1703191044983</updated>
+    </task>
+    <task id="LOCAL-00062" summary="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )">
+      <option name="closed" value="true" />
+      <created>1703191050046</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1703191050046</updated>
+    </task>
+    <task id="LOCAL-00063" summary="All Notification functionalities working pretty well :)">
+      <option name="closed" value="true" />
+      <created>1703191054421</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1703191054421</updated>
+    </task>
+    <task id="LOCAL-00064" summary="All Notification functionalities working pretty well :)">
+      <option name="closed" value="true" />
+      <created>1703191056833</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1703191056833</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Friendship being created successfully" />
     <MESSAGE value="Methods to accept, deny and end Friendships" />
     <MESSAGE value="Deciding how to the block feature will work" />
     <MESSAGE value="Working on user block features" />
@@ -637,7 +658,8 @@
     <MESSAGE value="All of profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
     <MESSAGE value="Changes by Allysson" />
     <MESSAGE value="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
-    <option name="LAST_COMMIT_MESSAGE" value="All profile operations working in real time :) (Send Friendship Solicitation, Respond Friendship Solicitation, Remove Friendship and Block/Unblock )" />
+    <MESSAGE value="All Notification functionalities working pretty well :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="All Notification functionalities working pretty well :)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

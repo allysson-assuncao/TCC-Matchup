@@ -39,6 +39,12 @@ export const FILTERS_ATTRIBUTES = {
         PLATFORM_COLUMN_NAME: 'platforms',
         ID: 'id',
         NAME: 'name',
+    },
+
+    USERS:{
+        NAME: "users",
+        ID: "id",
+        USERNAME: "username"
     }
 
 }

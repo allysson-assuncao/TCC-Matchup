@@ -65,8 +65,6 @@ public class NotificationService {
         friendship.setFriend(receiver);
         friendship.setStatus(FriendshipStatus.PENDING);
         friendship = friendshipRepository.save(friendship);
-        System.out.println("friendship User: " + friendship.getUser().getUsername());
-        System.out.println("friendship Friend: " + friendship.getFriend().getUsername());
 
         FriendshipSolicitationNotification fSNotification = new FriendshipSolicitationNotification();
         fSNotification.setFriendship(friendship);
@@ -168,7 +166,7 @@ public class NotificationService {
         userRepository.save(sender);*/
         fSNotification = notificationRepository.save(fSNotification);
 
-
+        long senderId = sender.getId();
         return NotificationDto.builder()
                 .id(fSNotification.getId())
                 .friendshipId(friendship.getId())
@@ -176,7 +174,8 @@ public class NotificationService {
                 .senderId(sender.getId())
                 .receiverId(friendship.getUser().getId())
                 .senderUsername(sender.getUsername())
-                .senderProfilePicture(imageService.getFormattedProfilePictureById(sender.getId(), 64, 64))
+                //.senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
+                  .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
                 .date(fSNotification.getDate())
                 .type(NotificationType.ACCEPTED)
                 .build();

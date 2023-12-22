@@ -10,8 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class ImageResizer {
-    public static byte[] resizeImage(MultipartFile file, int targetWidth, int targetHeight) throws IOException {
-        BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
+    public static byte[] resizeImage(byte[] bytes, int targetWidth, int targetHeight) throws IOException {
+        BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(bytes));
 
         int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 

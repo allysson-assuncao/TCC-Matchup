@@ -46,7 +46,6 @@ public class FriendshipController {
 
     @MessageMapping("/solicitation-response/")
     public NotificationDto solicitationResponse(SolicitationResponseDto solicitationResponseDto) {
-        System.out.println("Solicitação aceita");
         long notificationId = notificationService.getFriendshipNotificationIdByUsers(solicitationResponseDto.getReceiverId(), solicitationResponseDto.getSenderId());
         System.out.println("Notification ID:" + notificationId);
         NotificationDto notificationDto = friendshipService.sendFriendshipSolicitationResponseNotification(
@@ -55,7 +54,13 @@ public class FriendshipController {
         if(notificationDto != null){
             simpMessagingTemplate.convertAndSendToUser(
                     notificationDto.getReceiverId()+"", "/queue/notification/friendship-solicitation", notificationDto);
+        }else{
+            simpMessagingTemplate.convertAndSendToUser(
+                    solicitationResponseDto.getReceiverId()+"",
+                    "/queue/friendship-ended",
+                    solicitationResponseDto.getSenderId()+"");
         }
+
         simpMessagingTemplate.convertAndSendToUser(
                 solicitationResponseDto.getSenderId()+"", "/queue/notification/delete", notificationId);
         return notificationDto;

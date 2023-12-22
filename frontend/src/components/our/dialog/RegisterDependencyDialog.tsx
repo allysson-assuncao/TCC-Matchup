@@ -4,6 +4,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField} fr
 import {InterestDependency} from "../../../model/interest";
 import Grid from "@mui/material/Grid";
 import {useSelector} from "react-redux";
+import {useTheme} from "@mui/material/styles";
 
 interface RegisterDependencyDialogProps {
     type: string;
@@ -15,7 +16,6 @@ interface RegisterDependencyDialogProps {
 }
 
 const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
-
     {
         type,
         label,
@@ -25,7 +25,7 @@ const RegisterDependencyDialog: React.FC<RegisterDependencyDialogProps> = (
     }) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
-    const {theme} = useSelector((state: any) => state.app);
+    const theme = useTheme();
 
     const handleOpen = () => {
         setOpen(true);

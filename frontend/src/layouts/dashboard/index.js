@@ -111,7 +111,6 @@ const DashboardLayout = () => {
                         console.log(obj);
                         binaryBodyToJSON(obj).then((lastFriendshipEnded) => {
                             console.log(lastFriendshipEnded);
-                            dispatch(UpdateLastEndedFriendship(null));
                             dispatch(UpdateLastEndedFriendship(lastFriendshipEnded));
                         });
                     });

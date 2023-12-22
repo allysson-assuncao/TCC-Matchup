@@ -34,11 +34,11 @@ public class ProfileController {
         return new ResponseEntity<>(userService.findByUsername(username).get(), HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("profile-picture/by/id/")
+    /*@GetMapping("profile-picture/by/id/")
     @PostAuthorize("true")
     public ResponseEntity<MultiPartFileDto> getProfilePictureById(@AuthenticationPrincipal UserDetails userDetails, @RequestParam("width") int width, @RequestParam("height") int height) {
         return new ResponseEntity<>(imageService.getProfilePictureByUsername(userDetails.getUsername(), width, height), HttpStatus.OK);
-    }
+    }*/
 
     @GetMapping("profile/{username}/accessed-by/{userId}")
     public ResponseEntity<ProfileDto> getProfile(@PathVariable("userId")  long userId, @PathVariable("username")  String username) {
