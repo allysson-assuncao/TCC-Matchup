@@ -58,6 +58,8 @@ const MyProfile = () => {
                         borderBottom: "6px solid #0162C4",
                     }}
                 >
+                    <img src={user.formattedProfilePicture} alt={user.username}/>
+                    <Typography>{user.bio}</Typography>
                 </Box>
 
             </Stack>

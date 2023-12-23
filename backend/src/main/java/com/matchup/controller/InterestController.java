@@ -12,6 +12,7 @@ import com.matchup.model.insterest.SubGenre;
 import com.matchup.service.FilterSpecificationService;
 import com.matchup.service.InterestService;
 import com.matchup.service.UserService;
+import jakarta.validation.constraints.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -48,6 +49,10 @@ public class InterestController {
         return new ResponseEntity<>(userService.linkInterestToUser(userDetails.getUsername(), interestId), HttpStatus.OK);
     }
 
+    @PostMapping("/remove/{interestId}")
+    public ResponseEntity<Boolean> unlinkInterestToUser(@AuthenticationPrincipal UserDetails userDetails, @PathVariable("interestId") Long interestId) {
+        return new ResponseEntity<>(userService.unlinkInterestToUser(userDetails.getUsername(), interestId), HttpStatus.OK);
+    }
 
     /*@PostMapping("/specification")
     @PostAuthorize("true")
@@ -59,6 +64,8 @@ public class InterestController {
     public ResponseEntity<InterestDependenciesDto> getInterestDependencies() {
         return new ResponseEntity<>(interestService.getInterestsDependencies(), HttpStatus.ACCEPTED);
     }
+
+/**/
 
     @PostMapping("/register/interest")
     @PostAuthorize("true")

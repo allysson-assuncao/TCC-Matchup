@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.Optional;
@@ -51,7 +54,7 @@ public class ImageService {
         return multiPartFileDto;
     }
 
-    @Transactional(readOnly = true)
+   /* @Transactional(readOnly = true)
     public String getFormattedProfilePictureById(Long id, int width, int height){
 
         Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(id);
@@ -65,5 +68,37 @@ public class ImageService {
             throw new RuntimeException(e);
         }
 
+    }*/
+
+    @Transactional(readOnly = true)
+    public String getFormattedProfilePictureById(Long id, int maxSize){
+
+        Optional<ProfilePicture> ProfilePictureOp = profilePictureRepository.findByUserId(id);
+        if(ProfilePictureOp.isEmpty()) return "";
+
+        ProfilePicture profilePicture = ProfilePictureOp.get();
+        try {
+            BufferedImage originalImage = ImageIO.read(new ByteArrayInputStream(profilePicture.getContent()));
+            int originalWidth = originalImage.getWidth();
+            int originalHeight = originalImage.getHeight();
+            float ratio = (float) originalWidth / originalHeight;
+
+            int newWidth, newHeight;
+
+            if (originalWidth > originalHeight) {
+                newWidth = maxSize;
+                newHeight = Math.round(maxSize / ratio);
+            } else {
+                newHeight = maxSize;
+                newWidth = Math.round(maxSize * ratio);
+            }
+
+            byte[] img = ImageResizer.resizeImage(profilePicture.getContent(), newWidth, newHeight);
+            return "data:image/png;base64," + Base64.getEncoder().encodeToString(img);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
 }

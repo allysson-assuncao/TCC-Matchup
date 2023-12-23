@@ -8,6 +8,7 @@ import {S3_BUCKET_NAME} from "../../config";
 import {sl} from "date-fns/locale";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
+import {RefreshToken} from "./auth";
 // ----------------------------------------------------------------------
 
 const initialState = {
@@ -381,7 +382,7 @@ export const FetchUserProfile = () => {
             });
     };
 };
-export const UpdateUserProfile = (formValues) => {
+export const UpdateUserProfile = (formValues, wasUsernameChanged) => {
     return async (dispatch, getState) => {
         const file = formValues.profilePicture;
         console.log("DATA", formValues);
@@ -398,8 +399,9 @@ export const UpdateUserProfile = (formValues) => {
                 }
             )
             .then((response) => {
-                console.log(response);
+                console.log(response.data);
                 dispatch(slice.actions.updateUser({user: response.data}));
+                if(wasUsernameChanged) dispatch(RefreshToken(response.data.token));
             })
             .catch((err) => {
                 console.log(err);

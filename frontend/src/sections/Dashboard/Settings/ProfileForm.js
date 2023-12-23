@@ -12,17 +12,44 @@ import {UpdateUserProfile} from "../../../redux/slices/app";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
 import {resizeImage} from "../../../utils/ResizeImage";
 
-const   ProfileForm = () => {
+const ProfileForm = () => {
     const dispatch = useDispatch();
     const [file, setFile] = useState();
     const {user, isUserUpdated} = useSelector((state) => state.app);
 
 
-    const ProfileSchema = Yup.object().shape({
-        username: Yup.string(),
+    /*const ProfileSchema = Yup.object().shape({
+        username: Yup.string()
+                .required('Campo obrigatório!')
+                .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
+                .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
+                .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
+                .test('username', 'Nome de Usuário já está em Uso!', async function (value) {
+                    if(user.username === value) return true;
+                    return (await isUsernameAvailable(value));
+                }),
         bio: Yup.string(),
-        //profilePicture: Yup.string().nullable(true),
+        //profilePicture: Yup.string().nullable(true),});
+    })*/
+    const ProfileSchema = Yup.object().shape({
+        username: Yup.string()
+            .required('Campo obrigatório!')
+            .min(5, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
+            .max(20, 'O Nome de Usuário deve ter no máximo 20 caracteres!')
+            .matches(/^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/, 'Nome de usuário não pode possuir símbolos diferentes de "_", "-" e ".", e só podem estar entre caracteres!')
+            .test('username', 'Nome de Usuário já está em Uso!', async function (value) {
+                const isValid = /^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$/.test(value);
+                if (!isValid) return false;
+                if(user.username === value) return true;
+                return (await isUsernameAvailable(value));
+            }),
+        bio: Yup.string(),
+        cellphoneNumber: Yup.string()
+            .matches(/^\\+\\d{2}\\s\\(\\d{2}\\)\\s\\d{5}-\\d{4}$/, 'Número de celular inválido!'),
+        profilePicture: Yup.mixed().nullable(true),
     });
+
+
 
     const defaultValues = {
         username: user?.username,
@@ -35,7 +62,6 @@ const   ProfileForm = () => {
         resolver: yupResolver(ProfileSchema),
         defaultValues,
     });
-
 
 
     const {
@@ -72,9 +98,9 @@ const   ProfileForm = () => {
 
             setFile(file);
 
-                const newFile = Object.assign(file, {
-                    preview: URL.createObjectURL(file),
-                });
+            const newFile = Object.assign(file, {
+                preview: URL.createObjectURL(file),
+            });
 
             if (file) {
                 setValue("profilePicture", newFile, {shouldValidate: true});
@@ -91,9 +117,9 @@ const   ProfileForm = () => {
                         <RHFUploadAvatar name="profilePicture" maxSize={3145728} onDrop={handleDrop}/>
 
                         <RHFTextField
-                            helperText={"This username is visible to your contacts"}
+                            helperText={"Esse nome de usuário é visível aos outros usuários"}
                             name="username"
-                            label="Name"
+                            label="Nome de Usuário"
                         />
                         <RHFTextField
                             name="cellphoneNumber"
@@ -107,6 +133,7 @@ const   ProfileForm = () => {
                                 size="large"
                                 type="submit"
                                 variant="contained"
+                                disabled={!methods.formState.isDirty || !methods.formState.isValid || isSubmitting}
                                 // loading={isSubmitSuccessful || isSubmitting}
                             >
                                 Salvar

@@ -29,6 +29,8 @@ export const ROUTE_INTERESTS = "/interesses";
 
 export const ROUTE_LOGIN = "login";
 
+export const ROUTE_INDEX = "introdução";
+
 
 export default function Router() {
     return useRoutes([
@@ -66,6 +68,13 @@ export default function Router() {
 
                 {path: ROUTE_PAGE_NOT_FOUND, element: <Page404/>},
                 {path: "*", element: <Navigate to="/404" replace/>},
+            ],
+        },
+        {
+            path: "/índice",
+            children: [
+                {element: <Navigate to={ROUTE_INDEX} replace/>, index: true},
+                {path: ROUTE_INDEX, element: <AppIndex/>},
             ],
         },
 

@@ -77,7 +77,9 @@ const SideBar = () => {
                             width: 64,
                             borderRadius: 1.5,
                             backgroundColor: theme.palette.primary.main,
+                            cursor: "pointer"
                         }}
+                        onClick={() => navigate("/índice")}
                         p={1}
                     >
                         <img src={Logo} alt="Matchup"/>

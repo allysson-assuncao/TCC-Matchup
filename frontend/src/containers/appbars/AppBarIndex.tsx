@@ -99,7 +99,7 @@ const AppBarIndex = () => {
                                     Cadastro
                                 </Button>
                                 <Button
-                                    onClick={() => history(ROUTE_SIGN_IN)}
+                                    onClick={() => history(ROUTE_LOGIN)}
                                     variant="contained"
                                     sx={{ my: 1, mx: 1.5 }}
                                     color="primary"

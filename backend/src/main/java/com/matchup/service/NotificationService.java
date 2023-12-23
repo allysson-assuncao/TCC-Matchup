@@ -84,7 +84,7 @@ public class NotificationService {
                 .type(NotificationType.PENDING)
                 .date(fSNotification.getDate())
                 .viewed(fSNotification.isViewed())
-                .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
+                .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64))
                 .build();
 
         System.out.println(notificationDto);
@@ -118,13 +118,13 @@ public class NotificationService {
                         nDto.setType(NotificationType.PENDING);
                         nDto.setSenderId(nSN.getFriendship().getUser().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getUser().getUsername());
-                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getUser().getId(), 64, 64));
+                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getUser().getId(), 64));
                         break;
                     case ACCEPTED:
                         nDto.setType(NotificationType.ACCEPTED);
                         nDto.setSenderId(nSN.getFriendship().getFriend().getId());
                         nDto.setSenderUsername(nSN.getFriendship().getFriend().getUsername());
-                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64, 64));
+                        nDto.setSenderProfilePicture(imageService.getFormattedProfilePictureById(nSN.getFriendship().getFriend().getId(), 64));
                         break;
                     /*case REJECTED:
                         nDto.setType(NotificationType.REJECTED);
@@ -175,7 +175,7 @@ public class NotificationService {
                 .receiverId(friendship.getUser().getId())
                 .senderUsername(sender.getUsername())
                 //.senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
-                  .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64, 64))
+                  .senderProfilePicture(imageService.getFormattedProfilePictureById(senderId, 64))
                 .date(fSNotification.getDate())
                 .type(NotificationType.ACCEPTED)
                 .build();

@@ -26,6 +26,7 @@ public class UserDto {
     private LocalDate birthDate;
     @Pattern(regexp = "^(?!.*[-_.]{2})[a-zA-Z0-9][a-zA-Z0-9-_.]*[a-zA-Z0-9]$")
     private String rawPassword;
+    @Pattern(regexp = "^\\+\\d{2}\\s\\(\\d{2}\\)\\s\\d{5}-\\d{4}$")
     private String cellphoneNumber;
     private MultipartFile profilePicture;
     private String formattedProfilePicture;
@@ -36,6 +37,7 @@ public class UserDto {
     private List<Long> receivedMessages;
     private UserAccess access;
 
+    private String token;
 
     private long addressId;
     private int addressNumber;

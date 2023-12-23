@@ -16,7 +16,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {showSnackbar} from "../../../redux/slices/app";
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import {PersonRemove} from "@mui/icons-material";
+import {PersonRemove, Remove} from "@mui/icons-material";
 
 interface InterestCardProps {
     interest: Interest;
@@ -41,6 +41,12 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
         // @ts-ignore
         dispatch(showSnackbar({severity: 'success', message: 'Interesse adicionado!'}));
     };
+
+    const handleRemoveInterest = async () => {
+        await unlinkInterestToUser(token, interest.id);
+        // @ts-ignore
+        dispatch(showSnackbar({severity: 'success', message: 'Interesse removido!'}));
+    }
 
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -82,10 +88,12 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         <IconButton
                             sx={{color: `theme.palette.primary.main`}}
                             onClick={() => {
-                                interest.added ? handleAddInterest(); : handleAddInterest();
-
-                            }}>
-                            <AddIcon/>
+                                interest.added ? handleRemoveInterest() : handleAddInterest();
+                                interest.added = !interest.added;
+                            }}
+                            title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
+                        >
+                            {interest.added ? <Remove/> : <AddIcon/>}
                         </IconButton>
 
                     </CardContent>

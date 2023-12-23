@@ -29,6 +29,9 @@ const slice = createSlice({
             state.token = action.payload.token;
             state.user_id = action.payload.user_id;
         },
+        refreshToken(state, action) {
+            state.token = action.payload.newToken;
+        },
         signOut(state, action) {
             state.isLoggedIn = false;
             state.user_id = null
@@ -158,6 +161,12 @@ export function LoginUser(formValues) {
                     slice.actions.updateIsLoading({isLoading: false, error: true})
                 );
             });
+    };
+}
+
+export function RefreshToken(newToken) {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.refreshToken({newToken: newToken}));
     };
 }
 

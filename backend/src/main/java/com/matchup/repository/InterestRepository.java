@@ -18,8 +18,8 @@ public interface InterestRepository extends JpaRepository<Interest, Long>, JpaSp
     List<Interest> findById(long id);
 
 
-    @Query("SELECT CASE WHEN COUNT(i) > 0 THEN true ELSE false END FROM Interest i JOIN i.users u WHERE u.username = :username")
-    boolean existsByUserUsername(@Param("username") String username);
+    @Query("SELECT CASE WHEN COUNT(i) > 0 THEN true ELSE false END FROM Interest i JOIN i.users u WHERE i.id = :interestId AND u.username = :username")
+    boolean existsByInterestIdAndUserUsername(@Param("interestId") long interestId, @Param("username") String username);
 
     Page<Interest> findAll(Specification<Interest> specification, Pageable pageable);
 

@@ -22,6 +22,7 @@ import com.matchup.tools.ImageResizer;
 import com.matchup.config.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -81,56 +82,54 @@ public class UserService {
     }
 
 
-
-
-    public User saveUser(User userToSave){
+    public User saveUser(User userToSave) {
         //requires password verification
         return userRepository.save(userToSave);
     }
 
-    public Optional<User> findById(Long id){
+    public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
 
     @Transactional
-    public Optional<User> findByUsername(String username){
+    public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Transactional
-    public Optional<User> findByEmailAndHashedPassword(UserDto userDto){
+    public Optional<User> findByEmailAndHashedPassword(UserDto userDto) {
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
 
-        if(user.isEmpty()){
+        if (user.isEmpty()) {
             user = userRepository.findByUsername(userDto.getUsername());
         }
-        if(user.isPresent() && !passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword())){
+        if (user.isPresent() && !passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword())) {
             user = null;
         }
         //System.out.println(passwordEncoder.matches(userDto.getRawPassword(), user.get().getHashedPassword()));
         return user;
     }
 
-    public Optional<User> findByEmail(String email){
+    public Optional<User> findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-    public boolean existsByEmail(String email){
+    public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
 
-    public boolean existsByUsername(String username){
+    public boolean existsByUsername(String username) {
         return userRepository.existsByUsername(username);
     }
 
-    public boolean verifyDate(LocalDate date){
+    public boolean verifyDate(LocalDate date) {
         LocalDate now = LocalDate.now();
         LocalDate minDate = now.minusYears(120);
         LocalDate maxDate = now.minusYears(13);
         return date.isAfter(minDate) && date.isBefore(maxDate);
     }
 
-    public User registerUser(UserDto userDto){
+    public User registerUser(UserDto userDto) {
         User userToRegister = new User();
         Address addressToRegister = new Address();
 
@@ -160,7 +159,7 @@ public class UserService {
     public boolean linkInterestToUser(String username, Long interestId) {
         Optional<User> userOp = userRepository.findByUsername(username);
         Optional<Interest> interestOp = interestRepository.findById(interestId);
-        if(userOp.isEmpty() || interestOp.isEmpty()) return false;
+        if (userOp.isEmpty() || interestOp.isEmpty()) return false;
 
         User user = userOp.get();
         Interest interest = interestOp.get();
@@ -171,7 +170,28 @@ public class UserService {
         return true;
     }
 
-    public List<User> getAllUsers(){
+    public boolean unlinkInterestToUser(String username, Long interestId) {
+        Optional<User> userOp = userRepository.findByUsername(username);
+        Optional<Interest> interestOp = interestRepository.findById(interestId);
+        if (userOp.isEmpty() || interestOp.isEmpty()) return false;
+
+        User user = userOp.get();
+        Interest interest = interestOp.get();
+
+        user.getInterests().remove(interest);
+
+        /*List<Interest> updatedInterests = user.getInterests().stream()
+        .filter(i -> !i.getId().equals(interestId))
+        .collect(Collectors.toList());
+    user.setInterests(updatedInterests);*/
+
+        user = userRepository.save(user);
+        /*interest.addUser(user);
+        interestRepository.save(interest);*/
+        return true;
+    }
+
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
@@ -183,30 +203,32 @@ public class UserService {
         return Pattern.matches(pattern, password);
     }
 
+    @SneakyThrows
     @Transactional
     @jakarta.transaction.Transactional
-    public UserDto updateUser(UserDto userDto, UserDetails userDetails){
+    public UserDto updateUser(UserDto userDto, UserDetails userDetails) {
         Optional<User> userToUpdateOp = userRepository.findByUsername(userDetails.getUsername());
-        if(userToUpdateOp.isEmpty()) return null;
+        if (userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
-
-        if(userDto.getUsername() != null){
+        String token = "";
+        if (userDto.getUsername() != null) {
+            revokeAllUserTokens(userToUpdate);
             userToUpdate.setUsername(userDto.getUsername());
         }
-        if(userDto.getBio() != null){
+        if (userDto.getBio() != null) {
             userToUpdate.setBio(userDto.getBio());
         }
         System.out.println(userDto.getCellphoneNumber());
-        if(userDto.getCellphoneNumber() != null){
+        if (userDto.getCellphoneNumber() != null) {
             userToUpdate.setCellphoneNumber(userDto.getCellphoneNumber());
         }
 
         ProfilePicture profilePicture = null;
-        if(userDto.getProfilePicture() != null){
+        if (userDto.getProfilePicture() != null) {
             Optional<ProfilePicture> profilePictureOp = profilePictureRepository.findByUserId(userToUpdate.getId());
-            if(profilePictureOp.isEmpty()){
+            if (profilePictureOp.isEmpty()) {
                 profilePicture = new ProfilePicture();
-            }else{
+            } else {
                 profilePicture = profilePictureOp.get();
             }
 
@@ -225,10 +247,11 @@ public class UserService {
         }
 
         User user = userRepository.save(userToUpdate);
-        return UserDto.builder()
+
+        UserDto userDto2 = UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 800, 800))
+                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 512))
                 .name(user.getName())
                 .email(user.getEmail())
                 .rawPassword(user.getHashedPassword())
@@ -238,29 +261,32 @@ public class UserService {
                 .access(user.getAccess())
                 .build();
 
+        if (userDto.getUsername() != null) {
+            userDto2.setToken(generateNewToken(userDto2.getUsername()));
+        }
+        return userDto2;
 
     }
 
-    public User updateUserPassword(Long id, String rawPassword){
+    public User updateUserPassword(Long id, String rawPassword) {
         Optional<User> userToUpdateOp = userRepository.findById(id);
-        if(userToUpdateOp.isEmpty()) return null;
+        if (userToUpdateOp.isEmpty()) return null;
         User userToUpdate = userToUpdateOp.get();
         userToUpdate.setHashedPassword(passwordEncoder.encode(rawPassword));
         return userRepository.save(userToUpdate);
     }
 
 
-
     @Transactional
-    public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
-        if(blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId)) return false;
+    public boolean blockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId) {
+        if (blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId)) return false;
         Optional<User> userBlockerOp = userRepository.findById(blockerId);
         Optional<User> userBlockedOp = userRepository.findById(blockedId);
-        if(userBlockerOp.isEmpty() || userBlockedOp.isEmpty()) return false;
+        if (userBlockerOp.isEmpty() || userBlockedOp.isEmpty()) return false;
         User userBlocker = userBlockerOp.get();
         User userBlocked = userBlockedOp.get();
 
-        if(friendshipService.existsFriendshipByUsersId(blockerId, blockedId)) {
+        if (friendshipService.existsFriendshipByUsersId(blockerId, blockedId)) {
             friendshipService.endFriendship(blockerId, blockedId);
         }
         Block block = new Block(userBlocker, userBlocked);
@@ -268,35 +294,24 @@ public class UserService {
         return true;
     }
 
-    public boolean unblockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId){
+    public boolean unblockUserByBlockerIdAndBlockedId(Long blockerId, Long blockedId) {
         blockRepository.deleteByBlockerIdAndBlockedId(blockerId, blockedId);
         return true;
     }
 
-    public List<Long> getBlockerIdListByBlockedId(Long userId){
+    public List<Long> getBlockerIdListByBlockedId(Long userId) {
         return blockRepository.findBlockerIdListByBlockedId(userId);
     }
 
-    public List<Long> getBlockedIdListByBlockerId(Long userId){
+    public List<Long> getBlockedIdListByBlockerId(Long userId) {
         return blockRepository.findBlockedIdListByBlockerId(userId);
     }
 
-    public boolean isBlockedBy(long blockedId, long blockerId){
+    public boolean isBlockedBy(long blockedId, long blockerId) {
         boolean response = blockRepository.existsByBlockedIdAndBlockerId(blockedId, blockerId);
         System.out.println(response);
         return response;
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     public AuthenticationResponse register(RegisterRequest request) {
@@ -329,26 +344,26 @@ public class UserService {
 
     @Transactional
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        boolean isEmail = request.getEmail() != null;
+        boolean isEmail = request.getEmailOrUsername().contains("@");
 
         User user;
-        if(isEmail){
+        //if (isEmail) {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getEmail(),
+                            request.getEmailOrUsername(),
                             request.getRawPassword()
                     )
             );
-            user = userRepository.findByEmail(request.getEmail()).get();
-        }else {
+        user = isEmail ? userRepository.findByEmail(request.getEmailOrUsername()).get() : userRepository.findByUsername(request.getEmailOrUsername()).get();;
+        /*} else {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            request.getUsername(),
+                            request.getEmailOrUsername(),
                             request.getRawPassword()
                     )
             );
-            user = userRepository.findByUsername(request.getUsername()).get();
-        }
+            user = userRepository.findByUsername(request.getEmailOrUsername()).get();
+        }*/
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
@@ -389,7 +404,7 @@ public class UserService {
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String refreshToken;
         final String userEmail;
-        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return;
         }
         refreshToken = authHeader.substring(7);
@@ -410,20 +425,34 @@ public class UserService {
         }
     }
 
-    public User getUserByUsername(String username){
+    public String generateNewToken(String username) throws IOException {
+        if (username != null) {
+            var user = this.userRepository.findByUsername(username)
+                    .orElseThrow();
+            var accessToken = jwtService.generateToken(user);
+            revokeAllUserTokens(user);
+            saveUserToken(user, accessToken);
+            return accessToken;
+        }
+        return "";
+    }
+
+
+
+    public User getUserByUsername(String username) {
         Optional<User> userOp = userRepository.findByUsername(username);
-        if(userOp.isEmpty()) return null;
+        if (userOp.isEmpty()) return null;
         return userOp.get();
     }
 
-    public UserDto getLoggedUserProfileByUsername(String username){
+    public UserDto getLoggedUserProfileByUsername(String username) {
         Optional<User> userOp = userRepository.findByUsername(username);
-        if(userOp.isEmpty()) return null;
+        if (userOp.isEmpty()) return null;
         User user = userOp.get();
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
-                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 800, 800))
+                .formattedProfilePicture(imageService.getFormattedProfilePictureById(user.getId(), 512))
                 .name(user.getName())
                 .email(user.getEmail())
                 .rawPassword(user.getHashedPassword())
@@ -436,7 +465,7 @@ public class UserService {
 
     public ProfileDto getProfileByUsernameAndUserId(Long userId, String username) {
         Optional<User> userProfileOp = userRepository.findByUsername(username);
-        if(userProfileOp.isEmpty()) return null;
+        if (userProfileOp.isEmpty()) return null;
         User userProfile = userProfileOp.get();
 
         boolean doesFriendshipExist = false;
@@ -448,12 +477,12 @@ public class UserService {
         List<String> interestNames = new ArrayList<>();
 
         Optional<User> userOp = userRepository.findById(userId);
-        if(userOp.isPresent()){
+        if (userOp.isPresent()) {
             doesFriendshipExist = friendshipRepository.existsByUsers(userId, userProfile.getId());
 
-            if(doesFriendshipExist){
+            if (doesFriendshipExist) {
                 friendshipStatus = friendshipRepository.findStatusByUsers(userId, userProfile.getId()).get();
-                if(friendshipStatus.equals("PENDING")){
+                if (friendshipStatus.equals("PENDING")) {
                     friendshipStatus = (friendshipRepository.isUser1TheUser(userId, userProfile.getId())) ? "SENT" : friendshipStatus;
                 }
             }
@@ -467,7 +496,7 @@ public class UserService {
             interestNames.forEach(System.out::println);
         }
 
-        String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 256, 256);
+        String profilePicture = imageService.getFormattedProfilePictureById(userProfile.getId(), 256);
 
         return ProfileDto.builder()
                 .id(userProfile.getId())

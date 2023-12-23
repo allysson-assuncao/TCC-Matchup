@@ -123,7 +123,7 @@ public class InterestService {
         Page<Interest> interestPage = interestRepository.findAll(searchSpecification, pageable);
         interestPage.getContent().forEach((interest -> {
             interest.getFormattedImageList();
-            interest.setAdded(interestRepository.existsByUserUsername(userDetails.getUsername()));
+            interest.setAdded(interestRepository.existsByInterestIdAndUserUsername(interest.getId(), userDetails.getUsername()));
         }));
 
         return interestPage;

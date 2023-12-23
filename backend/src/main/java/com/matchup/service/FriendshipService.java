@@ -128,7 +128,7 @@ public class FriendshipService {
             FriendDto newFriend = null;
 
             newFriend = new FriendDto((Long) o[0], o[1] + "",
-                    imageService.getFormattedProfilePictureById((Long) o[0], 64, 64));
+                    imageService.getFormattedProfilePictureById((Long) o[0], 64));
             friends.add(newFriend);
         }
 

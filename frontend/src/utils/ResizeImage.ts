@@ -5,9 +5,14 @@ export async function resizeImage(file: File): Promise<File> {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             let {width, height} = img;
-            if (height > 800) {
-                width *= 800 / height;
-                height = 800;
+            let ratio = width / height;
+
+            if (width > height) {
+                width = maxSize;
+                height = Math.round(maxSize / ratio);
+            } else {
+                height = maxSize;
+                width = Math.round(maxSize * ratio);
             }
             canvas.width = width;
             canvas.height = height;
