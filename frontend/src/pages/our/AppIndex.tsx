@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {ThemeProvider} from '@mui/material/styles';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
@@ -11,16 +10,14 @@ import ProductSmokingHero from "../../containers/index/ProductSmokingHero";
 import AppFooter from "../../containers/index/AppFooter";
 import Introduction from "../../containers/index/Introduction";
 import ForWho from "../../containers/index/ForWho";
-/*import getTheme from "../theme";*/
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import {Stack} from "@mui/material";
+import {useTheme} from "@mui/material/styles";
 
 const AppIndex: React.FC = () => {
-    const { theme: mode } = useCustomTheme();
-    /*const theme = getTheme(mode);*/
+    const theme = useTheme();
 
     return (
-        /*<ThemeProvider theme={theme}>*/
         <Stack>
             <GlobalStyles styles={{ul: {margin: 0, padding: 0, listStyle: 'none'}}}/>
             <CssBaseline/>
@@ -33,7 +30,6 @@ const AppIndex: React.FC = () => {
             <ProductSmokingHero/>
             <AppFooter/>
         </Stack>
-        /*</ThemeProvider>*/
     )
 
 }

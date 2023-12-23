@@ -1,4 +1,4 @@
-export async function resizeImage(file: File): Promise<File> {
+export async function resizeImage(file: File, maxSize: number): Promise<File> {
     return new Promise((resolve, reject) => {
         const img = document.createElement('img');
         img.onload = () => {

@@ -11,6 +11,26 @@ import {useDispatch, useSelector} from "react-redux";
 import {UpdateUserProfile} from "../../../redux/slices/app";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../../config";
 import {resizeImage} from "../../../utils/ResizeImage";
+import {isUsernameAvailable} from "../../../api/user_requests/register";
+import {LoginUser, RefreshToken} from "../../../redux/slices/auth";
+
+function formatPhoneNumber(value) {
+    if (!value) {
+        return value;
+    }
+
+    const onlyNums = value.replace(/[^\d]/g, '');
+    if (onlyNums.length <= 2) {
+        return `(${onlyNums}`;
+    }
+    if (onlyNums.length <= 6) {
+        return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2)}`;
+    }
+    if (onlyNums.length <= 10) {
+        return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7)}`;
+    }
+    return `(${onlyNums.slice(0, 2)}) ${onlyNums.slice(2, 7)}-${onlyNums.slice(7, 11)}`;
+}
 
 const ProfileForm = () => {
     const dispatch = useDispatch();
@@ -83,8 +103,8 @@ const ProfileForm = () => {
                     username: data?.username !== user.username ? data?.username : null,
                     bio: data?.bio !== user.bio ? data?.bio : null,
                     cellphoneNumber: data?.cellphoneNumber !== user.cellphoneNumber ? data?.cellphoneNumber : null,
-                    profilePicture: await resizeImage(file),
-                })
+                    profilePicture: file ? await resizeImage(file, 512) : null,
+                }, (data?.username !== user.username))
             );
 
         } catch (error) {
@@ -124,8 +144,17 @@ const ProfileForm = () => {
                         <RHFTextField
                             name="cellphoneNumber"
                             label="Número de Celular"
+                            onChange={e => {
+                                const formatted = formatPhoneNumber(e.target.value);
+                                setValue(e.target.name, formatted);
+                            }}
                         />
-                        <RHFTextField multiline rows={4} name="bio" label="Bio"/>
+                        <RHFTextField
+                            multiline
+                            rows={4}
+                            name="bio"
+                            label="Bio"
+                        />
 
                         <Stack direction={"row"} justifyContent="end">
                             <LoadingButton

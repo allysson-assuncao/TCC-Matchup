@@ -10,7 +10,7 @@ import CardActions from "@mui/material/CardActions";
 import {grey} from "@mui/material/colors";
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from "@mui/material/IconButton";
-import {linkInterestToUser} from "../../../api/user_requests/link_interest";
+import {linkInterestToUser, unlinkInterestToUser} from "../../../api/user_requests/link_interest";
 import {useTheme} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {showSnackbar} from "../../../redux/slices/app";

@@ -14,7 +14,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
     const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const filesArray: File[] = Array.from(e.target.files);
-            const resizedImages = await Promise.all(filesArray.map((file) => resizeImage(file)));
+            const resizedImages = await Promise.all(filesArray.map((file) => resizeImage(file, 800)));
             const fileUrls = resizedImages.map((file) => URL.createObjectURL(file));
             setSelectedImages(fileUrls);
             setImages(resizedImages);
