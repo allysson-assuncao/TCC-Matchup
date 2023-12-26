@@ -149,7 +149,7 @@ public class MessageService {
         TextMessage savedTextMessage = textMessageRepository.save(textMessage);
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
-        messageDto.setReceiverContactId(
+        messageDto.setContactIdWhereTheReceiverIsTheUser1(
                 contactRepository.findByUser1IdAndUser2Id(messageDto.getReceiverId(), messageDto.getSenderId()).get().getId());
         return messageDto;
     }

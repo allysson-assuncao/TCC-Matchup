@@ -2,7 +2,9 @@ package com.matchup.service;
 
 import com.matchup.dto.ContactDto;
 import com.matchup.dto.MessageDto;
+import com.matchup.dto.NotificationDto;
 import com.matchup.enums.MessageType;
+import com.matchup.enums.NotificationType;
 import com.matchup.model.Contact;
 import com.matchup.model.User;
 import com.matchup.model.message.AudioMessage;
@@ -44,12 +46,17 @@ public class ContactService {
 
 
     @Transactional
-    public List<ContactDto> getContactsByUser1Id(long user1Id) {
-        /*if (contactRepository.findContactsByUser1Id(user1Id).isEmpty()) return null;*/
-        List<Contact> contactList = contactRepository.findContactsByUser1Id(user1Id).get();
-        System.out.println(contactList);
+    public List<ContactDto> getContactsByUser1Username(String user1Username) {
+        Optional<User> user1Op = userRepository.findByUsername(user1Username);
+        if(user1Op.isEmpty()) return null;
+        User user1 = user1Op.get();
+
         List<ContactDto> contactDtoList = new ArrayList<>();
-        List<Message> messageList;
+        /*if (contactRepository.existsByUser1Id(user1.getId())) return contactDtoList;*/ //asfryzety
+        List<Contact> contactList = contactRepository.findContactsByUser1Id(user1.getId()).get();
+        System.out.println(contactList);
+
+
 
         for (Contact contact : contactList) {
             var user2 = contact.getUser2();

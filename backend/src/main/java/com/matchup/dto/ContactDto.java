@@ -6,9 +6,8 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Builder
+@Data
 public class ContactDto {
     private long id;
 

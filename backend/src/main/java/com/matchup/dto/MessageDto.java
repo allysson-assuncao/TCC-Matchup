@@ -12,6 +12,8 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Builder
+@Data
 public class MessageDto {
     long id;
 
