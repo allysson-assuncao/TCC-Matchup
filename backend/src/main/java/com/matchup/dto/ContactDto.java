@@ -20,5 +20,17 @@ public class ContactDto {
 
     private boolean displayed;
 
-    private List<MessageDto> messages;
+    private MessageDto lastMessage;
+
+    private int unreadMessages;
+
+
+
+    private boolean pinned;
+
+    private String profilePicture;
+
+    private String online;
+
+    private String bio;
 }

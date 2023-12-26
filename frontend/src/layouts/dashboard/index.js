@@ -5,7 +5,7 @@ import useResponsive from "../../hooks/useResponsive";
 import SideNav from "./SideNav";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    AddNotification,
+    AddNotification, ChangeWebsocketsConnectionStatus,
     FetchProfilePicture,
     FetchUserProfile, RemoveNotification,
     SelectConversation,
@@ -16,7 +16,7 @@ import {socket, connectSocket, createStompClient, client} from "../../socket";
 import {
     UpdateDirectConversation,
     AddDirectConversation,
-    AddDirectMessage,
+    AddDirectMessage, FetchDirectConversations,
 } from "../../redux/slices/conversation";
 import AudioCallNotification from "../../sections/Dashboard/Audio/CallNotification";
 import VideoCallNotification from "../../sections/Dashboard/video/CallNotification";
@@ -33,7 +33,7 @@ import {binaryBodyToJSON} from "../../utils/BinaryBodyToJSON";
 const DashboardLayout = () => {
     const isDesktop = useResponsive("up", "md");
     const dispatch = useDispatch();
-    const {user_id, isLoggedIn} = useSelector((state) => state.auth);
+    const {user_id, isLoggedIn, token} = useSelector((state) => state.auth);
     const {user, isUserUpdated, notifications} = useSelector((state) => state.app);
 
     const {conversations, current_conversation} = useSelector(
@@ -78,7 +78,7 @@ const DashboardLayout = () => {
                 window.onload();
 
 
-                createStompClient(user).onConnect =  (frame) => {
+                createStompClient(user, token).onConnect =  (frame) => {
                     client.subscribe(`/user/${user.id}/queue/private-messages`, (msg) => {
                         console.log(msg);
                         const message = JSON.parse(msg.body)
@@ -131,22 +131,26 @@ const DashboardLayout = () => {
                             dispatch(UpdateLastUnblocker(lastUnblocker));
                         });
                     });
+
+                    client.subscribe(`/user/${user.id}/queue/receive-contacts-list`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((contacts) => {
+                            console.log(contacts);
+                            dispatch(FetchDirectConversations({conversations: contacts}));
+                        });
+                    });
+                    client.publish({
+                        destination: `/app/get-contacts-list`,
+                        body: user.username,
+                        //headers: {Authorization: 'Bearer ' + token}
+                    });
                 };
 
                 client.activate();
 
 
 
-                /*socket.on("audio_call_notification", (data) => {
-                    // TODO => dispatch an action to add this in call_queue
-                    dispatch(PushToAudioCallQueue(data));
-                });
-
-                socket.on("video_call_notification", (data) => {
-                    // TODO => dispatch an action to add this in call_queue
-                    dispatch(PushToVideoCallQueue(data));
-                });
-
+                /*
                 socket.on("new_message", (data) => {
                     const message = data.message;
                     console.log(current_conversation, data);
@@ -181,27 +185,7 @@ const DashboardLayout = () => {
                     dispatch(SelectConversation({room_id: data._id}));
                 });
 
-                socket.on("new_friend_request", (data) => {
-                    dispatch(
-                        showSnackbar({
-                            severity: "success",
-                            message: "New friend request received",
-                        })
-                    );
-                });
-
-                socket.on("request_accepted", (data) => {
-                    dispatch(
-                        showSnackbar({
-                            severity: "success",
-                            message: "Friend Request Accepted",
-                        })
-                    );
-                });
-
-                socket.on("request_sent", (data) => {
-                    dispatch(showSnackbar({severity: "success", message: data.message}));
-                });*/
+               */
             }
 
             // Remove event listener on component unmount

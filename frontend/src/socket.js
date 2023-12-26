@@ -1,36 +1,37 @@
-import io from "socket.io-client"; // Add this
-import {Client} from "@stomp/stompjs";
+    import io from "socket.io-client"; // Add this
+    import {Client} from "@stomp/stompjs";
 
-let socket;
+    let socket;
 
-const connectSocket = (user_id) => {
-  socket = io("https://api.chat.codingmonk.in/", {
-    query: `user_id=${user_id}`,
-  });
-} // Add this -- our server will run on port 4000, so we connect to it from here
+    const connectSocket = (user_id) => {
+      socket = io("https://api.chat.codingmonk.in/", {
+        query: `user_id=${user_id}`,
+      });
+    } // Add this -- our server will run on port 4000, so we connect to it from here
 
-export {socket, connectSocket};
+    export {socket, connectSocket};
 
 
-let client;
-const createStompClient = (loggedUser) => {
-    client = new Client({
-        brokerURL: 'ws://localhost:8080/ws',
-        connectHeaders: {
-            username: loggedUser?.username,
-            password: loggedUser?.hashedPassword,
-            simpUser: loggedUser?.id.toString()
-        },
-        debug: (str) => {
-            console.log(str);
-        },
-        reconnectDelay: 5000,
-        heartbeatIncoming: 4000,
-        heartbeatOutgoing: 4000,
-    });
+    let client;
+    const createStompClient = (loggedUser, token ) => {
+        client = new Client({
+            brokerURL: 'ws://localhost:8080/ws',
+            connectHeaders: {
+                username: loggedUser?.username,
+                password: loggedUser?.hashedPassword,
+                simpUser: loggedUser?.id.toString(),
+                Authorization: 'Bearer ' + token
+            },
+            debug: (str) => {
+                console.log(str);
+            },
+            reconnectDelay: 5000,
+            heartbeatIncoming: 4000,
+            heartbeatOutgoing: 4000,
+        });
 
-    return client;
-}
+        return client;
+    }
 
-export {createStompClient, client};
+    export {createStompClient, client};
 

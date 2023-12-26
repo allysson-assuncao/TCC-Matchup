@@ -17,13 +17,13 @@ public class MessageDto {
 
     private LocalDateTime date;
 
-    private long receiverContactId;
+    private long contactIdWhereTheReceiverIsTheUser1;
 
     private long senderId;
 
     private long receiverId;
 
-    private MessageType messageType;
+    private String messageType;
 
     private boolean viewed;
 

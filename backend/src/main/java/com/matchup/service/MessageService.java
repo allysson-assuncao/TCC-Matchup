@@ -74,13 +74,13 @@ public class MessageService {
         }
 
         switch (messageDto.getMessageType()) {
-            case TEXT -> {
+            case "TEXT" -> {
                 return sendTextMessage(messageDto, receiverOp.get(), senderOp.get());
             }
-            case AUDIO -> {
+            case "AUDIO" -> {
                 return /*sendAudioMessage(messageDto, receiverOp.get(), senderOp.get())*/ null;
             }
-            case IMAGE -> {
+            case "IMAGE" -> {
                 return /*sendImageMessage(messageDto, receiverOp.get(), senderOp.get())*/ null;
             }
             default -> {
@@ -170,18 +170,18 @@ public class MessageService {
             String messageType = message.getClass().getSimpleName();
 
             switch (messageType) {
-                case "TextMessage" -> {
-                    messageDto.setMessageType(MessageType.TEXT);
+                case "TEXT" -> {
+                    messageDto.setMessageType("TEXT");
                     TextMessage textMessage = (TextMessage) message;
                     messageDto.setHashedText(textMessage.getHashedText());
                 }
-                case "AudioMessage" -> {
-                    messageDto.setMessageType(MessageType.AUDIO);
+                case "AUDIO" -> {
+                    messageDto.setMessageType("AUDIO");
                     AudioMessage audioMessage = (AudioMessage) message;
                     messageDto.setHashedAudio(audioMessage.getHashedAudio().getHashedAudio().toString());
                 }
-                case "ImageMessage" -> {
-                    messageDto.setMessageType(MessageType.IMAGE);
+                case "IMAGE" -> {
+                    messageDto.setMessageType("IMAGE");
                     ImageMessage imageMessage = (ImageMessage) message;
                     //messageDto.setHashedImage(imageMessage.getHashedImage()); //requires convertion
                 }

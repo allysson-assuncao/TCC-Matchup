@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Box,
     Button,
@@ -17,7 +17,6 @@ import {SimpleBarStyle} from "../../components/Scrollbar";
 import {useTheme} from "@mui/material/styles";
 import useResponsive from "../../hooks/useResponsive";
 import BottomNav from "../../layouts/dashboard/BottomNav";
-import {ChatList} from "../../data";
 import ChatElement from "../../components/ChatElement";
 import {
     Search,
@@ -25,9 +24,7 @@ import {
     StyledInputBase,
 } from "../../components/Search";
 import Friends from "../../sections/Dashboard/Friends";
-import {socket} from "../../socket";
 import {useDispatch, useSelector} from "react-redux";
-import {FetchDirectConversations} from "../../redux/slices/conversation";
 
 const user_id = window.localStorage.getItem("user_id");
 
@@ -37,16 +34,31 @@ const Chats = () => {
 
     const dispatch = useDispatch();
 
+    const {token} = useSelector((state) => state.auth);
+
+    const {user, isWebSocketsConnected} = useSelector((state) => state.app);
+
     const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
-    useEffect(() => {
-       /*socket.emit("get_direct_conversations", {user_id}, (data) => {
-            console.log(data); // this data is the list of conversations
-            // dispatch action
+    /*useEffect(() => {
+        /!*console.log("SALVE1"+client);
+        if(!client || !isWebSocketsConnected) return;
+        console.log("SALVE2");*!/
 
-            dispatch(FetchDirectConversations({conversations: data}));
-        });*/
-    }, []);
+        client.publish({
+            destination: `/app/get-contacts-list`,
+            body: JSON.stringify(user.username),
+            //headers: {Authorization: 'Bearer ' + token}
+        });
+
+        /!*socket.emit("get_direct_conversations", {user_id}, (data) => {
+             console.log(data); // this data is the list of conversations
+             // dispatch action
+
+             dispatch(FetchDirectConversations({conversations: data}));
+         });*!/
+
+    }, []);*/
 
     const [openDialog, setOpenDialog] = useState(false);
 

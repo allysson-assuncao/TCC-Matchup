@@ -34,11 +34,11 @@ const initialState = {
     chat_type: null,
     room_id: null,
     call_logs: [],
-    client: null,
     lastEndedFriendshipList: [],
     lastBlocker: [],
     lastUnblocker: [],
-    lastFriendshipResponse: []
+    lastFriendshipResponse: [],
+    isWebSocketsConnected: false
 };
 
 
@@ -96,6 +96,7 @@ const slice = createSlice({
         selectConversation(state, action) {
             state.chat_type = "individual";
             state.room_id = action.payload.room_id;
+            console.log("room_id:" + state.room_id);
         },
         clearUser(state, action) {
             state.user = null;
@@ -136,6 +137,9 @@ const slice = createSlice({
         },
         updateLastUnblocker(state, action) {
             state.lastUnblocker = [action.payload.lastUnblocker];
+        },
+        changeWebsocketsConnectionStatus(state, action) {
+            state.isWebSocketsConnected = !state.isWebSocketsConnected;
         }
     },
 });
@@ -147,6 +151,10 @@ export default slice.reducer;
 
 export const closeSnackBar = () => async (dispatch, getState) => {
     dispatch(slice.actions.closeSnackBar());
+};
+
+export const ChangeWebsocketsConnectionStatus = () => async (dispatch, getState) => {
+    dispatch(slice.actions.changeWebsocketsConnectionStatus());
 };
 
 export const GetNotifications = () => async (dispatch, getState) => {
