@@ -44,6 +44,7 @@ const GeneralApp = () => {
                     >
                         {chat_type === "individual" &&
                         room_id !== null ? (
+                            console.log("ROOM ID CHANGED"),
                             <ChatComponent/>
                         ) : (
                             <Stack

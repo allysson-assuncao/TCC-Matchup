@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {faker} from "@faker-js/faker";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
+import {formatDistanceToNow} from "date-fns";
+import {ptBR} from "date-fns/locale";
 
 const user_id = window.localStorage.getItem("user_id");
 
@@ -20,20 +22,20 @@ const slice = createSlice({
         resetState: (state) => initialState,
         fetchDirectConversations(state, action) {
             const list = action.payload.conversations.map((el) => {
-                const user = el.participants.find(
+               /* const user = el.participants.find(
                     (elm) => elm._id.toString() !== user_id
-                );
+                );*/
                 return {
-                    id: el._id,
-                    user_id: user?._id,
-                    name: `${user?.firstName} ${user?.lastName}`,
-                    online: user?.status === "Online",
-                    img: `https://${S3_BUCKET_NAME}.s3.${AWS_S3_REGION}.amazonaws.com/${user?.avatar}`,
-                    msg: el.messages.slice(-1)[0].text,
-                    time: "9:36",
-                    unread: 0,
+                    id: el.id,
+                    user_id: el.user1Id,
+                    name: el.user2Username,
+                    online: true,
+                    img: el.profilePicture,
+                    msg: el.lastMessage.hashedText,
+                    time: formatDistanceToNow(new Date(el.lastMessage.date), {addSuffix: true, locale: ptBR}),
+                    unread: el.unreadMessages,
                     pinned: false,
-                    about: user?.about,
+                    bio: el.bio,
                 };
             });
 

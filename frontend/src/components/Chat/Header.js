@@ -72,8 +72,6 @@ const ChatHeader = () => {
 
     const {current_conversation} = useSelector((state) => state.conversation.direct_chat);
 
-    const {profilePicture} = useSelector((state) => state.app);
-
 
     const [conversationMenuAnchorEl, setConversationMenuAnchorEl] =
         React.useState(null);
@@ -122,8 +120,7 @@ const ChatHeader = () => {
                             >
                                 <Avatar
                                     alt={current_conversation?.name}
-                                    /*src={current_conversation?.img}*/
-                                    src={profilePicture}
+                                    src={current_conversation?.img}
                                 />
                             </StyledBadge>
                         </Box>

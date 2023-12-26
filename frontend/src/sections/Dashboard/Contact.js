@@ -180,7 +180,7 @@ const Contact = () => {
                             About
                         </Typography>
                         <Typography variant="body2" fontWeight={500}>
-                            {current_conversation?.about}
+                            {current_conversation?.bio}
                         </Typography>
                     </Stack>
                     <Divider/>
