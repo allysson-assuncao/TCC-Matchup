@@ -47,6 +47,7 @@ const Conversation = ({isMobile, menu}) => {
 
         dispatch(SetCurrentConversation(current));
     }, [room_id]);
+
     return (
         <Box p={isMobile ? 1 : 3}>
             <Stack spacing={3}>

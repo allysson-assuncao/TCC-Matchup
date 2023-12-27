@@ -11,6 +11,7 @@ const initialState = {
         conversations: [],
         current_conversation: null,
         current_messages: [],
+        unreadMessagesCount: 0,
     },
     group_chat: {},
 };
@@ -39,6 +40,7 @@ const slice = createSlice({
                     pinned: false,
                     bio: el.bio,
                 };
+
             });
 
             state.direct_chat.conversations = list;
@@ -198,4 +200,10 @@ export const AddDirectMessage = (message) => {
                 {contactId: message.contactId, time: message.date, msg: message.hashedText, type: message.messageType}));
         }
     }
+}
+export function ClearConversation() {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.resetState());
+
+    };
 }

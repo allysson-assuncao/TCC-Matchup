@@ -62,6 +62,7 @@ const ChatElement = ({img, name, msg, time, unread, online, id}) => {
             onClick={() => {
                 console.log(id);
                 dispatch(SelectConversation({room_id: id}));
+
             }}
             sx={{
                 width: "100%",

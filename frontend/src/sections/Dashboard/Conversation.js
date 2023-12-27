@@ -75,6 +75,12 @@ const TextMsg = ({el, menu}) => {
                 >
                     {el.text}
                 </Typography>
+                <Typography
+                    variant="p"
+                    color={theme.palette.text.disabled}
+                >
+                    {el.date}
+                </Typography>
             </Box>
             {menu && <MessageOption/>}
         </Stack>
@@ -98,14 +104,14 @@ const MediaMsg = ({el, menu}) => {
                 <Stack spacing={1}>
                     <img
                         src={el.img}
-                        alt={el.message}
+                        alt={el.text}
                         style={{maxHeight: 210, borderRadius: "10px"}}
                     />
                     <Typography
                         variant="body2"
                         color={el.incoming ? theme.palette.text : "#fff"}
                     >
-                        {el.message}
+                        {el.text}
                     </Typography>
                 </Stack>
             </Box>
@@ -149,7 +155,7 @@ const DocMsg = ({el, menu}) => {
                         variant="body2"
                         color={el.incoming ? theme.palette.text : "#fff"}
                     >
-                        {el.message}
+                        {el.text}
                     </Typography>
                 </Stack>
             </Box>
@@ -195,7 +201,7 @@ const LinkMsg = ({el, menu}) => {
                         variant="body2"
                         color={el.incoming ? theme.palette.text : "#fff"}
                     >
-                        <div dangerouslySetInnerHTML={{__html: el.message}}></div>
+                        <div dangerouslySetInnerHTML={{__html: el.text}}></div>
                     </Typography>
                 </Stack>
             </Box>
@@ -231,7 +237,7 @@ const ReplyMsg = ({el, menu}) => {
                         }}
                     >
                         <Typography variant="body2" color={theme.palette.text}>
-                            {el.message}
+                            {el.text}
                         </Typography>
                     </Stack>
                     <Typography

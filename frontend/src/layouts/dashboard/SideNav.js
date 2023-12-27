@@ -41,6 +41,7 @@ const SideBar = () => {
     const dispatch = useDispatch();
 
     const {tab} = useSelector((state) => state.app);
+    const {unreadMessagesCount} = useSelector((state) => state.conversation);
 
     const navigate = useNavigate();
 
@@ -126,7 +127,9 @@ const SideBar = () => {
                                                 : theme.palette.text.primary,
                                     }}
                                 >
-                                    {el.icon}
+                                    <Badge color="secondary" badgeContent={unreadMessagesCount}>
+                                        {el.icon}
+                                    </Badge>
                                 </IconButton>
                             );
                         })}
