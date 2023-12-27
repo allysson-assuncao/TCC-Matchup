@@ -19,7 +19,7 @@ public class MessageDto {
 
     private LocalDateTime date;
 
-    private long contactIdWhereTheReceiverIsTheUser1;
+    private long contactId;
 
     private long senderId;
 
