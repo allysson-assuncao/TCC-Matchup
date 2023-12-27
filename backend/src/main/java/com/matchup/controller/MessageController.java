@@ -1,21 +1,17 @@
 package com.matchup.controller;
 
 import com.matchup.dto.MessageDto;
+import com.matchup.dto.UsersIdDto;
 import com.matchup.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.HtmlUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -65,11 +61,24 @@ public class MessageController {
 
     @MessageMapping("/send-private-message")
     /*@SendToUser("/queue/private-messages")*/
-    public MessageDto o(MessageDto m) {
-        m = messageService.sendMessage(m);
+    public void sendPrivateMessage(MessageDto messageDto) {
+        messageDto = messageService.sendMessage(messageDto);
+        messageDto.setContactId(messageService.findContactId(messageDto.getReceiverId(), messageDto.getSenderId()));
         simpMessagingTemplate.convertAndSendToUser(
-                m.getReceiverId()+"", "/queue/private-messages", m);
-        return m;
+                messageDto.getReceiverId()+"", "/queue/private-messages", messageDto);
+        messageDto.setContactId(messageService.findContactId(messageDto.getSenderId(), messageDto.getReceiverId()));
+        simpMessagingTemplate.convertAndSendToUser(
+                messageDto.getSenderId()+"", "/queue/private-messages", messageDto);
+    }
+
+    @MessageMapping("/get-private-messages")
+    /*@SendToUser("/queue/private-messages")*/
+    public void getPrivateMessageList(UsersIdDto usersIdDto) {
+        System.out.println(usersIdDto);
+        var messageDtoList = messageService.findMessageListByUsersId(usersIdDto.getUser1Id(), usersIdDto.getUser2Id());
+        simpMessagingTemplate.convertAndSendToUser(
+                usersIdDto.getUser1Id()+"", "/queue/receive-message-list", messageDtoList);
+
     }
 
 

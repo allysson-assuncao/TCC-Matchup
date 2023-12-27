@@ -19,7 +19,7 @@ import {
     FetchCurrentMessages,
     SetCurrentConversation,
 } from "../../redux/slices/conversation";
-import {socket} from "../../socket";
+import {client, socket} from "../../socket";
 
 const Conversation = ({isMobile, menu}) => {
     const dispatch = useDispatch();
@@ -27,9 +27,11 @@ const Conversation = ({isMobile, menu}) => {
     const {conversations, current_messages} = useSelector(
         (state) => state.conversation.direct_chat
     );
-    const {room_id} = useSelector((state) => state.app);
+    const {room_id, user} = useSelector((state) => state.app);
 
     useEffect(() => {
+        console.log(room_id);
+        if(!room_id) return;
         const current = conversations.find((el) => el?.id === room_id);
 
         /*socket.emit("get_messages", { conversation_id: current?.id }, (data) => {
@@ -37,6 +39,11 @@ const Conversation = ({isMobile, menu}) => {
           console.log(data, "List of messages");
           dispatch(FetchCurrentMessages({ messages: data }));
         });*/
+        console.log(JSON.stringify({user1Id: user.id, user2Id: current.user_id}));
+        client.publish({
+            destination: `/app/get-private-messages`,
+            body: JSON.stringify({user1Id: user.id, user2Id: current.user_id}),
+        });
 
         dispatch(SetCurrentConversation(current));
     }, [room_id]);

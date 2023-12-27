@@ -22,12 +22,14 @@ const slice = createSlice({
         resetState: (state) => initialState,
         fetchDirectConversations(state, action) {
             const list = action.payload.conversations.map((el) => {
-               /* const user = el.participants.find(
-                    (elm) => elm._id.toString() !== user_id
-                );*/
+                /* const user = el.participants.find(
+                     (elm) => elm._id.toString() !== user_id
+                 );*/
+                console.log("UnreadMessagesCount" + state.direct_chat.unreadMessagesCount);
+                state.direct_chat.unreadMessagesCount += el.unreadMessages;
                 return {
                     id: el.id,
-                    user_id: el.user1Id,
+                    user_id: el.user2Id,
                     name: el.user2Username,
                     online: true,
                     img: el.profilePicture,
@@ -91,19 +93,63 @@ const slice = createSlice({
         },
         fetchCurrentMessages(state, action) {
             const messages = action.payload.messages;
-            const formatted_messages = messages.map((el) => ({
-                id: el._id,
-                type: "msg",
-                subtype: el.type,
-                message: el.text,
-                incoming: el.to === user_id,
-                outgoing: el.from === user_id,
-            }));
+            const formatted_messages = messages.map((el) => {
+                /*const formattedDate = formatDistanceToNow(new Date(el.date), {addSuffix: true, locale: ptBR});*/
+                return {
+                    id: el.id,
+                    type: "msg",
+                    subtype: el.type,
+                    text: el.hashedText,
+                    incoming: el.receiverId == user_id,
+                    outgoing: el.senderId == user_id,
+                    date: el.date,
+                    viewed: el.viewed,
+                    image: el.hashedImage,
+                    audio: el.hashedAudio
+                };
+            });
             state.direct_chat.current_messages = formatted_messages;
         },
         addDirectMessage(state, action) {
-            state.direct_chat.current_messages.push(action.payload.message);
-        }
+            console.log(action.payload.message);
+            //state.direct_chat.current_messages = [...state.direct_chat.current_messages, action.payload.message];
+            state.direct_chat.current_messages.push({
+                id: action.payload.message.id,
+                type: "msg",
+                subtype: action.payload.message.type,
+                text: action.payload.message.hashedText,
+                incoming: action.payload.message.receiverId == user_id,
+                outgoing: action.payload.message.senderId == user_id,
+                date: action.payload.message.date,
+                viewed: action.payload.message.viewed,
+                image: action.payload.message.hashedImage,
+                audio: action.payload.message.hashedAudio
+            });
+        },
+        setUnseenMessages(state, action) {
+            state.direct_chat.conversations.forEach((conversation) => {
+                if (conversation.id === action.payload.conversationId) {
+                    state.direct_chat.unreadMessagesCount -= conversation.unread;
+                    conversation.unread = 0;
+                }
+            });
+        },
+        addUnreadMessagesCount(state, action){
+            state.direct_chat.unreadMessagesCount += 1;
+        },
+        addUnreadMessagesCountInContactsByConversation(state, action){
+            state.direct_chat.conversations.forEach((conversation) => {
+                if (conversation.id == action.payload.contactId) {
+                    state.direct_chat.unreadMessagesCount += 1;
+                    conversation.unread += 1;
+                    conversation.time = formatDistanceToNow(new Date(action.payload.time), {addSuffix: true, locale: ptBR});
+                    if(action.payload.type == "TEXT"){
+                        conversation.msg = action.payload.msg;
+                    }
+                }
+            });
+
+        },
     },
 });
 
@@ -131,6 +177,7 @@ export const UpdateDirectConversation = ({conversation}) => {
 export const SetCurrentConversation = (current_conversation) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.setCurrentConversation(current_conversation));
+        dispatch(slice.actions.setUnseenMessages({conversationId: current_conversation.id}));
     };
 };
 
@@ -143,6 +190,12 @@ export const FetchCurrentMessages = ({messages}) => {
 
 export const AddDirectMessage = (message) => {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.addDirectMessage({message}));
+        if (message.contactId === getState().app.room_id) {
+            dispatch(slice.actions.addDirectMessage({message}));
+        }else {
+            dispatch(slice.actions.addUnreadMessagesCount({message}));
+            dispatch(slice.actions.addUnreadMessagesCountInContactsByConversation(
+                {contactId: message.contactId, time: message.date, msg: message.hashedText, type: message.messageType}));
+        }
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import {useTheme} from "@mui/material/styles";
 
-import {Box, Divider, IconButton, Stack} from "@mui/material";
+import {Badge, Box, Divider, IconButton, Stack} from "@mui/material";
 import AntSwitch from "../../components/AntSwitch";
 
 import Logo from "../../assets/Images/logo_white.ico";
@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {UpdateTab} from "../../redux/slices/app";
 import NotificationMenu from "./NotificationMenu";
 import {ROUTE_INDEX} from "../../routes";
+import {Notifications} from "@mui/icons-material";
 
 const getPath = (index) => {
     switch (index) {
@@ -100,13 +101,16 @@ const SideBar = () => {
                                     }}
                                     p={1}
                                 >
+
                                     <IconButton
                                         onClick={() => {
                                             handleChangeTab(el.index);
                                         }}
                                         sx={{width: "max-content", color: "#ffffff"}}
                                     >
-                                        {el.icon}
+                                        <Badge color="secondary" badgeContent={el.index != 0 ? 0 : unreadMessagesCount}>
+                                            {el.icon}
+                                        </Badge>
                                     </IconButton>
                                 </Box>
                             ) : (

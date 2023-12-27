@@ -23,8 +23,9 @@ import useResponsive from "../../hooks/useResponsive";
 
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
-import {socket} from "../../socket";
+import {client, socket} from "../../socket";
 import {useSelector} from "react-redux";
+import {MESSAGE_TYPE} from "../../model/message";
 
 const StyledInput = styled(TextField)(({theme}) => ({
     "& .MuiInputBase-input": {
@@ -174,6 +175,7 @@ const Footer = () => {
     const [value, setValue] = useState("");
     const inputRef = useRef(null);
 
+
     function handleEmojiClick(emoji) {
         const input = inputRef.current;
 
@@ -253,13 +255,43 @@ const Footer = () => {
                         >
                             <IconButton
                                 onClick={() => {
-                                    socket.emit("text_message", {
+                                    client.publish({
+                                        destination: `/app/send-private-message`,
+                                        body: JSON.stringify({
+                                            senderId: user_id,
+                                            receiverId: current_conversation.user_id,
+                                            messageType: MESSAGE_TYPE.TEXT,
+                                            hashedText: value,
+
+                                        }),
+                                    });
+
+                                    /*long id;
+
+                                    private LocalDateTime date;
+
+                                    private long contactIdWhereTheReceiverIsTheUser1;
+
+                                    private long senderId;
+
+                                    private long receiverId;
+
+                                    private String messageType;
+
+                                    private boolean viewed;
+
+                                    private List<byte[]> hashedImage;
+
+                                    private String hashedAudio;
+
+                                    private String hashedText;*/
+                                    /*socket.emit("text_message", {
                                         message: linkify(value),
                                         conversation_id: room_id,
                                         from: user_id,
                                         to: current_conversation.user_id,
                                         type: containsUrl(value) ? "Link" : "Text",
-                                    });
+                                    });*/
                                 }}
                             >
                                 <PaperPlaneTilt color="#ffffff"/>

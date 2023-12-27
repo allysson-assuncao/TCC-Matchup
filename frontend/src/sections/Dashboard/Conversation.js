@@ -73,7 +73,7 @@ const TextMsg = ({el, menu}) => {
                     variant="body2"
                     color={el.incoming ? theme.palette.text : "#fff"}
                 >
-                    {el.message}
+                    {el.text}
                 </Typography>
             </Box>
             {menu && <MessageOption/>}

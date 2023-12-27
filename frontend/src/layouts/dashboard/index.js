@@ -79,10 +79,12 @@ const DashboardLayout = () => {
 
 
                 createStompClient(user, token).onConnect =  (frame) => {
-                    client.subscribe(`/user/${user.id}/queue/private-messages`, (msg) => {
-                        console.log(msg);
-                        const message = JSON.parse(msg.body)
-                        //updateContactsWithMessage(message.receiverContactId, message);
+                    client.subscribe(`/user/${user.id}/queue/private-messages`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((message) => {
+                            console.log(message);
+                            dispatch(AddDirectMessage(message));
+                        });
                     });
 
                     client.subscribe(`/user/${user.id}/queue/notification/friendship-solicitation`, (obj) => {
@@ -139,6 +141,24 @@ const DashboardLayout = () => {
                             dispatch(FetchDirectConversations({conversations: contacts}));
                         });
                     });
+
+                    client.subscribe(`/user/${user.id}/queue/receive-message-list`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((messages) => {
+                            console.log(messages);
+                            dispatch(FetchCurrentMessages({ messages: messages }));
+                        });
+                    });
+
+
+                    /*client.subscribe(`/user/${user.id}/queue/receive-messages`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((contacts) => {
+                            console.log(contacts);
+                            dispatch(FetchDirectConversations({conversations: contacts}));
+                        });
+                    });*/
+
                     client.publish({
                         destination: `/app/get-contacts-list`,
                         body: user.username,

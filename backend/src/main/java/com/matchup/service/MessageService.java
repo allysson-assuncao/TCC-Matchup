@@ -1,5 +1,6 @@
 package com.matchup.service;
 
+import com.matchup.dto.ContactDto;
 import com.matchup.dto.MessageDto;
 import com.matchup.enums.MessageType;
 import com.matchup.model.Contact;
@@ -52,6 +53,8 @@ public class MessageService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
+    @org.springframework.transaction.annotation.Transactional
     public MessageDto sendMessage(MessageDto messageDto) {
         Optional<User> receiverOp = userRepository.findById(messageDto.getReceiverId());
         if (receiverOp.isEmpty()) return null;
@@ -87,6 +90,97 @@ public class MessageService {
                 return null;
             }
         }
+
+    }
+
+    @Transactional
+    @org.springframework.transaction.annotation.Transactional
+    public List<MessageDto> findMessageListByUsersId(long user1Id, long user2Id) {
+        Optional<User> user1Op = userRepository.findById(user1Id);
+        if (user1Op.isEmpty()) return null;
+        Optional<User> user2Op = userRepository.findById(user2Id);
+        if (user1Op.isEmpty()) return null;
+
+        if (!contactRepository.existsByUser1IdAndUser2Id(user1Id, user2Id)) {
+            return null;
+        }
+
+        Contact contact = contactRepository.findByUser1IdAndUser2Id(user1Id, user2Id).get();
+
+        if (!contact.isDisplayed()) contact.setDisplayed(false);
+
+        List<Message> messageList = messageRepository.findMessagesBySenderIdAndReceiverId(user1Id, user2Id).get();
+
+        List<MessageDto> messageDtoList = new ArrayList<>();
+
+
+        messageList.forEach((msg) -> {
+            msg.setViewed(true);
+            msg = messageRepository.save(msg);
+            MessageDto messageDto = MessageDto.builder()
+                    .id(msg.getId())
+                    .receiverId(msg.getReceiver().getId())
+                    .senderId(msg.getSender().getId())
+                    .messageType(msg.getClass().getSimpleName())
+                    .viewed(msg.isViewed())
+                    //.contactIdWhereTheReceiverIsTheUser1(contact.getId())
+                    .date(msg.getDate())
+                    .build();
+
+            switch (msg.getClass().getSimpleName()) {
+                case "TextMessage" -> {
+                    messageDto.setMessageType(MessageType.TEXT + "");
+                    TextMessage textMessage = (TextMessage) msg;
+                    messageDto.setHashedText(textMessage.getHashedText());
+                }
+                case "AudioMessage" -> {
+                    messageDto.setMessageType(MessageType.AUDIO + "");
+                    AudioMessage audioMessage = (AudioMessage) msg;
+                    messageDto.setHashedAudio(audioMessage.getHashedAudio().getHashedAudio().toString());
+                }
+                default -> {
+                    messageDto.setMessageType(MessageType.IMAGE + "");
+                    ImageMessage imageMessage = (ImageMessage) msg;
+                    //messageDto.setHashedImage(imageMessage.getHashedImage()); //requires convertion
+                }
+
+            }
+            messageDtoList.add(messageDto);
+
+        });
+        return messageDtoList;
+    }
+
+            /*for (Message message : messageList) {
+                MessageDto messageDto = new MessageDto();
+                messageDto.setId(message.getId());
+                messageDto.setDate(message.getDate());
+                messageDto.setSenderId(message.getSender().getId());
+                messageDto.setReceiverId(message.getReceiver().getId());
+                messageDto.setViewed(message.isViewed());
+                String messageType = message.getClass().getSimpleName();
+
+                switch (messageType) {
+                    case "TextMessage" -> {
+                        messageDto.setMessageType(MessageType.TEXT);
+                        TextMessage textMessage = (TextMessage) message;
+                        messageDto.setHashedText(textMessage.getHashedText());
+                    }
+                    case "AudioMessage" -> {
+                        messageDto.setMessageType(MessageType.AUDIO);
+                        AudioMessage audioMessage = (AudioMessage) message;
+                        messageDto.setHashedAudio(audioMessage.getHashedAudio().getHashedAudio().toString());
+                    }
+                    case "ImageMessage" -> {
+                        messageDto.setMessageType(MessageType.IMAGE);
+                        ImageMessage imageMessage = (ImageMessage) message;
+                        //messageDto.setHashedImage(imageMessage.getHashedImage()); //requires convertion
+                    }
+                    default -> {
+                        System.out.println("Tipo de mensagem desconhecido: " + messageType);
+                    }
+
+
 
     }
 
@@ -145,17 +239,26 @@ public class MessageService {
         textMessage.setDate(LocalDateTime.now());
         textMessage.setReceiver(receiver);
         textMessage.setSender(sender);
+        textMessage.setViewed(false);
         textMessage.setHashedText(messageDto.getHashedText());
         TextMessage savedTextMessage = textMessageRepository.save(textMessage);
         messageDto.setDate(savedTextMessage.getDate());
         messageDto.setId(savedTextMessage.getId());
-        messageDto.setContactIdWhereTheReceiverIsTheUser1(
-                contactRepository.findByUser1IdAndUser2Id(messageDto.getReceiverId(), messageDto.getSenderId()).get().getId());
+        /*messageDto.setContactIdWhereTheReceiverIsTheUser1(
+                contactRepository.findByUser1IdAndUser2Id(messageDto.getSenderId(),messageDto.getReceiverId()).get().getId());*/
         return messageDto;
     }
 
     @Transactional
-    public List<MessageDto> getMessageListByLastMessageDate(LocalDateTime lastMessageDate, long user1Id, long user2Id) {
+    public long findContactId(long user1Id, long user2Id) {
+        Optional<Contact> contactOp = contactRepository.findByUser1IdAndUser2Id(user1Id, user2Id);
+        return contactOp.map(Contact::getId).orElse(-1L);
+
+    }
+
+    @Transactional
+    public List<MessageDto> getMessageListByLastMessageDate(LocalDateTime lastMessageDate, long user1Id,
+                                                            long user2Id) {
         List<Message> messageList;
         List<MessageDto> messageDtoList = new ArrayList<>();
         messageList = messageRepository.findMessagesBySenderIdAndReceiverId(user1Id, user2Id).get();
