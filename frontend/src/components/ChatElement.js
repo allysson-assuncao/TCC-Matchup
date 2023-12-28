@@ -83,7 +83,6 @@ const ChatElement = ({img, name, msg, time, unread, online, id}) => {
         >
             <Stack
                 direction="row"
-                alignItems={"center"}
                 justifyContent="space-between"
             >
                 <Stack direction="row" spacing={2}>

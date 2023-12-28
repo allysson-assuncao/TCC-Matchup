@@ -3,6 +3,7 @@ import {faker} from "@faker-js/faker";
 import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {formatDistanceToNow} from "date-fns";
 import {ptBR} from "date-fns/locale";
+import {client} from "../../socket";
 
 //const user_id = window.localStorage.getItem("user_id");
 
@@ -24,11 +25,8 @@ const slice = createSlice({
         fetchDirectConversations(state, action) {
             state.direct_chat.unreadMessagesCount = 0;
             const list = action.payload.conversations.map((el) => {
-                /* const user = el.participants.find(
-                     (elm) => elm._id.toString() !== user_id
-                 );*/
-                console.log("UnreadMessagesCount" + state.direct_chat.unreadMessagesCount);
                 state.direct_chat.unreadMessagesCount += el.unreadMessages;
+                console.log("UnreadMessagesCount" + state.direct_chat.unreadMessagesCount);
                 return {
                     id: el.id,
                     user_id: el.user2Id,
@@ -120,7 +118,13 @@ const slice = createSlice({
         addDirectMessage(state, action) {
             const user_id = action.payload.user_id;
             console.log(action.payload.message);
+            console.log((action.payload.message.receiverId == user_id) + " " + user_id);
+            console.log((action.payload.message.senderId == user_id) + " " + user_id);
             //state.direct_chat.current_messages = [...state.direct_chat.current_messages, action.payload.message];
+            if (state.direct_chat.current_messages.some(message => message.id == action.payload.message.id)) {
+                return;
+            }
+            /*if (action.payload.message.id == )*/
             state.direct_chat.current_messages.push({
                 id: action.payload.message.id,
                 type: "msg",

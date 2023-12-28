@@ -41,7 +41,7 @@ const SideBar = () => {
     const dispatch = useDispatch();
 
     const {tab} = useSelector((state) => state.app);
-    const {unreadMessagesCount} = useSelector((state) => state.conversation);
+    const {unreadMessagesCount} = useSelector((state) => state.conversation.direct_chat);
 
     const navigate = useNavigate();
 
@@ -111,6 +111,7 @@ const SideBar = () => {
                                     >
                                         <Badge color="secondary" badgeContent={el.index != 0 ? 0 : unreadMessagesCount}>
                                             {el.icon}
+                                            {console.log(unreadMessagesCount)}
                                         </Badge>
                                     </IconButton>
                                 </Box>

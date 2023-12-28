@@ -16,6 +16,7 @@ import {ClearConversation} from "../../redux/slices/conversation";
 
 const ProfileMenu = () => {
     const {user} = useSelector((state) => state.app);
+    const {user_id} = useSelector((state) => state.auth);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,8 +27,6 @@ const ProfileMenu = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-    const user_id = window.localStorage.getItem("user_id");
 
     const user_name = user?.userName;
     const user_img = user?.formattedProfilePicture;

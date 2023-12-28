@@ -167,7 +167,7 @@ const Footer = () => {
     const isMobile = useResponsive("between", "md", "xs", "sm");
 
     const {sideBar, room_id} = useSelector((state) => state.app);
-
+    const {user_id} = useSelector((state) => state.auth);
     const [openPicker, setOpenPicker] = React.useState(false);
 
     const [value, setValue] = useState("");
