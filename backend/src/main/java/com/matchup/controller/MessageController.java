@@ -71,6 +71,13 @@ public class MessageController {
                 messageDto.getSenderId()+"", "/queue/private-messages", messageDto);
     }
 
+    @MessageMapping("/view-message")
+    /*@SendToUser("/queue/private-messages")*/
+    public void viewMessage(long messageId) {
+        System.out.println("MENSAGEM VISUALIZADA: " +messageId);
+        messageService.viewMessageById(messageId);
+    }
+
     @MessageMapping("/get-private-messages")
     /*@SendToUser("/queue/private-messages")*/
     public void getPrivateMessageList(UsersIdDto usersIdDto) {

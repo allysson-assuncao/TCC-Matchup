@@ -14,6 +14,7 @@
 
     let client;
     const createStompClient = (loggedUser, token ) => {
+        client = {}
         client = new Client({
             brokerURL: 'ws://localhost:8080/ws',
             connectHeaders: {

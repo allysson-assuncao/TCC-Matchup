@@ -13,8 +13,8 @@ import {Chat} from "phosphor-react";
 import {socket} from "../socket";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../routes";
+import {useSelector} from "react-redux";
 
-const user_id = window.localStorage.getItem("user_id");
 
 const StyledChatBox = styled(Box)(({theme}) => ({
     "&:hover": {
@@ -52,6 +52,7 @@ const StyledBadge = styled(Badge)(({theme}) => ({
 }));
 
 const UserElement = ({img, firstName, lastName, online, _id}) => {
+    const {user_id} = useSelector((state) => state.auth);
     const theme = useTheme();
 
     const name = `${firstName} ${lastName}`;
@@ -114,6 +115,7 @@ const FriendRequestElement = ({
                                   online,
                                   id,
                               }) => {
+    const {user_id} = useSelector((state) => state.auth);
     const theme = useTheme();
 
     const name = `${firstName} ${lastName}`;
@@ -177,6 +179,7 @@ const FriendElement = ({
                            id,
                        }) => {
     const theme = useTheme();
+    const {user_id} = useSelector((state) => state.auth);
 
     const navigate = useNavigate();
 
@@ -222,7 +225,7 @@ const FriendElement = ({
                     <IconButton
                         onClick={() => {
                             // start a new conversation
-                            socket.emit("start_conversation", {to: id, from: user_id});
+                            //socket.emit("start_conversation", {to: id, from: user_id});
                         }}
                     >
                         <Chat/>

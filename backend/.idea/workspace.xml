@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="load contacts list and show its data" />
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="having some trouble with the chat stuff">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" afterDir="false" />
+    </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="load contacts list and show its data" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
@@ -218,7 +225,11 @@
       <workItem from="1703354457406" duration="3970000" />
       <workItem from="1703594025747" duration="1503000" />
       <workItem from="1703611938349" duration="6565000" />
-      <workItem from="1703618785532" duration="5044000" />
+      <workItem from="1703618785532" duration="5073000" />
+      <workItem from="1703680264816" duration="12614000" />
+      <workItem from="1703767038905" duration="1003000" />
+      <workItem from="1703768051376" duration="5663000" />
+      <workItem from="1703786367626" duration="2958000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>
@@ -254,22 +265,6 @@
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
       <updated>1696874112362</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Get Notification method">
-      <option name="closed" value="true" />
-      <created>1697049478147</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1697049478147</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Making progress in the Notification features">
-      <option name="closed" value="true" />
-      <created>1697053002036</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1697053002036</updated>
     </task>
     <task id="LOCAL-00027" summary="Making progress in the Notification features">
       <option name="closed" value="true" />
@@ -595,14 +590,29 @@
       <option name="project" value="LOCAL" />
       <updated>1703624053472</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="load contacts list and show its data">
+      <option name="closed" value="true" />
+      <created>1703624072308</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1703624072308</updated>
+    </task>
+    <task id="LOCAL-00070" summary="having some trouble with the chat stuff">
+      <option name="closed" value="true" />
+      <created>1703707960727</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1703707960728</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Working on user block features" />
     <MESSAGE value="Get Notification method" />
     <MESSAGE value="Making progress in the Notification features" />
     <MESSAGE value="Making a lot of progress in a bunch of stuff" />
@@ -627,7 +637,8 @@
     <MESSAGE value="All Notification functionalities working pretty well :)" />
     <MESSAGE value="all profile operations working definitely and making a lot of progress in the interest management code" />
     <MESSAGE value="load contacts list and show its data" />
-    <option name="LAST_COMMIT_MESSAGE" value="load contacts list and show its data" />
+    <MESSAGE value="having some trouble with the chat stuff" />
+    <option name="LAST_COMMIT_MESSAGE" value="having some trouble with the chat stuff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

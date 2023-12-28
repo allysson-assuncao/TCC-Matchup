@@ -19,10 +19,12 @@ const GeneralApp = () => {
     const theme = useTheme();
 
     const {sideBar, room_id, chat_type, isUserUpdated} = useSelector((state) => state.app);
+    const {user_id} = useSelector((state) => state.auth);
 
     return (
         <>
-            {isUserUpdated && (
+            {console.log("USEEEEER IIIIIIIIIIDDDDDDDDDDDDD: " + user_id)}
+            {user_id && localStorage.getItem("user_id") && isUserUpdated && (
                 <Stack direction="row" sx={{width: "100%"}}>
                     <Chats/>
                     <Box

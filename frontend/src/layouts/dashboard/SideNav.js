@@ -127,7 +127,7 @@ const SideBar = () => {
                                                 : theme.palette.text.primary,
                                     }}
                                 >
-                                    <Badge color="secondary" badgeContent={unreadMessagesCount}>
+                                    <Badge color="secondary" badgeContent={el.index != 0 ? 0 : unreadMessagesCount}>
                                         {el.icon}
                                     </Badge>
                                 </IconButton>

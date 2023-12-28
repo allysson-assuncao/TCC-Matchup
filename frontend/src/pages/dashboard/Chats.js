@@ -26,9 +26,9 @@ import {
 import Friends from "../../sections/Dashboard/Friends";
 import {useDispatch, useSelector} from "react-redux";
 
-const user_id = window.localStorage.getItem("user_id");
 
 const Chats = () => {
+    const {user_id} = useSelector((state) => state.auth);
     const theme = useTheme();
     const isDesktop = useResponsive("up", "md");
 
@@ -143,9 +143,16 @@ const Chats = () => {
                                     All Chats
                                 </Typography>
                                 {/* Chat List */}
-                                {conversations.filter((el) => !el.pinned).map((el, idx) => {
+                                {/*{conversations.filter((el) => !el.pinned).map((el, idx) => {
                                     return <ChatElement {...el} />;
-                                })}
+                                })}*/}
+                                {conversations
+                                    .filter((el) => !el.pinned)
+                                    .sort((b, a) => new Date(a.time) - new Date(b.time))
+                                    .map((el, idx) => {
+                                        return <ChatElement {...el} />;
+                                    })}
+
                             </Stack>
                         </SimpleBarStyle>
                     </Stack>

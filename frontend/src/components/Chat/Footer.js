@@ -164,8 +164,6 @@ const Footer = () => {
         (state) => state.conversation.direct_chat
     );
 
-    const user_id = window.localStorage.getItem("user_id");
-
     const isMobile = useResponsive("between", "md", "xs", "sm");
 
     const {sideBar, room_id} = useSelector((state) => state.app);

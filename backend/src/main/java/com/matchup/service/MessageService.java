@@ -298,4 +298,11 @@ public class MessageService {
         return messageDtoList;
     }
 
+    public void viewMessageById(long messageId) {
+        Optional<Message> messageOp = messageRepository.findById(messageId);
+        if (messageOp.isEmpty()) return;
+        Message msg = messageOp.get();
+        msg.setViewed(true);
+        messageRepository.save(msg);
+    }
 }

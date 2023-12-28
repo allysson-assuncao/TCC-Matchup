@@ -36,10 +36,10 @@ const DashboardLayout = () => {
     const {user_id, isLoggedIn, token} = useSelector((state) => state.auth);
     const {user, isUserUpdated, notifications} = useSelector((state) => state.app);
 
+
     const {conversations, current_conversation} = useSelector(
         (state) => state.conversation.direct_chat
     );
-
 
 
     async function fetch() {
@@ -78,12 +78,13 @@ const DashboardLayout = () => {
                 window.onload();
 
 
-                createStompClient(user, token).onConnect =  (frame) => {
+                let clientIndex = await createStompClient(user, token);
+                clientIndex.onConnect = (frame) => {
                     client.subscribe(`/user/${user.id}/queue/private-messages`, (obj) => {
-                        console.log(obj);
+                        //console.log(obj);
                         binaryBodyToJSON(obj).then((message) => {
-                            console.log(message);
-                            dispatch(AddDirectMessage(message));
+                            //console.log(message);
+                            dispatch(AddDirectMessage(message, user_id));
                         });
                     });
 
@@ -146,7 +147,7 @@ const DashboardLayout = () => {
                         console.log(obj);
                         binaryBodyToJSON(obj).then((messages) => {
                             console.log(messages);
-                            dispatch(FetchCurrentMessages({ messages: messages }));
+                            dispatch(FetchCurrentMessages({messages: messages}, user_id));
                         });
                     });
 
@@ -167,7 +168,6 @@ const DashboardLayout = () => {
                 };
 
                 client.activate();
-
 
 
                 /*

@@ -4,7 +4,7 @@ import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {formatDistanceToNow} from "date-fns";
 import {ptBR} from "date-fns/locale";
 
-const user_id = window.localStorage.getItem("user_id");
+//const user_id = window.localStorage.getItem("user_id");
 
 const initialState = {
     direct_chat: {
@@ -22,6 +22,7 @@ const slice = createSlice({
     reducers: {
         resetState: (state) => initialState,
         fetchDirectConversations(state, action) {
+            state.direct_chat.unreadMessagesCount = 0;
             const list = action.payload.conversations.map((el) => {
                 /* const user = el.participants.find(
                      (elm) => elm._id.toString() !== user_id
@@ -34,8 +35,9 @@ const slice = createSlice({
                     name: el.user2Username,
                     online: true,
                     img: el.profilePicture,
-                    msg: el.lastMessage.hashedText,
-                    time: formatDistanceToNow(new Date(el.lastMessage.date), {addSuffix: true, locale: ptBR}),
+                    msg: el.user2Id != el.lastMessage.receiverId ?  el.lastMessage.hashedText : "Você: " + el.lastMessage.hashedText,
+                    msgId: el.lastMessage.id,
+                    time: /*formatDistanceToNow(new Date(*/el.lastMessage.date/*), {addSuffix: true, locale: ptBR})*/,
                     unread: el.unreadMessages,
                     pinned: false,
                     bio: el.bio,
@@ -45,7 +47,7 @@ const slice = createSlice({
 
             state.direct_chat.conversations = list;
         },
-        updateDirectConversation(state, action) {
+        /*updateDirectConversation(state, action) {
             const this_conversation = action.payload.conversation;
             state.direct_chat.conversations = state.direct_chat.conversations.map(
                 (el) => {
@@ -69,8 +71,8 @@ const slice = createSlice({
                     }
                 }
             );
-        },
-        addDirectConversation(state, action) {
+        },*/
+        /*addDirectConversation(state, action) {
             const this_conversation = action.payload.conversation;
             const user = this_conversation.participants.find(
                 (elm) => elm._id.toString() !== user_id
@@ -89,14 +91,17 @@ const slice = createSlice({
                 unread: 0,
                 pinned: false,
             });
-        },
+        },*/
         setCurrentConversation(state, action) {
             state.direct_chat.current_conversation = action.payload;
         },
         fetchCurrentMessages(state, action) {
             const messages = action.payload.messages;
+            const user_id = action.payload.user_id;
+
             const formatted_messages = messages.map((el) => {
                 /*const formattedDate = formatDistanceToNow(new Date(el.date), {addSuffix: true, locale: ptBR});*/
+
                 return {
                     id: el.id,
                     type: "msg",
@@ -113,6 +118,7 @@ const slice = createSlice({
             state.direct_chat.current_messages = formatted_messages;
         },
         addDirectMessage(state, action) {
+            const user_id = action.payload.user_id;
             console.log(action.payload.message);
             //state.direct_chat.current_messages = [...state.direct_chat.current_messages, action.payload.message];
             state.direct_chat.current_messages.push({
@@ -136,17 +142,30 @@ const slice = createSlice({
                 }
             });
         },
-        addUnreadMessagesCount(state, action){
+        addUnreadMessagesCount(state, action) {
             state.direct_chat.unreadMessagesCount += 1;
         },
-        addUnreadMessagesCountInContactsByConversation(state, action){
+        addUnreadMessagesCountInContactsByConversation(state, action) {///
+            const user_id = action.payload.user_id;
             state.direct_chat.conversations.forEach((conversation) => {
+                if (conversation.msgId == action.payload.message.id) return;
                 if (conversation.id == action.payload.contactId) {
-                    state.direct_chat.unreadMessagesCount += 1;
-                    conversation.unread += 1;
-                    conversation.time = formatDistanceToNow(new Date(action.payload.time), {addSuffix: true, locale: ptBR});
-                    if(action.payload.type == "TEXT"){
-                        conversation.msg = action.payload.msg;
+
+                    if((action.payload.room_id && (conversation.id == action.payload.room_id)
+                        && (action.payload.message.receiverId == user_id))){
+                        client.publish({
+                            destination: `/app/view-message`,
+                            body: JSON.stringify(action.payload.message.id),
+                        });
+                    }else if (action.payload.message.receiverId == user_id){
+                        state.direct_chat.unreadMessagesCount += 1;
+                        conversation.unread += 1;
+                    }
+
+                    conversation.time = action.payload.message.date;
+                    console.log(conversation.user_id != action.payload.message.receiverId);
+                    if (action.payload.message.messageType == "TEXT") {
+                        conversation.msg = conversation.user_id != action.payload.message.receiverId ? action.payload.message.hashedText : "Você: " + action.payload.message.hashedText;
                     }
                 }
             });
@@ -184,23 +203,38 @@ export const SetCurrentConversation = (current_conversation) => {
 };
 
 
-export const FetchCurrentMessages = ({messages}) => {
+export const FetchCurrentMessages = ({messages}, user_id) => {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.fetchCurrentMessages({messages}));
+        dispatch(slice.actions.fetchCurrentMessages({messages, user_id}));
     }
 }
 
-export const AddDirectMessage = (message) => {
+export const AddDirectMessage = (message, user_id) => {
     return async (dispatch, getState) => {
+        console.log("AddDirectMessage FORA");
+        console.log(message);
+
         if (message.contactId === getState().app.room_id) {
-            dispatch(slice.actions.addDirectMessage({message}));
-        }else {
-            dispatch(slice.actions.addUnreadMessagesCount({message}));
+            console.log("AddDirectMessage dentro" + user_id);
+            dispatch(slice.actions.addDirectMessage({message, user_id}))
             dispatch(slice.actions.addUnreadMessagesCountInContactsByConversation(
-                {contactId: message.contactId, time: message.date, msg: message.hashedText, type: message.messageType}));
+                {
+                    contactId: message.contactId,
+                    message: message,
+                    room_id: getState().app.room_id
+                , user_id}));
+        } else {
+            /*dispatch(slice.actions.addUnreadMessagesCount({message}));*/
+            dispatch(slice.actions.addUnreadMessagesCountInContactsByConversation(
+                {
+                    message: message,
+                    contactId: message.contactId,
+                    type: message.messageType
+                , user_id }));
         }
     }
 }
+
 export function ClearConversation() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.resetState());
