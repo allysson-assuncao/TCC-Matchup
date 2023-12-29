@@ -5,7 +5,7 @@ import {
     InputAdornment,
     Stack,
     TextField,
-    Tooltip,
+    Tooltip, Typography,
 } from "@mui/material";
 import {
     Camera,

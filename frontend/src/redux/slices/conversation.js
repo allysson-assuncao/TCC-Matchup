@@ -161,6 +161,38 @@ const slice = createSlice({
             });
 
         },
+        setConversationBlockedMe(state, action) {
+            console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            state.direct_chat.conversations.forEach(conversation => {
+                console.log(conversation.user_id == action.payload.lastBlocker);
+                if (conversation.user_id == action.payload.lastBlocker) {
+                    conversation = {...conversation, blockedMe: true}
+                    conversation.blockedMe = true;
+                    if(conversation.id == state.direct_chat.current_conversation.id) {
+                        state.direct_chat.current_conversation.blockedMe = true;
+                    }
+                    console.log(conversation);
+                }
+                console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            })
+        },
+        setConversationUnblockedMe(state, action) {
+            console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
+            state.direct_chat.conversations.forEach(conversation => {
+                console.log(conversation.user_id == action.payload.lastUnblocker);
+                if (conversation.user_id == action.payload.lastUnblocker) {
+                    conversation = {...conversation, blockedMe: false}
+                    conversation.blockedMe = false;
+                    if(conversation.id == state.direct_chat.current_conversation.id) {
+                        state.direct_chat.current_conversation.blockedMe = false;
+                    }
+                    console.log(conversation);
+                }
+                console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            })
+        },
+
     },
 });
 

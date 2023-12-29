@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Box,
     Button,
@@ -25,6 +25,7 @@ import {
 } from "../../components/Search";
 import Friends from "../../sections/Dashboard/Friends";
 import {useDispatch, useSelector} from "react-redux";
+import {SetConversationBlockedMe, SetConversationUnblockedMe} from "../../redux/slices/conversation";
 
 
 const Chats = () => {
@@ -36,7 +37,7 @@ const Chats = () => {
 
     const {token} = useSelector((state) => state.auth);
 
-    const {user, isWebSocketsConnected} = useSelector((state) => state.app);
+    const {user, isWebSocketsConnected, lastBlocker, lastUnblocker} = useSelector((state) => state.app);
 
     const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
