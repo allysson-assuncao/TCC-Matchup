@@ -24,6 +24,7 @@ public class ContactDto {
     private int unreadMessages;
 
 
+    private long creatorId;
 
     private boolean pinned;
 

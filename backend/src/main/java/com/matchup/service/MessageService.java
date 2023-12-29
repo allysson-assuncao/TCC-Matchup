@@ -12,6 +12,7 @@ import com.matchup.repository.image.MessageImageRepository;
 import com.matchup.repository.message.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -41,8 +42,12 @@ public class MessageService {
 
     private final UserRepository userRepository;
 
+    private SimpMessagingTemplate simpMessagingTemplate;
+
+    private ImageService imageService;
+
     @Autowired
-    public MessageService(MessageRepository messageRepository, AudioMessageRepository audioMessageRepository, ImageMessageRepository imageMessageRepository, TextMessageRepository textMessageRepository, AudioRepository audioRepository, MessageImageRepository messageImageRepository, ContactRepository contactRepository, UserRepository userRepository) {
+    public MessageService(ImageService imageService, MessageRepository messageRepository, SimpMessagingTemplate simpMessagingTemplate, AudioMessageRepository audioMessageRepository, ImageMessageRepository imageMessageRepository, TextMessageRepository textMessageRepository, AudioRepository audioRepository, MessageImageRepository messageImageRepository, ContactRepository contactRepository, UserRepository userRepository) {
         this.messageRepository = messageRepository;
         this.audioMessageRepository = audioMessageRepository;
         this.imageMessageRepository = imageMessageRepository;
@@ -51,11 +56,14 @@ public class MessageService {
         this.messageImageRepository = messageImageRepository;
         this.contactRepository = contactRepository;
         this.userRepository = userRepository;
+        this.simpMessagingTemplate = simpMessagingTemplate;
+        this.imageService = imageService;
     }
 
     @Transactional
     @org.springframework.transaction.annotation.Transactional
     public MessageDto sendMessage(MessageDto messageDto) {
+        System.out.println(messageDto);
         Optional<User> receiverOp = userRepository.findById(messageDto.getReceiverId());
         if (receiverOp.isEmpty()) return null;
         Optional<User> senderOp = userRepository.findById(messageDto.getSenderId());
@@ -71,6 +79,21 @@ public class MessageService {
             contact2.setDisplayed(true);
             contact2.setUser1(receiverOp.get());
             contact2.setUser2(senderOp.get());
+            contact1 = contactRepository.save(contact1);
+            contact2 = contactRepository.save(contact2);
+
+            ContactDto contactDtoSender = ContactDto.builder()
+                    .id(contact1.getId())
+                    .user1Id(contact1.getUser1().getId())
+                    .user2Id(contact1.getUser2().getId())
+                    .user2Username(contact1.getUser2().getUsername())
+                    .unreadMessages(messageRepository.countUnreadMessagesByReceiverAndSenderUsernames(contact1.getUser1().getUsername(), contact1.getUser2().getUsername()))
+                    /*.pinned()*/
+                    .creatorId(senderOp.get().getId())
+                    .profilePicture(imageService.getFormattedProfilePictureById(contact1.getUser2().getId(), 128))
+                    .displayed(contact1.isDisplayed())
+                    .bio(contact1.getUser2().getBio())
+                    .build();
 
             contactRepository.save(contact1);
             contactRepository.save(contact2);

@@ -69,7 +69,7 @@ public class ContactService {
                     .user2Username(user2.getUsername())
                     .unreadMessages(messageRepository.countUnreadMessagesByReceiverAndSenderUsernames(user1.getUsername(), user2.getUsername()))
                     /*.pinned()*/
-                    .profilePicture(imageService.getFormattedProfilePictureById(user2.getId(), 64))
+                    .profilePicture(imageService.getFormattedProfilePictureById(user2.getId(), 128))
                     .displayed(contact.isDisplayed())
                     .bio(user2.getBio())
                     .build();
