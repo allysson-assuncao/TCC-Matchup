@@ -95,8 +95,25 @@ public class MessageService {
                     .bio(contact1.getUser2().getBio())
                     .build();
 
-            contactRepository.save(contact1);
-            contactRepository.save(contact2);
+
+            simpMessagingTemplate.convertAndSendToUser(
+                    senderOp.get().getId() + "", "/queue/add-contact", contactDtoSender);
+
+            ContactDto contactDtoReceiver = ContactDto.builder()
+                    .id(contact2.getId())
+                    .user1Id(contact2.getUser1().getId())
+                    .user2Id(contact2.getUser2().getId())
+                    .user2Username(contact2.getUser2().getUsername())
+                    .unreadMessages(messageRepository.countUnreadMessagesByReceiverAndSenderUsernames(contact2.getUser1().getUsername(), contact2.getUser2().getUsername()))
+                    /*.pinned()*/
+                    .creatorId(senderOp.get().getId())
+                    .profilePicture(imageService.getFormattedProfilePictureById(contact2.getUser2().getId(), 128))
+                    .displayed(contact2.isDisplayed())
+                    .bio(contact2.getUser2().getBio())
+                    .build();
+
+            simpMessagingTemplate.convertAndSendToUser(
+                    receiverOp.get().getId() + "", "/queue/add-contact", contactDtoReceiver);
         }
 
         switch (messageDto.getMessageType()) {
