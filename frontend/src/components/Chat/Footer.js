@@ -157,12 +157,13 @@ function containsUrl(text) {
     return urlRegex.test(text);
 }
 
-const Footer = () => {
+const Footer = ({current_conversation_fake}) => {
     const theme = useTheme();
 
-    const {current_conversation} = useSelector(
-        (state) => state.conversation.direct_chat
-    );
+    let  {current_conversation}  = useSelector((state) => state.conversation.direct_chat);
+    if(current_conversation_fake){
+        current_conversation = {...current_conversation_fake};
+    }
 
     const isMobile = useResponsive("between", "md", "xs", "sm");
 

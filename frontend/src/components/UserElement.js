@@ -177,6 +177,7 @@ const FriendElement = ({
                            missed,
                            online,
                            id,
+                           handleClose
                        }) => {
     const theme = useTheme();
     const {user_id} = useSelector((state) => state.auth);

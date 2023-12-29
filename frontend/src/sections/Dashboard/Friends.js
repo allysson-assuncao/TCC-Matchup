@@ -81,7 +81,7 @@ const Friends = ({open, handleClose}) => {
                         {(() => {
                             switch (value) {
                                 case 0: // display friends in this list
-                                    return <FriendsList/>;
+                                    return <FriendsList handleClose={handleClose}/>;
 
                                 case 1: // display request in this list
                                     return <RequestsList/>;

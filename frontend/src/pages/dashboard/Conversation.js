@@ -100,7 +100,7 @@ const Conversation = ({isMobile, menu}) => {
     );
 };
 
-const ChatComponent = () => {
+const ChatComponent = ({current_conversation_fake}) => {
     const isMobile = useResponsive("between", "md", "xs", "sm");
     const theme = useTheme();
 
@@ -122,7 +122,7 @@ const ChatComponent = () => {
             width={isMobile ? "100vw" : "auto"}
         >
             {/*  */}
-            <ChatHeader/>
+            <ChatHeader current_conversation_fake={current_conversation_fake}/>
             <Box
                 ref={messageListRef}
                 width={"100%"}
@@ -145,7 +145,7 @@ const ChatComponent = () => {
             </Box>
 
             {/*  */}
-            <ChatFooter/>
+            <ChatFooter current_conversation_fake={current_conversation_fake}/>
         </Stack>
     );
 };

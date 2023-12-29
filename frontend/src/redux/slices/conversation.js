@@ -11,6 +11,7 @@ const initialState = {
     direct_chat: {
         conversations: [],
         current_conversation: null,
+        current_conversation_fake: null,
         current_messages: [],
         unreadMessagesCount: 0,
     },
@@ -37,6 +38,7 @@ const slice = createSlice({
                     msgId: el.lastMessage.id,
                     time: /*formatDistanceToNow(new Date(*/el.lastMessage.date/*), {addSuffix: true, locale: ptBR})*/,
                     unread: el.unreadMessages,
+                    displayed: el.displayed,
                     pinned: false,
                     bio: el.bio,
                 };
@@ -70,28 +72,32 @@ const slice = createSlice({
                 }
             );
         },*/
-        /*addDirectConversation(state, action) {
-            const this_conversation = action.payload.conversation;
-            const user = this_conversation.participants.find(
-                (elm) => elm._id.toString() !== user_id
-            );
-            state.direct_chat.conversations = state.direct_chat.conversations.filter(
-                (el) => el?.id !== this_conversation._id
-            );
-            state.direct_chat.conversations.push({
-                id: this_conversation._id._id,
-                user_id: user?._id,
-                name: `${user?.firstName} ${user?.lastName}`,
-                online: user?.status === "Online",
-                img: faker.image.avatar(),
-                msg: faker.music.songName(),
-                time: "9:36",
-                unread: 0,
+        addDirectConversation(state, action) {
+            const contact = action.payload.conversation;
+
+            const conversation = {
+                id: contact.id,
+                user_id: contact.user2Id,
+                name: contact.user2Username,
+                online: true,
+                img: contact.profilePicture,
                 pinned: false,
-            });
-        },*/
+                disabled: contact.disabled,
+                bio: contact.bio,
+            }
+            state.direct_chat.conversations.push(conversation);
+            if(contact.creatorId != contact.user2Id){
+                state.direct_chat.current_conversation = conversation;
+            }
+
+        },
         setCurrentConversation(state, action) {
             state.direct_chat.current_conversation = action.payload;
+            state.direct_chat.current_conversation_fake = null;
+        },
+        setCurrentConversationFake(state, action) {
+            state.direct_chat.current_conversation_fake = action.payload;
+            state.direct_chat.current_messages = [];
         },
         fetchCurrentMessages(state, action) {
             const messages = action.payload.messages;
@@ -188,7 +194,7 @@ export const FetchDirectConversations = ({conversations}) => {
         dispatch(slice.actions.fetchDirectConversations({conversations}));
     };
 };
-export const AddDirectConversation = ({conversation}) => {
+export const AddDirectConversation = (conversation) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.addDirectConversation({conversation}));
     };
@@ -203,6 +209,12 @@ export const SetCurrentConversation = (current_conversation) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.setCurrentConversation(current_conversation));
         dispatch(slice.actions.setUnseenMessages({conversationId: current_conversation.id}));
+    };
+};
+
+export const SetCurrentConversationFake = (current_conversation_fake) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.setCurrentConversationFake(current_conversation_fake));
     };
 };
 

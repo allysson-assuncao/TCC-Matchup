@@ -147,7 +147,7 @@ const Chats = () => {
                                     return <ChatElement {...el} />;
                                 })}*/}
                                 {conversations
-                                    .filter((el) => !el.pinned)
+                                    .filter((el) => !el.pinned && !el.disabled)
                                     .sort((b, a) => new Date(a.time) - new Date(b.time))
                                     .map((el, idx) => {
                                         return <ChatElement {...el} />;

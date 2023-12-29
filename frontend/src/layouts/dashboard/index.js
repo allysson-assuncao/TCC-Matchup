@@ -151,6 +151,16 @@ const DashboardLayout = () => {
                         });
                     });
 
+                    client.subscribe(`/user/${user.id}/queue/add-contact`, (obj) => {
+                        console.log(obj);
+                        binaryBodyToJSON(obj).then((contact) => {
+                            console.log(contact);
+                            dispatch(AddDirectConversation(contact));
+                            if(contact.creatorId == user_id) dispatch(SelectConversation({room_id: contact.id}))
+                        });
+                    });
+
+
 
                     /*client.subscribe(`/user/${user.id}/queue/receive-messages`, (obj) => {
                         console.log(obj);

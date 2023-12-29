@@ -105,10 +105,13 @@ const ChatElement = ({img, name, msg, time, unread, online, id}) => {
                 </Stack>
                 <Stack spacing={2} alignItems={"center"}>
                     <Typography sx={{fontWeight: 600}} variant="caption">
-                        {formatDistanceToNow(new Date(time), {
+                        {time ? formatDistanceToNow(new Date(time), {
                             addSuffix: true,
                             locale: ptBR
-                        })}
+                        }) :
+                            (<></>)
+                        }
+
 
                     </Typography>
                     <Badge

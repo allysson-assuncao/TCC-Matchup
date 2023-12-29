@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="having some trouble with the chat stuff">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="solving a lot of stuff">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ContactDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ContactDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/conversation.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="load contacts list and show its data" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
+    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +50,19 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java">
+      <ranges>
+        <range start1="14" end1="14" start2="14" end2="15" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="42" end1="42" start2="43" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="44" end1="45" start2="49" end2="50" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="53" end1="53" start2="58" end2="60" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="58" end1="58" start2="65" end2="66" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="73" end1="73" start2="81" end2="96" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="74" end1="76" start2="97" end2="116" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -229,7 +243,8 @@
       <workItem from="1703680264816" duration="12614000" />
       <workItem from="1703767038905" duration="1003000" />
       <workItem from="1703768051376" duration="5663000" />
-      <workItem from="1703786367626" duration="2958000" />
+      <workItem from="1703786367626" duration="3039000" />
+      <workItem from="1703853402726" duration="5492000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>

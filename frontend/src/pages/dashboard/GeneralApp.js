@@ -20,6 +20,7 @@ const GeneralApp = () => {
 
     const {sideBar, room_id, chat_type, isUserUpdated} = useSelector((state) => state.app);
     const {user_id} = useSelector((state) => state.auth);
+    const {current_conversation_fake} = useSelector((state) => state.conversation.direct_chat);
 
     return (
         <>
@@ -44,8 +45,8 @@ const GeneralApp = () => {
                                     : "6px solid #0162C4",
                         }}
                     >
-                        {chat_type === "individual" &&
-                        room_id !== null ? (
+                        {(chat_type === "individual") &&
+                            (room_id !== null || current_conversation_fake)? (
                             console.log("ROOM ID CHANGED"),
                             <ChatComponent/>
                         ) : (
