@@ -34,10 +34,12 @@ const slice = createSlice({
                     name: el.user2Username,
                     online: true,
                     img: el.profilePicture,
-                    msg: el.user2Id != el.lastMessage.receiverId ?  el.lastMessage.hashedText : "Você: " + el.lastMessage.hashedText,
+                    msg: el.user2Id != el.lastMessage.receiverId ? el.lastMessage.hashedText : "Você: " + el.lastMessage.hashedText,
                     msgId: el.lastMessage.id,
                     time: /*formatDistanceToNow(new Date(*/el.lastMessage.date/*), {addSuffix: true, locale: ptBR})*/,
                     unread: el.unreadMessages,
+                    blockedMe: el.blockedMe,
+                    blockedByMe: el.blockedByMe,
                     displayed: el.displayed,
                     pinned: false,
                     disabled: el.disabled,
@@ -45,34 +47,10 @@ const slice = createSlice({
                 };
 
             });
-
+            console.log(list);
             state.direct_chat.conversations = list;
         },
-        /*updateDirectConversation(state, action) {
-            const this_conversation = action.payload.conversation;
-            state.direct_chat.conversations = state.direct_chat.conversations.map(
-                (el) => {
-                    if (el?.id !== this_conversation._id) {
-                        return el;
-                    } else {
-                        const user = this_conversation.participants.find(
-                            (elm) => elm._id.toString() !== user_id
-                        );
-                        return {
-                            id: this_conversation._id._id,
-                            user_id: user?._id,
-                            name: `${user?.firstName} ${user?.lastName}`,
-                            online: user?.status === "Online",
-                            img: faker.image.avatar(),
-                            msg: faker.music.songName(),
-                            time: "9:36",
-                            unread: 0,
-                            pinned: false,
-                        };
-                    }
-                }
-            );
-        },*/
+
         addDirectConversation(state, action) {
             const contact = action.payload.conversation;
 
@@ -82,12 +60,13 @@ const slice = createSlice({
                 name: contact.user2Username,
                 online: true,
                 img: contact.profilePicture,
+                unread: 0,
                 pinned: false,
                 disabled: contact.disabled,
                 bio: contact.bio,
             }
             state.direct_chat.conversations.push(conversation);
-            if(contact.creatorId != contact.user2Id){
+            if (contact.creatorId != contact.user2Id) {
                 state.direct_chat.current_conversation = conversation;
             }
 
@@ -162,13 +141,13 @@ const slice = createSlice({
                 if (conversation.msgId == action.payload.message.id) return;
                 if (conversation.id == action.payload.contactId) {
 
-                    if((action.payload.room_id && (conversation.id == action.payload.room_id)
-                        && (action.payload.message.receiverId == user_id))){
+                    if ((action.payload.room_id && (conversation.id == action.payload.room_id)
+                        && (action.payload.message.receiverId == user_id))) {
                         client.publish({
                             destination: `/app/view-message`,
                             body: JSON.stringify(action.payload.message.id),
                         });
-                    }else if (action.payload.message.receiverId == user_id){
+                    } else if (action.payload.message.receiverId == user_id) {
                         state.direct_chat.unreadMessagesCount += 1;
                         conversation.unread += 1;
                     }
@@ -195,6 +174,20 @@ export const FetchDirectConversations = ({conversations}) => {
         dispatch(slice.actions.fetchDirectConversations({conversations}));
     };
 };
+
+export const SetConversationBlockedMe = (lastBlocker) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.setConversationBlockedMe({lastBlocker}));
+    };
+};
+
+export const SetConversationUnblockedMe = (lastUnblocker) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.setConversationUnblockedMe({lastUnblocker}));
+    };
+};
+
+
 export const AddDirectConversation = (conversation) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.addDirectConversation({conversation}));
@@ -239,7 +232,8 @@ export const AddDirectMessage = (message, user_id) => {
                     contactId: message.contactId,
                     message: message,
                     room_id: getState().app.room_id
-                , user_id}));
+                    , user_id
+                }));
         } else {
             /*dispatch(slice.actions.addUnreadMessagesCount({message}));*/
             dispatch(slice.actions.addUnreadMessagesCountInContactsByConversation(
@@ -247,7 +241,8 @@ export const AddDirectMessage = (message, user_id) => {
                     message: message,
                     contactId: message.contactId,
                     type: message.messageType
-                , user_id }));
+                    , user_id
+                }));
         }
     }
 }

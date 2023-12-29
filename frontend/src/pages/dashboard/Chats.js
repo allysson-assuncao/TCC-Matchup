@@ -40,25 +40,15 @@ const Chats = () => {
 
     const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
-    /*useEffect(() => {
-        /!*console.log("SALVE1"+client);
-        if(!client || !isWebSocketsConnected) return;
-        console.log("SALVE2");*!/
+    useEffect(() => {
+        dispatch(SetConversationBlockedMe(lastBlocker));
 
-        client.publish({
-            destination: `/app/get-contacts-list`,
-            body: JSON.stringify(user.username),
-            //headers: {Authorization: 'Bearer ' + token}
-        });
+    }, [lastBlocker]);
 
-        /!*socket.emit("get_direct_conversations", {user_id}, (data) => {
-             console.log(data); // this data is the list of conversations
-             // dispatch action
+    useEffect(() => {
+        dispatch(SetConversationUnblockedMe(lastUnblocker));
 
-             dispatch(FetchDirectConversations({conversations: data}));
-         });*!/
-
-    }, []);*/
+    }, [lastUnblocker]);
 
     const [openDialog, setOpenDialog] = useState(false);
 

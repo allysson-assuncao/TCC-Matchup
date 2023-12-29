@@ -51,6 +51,7 @@ export default function AuthLoginForm() {
             console.log(data);
             // submit data to backend
             await dispatch(LoginUser(data)).then(() => {
+                window.location.reload();
                 dispatch(FetchUserProfile())
             });
 

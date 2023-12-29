@@ -246,7 +246,7 @@ const FriendElement = ({
                                     img: profilePicture,
                                     user_id: id,
                                 }
-                                console.log("ssssssssssssssssssssssssssssssssssssssssssssss");
+                                console.log("contact_fake");
                                 dispatch(SetCurrentConversationFake(contact_fake));
                             }
                             handleClose();

@@ -79,6 +79,7 @@ const ProfileMenu = () => {
                                             dispatch(LogoutUser());
                                             dispatch(ClearUser());
                                             dispatch(ClearConversation());
+                                            //socket.disconnect();
                                             localStorage.removeItem("user_id");
                                             //socket.emit("end", {user_id});
                                         }

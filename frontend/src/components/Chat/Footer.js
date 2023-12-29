@@ -231,7 +231,18 @@ const Footer = ({current_conversation_fake}) => {
                             />
                         </Box>
                         {/* Chat Input */}
+                        {(current_conversation && current_conversation.blockedMe) && (
+                            <Typography variant={"p"} color={"red"}>
+                                Você foi bloqueado por {current_conversation.name}
+                            </Typography>
+                        )}
+                        {(current_conversation && current_conversation.blockedByMe) && (
+                            <Typography variant={"p"} color={"red"}>
+                                Você bloqueou {current_conversation.name}
+                            </Typography>
+                        )}
                         <ChatInput
+                            disabled={current_conversation && (current_conversation.blockedByMe || current_conversation.blockedMe)}
                             inputRef={inputRef}
                             value={value}
                             setValue={setValue}
@@ -253,6 +264,8 @@ const Footer = ({current_conversation_fake}) => {
                             justifyContent="center"
                         >
                             <IconButton
+                                color={current_conversation && (current_conversation.isBlockedByMe || current_conversation.blockedMe) ? "error" : "warning"}
+                                disabled={current_conversation && (current_conversation.isBlockedByMe || current_conversation.blockedMe)}
                                 onClick={() => {
                                     client.publish({
                                         destination: `/app/send-private-message`,
@@ -265,32 +278,7 @@ const Footer = ({current_conversation_fake}) => {
                                         }),
                                     });
 
-                                    /*long id;
 
-                                    private LocalDateTime date;
-
-                                    private long contactIdWhereTheReceiverIsTheUser1;
-
-                                    private long senderId;
-
-                                    private long receiverId;
-
-                                    private String messageType;
-
-                                    private boolean viewed;
-
-                                    private List<byte[]> hashedImage;
-
-                                    private String hashedAudio;
-
-                                    private String hashedText;*/
-                                    /*socket.emit("text_message", {
-                                        message: linkify(value),
-                                        conversation_id: room_id,
-                                        from: user_id,
-                                        to: current_conversation.user_id,
-                                        type: containsUrl(value) ? "Link" : "Text",
-                                    });*/
                                 }}
                             >
                                 <PaperPlaneTilt color="#ffffff"/>

@@ -45,8 +45,8 @@ const GeneralApp = () => {
                                     : "6px solid #0162C4",
                         }}
                     >
-                        {(chat_type === "individual") &&
-                            (room_id !== null || current_conversation_fake)? (
+                        {/*(chat_type === "individual") &&*/}
+                        {(room_id !== null || current_conversation_fake !== null)? (
                             console.log("ROOM ID CHANGED"),
                             <ChatComponent current_conversation_fake={current_conversation_fake ? current_conversation_fake : null}/>
                         ) : (
