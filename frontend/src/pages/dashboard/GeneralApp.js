@@ -48,7 +48,7 @@ const GeneralApp = () => {
                         {(chat_type === "individual") &&
                             (room_id !== null || current_conversation_fake)? (
                             console.log("ROOM ID CHANGED"),
-                            <ChatComponent/>
+                            <ChatComponent current_conversation_fake={current_conversation_fake ? current_conversation_fake : null}/>
                         ) : (
                             <Stack
                                 spacing={2}

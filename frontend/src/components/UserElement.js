@@ -13,7 +13,11 @@ import {Chat} from "phosphor-react";
 import {socket} from "../socket";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../routes";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {dispatch} from "../redux/store";
+import {SetCurrentConversation, SetCurrentConversationFake} from "../redux/slices/conversation";
+import {SelectConversation} from "../redux/slices/app";
+import ChatComponent from "../pages/dashboard/Conversation";
 
 
 const StyledChatBox = styled(Box)(({theme}) => ({
@@ -181,6 +185,8 @@ const FriendElement = ({
                        }) => {
     const theme = useTheme();
     const {user_id} = useSelector((state) => state.auth);
+    const {conversations} = useSelector((state) => state.conversation.direct_chat);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -225,6 +231,26 @@ const FriendElement = ({
                 <Stack direction={"row"} spacing={2} alignItems={"center"}>
                     <IconButton
                         onClick={() => {
+
+                            let filteredContact =  conversations.length != 0 ?
+                                conversations.filter(contact => contact.name == username) : [];
+
+                            if (filteredContact && filteredContact.length != 0) {
+                                let contact = filteredContact[0];
+                                if (!contact.displayed) contact = {...contact, displayed: true}
+                                dispatch(SelectConversation({room_id: contact.id}));
+                            } else {
+                                const contact_fake = {
+                                    name: username,
+                                    online: true,
+                                    img: profilePicture,
+                                    user_id: id,
+                                }
+                                console.log("ssssssssssssssssssssssssssssssssssssssssssssss");
+                                dispatch(SetCurrentConversationFake(contact_fake));
+                            }
+                            handleClose();
+
                             // start a new conversation
                             //socket.emit("start_conversation", {to: id, from: user_id});
                         }}

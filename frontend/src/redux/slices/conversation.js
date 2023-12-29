@@ -40,6 +40,7 @@ const slice = createSlice({
                     unread: el.unreadMessages,
                     displayed: el.displayed,
                     pinned: false,
+                    disabled: el.disabled,
                     bio: el.bio,
                 };
 

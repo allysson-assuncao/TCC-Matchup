@@ -70,8 +70,10 @@ const ChatHeader = ({current_conversation_fake}) => {
         const isMobile = useResponsive("between", "md", "xs", "sm");
         const theme = useTheme();
 
-    const {current_conversation} = useSelector((state) => state.conversation.direct_chat);
-
+        let {current_conversation} = useSelector((state) => state.conversation.direct_chat);
+        if (current_conversation_fake) {
+            current_conversation = current_conversation_fake;
+        }
 
         const [conversationMenuAnchorEl, setConversationMenuAnchorEl] =
             React.useState(null);

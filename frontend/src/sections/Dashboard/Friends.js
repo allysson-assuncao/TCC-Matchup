@@ -13,7 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const FriendsList = () => {
+const FriendsList = ({handleClose}) => {
     const dispatch = useDispatch();
 
     const {friends} = useSelector((state) => state.app);
@@ -26,7 +26,7 @@ const FriendsList = () => {
     return (
         <>
             {friends.map((el, idx) => {
-                return <FriendElement key={idx} {...el} />;
+                return <FriendElement key={idx}  handleClose={handleClose} {...el} />;
             })}
         </>
     );
