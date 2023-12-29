@@ -11,6 +11,7 @@ import com.matchup.model.message.AudioMessage;
 import com.matchup.model.message.ImageMessage;
 import com.matchup.model.message.Message;
 import com.matchup.model.message.TextMessage;
+import com.matchup.repository.BlockRepository;
 import com.matchup.repository.ContactRepository;
 import com.matchup.repository.UserRepository;
 import com.matchup.repository.message.MessageRepository;
@@ -36,12 +37,15 @@ public class ContactService {
 
     private final UserRepository userRepository;
 
+    private final BlockRepository blockRepository;
+
     @Autowired
-    public ContactService(ContactRepository contactRepository, MessageRepository messageRepository, ImageService imageService, UserRepository userRepository) {
+    public ContactService(BlockRepository blockRepository, ContactRepository contactRepository, MessageRepository messageRepository, ImageService imageService, UserRepository userRepository) {
         this.contactRepository = contactRepository;
         this.messageRepository = messageRepository;
         this.imageService = imageService;
         this.userRepository = userRepository;
+        this.blockRepository = blockRepository;
     }
 
 
@@ -69,6 +73,8 @@ public class ContactService {
                     .user2Username(user2.getUsername())
                     .unreadMessages(messageRepository.countUnreadMessagesByReceiverAndSenderUsernames(user1.getUsername(), user2.getUsername()))
                     /*.pinned()*/
+                    .blockedMe(blockRepository.existsByBlockerIdAndBlockedId(user2.getId(), user1.getId()))
+                    .isBlockedByMe(blockRepository.existsByBlockedIdAndBlockerId(user2.getId(), user1.getId()))
                     .profilePicture(imageService.getFormattedProfilePictureById(user2.getId(), 128))
                     .displayed(contact.isDisplayed())
                     .bio(user2.getBio())

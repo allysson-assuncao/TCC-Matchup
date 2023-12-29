@@ -62,6 +62,7 @@ public class MessageController {
     @MessageMapping("/send-private-message")
     /*@SendToUser("/queue/private-messages")*/
     public void sendPrivateMessage(MessageDto messageDto) {
+        System.out.println("Mensagem recebida: " + messageDto);
         messageDto = messageService.sendMessage(messageDto);
         messageDto.setContactId(messageService.findContactId(messageDto.getReceiverId(), messageDto.getSenderId()));
         simpMessagingTemplate.convertAndSendToUser(

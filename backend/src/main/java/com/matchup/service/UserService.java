@@ -66,8 +66,10 @@ public class UserService {
 
     private final ImageService imageService;
 
+    private final ContactRepository contactRepository;
+
     @Autowired
-    public UserService(UserRepository userRepository, InterestRepository interestRepository, ProfilePictureRepository profilePictureRepository, FriendshipService friendshipService, FriendshipRepository friendshipRepository, BlockRepository blockRepository, PasswordEncoder passwordEncoder, TokenRepository tokenRepository, JwtService jwtService, AuthenticationManager authenticationManager, ImageService imageService) {
+    public UserService(ContactRepository contactRepository, UserRepository userRepository, InterestRepository interestRepository, ProfilePictureRepository profilePictureRepository, FriendshipService friendshipService, FriendshipRepository friendshipRepository, BlockRepository blockRepository, PasswordEncoder passwordEncoder, TokenRepository tokenRepository, JwtService jwtService, AuthenticationManager authenticationManager, ImageService imageService) {
         this.userRepository = userRepository;
         this.interestRepository = interestRepository;
         this.profilePictureRepository = profilePictureRepository;
@@ -78,6 +80,7 @@ public class UserService {
         this.tokenRepository = tokenRepository;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+        this.contactRepository = contactRepository;
         this.imageService = imageService;
     }
 
@@ -285,6 +288,7 @@ public class UserService {
         if (userBlockerOp.isEmpty() || userBlockedOp.isEmpty()) return false;
         User userBlocker = userBlockerOp.get();
         User userBlocked = userBlockedOp.get();
+
 
         if (friendshipService.existsFriendshipByUsersId(blockerId, blockedId)) {
             friendshipService.endFriendship(blockerId, blockedId);

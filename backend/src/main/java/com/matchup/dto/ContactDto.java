@@ -23,6 +23,9 @@ public class ContactDto {
 
     private int unreadMessages;
 
+    private boolean isBlockedByMe;
+
+    private boolean blockedMe;
 
     private long creatorId;
 
