@@ -33,6 +33,9 @@ public interface InterestRepository extends JpaRepository<Interest, Long>, JpaSp
     List<String> findCommonInterests(@Param("userId1") Long userId1, @Param("userId2") Long userId2);
 
 
+    @Query("SELECT CASE WHEN COUNT(i) > 0 THEN true ELSE false END FROM Interest i JOIN i.users u WHERE u.id = :userId")
+    boolean existsInterestsByUseId(@Param("userId") long userId);
+
 
 
     // <editor-fold desc="SQL to add Language List">

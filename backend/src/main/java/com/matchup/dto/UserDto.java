@@ -39,6 +39,8 @@ public class UserDto {
 
     private String token;
 
+    private boolean hasInterests;
+
     private long addressId;
     private int addressNumber;
     private String addressStreet;

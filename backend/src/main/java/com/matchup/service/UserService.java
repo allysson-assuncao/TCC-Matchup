@@ -252,6 +252,7 @@ public class UserService {
 
         User user = userRepository.save(userToUpdate);
 
+
         UserDto userDto2 = UserDto.builder()
                 .id(user.getId())
                 .username(user.getUsername())
@@ -263,6 +264,7 @@ public class UserService {
                 .cellphoneNumber(user.getCellphoneNumber())
                 .bio(user.getBio())
                 .access(user.getAccess())
+                .hasInterests(interestRepository.existsInterestsByUseId(user.getId()))
                 .build();
 
         if (userDto.getUsername() != null) {
@@ -464,6 +466,7 @@ public class UserService {
                 .birthDate(user.getBirthDate())
                 .cellphoneNumber(user.getCellphoneNumber())
                 .bio(user.getBio())
+                .hasInterests(interestRepository.existsInterestsByUseId(user.getId()))
                 .access(user.getAccess())
                 .build();
     }
@@ -528,17 +531,19 @@ public class UserService {
         Random generator = new Random();
         long profileId;
         do {
-            int generatedNumber = generator.nextInt(1, userIdList.size());
+            int generatedNumber = generator.nextInt(userIdList.size());
             profileId = userIdList.get(generatedNumber);
-
-        } while (friendshipRepository.existsByUsers(profileId, loggedUserId) ||
-                blockRepository.existsByBlockedIdAndBlockerId(profileId, loggedUserId) ||
-                blockRepository.existsByBlockerIdAndBlockedId(profileId, loggedUserId) ||
-                profileId == loggedUserId ||
-                ids.contains(profileId));
+            if(friendshipRepository.existsByUsers(profileId, loggedUserId) ||
+                    blockRepository.existsByBlockedIdAndBlockerId(profileId, loggedUserId) ||
+                    blockRepository.existsByBlockerIdAndBlockedId(profileId, loggedUserId) ||
+                    profileId == loggedUserId){
+                ids.add(profileId);
+            }
+            if (userIdList.size()-1 == ids.size()) return null;
+        } while (ids.contains(profileId));
 
         List<String> interestNames = interestRepository.findCommonInterests(profileId, loggedUserId);
-
+        System.out.println(interestNames);
         Optional<User> profileOp = userRepository.findById(profileId);
         if (profileOp.isEmpty()) {
             System.out.println(profileId);
@@ -546,7 +551,7 @@ public class UserService {
 
         User profile = profileOp.get();
 
-        String profilePicture = imageService.getFormattedProfilePictureById(profileId, 480);
+        String profilePicture = imageService.getFormattedProfilePictureById(profileId, 256);
 
         return ProfileDto.builder()
                 .id(profileId)
