@@ -4,17 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="solving a lot of stuff">
+    <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="creating contact while sending first message between 2 friends">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/GetProfileNotIncludedInIdsRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ContactDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/ContactDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/ContactService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/api/user_requests/profile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/api/user_requests/profile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/data/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/data/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/SideNav.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/SideNav.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/routes/index.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="load contacts list and show its data" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
-    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java" afterDir="false" />
+    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="Changes by anybo">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +61,29 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/MessageService.java">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/repository/UserRepository.java">
       <ranges>
-        <range start1="14" end1="14" start2="14" end2="15" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="42" end1="42" start2="43" end2="47" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="44" end1="45" start2="49" end2="50" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="53" end1="53" start2="58" end2="60" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="58" end1="58" start2="65" end2="66" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="73" end1="73" start2="81" end2="96" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="74" end1="76" start2="97" end2="116" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+        <range start1="9" end1="9" start2="9" end2="10" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="16" end1="16" start2="17" end2="21" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
+      <ranges>
+        <range start1="41" end1="41" start2="41" end2="42" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="354" end1="361" start2="355" end2="363" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="444" end1="445" start2="446" end2="446" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="518" end1="518" start2="519" end2="560" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/ProfileController.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="3" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="10" end1="11" start2="10" end2="11" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="14" end1="15" start2="14" end2="14" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="24" end1="24" start2="23" end2="25" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="26" end1="27" start2="27" end2="28" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="29" end1="29" start2="30" end2="31" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="46" end1="46" start2="48" end2="68" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
       </ranges>
     </file>
   </component>
@@ -244,7 +267,9 @@
       <workItem from="1703767038905" duration="1003000" />
       <workItem from="1703768051376" duration="5663000" />
       <workItem from="1703786367626" duration="3039000" />
-      <workItem from="1703853402726" duration="5492000" />
+      <workItem from="1703853402726" duration="6149000" />
+      <workItem from="1703873250171" duration="3696000" />
+      <workItem from="1703939369261" duration="8397000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>
@@ -280,22 +305,6 @@
       <option name="presentableId" value="LOCAL-00023" />
       <option name="project" value="LOCAL" />
       <updated>1696874112362</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Making progress in the Notification features">
-      <option name="closed" value="true" />
-      <created>1697053011469</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1697053011469</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Making a lot of progress in a bunch of stuff">
-      <option name="closed" value="true" />
-      <created>1697148109628</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1697148109628</updated>
     </task>
     <task id="LOCAL-00029" summary="Making a lot of progress in a bunch of stuff">
       <option name="closed" value="true" />
@@ -621,15 +630,29 @@
       <option name="project" value="LOCAL" />
       <updated>1703707960728</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="creating contact while sending first message between 2 friends">
+      <option name="closed" value="true" />
+      <created>1703863128130</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1703863128131</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Changes by anybo">
+      <option name="closed" value="true" />
+      <created>1703863132770</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1703863132770</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Get Notification method" />
-    <MESSAGE value="Making progress in the Notification features" />
     <MESSAGE value="Making a lot of progress in a bunch of stuff" />
     <MESSAGE value=";-; idProfile is making us mad" />
     <MESSAGE value="Working on Friendship Solicitation pendencies" />
@@ -653,7 +676,9 @@
     <MESSAGE value="all profile operations working definitely and making a lot of progress in the interest management code" />
     <MESSAGE value="load contacts list and show its data" />
     <MESSAGE value="having some trouble with the chat stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="having some trouble with the chat stuff" />
+    <MESSAGE value="creating contact while sending first message between 2 friends" />
+    <MESSAGE value="Changes by anybo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by anybo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

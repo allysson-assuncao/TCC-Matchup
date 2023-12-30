@@ -39,6 +39,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 @Service
@@ -352,13 +353,14 @@ public class UserService {
 
         User user;
         //if (isEmail) {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.getEmailOrUsername(),
-                            request.getRawPassword()
-                    )
-            );
-        user = isEmail ? userRepository.findByEmail(request.getEmailOrUsername()).get() : userRepository.findByUsername(request.getEmailOrUsername()).get();;
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmailOrUsername(),
+                        request.getRawPassword()
+                )
+        );
+        user = isEmail ? userRepository.findByEmail(request.getEmailOrUsername()).get() : userRepository.findByUsername(request.getEmailOrUsername()).get();
+        ;
         /*} else {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -442,7 +444,6 @@ public class UserService {
     }
 
 
-
     public User getUserByUsername(String username) {
         Optional<User> userOp = userRepository.findByUsername(username);
         if (userOp.isEmpty()) return null;
@@ -511,6 +512,47 @@ public class UserService {
                 .friendshipStatus(friendshipStatus)
                 .blockedMe(blockedMe)
                 .blockedByMe(blockedByMe)
+                .profilePicture(profilePicture)
+                .interestNames(interestNames)
+                .build();
+
+    }
+
+    public ProfileDto getProfileNotIncludedInIds(String username, List<Long> ids) {
+        final long loggedUserId = userRepository.getIdByUsername(username);
+        List<Long> userIdList = userRepository.findUserId().get();
+
+        System.out.println("ids que vem do frontend: " + ids.size() + "banco" + userIdList.size());
+        if (userIdList.size()-1 == ids.size()) return null;
+
+        Random generator = new Random();
+        long profileId;
+        do {
+            int generatedNumber = generator.nextInt(1, userIdList.size());
+            profileId = userIdList.get(generatedNumber);
+
+        } while (friendshipRepository.existsByUsers(profileId, loggedUserId) ||
+                blockRepository.existsByBlockedIdAndBlockerId(profileId, loggedUserId) ||
+                blockRepository.existsByBlockerIdAndBlockedId(profileId, loggedUserId) ||
+                profileId == loggedUserId ||
+                ids.contains(profileId));
+
+        List<String> interestNames = interestRepository.findCommonInterests(profileId, loggedUserId);
+
+        Optional<User> profileOp = userRepository.findById(profileId);
+        if (profileOp.isEmpty()) {
+            System.out.println(profileId);
+        }
+
+        User profile = profileOp.get();
+
+        String profilePicture = imageService.getFormattedProfilePictureById(profileId, 480);
+
+        return ProfileDto.builder()
+                .id(profileId)
+                .name(profile.getName())
+                .username(profile.getUsername())
+                .bio(profile.getBio())
                 .profilePicture(profilePicture)
                 .interestNames(interestNames)
                 .build();

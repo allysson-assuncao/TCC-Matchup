@@ -109,7 +109,7 @@ const SideBar = () => {
                                         }}
                                         sx={{width: "max-content", color: "#ffffff"}}
                                     >
-                                        <Badge color="secondary" badgeContent={el.index != 0 ? 0 : unreadMessagesCount}>
+                                        <Badge color="secondary" badgeContent={el.index != 1 ? 0 : unreadMessagesCount}>
                                             {el.icon}
                                             {console.log(unreadMessagesCount)}
                                         </Badge>
@@ -128,7 +128,7 @@ const SideBar = () => {
                                                 : theme.palette.text.primary,
                                     }}
                                 >
-                                    <Badge color="secondary" badgeContent={el.index != 0 ? 0 : unreadMessagesCount}>
+                                    <Badge color="secondary" badgeContent={el.index != 1 ? 0 : unreadMessagesCount}>
                                         {el.icon}
                                     </Badge>
                                 </IconButton>
