@@ -17,6 +17,8 @@ const Loadable = (Component) => (props) => {
     );
 };
 
+export const ROUTE_PROFILE_RESEARCH = "/busca_de_usuários";
+
 export const ROUTE_MY_PROFILE = "/meu-perfil";
 
 export const ROUTE_PROFILE = "/perfil";
@@ -59,6 +61,7 @@ export default function Router() {
                 {path: "chats", element: <Chats/>},
                 {path: "contact", element: <Contact/>},
                 {path: ROUTE_MY_PROFILE, element: <MyProfile/>},
+                {path: ROUTE_PROFILE_RESEARCH, element: <ProfileSearch/>},
                 {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
                 {path: "old-profile", element: <GeneralInfo/>},
                 {path: ROUTE_REGISTER_INTERESTS, element: <RegisterInterest/>},
@@ -116,4 +119,7 @@ const MyProfile = Loadable(
 );
 const Profile = Loadable(
     lazy(() => import("../pages/dashboard/Profile"))
+);
+const ProfileSearch = Loadable(
+    lazy(() => import("../pages/dashboard/ProfileSearch"))
 );

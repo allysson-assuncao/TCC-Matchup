@@ -21,3 +21,29 @@ export const getProfileByUsernameAndUserId = async (username: string, userId: bi
         }
     }
 };
+
+export const getProfileNotIncludedInIds = async (token: string, ids: number[]): Promise<{}> => {
+    try {
+        const response: AxiosResponse<{}> =
+            await axios.post(`${API_BASE_URL}find-user`, {ids: [...ids]},
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+        return response.data;
+
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            const axiosError = error as AxiosError;
+            if (axiosError.response?.status === 409) {
+                console.error('Network or Server Error:', axiosError.message);
+            }
+            throw error;
+        } else {
+            console.error('Erro não relacionado ao Axios:', error);
+            throw error;
+        }
+    }
+};

@@ -20,13 +20,13 @@ import {Notifications} from "@mui/icons-material";
 const getPath = (index) => {
     switch (index) {
         case 0:
-            return "/app";
+            return "/busca_de_usuários";
 
         case 1:
-            return "/group";
+            return "/app";
 
         case 2:
-            return "/call";
+            return "/group";
 
         case 3:
             return "/settings";
