@@ -1,6 +1,6 @@
 import {useState} from "react";
 import * as Yup from "yup";
-import {Link as RouterLink} from "react-router-dom";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
 // form
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
@@ -21,6 +21,8 @@ export default function AuthLoginForm() {
     const [showPassword, setShowPassword] = useState(false);
 
     const {isLoading} = useSelector((state) => state.auth);
+
+    const navigate = useNavigate();
 
     const LoginSchema = Yup.object().shape({
         emailOrUsername: Yup.string()

@@ -71,7 +71,7 @@ const SignUpStep2: React.FC = () => {
             >
                 {/*<img src={logo+''} alt=""/>*/}
                 <Typography component="h1" variant="h5">
-                    Faça Cadastro
+                    Cadastre-se
                 </Typography>
 
 

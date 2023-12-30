@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Stack} from "@mui/material";
-import {Navigate, Outlet} from "react-router-dom";
+import {Navigate, Outlet, useNavigate} from "react-router-dom";
 import useResponsive from "../../hooks/useResponsive";
 import SideNav from "./SideNav";
 import {useDispatch, useSelector} from "react-redux";
@@ -35,6 +35,8 @@ const DashboardLayout = () => {
     const dispatch = useDispatch();
     const {user_id, isLoggedIn, token} = useSelector((state) => state.auth);
     const {user, isUserUpdated, notifications} = useSelector((state) => state.app);
+
+    const navigate = useNavigate();
 
 
     const {conversations, current_conversation} = useSelector(

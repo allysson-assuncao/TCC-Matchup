@@ -17,7 +17,10 @@ import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
 import {removeProfilePicture} from "./Home";
 import {useDispatch, useSelector} from "react-redux";
 import {LogoutUser, RegisterUser} from "../../redux/slices/auth";
-import {User} from "./../../model/user";
+import {UpdateUserPayload, User} from "./../../model/user";
+import {ROUTE_REGISTER_INTERESTS} from "../../App2";
+import {updateUserData} from "../../api/user_requests/updateUserData";
+import {UpdateUserProfile} from "../../redux/slices/app";
 
 const steps = ['Pessoais', 'Endereço', 'Perfil'];
 
@@ -38,6 +41,7 @@ const SignUp: React.FC = () => {
         addressNeighborhood: '',
         addressStreet: '',
         addressNumber: 0,
+
     });
 
     const handleNext = () => {
@@ -59,14 +63,26 @@ const SignUp: React.FC = () => {
             dispatch(RegisterUser(formValues));
 
             handleNext();
-        } else if (activeStep == steps.length - 1) {
-            if (!user) {
-                console.error("Erro: Usuário não está logado.");
-                return;
+        }/* else if (activeStep == steps.length - 1) {
+            let user2: UpdateUserPayload = {
+                id: user ? user?.id : BigInt(-1),
+                bio: ,
+                cellphoneNumber: formValues?.cellphoneNumber,
             }
-            localStorage.setItem("profilePicture", await getProfilePictureByUserId(user.id, 800, 800));
-            navigate("cadastro_de_interesses");
-        }
+
+            if (imageWasChanged) {
+                user2.profilePicture = profilePicture;
+            }
+            console.log(user2);
+            let updatedUser: User = await updateUserData(user);
+
+            if (!updatedUser) return;
+            // @ts-ignore
+            dispatch(UpdateUserProfile(updatedUser));
+            setOpen(true);
+            /!*navigate("home");*!/
+            navigate(ROUTE_REGISTER_INTERESTS);
+        }*/
 
     };
 
@@ -99,7 +115,6 @@ const SignUp: React.FC = () => {
             <CssBaseline/>
             <Box
                 sx={{
-                    marginTop: 10,
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

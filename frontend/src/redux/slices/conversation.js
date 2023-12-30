@@ -76,7 +76,7 @@ const slice = createSlice({
             state.direct_chat.current_conversation_fake = null;
         },
         setCurrentConversationFake(state, action) {
-            state.direct_chat.current_conversation_fake = action.payload;
+            state.direct_chat.current_conversation_fake = action.payload.current_conversation_fake; ////////////
             state.direct_chat.current_messages = [];
         },
         fetchCurrentMessages(state, action) {

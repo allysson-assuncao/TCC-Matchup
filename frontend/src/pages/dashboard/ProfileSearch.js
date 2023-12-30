@@ -1,19 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {Avatar, Box, Button, Chip, IconButton, Stack, Typography} from "@mui/material";
-import {CaretLeft, CaretRight, GameController, Prohibit, Trash} from "phosphor-react";
+import {CaretLeft, CaretRight, Chat, GameController, Prohibit, Trash} from "phosphor-react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "@mui/material/styles";
 import {useNavigate, useParams} from "react-router-dom";
-import {ROUTE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
+import {ROUTE_CHAT, ROUTE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND, ROUTE_PROFILE} from "../../routes";
 import {getProfileByUsernameAndUserId, getProfileNotIncludedInIds} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
 import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
 import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
-import {UpdateLastEndedFriendship} from "../../redux/slices/app";
+import {SelectConversation, UpdateLastEndedFriendship} from "../../redux/slices/app";
 import {FRIENDSHIP_STATUS} from "../../model/friendship";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {ROUTE_INTEREST_MANAGEMENT} from "../../App2";
 import {client} from "../../socket";
+import {SetCurrentConversationFake} from "../../redux/slices/conversation";
 
 const ProfileSearch = () => {
         const theme = useTheme();
@@ -25,6 +26,7 @@ const ProfileSearch = () => {
             lastFriendshipResponse
         } = useSelector((state) => state.app);
         const {isLoggedIn, token} = useSelector((state) => state.auth);
+        const {conversations} = useSelector((state) => state.conversation.direct_chat);
 
         const [profileList, setProfileList] = useState([]);
 
@@ -32,9 +34,16 @@ const ProfileSearch = () => {
 
         const [index, setIndex] = useState(0);
 
+        const navigate = useNavigate();
+
         async function handleLeft() {
-            setProfile(profileList[index-1]);
-            await setIndex(index - 1);
+            if (index == 0) {
+                await setIndex(profileList.length - 1);
+                setProfile(profileList[profileList.length - 1]);
+            } else {
+                setProfile(profileList[index - 1]);
+                await setIndex(index - 1);
+            }
         }
 
         async function handleRight() {
@@ -69,6 +78,13 @@ const ProfileSearch = () => {
             searchFirstProfile()
 
         }, []);
+
+        const [randomValue, setRandomValue] = useState(0);
+
+        useEffect(() => {
+            const value = (Math.random() * (300 - 0.1) + 0.1).toFixed(1);
+            setRandomValue(value);
+        }, [profile]);
 
 
         /*useEffect(() => {
@@ -143,7 +159,9 @@ const ProfileSearch = () => {
 
                                         src={profile.profilePicture}
                                         alt={profile.name}
-                                        sx={{height: 128, width: 128}}
+                                        sx={{height: 128, width: 128, cursor: "pointer"}}
+                                        onClick={() => navigate(`${ROUTE_PROFILE}/${profile.username}`)}
+                                        title={"Acessar perfil"}
                                     />
 
                                     <Stack direction="row">
@@ -196,7 +214,7 @@ const ProfileSearch = () => {
                                         onClick={() => {
                                             handleLeft();
                                         }}
-                                        disabled={index == 0 || !profileList}
+                                        /*disabled={index == 0 || !profileList}*/
                                         title={(profileList.length == 0 || !profileList) ? 'Não há perfis a esquerda ainda' : "Clique para ver o perfil da esquerda!"}
                                         fullWidth
                                         startIcon={<CaretLeft/>}

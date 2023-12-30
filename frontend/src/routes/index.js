@@ -31,6 +31,8 @@ export const ROUTE_INTERESTS = "/interesses";
 
 export const ROUTE_LOGIN = "login";
 
+export const ROUTE_REGISTER = "cadastro";
+
 export const ROUTE_INDEX = "introdução";
 
 export const ROUTE_CHAT = "/chat";
@@ -44,7 +46,7 @@ export default function Router() {
             children: [
                 {path: ROUTE_LOGIN, element: <LoginPage/>},
                 {path: "register", element: <RegisterPage/>},
-                {path: "cadastro", element: <SignUp/>},
+                {path: ROUTE_REGISTER, element: <SignUp/>},
                 {path: "reset-password", element: <ResetPasswordPage/>},
                 {path: "new-password", element: <NewPasswordPage/>},
                 {path: "verify", element: <VerifyPage/>},
