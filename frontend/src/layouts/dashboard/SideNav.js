@@ -23,7 +23,7 @@ const getPath = (index) => {
             return "/busca_de_usuários";
 
         case 1:
-            return "/app";
+            return "/chat";
 
         case 2:
             return "/group";

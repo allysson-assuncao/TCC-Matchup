@@ -52,7 +52,8 @@ export default function AuthLoginForm() {
             // submit data to backend
             await dispatch(LoginUser(data)).then(() => {
                 window.location.reload();
-                dispatch(FetchUserProfile())
+                dispatch(FetchUserProfile());
+                navigate("/meu-perfil");
             });
 
         } catch (error) {

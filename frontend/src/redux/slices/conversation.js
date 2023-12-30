@@ -72,7 +72,7 @@ const slice = createSlice({
 
         },
         setCurrentConversation(state, action) {
-            state.direct_chat.current_conversation = action.payload;
+            state.direct_chat.current_conversation = action.payload.current_conversation; ////////////////
             state.direct_chat.current_conversation_fake = null;
         },
         setCurrentConversationFake(state, action) {
@@ -233,14 +233,14 @@ export const UpdateDirectConversation = ({conversation}) => {
 
 export const SetCurrentConversation = (current_conversation) => {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.setCurrentConversation(current_conversation));
+        dispatch(slice.actions.setCurrentConversation({current_conversation}));
         dispatch(slice.actions.setUnseenMessages({conversationId: current_conversation.id}));
     };
 };
 
 export const SetCurrentConversationFake = (current_conversation_fake) => {
     return async (dispatch, getState) => {
-        dispatch(slice.actions.setCurrentConversationFake(current_conversation_fake));
+        dispatch(slice.actions.setCurrentConversationFake({current_conversation_fake}));
     };
 };
 

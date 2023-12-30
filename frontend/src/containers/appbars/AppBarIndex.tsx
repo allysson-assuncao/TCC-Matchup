@@ -19,7 +19,7 @@ import {
 import {useTheme} from "@mui/material/styles";
 // @ts-ignore
 import Logo from "../../assets/Images/logo.ico";
-import {ROUTE_LOGIN} from "../../routes";
+import {ROUTE_LOGIN, ROUTE_REGISTER} from "../../routes";
 
 const AppBarIndex = () => {
     const theme = useTheme();
@@ -85,7 +85,7 @@ const AppBarIndex = () => {
                         <Grid item xs textAlign="right">
                             <Box display="flex" justifyContent="flex-end">
                                 <Button
-                                    onClick={() => history(ROUTE_SIGN_UP)}
+                                    onClick={() => history(`/auth/${ROUTE_REGISTER}`)}
                                     variant="outlined"
                                     sx={{ my: 1, mx: 1.5 }}
                                     color="secondary"

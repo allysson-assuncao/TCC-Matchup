@@ -60,11 +60,11 @@ export type SignUpStep4Payload = {
 };
 
 export type UpdateUserPayload = {
-    id: bigint;
-    username?: undefined | string;
-    cellphoneNumber?: undefined | string;
-    bio?: undefined | string;
-    profilePicture?: undefined | File;
+    id?: bigint;
+    username?: undefined | string | null;
+    cellphoneNumber?: undefined | string | null;
+    bio?: undefined | string | null;
+    profilePicture?: undefined | File | null;
 };
 
 export type FriendPayload = {

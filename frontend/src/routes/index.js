@@ -33,6 +33,8 @@ export const ROUTE_LOGIN = "login";
 
 export const ROUTE_INDEX = "introdução";
 
+export const ROUTE_CHAT = "/chat";
+
 
 export default function Router() {
     return useRoutes([
@@ -54,7 +56,8 @@ export default function Router() {
             children: [
                 {element: <Navigate to={DEFAULT_PATH} replace/>, index: true},
                 {path: "index", element: <AppIndex/>},
-                {path: "app", element: <GeneralApp/>},
+                {path: "/app", element: <ProfileSearch/>},
+                {path: "/chat", element: <GeneralApp/>},
                 {path: "group", element: <Group/>},
                 {path: "settings", element: <Settings/>},
                 {path: "conversation", element: <Conversation/>},

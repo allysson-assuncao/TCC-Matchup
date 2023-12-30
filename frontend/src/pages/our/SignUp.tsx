@@ -55,16 +55,8 @@ const SignUp: React.FC = () => {
             handleNext();
         } else if (activeStep == steps.length - 2) {
             values.birthDate = format(Date.parse(values.birthDate), 'yyyy-MM-dd');
-            console.log(values.rawPassword);
-            let user = await register(values);
-
-            console.log(user);
-            actions.setSubmitting(false);
-            /*dispatch(LogoutUser());*/
-            removeProfilePicture();
-            localStorage.setItem('user', JSON.stringify(user));
-            /*dispatch(RegisterUser(user));*/
-            console.log(localStorage.getItem('user'));
+            // @ts-ignore
+            dispatch(RegisterUser(formValues));
 
             handleNext();
         } else if (activeStep == steps.length - 1) {

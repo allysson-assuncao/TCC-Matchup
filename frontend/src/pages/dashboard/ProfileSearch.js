@@ -41,26 +41,23 @@ const ProfileSearch = () => {
             if (index >= profileList.length - 1) {
                 const searchedProfile = await getProfileNotIncludedInIds(token, profileList.map(profile => profile.id));
                 console.log(searchedProfile);
-                setProfileList((prevProfileList) => [...prevProfileList, searchedProfile]);
-                setProfile(searchedProfile);
-            }else{
+                if (!searchedProfile || searchedProfile == "") {
+                    setIndex(0);
+                    setProfile(profileList[0]);
+                    return;
+                } else {
+                    setProfileList((prevProfileList) => [...prevProfileList, searchedProfile]);
+                    setProfile(searchedProfile);
+                }
+
+            } else {
                 setProfile(profileList[index + 1]);
             }
 
             await setIndex(index + 1)/* % profileList.length*/;
         }
 
-        const navigate = useNavigate();
-
         useEffect(() => {
-            /*setProfile(async (prevProfile) => {
-                const profile = await getProfileNotIncludedInIds(token, []);
-                console.log(profile)
-                setProfileList((prevProfileList) => [...prevProfileList, profile])
-                setIndex(0)/!* % profileList.length*!/;
-                //prevProfile = {...profile}
-                return profileList[index];
-            });*/
             const searchFirstProfile = async () => {
                 const searchedProfile = await getProfileNotIncludedInIds(token, []);
                 console.log(searchedProfile)
@@ -133,47 +130,68 @@ const ProfileSearch = () => {
                         {profile && (
                             <Stack p={4} spacing={7}>
                                 {/* Header */}
-                                <Stack direction="row" /*justifyContent={"space-between"}*/ alignItems={"center"}
+                                <Stack direction="row" justifyContent={"center"} alignItems={"center"}
                                        spacing={3}>
-                                    <IconButton>
-                                        <CaretLeft size={24} color={"#4B4B4B"} onClick={() => navigate(-1)}/>
-                                    </IconButton>
-
-                                    <Typography justifyContent={"center"} variant="h5">{profile.username}</Typography>
+                                    <Typography sx={{cursor: "pointer"}} justifyContent={"center"} variant="h5"
+                                                title={"Acessar perfil"}
+                                                onClick={() => navigate(`${ROUTE_PROFILE}/${profile.username}`)}>{profile.username}</Typography>
                                 </Stack>
 
                                 {/* MyProfile Edit Form */}
                                 <Stack spacing={4} alignItems={"center"}>
                                     <Avatar
+
                                         src={profile.profilePicture}
                                         alt={profile.name}
                                         sx={{height: 128, width: 128}}
                                     />
 
-                                    <ProfileButtons profile={profile} setProfile={setProfile}></ProfileButtons>
+                                    <Stack direction="row">
+                                        <Button
+                                            startIcon={<Chat/>}
+                                            onClick={() => {
+                                                    const contact_fake = {
+                                                        name: profile.username,
+                                                        online: true,
+                                                        img: profile.profilePicture,
+                                                        user_id: profile.id,
+                                                    }
+                                                    console.log("contact_fake");
+                                                    dispatch(SetCurrentConversationFake(contact_fake));
+                                                    dispatch(SelectConversation({room_id: null}));
+                                                    navigate(ROUTE_CHAT);
+                                                }
+                                            }
+                                        >
+                                            Conversar
+                                        </Button>
 
-                                    <Typography color={theme.palette.primary.main}
-                                                variant="h4">{profile.name}</Typography>
+                                        <ProfileButtons profile={profile} setProfile={setProfile}></ProfileButtons>
+                                    </Stack>
+
+                                    <Typography
+                                        color={theme.palette.primary.main}
+                                        title={"Acessar perfil"}
+                                        onClick={() => navigate(`${ROUTE_PROFILE}/${profile.username}`)}
+                                        variant="h4"
+                                        sx={{cursor: "pointer"}}
+                                    >
+                                        {profile.name}
+                                    </Typography>
+
+                                    <Typography color={randomValue < 1 ? "red" : (randomValue < 10 ? "orange" :theme.palette.secondary)}
+                                                variant="body1">Há {randomValue} km de você</Typography>
 
                                     <Typography color={theme.palette.primary.main}
                                                 variant="body1">{profile.bio}</Typography>
 
-                                    {/*{profile.interestNames && profile.interestsNames.length != 0
+                                    {profile.interestNames && profile.interestNames.length != 0
                                         && (<Stack direction={'row'} justifyContent={"right"} spacing={5}>
                                         {profile.interestNames.map((text, index) => (
                                             <Chip key={index} label={text} style={{margin: 4}}/>
                                         ))}
                                     </Stack>)}
-                                    <Button
-                                        onClick={() => {
-                                            navigate(`${ROUTE_INTERESTS}/${profile.username}`);
-                                        }}
-                                        title={"Interesses"}
-                                        startIcon={<GameController/>}
-                                        variant="contained"
-                                    >
-                                        Interesses
-                                    </Button>*/}
+
                                     <Button
                                         onClick={() => {
                                             handleLeft();

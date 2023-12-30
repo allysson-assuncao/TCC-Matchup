@@ -251,8 +251,6 @@ const FriendElement = ({
                             }
                             handleClose();
 
-                            // start a new conversation
-                            //socket.emit("start_conversation", {to: id, from: user_id});
                         }}
                     >
                         <Chat/>

@@ -218,7 +218,7 @@ export function RegisterUser(formValues) {
                 console.log(response);
                 dispatch(
                     slice.actions.updateRegisterEmail({email: formValues.email})
-                );
+                );*/
 
                 dispatch(
                     showSnackbar({severity: "success", message: response.data.message})
@@ -234,11 +234,11 @@ export function RegisterUser(formValues) {
                     slice.actions.updateIsLoading({error: true, isLoading: false})
                 );
             })
-            .finally(() => {
+            /*.finally(() => {
                 if (!getState().auth.error) {
                     window.location.href = "/auth/verify";
                 }
-            });
+            });*/
     };
 }
 

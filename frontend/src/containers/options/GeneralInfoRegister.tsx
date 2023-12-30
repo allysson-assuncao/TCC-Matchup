@@ -16,13 +16,16 @@ import {useLoggedUser} from "../../contexts/UserContext";
 import {useDispatch, useSelector} from "react-redux";
 import {LoginUser} from "../../redux/slices/auth";
 import {UpdateUserProfile} from "../../redux/slices/app";
+import {resizeImage} from "../../utils/ResizeImage";
+import {ROUTE_INTEREST_MANAGEMENT} from "../../App2";
+import {ROUTE_INTERESTS} from "../../routes";
 
 const GeneralInfoRegister = () => {
     const {user} = useSelector((state: any) => state.app);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [image, setImage] = useState("");
-    const [profilePicture, setProfilePicture] = useState(undefined);
+    const [file, setFile] = useState(undefined);
     const [bio, setBio] = useState("");
     const [cellphoneNumber, setCellphonenumber] = useState("");
     const [open, setOpen] = React.useState(false);
@@ -31,7 +34,7 @@ const GeneralInfoRegister = () => {
 
     const handleImageUpload = (event: any) => {
         const file = event.target.files[0];
-        setProfilePicture(file);
+        setFile(file);
         const reader = new FileReader();
 
         reader.onloadend = () => {
@@ -64,22 +67,16 @@ const GeneralInfoRegister = () => {
 
 
     const handleSubmit = async () => {
-        let user2: UpdateUserPayload = {
-            id: user ? user?.id : BigInt(-1),
-            bio: bio,
-            cellphoneNumber: cellphoneNumber,
+        let updatedUser: UpdateUserPayload = {
+            bio: bio == ""? null: bio,
+            cellphoneNumber: cellphoneNumber == "" ? null: cellphoneNumber,
+            profilePicture: file ? await resizeImage(file, 512) : null,
         }
 
-        if (imageWasChanged) {
-            user2.profilePicture = profilePicture;
-        }
-        console.log(user2);
-        let updatedUser: User = await updateUserData(user);
-
-        if (!updatedUser) return;
         // @ts-ignore
         dispatch(UpdateUserProfile(updatedUser));
         setOpen(true);
+        navigate(`/app`);
         /*navigate("home");*/
     }
 

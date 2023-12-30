@@ -27,7 +27,7 @@ import {
 import AudioCallDialog from "../../sections/Dashboard/Audio/CallDialog";
 import VideoCallDialog from "../../sections/Dashboard/video/CallDialog";
 import {PushToVideoCallQueue, UpdateVideoCallDialog} from "../../redux/slices/videoCall";
-import {ROUTE_LOGIN} from "../../routes";
+import {ROUTE_INTERESTS, ROUTE_LOGIN} from "../../routes";
 import {binaryBodyToJSON} from "../../utils/BinaryBodyToJSON";
 
 const DashboardLayout = () => {
@@ -43,13 +43,21 @@ const DashboardLayout = () => {
 
 
     async function fetch() {
-        await dispatch(FetchUserProfile());
+        dispatch(FetchUserProfile());
         //await dispatch(FetchProfilePicture(user_id, 800, 800));
     }
 
     useEffect(() => {
         fetch();
-    }, []);
+
+    }, [isLoggedIn]);
+
+    useEffect(() => {
+        console.log(user.hasInterests);
+        if (!user.hasInterests) {
+            navigate(`${ROUTE_INTERESTS}/${user.username}`);
+        }
+    }, [isUserUpdated]);
 
     useEffect(() => {
         console.log("NOTIFICATIONS UPDATED");
@@ -157,10 +165,9 @@ const DashboardLayout = () => {
                         binaryBodyToJSON(obj).then((contact) => {
                             console.log(contact);
                             dispatch(AddDirectConversation(contact));
-                            if(contact.creatorId == user_id) dispatch(SelectConversation({room_id: contact.id}))
+                            if (contact.creatorId == user_id) dispatch(SelectConversation({room_id: contact.id}))
                         });
                     });
-
 
 
                     /*client.subscribe(`/user/${user.id}/queue/receive-messages`, (obj) => {
