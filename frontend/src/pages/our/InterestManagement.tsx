@@ -43,9 +43,8 @@ const InterestManagement: React.FC = () => {
 
     return (
         <Grid>
-
             <CssBaseline/>
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Box maxHeight={"800px"} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container justifyContent={'center'}>
                     <Grid item md={10} sm={11} xs={12}>
                         <Grid container spacing={5}>
@@ -67,7 +66,6 @@ const InterestManagement: React.FC = () => {
                                     <Pagination count={totalPages} page={page+1} onChange={handleChange}/>
                                 </Stack>
                             </Grid>
-
                         </Grid>
                     </Grid>
                 </Grid>

@@ -12,7 +12,7 @@ interface InterestCardListProps {
 
 const InterestCardList: React.FC<InterestCardListProps> = ({ interests }) => {
     return (
-        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto'}}>
             <Grid container spacing={5} alignItems="flex-end">
                 {interests && interests.content && interests.content.map((interest) => (
                     <InterestCard key={Number(interest.id)} interest={interest} />

@@ -192,7 +192,13 @@ const slice = createSlice({
                 console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             })
         },
-
+        changeContactDisplay(state, action) {
+            state.direct_chat.conversations.forEach((conversation) => {
+                if (conversation.id === action.payload.conversationId) {
+                    conversation.displayed = !conversation.displayed;
+                }
+            });
+        }
     },
 });
 
@@ -285,3 +291,9 @@ export function ClearConversation() {
 
     };
 }
+
+export const ChangeContactDisplay = (conversationId) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.changeContactDisplay({conversationId}));
+    };
+};

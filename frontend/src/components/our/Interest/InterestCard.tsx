@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {
     Typography,
     Button,
-    Grid, Card, CardContent, Avatar,
+    Grid, Card, CardContent, Avatar, Stack, Chip,
 } from '@mui/material';
 import {Interest} from "../../../model/interest";
 import CardHeader from "@mui/material/CardHeader";
@@ -65,19 +65,15 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                     subheader={interest.company?.name}
                     titleTypographyProps={{align: 'center'}}
                     subheaderTypographyProps={{align: 'center'}}
-                    /*action={interest.title === 'Premium' ? <StarIcon /> : null}*/
+
                     sx={{
                         color: (theme) => theme.palette.primary.main,
                         backgroundColor: (theme) => grey[900],
+                        mb:"5px"
                     }}
                 />
                 {isExpanded && (
                     <CardContent>
-                        <img
-                            src={interest.formattedImages[0]}
-                            alt={interest.name}
-                            //sx={{height: 128, width: 128}}
-                        />
                         <Typography variant="body2" color="text.secondary">
                             Description: {interest.description}
                         </Typography>
@@ -90,22 +86,78 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         <Typography variant="body2" color="text.secondary">
                             Age Rating: {interest.ageRating?.name}
                         </Typography>
-                        <IconButton
-                            sx={{color: `theme.palette.primary.main`}}
-                            onClick={() => {
-                                interest.added ? handleRemoveInterest() : handleAddInterest();
-                                interest.added = !interest.added;
-                            }}
-                            title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
-                        >
-                            {interest.added ? <Remove/> : <AddIcon/>}
-                        </IconButton>
-
+                        {/*/*
+                        #0162c4
+                        #fda92d
+                        #1ccaff
+                        #ff3030
+                        */}
+                        <Typography variant="body2" color="text.secondary">
+                            Gêneros:
+                        </Typography>
+                        <Stack style={{display: 'flex', overflowX: 'auto'}}>
+                            {interest && interest.genres.length != 0
+                                && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                    {interest.genres.map((genre, index) => (
+                                        <Chip key={index} label={genre.name+""} style={{margin: 0}} sx={{backgroundColor: "#7635dc"}}/>
+                                    ))}
+                                </Stack>)
+                            }
+                        </Stack>
+                        <Typography variant="body2" color="text.secondary">
+                            Subgêneros:
+                        </Typography>
+                        {interest && interest.genres.length != 0
+                            && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                {interest.subGenres.map((subGenre, index) => (
+                                    <Chip key={index} label={subGenre.name+""} style={{margin: 4}} sx={{backgroundColor: "#0162c4"}}/>
+                                ))}
+                            </Stack>)
+                        }
+                        <Typography variant="body2" color="text.secondary">
+                            Plataformas:
+                        </Typography>
+                        {interest && interest.genres.length != 0
+                            && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                {interest.platforms.map((platform, index) => (
+                                    <Chip key={index} label={platform.name+""} style={{margin: 4}} sx={{backgroundColor: "#fda92d"}}/>
+                                ))}
+                            </Stack>)
+                        }
+                        <Typography variant="body2" color="text.secondary">
+                            Dublado:
+                        </Typography>
+                        {interest && interest.genres.length != 0
+                            && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                {interest.dubbingLanguages.map((dubbingLanguage, index) => (
+                                    <Chip key={index} label={dubbingLanguage.id+""} style={{margin: 4}} sx={{backgroundColor: "#1ccaff"}}/>
+                                ))}
+                            </Stack>)
+                        }
+                        <Typography variant="body2" color="text.secondary">
+                            Legendado:
+                        </Typography>
+                        {interest && interest.genres.length != 0
+                            && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                {interest.subtitleLanguages.map((subtitleLanguage, index) => (
+                                    <Chip key={index} label={subtitleLanguage.id+""} style={{margin: 4}} sx={{backgroundColor: "#ff3030"}}/>
+                                ))}
+                            </Stack>)
+                        }
                     </CardContent>
                 )}
                 <CardActions>
-                    <Button fullWidth variant={'contained'}>
-                        More Info
+                    <Button
+                        onClick={() => {
+                            interest.added ? handleRemoveInterest() : handleAddInterest();
+                            interest.added = !interest.added;
+                        }}
+                        fullWidth
+                        title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
+                        startIcon={interest.added ? <Remove/> : <AddIcon/>}
+                        variant="outlined"
+                    >
+                        {interest.added ? "Remover" : "Adicionar"}
                     </Button>
                 </CardActions>
             </Card>

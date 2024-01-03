@@ -20,6 +20,8 @@ import {SelectConversation, ToggleSidebar} from "../../redux/slices/app";
 import {useDispatch, useSelector} from "react-redux";
 import {StartAudioCall} from "../../redux/slices/audioCall";
 import {StartVideoCall} from "../../redux/slices/videoCall";
+import {client} from "../../socket";
+import {ChangeContactDisplay} from "../../redux/slices/conversation";
 
 const StyledBadge = styled(Badge)(({theme}) => ({
     "& .MuiBadge-badge": {
@@ -52,10 +54,10 @@ const StyledBadge = styled(Badge)(({theme}) => ({
 
 const Conversation_Menu = [
     {
-        title: "Contact info",
+        title: "Informação do contato",
     },
     {
-        title: "Mute notifications",
+        title: "Desabilitar notificações",
     },
     {
         title: "Limpar mensagens",
@@ -86,6 +88,14 @@ const ChatHeader = ({current_conversation_fake}) => {
         };
         const handleCloseConversationMenu = () => {
             setConversationMenuAnchorEl(null);
+        };
+        const handleHideContact = () => {
+            client.publish({
+                destination: `/app/change-contact-display`,
+                body: JSON.stringify({id: current_conversation.id})
+            });
+            dispatch(ChangeContactDisplay(current_conversation.id));
+            dispatch(SelectConversation({room_id: null}));
         };
 
         return (
