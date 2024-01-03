@@ -55,7 +55,6 @@ export default function AuthLoginForm() {
             await dispatch(LoginUser(data)).then(() => {
                 window.location.reload();
                 dispatch(FetchUserProfile());
-                navigate("/meu-perfil");
             });
 
         } catch (error) {

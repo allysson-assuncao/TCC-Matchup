@@ -76,7 +76,7 @@ const GeneralInfoRegister = () => {
         // @ts-ignore
         dispatch(UpdateUserProfile(updatedUser));
         setOpen(true);
-        navigate(`/app`);
+        navigate(`${ROUTE_INTERESTS}/${user.username}`);
         /*navigate("home");*/
     }
 

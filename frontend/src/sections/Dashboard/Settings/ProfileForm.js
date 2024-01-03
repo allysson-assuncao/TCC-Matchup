@@ -63,9 +63,9 @@ const ProfileForm = () => {
                 if(user.username === value) return true;
                 return (await isUsernameAvailable(value));
             }),
-        bio: Yup.string(),
-        cellphoneNumber: Yup.string()
-            .matches(/^\\+\\d{2}\\s\\(\\d{2}\\)\\s\\d{5}-\\d{4}$/, 'Número de celular inválido!'),
+        bio: Yup.string().nullable(true),
+        cellphoneNumber: Yup.string().nullable(true),
+            /*.matches(/^\\+\\d{2}\\s\\(\\d{2}\\)\\s\\d{5}-\\d{4}$/, 'Número de celular inválido!'),*/
         profilePicture: Yup.mixed().nullable(true),
     });
 

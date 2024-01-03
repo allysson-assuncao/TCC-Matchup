@@ -9,7 +9,6 @@ const API_BASE_URL = 'http://localhost:8080/api/interests/';
 export const getFilteredInterests = async (
     filters: Filter[] | null | undefined,
     token: any,
-    searchTerm?: string,
     page = 0,
     orderBy = "",
     direction = "",

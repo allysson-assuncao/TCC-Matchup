@@ -6,6 +6,7 @@ import {
     Grid,
 } from '@mui/material';
 /*import AppBarProfile from "../containers/appbars/AppBarProfile";*/
+import { MapOrEntries, useMap } from 'usehooks-ts'
 import Link from "@mui/material/Link";
 import InterestFilters from "../../containers/interest/InterestFilters";
 import InterestCardList from "../../containers/interest/InterestCardList";
@@ -30,6 +31,14 @@ const InterestManagement: React.FC = () => {
     const theme = useTheme();
     const [filteredInterests, setFilteredInterests] = useState<InterestRequest>();
     const {usernamePathVariable} = useParams();
+    const [page, setPage] = React.useState(0);
+    const [totalPages, setTotalPages] = React.useState(1);
+    //const [loadedPages, addLoadedPage] = React.useMap
+    const [map, mapActions] = useMap<number, InterestRequest>([]);
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value-1);
+    }
 
     return (
         <Grid>
@@ -44,11 +53,21 @@ const InterestManagement: React.FC = () => {
                                     filteredInterests={filteredInterests}
                                     setFilteredInterests={setFilteredInterests}
                                     username={usernamePathVariable}
+                                    page={page}
+                                    setPage={setPage}
+                                    setTotalPages={setTotalPages}
+                                    map={map}
+                                    mapActions={mapActions}
                                 />
                             </Grid>
                             <Grid item md={8}>
                                 <InterestCardList interests={filteredInterests}/>
+                                <Stack justifyContent={"center"} spacing={2}>
+                                    <Typography>Page: {page+1}</Typography>
+                                    <Pagination count={totalPages} page={page+1} onChange={handleChange}/>
+                                </Stack>
                             </Grid>
+
                         </Grid>
                     </Grid>
                 </Grid>

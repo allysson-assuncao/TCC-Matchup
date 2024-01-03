@@ -3,7 +3,7 @@ import {Link as RouterLink, Navigate, useNavigate} from "react-router-dom";
 import {Stack, Typography, Link} from "@mui/material";
 import AuthSocial from "../../sections/auth/AuthSocial";
 import Login from "../../sections/auth/LoginForm";
-import {ROUTE_REGISTER} from "../../routes";
+import {ROUTE_PROFILE_RESEARCH, ROUTE_REGISTER} from "../../routes";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
 
@@ -16,7 +16,7 @@ export default function LoginPage() {
 
     }, [isLoggedIn])*/
     if (isLoggedIn) {
-        return <Navigate to={"/app"}/>;
+        return <Navigate to={`/${ROUTE_PROFILE_RESEARCH}`}/>;
     }
     return (
         <>

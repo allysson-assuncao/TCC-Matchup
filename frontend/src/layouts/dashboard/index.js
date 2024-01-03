@@ -46,20 +46,26 @@ const DashboardLayout = () => {
 
     async function fetch() {
         dispatch(FetchUserProfile());
+
         //await dispatch(FetchProfilePicture(user_id, 800, 800));
     }
 
     useEffect(() => {
+        if(!isLoggedIn) return;
         fetch();
 
     }, [isLoggedIn]);
 
     useEffect(() => {
-        console.log(user.hasInterests);
+        if(JSON.stringify(user) === "{}") return;
+        console.log("HAS INTEREST " + user.hasInterests);
+        console.log(JSON.stringify(user));
         if (!user.hasInterests) {
             navigate(`${ROUTE_INTERESTS}/${user.username}`);
-        }
-    }, [isUserUpdated]);
+        }/*else{
+            navigate(`/app`);
+        }*/
+    }, [user.hasInterests]);
 
     useEffect(() => {
         console.log("NOTIFICATIONS UPDATED");

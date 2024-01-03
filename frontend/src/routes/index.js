@@ -17,7 +17,7 @@ const Loadable = (Component) => (props) => {
     );
 };
 
-export const ROUTE_PROFILE_RESEARCH = "/busca_de_usuários";
+export const ROUTE_PROFILE_RESEARCH = "busca_de_usuarios";
 
 export const ROUTE_MY_PROFILE = "/meu-perfil";
 
@@ -56,9 +56,9 @@ export default function Router() {
             path: "/",
             element: <DashboardLayout/>,
             children: [
-                {element: <Navigate to={DEFAULT_PATH} replace/>, index: true},
+                {element: <Navigate to={`/${ROUTE_PROFILE_RESEARCH}`} replace/>, index: true},
                 {path: "index", element: <AppIndex/>},
-                {path: "/app", element: <ProfileSearch/>},
+                /*{path: "app", element: <Navigate to={ROUTE_PROFILE_RESEARCH} replace/>},*/
                 {path: "/chat", element: <GeneralApp/>},
                 {path: "group", element: <Group/>},
                 {path: "settings", element: <Settings/>},
@@ -74,8 +74,8 @@ export default function Router() {
 
                 {path: "call", element: <CallPage/>},
 
-                {path: ROUTE_PAGE_NOT_FOUND, element: <Page404/>},
-                {path: "*", element: <Navigate to="/404" replace/>},
+                /*{path: ROUTE_PAGE_NOT_FOUND, element: <Page404/>},*/
+                /*{path: "*", element: <Navigate to="/404" replace/>},*/
             ],
         },
         {

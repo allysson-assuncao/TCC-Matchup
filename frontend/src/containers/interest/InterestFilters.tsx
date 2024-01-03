@@ -19,17 +19,35 @@ import {styled, useTheme} from "@mui/material/styles";
 import {useSelector} from "react-redux";
 import {ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND} from "../../routes";
 import {getProfileByUsernameAndUserId} from "../../api/user_requests/profile";
+import {Actions} from "usehooks-ts";
 
 
 interface InterestFiltersProps {
-    filteredInterests: InterestRequest | undefined;
-    setFilteredInterests: React.Dispatch<React.SetStateAction<InterestRequest | undefined>>;
-    username?: string | null | undefined;
+    filteredInterests: InterestRequest | undefined,
+    setFilteredInterests: React.Dispatch<React.SetStateAction<InterestRequest | undefined>>,
+    username?: string | null | undefined,
+    page: number,
+    setTotalPages: (value: (((prevState: number) => number) | number)) => void,
+    setPage: (value: (((prevState: number) => number) | number)) => void,
+    map: Omit<Map<number, InterestRequest>, "set" | "clear" | "delete">,
+    mapActions: Actions<number, InterestRequest>
 }
 
-const InterestFilters: React.FC<InterestFiltersProps> = ({username, filteredInterests, setFilteredInterests}) => {
+const InterestFilters: React.FC<InterestFiltersProps> = ({
+                                                             page,
+                                                             username,
+                                                             filteredInterests,
+                                                             setFilteredInterests,
+                                                             setTotalPages,
+                                                             setPage,
+                                                             map,
+                                                             mapActions
+                                                         }) => {
 
     const theme = useTheme();
+    const {user} = useSelector((state: any) => state.app);
+    const {token} = useSelector((state: any) => state.auth);
+
 
     const [name, setName] = useState<string>("");
 
@@ -68,12 +86,18 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({username, filteredInte
     const [platformsSwitchChecked, setplatformsSwitchChecked] = React.useState(false);
 
     const [isLoggedUser, setIsLoggedUser] = React.useState(false);
-    const [allInterestsSwitch, setAllInterestsSwitch] = React.useState(false);
-    const {user} = useSelector((state: any) => state.app);
-    const {token} = useSelector((state: any) => state.auth);
+    const [allInterestsSwitch, setAllInterestsSwitch] = React.useState(!user.hasInterests);
 
 
-    const fetchFilteredInterests = async () => {
+    useEffect(() => {
+        if(map.has(page)) {
+            setFilteredInterests(map.get(page));
+        }else{
+            fetchFilteredInterests(page);
+        }
+    }, [page]);
+
+    const fetchFilteredInterests = async (page = 0) => {
         try {
             /*{
             "column": "id",
@@ -160,8 +184,17 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({username, filteredInte
             ]
 
             console.log(filters);
-            const fetchFilteredInterests = await getFilteredInterests(filters, token);
-            setFilteredInterests(fetchFilteredInterests);
+            const filteredInterests = await getFilteredInterests(filters, token, page, "name", "ASC", 18);
+
+            if(page == 0){
+                mapActions.reset();
+                setPage(0);
+                setTotalPages(filteredInterests.totalPages);
+                mapActions.set(0, filteredInterests)
+            }else{
+                mapActions.set(page, filteredInterests)
+            }
+            setFilteredInterests(filteredInterests);
             return true;
         } catch (error) {
             console.error("Erro ao buscar interesses:", error);

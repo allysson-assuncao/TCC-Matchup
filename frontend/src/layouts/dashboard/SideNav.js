@@ -14,7 +14,7 @@ import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {UpdateTab} from "../../redux/slices/app";
 import NotificationMenu from "./NotificationMenu";
-import {ROUTE_INDEX} from "../../routes";
+import {ROUTE_INDEX, ROUTE_PROFILE_RESEARCH} from "../../routes";
 import {Notifications} from "@mui/icons-material";
 
 const getPath = (index) => {

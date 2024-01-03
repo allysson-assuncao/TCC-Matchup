@@ -6,16 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="creating contact while sending first message between 2 friends">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/containers/options/GeneralInfo.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="load contacts list and show its data" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
-    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="Changes by anybo">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java" afterDir="false" />
-    </list>
+    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="Changes by anybo" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,19 +48,6 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/UserService.java">
-      <ranges>
-        <range start1="253" end1="253" start2="253" end2="254" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
-        <range start1="265" end1="265" start2="266" end2="267" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
-        <range start1="466" end1="466" start2="468" end2="469" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="530" end1="531" start2="533" end2="534" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-        <range start1="532" end1="538" start2="535" end2="543" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
-        <range start1="540" end1="541" start2="545" end2="546" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
-        <range start1="548" end1="549" start2="553" end2="554" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
-      </ranges>
-    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -247,7 +232,9 @@
       <workItem from="1703853402726" duration="6149000" />
       <workItem from="1703873250171" duration="3696000" />
       <workItem from="1703939369261" duration="8631000" />
-      <workItem from="1703957545752" duration="4887000" />
+      <workItem from="1703957545752" duration="4903000" />
+      <workItem from="1704224961553" duration="371000" />
+      <workItem from="1704285069714" duration="3683000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>
