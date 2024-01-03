@@ -20,7 +20,7 @@ import {Notifications} from "@mui/icons-material";
 const getPath = (index) => {
     switch (index) {
         case 0:
-            return "/busca_de_usuários";
+            return `/${ROUTE_PROFILE_RESEARCH}`;
 
         case 1:
             return "/chat";

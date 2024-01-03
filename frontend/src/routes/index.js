@@ -68,7 +68,6 @@ export default function Router() {
                 {path: ROUTE_MY_PROFILE, element: <MyProfile/>},
                 {path: ROUTE_PROFILE_RESEARCH, element: <ProfileSearch/>},
                 {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
-                {path: "old-profile", element: <GeneralInfo/>},
                 {path: ROUTE_REGISTER_INTERESTS, element: <RegisterInterest/>},
                 {path: `${ROUTE_INTERESTS}/:usernamePathVariable`, element: <InterestManagement/>},
 
@@ -91,7 +90,6 @@ export default function Router() {
 }
 
 const AppIndex = Loadable(lazy(() => import("../pages/our/AppIndex")));
-const GeneralInfo = Loadable(lazy(() => import("../containers/options/GeneralInfo")));
 const RegisterInterest = Loadable(lazy(() => import("../pages/our/RegisterInterests")));
 const InterestManagement = Loadable(lazy(() => import("../pages/our/InterestManagement")));
 

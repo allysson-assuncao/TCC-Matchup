@@ -3,7 +3,7 @@ import {
     Box,
     CssBaseline,
     Typography,
-    Grid,
+    Grid, Stack,
 } from '@mui/material';
 /*import AppBarProfile from "../containers/appbars/AppBarProfile";*/
 import { MapOrEntries, useMap } from 'usehooks-ts'
@@ -13,6 +13,7 @@ import InterestCardList from "../../containers/interest/InterestCardList";
 import {InterestRequest} from "../../model/interest_filtered_request";
 import {useTheme} from "@mui/material/styles";
 import {useParams} from "react-router-dom";
+import {Pagination} from "@mui/lab";
 
 function Copyright(props: any) {
     return (
