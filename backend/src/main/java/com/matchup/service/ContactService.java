@@ -139,4 +139,17 @@ public class ContactService {
 
     }
 
+    @Transactional
+    @jakarta.transaction.Transactional
+    public void changeContactDisplay(long contactId) {
+        System.out.println(contactId);
+        Optional<Contact> contactOp = contactRepository.findById(contactId);
+        if(contactOp.isEmpty()) return;
+        Contact contact = contactOp.get();
+        System.out.println(contact.isDisplayed());
+        contact.setDisplayed(!contact.isDisplayed());
+        System.out.println(contact.isDisplayed());
+        contactRepository.save(contact);
+    }
+
 }

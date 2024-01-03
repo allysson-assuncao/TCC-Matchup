@@ -50,4 +50,10 @@ public class ContactController {
         return contactDtoList;
     }
 
+    @MessageMapping("/change-contact-display")
+    public void changeContactDisplay(ContactDto contact) {
+        System.out.println("OI");
+        contactService.changeContactDisplay(contact.getId());
+    }
+
 }
