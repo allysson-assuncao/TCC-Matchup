@@ -91,8 +91,10 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
 
     useEffect(() => {
         if(map.has(page)) {
+            console.log("requisição NÃO realizada");
             setFilteredInterests(map.get(page));
         }else{
+            console.log("requisição realizada");
             fetchFilteredInterests(page);
         }
     }, [page]);

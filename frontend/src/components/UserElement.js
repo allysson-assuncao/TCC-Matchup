@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import {styled, useTheme} from "@mui/material/styles";
 import {Chat} from "phosphor-react";
-import {socket} from "../socket";
+import {client, socket} from "../socket";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_PROFILE} from "../routes";
 import {useDispatch, useSelector} from "react-redux";
 import {dispatch} from "../redux/store";
-import {SetCurrentConversation, SetCurrentConversationFake} from "../redux/slices/conversation";
+import {ChangeContactDisplay, SetCurrentConversation, SetCurrentConversationFake} from "../redux/slices/conversation";
 import {SelectConversation} from "../redux/slices/app";
 import ChatComponent from "../pages/dashboard/Conversation";
 
@@ -192,6 +192,14 @@ const FriendElement = ({
 
     const name = `${username}`;
 
+    const handleShowContact = (id) => {
+        client.publish({
+            destination: `/app/change-contact-display`,
+            body: JSON.stringify({id: id})
+        });
+        dispatch(ChangeContactDisplay(id));
+    };
+
     return (
         <StyledChatBox
             sx={{
@@ -232,12 +240,15 @@ const FriendElement = ({
                     <IconButton
                         onClick={() => {
 
-                            let filteredContact =  conversations.length != 0 ?
+                            let filteredContact = conversations.length != 0 ?
                                 conversations.filter(contact => contact.name == username) : [];
 
                             if (filteredContact && filteredContact.length != 0) {
                                 let contact = filteredContact[0];
-                                if (!contact.displayed) contact = {...contact, displayed: true}
+                                if (!contact.displayed) {
+                                    contact = {...contact, displayed: true}
+                                    handleShowContact(filteredContact[0].id);
+                                }
                                 dispatch(SelectConversation({room_id: contact.id}));
                             } else {
                                 const contact_fake = {

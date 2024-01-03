@@ -64,7 +64,6 @@ const InterestManagement: React.FC = () => {
                             <Grid item md={8}>
                                 <InterestCardList interests={filteredInterests}/>
                                 <Stack justifyContent={"center"} spacing={2}>
-                                    <Typography>Page: {page+1}</Typography>
                                     <Pagination count={totalPages} page={page+1} onChange={handleChange}/>
                                 </Stack>
                             </Grid>

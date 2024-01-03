@@ -55,6 +55,11 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                 onMouseLeave={handleMouseLeave}
                 sx={{minHeight: isExpanded ? '250px' : '200px'}}
             >
+                <img
+                    src={interest.formattedImages[0]}
+                    alt={interest.name+".png"}
+                    //sx={{height: 128, width: 128}}
+                />
                 <CardHeader
                     title={interest.name}
                     subheader={interest.company?.name}
