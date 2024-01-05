@@ -16,6 +16,30 @@ import truncateString from "../../utils/truncate";
 import {LinkPreview} from "@dhaiwat10/react-link-preview";
 import Embed from "react-embed";
 
+function formatData(dateString) {
+    let date = new Date(dateString);
+    let now = new Date();
+    let difference = now - date;
+
+    if (difference < 24 * 60 * 60 * 1000) {
+        return date.getHours() + ':' + date.getMinutes();
+    } else if (difference < 7 * 24 * 60 * 60 * 1000) {
+        return ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][date.getDay()];
+    } else {
+        let weeks = Math.floor(difference / (7 * 24 * 60 * 60 * 1000));
+        let months = Math.floor(difference / (30 * 24 * 60 * 60 * 1000));
+        let years = Math.floor(difference / (365.25 * 24 * 60 * 60 * 1000));
+
+        if (years > 0) {
+            return years + ' anos atrás';
+        } else if (months > 0) {
+            return months + ' meses atrás';
+        } else {
+            return weeks + ' semanas atrás';
+        }
+    }
+}
+
 const MessageOption = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -79,7 +103,7 @@ const TextMsg = ({el, menu}) => {
                     variant="p"
                     color={theme.palette.text.disabled}
                 >
-                    {el.date}
+                    {formatData(el.date)}
                 </Typography>
             </Box>
             {menu && <MessageOption/>}

@@ -127,7 +127,7 @@ export default function SettingsDrawer() {
                                 sx={{py: 2, pr: 1, pl: 2.5}}
                             >
                                 <Typography variant="subtitle1" sx={{flexGrow: 1}}>
-                                    Settings
+                                    Preferências
                                 </Typography>
 
                                 <IconButton onClick={onResetSetting}>
@@ -153,12 +153,12 @@ export default function SettingsDrawer() {
                                     </Stack>
 
                                     <Stack spacing={1.5}>
-                                        <Typography variant="subtitle2">Direction</Typography>
+                                        <Typography variant="subtitle2">Direção</Typography>
                                         <SettingDirection/>
                                     </Stack>
 
                                     <Stack spacing={1.5}>
-                                        <Typography variant="subtitle2">Presets</Typography>
+                                        <Typography variant="subtitle2">Cor principal</Typography>
                                         <SettingColorPresets/>
                                     </Stack>
 

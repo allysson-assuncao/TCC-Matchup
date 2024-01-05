@@ -84,17 +84,13 @@ const ProfileMenu = () => {
                                             //socket.emit("end", {user_id});
                                         }
                                     }}
+                                    sx={{ width: 100 }}
                                     direction="row"
                                     alignItems={"center"}
+                                    justifyContent="space-between"
                                 >
-                                    <Grid container>
-                                        <Grid item md={10} justifyContent={'start'}>
-                                            <span>{el.title}</span>
-                                        </Grid>
-                                        <Grid item md={2} justifyContent={'end'}>
-                                            {el.icon}
-                                        </Grid>
-                                    </Grid>
+                                    <span>{el.title}</span>
+                                    {el.icon}
                                 </Stack>{" "}
                             </MenuItem>
                         ))}

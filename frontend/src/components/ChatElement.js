@@ -46,6 +46,30 @@ const StyledBadge = styled(Badge)(({theme}) => ({
     },
 }));
 
+function formatData(dateString) {
+    let date = new Date(dateString);
+    let now = new Date();
+    let difference = now - date;
+
+    if (difference < 24 * 60 * 60 * 1000) {
+        return date.getHours() + ':' + date.getMinutes();
+    } else if (difference < 7 * 24 * 60 * 60 * 1000) {
+        return ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][date.getDay()];
+    } else {
+        let weeks = Math.floor(difference / (7 * 24 * 60 * 60 * 1000));
+        let months = Math.floor(difference / (30 * 24 * 60 * 60 * 1000));
+        let years = Math.floor(difference / (365.25 * 24 * 60 * 60 * 1000));
+
+        if (years > 0) {
+            return years + ' anos atrás';
+        } else if (months > 0) {
+            return months + ' meses atrás';
+        } else {
+            return weeks + ' semanas atrás';
+        }
+    }
+}
+
 const ChatElement = ({img, name, msg, time, unread, online, id}) => {
     const dispatch = useDispatch();
     const {room_id} = useSelector((state) => state.app);
@@ -104,7 +128,7 @@ const ChatElement = ({img, name, msg, time, unread, online, id}) => {
                     </Stack>
                 </Stack>
                 <Stack spacing={2} alignItems={"center"}>
-                    <Typography sx={{fontWeight: 600}} variant="caption">
+                    {/*<Typography sx={{fontWeight: 600}} variant="caption">
                         {time ? formatDistanceToNow(new Date(time), {
                             addSuffix: true,
                             locale: ptBR
@@ -113,6 +137,9 @@ const ChatElement = ({img, name, msg, time, unread, online, id}) => {
                         }
 
 
+                    </Typography>*/}
+                    <Typography sx={{fontWeight: 600}} variant="caption">
+                        {formatData(time)}
                     </Typography>
                     <Badge
                         className="unread-count"

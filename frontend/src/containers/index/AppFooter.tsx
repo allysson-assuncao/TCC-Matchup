@@ -7,18 +7,6 @@ import {TextField, Typography} from "@mui/material";
 import InstagramIcon from '@mui/icons-material/Instagram';
 import theme from "../../theme";
 
-function Copyright() {
-    return (
-        <React.Fragment>
-            {'© '}
-            <Link color="inherit" href="https://mui.com/">
-                MatchUp
-            </Link>{' '}
-            {new Date().getFullYear()}
-        </React.Fragment>
-    );
-}
-
 const iconStyle = {
     width: 64,
     height: 64,
@@ -69,9 +57,6 @@ function AppFooter() {
                                         '&:hover': {width: '70px', height: '70px',},
                                     }}></InstagramIcon>
                                 </Box>
-                            </Grid>
-                            <Grid item>
-                                <Copyright/>
                             </Grid>
                         </Grid>
                     </Grid>

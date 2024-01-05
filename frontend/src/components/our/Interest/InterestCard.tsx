@@ -75,16 +75,16 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                 {isExpanded && (
                     <CardContent>
                         <Typography variant="body2" color="text.secondary">
-                            Description: {interest.description}
+                            Descrição: {interest.description}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Lowest Price: ${interest.lowestPrice}
+                            Menor Preço: ${interest.lowestPrice}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Highest Price: ${interest.highestPrice}
+                            Maior Preço: ${interest.highestPrice}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Age Rating: {interest.ageRating?.name}
+                            Idade: {interest.ageRating?.name}
                         </Typography>
                         {/*/*
                         #0162c4

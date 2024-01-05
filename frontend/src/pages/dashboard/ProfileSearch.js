@@ -235,7 +235,7 @@ const ProfileSearch = () => {
                                 </Stack>
                             </Stack>)}
                         {!profile && (
-                            <Typography color={theme.palette.primary.main} variant="h4">Loading...</Typography>
+                            <Typography color={theme.palette.primary.main} variant="h4">Carregando</Typography>
                         )}
                     </Box>
                     {/* Right Pane */}

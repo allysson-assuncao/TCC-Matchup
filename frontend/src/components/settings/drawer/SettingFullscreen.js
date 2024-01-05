@@ -35,7 +35,7 @@ export default function SettingFullscreen() {
         }),
       }}
     >
-      {fullscreen ? 'Exit Fullscreen' : 'Fullscreen'}
+      {fullscreen ? 'Sair da Tela Cheia' : 'Tela cheia'}
     </Button>
   );
 }

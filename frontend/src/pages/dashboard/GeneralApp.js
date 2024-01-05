@@ -58,7 +58,7 @@ const GeneralApp = () => {
                             >
                                 <NoChat/>
                                 <Typography variant="subtitle2">
-                                    Select a conversation or start a{" "}
+                                    Selectione uma conversa ou comece uma {" "}
                                     <Link
                                         style={{
                                             color: theme.palette.primary.main,
@@ -66,7 +66,7 @@ const GeneralApp = () => {
                                         }}
                                         to="/"
                                     >
-                                        new one
+                                        nova
                                     </Link>
                                 </Typography>
                             </Stack>

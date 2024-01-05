@@ -15,19 +15,6 @@ import {useTheme} from "@mui/material/styles";
 import {useParams} from "react-router-dom";
 import {Pagination} from "@mui/lab";
 
-function Copyright(props: any) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" sx={{mt: '50px', mb: '50px'}}>
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Matchup
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 const InterestManagement: React.FC = () => {
     const theme = useTheme();
     const [filteredInterests, setFilteredInterests] = useState<InterestRequest>();
@@ -70,7 +57,6 @@ const InterestManagement: React.FC = () => {
                     </Grid>
                 </Grid>
             </Box>
-            <Copyright/>
         </Grid>
     );
 };

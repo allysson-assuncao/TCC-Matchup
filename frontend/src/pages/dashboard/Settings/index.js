@@ -55,54 +55,54 @@ const Settings = () => {
         {
             key: 0,
             icon: <Bell size={20}/>,
-            title: "Notifications",
+            title: "Notificações",
             onclick: () => {
             },
         },
         {
             key: 1,
             icon: <Lock size={20}/>,
-            title: "Privacy",
+            title: "Privacidade",
             onclick: () => {
             },
         },
         {
             key: 2,
             icon: <Key size={20}/>,
-            title: "Security",
+            title: "Segurança",
             onclick: () => {
             },
         },
         {
             key: 3,
             icon: <PencilCircle size={20}/>,
-            title: "Theme",
+            title: "Tema",
             onclick: handleOpenTheme,
         },
         {
             key: 4,
             icon: <Image size={20}/>,
-            title: "Chat Wallpaper",
+            title: "Papel de Parede",
             onclick: () => {
             },
         },
         {
             key: 5,
             icon: <Note size={20}/>,
-            title: "Request Account Info",
+            title: "Informações da Conta",
             onclick: () => {
             },
         },
         {
             key: 6,
             icon: <Keyboard size={20}/>,
-            title: "Keyboard Shortcuts",
+            title: "Atalhos do Teclado",
             onclick: handleOpenShortcuts,
         },
         {
             key: 7,
             icon: <Info size={20}/>,
-            title: "Help",
+            title: "Ajuda",
             onclick: () => {
             },
         },
@@ -134,7 +134,7 @@ const Settings = () => {
                                 <CaretLeft size={24} color={"#4B4B4B"}/>
                             </IconButton>
 
-                            <Typography variant="h5">Settings</Typography>
+                            <Typography variant="h5">Configurações</Typography>
                         </Stack>
 
                         {/* MyProfile */}

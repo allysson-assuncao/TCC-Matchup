@@ -82,7 +82,7 @@ const Call = () => {
               direction={"row"}
             >
               <Typography variant="subtitle2" sx={{}} component={Link}>
-                Start a conversation
+                Comece uma conversa
               </Typography>
               <IconButton onClick={handleOpenDialog}>
                 <Phone style={{ color: theme.palette.primary.main }} />

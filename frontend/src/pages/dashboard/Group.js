@@ -62,7 +62,7 @@ const Group = () => {
                   <MagnifyingGlass color="#709CE6" />
                 </SearchIconWrapper>
                 <StyledInputBase
-                  placeholder="Search…"
+                  placeholder="Pesquisar…"
                   inputProps={{ "aria-label": "search" }}
                 />
               </Search>
@@ -73,7 +73,7 @@ const Group = () => {
               direction={"row"}
             >
               <Typography variant="subtitle2" sx={{}} component={Link}>
-                Create New Group
+                Criar Novo Grupo
               </Typography>
               <IconButton onClick={handleOpenDialog}>
                 <Plus style={{ color: theme.palette.primary.main }} />
@@ -84,14 +84,14 @@ const Group = () => {
               <SimpleBarStyle timeout={500} clickOnTrack={false}>
                 <Stack spacing={2.4}>
                   <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                    Pinned
+                    Fixado
                   </Typography>
                   {/* Chat List */}
                   {ChatList.filter((el) => el.pinned).map((el, idx) => {
                     return <ChatElement {...el} />;
                   })}
                   <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                    All Chats
+                    Todas as Conversas
                   </Typography>
                   {/* Chat List */}
                   {ChatList.filter((el) => !el.pinned).map((el, idx) => {

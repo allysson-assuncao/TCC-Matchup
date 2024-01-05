@@ -71,8 +71,8 @@ const Friends = ({open, handleClose}) => {
             {/* <DialogTitle>{"Friends"}</DialogTitle> */}
             <Stack p={2} sx={{width: "100%"}}>
                 <Tabs value={value} onChange={handleChange} centered>
-                    <Tab label="Friends"/>
-                    <Tab label="Requests"/>
+                    <Tab label="Amigos"/>
+                    <Tab label="Solicitações"/>
                 </Tabs>
             </Stack>
             <DialogContent>

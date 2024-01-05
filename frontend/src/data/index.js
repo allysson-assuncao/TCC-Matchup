@@ -15,15 +15,15 @@ const Profile_Menu = [
         icon: <User/>,
     },
     {
-        title: "Cadastrar Interesses",
+        title: "Jogos",
         icon: <Plus/>,
     },
     {
-        title: "Gerenciar Interesses",
+        title: "Jogos",
         icon: <GameController/>,
     },
     {
-        title: "Configurações",
+        title: "Config",
         icon: <Gear/>,
     },
     {
@@ -317,22 +317,22 @@ const Chat_History = [
 
 const Message_options = [
     {
-        title: "Reply",
+        title: "Responder",
     },
     {
-        title: "React to message",
+        title: "Reagir",
     },
     {
-        title: "Forward message",
+        title: "Encaminhar",
     },
     {
-        title: "Star message",
+        title: "Favoritar",
     },
     {
-        title: "Report",
+        title: "Reportar",
     },
     {
-        title: "Delete Message",
+        title: "Deletar",
     },
 ];
 

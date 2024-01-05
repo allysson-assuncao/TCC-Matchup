@@ -110,7 +110,7 @@ const DashboardLayout = () => {
                             dispatch(
                                 showSnackbar({
                                     severity: "success",
-                                    message: "New friend request received",
+                                    message: "Nova solicitação de amizade recebida",
                                 })
                             );
                             console.log("NOTIFICATION");

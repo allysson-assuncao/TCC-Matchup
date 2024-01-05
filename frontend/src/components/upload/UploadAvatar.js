@@ -127,7 +127,7 @@ export default function UploadAvatar({
                     <Image/>
 
                     <Typography variant="caption">
-                        {file ? "Update photo" : "Upload photo"}
+                        {file ? "Trocar foto" : "Escolher foto"}
                     </Typography>
                 </StyledPlaceholder>
             </StyledDropZone>

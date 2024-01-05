@@ -86,7 +86,7 @@ const Chats = () => {
                         justifyContent="space-between"
                         direction="row"
                     >
-                        <Typography variant="h5">Chats</Typography>
+                        <Typography variant="h5">Conversas</Typography>
 
                         <Stack direction={"row"} alignItems="center" spacing={1}>
                             <IconButton
@@ -108,7 +108,7 @@ const Chats = () => {
                                 <MagnifyingGlass color="#709CE6"/>
                             </SearchIconWrapper>
                             <StyledInputBase
-                                placeholder="Search…"
+                                placeholder="Pesquisar…"
                                 inputProps={{"aria-label": "search"}}
                             />
                         </Search>
@@ -116,7 +116,7 @@ const Chats = () => {
                     <Stack spacing={1}>
                         <Stack direction={"row"} spacing={1.5} alignItems="center">
                             <ArchiveBox size={24}/>
-                            <Button variant="text">Archive</Button>
+                            <Button variant="text">Arquivar</Button>
                         </Stack>
                         <Divider/>
                     </Stack>
@@ -124,14 +124,14 @@ const Chats = () => {
                         <SimpleBarStyle timeout={500} clickOnTrack={false}>
                             <Stack spacing={2.4}>
                                 {/* <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                  Pinned
+                  Fixado
                 </Typography> */}
                                 {/* Chat List */}
                                 {/* {ChatList.filter((el) => el.pinned).map((el, idx) => {
                   return <ChatElement {...el} />;
                 })} */}
                                 <Typography variant="subtitle2" sx={{color: "#676667"}}>
-                                    All Chats
+                                    Todas as Conversas
                                 </Typography>
                                 {/* Chat List */}
                                 {/*{conversations.filter((el) => !el.pinned).map((el, idx) => {
