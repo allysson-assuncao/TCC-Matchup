@@ -1,5 +1,5 @@
 import {Stack, Box} from "@mui/material";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {useTheme} from "@mui/material/styles";
 import {SimpleBarStyle} from "../../components/Scrollbar";
 
@@ -16,6 +16,7 @@ import {
 } from "../../sections/Dashboard/Conversation";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    ChangeIsFetching,
     FetchCurrentMessages,
     SetCurrentConversation,
 } from "../../redux/slices/conversation";
@@ -106,8 +107,9 @@ const Conversation = ({isMobile, menu}) => {
 };
 
 const ChatComponent = ({current_conversation_fake}) => {
-    const isMobile = useResponsive("between", "md", "xs", "sm");
-    const theme = useTheme();
+        const isMobile = useResponsive("between", "md", "xs", "sm");
+        const theme = useTheme();
+        const dispatch = useDispatch();
 
         const messageListRef = useRef(null);
 

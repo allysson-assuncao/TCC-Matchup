@@ -14,6 +14,8 @@ const initialState = {
         current_conversation_fake: null,
         current_messages: [],
         unreadMessagesCount: 0,
+        isFetching: false,
+        unloadedMessages: 0,
     },
     group_chat: {},
 };
@@ -74,6 +76,7 @@ const slice = createSlice({
         setCurrentConversation(state, action) {
             state.direct_chat.current_conversation = action.payload.current_conversation; ////////////////
             state.direct_chat.current_conversation_fake = null;
+            state.direct_chat.isFetching = false;
         },
         setCurrentConversationFake(state, action) {
             state.direct_chat.current_conversation_fake = action.payload.current_conversation_fake; ////////////
@@ -327,6 +330,12 @@ export function ClearConversation() {
 export const ChangeContactDisplay = (conversationId) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.changeContactDisplay({conversationId}));
+    };
+};
+
+export const ChangeIsFetching = (conversationId) => {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.changeIsFetching());
     };
 };
 

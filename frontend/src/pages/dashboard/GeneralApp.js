@@ -13,7 +13,6 @@ import Media from "../../sections/Dashboard/SharedMessages";
 
 const GeneralApp = () => {
 
-
     const [searchParams] = useSearchParams();
 
     const theme = useTheme();
