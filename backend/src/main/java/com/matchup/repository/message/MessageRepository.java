@@ -1,6 +1,8 @@
 package com.matchup.repository.message;
 
 import com.matchup.model.message.Message;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -31,4 +33,6 @@ public interface MessageRepository extends JpaRepository<Message, Long> {
             "AND m.sender.username = :senderUsername AND m.viewed = false")
     int countUnreadMessagesByReceiverAndSenderUsernames(@Param("receiverUsername") String receiverUsername, @Param("senderUsername") String senderUsername);
 
+    @Query("SELECT m FROM Message m WHERE (m.sender.id = :user1Id AND m.receiver.id = :user2Id) OR (m.sender.id = :user2Id AND m.receiver.id = :user1Id)")
+    Page<Message> findMessagesPageBySenderIdAndReceiverId(long user1Id, long user2Id, Pageable pageable);
 }

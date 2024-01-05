@@ -24,14 +24,17 @@ import {client, socket} from "../../socket";
 const Conversation = ({isMobile, menu}) => {
     const dispatch = useDispatch();
 
-    const {conversations, current_messages} = useSelector(
+    const {
+        current_conversation,
+        conversations, current_messages
+    } = useSelector(
         (state) => state.conversation.direct_chat
     );
     const {room_id, user} = useSelector((state) => state.app);
 
     useEffect(() => {
         console.log(room_id);
-        if(!room_id) return;
+        if (!room_id) return;
         const current = conversations.find((el) => el?.id === room_id);
 
         /*socket.emit("get_messages", { conversation_id: current?.id }, (data) => {
@@ -40,10 +43,12 @@ const Conversation = ({isMobile, menu}) => {
           dispatch(FetchCurrentMessages({ messages: data }));
         });*/
         console.log(JSON.stringify({user1Id: user.id, user2Id: current.user_id}));
+        /*if (room_id != current.id) {*/
         client.publish({
             destination: `/app/get-private-messages`,
             body: JSON.stringify({user1Id: user.id, user2Id: current.user_id}),
         });
+        /*}*/
 
         dispatch(SetCurrentConversation(current));
     }, [room_id]);
@@ -104,51 +109,101 @@ const ChatComponent = ({current_conversation_fake}) => {
     const isMobile = useResponsive("between", "md", "xs", "sm");
     const theme = useTheme();
 
-    const messageListRef = useRef(null);
+        const messageListRef = useRef(null);
 
-    const {current_messages} = useSelector(
-        (state) => state.conversation.direct_chat
-    );
+        const {
+            current_conversation,
+            current_messages,
+            isFetching,
+            unloadedMessages
+        } = useSelector((state) => state.conversation.direct_chat);
+        const {room_id, user} = useSelector((state) => state.app);
+        var areMessagesLoaded = false;
 
-    useEffect(() => {
-        // Scroll to the bottom of the message list when new messages are added
-        messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
-    }, [current_messages]);
+        const handleScroll = async () => {
+            /*console.log(areMessagesLoaded);*/
+            if (!areMessagesLoaded) return;
 
-    return (
-        <Stack
-            height={"100%"}
-            maxHeight={"100vh"}
-            width={isMobile ? "100vw" : "auto"}
-        >
-            {/*  */}
-            <ChatHeader current_conversation_fake={current_conversation_fake}/>
-            <Box
-                ref={messageListRef}
-                width={"100%"}
-                sx={{
-                    position: "relative",
-                    flexGrow: 1,
-                    overflow: "scroll",
+            console.log('Is fetching1: ' + isFetching);
+            console.log(room_id);
+            console.log(current_conversation.id);
+            console.log(current_conversation.user_id);
+            if (messageListRef.current.scrollTop < 500 && !isFetching && room_id == current_conversation.id) {
+                console.log('Is fetching2: ' + isFetching);
+                client.publish({
+                    destination: `/app/get-old-private-messages`,
+                    body: JSON.stringify({
+                        user1Id: user.id,
+                        user2Id: current_conversation.user_id,
+                        page: 2,
+                        size: 5,
+                        orderBy: "date",
+                        direction: "ASC"
+                    }),
+                });
+                dispatch(ChangeIsFetching());
+                console.log('Is fetching3: ' + isFetching)
+            }
+        };
 
-                    backgroundColor:
-                        theme.palette.mode === "light"
-                            ? "#F0F4FA"
-                            : theme.palette.background,
+        useEffect(() => {
+            messageListRef.current.addEventListener('scroll', handleScroll);
+            messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
 
-                    boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
-                }}
+            return () => {
+                messageListRef.current.removeEventListener('scroll', handleScroll);
+            };
+        }, []);
+
+        useEffect(() => {
+            messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+        }, [room_id]);
+
+        useEffect(() => {
+            // Scroll to the bottom of the message list when new messages are added
+            /*console.log("top " + messageListRef.current.scrollTop);
+            console.log("height " + messageListRef.current.scrollHeight);*/
+            console.log(messageListRef.current.scrollTop > messageListRef.current.scrollHeight - 2000);
+            /*if (messageListRef.current.scrollTop > messageListRef.current.scrollHeight - 2000) {*/
+            messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
+            areMessagesLoaded = true;
+            /*}*/
+        }, [current_messages]);
+        return (
+            <Stack
+                height={"100%"}
+                maxHeight={"100vh"}
+                width={isMobile ? "100vw" : "auto"}
             >
-                <SimpleBarStyle timeout={500} clickOnTrack={false}>
-                    <Conversation menu={true} isMobile={isMobile}/>
-                </SimpleBarStyle>
-            </Box>
+                {/*  */}
+                <ChatHeader current_conversation_fake={current_conversation_fake}/>
+                <Box
+                    ref={messageListRef}
+                    width={"100%"}
+                    sx={{
+                        position: "relative",
+                        flexGrow: 1,
+                        overflow: "scroll",
 
-            {/*  */}
-            <ChatFooter current_conversation_fake={current_conversation_fake}/>
-        </Stack>
-    );
-};
+                        backgroundColor:
+                            theme.palette.mode === "light"
+                                ? "#F0F4FA"
+                                : theme.palette.background,
+
+                        boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)",
+                    }}
+                >
+                    <SimpleBarStyle timeout={500} clickOnTrack={false}>
+                        <Conversation menu={true} isMobile={isMobile}/>
+                    </SimpleBarStyle>
+                </Box>
+
+                {/*  */}
+                <ChatFooter current_conversation_fake={current_conversation_fake}/>
+            </Stack>
+        );
+    }
+;
 
 export default ChatComponent;
 

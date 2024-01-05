@@ -24,7 +24,6 @@ const GeneralApp = () => {
 
     return (
         <>
-            {console.log("USEEEEER IIIIIIIIIIDDDDDDDDDDDDD: " + user_id)}
             {user_id && localStorage.getItem("user_id") && isUserUpdated && (
                 <Stack direction="row" sx={{width: "100%"}}>
                     <Chats/>

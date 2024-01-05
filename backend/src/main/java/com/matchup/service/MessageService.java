@@ -1,7 +1,9 @@
 package com.matchup.service;
 
 import com.matchup.dto.ContactDto;
+import com.matchup.dto.GetOldMessageRequestDto;
 import com.matchup.dto.MessageDto;
+import com.matchup.dto.MessagePageDto;
 import com.matchup.enums.MessageType;
 import com.matchup.model.Contact;
 import com.matchup.model.User;
@@ -12,6 +14,10 @@ import com.matchup.repository.image.MessageImageRepository;
 import com.matchup.repository.message.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -135,7 +141,7 @@ public class MessageService {
 
     @Transactional
     @org.springframework.transaction.annotation.Transactional
-    public List<MessageDto> findMessageListByUsersId(long user1Id, long user2Id) {
+    public MessagePageDto findMessageListByUsersId(long user1Id, long user2Id) {
         Optional<User> user1Op = userRepository.findById(user1Id);
         if (user1Op.isEmpty()) return null;
         Optional<User> user2Op = userRepository.findById(user2Id);
@@ -149,12 +155,17 @@ public class MessageService {
 
         if (!contact.isDisplayed()) contact.setDisplayed(false);
 
-        List<Message> messageList = messageRepository.findMessagesBySenderIdAndReceiverId(user1Id, user2Id).get();
+        Pageable pageable = PageRequest.of(0, 30, Sort.by(Sort.Direction.ASC, "date"));
 
+        Page<Message> messagePage = messageRepository.findMessagesPageBySenderIdAndReceiverId(user1Id, user2Id, pageable);
+
+        return mapModelToPageDto(messagePage, user1Id, user2Id);
+    }
+
+    public MessagePageDto mapModelToPageDto(Page<Message> messagePage, long user1Id, long user2Id){
         List<MessageDto> messageDtoList = new ArrayList<>();
 
-
-        messageList.forEach((msg) -> {
+        messagePage.forEach((msg) -> {
             msg.setViewed(true);
             msg = messageRepository.save(msg);
             MessageDto messageDto = MessageDto.builder()
@@ -188,7 +199,15 @@ public class MessageService {
             messageDtoList.add(messageDto);
 
         });
-        return messageDtoList;
+
+        return MessagePageDto.builder()
+                .page(messagePage.getNumber())
+                .size(messagePage.getSize())
+                .contactId(contactRepository.findByUser1IdAndUser2Id(user1Id, user2Id).get().getId())
+                .totalElements(Integer.parseInt(String.valueOf(messagePage.getTotalElements())))
+                .totalPages(messagePage.getTotalPages())
+                .messageList(messageDtoList)
+                .build();
     }
 
             /*for (Message message : messageList) {
@@ -345,4 +364,18 @@ public class MessageService {
         msg.setViewed(true);
         messageRepository.save(msg);
     }
+
+    @Transactional
+    @org.springframework.transaction.annotation.Transactional
+    public MessagePageDto findOldMessages(GetOldMessageRequestDto getOldMessageRequestDto){
+        Pageable pageable = PageRequest.of(getOldMessageRequestDto.getPage(),
+                getOldMessageRequestDto.getSize(),
+                Sort.by(getOldMessageRequestDto.getDirection(), getOldMessageRequestDto.getOrderBy()));
+
+
+        Page<Message> messagePage = messageRepository.findMessagesPageBySenderIdAndReceiverId(getOldMessageRequestDto.getUser1Id(), getOldMessageRequestDto.getUser2Id(), pageable);
+
+        return mapModelToPageDto(messagePage, getOldMessageRequestDto.getUser1Id(), getOldMessageRequestDto.getUser2Id());
+    }
+
 }
