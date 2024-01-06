@@ -4,30 +4,46 @@ import {Button, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 // @ts-ignore
 import img1 from "../../img/img1.jpg";
-/*import img2 from '../../img/img2.jpg';
+// @ts-ignore
+import img2 from '../../img/img2.jpg';
+// @ts-ignore
 import img3 from '../../img/img3.jpg';
+// @ts-ignore
 import img4 from '../../img/img4.jpg';
+// @ts-ignore
 import img5 from '../../img/img5.jpeg';
+// @ts-ignore
 import img6 from '../../img/img6.jpeg';
+// @ts-ignore
 import img7 from '../../img/img7.jpeg';
+// @ts-ignore
 import img8 from '../../img/img8.jpeg';
+// @ts-ignore
 import img9 from '../../img/img9.jpeg';
+// @ts-ignore
 import img10 from '../../img/img10.jpeg';
+// @ts-ignore
 import img11 from '../../img/img11.jpeg';
+// @ts-ignore
 import img12 from '../../img/img12.jpeg';
+// @ts-ignore
 import img13 from '../../img/img13.jpg';
+// @ts-ignore
 import img14 from '../../img/img14.jpg';
+// @ts-ignore
 import img15 from '../../img/img15.jpg';
+// @ts-ignore
 import img16 from '../../img/img16.jpg';
-import img17 from '../../img/img17.jpg';*/
+// @ts-ignore
+import img17 from '../../img/img17.jpg';
 import {useTheme} from "@mui/material/styles";
 
 
 const Introduction = () => {
     const theme = useTheme();
     const [backgroundImages, setBackgroundImages] = useState([
-        img1+''/*, img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
-        img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',*/
+        img1+'', img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
+        img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',
     ]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -79,7 +95,6 @@ const Introduction = () => {
                 Uma plataforma na qual você pode conhecer pessoas com interesses em comum sobre jogos na região, descobrir novos jogos perfeitos para você e passar horas interagindo nos chats e comunidades sobre o mundo gamer.
             </Typography>
             <Button
-                color="secondary"
                 variant="contained"
                 size="large"
                 component="a"

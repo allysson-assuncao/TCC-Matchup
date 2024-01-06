@@ -86,44 +86,6 @@ const ProfileSearch = () => {
             setRandomValue(value);
         }, [profile]);
 
-
-        /*useEffect(() => {
-            if (!profile || !notifications || notifications.length === 0) return;
-            if (notifications[notifications.length - 1].senderId === profile.id && notifications[notifications.length - 1].type !== NOTIFICATION_TYPES.DEFAULT) {
-                let notification = notifications[notifications.length - 1];
-                setProfile((prevProfile) => ({
-                    ...prevProfile,
-                    friendshipStatus: notification.type,
-                    doesFriendshipExist: notification.type === NOTIFICATION_TYPES.PENDING || notification.type === NOTIFICATION_TYPES.ACCEPTED
-                }));
-            }
-        }, [notifications]);
-
-        useEffect(() => {
-            if (!profile || !lastEndedFriendshipList || lastEndedFriendshipList.length === 0) return;
-            if (lastEndedFriendshipList[lastEndedFriendshipList.length - 1] === profile.id) {
-                setProfile((prevProfile) => ({
-                    ...prevProfile,
-                    doesFriendshipExist: false,
-                    friendshipStatus: NOTIFICATION_TYPES.REJECTED, //!*****************
-                }));
-            }
-        }, [lastEndedFriendshipList]);
-
-        useEffect(() => {
-            if (!profile || !lastFriendshipResponse || lastFriendshipResponse.length === 0) return;
-            let previousFriendshipResponse = lastFriendshipResponse[lastFriendshipResponse.length - 1];
-            if (previousFriendshipResponse.respondedId === profile.id) {
-                setProfile((prevProfile) => ({
-                    ...prevProfile,
-                    doesFriendshipExist: previousFriendshipResponse.accepted,
-                    friendshipStatus: previousFriendshipResponse.accepted ? NOTIFICATION_TYPES.ACCEPTED : NOTIFICATION_TYPES.REJECTED,
-
-                }));
-            }
-        }, [lastFriendshipResponse]);*/
-
-
         return (
             <>
                 <Stack direction="row" sx={{width: "100%"}}>
@@ -134,7 +96,7 @@ const ProfileSearch = () => {
                             justifyContent: 'center',
                             overflowY: "scroll",
                             height: "100vh",
-                            width: 400,
+                            width: 320,
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#F8FAFF"

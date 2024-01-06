@@ -9,6 +9,7 @@ import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import {useCustomTheme} from "../../contexts/CustomThemeContext";
 import getTheme from "../../theme";
+import {GameController} from "phosphor-react";
 
 const item: SxProps<Theme> = {
     display: 'flex',
@@ -77,18 +78,17 @@ const WhatIsMatchup = () => {
                         opacity: 0.7,
                     }}
                 />
-                <Typography variant="h4" component="h2" color={theme.palette.secondary.main} sx={{mb: 14}}>
+                <Typography variant="h4" component="h2" sx={{mb: 14}}>
                     O que é o Matchup?
                 </Typography>
-                <div>
+                <Grid>
                     <Grid container spacing={5} sx={{marginBottom: '100px'}}>
                         <Grow in={scrolled}>
                             <Grid item xs={12} md={4}>
                                 <Box sx={item}>
                                     <Box sx={number}>1.</Box>
-                                    <SportsEsportsOutlinedIcon color="primary"
-                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
+                                    <GameController color={theme.palette.primary.main} style={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography variant="h5" align="center">
                                         Selecione seus jogos favoritos e converse sobre eles com seus amigos!
                                     </Typography>
                                 </Box>
@@ -102,9 +102,9 @@ const WhatIsMatchup = () => {
                                 <Box sx={item}>
                                     <Box sx={number}>2.</Box>
 
-                                    <GroupAddOutlinedIcon color="primary"
+                                    <GroupAddOutlinedIcon color={"primary"}
                                                           sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
+                                    <Typography variant="h5" align="center">
                                         Encontre pessoas com gostos em comum para conversar pela plataforma!
                                     </Typography>
                                 </Box>
@@ -118,16 +118,15 @@ const WhatIsMatchup = () => {
                                 <Box sx={item}>
                                     <Box sx={number}>3.</Box>
 
-                                    <SportsEsportsOutlinedIcon color="primary"
-                                                               sx={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
-                                    <Typography color={theme.palette.primary.main} variant="h5" align="center">
+                                    <GameController color={theme.palette.primary.main} style={{width: '80px', height: '80px', marginTop: '15px', marginBottom: '15px'}}/>
+                                    <Typography variant="h5" align="center">
                                         Descubra novos jogos recomendados com base nos seus interesses!
                                     </Typography>
                                 </Box>
                             </Grid>
                         </Grow>
                     </Grid>
-                </div>
+                </Grid>
             </Container>
         </Box>
     );

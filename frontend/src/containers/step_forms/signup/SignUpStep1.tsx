@@ -13,7 +13,7 @@ import DatePickerField from "../../../components/our/fields/DatePickerField";
 
 const SignUpStep1: React.FC = () => {
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main">
             <CssBaseline/>
             <Box
                 sx={{

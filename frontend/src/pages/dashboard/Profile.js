@@ -123,7 +123,7 @@ const Profile = () => {
                             justifyContent: 'center',
                             overflowY: "scroll",
                             height: "100vh",
-                            width: 400,
+                            width: 320,
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#F8FAFF"

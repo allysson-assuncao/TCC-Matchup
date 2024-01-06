@@ -43,7 +43,8 @@ const ForWho = () => {
     return (
         <Box
             component="section"
-            sx={{display: 'flex', overflow: 'hidden', bgcolor: 'secondary.dark'}}
+            sx={{display: 'flex', overflow: 'hidden'}}
+            bgcolor={theme.palette.primary.main}
         >
             <Container sx={{mt: 20, mb: 25, display: 'flex', position: 'relative'}}>
                 <Grid container spacing={5}>

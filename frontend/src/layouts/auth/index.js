@@ -4,8 +4,11 @@ import {Navigate, Outlet, useNavigate} from "react-router-dom";
 
 import Logo from "../../assets/Images/logo.ico";
 import {useSelector} from "react-redux";
+import {GameController} from "phosphor-react";
+import {useTheme} from "@mui/material/styles";
 
 const AuthLayout = () => {
+    const theme = useTheme();
     const {isLoggedIn} = useSelector((state) => state.auth);
     const navigate = useNavigate();
 /*
@@ -15,7 +18,7 @@ const AuthLayout = () => {
 
     return (
         <>
-            <Container sx={{mt: 5}} maxWidth="sm">
+            <Container sx={{mt: 5}} maxWidth="sm"> {/*its limiting signup`s size*/}
                 <Stack spacing={5}>
                     <Stack
                         sx={{width: "100%", cursor: "pointer"}}
@@ -23,8 +26,7 @@ const AuthLayout = () => {
                         alignItems={"center"}
                         onClick={() => navigate("/índice")}
                     >
-                        <img
-                            style={{height: 96, width: 96}} src={Logo} alt="Logo"/>
+                        <GameController size={96} color={theme.palette.primary.main} alt={"Logo"}/>
                     </Stack>
                     <Outlet/>
                 </Stack>
