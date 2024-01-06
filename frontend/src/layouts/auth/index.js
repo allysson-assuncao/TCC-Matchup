@@ -11,10 +11,10 @@ const AuthLayout = () => {
     const theme = useTheme();
     const {isLoggedIn} = useSelector((state) => state.auth);
     const navigate = useNavigate();
-/*
-    if (isLoggedIn) {
-        return <Navigate to={"/app"}/>;
-    }*/
+    /*
+        if (isLoggedIn) {
+            return <Navigate to={"/app"}/>;
+        }*/
 
     return (
         <>

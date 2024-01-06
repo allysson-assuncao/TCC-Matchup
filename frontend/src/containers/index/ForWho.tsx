@@ -55,7 +55,7 @@ const ForWho = () => {
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <QuestionAnswerIcon
-                                                    sx={{width: '80px', height: '80px', color: 'white', marginTop: '15px', marginBottom: '15px'}}/>
+                                    sx={{width: '80px', height: '80px', color: 'white', marginTop: '15px', marginBottom: '15px'}}/>
                                 <Typography color='white' variant="h5" align="center">
                                     Para pessoas que adoram conversar sobre jogos
                                 </Typography>
@@ -80,7 +80,7 @@ const ForWho = () => {
                         <Grid item xs={12} md={4}>
                             <Box sx={item}>
                                 <SchoolIcon
-                                            sx={{width: '80px', height: '80px', marginTop: '15px', color: 'white', marginBottom: '15px'}}/>
+                                    sx={{width: '80px', height: '80px', marginTop: '15px', color: 'white', marginBottom: '15px'}}/>
                                 <Typography color='white' variant="h5" align="center">
                                     Para aqueles que desejam expandir o seu repertório gamer
                                 </Typography>

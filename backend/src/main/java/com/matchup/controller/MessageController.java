@@ -1,14 +1,9 @@
 package com.matchup.controller;
 
-import com.matchup.dto.GetOldMessageRequestDto;
 import com.matchup.dto.MessageDto;
-import com.matchup.dto.RequestDto;
 import com.matchup.dto.UsersIdDto;
-import com.matchup.model.Interest;
 import com.matchup.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.Message;
@@ -16,8 +11,6 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -95,29 +88,6 @@ public class MessageController {
                 usersIdDto.getUser1Id()+"", "/queue/receive-message-list", messageDtoList);
 
     }
-
-    @MessageMapping("/get-old-private-messages")
-    /*@SendToUser("/queue/private-messages")*/
-    public void getPrivateMessageList(GetOldMessageRequestDto getOldMessageRequestDto) {
-        System.out.println(getOldMessageRequestDto);
-        var messagePageDto = messageService.findOldMessages(getOldMessageRequestDto);
-        simpMessagingTemplate.convertAndSendToUser(
-                getOldMessageRequestDto.getUser1Id()+"", "/queue/receive-old-messages", messagePageDto);
-        //  Pageable pageable = PageRequest.of(page, size, Sort.by(direction, orderBy));
-    }
-
- /*   @PostMapping("/get-by-specifications")
-    public Page<Interest> getInterestsBySpecificationWithPagination(
-            @AuthenticationPrincipal UserDetails userDetails,
-            @RequestParam(required = false) String searchTerm,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size,
-            @RequestParam(defaultValue = "name") String orderBy,
-            @RequestParam(defaultValue = "ASC") Sort.Direction direction,
-            @RequestBody RequestDto requestsDto) {
-        System.out.println(userDetails.getUsername());
-        return interestService.getInterestsBySpecificationWithPagination(userDetails, requestsDto.getSearchRequestDtos(), page, size, orderBy, direction);
-    }*/
 
 
 

@@ -90,7 +90,7 @@ const AppBarIndex = () => {
                                     Cadastro
                                 </Button>
                                 <Button
-                                    onClick={() => history(ROUTE_LOGIN)}
+                                    onClick={() => history(`/auth/${ROUTE_LOGIN}`)}
                                     variant="contained"
                                     sx={{ my: 1, mx: 1.5 }}
                                 >

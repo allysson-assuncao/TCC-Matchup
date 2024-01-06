@@ -14,8 +14,6 @@ const initialState = {
         current_conversation_fake: null,
         current_messages: [],
         unreadMessagesCount: 0,
-        isFetching: false,
-        unloadedMessages: 0,
     },
     group_chat: {},
 };
@@ -76,7 +74,6 @@ const slice = createSlice({
         setCurrentConversation(state, action) {
             state.direct_chat.current_conversation = action.payload.current_conversation; ////////////////
             state.direct_chat.current_conversation_fake = null;
-            state.direct_chat.isFetching = false;
         },
         setCurrentConversationFake(state, action) {
             state.direct_chat.current_conversation_fake = action.payload.current_conversation_fake; ////////////
@@ -127,27 +124,6 @@ const slice = createSlice({
                 audio: action.payload.message.hashedAudio
             });
         },
-        addDirectOldMessages(state, action) {
-            const user_id = action.payload.user_id;
-
-            /*if (state.direct_chat.current_messages.some(message => message.id == action.payload.message.id)) {
-                return;
-            }*/
-            action.payload.messageList.reverse().forEach(oldMessage => {
-                state.direct_chat.current_messages.unshift({
-                    id: oldMessage.id,
-                    type: "msg",
-                    subtype: oldMessage.type,
-                    text: oldMessage.hashedText,
-                    incoming: oldMessage.receiverId == user_id,
-                    outgoing: oldMessage.senderId == user_id,
-                    date: oldMessage.date,
-                    viewed: oldMessage.viewed,
-                    image: oldMessage.hashedImage,
-                    audio: oldMessage.hashedAudio
-                });
-            });
-        },
         setUnseenMessages(state, action) {
             state.direct_chat.conversations.forEach((conversation) => {
                 if (conversation.id === action.payload.conversationId) {
@@ -186,29 +162,34 @@ const slice = createSlice({
 
         },
         setConversationBlockedMe(state, action) {
+            console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             state.direct_chat.conversations.forEach(conversation => {
                 console.log(conversation.user_id == action.payload.lastBlocker);
                 if (conversation.user_id == action.payload.lastBlocker) {
                     conversation = {...conversation, blockedMe: true}
                     conversation.blockedMe = true;
-                    if (conversation.id == state.direct_chat.current_conversation.id) {
+                    if(conversation.id == state.direct_chat.current_conversation.id) {
                         state.direct_chat.current_conversation.blockedMe = true;
                     }
                     console.log(conversation);
                 }
+                console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             })
         },
         setConversationUnblockedMe(state, action) {
+            console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+
             state.direct_chat.conversations.forEach(conversation => {
                 console.log(conversation.user_id == action.payload.lastUnblocker);
                 if (conversation.user_id == action.payload.lastUnblocker) {
                     conversation = {...conversation, blockedMe: false}
                     conversation.blockedMe = false;
-                    if (conversation.id == state.direct_chat.current_conversation.id) {
+                    if(conversation.id == state.direct_chat.current_conversation.id) {
                         state.direct_chat.current_conversation.blockedMe = false;
                     }
                     console.log(conversation);
                 }
+                console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             })
         },
         changeContactDisplay(state, action) {
@@ -217,13 +198,7 @@ const slice = createSlice({
                     conversation.displayed = !conversation.displayed;
                 }
             });
-        },
-        changeIsFetching(state, action) {
-            state.direct_chat.isFetching = !state.direct_chat.isFetching;
-        },
-        setUnloadedMessages(state, action) {
-            state.direct_chat.unloadedMessages = action.unloadedMessages;
-        },
+        }
     },
 });
 
@@ -310,16 +285,6 @@ export const AddDirectMessage = (message, user_id) => {
     }
 }
 
-
-export const AddDirectOldMessages = (oldMessages, user_id) => {
-    return async (dispatch, getState) => {
-        if (oldMessages.contactId === getState().app.room_id) {
-            console.log("AddDirectOldMessages dentro" + user_id);
-            dispatch(slice.actions.addDirectOldMessages({messageList: oldMessages.messageList, user_id}))
-        }
-    }
-}
-
 export function ClearConversation() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.resetState());
@@ -330,17 +295,5 @@ export function ClearConversation() {
 export const ChangeContactDisplay = (conversationId) => {
     return async (dispatch, getState) => {
         dispatch(slice.actions.changeContactDisplay({conversationId}));
-    };
-};
-
-export const ChangeIsFetching = (conversationId) => {
-    return async (dispatch, getState) => {
-        dispatch(slice.actions.changeIsFetching());
-    };
-};
-
-export const SetUnloadedMessages = (unloadedMessages) => {
-    return async (dispatch, getState) => {
-        dispatch(slice.actions.setUnloadedMessages({unloadedMessages}));
     };
 };

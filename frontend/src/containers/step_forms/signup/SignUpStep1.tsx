@@ -116,16 +116,16 @@ const SignUpStep1: React.FC = () => {
                     <Grid item xs={12}>
                         <Field name="birthDate">
                             {({field, form, meta}: FieldProps) => (
-                                    <DatePickerField
-                                        sx={{width: '100%'}}
-                                        field={field}
-                                        form={form}
-                                        id="birthDate"
-                                        label="Data de Nascimento*"
-                                        /* error={(meta.touched && !!meta.error)}
-                                         helperText={(meta.touched && meta.error)}*/
-                                        meta={meta}
-                                    />
+                                <DatePickerField
+                                    sx={{width: '100%'}}
+                                    field={field}
+                                    form={form}
+                                    id="birthDate"
+                                    label="Data de Nascimento*"
+                                    /* error={(meta.touched && !!meta.error)}
+                                     helperText={(meta.touched && meta.error)}*/
+                                    meta={meta}
+                                />
                             )}
 
                         </Field>

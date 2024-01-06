@@ -2,7 +2,7 @@ import * as React from 'react';
 import ProductHeroLayout from './ProductHeroLayout';
 import {Button, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-// @ts-ignore
+/*// @ts-ignore
 import img1 from "../../img/img1.jpg";
 // @ts-ignore
 import img2 from '../../img/img2.jpg';
@@ -35,15 +35,15 @@ import img15 from '../../img/img15.jpg';
 // @ts-ignore
 import img16 from '../../img/img16.jpg';
 // @ts-ignore
-import img17 from '../../img/img17.jpg';
+import img17 from '../../img/img17.jpg';*/
 import {useTheme} from "@mui/material/styles";
 
 
 const Introduction = () => {
     const theme = useTheme();
     const [backgroundImages, setBackgroundImages] = useState([
-        img1+'', img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
-        img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',
+        /*img1+'', img2+'', img3+'', img4+'', img5+'', img6+'', img7+'', img8+'', img9+'', img10+'',
+        img11+'', img12+'', img13+'', img14+'', img15+'', img16+'', img17+'',*/
     ]);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

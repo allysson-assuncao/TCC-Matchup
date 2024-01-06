@@ -130,17 +130,17 @@ const ProfileSearch = () => {
                                         <Button
                                             startIcon={<Chat/>}
                                             onClick={() => {
-                                                    const contact_fake = {
-                                                        name: profile.username,
-                                                        online: true,
-                                                        img: profile.profilePicture,
-                                                        user_id: profile.id,
-                                                    }
-                                                    console.log("contact_fake");
-                                                    dispatch(SetCurrentConversationFake(contact_fake));
-                                                    dispatch(SelectConversation({room_id: null}));
-                                                    navigate(ROUTE_CHAT);
+                                                const contact_fake = {
+                                                    name: profile.username,
+                                                    online: true,
+                                                    img: profile.profilePicture,
+                                                    user_id: profile.id,
                                                 }
+                                                console.log("contact_fake");
+                                                dispatch(SetCurrentConversationFake(contact_fake));
+                                                dispatch(SelectConversation({room_id: null}));
+                                                navigate(ROUTE_CHAT);
+                                            }
                                             }
                                         >
                                             Conversar
@@ -167,10 +167,10 @@ const ProfileSearch = () => {
 
                                     {profile.interestNames && profile.interestNames.length != 0
                                         && (<Stack direction={'row'} justifyContent={"right"} spacing={5}>
-                                        {profile.interestNames.map((text, index) => (
-                                            <Chip key={index} label={text} style={{margin: 4}}/>
-                                        ))}
-                                    </Stack>)}
+                                            {profile.interestNames.map((text, index) => (
+                                                <Chip key={index} label={text} style={{margin: 4}}/>
+                                            ))}
+                                        </Stack>)}
 
                                     <Button
                                         onClick={() => {
