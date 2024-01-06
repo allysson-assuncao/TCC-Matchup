@@ -64,35 +64,38 @@ const ProfileMenu = () => {
                 <Box p={1}>
                     <Stack spacing={1}>
                         {Profile_Menu.map((el, idx) => (
-                            <MenuItem onClick={handleClose}>
-                                <Stack
-                                    onClick={() => {
-                                        if (idx === 0) {
-                                            navigate(ROUTE_MY_PROFILE);
-                                        } else if (idx === 1) {
-                                            navigate(ROUTE_REGISTER_INTERESTS);
-                                        } else if (idx === 2) {
-                                            navigate(`${ROUTE_INTERESTS}/${user.username}`);
-                                        } else if (idx === 3) {
-                                            navigate("/settings");
-                                        } else {
-                                            dispatch(LogoutUser());
-                                            dispatch(ClearUser());
-                                            dispatch(ClearConversation());
-                                            //socket.disconnect();
-                                            localStorage.removeItem("user_id");
-                                            //socket.emit("end", {user_id});
-                                        }
-                                    }}
-                                    sx={{ width: 100 }}
-                                    direction="row"
-                                    alignItems={"center"}
-                                    justifyContent="space-between"
-                                >
-                                    <span>{el.title}</span>
-                                    {el.icon}
-                                </Stack>{" "}
-                            </MenuItem>
+                            <>
+                                {((idx == 1 && user.access == "ADMIN") || (idx != 1)) && (
+                                    <MenuItem onClick={handleClose}>
+                                        <Stack
+                                            onClick={() => {
+                                                if (idx === 0) {
+                                                    navigate(ROUTE_MY_PROFILE);
+                                                } else if (idx === 1) {
+                                                    navigate(ROUTE_REGISTER_INTERESTS);
+                                                } else if (idx === 2) {
+                                                    navigate(`${ROUTE_INTERESTS}/${user.username}`);
+                                                } else if (idx === 3) {
+                                                    navigate("/settings");
+                                                } else {
+                                                    dispatch(LogoutUser());
+                                                    dispatch(ClearUser());
+                                                    dispatch(ClearConversation());
+                                                    //socket.disconnect();
+                                                    localStorage.removeItem("user_id");
+                                                    //socket.emit("end", {user_id});
+                                                }
+                                            }}
+                                            sx={{width: 100}}
+                                            direction="row"
+                                            alignItems={"center"}
+                                            justifyContent="space-between"
+                                        >
+                                            <span>{el.title}</span>
+                                            {el.icon}
+                                        </Stack>{" "}
+                                    </MenuItem>)}
+                            </>
                         ))}
                     </Stack>
                 </Box>

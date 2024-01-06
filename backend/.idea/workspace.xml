@@ -5,13 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" name="Changes" comment="creating contact while sending first message between 2 friends">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/matchup/dto/InterestImagesToUpdate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/repository/InterestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ChatElement.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/our/Interest/InterestCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/our/Interest/InterestCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/our/fields/ImageUploader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/our/fields/ImageUploader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/layouts/dashboard/ProfileMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/pages/our/RegisterInterests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/pages/our/RegisterInterests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/redux/slices/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Conversation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/Dashboard/Conversation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/sections/auth/LoginForm.js" afterDir="false" />
     </list>
     <list id="a69ea298-8499-49da-bb5a-1dd061560259" name="Changes by 0063398" comment="" />
     <list id="1d41a4b6-1be0-468e-a1df-8930e5904ca1" name="Changes by Allysson" comment="load contacts list and show its data" />
     <list id="9aa1be4a-cfd9-446c-b43e-806f22a37ae9" name="Changes by allysson" comment="Profile picture being exhibited successfully :)" />
-    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="Changes by anybo" />
+    <list id="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" name="Changes by anybo" comment="Changes by anybo">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java" afterDir="false" />
+    </list>
     <list id="ab3594c7-ab51-42fc-b6ea-9afdae9edca1" name="Changes by anybody" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +61,23 @@
         <option name="url" value="https://github.com/Allysson723/TCC-Matchup.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/service/InterestService.java">
+      <ranges>
+        <range start1="22" end1="22" start2="22" end2="23" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="27" end1="27" start2="28" end2="29" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+        <range start1="193" end1="193" start2="195" end2="228" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/com/matchup/controller/InterestController.java">
+      <ranges>
+        <range start1="2" end1="6" start2="2" end2="3" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+        <range start1="25" end1="25" start2="22" end2="23" changelist="d9d27a9d-e9ca-4c97-aaf4-0ac7c02fc29b" />
+        <range start1="67" end1="68" start2="65" end2="66" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+        <range start1="118" end1="118" start2="116" end2="122" changelist="a86fc257-3cf4-4ad5-a659-9fe3cb20df55" />
+      </ranges>
+    </file>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -236,6 +267,7 @@
       <workItem from="1704285069714" duration="4485000" />
       <workItem from="1704298294123" duration="7000" />
       <workItem from="1704304862857" duration="4088000" />
+      <workItem from="1704563946881" duration="2746000" />
     </task>
     <task id="LOCAL-00014" summary="adding parameters to resize">
       <created>1696275969373</created>

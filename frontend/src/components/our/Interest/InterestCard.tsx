@@ -17,6 +17,8 @@ import {showSnackbar} from "../../../redux/slices/app";
 import {FRIENDSHIP_STATUS} from "../../../model/friendship";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {PersonRemove, Remove} from "@mui/icons-material";
+import ImageUploader from "../fields/ImageUploader";
+import {updateInterestImagesById} from "../../../api/interest_requests/updateInterestImage";
 
 interface InterestCardProps {
     interest: Interest;
@@ -27,6 +29,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
     const [isExpanded, setExpanded] = useState(false);
     const {token} = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();
+
+    const [newImages, setNewImages] = useState<File[]>([]);
 
     const handleMouseEnter = () => {
         setExpanded(true);
@@ -48,6 +52,10 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
         dispatch(showSnackbar({severity: 'success', message: 'Interesse removido!'}));
     }
 
+    const handleSave = () => {
+        updateInterestImagesById(newImages, interest.id, token);
+    };
+
     return (
         <Grid item xs={12} sm={6} md={4}>
             <Card
@@ -55,11 +63,17 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                 onMouseLeave={handleMouseLeave}
                 sx={{minHeight: isExpanded ? '250px' : '200px'}}
             >
-                <img
+
+                {/*<img
                     src={interest.formattedImages[0]}
                     alt={interest.name+".png"}
-                    //sx={{height: 128, width: 128}}
-                />
+                />*/}
+                <ImageUploader
+                    setImages={setNewImages}
+                    handleSave={handleSave}
+                    calledByInterestCard
+                    interestImageList={interest.formattedImages}
+                    userAccess={user.access}/>
                 <CardHeader
                     title={interest.name}
                     subheader={interest.company?.name}
@@ -69,7 +83,7 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                     sx={{
                         color: (theme) => theme.palette.primary.main,
                         backgroundColor: (theme) => grey[900],
-                        mb:"5px"
+                        mb: "5px"
                     }}
                 />
                 {isExpanded && (
@@ -86,12 +100,7 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         <Typography variant="body2" color="text.secondary">
                             Idade: {interest.ageRating?.name}
                         </Typography>
-                        {/*/*
-                        #0162c4
-                        #fda92d
-                        #1ccaff
-                        #ff3030
-                        */}
+
                         <Typography variant="body2" color="text.secondary">
                             Gêneros:
                         </Typography>
@@ -99,7 +108,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                             {interest && interest.genres.length != 0
                                 && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
                                     {interest.genres.map((genre, index) => (
-                                        <Chip key={index} label={genre.name+""} style={{margin: 0}} sx={{backgroundColor: "#7635dc"}}/>
+                                        <Chip key={index} label={genre.name + ""} style={{margin: 0}}
+                                              sx={{backgroundColor: "#7635dc"}}/>
                                     ))}
                                 </Stack>)
                             }
@@ -110,7 +120,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         {interest && interest.genres.length != 0
                             && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
                                 {interest.subGenres.map((subGenre, index) => (
-                                    <Chip key={index} label={subGenre.name+""} style={{margin: 4}} sx={{backgroundColor: "#0162c4"}}/>
+                                    <Chip key={index} label={subGenre.name + ""} style={{margin: 4}}
+                                          sx={{backgroundColor: "#0162c4"}}/>
                                 ))}
                             </Stack>)
                         }
@@ -120,7 +131,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         {interest && interest.genres.length != 0
                             && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
                                 {interest.platforms.map((platform, index) => (
-                                    <Chip key={index} label={platform.name+""} style={{margin: 4}} sx={{backgroundColor: "#fda92d"}}/>
+                                    <Chip key={index} label={platform.name + ""} style={{margin: 4}}
+                                          sx={{backgroundColor: "#fda92d"}}/>
                                 ))}
                             </Stack>)
                         }
@@ -130,7 +142,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         {interest && interest.genres.length != 0
                             && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
                                 {interest.dubbingLanguages.map((dubbingLanguage, index) => (
-                                    <Chip key={index} label={dubbingLanguage.id+""} style={{margin: 4}} sx={{backgroundColor: "#1ccaff"}}/>
+                                    <Chip key={index} label={dubbingLanguage.id + ""} style={{margin: 4}}
+                                          sx={{backgroundColor: "#1ccaff"}}/>
                                 ))}
                             </Stack>)
                         }
@@ -140,7 +153,8 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         {interest && interest.genres.length != 0
                             && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
                                 {interest.subtitleLanguages.map((subtitleLanguage, index) => (
-                                    <Chip key={index} label={subtitleLanguage.id+""} style={{margin: 4}} sx={{backgroundColor: "#ff3030"}}/>
+                                    <Chip key={index} label={subtitleLanguage.id + ""} style={{margin: 4}}
+                                          sx={{backgroundColor: "#ff3030"}}/>
                                 ))}
                             </Stack>)
                         }

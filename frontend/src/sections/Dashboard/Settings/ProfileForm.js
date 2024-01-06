@@ -96,6 +96,9 @@ const ProfileForm = () => {
     const values = watch();
 
     const onSubmit = async (data) => {
+        console.log(methods.control._formValues);
+        console.log(methods.control._defaultValues);
+        console.log((methods.control._formValues == methods.control._defaultValues));
         try {
 
             dispatch(
@@ -162,7 +165,11 @@ const ProfileForm = () => {
                                 size="large"
                                 type="submit"
                                 variant="contained"
-                                disabled={!methods.formState.isDirty || !methods.formState.isValid || isSubmitting}
+                                disabled={/*!methods.formState.isDirty || */!methods.formState.isValid || isSubmitting ||
+                                    (methods.control._formValues.username == methods.control._defaultValues.username
+                                    && methods.control._formValues.cellphoneNumber == methods.control._defaultValues.cellphoneNumber
+                                    && methods.control._formValues.bio == methods.control._defaultValues.bio
+                                    && methods.control._formValues.profilePicture == methods.control._defaultValues.profilePicture)}
                                 // loading={isSubmitSuccessful || isSubmitting}
                             >
                                 Salvar

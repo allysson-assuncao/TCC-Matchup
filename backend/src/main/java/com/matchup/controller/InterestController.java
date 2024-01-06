@@ -1,9 +1,6 @@
 package com.matchup.controller;
 
-import com.matchup.dto.InterestDependenciesDto;
-import com.matchup.dto.InterestDto;
-import com.matchup.dto.RequestDto;
-import com.matchup.dto.SearchRequestDto;
+import com.matchup.dto.*;
 import com.matchup.model.Interest;
 import com.matchup.model.insterest.Company;
 import com.matchup.model.insterest.Genre;
@@ -23,6 +20,7 @@ import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -65,7 +63,7 @@ public class InterestController {
         return new ResponseEntity<>(interestService.getInterestsDependencies(), HttpStatus.ACCEPTED);
     }
 
-/**/
+    /**/
 
     @PostMapping("/register/interest")
     @PostAuthorize("true")
@@ -115,5 +113,11 @@ public class InterestController {
             @RequestBody RequestDto requestsDto) {
         System.out.println(userDetails.getUsername());
         return interestService.getInterestsBySpecificationWithPagination(userDetails, requestsDto.getSearchRequestDtos(), page, size, orderBy, direction);
+    }
+
+    @PatchMapping("/update-images")
+    public void updateInterestImagesById(@AuthenticationPrincipal UserDetails userDetails,
+                                         @ModelAttribute InterestImagesToUpdate interestImagesToUpdate) {
+        interestService.updateInterestImagesById(userDetails.getUsername(), interestImagesToUpdate.getInterestId(), interestImagesToUpdate.getImageList());
     }
 }

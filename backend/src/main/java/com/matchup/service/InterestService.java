@@ -20,11 +20,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -190,5 +192,38 @@ public class InterestService {
         interestDependenciesDto.setSubGenres(subGenreRepository.findAll());
         interestDependenciesDto.setPlatforms(platformRepository.findAll());
         return interestDependenciesDto;
+    }
+
+    @Transactional
+    @jakarta.transaction.Transactional
+    public void updateInterestImagesById(String username, long interestId, MultipartFile[] imageList) {
+
+
+        Optional<Interest> interestOp = interestRepository.findById(interestId);
+        if(interestOp.isEmpty()) return;
+        Interest interestToUpdate = interestOp.get();
+
+        ArrayList<InterestImage> interestImageList = new ArrayList<>();
+        if (imageList != null || imageList.length == 0) {
+            for(MultipartFile interestMultipartFile: imageList){
+                var interestImage = new InterestImage();
+                try {
+                    interestImage.setContent(interestMultipartFile.getBytes());
+                } catch (IOException e) {
+                    System.out
+                            .println("updateInterestImages() -> IOException");
+                    throw new RuntimeException(e);
+                }
+                interestImage.setName(interestMultipartFile.getName());
+                interestImage.setContentType(interestMultipartFile.getContentType());
+                interestImage.setOriginalName(interestMultipartFile.getOriginalFilename());
+                interestImage.setInterest(interestToUpdate);
+                interestImageRepository.save(interestImage);
+            }
+        }
+
+        interestToUpdate.setImages(interestImageList);
+        Interest interest = interestRepository.save(interestToUpdate);
+
     }
 }

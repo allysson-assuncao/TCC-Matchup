@@ -11,11 +11,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface InterestRepository extends JpaRepository<Interest, Long>, JpaSpecificationExecutor<Interest> {
 
-    List<Interest> findById(long id);
+    Optional<Interest> findById(long id);
 
 
     @Query("SELECT CASE WHEN COUNT(i) > 0 THEN true ELSE false END FROM Interest i JOIN i.users u WHERE i.id = :interestId AND u.username = :username")

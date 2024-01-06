@@ -382,6 +382,7 @@ export const FetchUserProfile = () => {
                 },
             })
             .then((response) => {
+                console.log(response.data);
                 dispatch(slice.actions.fetchUser({user: response.data}));
                 dispatch(slice.actions.setIsUserUpdated({isUserUpdated: true}));
             })

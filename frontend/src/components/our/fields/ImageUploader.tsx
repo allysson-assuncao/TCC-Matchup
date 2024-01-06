@@ -4,11 +4,21 @@ import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload} from '@mui/icons-
 import {resizeImage} from "../../../utils/ResizeImage";
 
 interface ImageUploaderProps {
-    setImages: React.Dispatch<React.SetStateAction<File[]>>;
+    setImages: React.Dispatch<React.SetStateAction<File[]>>,
+    calledByInterestCard: boolean,
+    interestImageList: string[],
+    userAccess: string,
+    handleSave?: () => void
 }
 
-const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
-    const [selectedImages, setSelectedImages] = useState<string[]>([]);
+const ImageUploader: React.FC<ImageUploaderProps> = ({
+                                                         setImages,
+                                                         calledByInterestCard,
+                                                         interestImageList,
+                                                         userAccess,
+                                                         handleSave
+                                                     }) => {
+    const [selectedImages, setSelectedImages] = useState<string[]>(interestImageList);
     const [activeStep, setActiveStep] = useState(0);
 
     const handleImageChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,19 +49,19 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({setImages}) => {
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
-                <Button variant="contained" component="label" sx={{alignItems: "center"}}>
-                    <Upload sx={{mr:'13px'}}/>  Adicionar Imagens
+                {userAccess == "ADMIN" && (<Button variant="contained" component="label" sx={{alignItems: "center"}}>
+                    <Upload sx={{mr: '13px'}}/> Adicionar Imagens
                     <input
                         type="file"
                         hidden
                         multiple
                         onChange={handleImageChange}
                     />
-                </Button>
+                </Button>)}
             </Grid>
             {selectedImages.length > 0 && (
-                <Grid item justifyContent={'center'}>
-                    <Paper square elevation={0}>
+                <Grid item /*justifyContent={'center'}*/>
+                    <Paper elevation={0}>
                         <Grid container justifyContent="space-between" alignItems="center">
                             <img src={selectedImages[activeStep]} alt="Selected" style={{maxWidth: '100%'}}/>
                         </Grid>

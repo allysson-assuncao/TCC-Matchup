@@ -1,23 +1,29 @@
 import React from 'react';
 import {
     Box,
-    Grid,
+    Grid, Stack, Typography,
 } from '@mui/material';
 import InterestCard from "../../components/our/Interest/InterestCard";
 import {InterestRequest} from "../../model/interest_filtered_request";
+import {SimpleBarStyle} from "../../components/Scrollbar";
+import ChatElement from "../../components/ChatElement";
 
 interface InterestCardListProps {
     interests: InterestRequest | undefined;
 }
 
-const InterestCardList: React.FC<InterestCardListProps> = ({ interests }) => {
+const InterestCardList: React.FC<InterestCardListProps> = ({interests}) => {
     return (
-        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto'}}>
-            <Grid container spacing={5} alignItems="flex-end">
-                {interests && interests.content && interests.content.map((interest) => (
-                    <InterestCard key={Number(interest.id)} interest={interest} />
-                ))}
-            </Grid>
+        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto'}}>
+            <Stack p={3} spacing={2} sx={{maxHeight: "85vh"}}>
+               {/* <SimpleBarStyle timeout={500} clickOnTrack={false}>*/}
+                    <Grid container spacing={5} >
+                        {interests && interests.content && interests.content.map((interest) => (
+                            <InterestCard key={Number(interest.id)} interest={interest}/>
+                        ))}
+                    </Grid>
+                {/*</SimpleBarStyle>*/}
+            </Stack>
         </Box>
     );
 };

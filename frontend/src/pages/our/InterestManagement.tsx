@@ -6,7 +6,7 @@ import {
     Grid, Stack,
 } from '@mui/material';
 /*import AppBarProfile from "../containers/appbars/AppBarProfile";*/
-import { MapOrEntries, useMap } from 'usehooks-ts'
+import {MapOrEntries, useMap} from 'usehooks-ts'
 import Link from "@mui/material/Link";
 import InterestFilters from "../../containers/interest/InterestFilters";
 import InterestCardList from "../../containers/interest/InterestCardList";
@@ -25,7 +25,7 @@ const InterestManagement: React.FC = () => {
     const [map, mapActions] = useMap<number, InterestRequest>([]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-        setPage(value-1);
+        setPage(value - 1);
     }
 
     return (
@@ -33,7 +33,7 @@ const InterestManagement: React.FC = () => {
             <CssBaseline/>
             <Box maxHeight={"800px"} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Grid container justifyContent={'center'}>
-                    <Grid item md={10} sm={11} xs={12}>
+                    <Grid item md={11.5} sm={12} xs={12}>
                         <Grid container spacing={5}>
                             <Grid item md={4}>
                                 <InterestFilters
@@ -47,10 +47,10 @@ const InterestManagement: React.FC = () => {
                                     mapActions={mapActions}
                                 />
                             </Grid>
-                            <Grid item md={8}>
+                            <Grid item md={8} justifyContent="center">
                                 <InterestCardList interests={filteredInterests}/>
                                 <Stack justifyContent={"center"} spacing={2}>
-                                    <Pagination count={totalPages} page={page+1} onChange={handleChange}/>
+                                    <Pagination count={totalPages} page={page + 1} onChange={handleChange}/>
                                 </Stack>
                             </Grid>
                         </Grid>

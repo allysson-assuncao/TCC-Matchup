@@ -257,7 +257,8 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
 
 
     return (
-        <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <Stack p={3} spacing={2} sx={{maxHeight: "90vh", overflowY:"auto"}}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     {isLoggedUser && (

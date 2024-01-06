@@ -48,6 +48,8 @@ const RegisterInterests: React.FC = () => {
 
     const [images, setImages] = useState<File[]>([]);
 
+    const {user} = useSelector((state: any) => state.app);
+
     const loadDropdowns = async () => {
         try {
             let data = await getAllInterestDependencies();
@@ -260,7 +262,7 @@ const RegisterInterests: React.FC = () => {
                     </Grid>
 
                     <Grid item xs={6} justifyContent={"center"}>
-                        <ImageUploader setImages={setImages} ></ImageUploader>
+                        <ImageUploader userAccess={user.access} interestImageList={[]} calledByInterestCard={false} setImages={setImages} ></ImageUploader>
                     </Grid>
                     <Grid item xs={12}>
                         <Button type="submit" fullWidth variant="contained" color="primary"
