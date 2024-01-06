@@ -123,20 +123,9 @@ const Chats = () => {
                     <Stack sx={{flexGrow: 1, overflow: "scroll", height: "100%"}}>
                         <SimpleBarStyle timeout={500} clickOnTrack={false}>
                             <Stack spacing={2.4}>
-                                {/* <Typography variant="subtitle2" sx={{ color: "#676667" }}>
-                  Fixado
-                </Typography> */}
-                                {/* Chat List */}
-                                {/* {ChatList.filter((el) => el.pinned).map((el, idx) => {
-                  return <ChatElement {...el} />;
-                })} */}
                                 <Typography variant="subtitle2" sx={{color: "#676667"}}>
                                     Todas as Conversas
                                 </Typography>
-                                {/* Chat List */}
-                                {/*{conversations.filter((el) => !el.pinned).map((el, idx) => {
-                                    return <ChatElement {...el} />;
-                                })}*/}
                                 {conversations
                                     .filter((el) => !el.pinned && el.displayed)
                                     .sort((b, a) => new Date(a.time) - new Date(b.time))

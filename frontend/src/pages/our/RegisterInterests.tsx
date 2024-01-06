@@ -17,6 +17,8 @@ import {INTEREST_DEPENDENCIES, InterestDependency, InterestDto} from "../../mode
 import MultipleSelect from "../../components/our/fields/MultipleSelect";
 import SimpleSelect from "../../components/our/fields/SimpleSelect";
 import ImageUploader from "../../components/our/fields/ImageUploader";
+import {useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const RegisterInterests: React.FC = () => {
     const [name, setName] = useState<string>();
@@ -63,8 +65,14 @@ const RegisterInterests: React.FC = () => {
             console.error('Error loading dropdowns:', error);
         }
     };
+    const navigate = useNavigate();
 
     useEffect(() => {
+
+        if(user.access != "ADMIN") {
+            navigate("/");
+            return;
+        }
         loadDropdowns();
     }, []);
 

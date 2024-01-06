@@ -460,6 +460,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
                     </Grid>
                 </Grid>
             </Grid>
+            </Stack>
         </Box>
     );
 };

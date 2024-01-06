@@ -22,6 +22,9 @@ function formatData(dateString) {
     let difference = now - date;
 
     if (difference < 24 * 60 * 60 * 1000) {
+        if(date.getMinutes() < 10){
+            return date.getHours() + ':0' + date.getMinutes();
+        }
         return date.getHours() + ':' + date.getMinutes();
     } else if (difference < 7 * 24 * 60 * 60 * 1000) {
         return ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][date.getDay()];

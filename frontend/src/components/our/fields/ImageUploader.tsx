@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
-import {Button, Grid, IconButton, MobileStepper, Paper} from '@mui/material';
-import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload} from '@mui/icons-material';
+import {Button, Grid, IconButton, MobileStepper, Paper, Stack} from '@mui/material';
+import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload, Save} from '@mui/icons-material';
 import {resizeImage} from "../../../utils/ResizeImage";
 
 interface ImageUploaderProps {
@@ -46,6 +46,7 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         setActiveStep((prevActiveStep) => prevActiveStep > 0 ? prevActiveStep - 1 : 0);
     };
 
+
     return (
         <Grid container direction="column" alignItems="center">
             <Grid item>
@@ -65,9 +66,21 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
                         <Grid container justifyContent="space-between" alignItems="center">
                             <img src={selectedImages[activeStep]} alt="Selected" style={{maxWidth: '100%'}}/>
                         </Grid>
-                        <IconButton sx={{color:'primary', bgcolor:`theme.palette.background.default`}} onClick={() => handleDelete(activeStep)}>
-                            <Delete/>
-                        </IconButton>
+                        {userAccess == "ADMIN" && (
+                            <Stack direction="row"  display="flex" justifyContent="space-between" alignItems="center">
+                                <IconButton sx={{color: 'primary', bgcolor: `theme.palette.background.default`}}
+                                            onClick={() => handleDelete(activeStep)}>
+                                    <Delete/>
+                                </IconButton>
+                                {calledByInterestCard && (
+                                <IconButton sx={{color: 'primary', bgcolor: `theme.palette.background.default`}}
+                                            onClick={() => {
+                                                if (handleSave) handleSave();
+                                            }}>
+                                    <Save/>
+                                </IconButton>)}
+                            </Stack>
+                        )}
                     </Paper>
                     <MobileStepper
                         steps={selectedImages.length}
@@ -77,14 +90,14 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
                         nextButton={
                             <Button size="small" onClick={handleNext}
                                     disabled={activeStep === selectedImages.length - 1}>
-                                Next
+                                Próximo
                                 <KeyboardArrowRight/>
                             </Button>
                         }
                         backButton={
                             <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
                                 <KeyboardArrowLeft/>
-                                Back
+                                Voltar
                             </Button>
                         }
                     />

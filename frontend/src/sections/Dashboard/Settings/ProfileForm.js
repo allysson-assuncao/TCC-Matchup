@@ -64,7 +64,8 @@ const ProfileForm = () => {
                 return (await isUsernameAvailable(value));
             }),
         bio: Yup.string().nullable(true),
-        cellphoneNumber: Yup.string().nullable(true),
+        cellphoneNumber: Yup.string().min(15, 'O Nome de Usuário deve ter no mínimo 5 caracteres!')
+            .max(15, 'O Nome de Usuário deve ter no máximo 20 caracteres!').nullable(true),
             /*.matches(/^\\+\\d{2}\\s\\(\\d{2}\\)\\s\\d{5}-\\d{4}$/, 'Número de celular inválido!'),*/
         profilePicture: Yup.mixed().nullable(true),
     });

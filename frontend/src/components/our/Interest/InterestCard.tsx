@@ -26,6 +26,7 @@ interface InterestCardProps {
 
 const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
     const theme = useTheme();
+    const {user} = useSelector((state: any) => state.app);
     const [isExpanded, setExpanded] = useState(false);
     const {token} = useSelector((state: any) => state.auth);
     const dispatch = useDispatch();

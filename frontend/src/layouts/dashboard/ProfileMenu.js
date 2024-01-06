@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Avatar, Box, Fade, Menu, MenuItem, Stack} from "@mui/material";
 
 import {faker} from "@faker-js/faker";
