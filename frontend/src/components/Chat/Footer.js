@@ -18,7 +18,7 @@ import {
     User,
 } from "phosphor-react";
 import {useTheme, styled} from "@mui/material/styles";
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import useResponsive from "../../hooks/useResponsive";
 
 import data from "@emoji-mart/data";
@@ -160,8 +160,8 @@ function containsUrl(text) {
 const Footer = ({current_conversation_fake}) => {
     const theme = useTheme();
 
-    let  {current_conversation}  = useSelector((state) => state.conversation.direct_chat);
-    if(current_conversation_fake){
+    let {current_conversation} = useSelector((state) => state.conversation.direct_chat);
+    if (current_conversation_fake) {
         current_conversation = {...current_conversation_fake};
     }
 
@@ -174,6 +174,48 @@ const Footer = ({current_conversation_fake}) => {
     const [value, setValue] = useState("");
     const inputRef = useRef(null);
 
+    useEffect(() => {
+        inputRef.current.focus();
+    }, [value]);
+
+    const handleSend = () => {
+        client.publish({
+            destination: `/app/send-private-message`,
+            body: JSON.stringify({
+                senderId: user_id,
+                receiverId: current_conversation.user_id,
+                messageType: MESSAGE_TYPE.TEXT,
+                hashedText: value,
+            }),
+        });
+
+        setValue('');
+    };
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSend();
+        }
+    };
+
+    const ChatInput = ({onKeyDown}) => {
+
+        return (
+            <StyledInput
+                disabled={current_conversation && (current_conversation.blockedByMe || current_conversation.blockedMe)}
+                inputRef={inputRef}
+                value={value}
+                setValue={setValue}
+                openPicker={openPicker}
+                setOpenPicker={setOpenPicker}
+                onChange={(event) => {
+                    setValue(event.target.value);
+                }}
+                onKeyDown={onKeyDown}
+            />
+        );
+    };
 
     function handleEmojiClick(emoji) {
         const input = inputRef.current;
@@ -242,12 +284,8 @@ const Footer = ({current_conversation_fake}) => {
                             </Typography>
                         )}
                         <ChatInput
-                            disabled={current_conversation && (current_conversation.blockedByMe || current_conversation.blockedMe)}
+                            onKeyDown={handleKeyDown}
                             inputRef={inputRef}
-                            value={value}
-                            setValue={setValue}
-                            openPicker={openPicker}
-                            setOpenPicker={setOpenPicker}
                         />
                     </Stack>
                     <Box
@@ -267,18 +305,7 @@ const Footer = ({current_conversation_fake}) => {
                                 color={current_conversation && (current_conversation.isBlockedByMe || current_conversation.blockedMe) ? "error" : "warning"}
                                 disabled={current_conversation && (current_conversation.isBlockedByMe || current_conversation.blockedMe)}
                                 onClick={() => {
-                                    client.publish({
-                                        destination: `/app/send-private-message`,
-                                        body: JSON.stringify({
-                                            senderId: user_id,
-                                            receiverId: current_conversation.user_id,
-                                            messageType: MESSAGE_TYPE.TEXT,
-                                            hashedText: value,
-
-                                        }),
-                                    });
-
-
+                                    handleSend()
                                 }}
                             >
                                 <PaperPlaneTilt color="#ffffff"/>

@@ -34,10 +34,19 @@ function formatData(dateString) {
         let years = Math.floor(difference / (365.25 * 24 * 60 * 60 * 1000));
 
         if (years > 0) {
+            if(years = 1){
+                return years + ' ano atrás';
+            }
             return years + ' anos atrás';
         } else if (months > 0) {
+            if(months = 1){
+                return months + ' mês atrás';
+            }
             return months + ' meses atrás';
         } else {
+            if(weeks = 1){
+                return weeks + ' semana atrás';
+            }
             return weeks + ' semanas atrás';
         }
     }
@@ -84,7 +93,7 @@ const MessageOption = () => {
 const TextMsg = ({el, menu}) => {
     const theme = useTheme();
     return (
-        <Stack direction="row" justifyContent={el.incoming ? "start" : "end"}>
+        <Stack direction="row" justifyContent={el.incoming ? "flex-start" : "flex-end"}>
             <Box
                 px={1.5}
                 py={1.5}
@@ -98,18 +107,20 @@ const TextMsg = ({el, menu}) => {
             >
                 <Typography
                     variant="body2"
-                    color={el.incoming ? theme.palette.text : "#fff"}
+                    color={el.incoming ? theme.palette.text.primary : "#fff"}
                 >
                     {el.text}
                 </Typography>
                 <Typography
-                    variant="p"
-                    color={theme.palette.text.disabled}
+                    variant="body2"
+                    sx={{color: `rgba(255, 255, 255, 0.7)`,
+                        fontSize: "0.7rem",
+                        textAlign: el.incoming ? "left" : "right",}}
                 >
                     {formatData(el.date)}
                 </Typography>
             </Box>
-            {menu && <MessageOption/>}
+            {menu && <MessageOption />}
         </Stack>
     );
 };

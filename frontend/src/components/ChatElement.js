@@ -64,10 +64,19 @@ function formatData(dateString) {
         let years = Math.floor(difference / (365.25 * 24 * 60 * 60 * 1000));
 
         if (years > 0) {
+            if(years = 1){
+                return years + ' ano atrás';
+            }
             return years + ' anos atrás';
         } else if (months > 0) {
+            if(months = 1){
+                return months + ' mês atrás';
+            }
             return months + ' meses atrás';
         } else {
+            if(weeks = 1){
+                return weeks + ' semana atrás';
+            }
             return weeks + ' semanas atrás';
         }
     }
