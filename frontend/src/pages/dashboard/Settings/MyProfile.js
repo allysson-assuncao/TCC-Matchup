@@ -22,7 +22,7 @@ const MyProfile = () => {
                         overflowY: "scroll",
 
                         height: "100vh",
-                        width: 320,
+                        width: 400,
                         backgroundColor: (theme) =>
                             theme.palette.mode === "light"
                                 ? "#F8FAFF"
@@ -50,7 +50,7 @@ const MyProfile = () => {
                 <Box
                     sx={{
                         height: "100%",
-                        width: "calc(100vw - 420px )",
+                        width: "calc(100vw - 500px )",
                         backgroundColor: (theme) =>
                             theme.palette.mode === "light"
                                 ? "#FFF"

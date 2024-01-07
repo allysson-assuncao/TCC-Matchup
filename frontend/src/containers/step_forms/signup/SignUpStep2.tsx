@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {
     Box,
     Container,
-    CssBaseline,
+    CssBaseline, Grid,
     TextField,
     Typography
 } from '@mui/material';
@@ -28,7 +28,7 @@ function formatZipcode(value: any) {
 }
 
 const SignUpStep2: React.FC = () => {
-    const[wasAddressRequested, setAddressRequested] = useState(false)
+    const [wasAddressRequested, setAddressRequested] = useState(false)
 
     const completeAddress = async (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, form: FormikProps<any>) => {
         const zipCode = e.target.value;
@@ -52,14 +52,14 @@ const SignUpStep2: React.FC = () => {
             } catch (error) {
                 console.error(error);
             }
-        }else{
+        } else {
             setAddressRequested(false);
         }
     };
 
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main">
             <CssBaseline/>
             <Box
                 sx={{
@@ -74,109 +74,110 @@ const SignUpStep2: React.FC = () => {
                     Cadastre-se
                 </Typography>
 
+                <Grid container spacing={2}>
+                    <Grid item>
+                        <Field name="addressZipcode">
+                            {({field, meta, form}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    onChange={e => {
+                                        const formatted = formatZipcode(e.target.value);
+                                        form.setFieldValue(field.name, formatted);
+                                    }}
+                                    onBlur={(e) => completeAddress(e, form)}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="zipcode"
+                                    label="CEP"
+                                    autoFocus
+                                    variant="outlined"
+                                    error={meta.touched && !!meta.error}
+                                    helperText={meta.touched && meta.error}
+                                />
+                            )}
+                        </Field>
+                        <Field name="addressState">
 
-                <Field name="addressZipcode">
-                    {({ field, meta, form }: FieldProps) => (
-                        <TextField
-                            {...field}
-                            onChange={e => {
-                                const formatted = formatZipcode(e.target.value);
-                                form.setFieldValue(field.name, formatted);
-                            }}
-                            onBlur={(e) => completeAddress(e, form)}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="zipcode"
-                            label="CEP"
-                            autoFocus
-                            variant="outlined"
-                            error={meta.touched && !!meta.error}
-                            helperText={meta.touched && meta.error}
-                        />
-                    )}
-                </Field>
-                <Field name="addressState">
-
-                    {({field, meta}: FieldProps) => (
-                        <TextField
-                            {...field}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="state"
-                            label="Estado"
-                            variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
-                            disabled={wasAddressRequested}
-                        />
-                    )}
-                </Field>
-                <Field name="addressCity">
-                    {({field, meta}: FieldProps) => (
-                        <TextField
-                            {...field}
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="city"
-                            label="Cidade"
-                            variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
-                            disabled={wasAddressRequested}
-                        />
-                    )}
-                </Field>
-                <Field name="addressNeighborhood">
-                    {({field, meta}: FieldProps) => (
-                        <TextField
-                            {...field}
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="addressNeighborhood"
-                            label="Bairro"
-                            variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            disabled={wasAddressRequested}
-                        />
-                    )}
-                </Field>
-                <Field name="addressStreet">
-                    {({field, meta}: FieldProps) => (
-                        <TextField
-                            {...field}
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="addressStreet"
-                            label="Rua / Avenida"
-                            variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
-                            disabled={wasAddressRequested}
-                        />
-                    )}
-                </Field>
-                <Field name="addressNumber">
-                    {({field, meta}: FieldProps) => (
-                        <TextField
-                            {...field}
-                            margin="normal"
-                            required
-                            fullWidth
-                            name="addressNumber"
-                            label="Número"
-                            variant="outlined"
-                            error={(meta.touched && !!meta.error)}
-                            helperText={(meta.touched && meta.error)}
-                        />
-                    )}
-                </Field>
-
-
+                            {({field, meta}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="state"
+                                    label="Estado"
+                                    variant="outlined"
+                                    error={(meta.touched && !!meta.error)}
+                                    helperText={(meta.touched && meta.error)}
+                                    disabled={wasAddressRequested}
+                                />
+                            )}
+                        </Field>
+                        <Field name="addressCity">
+                            {({field, meta}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    id="city"
+                                    label="Cidade"
+                                    variant="outlined"
+                                    error={(meta.touched && !!meta.error)}
+                                    helperText={(meta.touched && meta.error)}
+                                    disabled={wasAddressRequested}
+                                />
+                            )}
+                        </Field>
+                        <Field name="addressNeighborhood">
+                            {({field, meta}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="addressNeighborhood"
+                                    label="Bairro"
+                                    variant="outlined"
+                                    error={(meta.touched && !!meta.error)}
+                                    disabled={wasAddressRequested}
+                                />
+                            )}
+                        </Field>
+                        <Field name="addressStreet">
+                            {({field, meta}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="addressStreet"
+                                    label="Rua / Avenida"
+                                    variant="outlined"
+                                    error={(meta.touched && !!meta.error)}
+                                    helperText={(meta.touched && meta.error)}
+                                    disabled={wasAddressRequested}
+                                />
+                            )}
+                        </Field>
+                        <Field name="addressNumber">
+                            {({field, meta}: FieldProps) => (
+                                <TextField
+                                    {...field}
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    name="addressNumber"
+                                    label="Número"
+                                    variant="outlined"
+                                    error={(meta.touched && !!meta.error)}
+                                    helperText={(meta.touched && meta.error)}
+                                />
+                            )}
+                        </Field>
+                    </Grid>
+                </Grid>
             </Box>
         </Container>
     );

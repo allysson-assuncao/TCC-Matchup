@@ -96,7 +96,7 @@ const ProfileSearch = () => {
                             justifyContent: 'center',
                             overflowY: "scroll",
                             height: "100vh",
-                            width: 320,
+                            width: 400,
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#F8FAFF"
@@ -149,50 +149,91 @@ const ProfileSearch = () => {
                                         <ProfileButtons profile={profile} setProfile={setProfile}></ProfileButtons>
                                     </Stack>
 
-                                    <Typography
-                                        color={theme.palette.primary.main}
-                                        title={"Acessar perfil"}
-                                        onClick={() => navigate(`${ROUTE_PROFILE}/${profile.username}`)}
-                                        variant="h4"
-                                        sx={{cursor: "pointer"}}
+                                    <Stack
+                                        direction="row"
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        spacing={2}
+                                        sx={{
+                                            position: "relative",
+                                            width: "100%",
+                                        }}
                                     >
-                                        {profile.name}
+                                        <Button
+                                            onClick={() => {
+                                                handleLeft();
+                                            }}
+                                            title={(profileList.length === 0 || !profileList) ? 'Não há perfis à esquerda ainda' : "Clique para ver o perfil da esquerda!"}
+                                            startIcon={<CaretLeft />}
+                                            variant="text"
+                                            sx={{
+                                                width: 30,
+                                                position: "absolute",
+                                                left: 0,
+                                                color: theme.palette.primary.main,
+                                            }}
+                                        />
+
+                                        <Typography
+                                            color={theme.palette.primary.main}
+                                            variant="h4"
+                                            sx={{
+                                                cursor: "pointer",
+                                                textAlign: "center",
+                                                flexGrow: 1,
+                                            }}
+                                        >
+                                            {profile.name}
+                                        </Typography>
+
+                                        <Button
+                                            onClick={() => {
+                                                handleRight();
+                                            }}
+                                            title={"Clique para ver o perfil da direita!"}
+                                            startIcon={<CaretRight />}
+                                            variant="text"
+                                            sx={{
+                                                width: 30,
+                                                position: "absolute",
+                                                right: 0,
+                                                color: theme.palette.primary.main,
+                                            }}
+                                        />
+                                    </Stack>
+
+                                    <Typography
+                                        color={randomValue < 1 ? "red" : (randomValue < 10 ? "orange" : theme.palette.secondary)}
+                                        variant="body1"
+                                        sx={{
+                                            maxWidth: "100%",
+                                            wordWrap: "break-word",
+                                            textAlign: "center",
+                                        }}
+                                    >
+                                        Há {randomValue} km de você
                                     </Typography>
 
-                                    <Typography color={randomValue < 1 ? "red" : (randomValue < 10 ? "orange" :theme.palette.secondary)}
-                                                variant="body1">Há {randomValue} km de você</Typography>
-
-                                    <Typography color={theme.palette.primary.main}
-                                                variant="body1">{profile.bio}</Typography>
-
-                                    {profile.interestNames && profile.interestNames.length != 0
-                                        && (<Stack direction={'row'} justifyContent={"right"} spacing={5}>
-                                            {profile.interestNames.map((text, index) => (
-                                                <Chip key={index} label={text} style={{margin: 4}}/>
-                                            ))}
-                                        </Stack>)}
-
-                                    <Button
-                                        onClick={() => {
-                                            handleLeft();
+                                    <Typography
+                                        color={theme.palette.primary.main}
+                                        variant="body1"
+                                        sx={{
+                                            maxWidth: "100%",
+                                            wordWrap: "break-word",
+                                            textAlign: "center", // Centraliza horizontalmente o texto
                                         }}
-                                        /*disabled={index == 0 || !profileList}*/
-                                        title={(profileList.length == 0 || !profileList) ? 'Não há perfis a esquerda ainda' : "Clique para ver o perfil da esquerda!"}
-                                        fullWidth
-                                        startIcon={<CaretLeft/>}
-                                        variant="contained"
                                     >
-                                    </Button>
-                                    <Button
-                                        onClick={() => {
-                                            handleRight();
-                                        }}
-                                        title={"Clique para ver o perfil da direita!"}
-                                        fullWidth
-                                        startIcon={<CaretRight/>}
-                                        variant="contained"
-                                    >
-                                    </Button>
+                                        {profile.bio}
+                                        {profile.interestNames &&
+                                            profile.interestNames.length !== 0 && (
+                                                <>
+                                                    {profile.interestNames.map((text, index) => (
+                                                        <Chip key={index} label={text} style={{ margin: 4 }} />
+                                                    ))}
+                                                </>
+                                            )}
+                                    </Typography>
+
 
                                 </Stack>
                             </Stack>)}
@@ -204,7 +245,7 @@ const ProfileSearch = () => {
                     <Box
                         sx={{
                             height: "100%",
-                            width: "calc(100vw - 420px )",
+                            width: "calc(100vw - 500px )",
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#FFF"
@@ -215,7 +256,6 @@ const ProfileSearch = () => {
 
                     ></Box>
                 </Stack>
-
             </>
         );
     }

@@ -123,7 +123,7 @@ const Profile = () => {
                             justifyContent: 'center',
                             overflowY: "scroll",
                             height: "100vh",
-                            width: 320,
+                            width: 400,
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#F8FAFF"
@@ -168,22 +168,44 @@ const Profile = () => {
 */}
                                     <ProfileButtons profile={profile} setProfile={setProfile}></ProfileButtons>
 
-                                    <Typography color={theme.palette.primary.main} variant="h4">{profile.name}</Typography>
+                                    <Typography
+                                        color={theme.palette.primary.main}
+                                        variant="h4"
+                                        sx={{
+                                            cursor: "pointer",
+                                            textAlign: "center",
+                                            flexGrow: 1,
+                                        }}
+                                    >
+                                        {profile.name}
+                                    </Typography>
 
-                                    <Typography color={theme.palette.primary.main}
-                                                variant="body1">{profile.bio}</Typography>
+                                    <Typography
+                                        color={theme.palette.primary.main}
+                                        variant="body1"
+                                        sx={{
+                                            maxWidth: "100%",
+                                            wordWrap: "break-word",
+                                            textAlign: "center", // Centraliza horizontalmente o texto
+                                        }}
+                                    >
+                                        {profile.bio}
+                                        {profile.interestNames &&
+                                            profile.interestNames.length !== 0 && (
+                                                <>
+                                                    {profile.interestNames.map((text, index) => (
+                                                        <Chip key={index} label={text} style={{ margin: 4 }} />
+                                                    ))}
+                                                </>
+                                            )}
+                                    </Typography>
 
-                                    <Stack direction={'row'} justifyContent={"right"} spacing={5}>
-                                        {profile.interestNames.map((text, index) => (
-                                            <Chip key={index} label={text} style={{margin: 4}}/>
-                                        ))}
-                                    </Stack>
                                     <Button
                                         onClick={() => {
                                             navigate(`${ROUTE_INTERESTS}/${usernamePathVariable}`);
                                         }}
                                         title={"Interesses"}
-                                        startIcon={<GameController />}
+                                        startIcon={<GameController/>}
                                         variant="contained"
                                     >
                                         Interesses
@@ -199,7 +221,7 @@ const Profile = () => {
                     <Box
                         sx={{
                             height: "100%",
-                            width: "calc(100vw - 420px )",
+                            width: "calc(100vw - 500px )",
                             backgroundColor: (theme) =>
                                 theme.palette.mode === "light"
                                     ? "#FFF"
