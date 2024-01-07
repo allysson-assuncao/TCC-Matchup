@@ -255,9 +255,15 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
         }, [allInterestsSwitch]
     );
 
+    const handleKeyPress = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
 
     return (
-        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Stack p={3} spacing={2} sx={{maxHeight: "90vh", overflowY:"auto"}}>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
@@ -277,18 +283,28 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
                         </Stack>
 
                     )}
-                    <TextField
-                        autoFocus
-                        variant="outlined"
-                        required
-                        fullWidth
-                        onChange={(e) => setName(e.target.value)}
-                        label="Nome"
-                        placeholder={'Nome do jogo...'}
-                    />
-                    <IconButton sx={{color: `theme.palette.primary.main`}} onClick={() => handleSearch()}>
-                        <SearchIcon></SearchIcon>
-                    </IconButton>
+                    <Grid item xs={12}>
+                        <Grid container flexDirection={'row'} alignItems={'center'}>
+                            <Grid item xs={11}>
+                                <TextField
+                                    autoFocus
+                                    variant="outlined"
+                                    required
+                                    fullWidth
+                                    onChange={(e) => setName(e.target.value)}
+                                    label="Nome"
+                                    placeholder={'Nome do jogo...'}
+                                    onKeyPress={handleKeyPress}
+                                />
+                            </Grid>
+                            <Grid item md={1}>
+                                <IconButton
+                                    sx={{ color: 'theme.palette.primary.main' }} onClick={handleSearch}>
+                                    <SearchIcon />
+                                </IconButton>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
 
                 <Grid item xs={12}>
@@ -338,7 +354,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
 
                 <Grid item xs={12}>
                     <Grid container flexDirection={'row'} alignItems={'center'}>
-                        <Grid item xs={10}>
+                        <Grid item xs={10} width={"500px"}> {/*////////////////*/}
                             <MultipleSelect
                                 fieldName={'dubbingLanguages'}
                                 label={'Dublado'}

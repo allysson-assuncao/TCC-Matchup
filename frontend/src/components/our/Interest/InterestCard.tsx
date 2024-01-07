@@ -62,13 +62,11 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
             <Card
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
-                sx={{minHeight: isExpanded ? '250px' : '200px'}}
+                sx={{
+                    minHeight: isExpanded ? 'auto' : '200px',
+                    transition: 'min-height 0.3s ease-in-out',
+                }}
             >
-
-                {/*<img
-                    src={interest.formattedImages[0]}
-                    alt={interest.name+".png"}
-                />*/}
                 <ImageUploader
                     setImages={setNewImages}
                     handleSave={handleSave}
@@ -87,21 +85,31 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         mb: "5px"
                     }}
                 />
+                <CardActions sx={{paddingY: "5px"}}>
+                    <Button
+                        onClick={() => {
+                            interest.added ? handleRemoveInterest() : handleAddInterest();
+                            interest.added = !interest.added;
+                        }}
+                        fullWidth
+                        title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
+                        startIcon={interest.added ? <Remove/> : <AddIcon/>}
+                        variant="outlined"
+                    >
+                        {interest.added ? "Remover" : "Adicionar"}
+                    </Button>
+                </CardActions>
                 {isExpanded && (
-                    <CardContent>
+                    <CardContent sx={{padding: "0px", marginX: "15px"}}>
                         <Typography variant="body2" color="text.secondary">
                             Descrição: {interest.description}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Menor Preço: ${interest.lowestPrice}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            Maior Preço: ${interest.highestPrice}
+                            Preço: R${interest.lowestPrice} ~ R${interest.highestPrice}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             Idade: {interest.ageRating?.name}
                         </Typography>
-
                         <Typography variant="body2" color="text.secondary">
                             Gêneros:
                         </Typography>
@@ -161,20 +169,6 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                         }
                     </CardContent>
                 )}
-                <CardActions>
-                    <Button
-                        onClick={() => {
-                            interest.added ? handleRemoveInterest() : handleAddInterest();
-                            interest.added = !interest.added;
-                        }}
-                        fullWidth
-                        title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
-                        startIcon={interest.added ? <Remove/> : <AddIcon/>}
-                        variant="outlined"
-                    >
-                        {interest.added ? "Remover" : "Adicionar"}
-                    </Button>
-                </CardActions>
             </Card>
         </Grid>
     );

@@ -30,30 +30,28 @@ const InterestManagement: React.FC = () => {
 
     return (
         <Grid>
-            <CssBaseline/>
-            <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <CssBaseline />
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Grid container justifyContent={'center'}>
                     <Grid item md={11.5} sm={12} xs={12}>
                         <Grid container spacing={5}>
                             <Grid item md={4}>
-
-                                    <InterestFilters
-                                        filteredInterests={filteredInterests}
-                                        setFilteredInterests={setFilteredInterests}
-                                        username={usernamePathVariable}
-                                        page={page}
-                                        setPage={setPage}
-                                        setTotalPages={setTotalPages}
-                                        map={map}
-                                        mapActions={mapActions}
-                                    />
-
+                                <InterestFilters
+                                    filteredInterests={filteredInterests}
+                                    setFilteredInterests={setFilteredInterests}
+                                    username={usernamePathVariable}
+                                    page={page}
+                                    setPage={setPage}
+                                    setTotalPages={setTotalPages}
+                                    map={map}
+                                    mapActions={mapActions}
+                                />
                             </Grid>
-                            <Grid item md={8} justifyContent="center">
-                                <InterestCardList interests={filteredInterests}/>
-                                <Stack justifyContent={"center"} spacing={2}>
-                                    <Pagination count={totalPages} page={page + 1} onChange={handleChange}/>
-                                </Stack>
+                            <Grid item md={8}>
+                                <InterestCardList interests={filteredInterests} />
+                                <Box mt={2} display="flex" justifyContent="center" width="100%">
+                                    <Pagination count={totalPages} page={page + 1} onChange={handleChange} />
+                                </Box>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -61,6 +59,7 @@ const InterestManagement: React.FC = () => {
             </Box>
         </Grid>
     );
+
 };
 
 export default InterestManagement;
