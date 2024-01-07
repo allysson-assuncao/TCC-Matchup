@@ -245,7 +245,6 @@ export function UpdateTab(tab) {
 export function ClearUser() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.resetState());
-
     };
 }
 
@@ -411,6 +410,7 @@ export const UpdateUserProfile = (formValues, wasUsernameChanged) => {
                 console.log(response.data);
                 dispatch(slice.actions.updateUser({user: response.data}));
                 if(wasUsernameChanged) dispatch(RefreshToken(response.data.token));
+                dispatch(showSnackbar({severity: 'success', message: 'Perfil alterado com sucesso!'}));
             })
             .catch((err) => {
                 console.log(err);

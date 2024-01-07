@@ -3,17 +3,11 @@ import {Avatar, Box, Button, Chip, IconButton, Stack, Typography} from "@mui/mat
 import {CaretLeft, CaretRight, Chat, GameController, Prohibit, Trash} from "phosphor-react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTheme} from "@mui/material/styles";
-import {useNavigate, useParams} from "react-router-dom";
-import {ROUTE_CHAT, ROUTE_INTERESTS, ROUTE_MY_PROFILE, ROUTE_PAGE_NOT_FOUND, ROUTE_PROFILE} from "../../routes";
-import {getProfileByUsernameAndUserId, getProfileNotIncludedInIds} from "../../api/user_requests/profile";
+import {useNavigate} from "react-router-dom";
+import {ROUTE_CHAT, ROUTE_PROFILE} from "../../routes";
+import {getProfileNotIncludedInIds} from "../../api/user_requests/profile";
 import ProfileButtons from "../../sections/Dashboard/Settings/ProfileButtons";
-import BlockButtons from "../../sections/Dashboard/Settings/BlockButtons";
-import {NOTIFICATION_TYPES} from "../../components/NotificationElement";
 import {SelectConversation, UpdateLastEndedFriendship} from "../../redux/slices/app";
-import {FRIENDSHIP_STATUS} from "../../model/friendship";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import {ROUTE_INTEREST_MANAGEMENT} from "../../App2";
-import {client} from "../../socket";
 import {SetCurrentConversationFake} from "../../redux/slices/conversation";
 
 const ProfileSearch = () => {

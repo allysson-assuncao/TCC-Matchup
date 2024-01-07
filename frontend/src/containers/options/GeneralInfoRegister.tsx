@@ -5,19 +5,11 @@ import {
     Button,
     Snackbar, CssBaseline, Container, Box, Avatar
 } from '@mui/material';
-import {UpdateUserPayload, User} from "../../model/user";
-
-import {updateUserData} from "../../api/user_requests/updateUserData";
-import {useCustomTheme} from "../../contexts/CustomThemeContext";
-import getTheme from "../../theme";
+import {UpdateUserPayload} from "../../model/user";
 import {useNavigate} from "react-router-dom";
-/*import {ROUTE_HOME} from "../../App";*/
-import {useLoggedUser} from "../../contexts/UserContext";
 import {useDispatch, useSelector} from "react-redux";
-import {LoginUser} from "../../redux/slices/auth";
 import {UpdateUserProfile} from "../../redux/slices/app";
 import {resizeImage} from "../../utils/ResizeImage";
-import {ROUTE_INTEREST_MANAGEMENT} from "../../App2";
 import {ROUTE_INTERESTS} from "../../routes";
 
 const GeneralInfoRegister = () => {

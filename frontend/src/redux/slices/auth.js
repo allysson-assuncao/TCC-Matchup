@@ -92,7 +92,7 @@ export function ForgotPassword(formValues) {
 
         await axios
             .post(
-                "/auth/forgot-password",
+                "http://localhost:8080/api/forgot-password/confirm-email",
                 {
                     ...formValues,
                 },

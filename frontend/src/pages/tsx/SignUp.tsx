@@ -6,21 +6,14 @@ import SignUpStep1 from "../../containers/step_forms/signup/SignUpStep1";
 import SignUpStep2 from "../../containers/step_forms/signup/SignUpStep2";
 import {register} from "../../api/user_requests/register";
 import {useNavigate} from "react-router-dom";
-/*import {ROUTE_INTEREST_MANAGEMENT, ROUTE_SIGN_IN} from "../../App";*/
 import {format} from 'date-fns';
 import {
     validateSignUpStep1,
     validateSignUpStep2
 } from "../../utils/validation/UserValidation";
 import GeneralInfoRegister from "../../containers/options/GeneralInfoRegister";
-import {getProfilePictureByUserId} from "../../api/user_requests/getUserBy";
-import {removeProfilePicture} from "./Home";
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutUser, RegisterUser} from "../../redux/slices/auth";
-import {UpdateUserPayload, User} from "./../../model/user";
-import {ROUTE_REGISTER_INTERESTS} from "../../App2";
-import {updateUserData} from "../../api/user_requests/updateUserData";
-import {UpdateUserProfile} from "../../redux/slices/app";
+import {RegisterUser} from "../../redux/slices/auth";
 
 const steps = ['Pessoais', 'Endereço', 'Perfil'];
 

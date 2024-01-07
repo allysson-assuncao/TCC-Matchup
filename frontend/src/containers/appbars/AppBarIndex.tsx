@@ -8,19 +8,9 @@ import {
     useScrollTrigger,
 } from "@mui/material";
 import {useNavigate} from "react-router-dom";
-import {
-    ROUTE_ABOUT_US,
-    ROUTE_FAQ,
-    ROUTE_FEATURES,
-    ROUTE_REGISTER_INTERESTS,
-    ROUTE_SIGN_IN,
-    ROUTE_SIGN_UP
-} from "../../App2";
 import {useTheme} from "@mui/material/styles";
-// @ts-ignore
-import Logo from "../../assets/Images/logo.ico";
-import {ROUTE_LOGIN, ROUTE_REGISTER} from "../../routes";
 import {GameController} from "phosphor-react";
+import {ROUTE_LOGIN, ROUTE_REGISTER} from "../../routes";
 
 const AppBarIndex = () => {
     const theme = useTheme();
@@ -58,14 +48,14 @@ const AppBarIndex = () => {
                             <nav>
                                 <Button
                                     variant="text"
-                                    onClick={() => history(ROUTE_FEATURES)}
+                                    /*onClick={() => history(ROUTE_FEATURES)}*/
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Funcionalidades
                                 </Button>
                                 <Button
                                     variant="text"
-                                    onClick={() => history(ROUTE_ABOUT_US)}
+                                    /*onClick={() => history(ROUTE_ABOUT_US)}*/
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Contato
@@ -73,7 +63,6 @@ const AppBarIndex = () => {
                                 <Button
                                     variant="text"
                                     /*onClick={() => history(ROUTE_FAQ)}*/
-                                    onClick={() => history(ROUTE_REGISTER_INTERESTS)}
                                     sx={{my: 1, mx: 1.5}}
                                 >
                                     Suporte

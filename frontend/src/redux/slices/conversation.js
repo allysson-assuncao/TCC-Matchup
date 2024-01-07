@@ -4,6 +4,7 @@ import {AWS_S3_REGION, S3_BUCKET_NAME} from "../../config";
 import {formatDistanceToNow} from "date-fns";
 import {ptBR} from "date-fns/locale";
 import {client} from "../../socket";
+import {showSnackbar} from "./app";
 
 //const user_id = window.localStorage.getItem("user_id");
 
@@ -288,7 +289,7 @@ export const AddDirectMessage = (message, user_id) => {
 export function ClearConversation() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.resetState());
-
+        dispatch(showSnackbar({severity: 'success', message: 'A conversa foi limpa com sucesso!'}));
     };
 }
 

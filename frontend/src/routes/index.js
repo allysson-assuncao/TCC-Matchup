@@ -37,6 +37,14 @@ export const ROUTE_INDEX = "introdução";
 
 export const ROUTE_CHAT = "/chat";
 
+/*export const ROUTE_ABOUT_US = "/contato";
+
+export const ROUTE_FAQ = "/faq";
+
+export const ROUTE_FEATURES = "/funcionalidades";
+
+export const ROUTE_PREMIUM = "/premium";*/
+
 
 export default function Router() {
     return useRoutes([
@@ -70,6 +78,7 @@ export default function Router() {
                 {path: `${ROUTE_PROFILE}/:usernamePathVariable`, element: <Profile/>},
                 {path: ROUTE_REGISTER_INTERESTS, element: <RegisterInterest/>},
                 {path: `${ROUTE_INTERESTS}/:usernamePathVariable`, element: <InterestManagement/>},
+                /*{path: ROUTE_PREMIUM, element: <Premium/>},*/
 
                 {path: "call", element: <CallPage/>},
 
@@ -82,6 +91,9 @@ export default function Router() {
             children: [
                 {element: <Navigate to={ROUTE_INDEX} replace/>, index: true},
                 {path: ROUTE_INDEX, element: <AppIndex/>},
+                /*{path: ROUTE_ABOUT_US, element: <AboutUs/>},
+                {path: ROUTE_FAQ, element: <FAQ/>},
+                {path: ROUTE_FEATURES, element: <Features/>},*/
             ],
         },
 
@@ -89,9 +101,9 @@ export default function Router() {
     ]);
 }
 
-const AppIndex = Loadable(lazy(() => import("../pages/our/AppIndex")));
-const RegisterInterest = Loadable(lazy(() => import("../pages/our/RegisterInterests")));
-const InterestManagement = Loadable(lazy(() => import("../pages/our/InterestManagement")));
+const AppIndex = Loadable(lazy(() => import("../pages/tsx/AppIndex")));
+const RegisterInterest = Loadable(lazy(() => import("../pages/tsx/RegisterInterests")));
+const InterestManagement = Loadable(lazy(() => import("../pages/tsx/InterestManagement")));
 
 const GeneralApp = Loadable(lazy(() => import("../pages/dashboard/GeneralApp")));
 
@@ -105,7 +117,7 @@ const Contact = Loadable(lazy(() => import("../sections/Dashboard/Contact")));
 const Page404 = Loadable(lazy(() => import("../pages/Page404")));
 
 const LoginPage = Loadable(lazy(() => import("../pages/auth/Login")));
-const SignUp = Loadable(lazy(() => import("../pages/our/SignUp")));
+const SignUp = Loadable(lazy(() => import("../pages/tsx/SignUp")));
 const VerifyPage = Loadable(lazy(() => import("../pages/auth/Verify")));
 const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
 const ResetPasswordPage = Loadable(
@@ -126,3 +138,8 @@ const Profile = Loadable(
 const ProfileSearch = Loadable(
     lazy(() => import("../pages/dashboard/ProfileSearch"))
 );
+
+const Premium = Loadable(lazy(() => import("../pages/tsx/Premium")));
+const AboutUs = Loadable(lazy(() => import("../pages/tsx/AboutUs")));
+const FAQ = Loadable(lazy(() => import("../pages/tsx/FAQ")));
+const Features = Loadable(lazy(() => import("../pages/tsx/Features")));

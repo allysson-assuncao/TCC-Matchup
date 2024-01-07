@@ -46,23 +46,12 @@ public class ForgotPasswordController {
     @PutMapping("/reset-password")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@RequestBody ResetPasswordDto resetPasswordDto) {
-        //send email to confirm
-        /*if (userService.resetPassword(id, rawPassword)) {
-            String to = email;
-            String subject = "Senha Redefinida com Sucesso!";
-            String text = "Faça login na sua conta para testar sua nova senha!!";
-            emailService.sendEmail(to, subject, text);
-        }*/
         System.out.println("reset-password: " + resetPasswordDto.getId() + " userId: " + resetPasswordDto.getRawPassword());
         if(userService.updateUserPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()) != null){
             return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
         }else{
             return new ResponseEntity<>(false, HttpStatus.CONFLICT);
         }
-
-        //return new ResponseEntity<>(userService.updateUserPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()), HttpStatus.ACCEPTED);
-        //return ResponseEntity.status(HttpStatus.CONFLICT).body(userService.resetPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()));
     }
-
-
+    
 }
