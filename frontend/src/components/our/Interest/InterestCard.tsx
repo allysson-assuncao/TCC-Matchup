@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
     Typography,
     Button,
-    Grid, Card, CardContent, Avatar, Stack, Chip,
+    Grid, Card, CardContent, Avatar, Stack, Chip, Popper, Box, Fade,
 } from '@mui/material';
 import {Interest} from "../../../model/interest";
 import CardHeader from "@mui/material/CardHeader";

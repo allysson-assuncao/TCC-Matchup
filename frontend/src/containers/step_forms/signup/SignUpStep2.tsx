@@ -67,6 +67,7 @@ const SignUpStep2: React.FC = () => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+
                 }}
             >
                 {/*<img src={logo+''} alt=""/>*/}

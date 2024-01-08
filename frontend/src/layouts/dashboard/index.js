@@ -171,6 +171,7 @@ const DashboardLayout = () => {
                     client.subscribe(`/user/${user.id}/queue/add-contact`, (obj) => {
                         console.log(obj);
                         binaryBodyToJSON(obj).then((contact) => {
+                            console.log("CONTATO CHEGOOOOOOOOOOOOOOOOOOOOOOU " + contact.displayed);
                             console.log(contact);
                             dispatch(AddDirectConversation(contact));
                             if (contact.creatorId == user_id) dispatch(SelectConversation({room_id: contact.id}))

@@ -32,8 +32,8 @@ export default function AuthLoginForm() {
     });
 
     const defaultValues = {
-        emailOrUsername: "userauth@gmail.com",
-        rawPassword: "Senha123#",
+        emailOrUsername: "",
+        rawPassword: "",
     };
 
     const methods = useForm({
@@ -53,7 +53,7 @@ export default function AuthLoginForm() {
             console.log(data);
             // submit data to backend
             await dispatch(LoginUser(data)).then(() => {
-                window.location.reload();
+                //window.location.reload();
                 dispatch(FetchUserProfile());
             });
 

@@ -14,7 +14,7 @@ interface InterestCardListProps {
 
 const InterestCardList: React.FC<InterestCardListProps> = ({interests}) => {
     return (
-        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto'}}>
+        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', justifyContent: 'left', alignItems: 'center', overflowY: 'auto'}}>
             <Stack p={3} sx={{maxHeight: "85vh"}}>
                 <Grid container spacing={5}>
                     {interests && interests.content && interests.content.map((interest) => (
