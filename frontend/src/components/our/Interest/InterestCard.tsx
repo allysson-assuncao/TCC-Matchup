@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {
     Typography,
     Button,
-    Grid, Card, CardContent, Avatar, Stack, Chip, Popper, Box, Fade,
+    Grid, Card, CardContent, Stack, Chip, Popper, Fade,
 } from '@mui/material';
 import {Interest} from "../../../model/interest";
 import CardHeader from "@mui/material/CardHeader";
@@ -13,7 +13,7 @@ import {linkInterestToUser, unlinkInterestToUser} from "../../../api/user_reques
 import {useTheme} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {showSnackbar} from "../../../redux/slices/app";
-import {PersonRemove, Remove} from "@mui/icons-material";
+import {Check, PersonRemove, Remove} from "@mui/icons-material";
 import ImageUploader from "../fields/ImageUploader";
 import {updateInterestImagesById} from "../../../api/interest_requests/updateInterestImage";
 import {ClickAwayListener} from "@mui/base";
@@ -21,6 +21,7 @@ import {element} from "prop-types";
 
 interface InterestCardProps {
     interest: Interest;
+    elementNumber: number;
 }
 
 const InterestCard: React.FC<InterestCardProps> = ({interest, elementNumber}) => {
@@ -110,11 +111,12 @@ const InterestCard: React.FC<InterestCardProps> = ({interest, elementNumber}) =>
                     subheader={interest.company?.name}
                     titleTypographyProps={{align: 'center'}}
                     subheaderTypographyProps={{align: 'center'}}
-
                     sx={{
                         color: (theme) => theme.palette.primary.main,
                         backgroundColor: (theme) => grey[900],
-                        mb: "5px"
+                        mb: "5px",
+                        display: 'flex',
+                        flexDirection: 'column',
                     }}
                 />
                 <CardActions>
