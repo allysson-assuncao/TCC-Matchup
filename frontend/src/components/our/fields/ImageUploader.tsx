@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Button, Grid, IconButton, MobileStepper, Paper, Stack} from '@mui/material';
 import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload, Save} from '@mui/icons-material';
 import {resizeImage} from "../../../utils/ResizeImage";
-import { ClickAwayListener } from '@mui/base';
+import {ClickAwayListener} from '@mui/base';
 
 interface ImageUploaderProps {
     setImages: React.Dispatch<React.SetStateAction<File[]>>,
@@ -47,11 +47,10 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
         setActiveStep((prevActiveStep) => prevActiveStep > 0 ? prevActiveStep - 1 : 0);
     };
 
-
     return (
-        <Grid container direction="column" alignItems="center">
-            <Grid item>
-                {userAccess == "ADMIN" && (<Button variant="contained" component="label" sx={{alignItems: "center"}}>
+        <Grid container alignItems="center">
+            <Grid item md={12}>
+                {userAccess == "ADMIN" && (<Button variant="contained" fullWidth component="label" sx={{alignItems: "center"}}>
                     <Upload sx={{mr: '13px'}}/> Adicionar Imagens
                     <input
                         type="file"
@@ -62,46 +61,48 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
                 </Button>)}
             </Grid>
             {selectedImages.length > 0 && (
-                <Grid item /*justifyContent={'center'}*/>
-                    <Paper elevation={0}>
-                        <Grid container justifyContent="center" alignItems="center">
-                            <img src={selectedImages[activeStep]} alt="Selected" height={"170px"} width={"auto"}/>
-                        </Grid>
-                        {userAccess == "ADMIN" && (
-                            <Stack direction="row"  display="flex" justifyContent="space-between" alignItems="center">
-                                <IconButton sx={{color: 'primary', bgcolor: `theme.palette.background.default`}}
-                                            onClick={() => handleDelete(activeStep)}>
-                                    <Delete/>
-                                </IconButton>
-                                {calledByInterestCard && (
+                <Grid item md={12}/*justifyContent={'center'}*/>
+
+                    <Grid container justifyContent="center" alignItems="center">
+                        <img src={selectedImages[activeStep]} alt="Selected" height={"170px"} width={"auto"}/>
+                    </Grid>
+                    {userAccess == "ADMIN" && (
+                        <Stack direction="row" display="flex" justifyContent="space-between" alignItems="center">
+                            <IconButton sx={{color: 'primary', bgcolor: `theme.palette.background.default`}}
+                                        onClick={() => handleDelete(activeStep)}>
+                                <Delete/>
+                            </IconButton>
+                            {calledByInterestCard && (
                                 <IconButton sx={{color: 'primary', bgcolor: `theme.palette.background.default`}}
                                             onClick={() => {
                                                 if (handleSave) handleSave();
                                             }}>
                                     <Save/>
                                 </IconButton>)}
-                            </Stack>
-                        )}
-                    </Paper>
-                    <MobileStepper
-                        steps={selectedImages.length}
-                        position="static"
-                        variant="text"
-                        activeStep={activeStep}
-                        nextButton={
-                            <Button size="small" onClick={handleNext}
-                                    disabled={activeStep === selectedImages.length - 1}>
-                                Próximo
-                                <KeyboardArrowRight/>
-                            </Button>
-                        }
-                        backButton={
-                            <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                                <KeyboardArrowLeft/>
-                                Voltar
-                            </Button>
-                        }
-                    />
+                        </Stack>
+                    )}
+
+                        <MobileStepper
+                            steps={selectedImages.length}
+                            position="static"
+                            variant="text"
+                            activeStep={activeStep}
+                            nextButton={
+                                <Button size="small" onClick={handleNext}
+                                        disabled={activeStep === selectedImages.length - 1}>
+                                    Próximo
+                                    <KeyboardArrowRight/>
+                                </Button>
+                            }
+                            backButton={
+                                <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+                                    <KeyboardArrowLeft/>
+                                    Voltar
+                                </Button>
+                            }
+                        />
+
+
                 </Grid>
             )}
         </Grid>

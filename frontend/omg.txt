@@ -1,0 +1,104 @@
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'parmenidasso', '(44) 44444-4444', '$2a$10$lN9NuhMxC01jNaWtacazTO.nSaiQ1IH6TFr/fGlRd148mNRYa8azy', 'Nada muda, tudo permanece', 'ADMIN', 'parmenides@gmail.com', 'Parmênides');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'arthurshopenhauer', '(22) 22222-2222', '$2a$10$j8ESQemcyz7hylF/ddN1R./3x3vHIIe4Pt0IlBAbDAC0d4zcwFpyK', 'Chuto velhas', 'DEFAULT', 'arthurshopenhauer@gmail.com', 'Arthur Shopenhauer');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'jean_sartre', '(11) 11111-1111', '$2a$10$8wyUPoTe80ERtaYGpVeg0OdhQFrdLuAELmTLF/S/QC32.I4wVYzIy', 'Existencialismo', 'ADMIN', 'sartre@gmail.com', 'Jean Paul Sartre');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'protagoras', '(00) 00000-0000', '$2a$10$h/8LNeR56VcUABehhDulNu99SJY3n9QrjaLWQyU7g1BUAx0aHF/n2', 'Barbisha', 'DEFAULT', 'protagoras@gmail.com', 'Protágoras');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-11-01', 'JOSE2', NULL, '$2a$10$2R2txTh/cCL0/4.q3jPKDux6ZE7r0SQFhPyVmm5U0EGP.65Wpn6s.', NULL, 'ADMIN', 'JOGE@gmail.com', 'JO´SE');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('1873-10-01', 'plano_marshall', NULL, '$2a$10$wiYUMlGJZfaeRZpQsDKw4uvvQGprbxWXqBHVZh3IL299EqOfbAB5W', 'oooooooooo', 'ADMIN', 'thomasmarshall@gmail.com', 'Thomas Marshall');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'heraclitao', NULL, '$2a$10$.jbYWldn8kH8IurlXHQG4ORjJ8eBLrWwpOF7sNJ8d7R33w8myPeIS', NULL, 'ADMIN', 'heraclito@gmail.com', 'Heráclito');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'cruz_de_marshall', NULL, '$2a$10$e11k.iTcWyw5DghFVC.uk./D.nW6oyVq6NCAXwORZc1FatOkivYSa', NULL, 'ADMIN', 'cruz@gmail.com', 'Alfred Marshall');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'anaxismandrum', NULL, '$2a$10$BzqRNxM2irNDhGuPoMThbOGMZJBRRxfxS7X4FwjzZAyrVPfUa/Uju', NULL, 'ADMIN', 'anaximandro@gmail.com', 'Anaximandro');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'milton_santos', NULL, '$2a$10$UvWJb5SzJP0nDNG4Q6iZiOA/wZU4Lab94/2qPLzrQVmAsKjjw7sqm', NULL, 'DEFAULT', 'milton@gmail.com', 'Milton Santos');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'celso_furtado', NULL, '$2a$10$Tv7KSxHqUGnDtd4kzKPPYe6RzpeeEK1MKCOObPh5aBH4lt1boUNPC', NULL, 'DEFAULT', 'furtado@gmail.com', 'Celso Furtado');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'newdeal', NULL, '$2a$10$m4ImVY632CSdzkUIfu62oObimCRFpkbMK.KSM/o1WPycwH4E0jf.S', NULL, 'DEFAULT', 'newdeal@gmail.com', 'Fernando Henrique Cardoso');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'prebisch', NULL, '$2a$10$IJs.d8a1rtw4YbFvmlz7R.UhOEv0gSV3POZuALM0OS2eP94uEA.py', NULL, 'DEFAULT', 'prebisch@gmail.com', 'Prebisch');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'keynes', NULL, '$2a$10$mcqzHbBlPJk3YGdYTwa5Dud8vDctwZcYYV99Fs0V/oY8F5hcMDiDu', NULL, 'DEFAULT', 'keynes@gmail.com', 'Keynes');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'lassale', NULL, '$2a$10$7RHvJdQbCO42rWWDGj/ebebSmHfULHtaEY5ppn1/NFMlv6yuuEWp2', NULL, 'DEFAULT', 'lassale@gmail.com', 'Lassale');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES2010-10-01', 'epicuro', NULL, '$2a$10$Ug7p3PiVP3z/y9SWPsQw6O7Pc5ZNvwutE6uuHHLk5ys565T00TQ.y', NULL, 'DEFAULT', 'epicuro@gmail.com', 'Epicuro');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'francisbacon', NULL, '$2a$10$zT42ap/kMMJHVfPxXWNYw.FOkmr41KCqoe8P0/4gijSUfD5yGsgle', NULL, 'DEFAULT', 'francisbacon@gmail.com', 'Francis Bacon');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'chaves_diogenes', NULL, '$2a$10$PyosV5PwRa83LMKL4szEteMpYZ216ukSR24lb4PxAbQdBhhF5juvC', NULL, 'DEFAULT', 'diogenes@gmail.com', 'Diógenes');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'davidhume', NULL, '$2a$10$y8P58rCyX6y2K.9nXjQhQuE8d6PE/Ka0jQVMGwbS7Nu.bTqF8vxcG', NULL, 'DEFAULT', 'davidhume@gmail.com', 'David Hume');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'seneca', NULL, '$2a$10$tlbVj2idRdxQLHp3vs.adOWqrHymqZVE8/CkwJh/zR7kCs2Vwaa1C', NULL, 'DEFAULT', 'seneca@gmail.com', 'Sêneca');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'kirkegaard', NULL, '$2a$10$11fDWzTaSLp960eK4OmGreKewJ8eznYLjKdb.f0jFsyCX6c9TNz4G', NULL, 'DEFAULT', 'kirkegaard@gmail.com', 'Kirkegaard');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'friedrichnietzsche', NULL, '$2a$10$bevLeuXV3jR8zdYdrXEZuetIYCA7OI4CkQhtBR9KxwINsY1ExHeDa', NULL, 'DEFAULT', 'friedrichnietzsche@gmail.com', 'Friedrich Nietzsche');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'st_agosto', NULL, '$2a$10$DasN3gU7BlY.1dMgv0.NbOe70bJcNSQ8NyAPyelsjmiLGyrInpAf.', NULL, 'DEFAULT', 'agostinho@gmail.com', 'Santo Agostinho');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'tomas_aquino', NULL, '$2a$10$STaIkS6oWNvazww9V7LzP.o8hULZHUQ8ZFiJtAmKFK34gPSEj8bpi', NULL, 'DEFAULT', 'tomas_de_aquino@gmail.com', 'Tomás de Aquino');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'hegel', NULL, '$2a$10$o2LB3eO6X.XQDoe4JYbv0.wGUp.NO7BMQDT1j.dZiWpRddDaK02yO', NULL, 'DEFAULT', 'hegel@gmail.com', 'Hegel');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'adam_smith', NULL, '$2a$10$REpEd0lI9WtoPNN/r4w7Yehryqi.TZ4lawqnKddxx6dW3JJFAnWV6', NULL, 'DEFAULT', 'adam.smith@gmail.com', 'Adam Smith');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'bakunin', NULL, '$2a$10$4vYNBbLFs7eR89N54V0hee/46/dkKk5Ouj.dC1ZopomhFRuJvT5iW', NULL, 'DEFAULT', 'bakunin@gmail.com', 'Bakunin');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'friederichengels', NULL, '$2a$10$09WXo5XUJ7mobluCYwry1OI5bISLikowm9m4Cgu/9SU4mA0Wn24eG', NULL, 'DEFAULT', 'friederichengels@gmail.com', 'Friederich Engels');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'maquiavel', NULL, '$2a$10$g9v.248XGVDtn9aq0b8kzu3LNWzgKu4JKwUso7FujMoj.UkZ07Cqm', NULL, 'DEFAULT', 'maquiavel@gmail.com', 'Nicolau Maquiavel');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'webber', NULL, '$2a$10$2.jEGzqdgNc8EBn2iMBy/ebcHvlVQSGLq0aJvlpABq3loaBTInhr2', NULL, 'DEFAULT', 'webber@gmail.com', 'Webber');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'voltaire', NULL, '$2a$10$j258FsbjeTd3YAQ/gCr7qudn7NRqYghEPYp5zAerQ.QuV4zTZSfb.', NULL, 'DEFAULT', 'voltaire@gmail.com', 'Voltaire');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'karlmarx', NULL, '$2a$10$rTQ/H1AJPTJe9K3UU6shUepuvntV2u.R1r8sbARvg7h41jS7dQuDG', NULL, 'DEFAULT', 'karlmarx@gmail.com', 'Karl Marx');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'rosseau', NULL, '$2a$10$7wN12NOhSthBX3l4D0aCSedQfVU43MgCQ8qQbbKt5VlIve/4lMRTS', NULL, 'DEFAULT', 'rosseau@gmail.com', 'Jean Jacques Rousseau');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'renedescartes', NULL, '$2a$10$NwFaI8euYs7hcE78Xo6OZOtvw/EdSpw2HXTCGAG7gHQNOj4SriPZ.', NULL, 'DEFAULT', 'renedescartes@gmail.com', 'René Descartes');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'monstesquieu_escalei', NULL, '$2a$10$6csYvyz7oxiCiWRiqQmcBuupF4aAozcxtOsGaWobBPxFKb5uxWMWm', NULL, 'DEFAULT', 'monstesquieu@gmail.com', 'Montesquieu');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'immanuelkant', NULL, '$2a$10$9RWO3fZ/1twHKDMV6.2Qzeq23XnwVQYkTbKDPb9DDmBSAE1o9wAza', NULL, 'DEFAULT', 'immanuelkant@gmail.com', 'Immanuel Kant');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'david_ricardo', NULL, '$2a$10$LXCJxTwI.qeNBOpknR3SO.xwLIaLeT/tSFWxbpLYTdTaILO8JiofW', NULL, 'DEFAULT', 'david.ricardo@gmail.com', 'David Ricardo');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'johnlocke', NULL, '$2a$10$W6k2yLovWtFhU0o/Bvw63.Xl1GVLNRz9ShxabzyYJh2JtYKGSuS6m', NULL, 'DEFAULT', 'johnlocke@gmail.com', 'John Locke');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'hobbes', NULL, '$2a$10$JYJmIoZVac324Ol5VT3xau93XxxWyw7cAVrlVwzp9ben4qM3JlYra', NULL, 'DEFAULT', 'hobbes_thomas@gmail.com', 'Thomas Hobbes');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01', 'sigmundfreud', NULL, '$2a$10$oKnRh8Q7RaOaRiKh9Xo/fO28PnLZuRXNq2/kCKIV3FnsTYlACXsly', NULL, 'DEFAULT', 'sigmundfreud@gmail.com', 'Sigmund Freud');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('1873-10-01', 'tales_de_mileto', NULL, '$2a$10$GhhI891yLq.wKBiBVPqY4uhX9YqIyCzfHSx4Yd89DS7Ez5UuM3H2C', 'OOOOOOOOOOOOOO', 'ADMIN', 'tales@gmail.com', 'Tales de Mileto');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-02',  'aurelius', NULL, '$2a$10$Elv1A5rqafmwieR2/mz4d.8yCFGqzjwdp08iKPQ70T1Cq3QxPInQS', NULL, 'DEFAULT', 'marcus_aurelius@gmail.com', 'Marco Aurélio');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'aristotelico', NULL, '$2a$10$N0TKphQWS0EAI.EhyqzBPeJPsupx.iumIqkpENdTHZDnSkcPwnc9O', 'Vem pro Liceu bb', 'DEFAULT', 'aristoteles@gmail.com', 'Aristóteles');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'gorgias', NULL, '$2a$10$/Hzot5XxIbG2/wNJm9uJ7eWjRWsWnyZ3.6EIAeaUtr.GlYcYokqnW', 'ooo', 'DEFAULT', 'gorgias@gmail.com', 'Górgias');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2000-12-05',  'usuarioAuth2232', '(33) 33333-3333', '$2a$10$yPDO54KM2rNhqJ9qHOoipekq8GB..f0G1erI34kRb7L6Khey1GnYa', 'EQWEQWEQWE@12332332', 'DEFAULT', 'userauth@gmail.com', 'usuarioAuth');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-12-17',  'gorgias2', NULL, '$2a$10$8tP21kj4TSxlu7vtvc4rcO7DRoL9GToAnbHeZuNkKbUVECd8PJIfS', NULL, 'DEFAULT', 'gorgias2@gmail.com', 'gorgias');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'chomsky', '(99) 99999-9999', '$2a$10$4tRZtlncpFiYhHtm8MhNTeohi4m3t1Kyleo.Vh2V.ugPEXe8mx94q', 'Sigo firme e forte', 'DEFAULT', 'chomsky@gmail.com', 'Noam Chomsky');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'foucault', '(88) 88888-8888', '$2a$10$H6SaZJgpC4QhHEZpQR7lY.x6yPpTS6.85twsTcUVaOf.taqaaRH6C', 'Chega no zoom da um close', 'DEFAULT', 'foucault@gmail.com', 'Michael Foucault');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-02',  'liceki', '(77) 77777-7777', '$2a$10$.UpuCprIKYHelxtKkpucRe/c75Y12qJJ0nlwYihNkPO3sEysimp7i', 'Olá', 'ADMIN', 'henrique.lp2006@gmail.com', 'Henrique Leão');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'platao', '(66) 66666-6666', '$2a$10$YryJDnVNA5eyWdem/3twe.jV8KkQZ2OeLy7ot413zNAEyzeUlM6Ta', 'E ninguém nunca entendeu a caverna ', 'DEFAULT', 'platao@gmail.com', 'Platão');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('2010-10-01',  'socrates', '(55) 55555-5555', '$2a$10$lFL2Lr/oXJaqx3a69Zv8U.2ZgcH90Bi0rXVEs.QAcPcxmmSQ9EoJa', 'Vivo de bater papo na Ágora', 'DEFAULT', 'socrates@gmail.com', 'Socrates');
+INSERT INTO matchup."user"  (
+birth_date,  username, cellphone_number,  hashed_password, bio, access, email, name)   VALUES ('1873-10-02',  'espinoso', '(33) 33333-3333', '$2a$10$9YTqtL764BrN/4AI4kabd.QZPfh78eMM1RsOpFQeRzK8rtw6vUfPG', 'Se liga no meus espinhos rapaix', 'DEFAULT', 'espinosa@gmail.com', 'Baruch Espinosa');

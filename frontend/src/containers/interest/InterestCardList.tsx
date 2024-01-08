@@ -14,12 +14,22 @@ interface InterestCardListProps {
 
 const InterestCardList: React.FC<InterestCardListProps> = ({interests}) => {
     return (
-        <Box sx={{marginTop: 5, display: 'flex', flexDirection: 'column', justifyContent: 'left', alignItems: 'center', overflowY: 'auto'}}>
-            <Stack p={3} sx={{maxHeight: "85vh"}}>
-                <Grid container spacing={5}>
-                    {interests && interests.content && interests.content.map((interest) => (
-                        <InterestCard key={Number(interest.id)} interest={interest}/>
-                    ))}
+        <Box sx={{
+            marginTop: 5,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            overflowY: 'auto'
+        }}>
+            <Stack sx={{ maxHeight: "85vh"}}>
+                <Grid container spacing={5} p={0}
+                      sx={{padding: '0px', margin: "0px", width: 'auto', display: 'flex', justifyContent:"space-between", flexWrap: 'wrap', alignItems: 'flex-start'}}>
+                    <>
+                        {interests && interests.content && interests.content.map((interest) => (
+                            <InterestCard key={Number(interest.id)} elementNumber={interests.numberOfElements} interest={interest}/>
+                        ))}
+                    </>
                 </Grid>
             </Stack>
         </Box>

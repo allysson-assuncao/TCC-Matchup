@@ -127,7 +127,7 @@ const Chats = () => {
                                     Todas as Conversas
                                 </Typography>
                                 {conversations
-                                    .filter((el) => !el.pinned && el.displayed)
+                                    .filter((el) => !el.pinned && !el.displayed)
                                     .sort((b, a) => new Date(a.time) - new Date(b.time))
                                     .map((el, idx) => {
                                         return <ChatElement {...el} />;

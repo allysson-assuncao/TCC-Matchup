@@ -167,7 +167,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
                     values: selectedDubbingLanguages.map((dL) => dL.id + ""),
                     joinTable: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.DUBBING_LANGUAGES_COLUMN_NAME,
                     operation: OPERATION.JOIN,
-                    operator: dubbingLanguagesOperator
+                    operator: OPERATOR.OR
                 }] : []),
                 ...(selectedSubtitledLanguages && selectedSubtitledLanguages.length > 0 ? [{
                     column: FILTERS_ATTRIBUTES.INTEREST_DEPENDENCIES.ID,
@@ -184,9 +184,9 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
                     operator: platformsOperator
                 }] : [])
             ]
-
+            console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             console.log(filters);
-            const filteredInterests = await getFilteredInterests(filters, token, page, "name", "ASC", 18);
+            const filteredInterests = await getFilteredInterests(filters, token, page, "name", "ASC", 12);
 
             if(page == 0){
                 mapActions.reset();

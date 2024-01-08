@@ -1,5 +1,3 @@
-
-
 INSERT INTO "matchup"."language" ("id", "name") VALUES (E'ab', E'Abkhazian');
 INSERT INTO "matchup"."language" ("id", "name") VALUES (E'ace', E'Achinese');
 INSERT INTO "matchup"."language" ("id", "name") VALUES (E'ach', E'Acoli');
