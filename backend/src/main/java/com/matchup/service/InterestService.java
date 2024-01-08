@@ -204,6 +204,9 @@ public class InterestService {
         Interest interestToUpdate = interestOp.get();
 
         ArrayList<InterestImage> interestImageList = new ArrayList<>();
+        if(interestToUpdate.getImages() != null || !interestToUpdate.getImages().isEmpty()){
+            interestImageRepository.deleteByInterestId(interestId);
+        }
         if (imageList != null || imageList.length == 0) {
             for(MultipartFile interestMultipartFile: imageList){
                 var interestImage = new InterestImage();

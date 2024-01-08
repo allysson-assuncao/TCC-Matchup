@@ -14,9 +14,13 @@ import {linkInterestToUser, unlinkInterestToUser} from "../../../api/user_reques
 import {useTheme} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {showSnackbar} from "../../../redux/slices/app";
+import {FRIENDSHIP_STATUS} from "../../../model/friendship";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {PersonRemove, Remove} from "@mui/icons-material";
 import ImageUploader from "../fields/ImageUploader";
 import {updateInterestImagesById} from "../../../api/interest_requests/updateInterestImage";
+import {ClickAwayListener} from "@mui/base";
+
 interface InterestCardProps {
     interest: Interest;
 }
@@ -26,6 +30,7 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
     const {user} = useSelector((state: any) => state.app);
     const [isExpanded, setExpanded] = useState(false);
     const {token} = useSelector((state: any) => state.auth);
+    /*const [open, setOpen] = React.useState(false);*/
     const dispatch = useDispatch();
 
     const [newImages, setNewImages] = useState<File[]>([]);
@@ -54,54 +59,131 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
         updateInterestImagesById(newImages, interest.id, token);
     };
 
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(anchorEl ? null : event.currentTarget);
+    };
+
+    const handleClickAway = () => {
+        setAnchorEl( null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popper' : undefined;
 
     return (
         <Grid item xs={12} sm={6} md={4}>
-            {isExpanded ? (
-                <Card
-                    onMouseLeave={handleMouseLeave}
-                    sx={{
-                        width: '17.5%',
-                        position: 'absolute',
-                        zIndex: theme.zIndex.modal,
-                        minHeight: isExpanded ? 'auto' : '200px',
-                        transition: 'min-height 0.3s ease-in-out',
-                        overflow: isExpanded ? 'visible' : 'hidden',
-                    }}
-                >
-                    <ImageUploader
-                        setImages={setNewImages}
-                        handleSave={handleSave}
-                        calledByInterestCard
-                        interestImageList={interest.formattedImages}
-                        userAccess={user.access}/>
-                    <CardHeader
-                        title={interest.name}
-                        subheader={interest.company?.name}
-                        titleTypographyProps={{align: 'center'}}
-                        subheaderTypographyProps={{align: 'center'}}
+            <Card
+                sx={{
+                    minHeight: isExpanded ? 'auto' : '200px',
+                    transition: 'min-height 0.3s ease-in-out',
+                }}
+            >
+                <ImageUploader
+                    setImages={setNewImages}
+                    handleSave={handleSave}
+                    calledByInterestCard
+                    interestImageList={interest.formattedImages}
+                    userAccess={user.access}/>
+                <CardHeader
+                    title={interest.name}
+                    subheader={interest.company?.name}
+                    titleTypographyProps={{align: 'center'}}
+                    subheaderTypographyProps={{align: 'center'}}
 
+                    sx={{
+                        color: (theme) => theme.palette.primary.main,
+                        backgroundColor: (theme) => grey[900],
+                        mb: "5px"
+                    }}
+                />
+                <CardActions>
+                    <Button fullWidth variant={'contained'} aria-describedby={id} type="button" onClick={handleClick}>
+                        Mais Informações
+                    </Button>
+                </CardActions>
+            </Card>
+            <ClickAwayListener
+                mouseEvent="onMouseDown"
+                touchEvent="onTouchStart"
+                onClickAway={() => handleClickAway()}
+            >
+                <Popper
+                    id={id} open={open} anchorEl={anchorEl}
+                    placement="bottom"
+                    disablePortal={false}
+                    placeholder={"smt"}
+                    modifiers={[
+                        {
+                            name: 'flip',
+                            enabled: true,
+                            options: {
+                                altBoundary: true,
+                                rootBoundary: 'viewport',
+                                padding: 8,
+                            },
+                        },
+                        {
+                            name: 'preventOverflow',
+                            enabled: true,
+                            options: {
+                                altAxis: true,
+                                altBoundary: true,
+                                tether: true,
+                                rootBoundary: 'viewport',
+                                padding: 8,
+                            },
+                        },
+                        {
+                            name: 'arrow',
+                            enabled: true,
+                            options: {
+                                element: anchorEl
+                            },
+                        },
+                    ]}
+                >
+                    <Card
+                        /*onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}*/
                         sx={{
-                            color: (theme) => theme.palette.primary.main,
-                            backgroundColor: (theme) => grey[900],
-                            mb: "5px"
+                            /*minHeight: isExpanded ? 'auto' : '200px',*/
+                            transition: 'min-height 0.3s ease-in-out',
                         }}
-                    />
-                    <CardActions sx={{paddingY: "5px"}}>
-                        <Button
-                            onClick={() => {
-                                interest.added ? handleRemoveInterest() : handleAddInterest();
-                                interest.added = !interest.added;
+                    >
+                        <ImageUploader
+                            setImages={setNewImages}
+                            handleSave={handleSave}
+                            calledByInterestCard
+                            interestImageList={interest.formattedImages}
+                            userAccess={user.access}/>
+                        <CardHeader
+                            title={interest.name}
+                            subheader={interest.company?.name}
+                            titleTypographyProps={{align: 'center'}}
+                            subheaderTypographyProps={{align: 'center'}}
+
+                            sx={{
+                                color: (theme) => theme.palette.primary.main,
+                                backgroundColor: (theme) => grey[900],
+                                mb: "5px"
                             }}
-                            fullWidth
-                            title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
-                            startIcon={interest.added ? <Remove/> : <AddIcon/>}
-                            variant="outlined"
-                        >
-                            {interest.added ? "Remover" : "Adicionar"}
-                        </Button>
-                    </CardActions>
-                    {isExpanded && (
+                        />
+                        <CardActions sx={{paddingY: "5px"}}>
+                            <Button
+                                onClick={() => {
+                                    interest.added ? handleRemoveInterest() : handleAddInterest();
+                                    interest.added = !interest.added;
+                                }}
+                                fullWidth
+                                title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
+                                startIcon={interest.added ? <Remove/> : <AddIcon/>}
+                                variant="outlined"
+                            >
+                                {interest.added ? "Remover" : "Adicionar"}
+                            </Button>
+                        </CardActions>
                         <CardContent sx={{padding: "0px", marginX: "15px"}}>
                             <Typography variant="body2" color="text.secondary">
                                 Descrição: {interest.description}
@@ -170,51 +252,10 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                                 </Stack>)
                             }
                         </CardContent>
-                    )}
-                </Card>
-            ) : (
-                <Card
-                    onMouseEnter={handleMouseEnter}
-                    sx={{
-                        width: '100%',
-                        minHeight: isExpanded ? 'auto' : '200px',
-                        transition: 'min-height 0.3s ease-in-out',
-                    }}
-                >
-                    <ImageUploader
-                        setImages={setNewImages}
-                        handleSave={handleSave}
-                        calledByInterestCard
-                        interestImageList={interest.formattedImages}
-                        userAccess={user.access}/>
-                    <CardHeader
-                        title={interest.name}
-                        subheader={interest.company?.name}
-                        titleTypographyProps={{align: 'center'}}
-                        subheaderTypographyProps={{align: 'center'}}
 
-                        sx={{
-                            color: (theme) => theme.palette.primary.main,
-                            backgroundColor: (theme) => grey[900],
-                            mb: "5px"
-                        }}
-                    />
-                    <CardActions sx={{paddingY: "5px"}}>
-                        <Button
-                            onClick={() => {
-                                interest.added ? handleRemoveInterest() : handleAddInterest();
-                                interest.added = !interest.added;
-                            }}
-                            fullWidth
-                            title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
-                            startIcon={interest.added ? <Remove/> : <AddIcon/>}
-                            variant="outlined"
-                        >
-                            {interest.added ? "Remover" : "Adicionar"}
-                        </Button>
-                    </CardActions>
-                </Card>
-            )}
+                    </Card>
+                </Popper>
+            </ClickAwayListener>
         </Grid>
     );
 };

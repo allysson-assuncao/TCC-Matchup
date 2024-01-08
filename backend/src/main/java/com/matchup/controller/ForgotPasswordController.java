@@ -53,5 +53,5 @@ public class ForgotPasswordController {
             return new ResponseEntity<>(false, HttpStatus.CONFLICT);
         }
     }
-    
+
 }

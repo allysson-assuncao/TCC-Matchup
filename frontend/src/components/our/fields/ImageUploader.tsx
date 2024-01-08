@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Button, Grid, IconButton, MobileStepper, Paper, Stack} from '@mui/material';
 import {KeyboardArrowLeft, KeyboardArrowRight, Delete, Upload, Save} from '@mui/icons-material';
 import {resizeImage} from "../../../utils/ResizeImage";
+import { ClickAwayListener } from '@mui/base';
 
 interface ImageUploaderProps {
     setImages: React.Dispatch<React.SetStateAction<File[]>>,
@@ -63,8 +64,8 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             {selectedImages.length > 0 && (
                 <Grid item /*justifyContent={'center'}*/>
                     <Paper elevation={0}>
-                        <Grid container justifyContent="space-between" alignItems="center">
-                            <img src={selectedImages[activeStep]} alt="Selected" style={{maxWidth: '100%'}}/>
+                        <Grid container justifyContent="center" alignItems="center">
+                            <img src={selectedImages[activeStep]} alt="Selected" height={"170px"} width={"auto"}/>
                         </Grid>
                         {userAccess == "ADMIN" && (
                             <Stack direction="row"  display="flex" justifyContent="space-between" alignItems="center">

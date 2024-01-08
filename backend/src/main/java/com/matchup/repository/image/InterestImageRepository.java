@@ -14,4 +14,6 @@ public interface InterestImageRepository extends JpaRepository<InterestImage, Lo
 
     void deleteById(long id);
 
+    void deleteByInterestId(long id);
+
 }
