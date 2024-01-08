@@ -182,15 +182,18 @@ const Profile = () => {
                                         sx={{
                                             maxWidth: "100%",
                                             wordWrap: "break-word",
-                                            textAlign: "center", // Centraliza horizontalmente o texto
+                                            textAlign: "center",
                                         }}
                                     >
                                         {profile.bio}
+                                    </Typography>
+
+                                    <Typography>
                                         {profile.interestNames &&
                                             profile.interestNames.length !== 0 && (
                                                 <>
                                                     {profile.interestNames.map((text, index) => (
-                                                        <Chip key={index} label={text} style={{ margin: 4 }} />
+                                                        <Chip key={index} label={text} style={{margin: 4}}/>
                                                     ))}
                                                 </>
                                             )}

@@ -158,7 +158,7 @@ const ProfileSearch = () => {
                                                 handleLeft();
                                             }}
                                             title={(profileList.length === 0 || !profileList) ? 'Não há perfis à esquerda ainda' : "Clique para ver o perfil da esquerda!"}
-                                            startIcon={<CaretLeft />}
+                                            startIcon={<CaretLeft/>}
                                             variant="text"
                                             sx={{
                                                 width: 30,
@@ -185,7 +185,7 @@ const ProfileSearch = () => {
                                                 handleRight();
                                             }}
                                             title={"Clique para ver o perfil da direita!"}
-                                            startIcon={<CaretRight />}
+                                            startIcon={<CaretRight/>}
                                             variant="text"
                                             sx={{
                                                 width: 30,
@@ -214,15 +214,18 @@ const ProfileSearch = () => {
                                         sx={{
                                             maxWidth: "100%",
                                             wordWrap: "break-word",
-                                            textAlign: "center", // Centraliza horizontalmente o texto
+                                            textAlign: "center",
                                         }}
                                     >
                                         {profile.bio}
+                                    </Typography>
+
+                                    <Typography>
                                         {profile.interestNames &&
                                             profile.interestNames.length !== 0 && (
                                                 <>
                                                     {profile.interestNames.map((text, index) => (
-                                                        <Chip key={index} label={text} style={{ margin: 4 }} />
+                                                        <Chip key={index} label={text} style={{margin: 4}}/>
                                                     ))}
                                                 </>
                                             )}

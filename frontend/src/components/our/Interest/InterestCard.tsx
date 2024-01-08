@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
     Typography,
     Button,
@@ -9,13 +9,10 @@ import CardHeader from "@mui/material/CardHeader";
 import CardActions from "@mui/material/CardActions";
 import {grey} from "@mui/material/colors";
 import AddIcon from '@mui/icons-material/Add';
-import IconButton from "@mui/material/IconButton";
 import {linkInterestToUser, unlinkInterestToUser} from "../../../api/user_requests/link_interest";
 import {useTheme} from "@mui/material/styles";
 import {useDispatch, useSelector} from "react-redux";
 import {showSnackbar} from "../../../redux/slices/app";
-import {FRIENDSHIP_STATUS} from "../../../model/friendship";
-import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import {PersonRemove, Remove} from "@mui/icons-material";
 import ImageUploader from "../fields/ImageUploader";
 import {updateInterestImagesById} from "../../../api/interest_requests/updateInterestImage";
@@ -59,18 +56,37 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
         updateInterestImagesById(newImages, interest.id, token);
     };
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+    const [open, setOpen] = useState(false);
+    const [popperPosition, setPopperPosition] = useState({ top: 0, left: 0 });
+    const anchorEl = useRef<HTMLButtonElement | null>(null);
+    const popperRef = React.createRef<HTMLDivElement>();
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
+    const handleClick = () => {
+        setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClickAway = () => {
-        setAnchorEl( null);
+    const updatePopperPosition = () => {
+        if (anchorEl.current && popperRef.current) {
+            const { top, left } = anchorEl.current.getBoundingClientRect();
+            setPopperPosition({ top: top + window.scrollY, left });
+        }
     };
 
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popper' : undefined;
+    useEffect(() => {
+        if (open) {
+            updatePopperPosition();
+            window.addEventListener('scroll', updatePopperPosition);
+        } else {
+            window.removeEventListener('scroll', updatePopperPosition);
+        }
+
+        return () => {
+            window.removeEventListener('scroll', updatePopperPosition);
+        };
+    }, [open]);
+
+    const canBeOpen = open && Boolean(anchorEl.current);
+    const id = canBeOpen ? 'transition-popper' : undefined;
 
     return (
         <Grid item xs={12} sm={6} md={4}>
@@ -99,7 +115,7 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
                     }}
                 />
                 <CardActions>
-                    <Button fullWidth variant={'contained'} aria-describedby={id} type="button" onClick={handleClick}>
+                    <Button fullWidth variant={'contained'} ref={anchorEl} aria-describedby={id} type="button" onClick={handleClick}>
                         Mais Informações
                     </Button>
                 </CardActions>
@@ -107,154 +123,127 @@ const InterestCard: React.FC<InterestCardProps> = ({interest}) => {
             <ClickAwayListener
                 mouseEvent="onMouseDown"
                 touchEvent="onTouchStart"
-                onClickAway={() => handleClickAway()}
+                onClickAway={() => handleClick()}
             >
-                <Popper
-                    id={id} open={open} anchorEl={anchorEl}
-                    placement="bottom"
-                    disablePortal={false}
-                    placeholder={"smt"}
-                    modifiers={[
-                        {
-                            name: 'flip',
-                            enabled: true,
-                            options: {
-                                altBoundary: true,
-                                rootBoundary: 'viewport',
-                                padding: 8,
-                            },
-                        },
-                        {
-                            name: 'preventOverflow',
-                            enabled: true,
-                            options: {
-                                altAxis: true,
-                                altBoundary: true,
-                                tether: true,
-                                rootBoundary: 'viewport',
-                                padding: 8,
-                            },
-                        },
-                        {
-                            name: 'arrow',
-                            enabled: true,
-                            options: {
-                                element: anchorEl
-                            },
-                        },
-                    ]}
-                >
-                    <Card
-                        /*onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}*/
-                        sx={{
-                            /*minHeight: isExpanded ? 'auto' : '200px',*/
-                            transition: 'min-height 0.3s ease-in-out',
-                        }}
-                    >
-                        <ImageUploader
-                            setImages={setNewImages}
-                            handleSave={handleSave}
-                            calledByInterestCard
-                            interestImageList={interest.formattedImages}
-                            userAccess={user.access}/>
-                        <CardHeader
-                            title={interest.name}
-                            subheader={interest.company?.name}
-                            titleTypographyProps={{align: 'center'}}
-                            subheaderTypographyProps={{align: 'center'}}
-
+            <Popper
+                placeholder={""}
+                id={id}
+                open={open}
+                anchorEl={anchorEl.current}
+                placement="auto"
+                disablePortal={false}
+                transition
+            >
+                {({ TransitionProps }) => (
+                    <Fade {...TransitionProps} timeout={350}>
+                        <Card
                             sx={{
-                                color: (theme) => theme.palette.primary.main,
-                                backgroundColor: (theme) => grey[900],
-                                mb: "5px"
+                                transition: 'min-height 0.3s ease-in-out',
                             }}
-                        />
-                        <CardActions sx={{paddingY: "5px"}}>
-                            <Button
-                                onClick={() => {
-                                    interest.added ? handleRemoveInterest() : handleAddInterest();
-                                    interest.added = !interest.added;
+                        >
+                            <ImageUploader
+                                setImages={setNewImages}
+                                handleSave={handleSave}
+                                calledByInterestCard
+                                interestImageList={interest.formattedImages}
+                                userAccess={user.access}/>
+                            <CardHeader
+                                title={interest.name}
+                                subheader={interest.company?.name}
+                                titleTypographyProps={{align: 'center'}}
+                                subheaderTypographyProps={{align: 'center'}}
+                                sx={{
+                                    color: (theme) => theme.palette.primary.main,
+                                    backgroundColor: (theme) => grey[900],
+                                    mb: "5px"
                                 }}
-                                fullWidth
-                                title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
-                                startIcon={interest.added ? <Remove/> : <AddIcon/>}
-                                variant="outlined"
-                            >
-                                {interest.added ? "Remover" : "Adicionar"}
-                            </Button>
-                        </CardActions>
-                        <CardContent sx={{padding: "0px", marginX: "15px"}}>
-                            <Typography variant="body2" color="text.secondary">
-                                Descrição: {interest.description}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Preço: R${interest.lowestPrice} ~ R${interest.highestPrice}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Idade: {interest.ageRating?.name}
-                            </Typography>
-                            <Typography variant="body2" color="text.secondary">
-                                Gêneros:
-                            </Typography>
-                            <Stack style={{display: 'flex', overflowX: 'auto'}}>
+                            />
+                            <CardActions sx={{paddingY: "5px"}}>
+                                <Button
+                                    onClick={() => {
+                                        interest.added ? handleRemoveInterest() : handleAddInterest();
+                                        interest.added = !interest.added;
+                                    }}
+                                    fullWidth
+                                    title={interest.added ? "Remover Interesse" : "Adicionar Interesse"}
+                                    startIcon={interest.added ? <Remove/> : <AddIcon/>}
+                                    variant="outlined"
+                                >
+                                    {interest.added ? "Remover" : "Adicionar"}
+                                </Button>
+                            </CardActions>
+                            <CardContent sx={{padding: "0px", marginX: "15px"}}>
+                                <Typography variant="body2" color="text.secondary">
+                                    Descrição: {interest.description}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Preço: R${interest.lowestPrice} ~ R${interest.highestPrice}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Idade: {interest.ageRating?.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary">
+                                    Gêneros:
+                                </Typography>
+                                <Stack style={{display: 'flex', overflowX: 'auto'}}>
+                                    {interest && interest.genres.length != 0
+                                        && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                            {interest.genres.map((genre, index) => (
+                                                <Chip key={index} label={genre.name + ""} style={{margin: 0}}
+                                                      sx={{backgroundColor: "#7635dc"}}/>
+                                            ))}
+                                        </Stack>)
+                                    }
+                                </Stack>
+                                <Typography variant="body2" color="text.secondary">
+                                    Subgêneros:
+                                </Typography>
                                 {interest && interest.genres.length != 0
                                     && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
-                                        {interest.genres.map((genre, index) => (
-                                            <Chip key={index} label={genre.name + ""} style={{margin: 0}}
-                                                  sx={{backgroundColor: "#7635dc"}}/>
+                                        {interest.subGenres.map((subGenre, index) => (
+                                            <Chip key={index} label={subGenre.name + ""} style={{margin: 4}}
+                                                  sx={{backgroundColor: "#0162c4"}}/>
                                         ))}
                                     </Stack>)
                                 }
-                            </Stack>
-                            <Typography variant="body2" color="text.secondary">
-                                Subgêneros:
-                            </Typography>
-                            {interest && interest.genres.length != 0
-                                && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
-                                    {interest.subGenres.map((subGenre, index) => (
-                                        <Chip key={index} label={subGenre.name + ""} style={{margin: 4}}
-                                              sx={{backgroundColor: "#0162c4"}}/>
-                                    ))}
-                                </Stack>)
-                            }
-                            <Typography variant="body2" color="text.secondary">
-                                Plataformas:
-                            </Typography>
-                            {interest && interest.genres.length != 0
-                                && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
-                                    {interest.platforms.map((platform, index) => (
-                                        <Chip key={index} label={platform.name + ""} style={{margin: 4}}
-                                              sx={{backgroundColor: "#fda92d"}}/>
-                                    ))}
-                                </Stack>)
-                            }
-                            <Typography variant="body2" color="text.secondary">
-                                Dublado:
-                            </Typography>
-                            {interest && interest.genres.length != 0
-                                && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
-                                    {interest.dubbingLanguages.map((dubbingLanguage, index) => (
-                                        <Chip key={index} label={dubbingLanguage.id + ""} style={{margin: 4}}
-                                              sx={{backgroundColor: "#1ccaff"}}/>
-                                    ))}
-                                </Stack>)
-                            }
-                            <Typography variant="body2" color="text.secondary">
-                                Legendado:
-                            </Typography>
-                            {interest && interest.genres.length != 0
-                                && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
-                                    {interest.subtitleLanguages.map((subtitleLanguage, index) => (
-                                        <Chip key={index} label={subtitleLanguage.id + ""} style={{margin: 4}}
-                                              sx={{backgroundColor: "#ff3030"}}/>
-                                    ))}
-                                </Stack>)
-                            }
-                        </CardContent>
-
-                    </Card>
-                </Popper>
+                                <Typography variant="body2" color="text.secondary">
+                                    Plataformas:
+                                </Typography>
+                                {interest && interest.genres.length != 0
+                                    && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                        {interest.platforms.map((platform, index) => (
+                                            <Chip key={index} label={platform.name + ""} style={{margin: 4}}
+                                                  sx={{backgroundColor: "#fda92d"}}/>
+                                        ))}
+                                    </Stack>)
+                                }
+                                <Typography variant="body2" color="text.secondary">
+                                    Dublado:
+                                </Typography>
+                                {interest && interest.genres.length != 0
+                                    && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                        {interest.dubbingLanguages.map((dubbingLanguage, index) => (
+                                            <Chip key={index} label={dubbingLanguage.id + ""} style={{margin: 4}}
+                                                  sx={{backgroundColor: "#1ccaff"}}/>
+                                        ))}
+                                    </Stack>)
+                                }
+                                <Typography variant="body2" color="text.secondary">
+                                    Legendado:
+                                </Typography>
+                                {interest && interest.genres.length != 0
+                                    && (<Stack direction={'row'} justifyContent={"start"} spacing={5}>
+                                        {interest.subtitleLanguages.map((subtitleLanguage, index) => (
+                                            <Chip key={index} label={subtitleLanguage.id + ""} style={{margin: 4}}
+                                                  sx={{backgroundColor: "#ff3030"}}/>
+                                        ))}
+                                    </Stack>)
+                                }
+                            </CardContent>
+                        </Card>
+                    </Fade>
+                )}
+            </Popper>
             </ClickAwayListener>
         </Grid>
     );

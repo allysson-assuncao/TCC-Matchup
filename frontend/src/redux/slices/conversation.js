@@ -289,7 +289,7 @@ export const AddDirectMessage = (message, user_id) => {
 export function ClearConversation() {
     return async (dispatch, getState) => {
         dispatch(slice.actions.resetState());
-        dispatch(showSnackbar({severity: 'success', message: 'A conversa foi limpa com sucesso!'}));
+        /*dispatch(showSnackbar({severity: 'success', message: 'A conversa foi limpa com sucesso!'}));*/
     };
 }
 
