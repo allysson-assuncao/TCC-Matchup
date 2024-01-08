@@ -119,7 +119,9 @@ public class InterestService {
     @Transactional(readOnly = true)
     public Page<Interest> getInterestsBySpecificationWithPagination(UserDetails userDetails, List<SearchRequestDto> searchRequestDtos, int page, int size, String orderBy, Sort.Direction direction) {
         Specification<Interest> searchSpecification =
+
                 filterSpecificationService.getSearchSpecification(searchRequestDtos, orderBy, direction);
+        System.out.println(searchSpecification);
         Pageable pageable = PageRequest.of(page, size, Sort.by(direction, orderBy));
 
         Page<Interest> interestPage = interestRepository.findAll(searchSpecification, pageable);

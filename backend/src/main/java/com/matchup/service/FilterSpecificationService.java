@@ -15,6 +15,7 @@ public class FilterSpecificationService<T> {
     public Specification<T> getSearchSpecification(List<SearchRequestDto> searchRequestDtos, String orderBy, Sort.Direction direction){
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
+            int count = 0;
             for(SearchRequestDto requestDto: searchRequestDtos){
                 List<Predicate> tempPredicates = new ArrayList<>();
                 for(String value: requestDto.getValues()){
@@ -32,6 +33,8 @@ public class FilterSpecificationService<T> {
                 if(requestDto.getOperator().equals(LocalOperator.AND)){
                     predicates.add(criteriaBuilder.and(tempPredicates.toArray(new Predicate[0])));
                 }else if (requestDto.getOperator().equals(LocalOperator.OR)){
+                    count++;
+                    System.out.println("OOOOOOOOOOOOORRRRRRRRRRRRRRR" + count);
                     predicates.add(criteriaBuilder.or(tempPredicates.toArray(new Predicate[0])));
                 }else{
                     throw new IllegalArgumentException("Invalid Operator");
