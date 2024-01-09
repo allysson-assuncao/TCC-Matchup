@@ -113,12 +113,15 @@ const TextMsg = ({el, menu}) => {
                 </Typography>
                 <Typography
                     variant="body2"
-                    sx={{color: `rgba(255, 255, 255, 0.7)`,
+                    sx={{
+                        color: theme => theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)',
                         fontSize: "0.7rem",
-                        textAlign: el.incoming ? "left" : "right",}}
+                        textAlign: el.incoming ? "left" : "right",
+                    }}
                 >
                     {formatData(el.date)}
                 </Typography>
+
             </Box>
             {menu && <MessageOption />}
         </Stack>
