@@ -215,6 +215,9 @@ export function LoginUser(formValues) {
                     showSnackbar({severity: "success", message: response.data.message})
                 );
                 dispatch(
+                    showSnackbar({severity: "warning", message: response.data.message})
+                );
+                dispatch(
                     slice.actions.updateIsLoading({isLoading: false, error: false})
                 );
             })
