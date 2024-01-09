@@ -186,7 +186,7 @@ const InterestFilters: React.FC<InterestFiltersProps> = ({
             ]
             console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
             console.log(filters);
-            const filteredInterests = await getFilteredInterests(filters, token, page, "name", "ASC", 12);
+            const filteredInterests = await getFilteredInterests(filters, token, page, "name", "ASC", 200);
 
             if(page == 0){
                 mapActions.reset();

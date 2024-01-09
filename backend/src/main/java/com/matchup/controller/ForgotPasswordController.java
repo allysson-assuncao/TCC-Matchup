@@ -29,6 +29,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/confirm-email")
     public ResponseEntity<Long> forgotPassword(@RequestParam String email) {
+        System.out.println("Email: " + email);
         return new ResponseEntity<>(verificationCodeService.sendCode(email), HttpStatus.ACCEPTED);
     }
 

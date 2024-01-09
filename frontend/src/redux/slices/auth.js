@@ -101,8 +101,9 @@ export function ForgotPassword(email) {
             if (!userPasswordId) {
                 dispatch(showSnackbar({severity: "warning", message: "Email inválido!"}));
             } else {
-                dispatch(setUserPasswordId({userPasswordId}));
-                dispatch(showSnackbar({severity: "success", message: "Email confirmado"}));
+                dispatch(slice.actions.setUserPasswordId({userPasswordId: userPasswordId.data}));
+                /*dispatch(showSnackbar({severity: "success", message: "Email confirmado"}));*/
+
             }
             return userPasswordId.data;
         } catch (error) {
