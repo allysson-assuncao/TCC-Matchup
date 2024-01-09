@@ -37,6 +37,8 @@ export const ROUTE_INDEX = "introdução";
 
 export const ROUTE_CHAT = "/chat";
 
+export const ROUTE_VERIFY_CODE = "verificar_codigo";
+
 /*export const ROUTE_ABOUT_US = "/contato";
 
 export const ROUTE_FAQ = "/faq";
@@ -55,6 +57,7 @@ export default function Router() {
                 {path: ROUTE_LOGIN, element: <LoginPage/>},
                 {path: "register", element: <RegisterPage/>},
                 {path: ROUTE_REGISTER, element: <SignUp/>},
+                {path: ROUTE_VERIFY_CODE, element: <VerifyCodeForm/>},
                 {path: "reset-password", element: <ResetPasswordPage/>},
                 {path: "new-password", element: <NewPasswordPage/>},
                 {path: "verify", element: <VerifyPage/>},
@@ -122,6 +125,9 @@ const VerifyPage = Loadable(lazy(() => import("../pages/auth/Verify")));
 const RegisterPage = Loadable(lazy(() => import("../pages/auth/Register")));
 const ResetPasswordPage = Loadable(
     lazy(() => import("../pages/auth/ResetPassword"))
+);
+const VerifyCodeForm = Loadable(
+    lazy(() => import("../sections/auth/VerifyCodeForm"))
 );
 const NewPasswordPage = Loadable(
     lazy(() => import("../pages/auth/NewPassword"))
