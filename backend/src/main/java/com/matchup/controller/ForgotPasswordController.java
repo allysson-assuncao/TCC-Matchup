@@ -43,6 +43,17 @@ public class ForgotPasswordController {
         return new ResponseEntity<>(verificationCodeService.verifyCode(code, userId), HttpStatus.ACCEPTED);
     }
 
+    /*@PutMapping("/reset-password")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<Boolean> resetPassword(@RequestBody ResetPasswordDto resetPasswordDto) {
+        System.out.println("reset-password: " + resetPasswordDto.getId() + " userId: " + resetPasswordDto.getRawPassword());
+        if(userService.updateUserPassword(resetPasswordDto.getId(), resetPasswordDto.getRawPassword()) != null){
+            return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+        }else{
+            return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+        }
+    }*/
+
     @PutMapping("/reset-password")
     @CrossOrigin(origins = "*")
     public ResponseEntity<Boolean> resetPassword(@RequestBody ResetPasswordDto resetPasswordDto) {
