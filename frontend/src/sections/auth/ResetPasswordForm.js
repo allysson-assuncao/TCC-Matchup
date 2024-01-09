@@ -40,9 +40,9 @@ export default function AuthResetPasswordForm() {
         }
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         navigate(ROUTE_VERIFY_CODE);
-    }, [userPasswordId]);
+    }, [userPasswordId]);*/
 
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
