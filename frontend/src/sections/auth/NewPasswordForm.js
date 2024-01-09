@@ -8,9 +8,12 @@ import { Stack, IconButton, InputAdornment, Button } from '@mui/material';
 // components
 import FormProvider, { RHFTextField } from '../../components/hook-form';
 import { Eye, EyeSlash } from 'phosphor-react';
-import { useSearchParams } from 'react-router-dom';
+import {useNavigate, useSearchParams} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { NewPassword } from '../../redux/slices/auth';
+import {updatePassword} from "../../api/user_requests/forgot_password";
+import {showSnackbar} from "../../redux/slices/app";
+import {ROUTE_LOGIN} from "../../routes";
 
 // ----------------------------------------------------------------------
 
@@ -18,6 +21,7 @@ export default function NewPasswordForm() {
   const dispatch = useDispatch();
   const [queryParameters] = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
   const VerifyCodeSchema = Yup.object().shape({
     
@@ -47,7 +51,14 @@ export default function NewPasswordForm() {
   const onSubmit = async (data) => {
     try {
     //   Send API Request
-    dispatch(NewPassword({...data, token: queryParameters.get('token')}));
+    /*dispatch(NewPassword({...data, token: queryParameters.get('token')}));*/
+        let response = updatePassword(...data);
+        if (response) {
+            navigate(ROUTE_LOGIN);
+            dispatch(showSnackbar({severity: "success", message: "Logue com a nossa "}));
+        } else {
+            dispatch(showSnackbar({severity: "warning", message: "Senha inválida!"}));
+        }
     } catch (error) {
       console.error(error);
     }

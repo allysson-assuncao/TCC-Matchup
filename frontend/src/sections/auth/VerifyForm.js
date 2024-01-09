@@ -9,8 +9,11 @@ import {Stack, IconButton, InputAdornment, Button} from "@mui/material";
 import FormProvider, {RHFTextField} from "../../components/hook-form";
 import {Eye, EyeSlash} from "phosphor-react";
 import RHFCodes from "../../components/hook-form/RHFCodes";
-import { useDispatch, useSelector } from "react-redux";
-import { VerifyEmail } from "../../redux/slices/auth";
+import {useDispatch, useSelector} from "react-redux";
+import {VerifyEmail} from "../../redux/slices/auth";
+import {verifyCode} from "../../api/user_requests/forgot_password";
+import {useNavigate} from "react-router-dom";
+import {showSnackbar} from "../../redux/slices/app";
 
 // ----------------------------------------------------------------------
 

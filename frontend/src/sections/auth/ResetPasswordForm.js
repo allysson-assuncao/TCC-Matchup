@@ -11,6 +11,7 @@ import {LoadingButton} from "@mui/lab";
 import {useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import {ROUTE_VERIFY_CODE} from "../../routes";
+import {PATH_AUTH} from "../../routes/paths";
 
 // ----------------------------------------------------------------------
 
@@ -39,10 +40,6 @@ export default function AuthResetPasswordForm() {
             console.error(error);
         }
     };
-
-    /*useEffect(() => {
-        navigate(ROUTE_VERIFY_CODE);
-    }, [userPasswordId]);*/
 
     return (
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>

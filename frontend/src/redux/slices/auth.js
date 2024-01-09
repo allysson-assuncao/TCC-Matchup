@@ -102,6 +102,7 @@ export function ForgotPassword(email) {
                 dispatch(showSnackbar({severity: "warning", message: "Email inválido!"}));
             } else {
                 dispatch(slice.actions.setUserPasswordId({userPasswordId: userPasswordId.data}));
+                window.location.href = "/auth/verify";
                 /*dispatch(showSnackbar({severity: "success", message: "Email confirmado"}));*/
 
             }
