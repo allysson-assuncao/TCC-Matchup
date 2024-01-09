@@ -78,7 +78,7 @@ export default function AuthLoginForm() {
 
                 <RHFTextField
                     name="rawPassword"
-                    label="Password"
+                    label="Senha"
                     type={showPassword ? "text" : "password"}
                     InputProps={{
                         endAdornment: (

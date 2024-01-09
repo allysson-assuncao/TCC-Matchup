@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 import axios from "../../utils/axios";
 import {showSnackbar} from "./app";
+import {AxiosResponse} from "axios";
 
 // ----------------------------------------------------------------------
 
@@ -11,6 +12,7 @@ const initialState = {
     isLoading: false,
     user: null,
     user_id: null,
+    userPasswordId: null,
     email: "",
     error: false,
 };
@@ -39,6 +41,9 @@ const slice = createSlice({
         updateRegisterEmail(state, action) {
             state.email = action.payload.email;
         },
+        setUserPasswordId(state, action) {
+            state.userPasswordId = action.payload.userPasswordId;
+        }
     },
 });
 
@@ -86,11 +91,25 @@ export function NewPassword(formValues) {
     };
 }
 
-export function ForgotPassword(formValues) {
+export function ForgotPassword(email) {
     return async (dispatch, getState) => {
         dispatch(slice.actions.updateIsLoading({isLoading: true, error: false}));
 
-        await axios
+        try {
+            let userPasswordId;
+            userPasswordId = await axios.post(`http://localhost:8080/api/forgot-password/confirm-email?email=${email}`);
+            if (!userPasswordId) {
+                dispatch(showSnackbar({severity: "warning", message: "Email inválido!"}));
+            } else {
+                dispatch(setUserPasswordId({userPasswordId}));
+                dispatch(showSnackbar({severity: "success", message: "Email confirmado"}));
+            }
+            return userPasswordId.data;
+        } catch (error) {
+            throw error;
+        }
+
+        /*await axios
             .post(
                 "http://localhost:8080/api/forgot-password/confirm-email",
                 {
@@ -118,7 +137,51 @@ export function ForgotPassword(formValues) {
                 dispatch(
                     slice.actions.updateIsLoading({isLoading: false, error: true})
                 );
-            });
+            });*/
+    };
+}
+
+export function VerifyCode(code) {
+    return async (dispatch, getState) => {
+        dispatch(slice.actions.updateIsLoading({isLoading: true, error: false}));
+
+        try {
+            let response;
+            response = await axios.post(`http://localhost:8080/api/forgot-password/verify-code/${code}/${getState().userPasswordId}`);
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+
+        /*await axios
+            .post(
+                "http://localhost:8080/api/forgot-password/confirm-email",
+                {
+                    ...formValues,
+                },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
+            .then(function (response) {
+                console.log(response);
+
+                dispatch(
+                    showSnackbar({severity: "success", message: response.data.message})
+                );
+                dispatch(
+                    slice.actions.updateIsLoading({isLoading: false, error: false})
+                );
+            })
+            .catch(function (error) {
+                console.log(error);
+                dispatch(showSnackbar({severity: "error", message: error.message}));
+                dispatch(
+                    slice.actions.updateIsLoading({isLoading: false, error: true})
+                );
+            });*/
     };
 }
 
